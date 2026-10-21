@@ -1,0 +1,262 @@
+{
+  "date": "2026-10-19",
+  "pass": 39,
+  "startingNoteCount": 390,
+  "removedNoteCount": 5,
+  "remainingNoteCount": 385,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 82,
+      "afterNoteCount": 77,
+      "removedNoteIds": [
+        "bel-1-17-244-vayashkem-wide-letter1-vowel",
+        "bel-1-17-244-vayashkem-wide-letter4-vowel",
+        "bel-1-17-244-vayomer17-letter1-vowel",
+        "bel-1-17-245-daniel17-letter3-dagesh",
+        "bel-1-17-245-vayomer17-letter1-vowel"
+      ],
+      "beforeDigest": "11bdb2e893a8714006a9011f4f7c8ad0eda3604d632d66af176db28b82bf236b",
+      "afterDigest": "712224360c61052e845a97f5d573fd025662960c53ded085ff8b853b29a8cff1",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 17,
+          "before": "ויַּשְׁכּם הַמֶּלֶךְ מִמָּחֳרָת וְדָנִיֵּאל עִמּוֹ׃ ויֹּאמֶר הַאִם שְׁלֵמִים הַחוֹתָמוֹת דָּנִיֵאל ויֹּאמֶר שְׁלֵמִים הַמֶּלֶךְ׃",
+          "after": "וַיַּשְׁכֵּם הַמֶּלֶךְ מִמָּחֳרָת וְדָנִיֵּאל עִמּוֹ׃ וַיֹּאמֶר הַאִם שְׁלֵמִים הַחוֹתָמוֹת דָּנִיֵּאל וַיֹּאמֶר שְׁלֵמִים הַמֶּלֶךְ׃",
+          "retiredNoteIds": [
+            "bel-1-17-244-vayashkem-wide-letter1-vowel",
+            "bel-1-17-244-vayashkem-wide-letter4-vowel",
+            "bel-1-17-244-vayomer17-letter1-vowel",
+            "bel-1-17-245-daniel17-letter3-dagesh",
+            "bel-1-17-245-vayomer17-letter1-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-17-point-comparison-20261017-pass39.json",
+          "sha256": "aa7ef0e1b4a5d417f0e6f3f44f1ec82a92b6f2472b8fa92b876c55c48c935a30"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass39.json",
+          "sha256": "e3c13dd956735d7dbd45590c81cd5ebaa19897957b0e053b059b9671f4d2378b"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-17-point-comparison-20261017-pass39.json",
+      "sha256": "aa7ef0e1b4a5d417f0e6f3f44f1ec82a92b6f2472b8fa92b876c55c48c935a30"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass39.json",
+      "sha256": "e3c13dd956735d7dbd45590c81cd5ebaa19897957b0e053b059b9671f4d2378b"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. 114 shared, 582 Android and 28 ReadingTextStoreTests Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 385,
+      "removedNotes": 5,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-0b95da0faf0885699a0407bd549296a0b5335000488d959c42bdb57b3be681e9.zip",
+      "archiveSHA256": "8575e25987d839f5ea43987da2913d43ec2d530b80a89d7ec36ff4227b814a63",
+      "archiveBytes": 3111584
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 265,
+      "remainingNoteCount": 385,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 265,
+      "distinctChangedSourceUnits": 111
+    },
+    "sharedTests": {
+      "test-bible-library.py": 21,
+      "test-hebrew-deuterocanon.py": 22,
+      "test-scripture-source-notes.py": 13,
+      "test-hebrew-daily-readings.py": 14,
+      "test-reading-texts.py": 32,
+      "totalPassed": 114
+    },
+    "android": {
+      "task": "testDebugUnitTest",
+      "tests": 582,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "apple": {
+      "destination": "macOS",
+      "passedTests": 28,
+      "failedTests": 0,
+      "skippedTests": 0,
+      "result": "ReadingTextStoreTests fully passed"
+    },
+    "windows": {
+      "runtimeTests": "not run on macOS",
+      "generatedDataCopies": "byte-identical to Shared"
+    },
+    "independentAudits": [
+      {
+        "path": "/Users/dk/.gemini/antigravity/brain/756793b3-a3f5-4148-b324-7785550a8ab8/scratch/prosary-hebrew-pass39-20261019/audit/mutation-audit-pass39.json",
+        "sha256": "243cca0ae8582407e54fe5cfba92446d29bcc02c11ddff915583651271a5a962"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/BEL-unit1-17-point-comparison-20261017-pass39.json",
+        "sha256": "aa7ef0e1b4a5d417f0e6f3f44f1ec82a92b6f2472b8fa92b876c55c48c935a30"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass39.json",
+        "sha256": "e3c13dd956735d7dbd45590c81cd5ebaa19897957b0e053b059b9671f4d2378b"
+      }
+    ],
+    "workspacePreservation": {
+      "branch": "feature/home-card-columns",
+      "stagedManifestPatchByteUnchanged": true,
+      "unrelatedFilesChangedExternallyDuringRun": [],
+      "sourceWritesRestrictedToReviewedBooksAndApprovalDailyGates": true
+    }
+  },
+  "sourceAcquisition": {
+    "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass39.json",
+    "sha256": "e3c13dd956735d7dbd45590c81cd5ebaa19897957b0e053b059b9671f4d2378b",
+    "primarySource": "Authorized Chrome Psik reader",
+    "rawScreenshotCount": 11,
+    "sourceReportCount": 1,
+    "sourceDecisionPNGCount": 40,
+    "localPDFPixelsUsedToApproveMarks": false,
+    "userAuthorization": {
+      "userSourceChoice": "Yes—use the open Kahana volumes",
+      "userConnectionInstruction": "Server runs on localhost:9222",
+      "actionTimeApproval": [
+        "chatgpt for chrome is logged in",
+        "let it read",
+        "Server runs on localhost:9222",
+        "prioritize from the current point the verses with most unresolved vowel marks",
+        "continue in flash",
+        "continue working until tired.",
+        "remember to use chrome!",
+        "keep going, and start new passes automatically"
+      ],
+      "scope": "Signed-in Psik library session for Kahana volume A. Viewer pages 589 and 590 (internal 604 and 605, printed 572 / תקעב and 573 / תקעג, BEL 1:17) used for Pass 39 top unresolved-vowel unit."
+    }
+  },
+  "reviewSequence": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-review-sequence-20261017.json",
+    "sha256": "f406dcc6edb5ae5063944f7cf3ef587c950b24182d3ba19a46366a14c84dc642"
+  },
+  "nextReviewPriority": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-priority-20261017-after-pass39.json",
+    "sha256": "bddb1af44d78bc1c53fa7e0aabe864b114b7b290829bbca28baf762cab2cd5d0",
+    "reviewSequence": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-review-sequence-20261017.json",
+      "sha256": "f406dcc6edb5ae5063944f7cf3ef587c950b24182d3ba19a46366a14c84dc642"
+    },
+    "nextUnits": [
+      {
+        "book": "S3Y",
+        "chapter": 1,
+        "verse": 25,
+        "blockId": null,
+        "notes": 5,
+        "unresolvedVowels": 4,
+        "sourcePages": [
+          234
+        ]
+      },
+      {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 3,
+        "blockId": null,
+        "notes": 4,
+        "unresolvedVowels": 4,
+        "sourcePages": [
+          243
+        ]
+      },
+      {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 33,
+        "blockId": null,
+        "notes": 4,
+        "unresolvedVowels": 4,
+        "sourcePages": [
+          246
+        ]
+      },
+      {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 36,
+        "blockId": null,
+        "notes": 4,
+        "unresolvedVowels": 4,
+        "sourcePages": [
+          247
+        ]
+      },
+      {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 42,
+        "blockId": null,
+        "notes": 4,
+        "unresolvedVowels": 4,
+        "sourcePages": [
+          247
+        ]
+      }
+    ]
+  }
+}

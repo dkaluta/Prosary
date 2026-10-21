@@ -89,12 +89,14 @@ private fun MinorBeadsTwoColumnView(beads: List<BeadInfo>) {
 fun BeadProgressView(
     layout: BeadLayout,
     isWide: Boolean,
+    languageCode: String?,
+    bundleId: String = "rosary",
     hasRoomForSingleMinorColumn: Boolean = true,
     modifier: Modifier = Modifier,
 ) {
     // The individual dots carry no meaning of their own to accessibility services — expose the
     // whole track as a single element with a spoken summary instead of dozens of unlabeled circles.
-    val beadSummary = layout.accessibilityDescription(LocalContext.current)
+    val beadSummary = layout.accessibilityDescription(LocalContext.current, languageCode, bundleId)
     val progressLabel = stringResource(R.string.bead_progress, beadSummary)
     val semanticsModifier = modifier.clearAndSetSemantics {
         contentDescription = progressLabel

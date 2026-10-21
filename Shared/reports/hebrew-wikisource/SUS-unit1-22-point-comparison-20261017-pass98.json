@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 98,
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass98-SUS-1-22/source-provenance.json",
+    "sha256": "f024f3cc4782ec4119ed2fd80a007916e5fc1c2bb5701edfed08ac02726715b3"
+  },
+  "sourceNotesBefore": 15,
+  "sourceNotesAfter": 13,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "sus-1-22-letter-1-vowel",
+    "sus-1-22-letter-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "4aec5e6a58bfd624df429a8ad369478a53ac952143635d9da5841f3837d7921d",
+  "contentSHA256After": "c311311bf574280d9ab5fae9e262b3c0ec77561cfe7af5c1b7d429a5a542fb32",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "sus-1-22-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Below the first physical alef are three completely detached rounded components: two on the same upper baseline, one centered beneath them. Each is white-separated from both letter and other points. This downward triangle is a printed Segol, matching the same-unit kaf Segol in מידיכם. No class is inferred from the neighboring repeated word or expected spelling.",
+      "targetCapture": "extension-volumeA-584-zoom6-top-right.png",
+      "inspectedBounds": [
+        896,
+        1237,
+        984,
+        1344
+      ],
+      "markProposed": "segol",
+      "codePoint": "U+05B6",
+      "pointBounds": [
+        915,
+        1352,
+        957,
+        1387
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass98-SUS-1-22/consensus-preparation.json"
+    },
+    {
+      "noteId": "sus-1-22-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "The third physical letter is shin/sin, with its already transcribed upper dot preserved. Below its body are three completely detached rounded components: a same-level upper pair and a centered lower point. The independent white-separated downward triangle certifies Segol; the nearby ayin hataf-Segol components are separately positioned and do not supply these three points.",
+      "targetCapture": "extension-volumeA-584-zoom6-top-right.png",
+      "inspectedBounds": [
+        666,
+        1233,
+        785,
+        1344
+      ],
+      "markProposed": "segol",
+      "codePoint": "U+05B6",
+      "pointBounds": [
+        696,
+        1352,
+        731,
+        1390
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass98-SUS-1-22/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 22,
+      "before": "וַתֵּאָנַח שׁוֹשַׁנָּה וַתֹּאמֶר צַר לִי אִם־כֹּה וְאִם־כֹּה כִּי אִם־אֶעֱשֶׂה זֹאת בַּת־מָוֶת אָנֹכִי וְאִם־לֹא אעֱשׂנָּה לֹא אִמָּלֵט מִיְּדֵיכֶם׃",
+      "after": "וַתֵּאָנַח שׁוֹשַׁנָּה וַתֹּאמֶר צַר לִי אִם־כֹּה וְאִם־כֹּה כִּי אִם־אֶעֱשֶׂה זֹאת בַּת־מָוֶת אָנֹכִי וְאִם־לֹא אֶעֱשֶׂנָּה לֹא אִמָּלֵט מִיְּדֵיכֶם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 22,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass98-SUS-1-22/independent-review.json",
+    "sha256": "c115b5ed0beb550bc33f047c3c1dfa7ac2c8bfefd5dcba4777322194986e3301"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass98-SUS-1-22/primary-preparation.json",
+    "sha256": "249fdb3916a887ebe9c227c19ae4df209bc8f858ecdb7a52dc9b5d5b000c5bbc"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass98-SUS-1-22/consensus-preparation.json",
+    "sha256": "3325fb53b51858e5d801a822ae1ec13dc20ecc0e7ae9ad2d9a1d9100fc737378"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

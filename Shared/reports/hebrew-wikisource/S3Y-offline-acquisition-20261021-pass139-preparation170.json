@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 170,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass170-S3Y-offline-originals/source-provenance.json",
+      "sha256": "fbf4d90326518940265b5a931d6fb7a75500425123b42a72d3703c17d788a66a"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Savedoverview plus preservedhistorically hashpinned nativePDF234raster, freshly fullRGB replayed from pinnedPDFsingleimage and exactowncrop. Oldcrop is addresslocator only. No network/rendering/OCR/viewer/enhancement. v3addshigher saved4x upper-left native wholeword/Resh/Holam; provenanceinventorylistsallthreeusedsources.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    234
+  ],
+  "savedCaptureViewerPageLabels": [
+    579
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page234/extension-volumeA-579-page-overview.png",
+      "sha256": "577cb16a84399976265bd28fed7dd4da96e85a0d0ab185994b5a824017c84f48",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-234-complete-native.png",
+      "sha256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "resolution": [
+        2526,
+        3518
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass170-S3Y-offline-originals/source-provenance.json",
+        "sha256": "fbf4d90326518940265b5a931d6fb7a75500425123b42a72d3703c17d788a66a"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sourceURL": "https://he.wikisource.org/wiki/%D7%AA%D7%95%D7%A1%D7%A4%D7%95%D7%AA_%D7%9C%D7%A1%D7%A4%D7%A8_%D7%93%D7%A0%D7%99%D7%90%D7%9C",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "דב היליר",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/%D7%AA%D7%95%D7%A1%D7%A4%D7%95%D7%AA_%D7%9C%D7%A1%D7%A4%D7%A8_%D7%93%D7%A0%D7%99%D7%90%D7%9C"
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/%D7%AA%D7%95%D7%A1%D7%A4%D7%95%D7%AA_%D7%9C%D7%A1%D7%A4%D7%A8_%D7%93%D7%A0%D7%99%D7%90%D7%9C",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+          "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page234/extension-volumeA-579-zoom4-upper-left.png",
+      "sha256": "53171429d5aaa5b4f3f6ffd9ea0b5712ff9da89cf4aeaff8eb4fe0786dfcac66",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation170-S3Y-1-19/source-provenance.json",
+    "sha256": "8b58f30c5835ef9630897a88cad09e2d4514f8dc94f45e301b8dbc0534a5cf5d"
+  }
+}

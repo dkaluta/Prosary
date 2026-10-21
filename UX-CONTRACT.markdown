@@ -16,6 +16,7 @@ This contract covers the 0.21 native changes; existing architecture continues to
 | CRUD | Home widget preferences and app-private photo store | Shared home-widgets schema | Add/change/remove image; add/remove/reorder card | Existing photo tests and new card-state tests |
 | Toast | Existing native inline error/alert owners | Platform sibling flows | Recoverable import or passage error | Focused failure-path tests |
 | Bible pagination | Native Bible chapter readers and whole-source-block paginators | Shared/BIBLE-VIEWER.markdown and source block order | Wide justified facing pages with inline verse indicators and directional turns / narrow continuous reading | Pagination, typography, canonical verse jump, resize and RTL checks |
+| Prayer labels | Existing pack title resolvers and native Rosary label helpers | Shared/ARCHITECTURE.markdown and canonical prayer title provenance | Selected Hebrew rite for Hebrew options and spoken bead progress; descriptive Hebrew labels for other prayer languages; established non-Hebrew interface labels | Both rites, reversed global fallback/default, live selection changes and accessible progress tests |
 
 Home expansion changes only that card's size. It preserves widget order, the selected civil
 date, images, settings and the prayer session. Removing a card is independent of hiding its

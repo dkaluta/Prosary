@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 15,
+  "book": "BEL",
+  "kind": "metadataOnlySourceAddressCorrection",
+  "status": "Supersedes only the mistaken preceding-unit ending in the frozen report; all targets, candidates, source pixels and source-unit15 text remain correctly identified",
+  "affectedReport": {
+    "path": "Shared/reports/hebrew-wikisource/BEL-unit15-point-comparison-20261017-pass15.json",
+    "sha256": "e29ea433a2186930e157a10f02bc270b69a176f3565c0e3252640e25eb8d636b"
+  },
+  "field": "addressVerification[0]",
+  "supersededSentence": "Source15 begins ויהי כאשר after source14 ends איש מרעהו on the physical row bearing טו. The source unit continues through three more physical rows.",
+  "correctedSentence": "Source15 begins ויהי כאשר after source14 ends ונושאים אותם׃ on the physical row bearing טו. The source unit continues through three more physical rows.",
+  "exactCanonicalSource14Ending": "[וְנוֹשְׂאִים אֹתָם׃",
+  "reason": "The author accidentally carried a preceding-unit phrase from another additions context into this single prose sentence. The already archived exact numbered source row visibly shows ונושאים אותם before ויהי כאשר, matching the preserved BEL14 canonical ending. No source identity, target word, glyph box, point classification or point proposal is changed.",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "frames": [
+    {
+      "key": "unit15-complete-numbered-context",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 244,
+      "sourcePage": 244,
+      "nativeBounds": [
+        240,
+        2635,
+        2290,
+        3090
+      ],
+      "scale": 1,
+      "sourceImageRGBPixelSHA256": "b0b897b8c200a48f680fb8a3e2fe288f14b18a7b0df8c5c533289a4cbec10aaa",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass15-BEL-UNIT15/unit15-complete-numbered-context-native.png",
+          "sha256": "cde42f08da7b7beadc4391ccd443c6d854a02e9871722c54dae7bfd2979afdb7",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "unit15-begin-numbered-shared-row",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 244,
+      "sourcePage": 244,
+      "nativeBounds": [
+        240,
+        2680,
+        2225,
+        2775
+      ],
+      "scale": 2,
+      "sourceImageRGBPixelSHA256": "b0b897b8c200a48f680fb8a3e2fe288f14b18a7b0df8c5c533289a4cbec10aaa",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass15-BEL-UNIT15/unit15-begin-numbered-shared-row-native.png",
+          "sha256": "ad2a00ed885c6df1b0a7945f9ccd9557ae5f93c0654d4593447035f744160ad3",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass15-BEL-UNIT15/unit15-begin-numbered-shared-row-2x.png",
+          "sha256": "64a07e76d3ac7ee07a6e7051bac647443efccff57b06bbccd5cd38896966217d",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    }
+  ],
+  "acceptedArtifactUnchanged": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass15-BEL-UNIT15/accepted.json",
+    "sha256": "5ca8c14ff6c8d4065e312c394d4e6b25ceb0aa4cd14e0b944dfcb710cbaa2eb6"
+  },
+  "allNineOnePointProposalsUnchanged": true,
+  "allSeventeenReviewDecisionsUnchanged": true,
+  "completeSource15AddressStillCorrect": true,
+  "frozenReportBytesPreserved": true,
+  "canonicalAndGateChanges": false
+}

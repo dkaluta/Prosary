@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 143,
+  "integrationPass": 143,
+  "preparationID": 192,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters; original PDF, source credit, URL and historical extraction/report provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass192-SIR-offline-originals/source-provenance.json",
+      "sha256": "ede3e6dfd5020330e1e17d313256cc396d3ebef30ab33084ca3da9785057e259"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "100percent offline fresh native singleembedded image of pinnedKahanaBPDF509. Historicalowncompanioncrop onlynumericaladdresslocator. Folders509identifier511and510identifier512 complete3row searchesweak<.422; no capturefinalartifacts/mark. No rendering/OCR/imageviewing/enhancement/grammar/expectedspelling/borrowedmarks.",
+  "sourceDocument": "Kahana Volume B",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    509
+  ],
+  "savedCaptureViewerPageLabels": [],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass192-SIR-offline-originals/primary-509-native.png",
+      "sha256": "2f12cc5bb2feab16ee0ac7d19d1664a401d524aa94fb682b9d50cd7f54553d7d",
+      "resolution": [
+        1650,
+        2550
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass192-SIR-offline-originals/source-provenance.json",
+        "sha256": "ede3e6dfd5020330e1e17d313256cc396d3ebef30ab33084ca3da9785057e259"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "אברהם כהנא",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "דברי שמעון בן־סירא, ההדיר ותרגם אברהם כהנא, הספרים החיצונים, כרך ב. נוסח עברי מכתבי־יד והשלמות בתרגום מן היוונית, כפי שנדפסו במהדורה."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation192-SIR-39-14/source-provenance.json",
+    "sha256": "fab21620330b97efdc851fccc1bf41c67c9f351175b345a111a557b2718e4942"
+  }
+}

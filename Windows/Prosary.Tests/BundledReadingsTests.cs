@@ -135,26 +135,22 @@ public class BundledReadingsTests
     }
 
     [Fact]
-    public void HebrewSirachDailyPassageKeepsItsActualSourceNoteAndPartialNotice()
+    public void HebrewSirachDailyPassageKeepsItsVerifiedVowelAndPartialNotice()
     {
         const string citation = "Sirach 51:13–17";
         var edition = Assert.IsType<ScriptureEdition>(Store.ResolveEdition("masoretic-delitzsch", "he"));
         var passage = Assert.IsType<ScripturePassage>(Store.LoadPassage("daily", citation, edition.Id));
         Assert.Equal(Enumerable.Range(9, 4), passage.Verses.Select(verse => verse.Verse));
         Assert.All(passage.Verses, verse => Assert.Equal(51, verse.Chapter));
-        var note = Assert.Single(passage.Verses.SelectMany(verse => verse.SourceNotes ?? []));
-        Assert.Equal("sir-51-11-alef-vowel", note.Id);
-        Assert.Equal("וְאזְכֶּרְךָ", note.Anchor);
-        Assert.Equal(2, note.LetterIndex);
-        Assert.Equal("vowel", note.Mark);
-        Assert.Equal(new[] { 529 }, note.SourcePages);
+        Assert.Contains("וְאֶזְכֶּרְךָ", Assert.Single(passage.Verses.Where(verse => verse.Verse == 11)).Text);
+        Assert.Empty(passage.Verses.SelectMany(verse => verse.SourceNotes ?? []));
         var view = new ReadingPassageViewModel(Store, edition, "daily",
             new ReadingCitation("reading", "Sirach", citation), "he", "date", "edition");
         view.IsExpanded = true;
         Assert.True(view.IsPartial);
-        Assert.Equal(note.Id, Assert.Single(view.Chapters.SelectMany(chapter => chapter.Verses!)
-            .SelectMany(row => row.SourceNotes ?? [])).Id);
-        Assert.DoesNotContain(note.Id, view.PassageText);
+        Assert.Empty(view.Chapters.SelectMany(chapter => chapter.Verses!)
+            .SelectMany(row => row.SourceNotes ?? []));
+        Assert.Contains("וְאֶזְכֶּרְךָ", view.PassageText);
     }
 
     [Fact]

@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-21",
+  "pass": 76,
+  "legacyBatchPathDate": "20261017",
+  "browser": {
+    "name": "Chrome",
+    "id": "1",
+    "type": "extension_and_cdp_localhost_9222",
+    "tabId": "61A89F755E6D3DC9B0343D03370493BF",
+    "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+    "title": "Kahana external books volume A in Psik reader"
+  },
+  "authorization": {
+    "userSourceChoice": "Yes\u2014use the open Kahana volumes",
+    "userConnectionInstruction": "Server runs on localhost:9222",
+    "actionTimeApproval": [
+      "continue the pass",
+      "do pass 41",
+      "do 40, then immediately do 42, 43, 44, 45, etc",
+      "restored both pages",
+      "ensure you are using chrome",
+      "could we preemptively capture everything with notes?",
+      "start working on them until exhaustion"
+    ],
+    "scope": "Signed-in Psik library session for Kahana volume A. Viewer page 591 (printed 246 / \u05e8\u05de\u05d5, BEL 1:30) used for Pass 76 top priority unit."
+  },
+  "sourcePolicy": "Displayed Kahana scan approved by user supersedes previous local-PDF-only acquisition choice. Existing original-PDF page locators and all prior scalars remain unchanged. Screenshot is not claimed pixel-identical to original local PDF. No OCR, grammatical reconstruction, sharpening, smoothing or alternate witness used to supply marks. Browser zoom is the ordinary viewer renderer; subsequent inspection crops may only copy pixels and use integer NEAREST.",
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page246/extension-volumeA-591-page-overview.png",
+      "sha256": "9709e8e6f70a54cb4b73bfdf11eab3010152843c720277f69b3eb23de8256f04",
+      "viewerPageNumber": 591,
+      "printedPageNumber": 246,
+      "printedPageHebrew": "\u05e8\u05de\u05d5",
+      "canonicalLegacyPageNumber": 246,
+      "resolution": "2636x1862",
+      "purpose": "full-printed-page-overview"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page246/extension-volumeA-591-zoom4-mid-right.png",
+      "sha256": "36a46d63091b711015e11b32e6c24dc2b9a42a8ab7f9d8d800869d25e71a3d59",
+      "viewerPageNumber": 591,
+      "printedPageNumber": 246,
+      "printedPageHebrew": "\u05e8\u05de\u05d5",
+      "canonicalLegacyPageNumber": 246,
+      "resolution": "2636x1862",
+      "purpose": "primary-source-screenshot-mid-right"
+    }
+  ]
+}

@@ -8,6 +8,10 @@ export const MIGRATIONS: { id: string; sql: string }[] = [
   {
     "id": "0002_passkey_names_and_rate_limits.sql",
     "sql": "-- Passkeys become nameable (\"MacBook\", \"1Password\") so the account page can list and prune\n-- them; rate_limits is freebee's fixed-window pattern for the auth endpoints.\nALTER TABLE passkeys ADD COLUMN name TEXT;\n\nCREATE TABLE rate_limits (\n    key          TEXT PRIMARY KEY,\n    window_start TIMESTAMPTZ NOT NULL,\n    count        INTEGER NOT NULL\n);\n"
+  },
+  {
+    "id": "0003_retire_duplicate_loreto.sql",
+    "sql": "-- Retire only the superseded community upload, preserving its author and other prayers.\nDELETE FROM bundles WHERE id = 'repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin';\n\n-- Older deployments must not recreate it before the publishing guard is deployed.\nDO $$\nBEGIN\n  IF NOT EXISTS (\n    SELECT 1 FROM pg_constraint\n    WHERE conrelid = 'bundles'::regclass AND conname = 'bundles_retired_loreto'\n  ) THEN\n    ALTER TABLE bundles ADD CONSTRAINT bundles_retired_loreto\n      CHECK (id <> 'repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin');\n  END IF;\nEND $$;\n"
   }
 ];
 

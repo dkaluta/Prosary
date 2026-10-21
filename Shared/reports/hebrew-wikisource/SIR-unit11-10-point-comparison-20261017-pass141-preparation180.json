@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 141,
+  "integrationPass": 141,
+  "preparationID": 180,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation180-SIR-11-10/source-provenance.json",
+    "sha256": "751b6a9b32b893860fd9ea5e18183fb77d87ff79f211641135117a0374ebcd48"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-11-10-qof-vowel"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-11-10-qof-vowel",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 10,
+      "anchorBefore": "עִשְׂקךְ",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own thirdQof rightroof/downturn forms connected300px[919,410,942,448], with separate101pxleftvertical[920,424,925,447]. Lowrightmass[930..942,y439..448] joins own rightcurve/descender and is not an independently exactvowel. NativeASCII shows stepped joined lowerfoot rather than isolated clear point; no exactabsence is certified either. Literal samewordSin upperleftdot is distinct14px4x4[945,404,949,408], proving a detached printedpoint without supplying ownQof. Whole fourthfinalKaf and initialAyin independently read; retained disclosure preserves every scalar.",
+      "targetCapture": "primary-467-native.png",
+      "targetSourceIdentifier": "primary-467-native.png",
+      "inspectedBounds": [
+        917,
+        405,
+        945,
+        454
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation180-SIR-11-10/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 11,
+    "verse": 10,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation180-SIR-11-10/independent-review.json",
+    "sha256": "1578a2b3bbe26b47016809632be8b610942793ca59b1d63ee144b90adc8bdbfe"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation180-SIR-11-10/primary-preparation.json",
+    "sha256": "a6fbb95c47ae91ee52af3efa1d066662569317dd130acd60e3712bfb82a28f14"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation180-SIR-11-10/consensus-preparation.json",
+    "sha256": "4dd59332549459ba56e418b289eba7a12bd1bd341199df777017723be5390069"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

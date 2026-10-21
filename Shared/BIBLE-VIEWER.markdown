@@ -10,6 +10,38 @@ credit, and the existing paired-script control. Hebrew chapter numbers use gemat
 Missing content never falls back to another edition. Partial chapters carry a visible
 “Only part of this chapter is available” notice; gaps retain their source verse labels.
 
+## Facing pages
+
+The mobile/tablet and Windows Bible readers use two facing pages when the reader has at
+least 720 points/dp/logical pixels of width and 360 of height. Narrower readers retain the
+continuous chapter view. Mac retains its existing desktop reader. This is presentation,
+with no new saved setting or archive fields.
+
+Pages group contiguous, complete source blocks using the current typeface, script and page
+geometry. Verse ranges, repeated witnesses, source headings, introductions, printed labels,
+notes and colophons retain their supplied order and meaning. A unit larger than a page
+stays whole and remains vertically scrollable. Edition and source credits and partial-chapter
+notices remain accessible. Page numbers describe this layout, never a printed source page.
+
+Book Scripture paragraphs use justified text and smaller inline verse indicators. Their
+typeface, Dynamic Type/text scaling and writing direction still follow the selected source.
+Headings, source notes and explicit printed-label disclosures keep their existing treatment;
+canonical placements never acquire an implied canonical verse mapping.
+
+The current source block anchors width and typography changes and transitions between
+continuous reading and facing pages. Go to Verse opens the spread containing the resolved
+source block, including reviewed address routes. Chapter navigation remains independent.
+Page turns use native Previous Page and Next Page actions and horizontal gestures. Inline
+start/end follow the Scripture direction, independently of the interface: English reads
+left to right, while Hebrew, Arabic and Syriac read right to left. No gesture is required.
+Flat Apple displays use the public native two-page curl interaction; a partially folded Duo
+uses reserved-region page placement and native paging instead. Android and Windows use
+directional page transitions. Programmatic motion follows each platform's reduced-animation
+setting.
+
+On iPhone Duo, native arrangement containers keep facing pages and prayer panes clear of
+the live folding region. Native toolbars manage vertical control placement and overflow.
+
 ## Distribution contract
 
 Only `Shared/data/bible-catalog.json` is bundled and copied into the three native
@@ -50,6 +82,25 @@ as printed source labels; do not combine a Catholic chapter denotation with a so
 verse label as though the two formed a reviewed Catholic citation. Source chapter
 numbers remain the keys for storage, position, navigation and address routes.
 
+The Hebrew edition keeps three consecutive sections: the Masoretic books, the
+deuterocanonical books and additions, then the New Testament. The first section
+follows the Torah, Prophets, and Writings sequence in the
+[tanach.us navigation](https://www.tanach.us/Pages/CitationSyntax.html), ending with
+Ezra, Nehemiah, and Chronicles. Source IDs continue to distinguish 1/2 Samuel,
+1/2 Kings, Ezra/Nehemiah, and 1/2 Chronicles. This is a Tanakh browsing order;
+the pinned eBible import itself uses a Christian book sequence, and manuscript
+orders of the Writings are not all identical.
+
+Within the separate deuterocanonical section, the relative order follows the
+[USCCB table of contents](https://www.usccb.org/offices/new-american-bible/books-bible):
+Tobit, Judith, Esther additions, 1–2 Maccabees, Wisdom, Sirach, Baruch, Letter of
+Jeremiah, Prayer of Azariah and Song of the Three, Susanna, and Bel and the Dragon.
+The additions retain their Catholic placement labels below, their complete source
+titles and their own credits. The book sequence does not merge them into the
+Masoretic books or assert individual Catholic verse equivalences. Within a work,
+the source order remains the default; the bounded Sirach presentation reviews below
+align independently verified whole units with the Catholic reading sequence.
+
 The Hebrew Kahana additions have the following placements:
 
 | Source work | Source chapter | Catholic placement |
@@ -85,10 +136,33 @@ preserves a source's indivisible combined label (for example 12–13). It is at 
 `verse`. `verseCount` counts text units, not the sum of
 labels in their ranges. Display the range once; jumping to either label finds that
 same unit. Verse labels are positive and globally nonoverlapping, and match the
-enclosing chapter. Preserve the array's source order, including editorial orderings
-such as Kahana Sirach 3:24,26,27,25,28. Neither display nor navigation sorts the units;
-the verse picker follows source order and a requested label finds its containing unit.
-All paired verses must have both texts. The reader does not remap these labels.
+enclosing chapter. Preserve the supplied array order. It normally follows the
+source; the Hebrew generator applies only the reviewed Catholic presentation
+sequences described below. Neither display nor navigation sorts units numerically;
+the verse picker follows the generated reading order and a requested source label
+finds its containing unit. All paired verses must have both texts. The reader does
+not remap these labels.
+
+### Verified Hebrew reading sequences
+
+`tools/hebrew-bible-presentation-reviews.json` records nine bounded Sirach sequence
+changes and the return of source 11:34 from its printed position after 12:1 to the
+end of chapter 11. Each compares the approved Hebrew clauses with the USCCB NABRE,
+pins the complete source-book digest and the exact affected text-unit hashes, and
+keeps every whole unit, source label, combined range, note, witness and lacuna.
+The canonical Hebrew JSON retains its printed order. Only the generated optional
+Bible changes: same-chapter verse arrays and their corresponding content blocks
+follow the reviewed reading sequence; the obsolete 11:34 display route is removed.
+The separately reviewed daily appointments are unaffected.
+
+This is content comparison, not numeric sorting: Sirach 10 now displays source
+1,2,3,5,4,6 because source 5 and 4 correspond respectively to NABRE's earth and
+individual-sovereignty sayings. Sirach 31 follows NABRE's explicit 15-before-14
+sequence. It does not claim complete NABRE numbering or complete chapter alignment.
+Mixed clauses in Sirach 31:19–22 and 42:23/25/24, overlapping witnesses, and
+unnumbered material remain at their source positions. The
+[review report](reports/hebrew-wikisource/catholic-reading-order-20261017.markdown)
+lists each verified move and the unresolved cases.
 
 Version 2 adds optional `sourceNotes` on verses, identifying an unreadable printed
 point that is omitted from the transcription. Notes appear beside the affected verse

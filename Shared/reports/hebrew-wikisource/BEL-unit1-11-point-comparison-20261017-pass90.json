@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 90,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass90-BEL-1-11/source-provenance.json",
+    "sha256": "dce79d2b6fad72fa0cf35a766f94de6b7e4d57454b96465dd4250e4da2a38def"
+  },
+  "sourceNotesBefore": 13,
+  "sourceNotesAfter": 12,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "bel-1-11-244-daniel11-letter4-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "bel-1-11-244-vayelekh11-letter1-vowel"
+  ],
+  "contentSHA256Before": "488c9bfcd1e53eb7628b1aa706badce68900733d22d0e18c8f6c5e019c90ff6e",
+  "contentSHA256After": "1626b2226e610b49991b1e011e4ba3ee6c1c887570168633b71da867f2d1e51f",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "bel-1-11-244-daniel11-letter4-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 11,
+      "anchorBefore": "וְדָנִיֵאל",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "The interior yod dot is fully detached, below the head and left of its descending tail. It is bounded by clear white separation. Same-page Daniel10a yod supplies a separate detached positive control; plain yod in יהי10 has no low-left branch.",
+      "targetCapture": "extension-volumeA-589-zoom6-lower-mid.png",
+      "letterBounds": [
+        2257,
+        309,
+        2292,
+        374
+      ],
+      "pointBounds": [
+        2257,
+        351,
+        2272,
+        366
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass90-BEL-1-11/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-11-244-vayelekh11-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 11,
+      "anchorBefore": "ויֵּלֶךְ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The long vav shaft broadens directly into a heavy horizontal lower mass, followed by a short lower-right bulb. Both zoom4 full-glyph and zoom6 lower-glyph captures preserve the join. The connected stamp is not cleanly separable into an exact patah or qamats configuration. Retain the note rather than infer a vowel from the existing word or neighboring resolved prefixes.",
+      "targetCapture": "extension-volumeA-589-zoom4-mid-left.png",
+      "letterBounds": [
+        634,
+        1516,
+        670,
+        1603
+      ]
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 11,
+      "before": "וּלְבֵל הָיוּ שִׁבְעִים כֹּהֲנִים מִלְבַד נְשֵׁיהֶם וּבְנֵיהֶם ויֵּלֶךְ הַמֶּלֶךְ וְדָנִיֵאל אֶל־מִקְדַּשׁ בֵּל׃",
+      "after": "וּלְבֵל הָיוּ שִׁבְעִים כֹּהֲנִים מִלְבַד נְשֵׁיהֶם וּבְנֵיהֶם ויֵּלֶךְ הַמֶּלֶךְ וְדָנִיֵּאל אֶל־מִקְדַּשׁ בֵּל׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 11,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  },
+  "supplementaryReviews": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass90-BEL-1-11/pass90-bel-11-vav-independent-pixel-review.json",
+      "sha256": "7cc290f55f48c6bc6ad79d484b764bf6d08534bf75aa10e797f6a8495c7d12d4"
+    }
+  ]
+}

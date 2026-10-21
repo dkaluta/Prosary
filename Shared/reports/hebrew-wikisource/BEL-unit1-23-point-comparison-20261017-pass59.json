@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 59,
+  "book": "BEL",
+  "status": "Three 1:23 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 59.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass59-BEL-1-23/source-provenance.json",
+    "sha256": "cf33d5fb5b6fb091d0bff97bd427b145bc1b69bdf29d4eb5acbc07ec45da73d8"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 245. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 311,
+  "sourceNotesBefore": 46,
+  "sourceNotesAfter": 43,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-23-245-vayehi23-letter1-vowel",
+    "bel-1-23-245-vayaavduhu23-letter1-vowel",
+    "bel-1-23-245-vayomer23-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "bel-1-23-245-vayehi23-letter1-vowel": "ַ"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "before": "ויְהִי שָׁם תַּנִּין גָּדוֹל ויַּעַבְדֻהוּ אַנְשֵׁי בָבֶל׃ ויֹּאמֶר הַמֶּלֶךְ לְדָנִיֵּאל הֵן לֹא תוּכַל לֵאמֹר אֵין זֶה אֱלֹהִים חַי וְעַתָּה הִשְׁתַּחֲוֵה לוֹ׃",
+      "after": "וַיְהִי שָׁם תַּנִּין גָּדוֹל ויַּעַבְדֻהוּ אַנְשֵׁי בָבֶל׃ ויֹּאמֶר הַמֶּלֶךְ לְדָנִיֵּאל הֵן לֹא תוּכַל לֵאמֹר אֵין זֶה אֱלֹהִים חַי וְעַתָּה הִשְׁתַּחֲוֵה לוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 23,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 23 on page רמה / 245 (viewer page 590) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "bel-1-23-245-vayehi23-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "ויְהִי",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "ַ",
+      "markClassification": "Vowel",
+      "finding": "Initial Vav of ויְהִי carries an unmistakable stamped horizontal Patah bar (rows 1443..1454, cols 1495..1515, 21 pixels wide, min=0) matching positive Patah controls. Point restored as printed Patah (U+05B7). Anchor updated to וַיְהִי.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass59-BEL-1-23/bel-1-23-vav-vayehi-target-native.png",
+        "sha256": "29ccdb2c24898252474e4495259f02d33e594ec9dfdb92ba858b123172d326fd"
+      }
+    },
+    {
+      "noteId": "bel-1-23-245-vayaavduhu23-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "ויַּעַבְדֻהוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויַּעַבְדֻהוּ consists of a bare vertical stem ending cleanly at row 1622 with 25 vertical rows of pure white paper (rows 1625..1659, cols 1499..1514) beneath it. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass59-BEL-1-23/bel-1-23-vav-vayaavduhu-target-native.png",
+        "sha256": "8c046fabfd84500c783115617838bdd5d99daf48a954441cecabb3b5737c4c85"
+      }
+    },
+    {
+      "noteId": "bel-1-23-245-vayomer23-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "ויֹּאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויֹּאמֶר consists of a bare vertical stem ending cleanly at row 1622 with 35 vertical rows of pure white paper (rows 1625..1659, cols 740..754) beneath it. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass59-BEL-1-23/bel-1-23-vav-vayomer-target-native.png",
+        "sha256": "d6f49a3c6eb886f8663b1958f14413726d865d29526c159b6721eb4c84a597f3"
+      }
+    }
+  ]
+}

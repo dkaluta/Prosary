@@ -13,7 +13,7 @@ import SwiftUI
 
 struct RosaryOptionsEditorView: View {
   @Binding var rosary: RosaryOptions
-  var languageCode = LanguageCatalog.resolve(nil).code
+  var languageCode: String? = nil
 
   var body: some View {
     #if os(macOS)
@@ -40,7 +40,8 @@ struct RosaryOptionsEditorView: View {
 /// clipped stub (and its navigationTitle wins), which is exactly how that sheet used to render.
 struct RosaryOptionsSections: View {
   @Binding var rosary: RosaryOptions
-  var languageCode = LanguageCatalog.resolve(nil).code
+  var languageCode: String? = nil
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
 
   var body: some View {
     Group {
@@ -92,14 +93,14 @@ struct RosaryOptionsSections: View {
 
       Section("favoriteEditor.openingDecadePrayers") {
         Toggle(PrayerPackStore.creedPolicy(languageCode: languageCode)?.apostlesCreed == false
-          ? UILanguage.text("favoriteEditor.niceneCreed", language: UILanguage.current, fallback: "Nicene Creed")
-          : UILanguage.text("favoriteEditor.apostlesCreed", language: UILanguage.current, fallback: "Apostles' Creed"),
+          ? prayerLabel("favoriteEditor.niceneCreed", fallback: "Nicene Creed")
+          : prayerLabel("favoriteEditor.apostlesCreed", fallback: "Apostles' Creed"),
           isOn: $rosary.includeApostlesCreed)
-        Toggle("favoriteEditor.openingPrayers", isOn: $rosary.includeOpeningPrayers)
-        Toggle("favoriteEditor.openingFatimaPrayer", isOn: $rosary.includeOpeningFatimaPrayer)
+        Toggle(prayerLabel("favoriteEditor.openingPrayers", fallback: "Opening Our Father + 3 Hail Marys"), isOn: $rosary.includeOpeningPrayers)
+        Toggle(prayerLabel("favoriteEditor.openingFatimaPrayer", fallback: "Fatima Prayer after the opening Glory Be"), isOn: $rosary.includeOpeningFatimaPrayer)
           .disabled(!rosary.includeOpeningPrayers)
-        Toggle("favoriteEditor.fatimaPrayer", isOn: $rosary.includeFatimaPrayer)
-        Picker("favoriteEditor.eternalRest", selection: $rosary.eternalRestForDeceased) {
+        Toggle(prayerLabel("favoriteEditor.fatimaPrayer", fallback: "Fatima Prayer"), isOn: $rosary.includeFatimaPrayer)
+        Picker(prayerLabel("favoriteEditor.eternalRest", fallback: "Eternal rest for the deceased"), selection: $rosary.eternalRestForDeceased) {
           ForEach(EternalRestPlacement.allCases) { option in
             Text(option.displayName).tag(option)
           }
@@ -120,17 +121,17 @@ struct RosaryOptionsSections: View {
       } header: {
         Text("favoriteEditor.presenterModeHeader")
       } footer: {
-        Text("favoriteEditor.presenterModeFooter")
+        Text(prayerLabel("favoriteEditor.presenterModeFooter", fallback: "Combines each decade’s ten Hail Marys and Glory Be on one screen — useful when leading a group prayer from memory."))
       }
 
       Section("favoriteEditor.closingPrayers") {
         Picker("favoriteEditor.marianAntiphon", selection: $rosary.marianAntiphon) {
           ForEach(MarianAntiphonOption.allCases) { option in
-            Text(option.displayName(languageCode: languageCode)).tag(option)
+            Text(option.displayName(languageCode: LanguageCatalog.resolve(languageCode).code)).tag(option)
           }
         }
         Toggle("favoriteEditor.closingIntentions", isOn: $rosary.effectiveClosingIntentions)
-        Toggle("favoriteEditor.stMichaelPrayer", isOn: $rosary.includeStMichaelPrayer)
+        Toggle(prayerLabel("favoriteEditor.stMichaelPrayer", fallback: "St. Michael Prayer"), isOn: $rosary.includeStMichaelPrayer)
         Toggle(String(localized: "favoriteEditor.litanyOfLoreto", defaultValue: "Pray the Litany of Loreto afterward", bundle: UILanguage.bundle, locale: UILanguage.locale),
                isOn: $rosary.includeLitanyOfLoreto)
           .accessibilityIdentifier("litanyOfLoretoToggle")
@@ -138,7 +139,7 @@ struct RosaryOptionsSections: View {
                isOn: Binding(get: { rosary.effectiveRosaryCollect }, set: { rosary.includeRosaryCollect = $0 }))
           .disabled(rosary.includeLitanyOfLoreto)
           .accessibilityIdentifier("rosaryCollectToggle")
-        Toggle("favoriteEditor.finalSignOfCross", isOn: $rosary.includeFinalSignOfCross)
+        Toggle(prayerLabel("favoriteEditor.finalSignOfCross", fallback: "Final Sign of the Cross"), isOn: $rosary.includeFinalSignOfCross)
       }
     }
     #if os(macOS)
@@ -146,6 +147,10 @@ struct RosaryOptionsSections: View {
     .pickerStyle(.menu)
     .controlSize(.regular)
     #endif
+  }
+
+  private func prayerLabel(_ key: String, fallback: String) -> String {
+    RosaryPrayerLabels.option(key, languageCode: languageCode, fallback: fallback)
   }
 }
 

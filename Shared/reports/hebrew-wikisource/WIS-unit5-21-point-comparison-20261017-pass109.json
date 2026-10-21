@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 109,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass109-WIS-5-21/source-provenance.json",
+    "sha256": "15e8339e5957595576fe078cca15a5a9f5d794489296ed99700cbcbadb09965e"
+  },
+  "sourceNotesBefore": 125,
+  "sourceNotesAfter": 123,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-5-21-mem",
+    "wis-5-21-resh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "468a360e45d40ddd838817debf562a927874e56ec1b5528baf84b6079a54ce2a",
+  "contentSHA256After": "59ec22bdd7b2b712ae07b3aca2eabef90473b6cda0d8143b6c4fd76366f17c7d",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "wis-5-21-mem",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 21,
+      "anchorBefore": "מיְשִׁירים",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "The first physical Mem ends405 before a completely detached rounded horizontal bar [847,408,875,418],28pixelswide and10high. The full point contour is flat and short, with no descending stem or second lower node. Same-unit Patah under Het in יחתו is likewise a detached28x13 bar; the word's own Yod Sheva is a much taller vertical stamp. This own detached horizontal contour certifies Patah without inferring morphology.",
+      "targetCapture": "extension-volumeA-500-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-500-zoom4-upper-right.png",
+      "inspectedBounds": [
+        831,
+        331,
+        893,
+        405
+      ],
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        847,
+        408,
+        875,
+        418
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass109-WIS-5-21/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-5-21-resh",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 21,
+      "anchorBefore": "מיְשִׁירים",
+      "letterIndex": 5,
+      "decision": "retireNote",
+      "finding": "Below the fifth physical Resh is a single completely detached round node [652,408,665,421], separated from the letter and from both neighboring Yods. There is no horizontal second node or lower point. The same-word Shin Hiriq and same-unit Het Hiriq in חצי independently match its round footprint. This certifies Hiriq from the exact target's own pixels.",
+      "targetCapture": "extension-volumeA-500-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-500-zoom4-upper-right.png",
+      "inspectedBounds": [
+        608,
+        331,
+        667,
+        403
+      ],
+      "markProposed": "hiriq",
+      "codePoint": "U+05B4",
+      "pointBounds": [
+        652,
+        408,
+        665,
+        421
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass109-WIS-5-21/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 21,
+      "before": "יַחַתּוּ חִצֵּי בְרָקִים מיְשִׁירים לִקְלֹעַ וּכְמִקֶּשֶׁת עֲנָנִים דְּרוּכָה לַמַּטָּרָה יָעוּפוּ׃",
+      "after": "יַחַתּוּ חִצֵּי בְרָקִים מַיְשִׁירִים לִקְלֹעַ וּכְמִקֶּשֶׁת עֲנָנִים דְּרוּכָה לַמַּטָּרָה יָעוּפוּ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 21,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass109-WIS-5-21/independent-review.json",
+    "sha256": "6779a8084ff4df93fde8b42849858133ff48ac1ddd1e6f430103a9f34f3240ef"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass109-WIS-5-21/primary-preparation.json",
+    "sha256": "43fb6c0334613b48af46d7c10cd96e4e93647a6df7cba89f689bbfd624c8956e"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass109-WIS-5-21/consensus-preparation.json",
+    "sha256": "e50e88829329614c565a82bdad8eea71925695c34a2cd64ba8033a0702a5c769"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

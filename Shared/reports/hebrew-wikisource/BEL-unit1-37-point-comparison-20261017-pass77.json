@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 77,
+  "book": "BEL",
+  "status": "Two 1:37 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 77.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass77-BEL-1-37/source-provenance.json",
+    "sha256": "e83e79b910f278c0400ba563350f71fca3125d525ad4ef69d5963f4e6ab8e2ee"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 247. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 263,
+  "sourceNotesBefore": 24,
+  "sourceNotesAfter": 22,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-37-247-vayikra37-letter1-vowel",
+    "bel-1-37-247-vayomer37-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "bel-1-37-247-vayikra37-letter1-vowel": {
+      "combiningMark": "\u05b7",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    },
+    "bel-1-37-247-vayomer37-letter1-vowel": {
+      "combiningMark": "\u05b7",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 37,
+      "before": "\u05d5\u05d9\u05b4\u05bc\u05e7\u05b0\u05e8\u05b8\u05d0 \u05d7\u05b2\u05d1\u05b7\u05e7\u05bc\u05d5\u05bc\u05e7 \u05d5\u05d9\u05b9\u05bc\u05d0\u05de\u05b7\u05e8 \u05d3\u05b8\u05bc\u05e0\u05b4\u05d9\u05b5\u05bc\u05d0\u05dc \u05d3\u05b8\u05bc\u05e0\u05b4\u05d9\u05b5\u05bc\u05d0\u05dc \u05e7\u05b7\u05d7\u05be\u05e0\u05b8\u05d0 \u05d0\u05b6\u05ea\u05be\u05d4\u05b7\u05de\u05b7\u05bc\u05d0\u05b2\u05db\u05b8\u05dc \u05d0\u05b2\u05e9\u05b6\u05c1\u05e8 \u05e9\u05b8\u05c1\u05dc\u05b7\u05d7 \u05dc\u05b0\u05da\u05b8 \u05d4\u05b8\u05d0\u05b1\u05dc\u05b9\u05d4\u05b4\u05d9\u05dd\u05c3",
+      "after": "\u05d5\u05b7\u05d9\u05b4\u05bc\u05e7\u05b0\u05e8\u05b8\u05d0 \u05d7\u05b2\u05d1\u05b7\u05e7\u05bc\u05d5\u05bc\u05e7 \u05d5\u05b7\u05d9\u05b9\u05bc\u05d0\u05de\u05b7\u05e8 \u05d3\u05b8\u05bc\u05e0\u05b4\u05d9\u05b5\u05bc\u05d0\u05dc \u05d3\u05b8\u05bc\u05e0\u05b4\u05d9\u05b5\u05bc\u05d0\u05dc \u05e7\u05b7\u05d7\u05be\u05e0\u05b8\u05d0 \u05d0\u05b6\u05ea\u05be\u05d4\u05b7\u05de\u05b7\u05bc\u05d0\u05b2\u05db\u05b8\u05dc \u05d0\u05b2\u05e9\u05b6\u05c1\u05e8 \u05e9\u05b8\u05c1\u05dc\u05b7\u05d7 \u05dc\u05b0\u05da\u05b8 \u05d4\u05b8\u05d0\u05b1\u05dc\u05b9\u05d4\u05b4\u05d9\u05dd\u05c3"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 37,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 37 on page \u05e8\u05de\u05d6 / 247 (viewer page 592) in Kahana Volume A, Bel and the Dragon.",
+  "decisions": [
+    {
+      "noteId": "bel-1-37-247-vayikra37-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 37,
+      "anchor": "\u05d5\u05d9\u05b4\u05bc\u05e7\u05b0\u05e8\u05b8\u05d0",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Initial consonant Vav in \u05d5\u05b7\u05d9\u05b4\u05bc\u05e7\u05b0\u05e8\u05b8\u05d0 sits at cols 1335..1315, rows 503..569 of extension-volumeA-592-zoom4-upper-right.png on Line 3. Directly at the base of the Vav stem at rows 573..585 sits a clear horizontal Patah bar (width 29 px, height 12 px, min brightness 0), above the distinct sublinear Hireq dot of Yod at rows 589..605. Note is retired with Patah restored to initial Vav -> \u05d5\u05b7\u05d9\u05b4\u05bc\u05e7\u05b0\u05e8\u05b8\u05d0.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass77-BEL-1-37/bel-1-37-vayikra-native.png",
+        "sha256": "032418f82d1878c34e420ce364154e736fd7fdaf6e1d99a975f337d41a85c7dd"
+      }
+    },
+    {
+      "noteId": "bel-1-37-247-vayomer37-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 37,
+      "anchor": "\u05d5\u05d9\u05b9\u05bc\u05d0\u05de\u05b7\u05e8",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Initial consonant Vav in \u05d5\u05b7\u05d9\u05b9\u05bc\u05d0\u05de\u05b7\u05e8 sits at cols 990..965, rows 503..563 of extension-volumeA-592-zoom4-upper-right.png on Line 3. Directly at the foot of the Vav stem at rows 573..581 sits a solid horizontal Patah bar (width 27 px, height 9 px, min brightness 0), with sublinear space beneath (rows 583..605) confirmed completely blank pure white paper. Note is retired with Patah restored to initial Vav -> \u05d5\u05b7\u05d9\u05b9\u05bc\u05d0\u05de\u05b7\u05e8.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass77-BEL-1-37/bel-1-37-vayomer-native.png",
+        "sha256": "4b9deff9b090a4ca1aaa575386ddfcc6f399026be577846dbeeb7675d2b67f00"
+      }
+    }
+  ]
+}

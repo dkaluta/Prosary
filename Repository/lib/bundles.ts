@@ -7,6 +7,7 @@
 
 import { buildZip, ZipReader, type ZipFile } from "./zip.ts";
 import { isSupportedLanguage } from "./languages.ts";
+import { isRetiredBundle } from "./retired-bundles.ts";
 import {
   checkNativeAudio,
   checkNativeContent,
@@ -155,6 +156,9 @@ export async function validateAndRestamp(bytes: Uint8Array, username: string): P
     throw new BundleError("A publishable name could not be derived from the bundle.");
   }
   const id = `repo.${username}.${localName}`;
+  if (isRetiredBundle(id)) {
+    throw new BundleError("This prayer bundle has been retired and cannot be republished.");
+  }
 
   const manifestTags = Array.isArray(manifest.tags)
     ? manifest.tags

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 29,
+  "book": "BEL",
+  "chapter": 1,
+  "verse": 12,
+  "status": "Supplemental complete tav control frame; no source decision or packet change",
+  "supersedesForVisualReview": {
+    "report": "Shared/reports/hebrew-wikisource/BEL-unit1-12-point-comparison-20261017-pass29.json",
+    "reportSHA256": "153f5679c866945908179743d3c774805057e62e193796a7838e9ea649af10d2",
+    "frameId": "control-otah-tav-qamats",
+    "files": [
+      {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-BEL-UNIT1-12/control-otah-tav-qamats-native.png",
+        "sha256": "5c94a68b8b5d72c6676791181f914b91f8a81e27dd94a8bb8b02c402c4e6fefd",
+        "scale": 1,
+        "resampling": "native"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-BEL-UNIT1-12/control-otah-tav-qamats-15x.png",
+        "sha256": "05d354b5c81423f334a12546d98153b171788662865cba8277f09d61edfe6fed",
+        "scale": 15,
+        "resampling": "nearest-neighbor"
+      }
+    ],
+    "scope": "Only two narrow tav control PNGs; original full word is already intact and all original PNGs remain immutable and subject to integrity replay"
+  },
+  "reason": "Final crop review found the leftmost edge of the tav foot reaches the original narrow frame edge. Expanded bounds now include the complete tav and qamats with margin. No pixel alteration, decision, label, packet or scalar changes.",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourcePDFPage": 244,
+  "frame": {
+    "id": "control-otah-full-tav-qamats",
+    "role": "controlGlyph",
+    "caption": "Complete tav of אוֹתָהּ including left foot, right stem and literal qamats transverse head/downward tail",
+    "nativeBounds": [
+      1588,
+      2413,
+      1638,
+      2502
+    ],
+    "originalSize": [
+      2543,
+      3529
+    ],
+    "fullyInsideOriginalImage": true
+  },
+  "evidenceFiles": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-BEL-UNIT1-12-control-supplement/control-otah-full-tav-qamats-native.png",
+      "sha256": "a826a8d5fd389a19445511d0bd413c01a00f94abf9f94102d182acfef9b491d9",
+      "page": 244,
+      "nativeBounds": [
+        1588,
+        2413,
+        1638,
+        2502
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-BEL-UNIT1-12-control-supplement/control-otah-full-tav-qamats-15x.png",
+      "sha256": "6e55f1ce383915c851c6a9f1ddfd5e61188178805322564161cbdc4c7f9d1ba0",
+      "page": 244,
+      "nativeBounds": [
+        1588,
+        2413,
+        1638,
+        2502
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    }
+  ],
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-BEL-UNIT1-12/accepted.json",
+    "sha256": "bb085e00e6bf6b665f6b658913444ef68e9f54505dd79cd429a260761281dc3f"
+  },
+  "canonicalOrGateMutation": false
+}

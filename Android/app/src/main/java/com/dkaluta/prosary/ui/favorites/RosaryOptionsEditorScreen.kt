@@ -36,6 +36,7 @@ import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.MysteryImageStyle
 import com.dkaluta.prosary.models.MysterySelectionMode
 import com.dkaluta.prosary.models.RosaryOptions
+import com.dkaluta.prosary.models.RosaryRiteLabels
 import com.dkaluta.prosary.ui.presets.OptionPickerField
 
 /** The Rosary-specific options, split out of [FavoriteEditorScreen] into their own screen (a
@@ -55,6 +56,10 @@ fun RosaryOptionsEditorScreen(
 ) {
     BackHandler(onBack = onBack)
     val context = LocalContext.current
+    fun riteLabel(key: String, fallback: Int): String =
+        RosaryRiteLabels.optionLabel(key, languageCode) { resource, arguments ->
+            context.getString(resource, *arguments.toTypedArray())
+        } ?: context.getString(fallback)
 
     // Tints the pinned bar once content scrolls beneath it — without this the bar is
 
@@ -147,21 +152,21 @@ fun RosaryOptionsEditorScreen(
             FormSection(title = stringResource(R.string.ro_opening_section)) {
                 val creedLabel = if (PrayerPackStore.usesNiceneCreed("rosary", languageCode))
                     R.string.favorite_editor_nicene_creed else R.string.ro_apostles_creed
-                SwitchRow(stringResource(creedLabel), rosary.includeApostlesCreed,
+                SwitchRow(riteLabel("apostlesCreed", creedLabel), rosary.includeApostlesCreed,
                     switchModifier = Modifier.testTag("rosaryOption:apostlesCreed")) {
                     onRosaryChange(rosary.copy(includeApostlesCreed = it))
                 }
-                SwitchRow(stringResource(R.string.ro_opening_prayers), rosary.includeOpeningPrayers) {
+                SwitchRow(riteLabel("openingPrayers", R.string.ro_opening_prayers), rosary.includeOpeningPrayers) {
                     onRosaryChange(rosary.copy(includeOpeningPrayers = it))
                 }
-                SwitchRow(stringResource(R.string.ro_opening_fatima), rosary.includeOpeningFatimaPrayer) {
+                SwitchRow(riteLabel("openingFatimaPrayer", R.string.ro_opening_fatima), rosary.includeOpeningFatimaPrayer) {
                     onRosaryChange(rosary.copy(includeOpeningFatimaPrayer = it))
                 }
-                SwitchRow(stringResource(R.string.ro_fatima), rosary.includeFatimaPrayer) {
+                SwitchRow(riteLabel("fatimaPrayer", R.string.ro_fatima), rosary.includeFatimaPrayer) {
                     onRosaryChange(rosary.copy(includeFatimaPrayer = it))
                 }
                 OptionPickerField(
-                    label = stringResource(R.string.ro_faithful_departed),
+                    label = riteLabel("eternalRest", R.string.ro_faithful_departed),
                     options = EternalRestPlacement.entries,
                     selected = rosary.eternalRestForDeceased,
                     optionLabel = { context.getString(it.displayNameRes) },
@@ -183,7 +188,7 @@ fun RosaryOptionsEditorScreen(
                     onRosaryChange(rosary.copy(presenterMode = it))
                 }
                 Text(
-                    stringResource(R.string.ro_presenter_hint),
+                    riteLabel("presenterHint", R.string.ro_presenter_hint),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -201,7 +206,7 @@ fun RosaryOptionsEditorScreen(
                 SwitchRow(stringResource(R.string.ro_closing_intentions), rosary.effectiveClosingIntentions) {
                     onRosaryChange(rosary.withClosingIntentions(it))
                 }
-                SwitchRow(stringResource(R.string.ro_st_michael), rosary.includeStMichaelPrayer) {
+                SwitchRow(riteLabel("stMichael", R.string.ro_st_michael), rosary.includeStMichaelPrayer) {
                     onRosaryChange(rosary.copy(includeStMichaelPrayer = it))
                 }
                 SwitchRow(stringResource(R.string.ro_litany_of_loreto), rosary.includeLitanyOfLoreto,
@@ -212,7 +217,7 @@ fun RosaryOptionsEditorScreen(
                     switchModifier = Modifier.testTag("rosaryOption:rosaryCollect"), enabled = !rosary.includeLitanyOfLoreto) {
                     onRosaryChange(rosary.copy(includeRosaryCollect = it))
                 }
-                SwitchRow(stringResource(R.string.ro_final_sign), rosary.includeFinalSignOfCross) {
+                SwitchRow(riteLabel("finalSignOfCross", R.string.ro_final_sign), rosary.includeFinalSignOfCross) {
                     onRosaryChange(rosary.copy(includeFinalSignOfCross = it))
                 }
             }

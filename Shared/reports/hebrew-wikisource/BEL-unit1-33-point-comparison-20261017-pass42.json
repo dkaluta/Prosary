@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 42,
+  "book": "BEL",
+  "status": "Four source 1:33 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 42 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass42-BEL-1-33/source-provenance.json",
+    "sha256": "22da842868b7493c172edddd1a5b06715b445e015a4fe35d355c0e84dd10493f"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 246 / תקעד (viewer page 591, internal 606). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 376,
+  "sourceNotesBefore": 73,
+  "sourceNotesAfter": 69,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-33-246-vayabel33-letter1-vowel",
+    "bel-1-33-246-vayetse33-letter1-vowel",
+    "bel-1-33-246-vayetse-letter3-vowel",
+    "bel-1-33-246-laset-letter2-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 4,
+  "addedCombiningMarks": {
+    "U+05B7": 2,
+    "U+05B5": 2
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 33,
+      "before": "וּבְאֶרֶץ יְהוּדָה הָיָה חֲבַקּוּק הַנָּבִיא וְהוּא בִשֵּׁל נָזִיד ויָּבָל אֶת־הַלֶּחֶם בַּסִּיר ויֵּצא הַשָּׂדֶה לָשׂאת אוֹתוֹ אֶל־הַקּוֹצְרִים׃",
+      "after": "וּבְאֶרֶץ יְהוּדָה הָיָה חֲבַקּוּק הַנָּבִיא וְהוּא בִשֵּׁל נָזִיד וַיָּבָל אֶת־הַלֶּחֶם בַּסִּיר וַיֵּצֵא הַשָּׂדֶה לָשֵׂאת אוֹתוֹ אֶל־הַקּוֹצְרִים׃",
+      "beforeTextSHA256": "d037d0db82a514e374cbac737b6c6f4cfade0faea86ca8fef548c30b15f095ea",
+      "afterTextSHA256": "e5fb7acbed65abee5282c049ac796fe52d59148bc41901e204a2d251c29a1daa"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 33,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label לג on page תקעד / 246 (viewer page 591, internal page 606) identifies the unit covering verse 33 (Theodotion lines 11-12). Canonical verse 33 and sourcePages [246] are preserved.",
+  "decisions": [
+    {
+      "noteId": "bel-1-33-246-vayabel33-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "anchor": "ויָּבָל",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial vav foot sits a crisp horizontal bar (width 15 px, height 6-8 px) with clean white space separating it from the adjacent yod/bet qamats. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass42-BEL-1-33/bel-1-33-246-vayabel33-letter1-vowel-target-native.png",
+        "sha256": "16c4b41a694aaadb62a1c042940b8b8322f636dd3f12b26abbd932c1c240fd76"
+      }
+    },
+    {
+      "noteId": "bel-1-33-246-vayetse33-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "anchor": "ויֵּצא",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Directly below initial vav stem at the line margin sits a crisp, broad horizontal stroke (width 25 px) matching standard same-page patah punches. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass42-BEL-1-33/bel-1-33-246-vayetse33-letter1-vowel-target-native.png",
+        "sha256": "43b2891171cc24fe38c8c4fbd751d34ec15df71b8f4b04e3ccf75d199ceaa3c0"
+      }
+    },
+    {
+      "noteId": "bel-1-33-246-vayetse-letter3-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "anchor": "ויֵּצא",
+      "letterIndex": 3,
+      "decision": "proposePrintedTsereAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B5",
+      "markClassification": "Tsere",
+      "finding": "Under tsadi sits a horizontally aligned pair of distinct stamped punch dots with a distinct central separation notch at y=114. Confirmed as stamped Tsere U+05B5.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass42-BEL-1-33/bel-1-33-246-vayetse-letter3-vowel-target-native.png",
+        "sha256": "e01710fc5fa51ec15e5ca1af343d9e4253606ddf890613ebf72d06a7d15d8fd4"
+      }
+    },
+    {
+      "noteId": "bel-1-33-246-laset-letter2-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "anchor": "לָשׂאת",
+      "letterIndex": 2,
+      "decision": "proposePrintedTsereAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B5",
+      "markClassification": "Tsere",
+      "finding": "The lower horizontal mass of the sin shows physical contact with the horizontal punch of the tsere vowel (height 34 px vs ordinary 28 px base). In accordance with the established repository epigraphic rule, physical contact does not erase the separate vowel geometry. Restored as stamped Tsere U+05B5.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass42-BEL-1-33/bel-1-33-246-laset-letter2-vowel-target-native.png",
+        "sha256": "4dafcb4ae2b2f5b543ac1458b49f031ffbbbc6cae0ad5ea2bb3d5089857e85a7"
+      }
+    }
+  ]
+}

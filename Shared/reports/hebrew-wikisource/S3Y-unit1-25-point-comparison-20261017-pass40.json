@@ -1,0 +1,429 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 40,
+  "book": "S3Y",
+  "status": "Five source 1:25 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 40 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/source-provenance.json",
+    "sha256": "29307179319cd1196d7d843f211f69f54c962068c0bc48e79eceb041f7068211"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on printed page 234 / רלד (viewer page 579, internal page 594). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point. Screenshot replay is not PDF embedded-pixel replay.",
+  "baselineGlobalSourceNoteCount": 385,
+  "canonicalSHA256Before": "5691cf2cca0582c229ccc4dd6b23f9f426a929e33e5c6dc693f3c2b4faf20c91",
+  "contentSHA256Before": "0e96fc66b82e6fb907369d64015bf0b23cd8463e06b103e22250f63c3f8e45f5",
+  "sourceNotesBefore": 33,
+  "sourceNotesAfter": 28,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 5,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-25-word10-letter1-dagesh",
+    "s3y-1-25-word10-letter2-vowel",
+    "s3y-1-25-word21-letter1-vowel",
+    "s3y-1-25-word25-letter1-vowel",
+    "s3y-1-25-word28-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 5,
+  "addedCombiningMarks": {
+    "U+05B0": 1,
+    "U+05B5": 1,
+    "U+05B7": 3
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 25,
+      "before": "וְעַבְדֵי הַמֶּלֶךְ אֲשֶׁר הִשְׁלִיכוּ אוֹתָם לֹא חָדְלוּ לְהַסִּיק אֶת־הַכִּבְשָׁן וכאֲשֶׁר הִשְׁלִיכוּ אֶת־שְׁלָשְׁתָּם יַחַד אֶל־הַכִּבְשָׁן וְהַכִּבְשָׁן בּוֹעֵר שִׁבְעָתַיִם בְּחֻמּוֹ וּבְהַשְׁלִיכָם אוֹתָם ויִּהְיוּ הַמַּשְׁלִיכִים מִמַּעַל לָהֶם [ואֲחֵרִים] הִצִּיתוּ מִתַּחְתֵּיהֶם נפְט וּנְעֹרֶת וְזֶפֶת וּזְמֹרוֹת׃",
+      "after": "וְעַבְדֵי הַמֶּלֶךְ אֲשֶׁר הִשְׁלִיכוּ אוֹתָם לֹא חָדְלוּ לְהַסִּיק אֶת־הַכִּבְשָׁן וְכַאֲשֶׁר הִשְׁלִיכוּ אֶת־שְׁלָשְׁתָּם יַחַד אֶל־הַכִּבְשָׁן וְהַכִּבְשָׁן בּוֹעֵר שִׁבְעָתַיִם בְּחֻמּוֹ וּבְהַשְׁלִיכָם אוֹתָם וַיִּהְיוּ הַמַּשְׁלִיכִים מִמַּעַל לָהֶם [וַאֲחֵרִים] הִצִּיתוּ מִתַּחְתֵּיהֶם נֵפְט וּנְעֹרֶת וְזֶפֶת וּזְמֹרוֹת׃",
+      "beforeTextSHA256": "efefca057d28b12204b8bce5b35646dead7c374620b9eac4c4e4615f25add831",
+      "afterTextSHA256": "ee7ccdc95d46dd25dd6b6af32ab2eb9a2990099cca79288dc26814f792e23944"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 25,
+    "allFiveUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label כה on page רלד / 234 (viewer page 579, internal page 594) identifies the unit beginning with וְעַבְדֵי הַמֶּלֶךְ. Canonical verse 25 and sourcePages [234] are preserved.",
+  "decisions": [
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "before": "וכאֲשֶׁר",
+      "after": "וְכַאֲשֶׁר",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "s3y-1-25-word10-letter1-dagesh",
+        "s3y-1-25-word10-letter2-vowel"
+      ],
+      "addedCodePoints": [
+        "U+05B0",
+        "U+05B7"
+      ],
+      "dageshAssessment": "ABSENT. Initial Vav carries Sheva (U+05B0); no internal Dagesh punch exists.",
+      "vowelAssessment": "PATAH (U+05B7) under Kaf; single horizontal stroke with clean blank paper below."
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "before": "ויִּהְיוּ",
+      "after": "וַיִּהְיוּ",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "s3y-1-25-word21-letter1-vowel"
+      ],
+      "addedCodePoints": [
+        "U+05B7"
+      ],
+      "vowelAssessment": "PATAH (U+05B7) under initial Vav; solid continuous horizontal stroke contrasting with Sheva dots."
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "before": "[ואֲחֵרִים]",
+      "after": "[וַאֲחֵרִים]",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "s3y-1-25-word25-letter1-vowel"
+      ],
+      "addedCodePoints": [
+        "U+05B7"
+      ],
+      "vowelAssessment": "PATAH (U+05B7) under initial Vav inside bracket; solid horizontal stroke with pristine white paper below."
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "before": "נפְט",
+      "after": "נֵפְט",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "s3y-1-25-word28-letter1-vowel"
+      ],
+      "addedCodePoints": [
+        "U+05B5"
+      ],
+      "vowelAssessment": "TSERE (U+05B5) under Nun; two strictly horizontally aligned punch dots (delta_y = 0.1 px), zero lower 3rd dot, pristine white paper below."
+    }
+  ],
+  "points": [
+    {
+      "noteId": "s3y-1-25-word10-letter1-dagesh",
+      "reading": "absent",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Initial Vav of וְכַאֲשֶׁר has smooth uniform stem boundaries with no interior or lateral Dagesh punch mark; it carries Sheva (two vertical dots).",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-word-zoom6.png",
+          "sha256": "6aaa5bbd562f99a5cb3561ca25e1426a98df5f9a49ec6b2e5e544520c617bd88",
+          "dimensions": "520x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-word-zoom6-x4.png",
+            "sha256": "5e3c6972ae2edb2b16db0520c4f86032fda63c99ec3cb05cb8786873df305f05",
+            "dimensions": "2080x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-vav-whole-glyph-zoom6.png",
+          "sha256": "81df7fc4374a4de3cd3e7fb5299e2f31cdc7296171d86d8af97407bf2a7802eb",
+          "dimensions": "85x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "0c1dd9528f1143569164a24b40d1ca15ffe600198055e0cc61f6c16b289b4ffb",
+            "dimensions": "340x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-vav-positive-control-sheva-zoom6.png",
+          "sha256": "cd56f0f9b16dc0f2ae7b49a3789156ff6abde1c45b60ddd68047f4b4ce90968d",
+          "dimensions": "100x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-vav-positive-control-sheva-zoom6-x4.png",
+            "sha256": "d00e97db419b9a7dae9bc8bfdf991370fd63a7dc55e0bdd4dc898954c5414593",
+            "dimensions": "400x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-vav-competing-control-dagesh-zoom6.png",
+          "sha256": "562a1fd22073237bc60d0ca054defb257a58f60a0a32135692edb19f598daec3",
+          "dimensions": "110x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-vav-competing-control-dagesh-zoom6-x4.png",
+            "sha256": "6354649706beba7c071a58bffb8b5ecf9d69fc671d60a2f6aa57855a72d09e5e",
+            "dimensions": "440x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "s3y-1-25-word10-letter2-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Kaf of וְכַאֲשֶׁר carries a single solid horizontal bar of Patah, with completely clean white paper beneath.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-word-zoom6.png",
+          "sha256": "6aaa5bbd562f99a5cb3561ca25e1426a98df5f9a49ec6b2e5e544520c617bd88",
+          "dimensions": "520x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-word-zoom6-x4.png",
+            "sha256": "5e3c6972ae2edb2b16db0520c4f86032fda63c99ec3cb05cb8786873df305f05",
+            "dimensions": "2080x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-kaf-whole-glyph-zoom6.png",
+          "sha256": "9c8097aeeb6897cf8c47c282a3858f8db7c377ea2c50d7c7bcfb43ac0d07f178",
+          "dimensions": "95x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-kaf-whole-glyph-zoom6-x4.png",
+            "sha256": "5acbadc8f1f32b0b84e41fa8b6a11a4cddd546ff3c0817fa963ecf05e6cccf49",
+            "dimensions": "380x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-kaf-positive-control-patah-zoom6.png",
+          "sha256": "7f502c8f2db6953047c7defac466f03852ffe9baebf4d6813ea79d49b9279258",
+          "dimensions": "130x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-kaf-positive-control-patah-zoom6-x4.png",
+            "sha256": "09bafa7d8777e98c4e8538df73e2b70e32719c186ed2cd516b916f48ded06e72",
+            "dimensions": "520x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-kaf-competing-control-sheva-zoom6.png",
+          "sha256": "abd8300de1902302372aaf2866cfd1319236f9ae1b8f6448d48fcb79e9d1af74",
+          "dimensions": "100x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vekhaasher-kaf-competing-control-sheva-zoom6-x4.png",
+            "sha256": "c4e78e269115de9c12688a4661dcbd51eac5dcc40ad88193c7843188fb3353f7",
+            "dimensions": "400x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "s3y-1-25-word21-letter1-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Initial Vav of וַיִּהְיוּ carries a solid continuous horizontal stroke of Patah, contrasting with the Sheva dots under He.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vayihyu-word-zoom6.png",
+          "sha256": "0c24b224778c9c4852db91970f70c69e964c2fb2c42a00e80808dddfecb8d3fb",
+          "dimensions": "350x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vayihyu-word-zoom6-x4.png",
+            "sha256": "9a42929a8491283eb1637259265afe548abd4f1c90c013f0af7ae3f357c79bc3",
+            "dimensions": "1400x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vayihyu-vav-whole-glyph-zoom6.png",
+          "sha256": "b3b85fdf0cbc97c387a8176bed50484277f6149bc2ea988b43f019e5e7ac639b",
+          "dimensions": "70x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vayihyu-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "b8bdf7e584bc4c613a1c2adc8be669b11c707d9c5a0361b6609b387c6073b348",
+            "dimensions": "280x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vayihyu-vav-positive-control-patah-zoom6.png",
+          "sha256": "1a51a7917cb74d1429506a649a9c0846391163243f946e9855460f07efc9ca1e",
+          "dimensions": "130x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vayihyu-vav-positive-control-patah-zoom6-x4.png",
+            "sha256": "239d5aff0314b3b54b83af08eaa7bb3242ea0aa458b1e06b754d3f99a454ed78",
+            "dimensions": "520x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vayihyu-vav-competing-control-sheva-zoom6.png",
+          "sha256": "a3695ebd287d1447a41cd0764508f0ed9e54b538b89264b67d6d4dc220f7ed1a",
+          "dimensions": "100x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vayihyu-vav-competing-control-sheva-zoom6-x4.png",
+            "sha256": "967e4bd5b8e119bf19fe24512698a563507ec3dc9f4c553a00691a629976e7ef",
+            "dimensions": "400x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "s3y-1-25-word25-letter1-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Initial Vav of [וַאֲחֵרִים] carries a solid horizontal bar of Patah, with clean white paper below.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vaaherim-word-zoom6.png",
+          "sha256": "50fafa49b741f122ea32ab9cd0480e9ab5944464d621b41f94e6a7960a57ebb3",
+          "dimensions": "600x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vaaherim-word-zoom6-x4.png",
+            "sha256": "6db768b8b3cda15e976c9b6b1001c0676775ec1dcfd53b0126e568c41f6fac29",
+            "dimensions": "2400x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vaaherim-vav-whole-glyph-zoom6.png",
+          "sha256": "2b108d240adfb353b59579795fb56454bd2e7799b356fa3a2782d47a8d40d820",
+          "dimensions": "70x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vaaherim-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "d9d505cfbf3600e76aa4863d026ce441b679e7a0341587c790c60cfa71140fce",
+            "dimensions": "280x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vaaherim-vav-positive-control-patah-zoom6.png",
+          "sha256": "9bc8d77dba125c4fdae6e95869b337d008bde830bccdf0fff98ed35ebbea067d",
+          "dimensions": "120x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vaaherim-vav-positive-control-patah-zoom6-x4.png",
+            "sha256": "18768c29561a96ea2944a66828118cc48842745a2eb119edbd9193c801394cbe",
+            "dimensions": "480x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vaaherim-vav-competing-control-sheva-zoom6.png",
+          "sha256": "81df7fc4374a4de3cd3e7fb5299e2f31cdc7296171d86d8af97407bf2a7802eb",
+          "dimensions": "85x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-vaaherim-vav-competing-control-sheva-zoom6-x4.png",
+            "sha256": "0c1dd9528f1143569164a24b40d1ca15ffe600198055e0cc61f6c16b289b4ffb",
+            "dimensions": "340x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "s3y-1-25-word28-letter1-vowel",
+      "reading": "tsere",
+      "scalar": "U+05B5",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Nun of נֵפְט carries two strictly horizontal punch dots of Tsere (delta_y = 0.1 px, separation 24.3 px); pristine white paper beneath confirms absence of any third lower dot (Segol rejected).",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-nefet-word-zoom6.png",
+          "sha256": "92e0681b66ad19f8a9a8bbb1bcad6ea19baca7968ced99076d35859d7b46d3e1",
+          "dimensions": "300x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-nefet-word-zoom6-x4.png",
+            "sha256": "38bf7035e190340a482a799ac2ef4221a9b278cd420af4c1a141581053877767",
+            "dimensions": "1200x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-nefet-nun-whole-glyph-zoom6.png",
+          "sha256": "4e6fb80375129361e57c1feed7319bca94c105aa924af3f58f23473d33bbde6a",
+          "dimensions": "90x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-nefet-nun-whole-glyph-zoom6-x4.png",
+            "sha256": "b28fdb029414f75277a5d325c7160197975f273d6c248c5cc77c5f84092df01f",
+            "dimensions": "360x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-nefet-nun-positive-control-tsere-zoom6.png",
+          "sha256": "4018323d38b9a71fc55455d0978f4a5174322e0d7f7e921ee05f0496c022e5a4",
+          "dimensions": "55x60",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-nefet-nun-positive-control-tsere-zoom6-x4.png",
+            "sha256": "53a79c4e24093383d5f568aea8ab8cccad024930c60cb321709e3962a9396215",
+            "dimensions": "220x240",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-nefet-nun-competing-control-sheva-zoom6.png",
+          "sha256": "91ba35daf62919a47d34b9056680df26570067637cea8e1c8f5c7bbe8697523d",
+          "dimensions": "70x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass40-S3Y-1-25/s3y-1-25-nefet-nun-competing-control-sheva-zoom6-x4.png",
+            "sha256": "b011d2558423755fdb4f7bc85090ae9f483ce336fbead9e3c6ddcbfb82105462",
+            "dimensions": "280x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    }
+  ]
+}

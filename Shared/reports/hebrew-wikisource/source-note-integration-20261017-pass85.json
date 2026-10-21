@@ -1,0 +1,412 @@
+{
+  "date": "2026-10-21",
+  "pass": 85,
+  "startingNoteCount": 247,
+  "removedNoteCount": 3,
+  "remainingNoteCount": 244,
+  "reviewedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 22,
+      "afterNoteCount": 19,
+      "removedNoteIds": [
+        "bel-1-34-246-daniel-letter3-dagesh",
+        "bel-1-34-246-vayomer34-letter1-vowel",
+        "bel-1-34-246-vayomer34-letter2-dagesh"
+      ],
+      "retainedInspectedNoteIds": [],
+      "beforeDigest": "6787c0601f6626f61ad2f5c14e9302d35a6329e3181cd94a23387c4325017cb7",
+      "afterDigest": "3a753667ffa9932d45dbea5fd165a302d8ef93061dea4c9b6b3c2fca0aa2069c",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 34,
+          "before": "ויֹאמֶר מַלְאַךְ יְיָ אֶל־חֲבַקּוּק שָׂא־נָא אֶת־הַמַּאֲכָל בְּיָדְךָ בָּבֶלָה אֶל־דָּנִיֵאל אֲשֶׁר בְּבוֹר הָאֲרָיוֹת׃",
+          "after": "וַיֹּאמֶר מַלְאַךְ יְיָ אֶל־חֲבַקּוּק שָׂא־נָא אֶת־הַמַּאֲכָל בְּיָדְךָ בָּבֶלָה אֶל־דָּנִיֵּאל אֲשֶׁר בְּבוֹר הָאֲרָיוֹת׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 1,
+              "mark": "ַ",
+              "codePoint": "U+05B7"
+            },
+            {
+              "offset": 3,
+              "mark": "ּ",
+              "codePoint": "U+05BC"
+            },
+            {
+              "offset": 90,
+              "mark": "ּ",
+              "codePoint": "U+05BC"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-34-point-comparison-20261017-pass85.json",
+          "sha256": "a84a58512ee3f57056e4226c14e54f77aeae3f9a574c6ddcadc0e4a05513e652"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass85.json",
+          "sha256": "3e3e215d86886b325e219fc0fef3e2b7bd89358ae5aff72c43c3524429536efb"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyReviewMetadataUnchangedCount": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-34-point-comparison-20261017-pass85.json",
+      "sha256": "a84a58512ee3f57056e4226c14e54f77aeae3f9a574c6ddcadc0e4a05513e652"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass85.json",
+      "sha256": "3e3e215d86886b325e219fc0fef3e2b7bd89358ae5aff72c43c3524429536efb"
+    }
+  ],
+  "state": "Applied, regenerated and audited. Recorded Shared, Android and Apple checks passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 244,
+      "removedNotes": 3,
+      "changedArchiveChapters": 1,
+      "changedArchiveMembers": [
+        "chapters/BEL/1.json",
+        "manifest.json"
+      ],
+      "preservedArchiveMembers": 1335,
+      "addedArchiveMembers": [],
+      "removedArchiveMembers": [],
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-b945fcfaf1439cbfc8d7ec1e908894e56d1e2a7532f8aaac6a13e45598710e5e.zip",
+      "archiveSHA256": "f67db2ede4a755b5627e9a9e4049989130af6f637916ca76fef533b2f1710e4e",
+      "archiveBytes": 3109213,
+      "baselineArchive": "Shared/dist/bibles/masoretic-delitzsch-29ac76a88a11347d8e4479ae2ff688814022a297850afcf949490fd000651be4.zip",
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "nativeDataCopyMatches": {
+        "Apple": true,
+        "Android": true,
+        "Windows": true
+      }
+    },
+    "verification": {
+      "build-bible-library": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass85-20261021/build-bible-library.log",
+        "durationSeconds": 10.61,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/build-bible-library.py",
+          "--sync"
+        ],
+        "logSHA256": "a75bfd525c0379447b5273eb15b5e78a11f6d976eb41c0b77a299dfd63fe0b1f",
+        "passed": true
+      },
+      "fetch-readings": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass85-20261021/fetch-readings.log",
+        "durationSeconds": 0.37,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/fetch-readings.py",
+          "--localize-only",
+          "--sync"
+        ],
+        "logSHA256": "e992955842d03ea87d10df8bc777939feb45672843f43b92a7c14d9e31efc8fd",
+        "passed": true
+      },
+      "hebrew-deuterocanon": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass85-20261021/hebrew-deuterocanon.log",
+        "durationSeconds": 0.07,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/hebrew_deuterocanon.py"
+        ],
+        "logSHA256": "42bbf7608e36afd3779d18752c0f99f576ce13b6c0e3e576275d87c963610f0e",
+        "passed": true
+      },
+      "asset-deduplication": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass85-20261021/asset-deduplication.log",
+        "durationSeconds": 0.22,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/test-asset-deduplication.py"
+        ],
+        "logSHA256": "ef86bea90e26a5d58506ed3dc0943d23de67bc89de67a92b129d82db5041e42e",
+        "passed": true
+      },
+      "android": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass85-20261021/android.log",
+        "durationSeconds": 3.78,
+        "command": [
+          "./gradlew",
+          "--offline",
+          "testDebugUnitTest"
+        ],
+        "successMarker": "BUILD SUCCESSFUL",
+        "logSHA256": "9feebbf1c3c88f72ba0d933fa9d6686f84618809a08f96c5df36f456fc2a3c43",
+        "passed": true
+      },
+      "apple": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass85-20261021/apple.log",
+        "durationSeconds": 53.64,
+        "command": [
+          "xcodebuild",
+          "test",
+          "-scheme",
+          "Prosary",
+          "-destination",
+          "platform=macOS",
+          "-parallel-testing-enabled",
+          "NO",
+          "-only-testing:ProsaryTests"
+        ],
+        "successMarker": "** TEST SUCCEEDED **",
+        "logSHA256": "8cb1f75604faf3f38cfe6f5d2bbb148307cb4f1728a7793d73bdbbaa30953590",
+        "passed": true
+      }
+    },
+    "sourceMutationApplied": true,
+    "requiredChecksApplicable": true,
+    "requiredChecksMissingOrFailed": [],
+    "checksNotRunOrFailed": [],
+    "protectedRestoredLetterDisclosuresUnchanged": true,
+    "unrelatedTrackedSourceFilesByteUnchanged": true,
+    "unrelatedTrackedSourceFilesChecked": 2274,
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 406,
+      "remainingNoteCount": 244
+    },
+    "preexistingStaleDailyReviewPins": [
+      "daily|Daniel 3:25, 34–45",
+      "daily|Daniel 3:47–51",
+      "daily|Esther 13:8–11; 15–17",
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17",
+      "daily|Wisdom 10:10–14",
+      "daily|Wisdom 10:17–20",
+      "daily|Wisdom 3:1–8",
+      "daily|Wisdom 3:1–9",
+      "daily|Wisdom 4:7–15",
+      "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+      "daily|Wisdom 5:1–5",
+      "daily|Wisdom 6:12–16",
+      "daily|Wisdom 7:7–14"
+    ],
+    "remainingStaleDailyReviewPins": [
+      "daily|Daniel 3:25, 34–45",
+      "daily|Daniel 3:47–51",
+      "daily|Esther 13:8–11; 15–17",
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17",
+      "daily|Wisdom 10:10–14",
+      "daily|Wisdom 10:17–20",
+      "daily|Wisdom 3:1–8",
+      "daily|Wisdom 3:1–9",
+      "daily|Wisdom 4:7–15",
+      "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+      "daily|Wisdom 5:1–5",
+      "daily|Wisdom 6:12–16",
+      "daily|Wisdom 7:7–14"
+    ],
+    "preexistingStalePresentationPins": [],
+    "remainingStalePresentationPins": [],
+    "secondGenerationByteStability": {
+      "path": "/private/tmp/prosary-pass85-20261021/byte-stability.json",
+      "sha256": "bd3fa3a658c25cb0fcf15b259d712c4ef176041443c8a40ada2be821647be4a2",
+      "result": {
+        "pass": 85,
+        "checkedFiles": 113,
+        "allGeneratedDatasetsByteStable": true,
+        "fileSHA256": {
+          "Shared/reports/bible-library-coverage.json": "91033433ebd878d3d301824e5c219ef4d04ebfc820d0dee8fed73b04ee8c562f",
+          "Shared/data/feasts-franciscan-conventual-italy.json": "d494199ee1a1edf45478b5bdd73451bee898f108381675e225f7c1abcbe97b54",
+          "Shared/data/feasts-roman.json": "8ede409e88d8a1c357773588d925162bae6d34cd7955cca38c50870d3c66f261",
+          "Shared/data/bible-catalog.json": "4bf21be6d057b4dff2028f2f712178f15d67b7c575fd768bf05ee22d663e2dd8",
+          "Shared/data/feasts-roman1962.json": "cfd4e276e98494263aef5164e4327baf43c62abcb63ce26866ec1e1f7069e78e",
+          "Shared/data/readings-texts.json": "18a54436e9ad54e2af91b3acbf7e4321e2bbe6935a094fbcbcb1bb1380fc733b",
+          "Shared/data/feasts-augustinian-discalced.json": "aa3f9106fc3b33874010cfb40af8268028af6b30d178b56e902bff3e9e9d2f26",
+          "Shared/data/readings-augustinian-discalced.json": "3b68af81e200414e0f48fe03ba35e09d064f9b261a55e2e92e91d6b8a970f372",
+          "Shared/data/readings-ugcc-julian.json": "e3394a9599899990e9474861d3cb2d90f0491ca1e543e481526f748dcf7c0bb7",
+          "Shared/data/readings-roman1962.json": "f56f43eef82593cf6036147ee992557616aba5a6e54dbe0237e99eb54d73d992",
+          "Shared/data/readings-maronite.json": "f393152203bceac17a76239391e1f356c44e5a0e496d0253efdb56002c194a2b",
+          "Shared/data/feasts.json": "33b0514d60e96854a20cbdb0707bb2fea79af571b6fffa854a02d3ed5ec31b18",
+          "Shared/data/readings-stjames.json": "aca5c2c8488f5fe62aa869089aa1ae2e15d5080b842741638947673ba8650b51",
+          "Shared/data/feasts-ugcc-julian.json": "e4bf6b7f5ccd297b955eaeaa88b435dd878c00801ffcc6c3b6310fe0579eb8a0",
+          "Shared/data/readings-ugcc.json": "25e3587094fe3e9f717e845f2ae029a87f6d892b077e74d0381da8da2c3a730a",
+          "Shared/data/feasts-ugcc-gregorian.json": "986d2d28283d20711c6ddfd52fb145bc4d5f916eb674242d63cb609ff3918293",
+          "Shared/data/feasts-stjames.json": "a7fe546d47cd25fe1b00f9d1a01885173f7f8c83b651ab5a2fb3286ef3c570e2",
+          "Shared/data/feasts-maronite.json": "9e4ae8be2dd23f23144da353c4cf7e6b654e7a5bf732e465ac5fd8086a1bed86",
+          "Shared/data/feasts-syriac.json": "809aa37a8f828de591894613bf424e7c3cf337ca8f8ffc6f3105fbc504f43461",
+          "Shared/data/readings-ugcc-gregorian.json": "efc52c0ccd8b4d1d746946165327cfe7a8dda4a976187c8c07d7bce7778cfac7",
+          "Shared/data/readings-editions.json": "31200da3efce637d0f11d5cf1d1965801d2bdf035ed7f7e4171015153bcc7630",
+          "Shared/data/torah-portions.json": "fe327ff5ad661fd1ca430892a787700fafc50f55d123fa7d1f5748bde69c6b6e",
+          "Shared/data/pope-intentions.json": "50ab2157a3449368297ded40c0467527aa63d72d504f2a0f7527577c4a5e91ba",
+          "Shared/data/feasts-mission-provisional.json": "356e94b571e865dbd0d28c3ee9ee84291714e0dc1fe40682adf6a89278997567",
+          "Shared/data/readings-syriac.json": "f2789002fb2f60fea5edf5c5d8ae9c970c37fd522eedfdd42442f7c46c306b0c",
+          "Shared/data/readings-roman.json": "249d7d1ff1da5d1f9ac169a5f36d073fe03f040356277b6d6538602aeaf8d92f",
+          "Shared/data/calendars.json": "9109bab076e9187430b5d1fed4e53d2ca27797ea56fdf28cf4ffa06139f2a3c4",
+          "Shared/data/readings-franciscan-conventual-italy.json": "ae9429d8a6c66bd5c8e27863c6c9c3c06a490c14b2eef60724b8612a4223e4a0",
+          "Shared/data/feasts-ugcc.json": "dc8500b7d02cb63411843705f044f320b589a7b8e88f6e1d84cbbfa600dd3bd8",
+          "iOS/Prosary/Data/feasts-franciscan-conventual-italy.json": "d494199ee1a1edf45478b5bdd73451bee898f108381675e225f7c1abcbe97b54",
+          "iOS/Prosary/Data/feasts-roman.json": "8ede409e88d8a1c357773588d925162bae6d34cd7955cca38c50870d3c66f261",
+          "iOS/Prosary/Data/bible-catalog.json": "4bf21be6d057b4dff2028f2f712178f15d67b7c575fd768bf05ee22d663e2dd8",
+          "iOS/Prosary/Data/feasts-roman1962.json": "cfd4e276e98494263aef5164e4327baf43c62abcb63ce26866ec1e1f7069e78e",
+          "iOS/Prosary/Data/readings-texts.json": "18a54436e9ad54e2af91b3acbf7e4321e2bbe6935a094fbcbcb1bb1380fc733b",
+          "iOS/Prosary/Data/feasts-augustinian-discalced.json": "aa3f9106fc3b33874010cfb40af8268028af6b30d178b56e902bff3e9e9d2f26",
+          "iOS/Prosary/Data/readings-augustinian-discalced.json": "3b68af81e200414e0f48fe03ba35e09d064f9b261a55e2e92e91d6b8a970f372",
+          "iOS/Prosary/Data/readings-ugcc-julian.json": "e3394a9599899990e9474861d3cb2d90f0491ca1e543e481526f748dcf7c0bb7",
+          "iOS/Prosary/Data/readings-roman1962.json": "f56f43eef82593cf6036147ee992557616aba5a6e54dbe0237e99eb54d73d992",
+          "iOS/Prosary/Data/readings-maronite.json": "f393152203bceac17a76239391e1f356c44e5a0e496d0253efdb56002c194a2b",
+          "iOS/Prosary/Data/feasts.json": "33b0514d60e96854a20cbdb0707bb2fea79af571b6fffa854a02d3ed5ec31b18",
+          "iOS/Prosary/Data/readings-stjames.json": "aca5c2c8488f5fe62aa869089aa1ae2e15d5080b842741638947673ba8650b51",
+          "iOS/Prosary/Data/feasts-ugcc-julian.json": "e4bf6b7f5ccd297b955eaeaa88b435dd878c00801ffcc6c3b6310fe0579eb8a0",
+          "iOS/Prosary/Data/readings-ugcc.json": "25e3587094fe3e9f717e845f2ae029a87f6d892b077e74d0381da8da2c3a730a",
+          "iOS/Prosary/Data/feasts-ugcc-gregorian.json": "986d2d28283d20711c6ddfd52fb145bc4d5f916eb674242d63cb609ff3918293",
+          "iOS/Prosary/Data/feasts-stjames.json": "a7fe546d47cd25fe1b00f9d1a01885173f7f8c83b651ab5a2fb3286ef3c570e2",
+          "iOS/Prosary/Data/feasts-maronite.json": "9e4ae8be2dd23f23144da353c4cf7e6b654e7a5bf732e465ac5fd8086a1bed86",
+          "iOS/Prosary/Data/feasts-syriac.json": "809aa37a8f828de591894613bf424e7c3cf337ca8f8ffc6f3105fbc504f43461",
+          "iOS/Prosary/Data/readings-ugcc-gregorian.json": "efc52c0ccd8b4d1d746946165327cfe7a8dda4a976187c8c07d7bce7778cfac7",
+          "iOS/Prosary/Data/readings-editions.json": "31200da3efce637d0f11d5cf1d1965801d2bdf035ed7f7e4171015153bcc7630",
+          "iOS/Prosary/Data/torah-portions.json": "fe327ff5ad661fd1ca430892a787700fafc50f55d123fa7d1f5748bde69c6b6e",
+          "iOS/Prosary/Data/pope-intentions.json": "50ab2157a3449368297ded40c0467527aa63d72d504f2a0f7527577c4a5e91ba",
+          "iOS/Prosary/Data/feasts-mission-provisional.json": "356e94b571e865dbd0d28c3ee9ee84291714e0dc1fe40682adf6a89278997567",
+          "iOS/Prosary/Data/readings-syriac.json": "f2789002fb2f60fea5edf5c5d8ae9c970c37fd522eedfdd42442f7c46c306b0c",
+          "iOS/Prosary/Data/readings-roman.json": "249d7d1ff1da5d1f9ac169a5f36d073fe03f040356277b6d6538602aeaf8d92f",
+          "iOS/Prosary/Data/calendars.json": "9109bab076e9187430b5d1fed4e53d2ca27797ea56fdf28cf4ffa06139f2a3c4",
+          "iOS/Prosary/Data/readings-franciscan-conventual-italy.json": "ae9429d8a6c66bd5c8e27863c6c9c3c06a490c14b2eef60724b8612a4223e4a0",
+          "iOS/Prosary/Data/feasts-ugcc.json": "dc8500b7d02cb63411843705f044f320b589a7b8e88f6e1d84cbbfa600dd3bd8",
+          "Android/app/src/main/assets/data/feasts-franciscan-conventual-italy.json": "d494199ee1a1edf45478b5bdd73451bee898f108381675e225f7c1abcbe97b54",
+          "Android/app/src/main/assets/data/feasts-roman.json": "8ede409e88d8a1c357773588d925162bae6d34cd7955cca38c50870d3c66f261",
+          "Android/app/src/main/assets/data/bible-catalog.json": "4bf21be6d057b4dff2028f2f712178f15d67b7c575fd768bf05ee22d663e2dd8",
+          "Android/app/src/main/assets/data/feasts-roman1962.json": "cfd4e276e98494263aef5164e4327baf43c62abcb63ce26866ec1e1f7069e78e",
+          "Android/app/src/main/assets/data/readings-texts.json": "18a54436e9ad54e2af91b3acbf7e4321e2bbe6935a094fbcbcb1bb1380fc733b",
+          "Android/app/src/main/assets/data/feasts-augustinian-discalced.json": "aa3f9106fc3b33874010cfb40af8268028af6b30d178b56e902bff3e9e9d2f26",
+          "Android/app/src/main/assets/data/readings-augustinian-discalced.json": "3b68af81e200414e0f48fe03ba35e09d064f9b261a55e2e92e91d6b8a970f372",
+          "Android/app/src/main/assets/data/readings-ugcc-julian.json": "e3394a9599899990e9474861d3cb2d90f0491ca1e543e481526f748dcf7c0bb7",
+          "Android/app/src/main/assets/data/readings-roman1962.json": "f56f43eef82593cf6036147ee992557616aba5a6e54dbe0237e99eb54d73d992",
+          "Android/app/src/main/assets/data/readings-maronite.json": "f393152203bceac17a76239391e1f356c44e5a0e496d0253efdb56002c194a2b",
+          "Android/app/src/main/assets/data/feasts.json": "33b0514d60e96854a20cbdb0707bb2fea79af571b6fffa854a02d3ed5ec31b18",
+          "Android/app/src/main/assets/data/readings-stjames.json": "aca5c2c8488f5fe62aa869089aa1ae2e15d5080b842741638947673ba8650b51",
+          "Android/app/src/main/assets/data/feasts-ugcc-julian.json": "e4bf6b7f5ccd297b955eaeaa88b435dd878c00801ffcc6c3b6310fe0579eb8a0",
+          "Android/app/src/main/assets/data/readings-ugcc.json": "25e3587094fe3e9f717e845f2ae029a87f6d892b077e74d0381da8da2c3a730a",
+          "Android/app/src/main/assets/data/feasts-ugcc-gregorian.json": "986d2d28283d20711c6ddfd52fb145bc4d5f916eb674242d63cb609ff3918293",
+          "Android/app/src/main/assets/data/feasts-stjames.json": "a7fe546d47cd25fe1b00f9d1a01885173f7f8c83b651ab5a2fb3286ef3c570e2",
+          "Android/app/src/main/assets/data/feasts-maronite.json": "9e4ae8be2dd23f23144da353c4cf7e6b654e7a5bf732e465ac5fd8086a1bed86",
+          "Android/app/src/main/assets/data/feasts-syriac.json": "809aa37a8f828de591894613bf424e7c3cf337ca8f8ffc6f3105fbc504f43461",
+          "Android/app/src/main/assets/data/readings-ugcc-gregorian.json": "efc52c0ccd8b4d1d746946165327cfe7a8dda4a976187c8c07d7bce7778cfac7",
+          "Android/app/src/main/assets/data/readings-editions.json": "31200da3efce637d0f11d5cf1d1965801d2bdf035ed7f7e4171015153bcc7630",
+          "Android/app/src/main/assets/data/torah-portions.json": "fe327ff5ad661fd1ca430892a787700fafc50f55d123fa7d1f5748bde69c6b6e",
+          "Android/app/src/main/assets/data/pope-intentions.json": "50ab2157a3449368297ded40c0467527aa63d72d504f2a0f7527577c4a5e91ba",
+          "Android/app/src/main/assets/data/feasts-mission-provisional.json": "356e94b571e865dbd0d28c3ee9ee84291714e0dc1fe40682adf6a89278997567",
+          "Android/app/src/main/assets/data/readings-syriac.json": "f2789002fb2f60fea5edf5c5d8ae9c970c37fd522eedfdd42442f7c46c306b0c",
+          "Android/app/src/main/assets/data/readings-roman.json": "249d7d1ff1da5d1f9ac169a5f36d073fe03f040356277b6d6538602aeaf8d92f",
+          "Android/app/src/main/assets/data/calendars.json": "9109bab076e9187430b5d1fed4e53d2ca27797ea56fdf28cf4ffa06139f2a3c4",
+          "Android/app/src/main/assets/data/readings-franciscan-conventual-italy.json": "ae9429d8a6c66bd5c8e27863c6c9c3c06a490c14b2eef60724b8612a4223e4a0",
+          "Android/app/src/main/assets/data/feasts-ugcc.json": "dc8500b7d02cb63411843705f044f320b589a7b8e88f6e1d84cbbfa600dd3bd8",
+          "Windows/Prosary/Data/feasts-franciscan-conventual-italy.json": "d494199ee1a1edf45478b5bdd73451bee898f108381675e225f7c1abcbe97b54",
+          "Windows/Prosary/Data/feasts-roman.json": "8ede409e88d8a1c357773588d925162bae6d34cd7955cca38c50870d3c66f261",
+          "Windows/Prosary/Data/bible-catalog.json": "4bf21be6d057b4dff2028f2f712178f15d67b7c575fd768bf05ee22d663e2dd8",
+          "Windows/Prosary/Data/feasts-roman1962.json": "cfd4e276e98494263aef5164e4327baf43c62abcb63ce26866ec1e1f7069e78e",
+          "Windows/Prosary/Data/readings-texts.json": "18a54436e9ad54e2af91b3acbf7e4321e2bbe6935a094fbcbcb1bb1380fc733b",
+          "Windows/Prosary/Data/feasts-augustinian-discalced.json": "aa3f9106fc3b33874010cfb40af8268028af6b30d178b56e902bff3e9e9d2f26",
+          "Windows/Prosary/Data/readings-augustinian-discalced.json": "3b68af81e200414e0f48fe03ba35e09d064f9b261a55e2e92e91d6b8a970f372",
+          "Windows/Prosary/Data/readings-ugcc-julian.json": "e3394a9599899990e9474861d3cb2d90f0491ca1e543e481526f748dcf7c0bb7",
+          "Windows/Prosary/Data/readings-roman1962.json": "f56f43eef82593cf6036147ee992557616aba5a6e54dbe0237e99eb54d73d992",
+          "Windows/Prosary/Data/readings-maronite.json": "f393152203bceac17a76239391e1f356c44e5a0e496d0253efdb56002c194a2b",
+          "Windows/Prosary/Data/feasts.json": "33b0514d60e96854a20cbdb0707bb2fea79af571b6fffa854a02d3ed5ec31b18",
+          "Windows/Prosary/Data/readings-stjames.json": "aca5c2c8488f5fe62aa869089aa1ae2e15d5080b842741638947673ba8650b51",
+          "Windows/Prosary/Data/feasts-ugcc-julian.json": "e4bf6b7f5ccd297b955eaeaa88b435dd878c00801ffcc6c3b6310fe0579eb8a0",
+          "Windows/Prosary/Data/readings-ugcc.json": "25e3587094fe3e9f717e845f2ae029a87f6d892b077e74d0381da8da2c3a730a",
+          "Windows/Prosary/Data/feasts-ugcc-gregorian.json": "986d2d28283d20711c6ddfd52fb145bc4d5f916eb674242d63cb609ff3918293",
+          "Windows/Prosary/Data/feasts-stjames.json": "a7fe546d47cd25fe1b00f9d1a01885173f7f8c83b651ab5a2fb3286ef3c570e2",
+          "Windows/Prosary/Data/feasts-maronite.json": "9e4ae8be2dd23f23144da353c4cf7e6b654e7a5bf732e465ac5fd8086a1bed86",
+          "Windows/Prosary/Data/feasts-syriac.json": "809aa37a8f828de591894613bf424e7c3cf337ca8f8ffc6f3105fbc504f43461",
+          "Windows/Prosary/Data/readings-ugcc-gregorian.json": "efc52c0ccd8b4d1d746946165327cfe7a8dda4a976187c8c07d7bce7778cfac7",
+          "Windows/Prosary/Data/readings-editions.json": "31200da3efce637d0f11d5cf1d1965801d2bdf035ed7f7e4171015153bcc7630",
+          "Windows/Prosary/Data/torah-portions.json": "fe327ff5ad661fd1ca430892a787700fafc50f55d123fa7d1f5748bde69c6b6e",
+          "Windows/Prosary/Data/pope-intentions.json": "50ab2157a3449368297ded40c0467527aa63d72d504f2a0f7527577c4a5e91ba",
+          "Windows/Prosary/Data/feasts-mission-provisional.json": "356e94b571e865dbd0d28c3ee9ee84291714e0dc1fe40682adf6a89278997567",
+          "Windows/Prosary/Data/readings-syriac.json": "f2789002fb2f60fea5edf5c5d8ae9c970c37fd522eedfdd42442f7c46c306b0c",
+          "Windows/Prosary/Data/readings-roman.json": "249d7d1ff1da5d1f9ac169a5f36d073fe03f040356277b6d6538602aeaf8d92f",
+          "Windows/Prosary/Data/calendars.json": "9109bab076e9187430b5d1fed4e53d2ca27797ea56fdf28cf4ffa06139f2a3c4",
+          "Windows/Prosary/Data/readings-franciscan-conventual-italy.json": "ae9429d8a6c66bd5c8e27863c6c9c3c06a490c14b2eef60724b8612a4223e4a0",
+          "Windows/Prosary/Data/feasts-ugcc.json": "dc8500b7d02cb63411843705f044f320b589a7b8e88f6e1d84cbbfa600dd3bd8"
+        },
+        "log": "/private/tmp/prosary-pass85-20261021/byte-stability.log",
+        "logSHA256": "55d70d759db37d9ee9f2f33cf5290c527fd8064f4843e3e5d747952ca1c90cdb"
+      },
+      "log": {
+        "path": "/private/tmp/prosary-pass85-20261021/byte-stability.log",
+        "sha256": "55d70d759db37d9ee9f2f33cf5290c527fd8064f4843e3e5d747952ca1c90cdb"
+      }
+    },
+    "androidCommandExecution": {
+      "taskLine": "> Task :app:testDebugUnitTest UP-TO-DATE",
+      "mode": "reused up-to-date result"
+    }
+  }
+}

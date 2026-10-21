@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 135,
+  "integrationPass": 135,
+  "preparationID": 147,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "BEL",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation147-BEL-1-14/source-provenance.json",
+    "sha256": "315324e12d30a6657a7d40acd801ab2ab31a57fdf9d6914b1c9ed528bc92d770"
+  },
+  "sourceNotesBefore": 6,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "bel-1-14-244-vayehi14-letter1-vowel"
+  ],
+  "contentSHA256Before": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
+  "contentSHA256After": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "bel-1-14-244-vayehi14-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 14,
+      "anchorBefore": "ויְהִי",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Own Vav at128 is one2580px body/plate component[1793,1391,1839,1526] plus a tiny10px basal remnant[1816,1526,1820,1529]. Shaft narrows to7px through1485..1496, expands left to42px at1511..1514, then tapers with small holes through1525; tiny4x3 remnant is below. Native4x reproduces body/plate1182px[357,965,388,1057] and minute basal terminal. Literal sameword He has one compact detached284px19x19 lower dot[1670,1510,1689,1529]; literal nextword Dalet has detached1158px42x46 horizontal head with sustained narrow stem[1256,1510,1298,1556]. Target has additional lower horizontal ink, but its tiny basal remnant does not exclude a worn short stem. Exact vowel class unresolved; neither point nor absence supplied. Preserve initial Vav disclosure and every scalar. Independent peer: Independent raw6x own initialVav body is2580px[1793,1391,1839,1526] at128, attached lowerleft plate and10px remnant[1816,1526,1820,1529]. Native lower rows show a thin7pxshaft through1496, left expansion into42pxplate1511..1514, internal smallwhite holes and tapered lowink through1525 followed by3row remnant. At192 remnant joins body through1530. Native4x independently reproduces connected1182pxbody[357,965,388,1057]. A short worn stem remains possible; exact lowerpoint class and absence cannot be certified from this joined body/plate. Literal SAMEWORD He has one independent compact284px19x19 lowerdot, direct Hiriq; nextwordהדבר Dalet has1158px42x46 detached broadhead with long narrowstem through1555, direct Qamats. Those controls are physically certified but neither assigns target. Retain exact own disclosure and every originalscalar.",
+      "targetCapture": "extension-volumeA-589-zoom6-lower-mid.png",
+      "targetSourceIdentifier": "extension-volumeA-589-zoom6-lower-mid.png",
+      "inspectedBounds": [
+        1793,
+        1391,
+        1839,
+        1529
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation147-BEL-1-14/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 14,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation147-BEL-1-14/independent-review.json",
+    "sha256": "c683eaacd09fe494278f2363c67925f417affa59f9fbec03034059900532dcb2"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation147-BEL-1-14/primary-preparation.json",
+    "sha256": "5deb8a5e8f9b9bf1ab9d80a4d557ac5d1d4c9e2a33f1dfbdcab8695535439bef"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation147-BEL-1-14/consensus-preparation.json",
+    "sha256": "b6a0c642b8bd4be28af1e2330caebfca62fb72245eb87f1fb447938a80095380"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

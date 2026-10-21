@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 105,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 2 retained.",
+  "applicationState": "All disclosures retained; canonical book/review metadata unchanged. Tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass105-WIS-1-16/source-provenance.json",
+    "sha256": "830dbea6ac25be7ec08f14548ef43c3cdf987b7f504e4b535487d214059233a6"
+  },
+  "sourceNotesBefore": 127,
+  "sourceNotesAfter": 127,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 2,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-1-16-kaf-vowel",
+    "wis-1-16-lamed-restored"
+  ],
+  "contentSHA256Before": "88c91d3d3450883590e947e906ca62b6fb4982799a5bfa6d6f8ecf46b824a4d5",
+  "contentSHA256After": "88c91d3d3450883590e947e906ca62b6fb4982799a5bfa6d6f8ecf46b824a4d5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-1-16-lamed-restored",
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 16,
+      "anchorBefore": "כּלְתָה",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "The second physical position remains damaged: upper/ascender material occupies [683,653,731,710], with small isolated or irregular fragments below it. This point-review pass does not authorize changing the protected editorial consonant restoration. Preserve the complete restoredLetter source-note object, its anchor, occurrence, letterIndex, mark, sourcePages and sourceURL exactly. Do not silently retire it or treat an apparent upper trace as a freshly source-certified consonant.",
+      "targetCapture": "extension-volumeA-491-zoom4-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-491-zoom4-mid-right.png",
+      "inspectedBounds": [
+        683,
+        653,
+        739,
+        756
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass105-WIS-1-16/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-1-16-kaf-vowel",
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 16,
+      "anchorBefore": "כּלְתָה",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The initial kaf has its existing independently separate interior Dagesh [772,720,782,730]. Its lower vowel-band material joins the broad kaf baseline and narrows into low dark lobes; the complete contour remains fused, without separately classifiable original point boundaries. Same-word tav Qamats and lamed Sheva are included as literal controls, without filling this target. Additionally this word is the exact anchor of the protected restoredLetter note; adding a point would change that protected anchor. Retain the vowel disclosure and do not apply a code point or certify absence.",
+      "targetCapture": "extension-volumeA-491-zoom4-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-491-zoom4-mid-right.png",
+      "inspectedBounds": [
+        747,
+        687,
+        808,
+        789
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass105-WIS-1-16/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 16,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass105-WIS-1-16/independent-review.json",
+    "sha256": "5fa540433a017f72e6b2877bd3dc6dfcc37a7f875d09c2fbe35f7fb6cf46ab77"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass105-WIS-1-16/primary-preparation.json",
+    "sha256": "0692919d887cdaf8477374f39369c804968e85abb78a067e38995a3cf99d9665"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass105-WIS-1-16/consensus-preparation.json",
+    "sha256": "2c242f994f17e73065255800ebc162e143d5ebf1a7eecd8d09f4413a513898f8"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

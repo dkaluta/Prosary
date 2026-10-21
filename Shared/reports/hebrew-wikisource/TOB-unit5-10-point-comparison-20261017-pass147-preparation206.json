@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 147,
+  "integrationPass": 147,
+  "preparationID": 206,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation206-TOB-5-10/source-provenance.json",
+    "sha256": "edb6a22321ef2ced84588c6c211dd70efa70ea7b3e2174977afb1bf3f6bff361"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "tob-5-10-ayin-vowel"
+  ],
+  "contentSHA256Before": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "contentSHA256After": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "tob-5-10-ayin-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 10,
+      "anchorBefore": "רֵעהוּ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "OwnsecondAyin inwholeReshAyinHeVav has broad right/leftupperbranches and continuousfilledlowerdiagonal801..817 endingirregularrightwardbulb. NativeROI[269,778,300,834]shows no independentlyseparatedexactvowel; broadcomponentincludesadjacentrightroofcontact, notpureletterboundary. Exactabsencecannotbecertifiedfromblankbelowjoinedfoot. Ownunitshort10endsleftsof215..228; actualfollowing11nextpage325, notlowerlongrecension324. Preserveeveryexistingpoint/scalaranddisclosure.",
+      "targetCapture": "primary-324-native.png",
+      "targetSourceIdentifier": "primary-324-native.png",
+      "inspectedBounds": [
+        269,
+        778,
+        300,
+        834
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation206-TOB-5-10/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 10,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation206-TOB-5-10/independent-review.json",
+    "sha256": "fe858a3cf900745f9e3ad37e32606f718dbd49c60b0d959edb4f8f86d93679ab"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation206-TOB-5-10/primary-preparation.json",
+    "sha256": "5e71e406f15ba24078ae3e7fd3a0d3682fc92d21b7cf6a6d5701a960e1a853de"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation206-TOB-5-10/consensus-preparation.json",
+    "sha256": "f479889db6207689b5a800888c74ce8cec09f7b67db19075cb4d9f6aa98b04af"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

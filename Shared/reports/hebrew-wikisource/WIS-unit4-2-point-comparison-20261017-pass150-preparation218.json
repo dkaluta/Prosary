@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 150,
+  "integrationPass": 150,
+  "preparationID": 218,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation218-WIS-4-2/source-provenance.json",
+    "sha256": "5c6cbe7d7089e2bd0c79021dd57e953628285b49c90d8558000c2ac3e2813796"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-4-2-letter-6-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-4-2-letter-6-vowel",
+      "book": "WIS",
+      "chapter": 4,
+      "verse": 2,
+      "anchorBefore": "בְּתַהֲלוּכת",
+      "letterIndex": 6,
+      "decision": "retainNote",
+      "finding": "OwnsixthKaf roof/rightstem reaches broad leftwardlowerbar1763..1774 and thicklowerlobe1665..1680 y1775..1780, continuous withbody. Its leftlowerbar touches finalTav at narrow1769bridge, yielding1496pxmergedcomponent[1618,1731,1688,1781]. Complete sevenletterword independently read, Kaf/finalTav separate letteridentities withinmergedpixels. No independentlyseparable exactvowel orprintedabsence certified fromsolidjoined lowerfield. Literal samewordBet35pxdetacheddot and realfinalsof two229pxnodes supply no Kafmark. Preserve exactdisclosure and everyoriginalscalar.",
+      "targetCapture": "primary-151-native.png",
+      "targetSourceIdentifier": "primary-151-native.png",
+      "inspectedBounds": [
+        1648,
+        1725,
+        1690,
+        1790
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation218-WIS-4-2/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 4,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation218-WIS-4-2/independent-review.json",
+    "sha256": "28d057b66a7d6a53f9efacb8ee42f3594b5b2a2b7ff4042ed3c9b7afecb734eb"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation218-WIS-4-2/primary-preparation.json",
+    "sha256": "e27c97efc5d963fa59d70a4eec5c65121527de97c7ba251e9b62c0c84ee3eeff"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation218-WIS-4-2/consensus-preparation.json",
+    "sha256": "5ff1e35d7127f84cce2a64f906ecc2d1d9c9fcffd19f9ede5c9d990b816da328"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

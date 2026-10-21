@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 146,
+  "integrationPass": 146,
+  "preparationID": 199,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation199-SUS-1-17/source-provenance.json",
+    "sha256": "83f68b2a68a247779d5b41959dbb63b04412eb9b82e4bddc3c864e4cc6934b88"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sus-1-17-letter-1-vowel"
+  ],
+  "contentSHA256Before": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "contentSHA256After": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sus-1-17-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 17,
+      "anchorBefore": "ותַמְרוּקִים",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Independent native ASCII establishes whole own Vav-Tav-Mem-Resh-Vav-Qof-Yod-Mem966..1204, target FIRSTVav1188..1204 distinctfrom ownFIFTHVav1058..1073. FirstVav415px16x55[1188,2287,1204,2342] consists ofroof/rightstem and solidlowercontinuation2310..2341 broadening2327..2338 into lobedfoot with no detachedpoint. Exactvowelclass cannot be separated; blankbelow2342 doesnotcertifyabsence. OwnfifthVav has literal detached31px6x6interiornode[1060,2304,1066,2310], independentfromtarget and notborrowed. Completeactualunit17 threephysicalrowportions and inlinepreceding16/following18realsof bound, allscalars preserved.",
+      "targetCapture": "primary-238-native.png",
+      "targetSourceIdentifier": "primary-238-native.png",
+      "inspectedBounds": [
+        1187,
+        2275,
+        1208,
+        2348
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation199-SUS-1-17/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 17,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation199-SUS-1-17/independent-review.json",
+    "sha256": "a63ea6972f2d2a9a5f1a8ad12ade4fedbfd4e9ce4650b1d39a6d342f84046899"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation199-SUS-1-17/primary-preparation.json",
+    "sha256": "fcf4c338cc830027d79fb5ddd45e091a5a9a563d015d6b9c94298dd126dca9bd"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation199-SUS-1-17/consensus-preparation.json",
+    "sha256": "7ad9627f30f1b21b317073fecf10c851d9abfe52796c01d8056fcd468f1e850d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

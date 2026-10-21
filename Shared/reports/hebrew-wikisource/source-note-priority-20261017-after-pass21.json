@@ -1,0 +1,5201 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "baseline": "After pass 21 all checks passed",
+  "remainingSourceNotes": 501,
+  "remainingUnreadablePoints": 496,
+  "reviewedAmbiguousPoints": 146,
+  "clearedSince650": 149,
+  "policy": "Complete all annotated source units in the current first cycle before revisiting retained ambiguities. Daily-reading annotations were reviewed first in pass 14; continue unreviewed complete units by descending note count. In the later ambiguity cycle review daily passages first, then the highest remaining counts. Preserve all five restored-letter disclosures, exact existing scalars and order, complete units, witnesses, gaps, printed labels, and verified Catholic presentation.",
+  "reviewSequence": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-review-sequence-20261017.json",
+    "sha256": "f406dcc6edb5ae5063944f7cf3ef587c950b24182d3ba19a46366a14c84dc642"
+  },
+  "priorityUnit": "Complete source verse or scripture content block.",
+  "priorPriority": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-priority-20261017-after-pass20.json",
+    "sha256": "2f67c91a8af69ece90919d78fb272977c1e7b437ce7d225b8655379b6c38a236"
+  },
+  "dailyReviewCompletedForThisCycle": true,
+  "dailyUnitsStillWithNotes": 22,
+  "dailySourceNotesRetained": 41,
+  "sourceContentSHA256": {
+    "2MA": "a76050147f63995997800739d8c48c6fb50535d69709166ea63a7b6d5ef87afd",
+    "BAR": "9d61e1b0fee193c83be4bbca417039d82a6dded7615a303d095be96baf01f87d",
+    "S3Y": "9f5a3affa9f5348997e103480753bd094d1cd5a71359f98dc6461907831b4683",
+    "1MA": "07175c48885e515471647c6f0ca7d140db8a6e036a7d9b833424649efea64d3d",
+    "SIR": "5d7865abc86858892e6e71a7541e77be958edd2875eeeee3d4e46c97d98da8ac",
+    "BEL": "1becdf4787bd5b790239a30140fe99a6c91140bd7fc505240751331784ddc326",
+    "ESG": "d7f8598397bc66ac44aa67b589146b30c0dc8713c4f4532fa154a509446e01ec",
+    "JDT": "b34d1bae000438799900061c71add7d673dad77e19d2e271946537a00c4736b1",
+    "WIS": "c97e9fe39f043c38db72d237cb230f61a9252709c376bb33df1db487dce042af",
+    "LJE": "4c2f83f2f964625ca8c211eeed6c2953b810ad466f8799041e760d286662583f",
+    "SUS": "7e474828cc5484ed5bd35ae52fa7de322f71e22de38d67ac318a223b18324d71",
+    "TOB": "dcb13771b06749cd4188576d9e2eb7aead10c500346e3dcae5b5d87d5401c342"
+  },
+  "orderedUnits": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-23-245-vayehi23-letter1-vowel",
+        "bel-1-23-245-vayaavduhu23-letter1-vowel",
+        "bel-1-23-245-vayaavduhu23-letter2-dagesh",
+        "bel-1-23-245-vayomer23-letter1-vowel",
+        "bel-1-23-245-daniel23-letter4-dagesh"
+      ],
+      "sourcePages": [
+        245
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 29,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-29-246-daniel-letter3-dagesh",
+        "bel-1-29-246-vayavou29-letter1-vowel",
+        "bel-1-29-246-vayavou29-letter2-dagesh",
+        "bel-1-29-246-vayomru29-letter1-vowel",
+        "bel-1-29-246-vayomru29-letter2-dagesh"
+      ],
+      "sourcePages": [
+        246
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 30,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-30-246-daniel-letter3-dagesh",
+        "bel-1-30-246-vayar30-letter1-vowel",
+        "bel-1-30-246-vayar30-letter2-dagesh",
+        "bel-1-30-246-vayiten30-letter1-vowel",
+        "bel-1-30-246-vayiten30-letter2-dagesh"
+      ],
+      "sourcePages": [
+        246
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 37,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-37-247-vayikra37-letter1-vowel",
+        "bel-1-37-247-vayomer37-letter1-vowel",
+        "bel-1-37-247-vayomer37-letter2-dagesh",
+        "bel-1-37-247-daniel37a-letter3-dagesh",
+        "bel-1-37-247-daniel37b-letter3-dagesh"
+      ],
+      "sourcePages": [
+        247
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 40,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-40-247-vayavo40-letter1-vowel",
+        "bel-1-40-247-vayar40-letter1-vowel",
+        "bel-1-40-247-bayom40-letter1-vowel",
+        "bel-1-40-247-bayom40-letter2-dagesh",
+        "bel-1-40-247-daniel40b-letter3-dagesh"
+      ],
+      "sourcePages": [
+        247
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-42-247-vayaalehu42-letter1-vowel",
+        "bel-1-42-247-vayashlekh42-letter1-vowel",
+        "bel-1-42-247-vayitarfu42-letter1-vowel",
+        "bel-1-42-247-vayitarfu42-letter2-dagesh",
+        "bel-1-42-247-kherega42-letter2-vowel"
+      ],
+      "sourcePages": [
+        247
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-5-3-1-vowel",
+        "esg-5-3-2-vowel",
+        "esg-5-3-3-vowel",
+        "esg-5-3-4-vowel",
+        "esg-5-3-5-vowel"
+      ],
+      "sourcePages": [
+        221
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-5-14-first-kaf",
+        "wis-5-14-dalet",
+        "wis-5-14-pe-tiddefenu",
+        "wis-5-14-pe-yefazrehu",
+        "wis-5-14-zayin"
+      ],
+      "sourcePages": [
+        154
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-13-11-bet-1-vowel",
+        "wis-13-11-mem-2-vowel",
+        "wis-13-11-vav-1-vowel",
+        "wis-13-11-pe-3-vowel",
+        "wis-13-11-tsadi-4-vowel"
+      ],
+      "sourcePages": [
+        171
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-1-242-vayeasef-letter1-vowel",
+        "bel-1-1-242-vayeasef-letter2-dagesh",
+        "bel-1-1-242-vayirash-full-letter1-vowel",
+        "bel-1-1-242-vayirash-full-letter2-dagesh"
+      ],
+      "sourcePages": [
+        242
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-10-244-daniel10a-letter3-dagesh",
+        "bel-1-10-244-daniel10b-letter3-dagesh",
+        "bel-1-10-244-vayomer10-letter1-vowel",
+        "bel-1-10-244-vayomer10-letter2-dagesh"
+      ],
+      "sourcePages": [
+        244
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 19,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-19-245-vayehi19-letter1-vowel",
+        "bel-1-19-245-vayabet19-letter1-vowel",
+        "bel-1-19-245-vayikra19-letter1-vowel",
+        "bel-1-19-245-vayikra19-letter2-dagesh"
+      ],
+      "sourcePages": [
+        245
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-22-245-vaymitem22-letter1-vowel",
+        "bel-1-22-245-vayiten22-letter1-vowel",
+        "bel-1-22-245-vayiten22-letter2-dagesh",
+        "bel-1-22-245-daniel22-letter4-dagesh"
+      ],
+      "sourcePages": [
+        245
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 31,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-31-246-daniel-letter3-dagesh",
+        "bel-1-31-246-vayashlikhu31-letter1-vowel",
+        "bel-1-31-246-vayashlikhu31-letter2-dagesh",
+        "bel-1-31-246-vayehi31-letter1-vowel"
+      ],
+      "sourcePages": [
+        246
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-39-247-vayakam39-letter1-vowel",
+        "bel-1-39-247-vayakam39-letter2-dagesh",
+        "bel-1-39-247-vayokhal39-letter1-vowel",
+        "bel-1-39-247-daniel39a-letter3-dagesh"
+      ],
+      "sourcePages": [
+        247
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-5-11-vav",
+        "wis-5-11-pe",
+        "wis-5-11-gimel",
+        "wis-5-11-bet"
+      ],
+      "sourcePages": [
+        154
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-2-alef-restored",
+        "wis-6-2-yod-restored",
+        "wis-6-2-alef-vowel",
+        "wis-6-2-zayin-vowel"
+      ],
+      "sourcePages": [
+        155
+      ],
+      "kinds": {
+        "restoredLetter": 2,
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 15,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-7-15-kaf-kahagut",
+        "wis-7-15-kaf-kiyaut",
+        "wis-7-15-first-nun",
+        "wis-7-15-second-nun"
+      ],
+      "sourcePages": [
+        158
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-3-bet-1-vowel",
+        "wis-17-3-nun-1-vowel",
+        "wis-17-3-pe-2-vowel",
+        "wis-17-3-zayin-3-vowel"
+      ],
+      "sourcePages": [
+        179
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-18-3-word3-vav-1-vowel",
+        "wis-18-3-word3-tav-2-vowel",
+        "wis-18-3-word4-he-1-vowel",
+        "wis-18-3-word4-kaf-2-vowel"
+      ],
+      "sourcePages": [
+        181
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-18-5-word6-samekh-2-vowel",
+        "wis-18-5-word6-resh-3-vowel",
+        "wis-18-5-word7-bet-3-vowel",
+        "wis-18-5-word8-kaf-1-vowel"
+      ],
+      "sourcePages": [
+        181
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-18-word13-tsadi-1-vowel",
+        "wis-19-18-word13-lamed-2-vowel",
+        "wis-19-18-word13-lamed-4-vowel",
+        "wis-19-18-word14-kaf-1-vowel"
+      ],
+      "sourcePages": [
+        185
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-11-244-daniel11-letter4-dagesh",
+        "bel-1-11-244-vayelekh11-letter1-vowel",
+        "bel-1-11-244-vayelekh11-letter2-dagesh"
+      ],
+      "sourcePages": [
+        244
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 12,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-12-244-vayomru12-letter1-vowel",
+        "bel-1-12-244-vayomru12-letter2-dagesh",
+        "bel-1-12-244-vayomru12-letter6-dagesh"
+      ],
+      "sourcePages": [
+        244
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 25,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-25-245-vayomer25-letter1-vowel",
+        "bel-1-25-245-vayomer25-letter2-dagesh",
+        "bel-1-25-245-daniel25-letter3-dagesh"
+      ],
+      "sourcePages": [
+        245
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 34,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-34-246-daniel-letter3-dagesh",
+        "bel-1-34-246-vayomer34-letter1-vowel",
+        "bel-1-34-246-vayomer34-letter2-dagesh"
+      ],
+      "sourcePages": [
+        246
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 35,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-35-246-vayomer35-letter1-vowel",
+        "bel-1-35-246-vayomer35-letter2-dagesh",
+        "bel-1-35-246-veeneni-letter5-dagesh"
+      ],
+      "sourcePages": [
+        246
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-5-7-1-vowel",
+        "esg-5-7-2-vowel",
+        "esg-5-7-3-dagesh"
+      ],
+      "sourcePages": [
+        221
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-6-15-1-vowel",
+        "esg-6-15-2-vowel",
+        "esg-6-15-3-dagesh"
+      ],
+      "sourcePages": [
+        223
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-18-letter-1-vowel",
+        "sus-1-18-letter-4-vowel",
+        "sus-1-18-tsadi-vowel"
+      ],
+      "sourcePages": [
+        238
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 8,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-11-8-kaf",
+        "wis-11-8-bet",
+        "wis-11-8-het"
+      ],
+      "sourcePages": [
+        166
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-12-5-vav",
+        "wis-12-5-resh",
+        "wis-12-5-he"
+      ],
+      "sourcePages": [
+        168
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 19,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-19-lamed-3-vowel",
+        "wis-16-19-qof-4-vowel",
+        "wis-16-19-pe-4-vowel"
+      ],
+      "sourcePages": [
+        178
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-11-gimel-3-vowel",
+        "wis-17-11-het-2-vowel",
+        "wis-17-11-zayin-3-vowel"
+      ],
+      "sourcePages": [
+        180
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-18-4-word5-bet-1-vowel",
+        "wis-18-4-word5-tsadi-2-vowel",
+        "wis-18-4-word5-dalet-3-vowel"
+      ],
+      "sourcePages": [
+        181
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 23,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-18-23-word12-vav-1-vowel",
+        "wis-18-23-word12-nun-2-vowel",
+        "wis-18-23-word12-ayin-3-vowel"
+      ],
+      "sourcePages": [
+        183
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 9,
+      "verse": 29,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-9-29-pe-1-dagesh",
+        "2ma-9-29-lamed-3-vowel"
+      ],
+      "sourcePages": [
+        212
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 6,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-6-243-vayomer6-letter1-vowel",
+        "bel-1-6-243-vayomer6-letter2-dagesh"
+      ],
+      "sourcePages": [
+        243
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 7,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-7-243-vayomer7-letter1-vowel",
+        "bel-1-7-243-vayomer7-letter2-dagesh"
+      ],
+      "sourcePages": [
+        243
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 26,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-26-245-vayomer26-letter1-vowel",
+        "bel-1-26-245-vayomer26-letter2-dagesh"
+      ],
+      "sourcePages": [
+        245
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 38,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-38-247-vayomer38-letter1-vowel",
+        "bel-1-38-247-daniel38a-letter3-dagesh"
+      ],
+      "sourcePages": [
+        247
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-1-1-1-vowel",
+        "esg-1-1-2-vowel"
+      ],
+      "sourcePages": [
+        215
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-1-14-1-vowel",
+        "esg-1-14-2-vowel"
+      ],
+      "sourcePages": [
+        216
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 6,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-7-6-1-dagesh",
+        "esg-7-6-2-vowel"
+      ],
+      "sourcePages": [
+        225
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "s3y-1-2-word1-letter1-vowel",
+        "s3y-1-2-word10-letter1-vowel"
+      ],
+      "sourcePages": [
+        233
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "s3y-1-3-word1-letter1-vowel",
+        "s3y-1-3-word5-letter1-vowel"
+      ],
+      "sourcePages": [
+        233
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 60,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "s3y-1-60-word2-letter1-vowel",
+        "s3y-1-60-word2-letter3-dagesh"
+      ],
+      "sourcePages": [
+        236
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 7,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-31-7-vav-vowel",
+        "sir-31-7-qof-vowel"
+      ],
+      "sourcePages": [
+        494
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-22-letter-1-vowel",
+        "sus-1-22-letter-3-vowel"
+      ],
+      "sourcePages": [
+        239
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-23-letter-1-vowel",
+        "sus-1-23-letter-3-vowel"
+      ],
+      "sourcePages": [
+        239
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-38-letter-2-vowel",
+        "sus-1-38-letter-3-vowel"
+      ],
+      "sourcePages": [
+        240
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-62-letter-1-vowel",
+        "sus-1-62-letter-2-dagesh"
+      ],
+      "sourcePages": [
+        242
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-5-1-vav-vowel",
+        "tob-5-1-second-vav-vowel"
+      ],
+      "sourcePages": [
+        323
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-5-17-ayin-vowel",
+        "tob-5-17-said-vav-vowel"
+      ],
+      "sourcePages": [
+        325,
+        326
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-1-2-nirah-alef",
+        "wis-1-2-kichashu-het"
+      ],
+      "sourcePages": [
+        145
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 16,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-1-16-lamed-restored",
+        "wis-1-16-kaf-vowel"
+      ],
+      "sourcePages": [
+        146
+      ],
+      "kinds": {
+        "restoredLetter": 1,
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 21,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-5-21-mem",
+        "wis-5-21-resh"
+      ],
+      "sourcePages": [
+        155
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 23,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-5-23-ayin",
+        "wis-5-23-middle-vav"
+      ],
+      "sourcePages": [
+        155
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-1-tsadi",
+        "wis-6-1-vav"
+      ],
+      "sourcePages": [
+        155
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-10-dalet-biqdusha",
+        "wis-6-10-dalet-yikadeshu"
+      ],
+      "sourcePages": [
+        156
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-17-bet",
+        "wis-6-17-qoph"
+      ],
+      "sourcePages": [
+        156
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-18-resh",
+        "wis-6-18-bet"
+      ],
+      "sourcePages": [
+        156
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 8,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-10-8-ayin",
+        "wis-10-8-zayin"
+      ],
+      "sourcePages": [
+        164
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 6,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-11-6-kaf",
+        "wis-11-6-zayin"
+      ],
+      "sourcePages": [
+        166
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-11-18-tsadi",
+        "wis-11-18-het"
+      ],
+      "sourcePages": [
+        167
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 8,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-12-8-tsadi",
+        "wis-12-8-kaf"
+      ],
+      "sourcePages": [
+        169
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-13-1-kaf-2-vowel",
+        "wis-13-1-pe-1-dagesh"
+      ],
+      "sourcePages": [
+        170,
+        171
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 13,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-13-13-tsadi-4-vowel",
+        "wis-13-13-ayin-6-vowel"
+      ],
+      "sourcePages": [
+        171
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-14-11-pe-1-dagesh",
+        "wis-14-11-qof-2-vowel"
+      ],
+      "sourcePages": [
+        173
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 23,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-23-alef-1-vowel",
+        "wis-16-23-vav-restored"
+      ],
+      "sourcePages": [
+        179
+      ],
+      "kinds": {
+        "unreadablePoint": 1,
+        "restoredLetter": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-17-nun-1-vowel",
+        "wis-17-17-pe-2-vowel"
+      ],
+      "sourcePages": [
+        180
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-1-word1-vav-1-vowel",
+        "wis-19-1-word1-alef-2-vowel"
+      ],
+      "sourcePages": [
+        183
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-4-word3-samekh-1-vowel",
+        "wis-19-4-word3-alef-2-vowel"
+      ],
+      "sourcePages": [
+        184
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 9,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-9-word8-vav-1-vowel",
+        "wis-19-9-word9-vav-1-vowel"
+      ],
+      "sourcePages": [
+        184
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 22,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-22-word15-mem-1-vowel",
+        "wis-19-22-word15-ayin-6-vowel"
+      ],
+      "sourcePages": [
+        186
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 10,
+      "verse": 46,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "1ma-10-46-vav-vowel"
+      ],
+      "sourcePages": [
+        149
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 10,
+      "verse": 57,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "1ma-10-57-pe-dagesh"
+      ],
+      "sourcePages": [
+        150
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 14,
+      "verse": 32,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "1ma-14-32-mem-vowel"
+      ],
+      "sourcePages": [
+        170
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 37,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "1ma-15-37-qof-vowel"
+      ],
+      "sourcePages": [
+        175
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 40,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "1ma-15-40-qof-vowel"
+      ],
+      "sourcePages": [
+        175
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "1ma-16-1-qof-vowel"
+      ],
+      "sourcePages": [
+        175
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "1ma-16-4-qof-vowel"
+      ],
+      "sourcePages": [
+        176
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 8,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "1ma-16-8-qof-vowel"
+      ],
+      "sourcePages": [
+        176
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 1,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-1-10-he-1-vowel"
+      ],
+      "sourcePages": [
+        180
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 3,
+      "verse": 26,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-3-26-dalet-3-vowel"
+      ],
+      "sourcePages": [
+        189
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 5,
+      "verse": 22,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-5-22-lamed-3-vowel"
+      ],
+      "sourcePages": [
+        197
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 7,
+      "verse": 40,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-7-40-bet-1-vowel"
+      ],
+      "sourcePages": [
+        204
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 8,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-8-4-yod-2-dagesh"
+      ],
+      "sourcePages": [
+        204
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 11,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-11-4-bet-3-vowel"
+      ],
+      "sourcePages": [
+        217
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 11,
+      "verse": 25,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-11-25-samekh-2-vowel"
+      ],
+      "sourcePages": [
+        218
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 14,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 0,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "2ma-14-4-het-3-restored-letter"
+      ],
+      "sourcePages": [
+        227
+      ],
+      "kinds": {
+        "restoredLetter": 1
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 13,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-13-244-daniel13-letter3-dagesh"
+      ],
+      "sourcePages": [
+        244
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "bel-1-14-244-vayehi14-letter1-vowel"
+      ],
+      "sourcePages": [
+        244
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-1-11-1-vowel"
+      ],
+      "sourcePages": [
+        216
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 12,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-1-12-1-vowel"
+      ],
+      "sourcePages": [
+        216
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 13,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-1-13-1-vowel"
+      ],
+      "sourcePages": [
+        216
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 15,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-1-15-1-vowel"
+      ],
+      "sourcePages": [
+        217
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 16,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-1-16-1-vowel"
+      ],
+      "sourcePages": [
+        217
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-1-17-1-vowel"
+      ],
+      "sourcePages": [
+        217
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 4,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-4-17-2-vowel"
+      ],
+      "sourcePages": [
+        220
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-5-4-1-vowel"
+      ],
+      "sourcePages": [
+        221
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-6-5-1-vowel"
+      ],
+      "sourcePages": [
+        222
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-6-11-1-vowel"
+      ],
+      "sourcePages": [
+        223
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 13,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-6-13-1-vowel"
+      ],
+      "sourcePages": [
+        223
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-6-14-1-vowel"
+      ],
+      "sourcePages": [
+        223
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 23,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-6-23-1-vowel"
+      ],
+      "sourcePages": [
+        224
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-7-1-1-vowel"
+      ],
+      "sourcePages": [
+        224
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-7-2-1-vowel"
+      ],
+      "sourcePages": [
+        224
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-7-3-1-vowel"
+      ],
+      "sourcePages": [
+        224
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 9,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "esg-7-9-1-vowel"
+      ],
+      "sourcePages": [
+        225
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "s3y-1-11-word1-letter1-vowel"
+      ],
+      "sourcePages": [
+        233
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 35,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "s3y-1-35-rakiya-resh-vowel"
+      ],
+      "sourcePages": [
+        235
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 52,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "s3y-1-52-word1-letter1-vowel"
+      ],
+      "sourcePages": [
+        236
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-1-3-1-dagesh"
+      ],
+      "sourcePages": [
+        449
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 2,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-2-2-vav-vowel"
+      ],
+      "sourcePages": [
+        451
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 3,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-3-18-ayin-vowel"
+      ],
+      "sourcePages": [
+        453
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 4,
+      "verse": 24,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-4-24-dalet-vowel"
+      ],
+      "sourcePages": [
+        455
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 6,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-6-3-nun-dagesh"
+      ],
+      "sourcePages": [
+        457
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-11-10-qof-vowel"
+      ],
+      "sourcePages": [
+        467
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 12,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-11-12-nun-vowel"
+      ],
+      "sourcePages": [
+        467
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 34,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-11-34-vav-vowel"
+      ],
+      "sourcePages": [
+        468
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 13,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-13-18-alef-vowel"
+      ],
+      "sourcePages": [
+        471
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 16,
+      "verse": 26,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-16-26-nun-dagesh"
+      ],
+      "sourcePages": [
+        475
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 24,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-24-17-nun-dagesh"
+      ],
+      "sourcePages": [
+        485
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 29,
+      "verse": 19,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-29-19-bet-vowel"
+      ],
+      "sourcePages": [
+        491
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 16,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-30-16-resh-vowel"
+      ],
+      "sourcePages": [
+        492
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 19,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-30-19-yod-vowel"
+      ],
+      "sourcePages": [
+        493
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 6,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-31-6-lamed-vowel"
+      ],
+      "sourcePages": [
+        494
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 21,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-31-21-vav-vowel"
+      ],
+      "sourcePages": [
+        495
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 32,
+      "verse": 12,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-32-12-tet-vowel"
+      ],
+      "sourcePages": [
+        497
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-39-14-bet-vowel"
+      ],
+      "sourcePages": [
+        509
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 35,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-39-35-qof-vowel"
+      ],
+      "sourcePages": [
+        510
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 49,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-49-10-yod-dagesh"
+      ],
+      "sourcePages": [
+        527
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 51,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sir-51-4-resh-vowel"
+      ],
+      "sourcePages": [
+        529
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-5-letter-1-vowel"
+      ],
+      "sourcePages": [
+        237
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 9,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-9-letter-1-vowel"
+      ],
+      "sourcePages": [
+        238
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-14-letter-1-vowel"
+      ],
+      "sourcePages": [
+        238
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-17-letter-1-vowel"
+      ],
+      "sourcePages": [
+        238
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-27-letter-1-vowel"
+      ],
+      "sourcePages": [
+        239
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 40,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-40-letter-1-vowel"
+      ],
+      "sourcePages": [
+        240
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "sus-1-47-letter-1-vowel"
+      ],
+      "sourcePages": [
+        240
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-1-1-gimel-vowel"
+      ],
+      "sourcePages": [
+        312
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-2-3-mem-vowel"
+      ],
+      "sourcePages": [
+        316
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-5-3-initial-vav-vowel"
+      ],
+      "sourcePages": [
+        323
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-5-10-ayin-vowel"
+      ],
+      "sourcePages": [
+        324
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 12,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-5-12-first-vav-vowel"
+      ],
+      "sourcePages": [
+        325
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 21,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-5-21-said-vav-vowel"
+      ],
+      "sourcePages": [
+        326
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 6,
+      "verse": 8,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-6-8-gimel-vowel"
+      ],
+      "sourcePages": [
+        327
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "TOB",
+      "chapter": 9,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "tob-9-5-second-gabael-gimel-vowel"
+      ],
+      "sourcePages": [
+        335
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-1-3-mahshavot-het"
+      ],
+      "sourcePages": [
+        145
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-1-11-titsru-tsade"
+      ],
+      "sourcePages": [
+        146
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 2,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-2-4-mechumato-het"
+      ],
+      "sourcePages": [
+        147
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 2,
+      "verse": 23,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-2-23-lamed"
+      ],
+      "sourcePages": [
+        149
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 2,
+      "verse": 24,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-2-24-vav"
+      ],
+      "sourcePages": [
+        149
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 3,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-3-17-alef"
+      ],
+      "sourcePages": [
+        151
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 4,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-4-1-letter-1-vowel"
+      ],
+      "sourcePages": [
+        151
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 4,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-4-2-letter-6-vowel"
+      ],
+      "sourcePages": [
+        151
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 4,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-4-3-letter-3-vowel"
+      ],
+      "sourcePages": [
+        152
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 12,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-5-12-kaf"
+      ],
+      "sourcePages": [
+        154
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-5-17-kaf"
+      ],
+      "sourcePages": [
+        155
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-3-zayin"
+      ],
+      "sourcePages": [
+        155
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-4-resh"
+      ],
+      "sourcePages": [
+        155
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 6,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-6-samekh"
+      ],
+      "sourcePages": [
+        155
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 9,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-9-shin"
+      ],
+      "sourcePages": [
+        156
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 22,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-6-22-mem"
+      ],
+      "sourcePages": [
+        157
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-7-1-first-tsadi"
+      ],
+      "sourcePages": [
+        157
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-7-2-pe"
+      ],
+      "sourcePages": [
+        157
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 8,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-8-1-first-kaf"
+      ],
+      "sourcePages": [
+        160
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 8,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-8-3-het"
+      ],
+      "sourcePages": [
+        160
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 8,
+      "verse": 6,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-8-6-tsadi"
+      ],
+      "sourcePages": [
+        160
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 9,
+      "verse": 9,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-9-9-tsadi"
+      ],
+      "sourcePages": [
+        162
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 9,
+      "verse": 12,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-9-12-qof"
+      ],
+      "sourcePages": [
+        163
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-10-5-kaf"
+      ],
+      "sourcePages": [
+        164
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 7,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-10-7-het"
+      ],
+      "sourcePages": [
+        164
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 21,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-10-21-vav"
+      ],
+      "sourcePages": [
+        166
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-11-2-vav"
+      ],
+      "sourcePages": [
+        166
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 21,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-11-21-ayin"
+      ],
+      "sourcePages": [
+        167
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-12-2-bet"
+      ],
+      "sourcePages": [
+        168
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-12-10-pe"
+      ],
+      "sourcePages": [
+        169
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 15,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-12-15-kaf"
+      ],
+      "sourcePages": [
+        169
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-12-18-lamed"
+      ],
+      "sourcePages": [
+        169
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 24,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-12-24-resh"
+      ],
+      "sourcePages": [
+        170
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 26,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-12-26-tsadi"
+      ],
+      "sourcePages": [
+        170
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-14-1-vav-1-vowel"
+      ],
+      "sourcePages": [
+        172
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-14-5-bet-1-vowel"
+      ],
+      "sourcePages": [
+        172
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 7,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-14-7-resh-3-vowel"
+      ],
+      "sourcePages": [
+        172
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-14-18-nun-2-vowel"
+      ],
+      "sourcePages": [
+        174
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 25,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-14-25-kaf-2-vowel"
+      ],
+      "sourcePages": [
+        174
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 15,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-15-1-kaf-2-vowel"
+      ],
+      "sourcePages": [
+        175
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 15,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-15-18-mem-1-vowel"
+      ],
+      "sourcePages": [
+        176
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 15,
+      "verse": 19,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-15-19-het-2-vowel"
+      ],
+      "sourcePages": [
+        176
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-1-bet-1-vowel"
+      ],
+      "sourcePages": [
+        176
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 6,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-6-lamed-1-vowel"
+      ],
+      "sourcePages": [
+        177
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 16,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-16-nun-1-vowel"
+      ],
+      "sourcePages": [
+        178
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-18-tet-3-vowel"
+      ],
+      "sourcePages": [
+        178
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 20,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-20-kaf-3-vowel"
+      ],
+      "sourcePages": [
+        178
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 22,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-22-qof-3-vowel"
+      ],
+      "sourcePages": [
+        178
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 29,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-16-29-mem-2-vowel"
+      ],
+      "sourcePages": [
+        179
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-1-ayin-3-vowel"
+      ],
+      "sourcePages": [
+        179
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-5-mem-1-vowel"
+      ],
+      "sourcePages": [
+        180
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 7,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-7-dalet-2-vowel"
+      ],
+      "sourcePages": [
+        180
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-14-het-1-vowel"
+      ],
+      "sourcePages": [
+        180
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-18-pe-2-vowel"
+      ],
+      "sourcePages": [
+        180
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 21,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-17-21-ayin-2-vowel"
+      ],
+      "sourcePages": [
+        181
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 9,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-18-9-word9-vav-1-vowel"
+      ],
+      "sourcePages": [
+        182
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-18-14-word10-lamed-3-vowel"
+      ],
+      "sourcePages": [
+        182
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 18,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-18-18-word11-lamed-1-vowel"
+      ],
+      "sourcePages": [
+        183
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 24,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-18-24-word13-alef-3-vowel"
+      ],
+      "sourcePages": [
+        183
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-3-word2-gimel-1-vowel"
+      ],
+      "sourcePages": [
+        184
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-5-word4-nun-3-vowel"
+      ],
+      "sourcePages": [
+        184
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 6,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-6-word6-shin-2-vowel"
+      ],
+      "sourcePages": [
+        184
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 13,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-13-word11-ayin-1-vowel"
+      ],
+      "sourcePages": [
+        185
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": false,
+      "sourceNoteIds": [
+        "wis-19-17-word12-he-1-vowel"
+      ],
+      "sourcePages": [
+        185
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "sourceNoteCount": 12,
+      "unreadablePointCount": 12,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-27-246-daniel-letter3-dagesh",
+        "bel-1-27-246-vayikah-letter1-vowel",
+        "bel-1-27-246-vayvashelm-letter1-vowel",
+        "bel-1-27-246-vayaas27-letter1-vowel",
+        "bel-1-27-246-vayiten27-letter1-vowel",
+        "bel-1-27-246-vayokhal-letter1-vowel",
+        "bel-1-27-246-vayokhal-letter2-dagesh",
+        "bel-1-27-246-vayibaka-letter1-vowel",
+        "bel-1-27-246-vayomer27-letter1-vowel",
+        "bel-1-27-246-vayomer27-letter2-dagesh",
+        "bel-1-27-246-vayvashelm-letter3-vowel",
+        "bel-1-27-246-vayokhal-letter4-vowel"
+      ],
+      "sourcePages": [
+        246
+      ],
+      "kinds": {
+        "unreadablePoint": 12
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 15,
+      "blockId": null,
+      "sourceNoteCount": 8,
+      "unreadablePointCount": 8,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-15-244-vayehi15-letter1-vowel",
+        "bel-1-15-244-vayasem15-letter1-vowel",
+        "bel-1-15-244-vayaviu15-letter1-vowel",
+        "bel-1-15-244-vayizreu15-letter1-vowel",
+        "bel-1-15-244-vayetseu15-letter1-vowel",
+        "bel-1-15-244-vayisgeru15-letter1-vowel",
+        "bel-1-15-244-vayahtemu15-letter1-vowel",
+        "bel-1-15-244-vayelkhu15-letter1-vowel"
+      ],
+      "sourcePages": [
+        244
+      ],
+      "kinds": {
+        "unreadablePoint": 8
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "sourceNoteCount": 8,
+      "unreadablePointCount": 8,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-tail-word4-letter1-vowel",
+        "s3y-1-tail-word5-letter1-vowel",
+        "s3y-1-tail-word6-letter1-vowel",
+        "s3y-1-tail-word7-letter1-vowel",
+        "s3y-1-tail-word7-letter2-dagesh",
+        "s3y-1-tail-word8-letter1-vowel",
+        "s3y-1-tail-word9-letter1-vowel",
+        "s3y-1-tail-word9-letter2-dagesh"
+      ],
+      "sourcePages": [
+        236
+      ],
+      "kinds": {
+        "unreadablePoint": 8
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "sourceNoteCount": 7,
+      "unreadablePointCount": 7,
+      "dailyAppointments": [
+        "daily|Daniel 3:25, 34–45"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-4-word1-letter1-vowel",
+        "s3y-1-4-word3-letter1-vowel",
+        "s3y-1-4-word4-letter1-vowel",
+        "s3y-1-4-word6-letter1-vowel",
+        "s3y-1-4-word6-letter2-dagesh",
+        "s3y-1-4-word15-letter1-vowel",
+        "s3y-1-4-word15-letter2-dagesh"
+      ],
+      "sourcePages": [
+        233
+      ],
+      "kinds": {
+        "unreadablePoint": 7
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 21,
+      "blockId": null,
+      "sourceNoteCount": 6,
+      "unreadablePointCount": 6,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-21-245-vayomer21-letter1-vowel",
+        "bel-1-21-245-vayomer21-letter2-dagesh",
+        "bel-1-21-245-vayiktzof21-letter1-vowel",
+        "bel-1-21-245-vayeesof-wide-letter1-vowel",
+        "bel-1-21-245-vayeesof-wide-letter2-dagesh",
+        "bel-1-21-245-vayarehu-wide-letter1-vowel"
+      ],
+      "sourcePages": [
+        245
+      ],
+      "kinds": {
+        "unreadablePoint": 6
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 6,
+      "unreadablePointCount": 6,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-18-1-word1-vav-1-vowel",
+        "wis-18-1-word1-het-3-vowel",
+        "wis-18-1-word1-samekh-4-vowel",
+        "wis-18-1-word1-dalet-6-vowel",
+        "wis-18-1-word2-vav-1-vowel",
+        "wis-18-1-word2-alef-3-vowel"
+      ],
+      "sourcePages": [
+        181
+      ],
+      "kinds": {
+        "unreadablePoint": 6
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-17-244-vayashkem-wide-letter1-vowel",
+        "bel-1-17-244-vayashkem-wide-letter4-vowel",
+        "bel-1-17-244-vayomer17-letter1-vowel",
+        "bel-1-17-245-daniel17-letter3-dagesh",
+        "bel-1-17-245-vayomer17-letter1-vowel"
+      ],
+      "sourcePages": [
+        244,
+        245
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-28-246-vayehi28-letter1-vowel",
+        "bel-1-28-246-vayirgezu-letter1-vowel",
+        "bel-1-28-246-vayilunu28-letter1-vowel",
+        "bel-1-28-246-vayomru28-letter1-vowel",
+        "bel-1-28-246-kaasher-letter1-vowel"
+      ],
+      "sourcePages": [
+        246
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 41,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-41-247-vayikra41-letter1-vowel",
+        "bel-1-41-247-vayomer41-letter1-vowel",
+        "bel-1-41-247-milvadekha41-letter3-vowel",
+        "bel-1-41-247-milvadekha41-letter4-vowel",
+        "bel-1-41-247-veein41-letter1-vowel"
+      ],
+      "sourcePages": [
+        247
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "esg-colophon-1-vowel",
+        "esg-colophon-3-vowel",
+        "esg-colophon-4-shuruq",
+        "esg-colophon-5-vowel",
+        "esg-colophon-6-dagesh"
+      ],
+      "sourcePages": [
+        225
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-1-word12-letter1-dagesh",
+        "s3y-1-1-word14-letter2-dagesh",
+        "s3y-1-1-word14-letter3-vowel",
+        "s3y-1-1-word15-letter1-vowel",
+        "s3y-1-1-word17-letter1-vowel"
+      ],
+      "sourcePages": [
+        233
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-25-word10-letter1-dagesh",
+        "s3y-1-25-word10-letter2-vowel",
+        "s3y-1-25-word28-letter1-vowel",
+        "s3y-1-25-word21-letter1-vowel",
+        "s3y-1-25-word25-letter1-vowel"
+      ],
+      "sourcePages": [
+        234
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 25,
+      "blockId": null,
+      "sourceNoteCount": 5,
+      "unreadablePointCount": 5,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-18-25-word14-zayin-1-vowel",
+        "wis-18-25-word14-ayin-2-vowel",
+        "wis-18-25-word15-bet-2-vowel",
+        "wis-18-25-word16-sin-1-vowel",
+        "wis-18-25-word16-pe-2-vowel"
+      ],
+      "sourcePages": [
+        183
+      ],
+      "kinds": {
+        "unreadablePoint": 5
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-3-243-venikhbad-letter1-vowel",
+        "bel-1-3-243-vayehi-first-letter1-vowel",
+        "bel-1-3-243-vayehi-second-letter1-vowel",
+        "bel-1-3-243-vayotziu-letter1-vowel"
+      ],
+      "sourcePages": [
+        243
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-33-246-vayabel33-letter1-vowel",
+        "bel-1-33-246-vayetse33-letter1-vowel",
+        "bel-1-33-246-vayetse-letter3-vowel",
+        "bel-1-33-246-laset-letter2-vowel"
+      ],
+      "sourcePages": [
+        246
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 36,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-36-247-vayahazek36-letter1-vowel",
+        "bel-1-36-247-vayohez36-letter1-vowel",
+        "bel-1-36-247-vayisaehu36-letter1-vowel",
+        "bel-1-36-247-vayatsigehu36-letter1-vowel"
+      ],
+      "sourcePages": [
+        247
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "esg-2-3-1-vowel",
+        "esg-2-3-3-vowel",
+        "esg-2-3-4-vowel",
+        "esg-2-3-5-vowel"
+      ],
+      "sourcePages": [
+        217
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "blockId": null,
+      "sourceNoteCount": 4,
+      "unreadablePointCount": 4,
+      "dailyAppointments": [
+        "daily|Daniel 3:47–51"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-30-vayaanu-vav-vowel",
+        "s3y-1-30-vayhalelu-vav-vowel",
+        "s3y-1-30-vayshabehu-vav-vowel",
+        "s3y-1-30-vayromemu-vav-vowel"
+      ],
+      "sourcePages": [
+        235
+      ],
+      "kinds": {
+        "unreadablePoint": 4
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 8,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-8-243-vayitzhak-letter1-vowel",
+        "bel-1-8-243-vayomer8-letter1-vowel",
+        "bel-1-8-243-vayomer8-letter4-vowel"
+      ],
+      "sourcePages": [
+        243
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 9,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-9-243-vayiktzof-letter1-vowel",
+        "bel-1-9-244-vayikra9-letter1-vowel",
+        "bel-1-9-244-vayomer9-letter1-vowel"
+      ],
+      "sourcePages": [
+        243,
+        244
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 16,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-16-244-vayavou16-letter1-vowel",
+        "bel-1-16-244-vayokhelu16-letter1-vowel",
+        "bel-1-16-244-vayishtu16-letter1-vowel"
+      ],
+      "sourcePages": [
+        244
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-20-245-vayitzhak20-letter1-vowel",
+        "bel-1-20-245-vayahazek20-letter1-vowel",
+        "bel-1-20-245-vayomer20-letter1-vowel"
+      ],
+      "sourcePages": [
+        245
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 3,
+      "unreadablePointCount": 3,
+      "dailyAppointments": [
+        "daily|Esther 13:8–11; 15–17"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "esg-3-10-1-vowel",
+        "esg-3-10-2-vowel",
+        "esg-3-10-3-dagesh"
+      ],
+      "sourcePages": [
+        219
+      ],
+      "kinds": {
+        "unreadablePoint": 3
+      }
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "bel-1-5-243-vayavo-letter1-vowel",
+        "bel-1-5-243-vayomer5-fixed-letter1-vowel"
+      ],
+      "sourcePages": [
+        243
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [
+        "daily|Daniel 3:47–51"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-27-word1-letter1-vowel",
+        "s3y-1-27-word2-letter1-vowel"
+      ],
+      "sourcePages": [
+        234
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [
+        "daily|Daniel 3:47–51"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-28-word5-letter1-vowel",
+        "s3y-1-28-word7-letter1-vowel"
+      ],
+      "sourcePages": [
+        234
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 29,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [
+        "daily|Daniel 3:47–51"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-29-word1-letter1-vowel",
+        "s3y-1-29-word1-letter2-dagesh"
+      ],
+      "sourcePages": [
+        234
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "daily|Wisdom 5:1–5"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-5-3-vav",
+        "wis-5-3-yod"
+      ],
+      "sourcePages": [
+        153
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 5,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "daily|Wisdom 5:1–5"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-5-5-alef",
+        "wis-5-5-first-kaf"
+      ],
+      "sourcePages": [
+        153
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 8,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-5-8-initial-vav",
+        "wis-5-8-gimel"
+      ],
+      "sourcePages": [
+        154
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [
+        "daily|Wisdom 10:10–14"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-10-14-tet",
+        "wis-10-14-shin"
+      ],
+      "sourcePages": [
+        165
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 20,
+      "blockId": null,
+      "sourceNoteCount": 2,
+      "unreadablePointCount": 2,
+      "dailyAppointments": [
+        "daily|Wisdom 10:17–20"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-10-20-vav",
+        "wis-10-20-first-kaf"
+      ],
+      "sourcePages": [
+        166
+      ],
+      "kinds": {
+        "unreadablePoint": 2
+      }
+    },
+    {
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Esther 13:8–11; 15–17"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "esg-3-1-1-vowel"
+      ],
+      "sourcePages": [
+        218
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 16,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Daniel 3:25, 34–45"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-16-word5-letter1-vowel"
+      ],
+      "sourcePages": [
+        234
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Daniel 3:25, 34–45"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-19-word5-letter2-vowel"
+      ],
+      "sourcePages": [
+        234
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Daniel 3:25, 34–45"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-22-word7-letter1-vowel"
+      ],
+      "sourcePages": [
+        234
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 26,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Daniel 3:47–51"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "s3y-1-26-word1-letter1-vowel"
+      ],
+      "sourcePages": [
+        234
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 4,
+      "verse": 10,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Wisdom 4:7–15"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-4-10-letter-3-vowel"
+      ],
+      "sourcePages": [
+        152
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 1,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "daily|Wisdom 5:1–5"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-5-1-ayin"
+      ],
+      "sourcePages": [
+        153
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 2,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–5"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-5-2-mem"
+      ],
+      "sourcePages": [
+        153
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 15,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-5-15-bet"
+      ],
+      "sourcePages": [
+        154
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 9,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Wisdom 7:7–14"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-7-9-mem"
+      ],
+      "sourcePages": [
+        158
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 14,
+      "blockId": null,
+      "sourceNoteCount": 1,
+      "unreadablePointCount": 1,
+      "dailyAppointments": [
+        "daily|Wisdom 7:7–14"
+      ],
+      "reviewedInCurrentCycle": true,
+      "sourceNoteIds": [
+        "wis-7-14-tav-atek"
+      ],
+      "sourcePages": [
+        158
+      ],
+      "kinds": {
+        "unreadablePoint": 1
+      }
+    }
+  ]
+}

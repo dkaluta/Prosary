@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 147,
+  "integrationPass": 147,
+  "preparationID": 203,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation203-TOB-1-1/source-provenance.json",
+    "sha256": "6e3e83836f2985425ff6cc4335a050f6a53e642619e98c6f8ea2e2aeb6f9bea9"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "tob-1-1-gimel-vowel"
+  ],
+  "contentSHA256Before": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "contentSHA256After": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "tob-1-1-gimel-vowel",
+      "book": "TOB",
+      "chapter": 1,
+      "verse": 1,
+      "anchorBefore": "גּבָּאֵל",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "OwnfirstGimel255px12x31[280,576,292,607] hasroof/rightstem and solid lowerleft-expandedframe592..606, with no independentdetachedvowelshape. NativeASCII showsleg wideningintofilledleftfield596..600 thenirregularlowerterminal603..606. Cannot certify exactvowel or absence; blankbelow607 doesnotcertifyabsence. Owninterior4pxnode[284,588,286,590] andBet9pxinteriornode[264,588,267,591] independentlyliteralcontrols, not borrowedmarks. Preserve exactGimelvowelnote/allscalars.",
+      "targetCapture": "primary-312-native.png",
+      "targetSourceIdentifier": "primary-312-native.png",
+      "inspectedBounds": [
+        278,
+        568,
+        294,
+        615
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation203-TOB-1-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation203-TOB-1-1/independent-review.json",
+    "sha256": "5f3ba189ca149a50f96f29db2c0bbf6f78d956040cad41dfd1a7b9a8fad049d3"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation203-TOB-1-1/primary-preparation.json",
+    "sha256": "cbb673ac8341341584ee13c5f3057173b98baadaaf8d3939a619aa3cd10c3ed5"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation203-TOB-1-1/consensus-preparation.json",
+    "sha256": "f9be3b1ec01eefb9b2390e74ab6072f2f4a5b49c8416328134c95dfe8268cd8c"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

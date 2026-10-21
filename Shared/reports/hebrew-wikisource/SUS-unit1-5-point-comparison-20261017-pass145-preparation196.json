@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 145,
+  "integrationPass": 145,
+  "preparationID": 196,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation196-SUS-1-5/source-provenance.json",
+    "sha256": "478d77b73a93abf84b364d56cf2703e2a8e46fe51c3f4b2cdd5ce1f5c4af7c14"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sus-1-5-letter-1-vowel"
+  ],
+  "contentSHA256Before": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "contentSHA256After": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sus-1-5-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 5,
+      "anchorBefore": "כּמַנְהִיגֵי",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Full ownword Kaf-Mem-Nun-He-Yod-Gimel-Yod independently read inrightthirdrow. OwnfirstKaf[2053,2168,2087,2224] is842px34x56connectedframe: broadroof andrightstem enter broadbase2197..2206 then soliddownwardstub2207..2223. No exact vowel class can be separated fromthis joinedlowerterminal, and blankbelow2224 isnot evidenceofabsence. DetachedownDagesh46px8x8[2066,2186,2074,2194] is independentlyvisible insidethewholeKaf; unchanged. Fullword ownHe has separate67px9x9Hiriq[1969,2207,1978,2216], independentlyliteral; no borrowedmark. Retain exactvowel disclosure and everycurrent scalar.",
+      "targetCapture": "primary-237-native.png",
+      "targetSourceIdentifier": "primary-237-native.png",
+      "inspectedBounds": [
+        2050,
+        2160,
+        2092,
+        2232
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation196-SUS-1-5/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 5,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation196-SUS-1-5/independent-review.json",
+    "sha256": "79d8860062303787d02207d4743fd23a5399c9f04e62530dc347a6630ba95c51"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation196-SUS-1-5/primary-preparation.json",
+    "sha256": "93bdd9e6081e5315d46884276672879a77c4784cb75509b028211631db405a3f"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation196-SUS-1-5/consensus-preparation.json",
+    "sha256": "7ef7f133a0c555fa19fb885511f5612e439a5ff189fb4b4d701795ec36b84224"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 63,
+  "book": "WIS",
+  "status": "Three 5:14 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 63.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass63-WIS-5-14/source-provenance.json",
+    "sha256": "b44aff4aea360bd4816f3534ef12d1c1753c6b0bbefbf62a07720c2644e648af"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 154. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 299,
+  "sourceNotesBefore": 141,
+  "sourceNotesAfter": 138,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-5-14-first-kaf",
+    "wis-5-14-pe-tiddefenu",
+    "wis-5-14-pe-yefazrehu"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 14,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 14 on page קנד / 154 (viewer page 499) in Kahana Volume A, Wisdom of Solomon.",
+  "decisions": [
+    {
+      "noteId": "wis-5-14-first-kaf",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 14,
+      "anchor": "וְככְפוֹר",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonantWithDagesh",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "First Kaf of וְככְפוֹר carries an internal stamped Dagesh (rows 30..48, cols 85..65 in word crop) with 32 consecutive rows of pure white paper (rows 74..104) beneath its base bar. There is no vowel mark (no Hireq, Patah, or Sheva). Confirmed unpointed consonant with Dagesh כּ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass63-WIS-5-14/wis-5-14-first-kaf-target-native.png",
+        "sha256": "e5ff9da29da3dfe9727ae3cafa9f915b0216ee24cb96dbbbcf50999ca5c686cb"
+      }
+    },
+    {
+      "noteId": "wis-5-14-pe-tiddefenu",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 14,
+      "anchor": "תִּדְּפנּוּ",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Medial Pe of תִּדְּפנּוּ consists of a bare consonant whose base bar terminates cleanly at row 72, followed by 31 consecutive rows of pure white paper (rows 74..104, cols 65..85) beneath its base. Adjacent ink marks correspond strictly to Dalet Sheva and Tav Hireq. Confirmed unpointed consonant פ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass63-WIS-5-14/wis-5-14-pe-tiddefenu-target-native.png",
+        "sha256": "26eb702d9c3614dbc8668bc84dbb2ec30f783ed6c8f5ca737975ad4ddf3d2b80"
+      }
+    },
+    {
+      "noteId": "wis-5-14-pe-yefazrehu",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 14,
+      "anchor": "יְפזְרֵהוּ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial/medial Pe of יְפזְרֵהוּ consists of a bare consonant whose base loop terminates at row 74, followed by 30 consecutive rows of pure white paper (rows 75..104, cols 25..65) beneath its base. Confirmed unpointed consonant פ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass63-WIS-5-14/wis-5-14-pe-yefazrehu-target-native.png",
+        "sha256": "82d993036cac1d29b509ada60392e6cd99d4aeab8ab8faada878258b8af87634"
+      }
+    }
+  ]
+}

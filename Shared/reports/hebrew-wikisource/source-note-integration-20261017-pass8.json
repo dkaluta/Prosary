@@ -1,0 +1,368 @@
+{
+  "date": "2026-10-17",
+  "pass": 8,
+  "startingNoteCount": 619,
+  "removedNoteCount": 9,
+  "remainingNoteCount": 610,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 221,
+      "afterNoteCount": 216,
+      "removedNoteIds": [
+        "bel-1-20-245-vayomer20-letter4-vowel",
+        "bel-1-23-245-vayaavduhu23-letter5-vowel",
+        "bel-1-37-247-vayomer37-letter4-vowel",
+        "bel-1-39-247-vayokhal39-letter4-vowel",
+        "bel-1-42-247-vayitarfu42-letter4-vowel"
+      ],
+      "beforeDigest": "15294ac66ff0573bc8979494f88f182280b653c7731c502ceeae7cba746e1751",
+      "afterDigest": "6348f02c6e4055c76d784df1bb863097710dab43641ddbe0acf4840b4a149272",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 23,
+          "before": "ויַעַבְדהוּ",
+          "after": "ויַעַבְדֻהוּ",
+          "retiredNoteIds": [
+            "bel-1-23-245-vayaavduhu23-letter5-vowel"
+          ],
+          "finding": "Below the dalet ordinary shaft and foot are three additional rounded lobes stepping down and right, separated by narrow waists. Their baseline lies below neighboring letter feet, so they are three point stamps rather than a normal foot plus a two-dot sheva. The same-page alef qibbuts in ויראהו preserves the corresponding three-stamp staircase, wholly detached from its letter body.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        },
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 20,
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר",
+          "retiredNoteIds": [
+            "bel-1-20-245-vayomer20-letter4-vowel"
+          ],
+          "finding": "The additional broad shallow lower bar has a long flat continuous bottom and a central white window separating most of it from the mem foot. Literal same-font mem patah controls supply the flat-bar morphology. Tsere controls have two rounded lower nodes and a central waist or separate bridges; qamats has a substantial descending stem, neither present here.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        },
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 37,
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר",
+          "retiredNoteIds": [
+            "bel-1-37-247-vayomer37-letter4-vowel"
+          ],
+          "finding": "The mem has an additional shallow horizontal bar with a long straight lower edge, joined to the ordinary foot through a narrow left neck and otherwise separated by a white channel. Its contour matches both the same-page מלאך mem and a detached same-font ממלכתו mem patah. Tsere has two low tips/waist; qamats has a deep lower stem.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        },
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 39,
+          "before": "ויֹאכל",
+          "after": "ויֹאכֵל",
+          "retiredNoteIds": [
+            "bel-1-39-247-vayokhal39-letter4-vowel"
+          ],
+          "finding": "Two low rounded tips surround a central lower valley/white window beneath the kaf foot, matching the entire contour of the same-letter kaf tsere in אוכל7. The kaf segol counterexample in והכר20 has a substantial third central lower node absent from the target; the kaf patah in אכל8 has a single low plateau. Preserve the literal tsere independently of expected verbal reading.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        },
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 42,
+          "before": "ויִטָּרפוּ",
+          "after": "ויִטָּרְפוּ",
+          "retiredNoteIds": [
+            "bel-1-42-247-vayitarfu42-letter4-vowel"
+          ],
+          "finding": "Two comparable rounded vertical nodes extend below the ordinary resh shaft with narrow waists, matching the same-page resh in חורשי. Independent same-page mem sheva in למקומו has two such rounded stamps wholly detached from its body, connected to one another only by a one-pixel neck. Qamats has a much broader crossbar and lower stem; the bare resh has neither extra node.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass8.json",
+          "sha256": "5f8c4e1a8c5d4ceb321f1d1cf7e34ee7fc3fbbb54b31aad374970277b7c08608"
+        }
+      ]
+    },
+    {
+      "book": "SIR",
+      "beforeNoteCount": 29,
+      "afterNoteCount": 25,
+      "removedNoteIds": [
+        "sir-11-34-resh-vowel",
+        "sir-12-16-first-mem-vowel",
+        "sir-3-22-he-vowel",
+        "sir-39-14-resh-vowel"
+      ],
+      "beforeDigest": "9b5c119b914fd62a15ec1b34674da9adcbc48d721d4bd84d2d69409e981965e9",
+      "afterDigest": "4920c84e81e61e4ae695c8843e70a0cb3a40a2a0f6eb9c5a8a0562c524048503",
+      "sourceChanges": [
+        {
+          "book": "SIR",
+          "chapter": 3,
+          "verse": 22,
+          "before": "שֶׁהרְשֵׁיתָ",
+          "after": "שֶׁהֻרְשֵׁיתָ",
+          "retiredNoteIds": [
+            "sir-3-22-he-vowel"
+          ],
+          "finding": "The he has three fully detached stamps descending diagonally down/right. The same-page kaf in printed3:21 ומכסה has the identical three-point diagonal; the full source words and primary context verify the target. Only qubbuts U+05BB is supplied.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        },
+        {
+          "book": "SIR",
+          "chapter": 11,
+          "verse": 34,
+          "before": "וינַכֶּרךָ",
+          "after": "וינַכֶּרְךָ",
+          "retiredNoteIds": [
+            "sir-11-34-resh-vowel"
+          ],
+          "finding": "Two vertically stacked stamps occur below the normal resh shaft end. Their placement and shape match the resh sheva in the very same printed34 row דרכך, whereas bare final resh in זהיר stops above both stamp levels. The companion resolves the upper lobe against the saturated primary. Only resh sheva U+05B0 is supplied; the initial-vav uncertainty remains.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        },
+        {
+          "book": "SIR",
+          "chapter": 12,
+          "verse": 16,
+          "before": "מהָמַרוֹת",
+          "after": "מַהָמַרוֹת",
+          "retiredNoteIds": [
+            "sir-12-16-first-mem-vowel"
+          ],
+          "finding": "A detached broad continuous shallow bar lies below the first mem. Its flat lower edge and shallow lugs match the yod patah in the same printed16 row יחשוב; same-row tav qamats in בשפתיו has a deep descending stem. The paired tsere in עת has a central white division, unlike the continuous target bar. That comparator is printed17, the second half of the present Catholic12:16 unit. Only first-mem patah U+05B7 is supplied.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        },
+        {
+          "book": "SIR",
+          "chapter": 39,
+          "verse": 14,
+          "before": "בּרכוּ",
+          "after": "בּרְכוּ",
+          "retiredNoteIds": [
+            "sir-39-14-resh-vowel"
+          ],
+          "finding": "Two entirely detached vertically stacked stamps appear to the right and below an already visible broad ordinary resh foot. The same-row bare final resh in שיר has only the shaft/foot; the same-font pointed resh control from11:34 supports the added stamp placement. Only resh sheva U+05B0 is supplied; the bet-vowel uncertainty remains.",
+          "independentReviewer": "Root and separate Wisdom peer; literal source controls and full address verified"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        }
+      ]
+    }
+  ],
+  "retainedAnchorUpdates": [
+    {
+      "book": "BEL",
+      "id": "bel-1-23-245-vayaavduhu23-letter1-vowel",
+      "before": "ויַעַבְדהוּ",
+      "after": "ויַעַבְדֻהוּ"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-23-245-vayaavduhu23-letter2-dagesh",
+      "before": "ויַעַבְדהוּ",
+      "after": "ויַעַבְדֻהוּ"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-20-245-vayomer20-letter1-vowel",
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-20-245-vayomer20-letter2-dagesh",
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-37-247-vayomer37-letter1-vowel",
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-37-247-vayomer37-letter2-dagesh",
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-39-247-vayokhal39-letter1-vowel",
+      "before": "ויֹאכל",
+      "after": "ויֹאכֵל"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-39-247-vayokhal39-letter2-dagesh",
+      "before": "ויֹאכל",
+      "after": "ויֹאכֵל"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-42-247-vayitarfu42-letter1-vowel",
+      "before": "ויִטָּרפוּ",
+      "after": "ויִטָּרְפוּ"
+    },
+    {
+      "book": "BEL",
+      "id": "bel-1-42-247-vayitarfu42-letter2-dagesh",
+      "before": "ויִטָּרפוּ",
+      "after": "ויִטָּרְפוּ"
+    },
+    {
+      "book": "SIR",
+      "id": "sir-11-34-vav-vowel",
+      "before": "וינַכֶּרךָ",
+      "after": "וינַכֶּרְךָ"
+    },
+    {
+      "book": "SIR",
+      "id": "sir-39-14-bet-vowel",
+      "before": "בּרכוּ",
+      "after": "בּרְכוּ"
+    }
+  ],
+  "dailyWholeBookPinsUpdated": 13,
+  "allCompleteDailyAppointmentsByteUnchanged": 20,
+  "allCatholicPresentationDecisionsPreserved": true,
+  "preservedCatholicUnitPins": 25,
+  "refreshedCatholicUnitPins": [
+    {
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 34,
+      "before": "d11253c7d309431335804b0402642024d7ee952ac8e92259f2dd1532cbb9b3d4",
+      "after": "a0cb74e2aa05235873f765c8c416870b6cd0e5eaee15ea7ea3859c261c6cec77",
+      "reason": "One independently certified source sheva; complete unit and chapter-return correspondence unchanged"
+    }
+  ],
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass8.json",
+      "sha256": "5f8c4e1a8c5d4ceb321f1d1cf7e34ee7fc3fbbb54b31aad374970277b7c08608"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+      "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/RESH-vowel-retentions-20261017-pass8.json",
+      "sha256": "04747ca6236f3baced787e463ee1797b514a070befc9fea5c2146f498739a733"
+    }
+  ],
+  "state": "applied, regenerated, source replay and data parity verified,114 shared576 Android56 Apple tests passed",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 610,
+      "notesByBook": {
+        "TOB": 12,
+        "JDT": 0,
+        "WIS": 198,
+        "SIR": 25,
+        "BAR": 0,
+        "1MA": 8,
+        "2MA": 11,
+        "LJE": 0,
+        "ESG": 50,
+        "S3Y": 65,
+        "SUS": 25,
+        "BEL": 216
+      },
+      "changedArchiveChapters": 5,
+      "preservedArchiveMembers": 1331,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "unchangedDailyReadingsPayload": true,
+      "matchingNativeDataCopies": 3,
+      "verifiedReferencedEvidenceFiles": 270,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-109288a9f3be715a44a3911a1bf8e4cad562c121031ad36f3ca659e679d1d032.zip",
+      "archiveSHA256": "97bd7a718152468b5a45a01b7501faef4ac58c060f36c409feec746b14405d7b",
+      "archiveBytes": 3114801
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 40,
+      "remainingNoteCount": 610,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "SIR",
+        "WIS"
+      ],
+      "exactSourceUnitChanges": 40,
+      "changedArchiveChapters": 25,
+      "preservedArchiveMembers": 1311,
+      "allSourceBodiesReplayOnlyApprovedChanges": true,
+      "allCatholicPresentationDecisionsPreserved": true,
+      "unchangedCatholicUnitPins": 25,
+      "refreshedCatholicUnitPins": [
+        "SIR11:34 full-unit hash for one independently certified sheva"
+      ],
+      "dailyPayloadChanges": [
+        "2MA12:45 certified dagesh and matching note retirement"
+      ],
+      "savedUserPDFsUnchanged": [
+        "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך א.pdf",
+        "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך ב.pdf"
+      ]
+    },
+    "sharedTests": {
+      "test-bible-library.py": 21,
+      "test-hebrew-deuterocanon.py": 22,
+      "test-scripture-source-notes.py": 13,
+      "test-bible-source-structure.py": 12,
+      "test-hebrew-daily-readings.py": 14,
+      "test-reading-texts.py": 32,
+      "totalPassed": 114
+    },
+    "android": {
+      "task": "testDebugUnitTest --rerun-tasks",
+      "suites": 71,
+      "tests": 576,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "apple": {
+      "destination": "macOS",
+      "passedTests": 56,
+      "failedTests": 0,
+      "skippedTests": 0,
+      "result": "passed",
+      "resultBundle": "Test-Prosary-2026.10.17_14-53-09-+0300.xcresult"
+    },
+    "windows": {
+      "runtimeTests": "not run on macOS",
+      "generatedDataCopies": "byte-identical to Shared"
+    },
+    "generationChecks": {
+      "bibleLibrarySecondPass": "passed, byte-stable",
+      "readingTexts": "passed, byte-stable",
+      "readingMappings": "passed",
+      "scopedDiffWhitespace": "passed"
+    }
+  }
+}

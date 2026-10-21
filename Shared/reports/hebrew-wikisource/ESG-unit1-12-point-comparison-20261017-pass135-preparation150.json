@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 135,
+  "integrationPass": 135,
+  "preparationID": 150,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation150-ESG-1-12/source-provenance.json",
+    "sha256": "2ffb6151842df5c9c717b4c13e989d29df27c9f2a1c079365ae629b5465507a5"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-1-12-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "aa0c3f6b1f98fa756a177da72f53a2d719f4209d4b503724449bb260e8be1851",
+  "contentSHA256After": "a47c2f0f9a5078ef4f0ff0fb47fbbb99e8c78a7d46539d6f1429c30205513c11",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-1-12-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 12,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "finding": "Own full Kaf ends233 at128; isolated shallow stamp241px30x13[1238,236,1268,249] lies below with two blank separating rows. The stamp has a broad horizontal run239..243, then tapered short basal teeth through248, no continued narrow vertical stem. At64 it remains171px28x11; at192291px31x14 ends249, followed40rows with minimum254. Literal SAMEUNIT thirdTsadi in completeבחצר has detached219px28x10 horizontal stamp[657,239,685,249], including short basal teeth ending at the identical249baseline (192bothend250). Literal SAMEWORD Mem Qamats has523px28x31 head/stem[1443,239,1471,270], its long narrow continuation plainly distinct; samewordResh has two separate vertically stacked nodes88/114px. These native shapes support Patah U05B7 for this ownKaf. No other name occurrence, canonical vowel, grammar, or expected spelling supplies class. Peer must independently challenge the short tapered right terminal rather than equate any horizontal ink with Patah. Independent peer: Independent own complete physical six-letter prefixed word is Vav-Mem-Resh-Dalet-Kaf-Yod, with Kaf fifth in the word/fourth in the five-letter noteanchor, distinct from source11 unprefixed name. Whole Kaf openleft curvedright body ends233 at128, then two blankrows234..235 and detached241pixel30x13stamp[1238,236,1268,249]. The stamp broadens left at239 and has a small high right shoulder at236..238; its lower taper ends248 with only a short rightterminal. Crucially, exact SAMEUNIT completeבחצר thirdTsadi has an independently literal219pixel28x10 horizontalPatah with similarly short basalteeth, also ending248; at192 both end249. The target extra3rows are upper shoulder, not a downwardstem below the shared Patah baseline. Ownfield1220..1290x250..290 is clear at64/128/192 with minimum254. SamewordMem lower523pixel28x31point has a sustained10..12pixelwide verticalstem down269, and Resh has two detached88/114pixel nodes down266; neither alternative matches ownKaf. Second saved header rendering gives identical ownKaf64/128/192masks at nativeYtranslation1450, with65RGBpixels differingby1level; no claimofRGBbyteidentity. This literalgeometry certifies Patah U+05B7 for ownKaf without grammar, expectednamevocalization or other occurrence.",
+      "targetCapture": "extension-volumeA-561-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-561-zoom4-upper-right.png",
+      "inspectedBounds": [
+        1223,
+        162,
+        1284,
+        234
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        1238,
+        236,
+        1268,
+        249
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation150-ESG-1-12/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 12,
+      "before": "וּמָרְדְּכי יָשֵׁן בַּחֲצַר הַמֶּלֶךְ הוּא וּבִגְתָן וְתֶרֶשׁ שְׁנֵי סָרִיסֵי הַמֶּלֶךְ שֹׁמְרֵי הֶחָצֵר׃",
+      "after": "וּמָרְדְּכַי יָשֵׁן בַּחֲצַר הַמֶּלֶךְ הוּא וּבִגְתָן וְתֶרֶשׁ שְׁנֵי סָרִיסֵי הַמֶּלֶךְ שֹׁמְרֵי הֶחָצֵר׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 12,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation150-ESG-1-12/independent-review.json",
+    "sha256": "243569f089d5f0a97d77cf61e2d4892aa4afd1011d280781e122626dac210bba"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation150-ESG-1-12/primary-preparation.json",
+    "sha256": "c6c50ef731d1d59a444010ebd0f8e2d179d7be39df823c199a6e6368278ef416"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation150-ESG-1-12/consensus-preparation.json",
+    "sha256": "5e8eee028bd5ed294277ec1a15e361e111014e317542f219d95afd54c46fe75e"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [
+      {
+        "kind": "historicalDailyRowCatchup",
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "book": "ESG",
+        "chapter": 3,
+        "verse": 10,
+        "frozenDailyRow": {
+          "chapter": 3,
+          "verse": 10,
+          "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+          "sourceNotes": [
+            {
+              "id": "esg-3-10-1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ב[עַם]",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                219
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+            },
+            {
+              "id": "esg-3-10-2-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "מְשׁבְּחֶךָ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "vowel",
+              "sourcePages": [
+                219
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+            },
+            {
+              "id": "esg-3-10-3-dagesh",
+              "kind": "unreadablePoint",
+              "anchor": "מְשׁבְּחֶךָ",
+              "occurrence": 1,
+              "letterIndex": 2,
+              "mark": "dagesh",
+              "sourcePages": [
+                219
+              ],
+              "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+            }
+          ]
+        },
+        "frozenCanonicalRow": {
+          "verse": 10,
+          "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
+          "chapter": 3
+        },
+        "after": {
+          "chapter": 3,
+          "verse": 10,
+          "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃"
+        },
+        "previouslyCertifiedPointInsertions": [
+          {
+            "offset": 154,
+            "mark": "ִ",
+            "codePoint": "U+05B4"
+          }
+        ],
+        "previouslyRetiredIds": [
+          "esg-3-10-1-vowel",
+          "esg-3-10-2-vowel",
+          "esg-3-10-3-dagesh"
+        ],
+        "report": {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit3-10-point-comparison-20261017-pass70.json",
+          "sha256": "9b7086e66a68be6e75e040e349dbbe62ea8e7d59c1c611e50101ed3314b1ca53"
+        },
+        "sourceProvenance": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+          "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+        },
+        "countedAsCurrentPassMarks": false
+      },
+      {
+        "kind": "historicalDailyBoundaryCatchup",
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "field": "closingText",
+        "selection": {
+          "chapter": 3,
+          "verse": 10
+        },
+        "frozenSourceScalarSpan": [
+          0,
+          169
+        ],
+        "before": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+        "after": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
+        "report": {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit3-10-point-comparison-20261017-pass70.json",
+          "sha256": "9b7086e66a68be6e75e040e349dbbe62ea8e7d59c1c611e50101ed3314b1ca53"
+        },
+        "sourceProvenance": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+          "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+        },
+        "countedAsCurrentPassMarks": false
+      }
+    ],
+    "historicalCatchupPointCount": 1,
+    "historicalCatchupRetiredIdCount": 3
+  },
+  "metadataCorrections": [
+    {
+      "kind": "historicalDailyRowCatchup",
+      "appointment": "daily|Esther 13:8–11; 15–17",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "frozenDailyRow": {
+        "chapter": 3,
+        "verse": 10,
+        "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+        "sourceNotes": [
+          {
+            "id": "esg-3-10-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ב[עַם]",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              219
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+          },
+          {
+            "id": "esg-3-10-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מְשׁבְּחֶךָ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              219
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+          },
+          {
+            "id": "esg-3-10-3-dagesh",
+            "kind": "unreadablePoint",
+            "anchor": "מְשׁבְּחֶךָ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "dagesh",
+            "sourcePages": [
+              219
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+          }
+        ]
+      },
+      "frozenCanonicalRow": {
+        "verse": 10,
+        "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
+        "chapter": 3
+      },
+      "after": {
+        "chapter": 3,
+        "verse": 10,
+        "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃"
+      },
+      "previouslyCertifiedPointInsertions": [
+        {
+          "offset": 154,
+          "mark": "ִ",
+          "codePoint": "U+05B4"
+        }
+      ],
+      "previouslyRetiredIds": [
+        "esg-3-10-1-vowel",
+        "esg-3-10-2-vowel",
+        "esg-3-10-3-dagesh"
+      ],
+      "report": {
+        "path": "Shared/reports/hebrew-wikisource/ESG-unit3-10-point-comparison-20261017-pass70.json",
+        "sha256": "9b7086e66a68be6e75e040e349dbbe62ea8e7d59c1c611e50101ed3314b1ca53"
+      },
+      "sourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+        "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+      },
+      "countedAsCurrentPassMarks": false
+    },
+    {
+      "kind": "historicalDailyBoundaryCatchup",
+      "appointment": "daily|Esther 13:8–11; 15–17",
+      "field": "closingText",
+      "selection": {
+        "chapter": 3,
+        "verse": 10
+      },
+      "frozenSourceScalarSpan": [
+        0,
+        169
+      ],
+      "before": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+      "after": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
+      "report": {
+        "path": "Shared/reports/hebrew-wikisource/ESG-unit3-10-point-comparison-20261017-pass70.json",
+        "sha256": "9b7086e66a68be6e75e040e349dbbe62ea8e7d59c1c611e50101ed3314b1ca53"
+      },
+      "sourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+        "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+      },
+      "countedAsCurrentPassMarks": false
+    }
+  ],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

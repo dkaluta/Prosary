@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 104,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 2 retained.",
+  "applicationState": "All disclosures retained; canonical book/review metadata unchanged. Tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass104-WIS-1-2/source-provenance.json",
+    "sha256": "606db19d20f54a2bc936c36e270928f7b6081ab7cf1cb3732ed04db729a6dea0"
+  },
+  "sourceNotesBefore": 127,
+  "sourceNotesAfter": 127,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 2,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-1-2-kichashu-het",
+    "wis-1-2-nirah-alef"
+  ],
+  "contentSHA256Before": "88c91d3d3450883590e947e906ca62b6fb4982799a5bfa6d6f8ecf46b824a4d5",
+  "contentSHA256After": "88c91d3d3450883590e947e906ca62b6fb4982799a5bfa6d6f8ecf46b824a4d5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-1-2-nirah-alef",
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 2,
+      "anchorBefore": "וְנִרְאה",
+      "letterIndex": 4,
+      "decision": "retainNote",
+      "finding": "The correctly addressed fourth Alef is present in the complete left half-line word. At native overview resolution its lower ink is a small irregular dark cluster continuous with or crowded by the oblique letter base; separate component shapes sufficient to distinguish vowel classes are not preserved. The persistent historical full-word crop independently shows a dense lower cluster, but supplies no independently legible point class. No current complete high-resolution target registration was certified. Retain the disclosure without assigning a vowel or certifying absence.",
+      "targetCapture": "extension-volumeA-490-page-overview.png",
+      "targetSourceIdentifier": "extension-volumeA-490-page-overview.png",
+      "inspectedBounds": [
+        1207,
+        366,
+        1227,
+        400
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass104-WIS-1-2/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-1-2-kichashu-het",
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 2,
+      "anchorBefore": "כִחשׁוּ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "The second physical Het is between initial kaf and shin in the addressed כחשו. The small lower stamp joins or crowds its leg and does not expose individually classifiable compound-vowel nodes. Native overview pixels cannot distinguish a compound sign from a saturated letter-foot/point cluster. The persistent historical word frame exposes the same unresolved lower relationship at its original resolution; it does not license a reading. Retain rather than borrowing morphology or a parallel witness.",
+      "targetCapture": "extension-volumeA-490-page-overview.png",
+      "targetSourceIdentifier": "extension-volumeA-490-page-overview.png",
+      "inspectedBounds": [
+        1075,
+        365,
+        1098,
+        405
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass104-WIS-1-2/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass104-WIS-1-2/independent-review.json",
+    "sha256": "40c753adf3847909e5dec174975f8cca6d0398e8e7df8e8c0c107ac9acf22ed4"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass104-WIS-1-2/primary-preparation.json",
+    "sha256": "ff0ac4cdc60f22e19801e3935c38303df3edd74d8fae75d98de2232faff21ff4"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass104-WIS-1-2/consensus-preparation.json",
+    "sha256": "e306dfd0f13d914cf03de1af0f74c522da42cf946a7870035d2ff5131372eb00"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 122,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 2 retained.",
+  "applicationState": "All disclosures retained; canonical book/review metadata unchanged. Tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass122-WIS-13-13/source-provenance.json",
+    "sha256": "1256b7ac1b7eee3ea5d6355dcf149dc555f4b536617410fd119e4b94ac9f947c"
+  },
+  "sourceNotesBefore": 113,
+  "sourceNotesAfter": 113,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 2,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-13-13-ayin-6-vowel",
+    "wis-13-13-tsadi-4-vowel"
+  ],
+  "contentSHA256Before": "6ccc4ee99098370f3d6f7de58ff0059689599b5a92bb01ff3b03ff534801c6cd",
+  "contentSHA256After": "6ccc4ee99098370f3d6f7de58ff0059689599b5a92bb01ff3b03ff534801c6cd",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-13-13-tsadi-4-vowel",
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 13,
+      "anchorBefore": "וְיַקְציעהוּ",
+      "letterIndex": 4,
+      "decision": "retainNote",
+      "finding": "The broad Tsadi basal stamp merges into a narrow lower extension ending1286. That extension is not a separately bounded rounded point or diagnostic bar/stem; an upper point could be swallowed by the body. Literal two-node Sheva and horizontal-mark comparisons do not expose a unique target class, so uncertainty stays disclosed. Independent peer: Independent full eight-consonant word places Tsadi fourth, between Qof and short Yod. Its lower ink remains fused with the basal body and narrows to a single stem ending1286; no independently bounded round node, paired nodes, bar or descending-point distinction is visible. Literal same-word Qof Sheva consists of separate nodes at1278/1294, and Yod Patah is separately bounded at1270; neither licenses supplying target Tsadi. Retain the exact disclosure without an absence claim.",
+      "targetCapture": "extension-volumeA-516-zoom4-mid-left.png",
+      "targetSourceIdentifier": "extension-volumeA-516-zoom4-mid-left.png",
+      "inspectedBounds": [
+        2239,
+        1196,
+        2300,
+        1286
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass122-WIS-13-13/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-13-13-ayin-6-vowel",
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 13,
+      "anchorBefore": "וְיַקְציעהוּ",
+      "letterIndex": 6,
+      "decision": "retainNote",
+      "finding": "A broad lower horizontal-looking branch expands beneath the Ayin into1291, but it is saturated and joins the basal body mass. Its rounded plate and internal defects do not independently expose the point boundary or exclude a short lower stem/merged nodes. The neighboring literal horizontal mark is a comparison, not a spelling supplier; no unique vowel is applied. Independent peer: Independent full word places Ayin sixth after the short fifth Yod and before He. Its saturated lower branch forms a thick joined plate narrowing into1291, with counters inside the same contiguous basal mass. Its upper/lower point boundary cannot be uniquely recovered from the raw contour. Literal Yod horizontal mark has a separately bounded full outline, unlike this Ayin mass; retain its vowel uncertainty.",
+      "targetCapture": "extension-volumeA-516-zoom4-mid-left.png",
+      "targetSourceIdentifier": "extension-volumeA-516-zoom4-mid-left.png",
+      "inspectedBounds": [
+        2131,
+        1196,
+        2193,
+        1291
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass122-WIS-13-13/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 13,
+    "verse": 13,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass122-WIS-13-13/independent-review.json",
+    "sha256": "ee21d4a5af8bf1cd5c6f3e5ba216d6ffb552ceb9c47e34873f9b53ed9cefd4d0"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass122-WIS-13-13/primary-preparation.json",
+    "sha256": "d8c9c5b6872d4b5d2b1fe4743a24c750dd9d1299f60afd6ffddaf3ed5880c5e1"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass122-WIS-13-13/consensus-preparation.json",
+    "sha256": "ba0fefc7985f2e31e051afbfae944cb16ce666e887527f6b56d815928a260dd3"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

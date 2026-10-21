@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 134,
+  "integrationPass": 134,
+  "preparationID": 143,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "2MA",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation143-2MA-8-4/source-provenance.json",
+    "sha256": "3097b2cdddd7cb4a9a338e69968e7b47c15b15c04efa23478b7d924715b01de0"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "2ma-8-4-yod-2-dagesh"
+  ],
+  "contentSHA256Before": "2f31c3b0bf55af042b8a2ad3c11ed5f984684d948eb242bce83b19949b0cd863",
+  "contentSHA256After": "2f31c3b0bf55af042b8a2ad3c11ed5f984684d948eb242bce83b19949b0cd863",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "2ma-8-4-yod-2-dagesh",
+      "book": "2MA",
+      "chapter": 8,
+      "verse": 4,
+      "anchorBefore": "הַיְלָדִים",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own secondYod is one saturated466px head/stem component[1550,1115,1573,1155] at128. Its head has broad low-left ink through1135 and thin right descending foot through1154. No detached interior node is uniquely exposed, but this dense shared head contour cannot certify that a joined/worn point is absent. The two separate lower nodes101px[1555,1187,1568,1199] and116px[1555,1205,1568,1217] occupy the existing lower-vowel field, far below body, and must not be relabelled dagesh. Literal SAMEWORD fifthYod has471px mainbody plus tiny4px island[1384,1136,1386,1138] adjacent to dense head; its exact dagesh/absence class is not inferred from canonical text. Retain the exact own note, no point and no absence approval. Independent peer: Independent native own six-consonant word He-Yod-Lamed-Dalet-Yod-finalMem is identified in source4 after על־הרג. Own index2Yod at128 is one466pixel head/stem component[1550,1115,1573,1155], with a solid broad left head through1135 and right stem bending below1144; small internal white holes do not isolate a distinct interior point. At64 the terminal stem separates into28pixels while the319pixel head remains dense, not a separately certified dagesh. The101pixel and116pixel lower nodes start1187 and1205,32blank rows below the body, and are lower vowel marks rather than queried interior dot. Literal sameword fifthYod main471pixel body plus4pixel side island offers a second dense contour, not a certified dagesh/absence control. FirstHe separate302pixel horizontal plate[1599,1192,1627,1205] is lower-field geometry only. Neither a printed dagesh nor its exact absence is uniquely certified through the saturated ownYod head. Retain exact disclosure and every original scalar.",
+      "targetCapture": "extension-volumeB-206-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeB-206-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1550,
+        1115,
+        1573,
+        1155
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation143-2MA-8-4/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 8,
+    "verse": 4,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation143-2MA-8-4/independent-review.json",
+    "sha256": "d4596f4125dde1c93403ee2166603d05578ece8d4e8d7a8db8b6b7a7069e2529"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation143-2MA-8-4/primary-preparation.json",
+    "sha256": "bdae6b338469009a6cf102c75fa1a032a65e2787a91cad805f52306c5ad5c136"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation143-2MA-8-4/consensus-preparation.json",
+    "sha256": "376d0bd6bfd5957bc2f7e4ad0f791e72546c7cb6e2a87e80b15629b24a874862"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

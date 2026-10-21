@@ -30,11 +30,19 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CreedLabel))]
+    [NotifyPropertyChangedFor(nameof(OpeningPrayersLabel))]
+    [NotifyPropertyChangedFor(nameof(OpeningFatimaLabel))]
+    [NotifyPropertyChangedFor(nameof(FatimaLabel))]
+    [NotifyPropertyChangedFor(nameof(StMichaelLabel))]
+    [NotifyPropertyChangedFor(nameof(FinalSignLabel))]
     private Prayer? _defaultPreset;
 
-    public string CreedLabel => PrayerPackStore.HasApostlesCreed("rosary", DefaultPreset?.LanguageCode)
-        ? Loc.Tr("PickerApostlesCreed.Text", "Apostles' Creed")
-        : Loc.Tr("favorite_editor_nicene_creed", "Nicene Creed");
+    public string CreedLabel => RosaryOptionLabels.Creed(DefaultPreset?.LanguageCode, picker: true);
+    public string OpeningPrayersLabel => RosaryOptionLabels.OpeningPrayers(DefaultPreset?.LanguageCode, picker: true);
+    public string OpeningFatimaLabel => RosaryOptionLabels.OpeningFatima(DefaultPreset?.LanguageCode, picker: true);
+    public string FatimaLabel => RosaryOptionLabels.Fatima(DefaultPreset?.LanguageCode, picker: true);
+    public string StMichaelLabel => RosaryOptionLabels.StMichael(DefaultPreset?.LanguageCode, picker: true);
+    public string FinalSignLabel => RosaryOptionLabels.FinalSign(DefaultPreset?.LanguageCode, picker: true);
 
     [ObservableProperty]
     private ObservableCollection<Prayer> _otherPresets = [];

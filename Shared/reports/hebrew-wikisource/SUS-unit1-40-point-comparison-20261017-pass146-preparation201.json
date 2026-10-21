@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 146,
+  "integrationPass": 146,
+  "preparationID": 201,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation201-SUS-1-40/source-provenance.json",
+    "sha256": "37a7982017db091c7238933e63b41c1d3a9c33dc44a275ec7d8e22de0f3f57de"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sus-1-40-letter-1-vowel"
+  ],
+  "contentSHA256Before": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "contentSHA256After": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sus-1-40-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 40,
+      "anchorBefore": "ונִּשְׁאַל",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "ExactfirstVav380px20x46[1251,2113,1271,2159] roof/rightstem flows continuously through2151 into broadlowerfoot1255..1271y2154..2158. No independentpointseparation certifies exactvowel or exactabsence. AdjacentNun detachedinterior30px[1238,2131,1245,2137] andlower34px[1237,2154,1244,2160] belong secondletter; do notborrow. Wholefiveletterword, entiremergedcanonical40–41withinternalsof and finalinlineend independentlybounded. Preserve exactdisclosure/allscalars/endVerse41metadata.",
+      "targetCapture": "primary-240-native.png",
+      "targetSourceIdentifier": "primary-240-native.png",
+      "inspectedBounds": [
+        1250,
+        2108,
+        1278,
+        2165
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation201-SUS-1-40/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 40,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation201-SUS-1-40/independent-review.json",
+    "sha256": "1cc66faefc0f3820f4e27e05493140ba11b8cda8cef1c73694605606594189db"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation201-SUS-1-40/primary-preparation.json",
+    "sha256": "5fdd9af5b91ab39db6964109c1cf39e8d64dd60c87f92f183f31bb381d31506f"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation201-SUS-1-40/consensus-preparation.json",
+    "sha256": "bd91ee72b15d69fc799e18e714b2b50f514905a1ef72f1ba1ef498581659bcb3"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 61,
+  "book": "SUS",
+  "status": "Three 1:18 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 61.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass61-SUS-1-18/source-provenance.json",
+    "sha256": "2024dab59ee31a3efc5b3ded4581a90579fcad783e1d5abe532e9c9ab534d3fd"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 238. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 305,
+  "sourceNotesBefore": 18,
+  "sourceNotesAfter": 15,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "sus-1-18-letter-1-vowel",
+    "sus-1-18-letter-4-vowel",
+    "sus-1-18-tsadi-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 18,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 18 on page רלח / 238 (viewer page 583) in Kahana Volume A, lower Theodotion recension.",
+  "decisions": [
+    {
+      "noteId": "sus-1-18-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "anchor": "בּיַרְכתַיִם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonantWithDagesh",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Bet of בּיַרְכתַיִם carries a standard internal Dagesh with 14 rows of pure white paper (rows 882..895, cols 971..1018) beneath the letter base. Confirmed unpointed consonant with Dagesh.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass61-SUS-1-18/sus-1-18-bet-target-native.png",
+        "sha256": "07dca31e7a6c9c79b61a38c0983bff42d5b1985cf5be2533fe10e4cbd94b874f"
+      }
+    },
+    {
+      "noteId": "sus-1-18-letter-4-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "anchor": "בּיַרְכתַיִם",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Medial Kaf of בּיַרְכתַיִם consists of a bare consonant outline with 11 rows of pure white paper (rows 884..894, cols 870..905) beneath its base. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass61-SUS-1-18/sus-1-18-kaf-target-native.png",
+        "sha256": "d6d8b22b04e6e378c916a87b2cbef1e93ca0f9e73e9cb8772005b01136596c2e"
+      }
+    },
+    {
+      "noteId": "sus-1-18-tsadi-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "anchor": "צוּוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Tsadi of צוּוּ consists of a bare consonant preceding vowel letter Shuruq, with 10+ rows of pure white paper (rows 886..895, cols 345..375) beneath its base. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass61-SUS-1-18/sus-1-18-tsadi-target-native.png",
+        "sha256": "afbadb72a130cca0b2a5299c2ffc7acb279d6199363ef387e6ecd4452eb74457"
+      }
+    }
+  ]
+}

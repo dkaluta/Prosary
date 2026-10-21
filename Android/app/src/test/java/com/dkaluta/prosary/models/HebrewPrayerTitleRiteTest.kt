@@ -44,8 +44,8 @@ class HebrewPrayerTitleRiteTest {
     @Test fun hebrewBasicPrayerNamesKeepEachRiteWithoutAddingTheOtherRiteAsATranslation() {
         val names = mapOf(
             "ourFather" to ("אבינו שבשמים" to "תפילת האדון"),
-            "hailMary" to ("שלום לך" to "שלום לך מרים"),
-            "gloryBe" to ("שבח לאב" to "השבח לאב"),
+            "hailMary" to ("שמחי מרים" to "שלום לך מרים"),
+            "gloryBe" to ("כבוד לאב" to "השבח לאב"),
             "creed" to ("אני מאמין" to "מאמינים של ניקאה"),
             "niceneCreed" to ("אני מאמין של ניקיאה" to "מאמינים של ניקאה"),
             "holyGod" to ("קדוש האלהים" to "קדישת"),

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 112,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-offline-originals/source-provenance.json",
+      "sha256": "9d29fe9ec71d6373ab0ac6ca1b2c6275b4451e0bd5efc4f425136efccd579f0a"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Offline existing Chrome captures for native target marks and Het control; exact historically pinned embedded Kahana A2 PDF raster for complete unit/second-word scope and literal Dalet control. No new browser/network acquisition.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    156
+  ],
+  "savedCaptureViewerPageLabels": [
+    501
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-offline-originals/native-156.png",
+      "sha256": "569648a9a162f9e0ae982bae24521307282cf45547b8aff2f57c14c33fb7430f",
+      "resolution": [
+        2487,
+        3490
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-offline-originals/source-provenance.json",
+        "sha256": "9d29fe9ec71d6373ab0ac6ca1b2c6275b4451e0bd5efc4f425136efccd579f0a"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "מנחם שטיין",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "חכמת שלמה, תרגום מנחם שטיין, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page156/extension-volumeA-501-page-overview.png",
+      "sha256": "4ebb2c7e411614c8aa12c268ded0302eed8c2e0285f4fabae0ceed44387b5960",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page156/extension-volumeA-501-zoom4-header.png",
+      "sha256": "04d358309b63833b925fab2d5010349e6de153e74ba4574f8eecb59ae1ecfc0e",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-6-10/source-provenance.json",
+    "sha256": "3e181cee2bc03595f9a3ba109f6f04b74648e9e993a046149883e94e52c985f0"
+  }
+}

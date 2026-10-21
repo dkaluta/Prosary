@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.prayerpack.CustomDevotionOption
+import com.dkaluta.prosary.models.RosaryRiteLabels
 import com.dkaluta.prosary.content.prayerpack.PrayerPackStore
 import com.dkaluta.prosary.models.Prayer
 import com.dkaluta.prosary.models.PrayerKind
@@ -142,7 +143,10 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                         // store an explicit override.
                         val collectRequired = isRosary && option.key == "rosaryCollect" && editableValues["litanyOfLoreto"] == "true"
                         val value = if (collectRequired) "true" else editableValues[option.key] ?: option.defaultValue
-                        val optionLabel = if (option.key == "apostlesCreed" && bundleId != null &&
+                        val riteLabel = if (isRosary) RosaryRiteLabels.optionLabel(option.key, current.languageCode) { resource, arguments ->
+                            context.getString(resource, *arguments.toTypedArray())
+                        } else null
+                        val optionLabel = riteLabel ?: if (option.key == "apostlesCreed" && bundleId != null &&
                             PrayerPackStore.usesNiceneCreed(bundleId, PrayerPackStore.effectiveLanguage(bundleId, current.languageCode)))
                             stringResource(R.string.favorite_editor_nicene_creed) else option.localizedName
                         fun set(newValue: String) {
@@ -160,7 +164,9 @@ fun RemindersOnlyEditorScreen(prayerId: String, onDone: () -> Unit) {
                                     options = option.cases.orEmpty().map { it.id },
                                     selected = value,
                                     optionLabel = { id ->
-                                        option.cases.orEmpty().firstOrNull { it.id == id }?.localizedName ?: id
+                                        val riteName = if (isRosary && option.key == "antiphon")
+                                            RosaryRiteLabels.antiphonTitle(id, current.languageCode) else null
+                                        riteName ?: option.cases.orEmpty().firstOrNull { it.id == id }?.localizedName ?: id
                                     },
                                     onSelect = { set(it) },
                                     modifier = Modifier.fillMaxWidth(),

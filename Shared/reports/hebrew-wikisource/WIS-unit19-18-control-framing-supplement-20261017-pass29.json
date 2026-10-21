@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 29,
+  "book": "WIS",
+  "chapter": 19,
+  "verse": 18,
+  "status": "Complete lishpot control-word framing supplement; no source decisions changed",
+  "supersedesOnly": "The two original literal-lishpot-word PNGs for complete-word visual comparison; original full-page, glyph, report and other evidence remain immutable.",
+  "originalReport": "Shared/reports/hebrew-wikisource/WIS-unit19-18-point-comparison-20261017-pass29.json",
+  "originalReportSHA256": "b176468b262ed39f344cebba61d3828616aaeaddc19ae748651acf4c67770eab",
+  "supersededEvidenceFiles": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-WIS-UNIT19-18/literal-lishpot-word-native.png",
+      "sha256": "f2838f8f890fea9c7dd46d36676749812d1bb61de0a3ee5a8b0e32afb85485b3",
+      "page": 185,
+      "originalSize": [
+        2464,
+        3473
+      ],
+      "nativeBounds": [
+        1315,
+        1475,
+        1485,
+        1575
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-WIS-UNIT19-18/literal-lishpot-word-5x.png",
+      "sha256": "f9d0f7d66315a5c7f8ee23fd7009a645c434af6370a3a47c53a86ac5246d2027",
+      "page": 185,
+      "originalSize": [
+        2464,
+        3473
+      ],
+      "nativeBounds": [
+        1315,
+        1475,
+        1485,
+        1575
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    }
+  ],
+  "reason": "Independent peer review found that the left edge x1315 clipped the leftmost tet of לִשְׁפֹּט. The target lamed and its lower mark were complete. The new word frame extends left to1285, top to1465, right to1495 and bottom to1580; the whole four-letter word and all marks are now visible with surrounding white margin.",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourcePDFPage": 185,
+  "nativeBounds": [
+    1285,
+    1465,
+    1495,
+    1580
+  ],
+  "originalSize": [
+    2464,
+    3473
+  ],
+  "files": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-WIS-UNIT19-18-LISHPOT-EXPANSION/literal-lishpot-complete-word-native.png",
+      "sha256": "5648b8d25aab11d7bfec6c5fb2df83adf553e7f2a2ab85b559ac502de8231bef",
+      "scale": 1,
+      "resampling": "native"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-WIS-UNIT19-18-LISHPOT-EXPANSION/literal-lishpot-complete-word-5x.png",
+      "sha256": "86b7cf303cd91101a3cb0103a951ce910404837f8c302bb6865a44a8de3e8a9a",
+      "scale": 5,
+      "resampling": "nearest-neighbor"
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-WIS-UNIT19-18-LISHPOT-EXPANSION/literal-lishpot-complete-word-native.png",
+      "sha256": "5648b8d25aab11d7bfec6c5fb2df83adf553e7f2a2ab85b559ac502de8231bef",
+      "page": 185,
+      "originalSize": [
+        2464,
+        3473
+      ],
+      "nativeBounds": [
+        1285,
+        1465,
+        1495,
+        1580
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-WIS-UNIT19-18-LISHPOT-EXPANSION/literal-lishpot-complete-word-5x.png",
+      "sha256": "86b7cf303cd91101a3cb0103a951ce910404837f8c302bb6865a44a8de3e8a9a",
+      "page": 185,
+      "originalSize": [
+        2464,
+        3473
+      ],
+      "nativeBounds": [
+        1285,
+        1465,
+        1495,
+        1580
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    }
+  ],
+  "sourceDecisionUnchanged": true,
+  "allFourRetainedDisclosuresUnchanged": true,
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass29-WIS-UNIT19-18/accepted.json",
+    "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "packetSHA256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+  "fullyInsideOriginalImage": true,
+  "method": "Original pypdf native embedded pixels; bounds asserted before extraction; native and integer NEAREST only; fresh author-owned replay passed. Author replay is not independent. No OCR, enhancement, expected spelling, normalization or source mutation."
+}

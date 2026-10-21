@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 56,
+  "book": "BEL",
+  "status": "Three 1:16 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 56.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass56-BEL-1-16/source-provenance.json",
+    "sha256": "22c73c7d14910228bd44b89c3241b892df59f6b60fbab90f8b9d0380875c70c3"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 244. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 320,
+  "sourceNotesBefore": 55,
+  "sourceNotesAfter": 52,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-16-244-vayavou16-letter1-vowel",
+    "bel-1-16-244-vayokhelu16-letter1-vowel",
+    "bel-1-16-244-vayishtu16-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 16,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 16 on page רמד / 244 (viewer page 589) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "bel-1-16-244-vayavou16-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויָּבֹאוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויָּבֹאוּ consists of a bare vertical stem with white paper beneath; the following Yod carries a broad Qamats/Patah bar. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass56-BEL-1-16/bel-1-16-vav-vayavou-target-native.png",
+        "sha256": "99223a0726bf12265f8e81309de2ebdccbc0b8d9ccfd609640b6d73893eb23a4"
+      }
+    },
+    {
+      "noteId": "bel-1-16-244-vayokhelu16-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויֹּאכְלוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויֹּאכְלוּ consists of a bare vertical stem ending cleanly at row 1214 with pure white paper underneath across rows 1218..1240. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass56-BEL-1-16/bel-1-16-vav-vayokhelu-target-native.png",
+        "sha256": "65e72efb530102a80bc99631de655887d10e51c93a7e94ca0779e8d252b381c3"
+      }
+    },
+    {
+      "noteId": "bel-1-16-244-vayishtu16-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויִּשְׁתּוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויִּשְׁתּוּ consists of a bare vertical stem with 100% white paper underneath (all pixel values = 255 across rows 1218..1245). Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass56-BEL-1-16/bel-1-16-vav-vayishtu-target-native.png",
+        "sha256": "2f89209bc787614c92ac0aa1d58423a93c13ce61a151757ee1f5d8545b688f2a"
+      }
+    }
+  ]
+}

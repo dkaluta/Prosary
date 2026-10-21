@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 129,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-19-9/source-provenance.json",
+    "sha256": "503c46c8e49c3569d519b913e8b4566c7971c7ffc4cc8da9c25ccf3ab914e8aa"
+  },
+  "sourceNotesBefore": 108,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-19-9-word8-vav-1-vowel",
+    "wis-19-9-word9-vav-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "f69813b85c52305ad6663fc59cf3c16ec801d9312d8a44f431d96005cb9d0744",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "wis-19-9-word8-vav-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 9,
+      "anchorBefore": "ויְשׁוֹמָמוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Complete own initial Vav ends1473; after four clean rows the detached lower mark has one shallow broad horizontal expansion[969,1478,998,1491],267px, with a tiny4px edge through1493. Full lower field through1530 contains no second rounded node or descending stem. Its29x13 principal contour matches the literal SAME-UNIT He shallow Patah in complete ויהללו:27x12,225px[1200,1481,1227,1493]. Same-unit literal Yod Hiriq is a compact13x12 oval[1658,1481,1671,1493],123px, while Yod lower compound has two vertical expansions through1509. These independently classified own-pixel contrasts certify Patah U05B7 rather than a single compact dot, vertical compound or stemmed vowel. No grammatical reading supplies it. Independent peer: Independent full seven-letter word replay confirms initial Vav ends1473 and its separate lower principal plate is29x13 at1478..1491. Tiny isolated4px edge at1491..1493 does not create a descending stem, second round node or compound. The literal same-unit He bar is27x12 with similarly irregular basal contour, while the13x12 Yod stamp is compact and the13x28 compound is vertical. Own detached horizontal point contour certifies Patah.",
+      "targetCapture": "extension-volumeA-529-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-529-zoom4-upper-right.png",
+      "inspectedBounds": [
+        964,
+        1404,
+        990,
+        1473
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        969,
+        1478,
+        998,
+        1493
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-19-9/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-19-9-word9-vav-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 9,
+      "anchorBefore": "ויְהַלָלוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Complete own initial Vav lower stem remains about7px wide through1476, then abruptly expands LEFT at1486 into a shallow28x10 horizontal plate through1495. The field below1496 through1530 is clean. Exact literal SAME-WORD final Vav carries its internal Shuruq separately, with its lower terminal stem only7px wide and no extra plate[1031,1460,1038,1486]; this is a lower-field comparison, not a claim of a wholly unpointed Vav. Literal SAME-WORD He Patah is a detached27x12 broad shallow bar[1200,1481,1227,1493], matching the extra attached target plate in width/shallowness; compact single-dot and vertically stacked compound controls differ. The long leftward horizontal plate is an additional Patah fused at the right-side body stem, with no descending vowel stem, second node or pair of horizontal rounded stamps. Propose Patah U05B7, subject to independent challenge of whether the attached plate can be uniquely separated from the body. Independent peer: Independent full six-letter word replay confirms a thin initial Vav stem until1476, then a distinct new LEFT horizontal branch spanning1289..1317 at1486..1496. The broad28x10 plate stops completely after1495; no further lower stem/node exists. Same-word final Vav has only7px lower shaft through1486, so ordinary terminal width cannot account for the added28px branch. Same-word detached He Patah has matching27x12 shallow horizontal geometry. This comparison certifies attached Patah despite right-side stem contact; connectivity alone does not decide it.",
+      "targetCapture": "extension-volumeA-529-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-529-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1284,
+        1409,
+        1317,
+        1496
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        1289,
+        1486,
+        1317,
+        1496
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-19-9/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 19,
+      "verse": 9,
+      "before": "ויְשׁוֹמָמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ ויְהַלָלוּ לְךָ יְיָ גּוֹאֲלָם׃",
+      "after": "וַיְשׁוֹמָמוּ כְּסוּסִים בַּמִּרְעֶה וְכִכְבָשִׂים יִרְקְדוּ וַיְהַלָלוּ לְךָ יְיָ גּוֹאֲלָם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 19,
+    "verse": 9,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-19-9/independent-review.json",
+    "sha256": "4fe1df1d0081504064ca90fd96cbbb0447839451a5119ebabd32b0a779dc4fb6"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-19-9/primary-preparation.json",
+    "sha256": "427b9ac873be1745228af8cb094f6857396ae4b3d089782f6b46f08bc2ce90a1"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-19-9/consensus-preparation.json",
+    "sha256": "66b49eb4ea8549108be24b391263e3b3e03d231d04e4d4bc69df1b2eae2275ff"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

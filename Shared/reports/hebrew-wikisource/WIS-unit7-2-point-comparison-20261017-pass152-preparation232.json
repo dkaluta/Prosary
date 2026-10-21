@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 152,
+  "integrationPass": 152,
+  "preparationID": 232,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation232-WIS-7-2/source-provenance.json",
+    "sha256": "7e36e9b2f4e2f7afb1df0d2ce1021b4814381dfef36b7eb1a098515851326977"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-7-2-pe"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-7-2-pe",
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 2,
+      "anchorBefore": "הָקְפּאתִי",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own Pe body984px[1609,1334,1642,1381] has heavy lowerfoot1361..1372 continuously joined to a broad block1373..1380. Literal native ASCII does not independently delimit an exact vowel form or establish exact markcount. Distinct interior34px node is Dagesh, preserved. Blank lowerfield after1380 is not evidence of vowelabsence. Retain original unreadable vowel disclosure and every existing scalar; no mark borrowed from controls or expected spelling.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/85/85300b6e07abe034f80e2ad1f48db74f8990ec5036daa9b7eba65ac67d02a8ee.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/85/85300b6e07abe034f80e2ad1f48db74f8990ec5036daa9b7eba65ac67d02a8ee.bin",
+      "inspectedBounds": [
+        1609,
+        1325,
+        1643,
+        1395
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation232-WIS-7-2/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 7,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation232-WIS-7-2/independent-review.json",
+    "sha256": "3444eebce2b3b044347019584908db585c5a5f50b0a2c7d8b0c5e04e241dee0e"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation232-WIS-7-2/primary-preparation.json",
+    "sha256": "ca93489969ac6a2d5ce06502f3878a792d5aaa8a6b53d0b8c8e1e31ef31bef78"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation232-WIS-7-2/consensus-preparation.json",
+    "sha256": "66236c7f1f5945a80fdb2f6a2888c7f3eade250a41e2ef6094cc47a36ab0903e"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

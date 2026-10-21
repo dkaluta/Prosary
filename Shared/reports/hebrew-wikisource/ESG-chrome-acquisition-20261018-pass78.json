@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-21",
+  "pass": 78,
+  "legacyBatchPathDate": "20261017",
+  "browser": {
+    "name": "Chrome",
+    "id": "1",
+    "type": "extension_and_cdp_localhost_9222",
+    "tabId": "61A89F755E6D3DC9B0343D03370493BF",
+    "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+    "title": "Kahana external books volume A in Psik reader"
+  },
+  "authorization": {
+    "userSourceChoice": "Yes—use the open Kahana volumes",
+    "userConnectionInstruction": "Server runs on localhost:9222",
+    "actionTimeApproval": [
+      "continue the pass",
+      "do pass 41",
+      "do 40, then immediately do 42, 43, 44, 45, etc",
+      "restored both pages",
+      "ensure you are using chrome",
+      "could we preemptively capture everything with notes?",
+      "start working on them until exhaustion"
+    ],
+    "scope": "Signed-in Psik library session for Kahana volume A. Viewer page 560 (printed 215 / רטו, ESG 1:1) used for Pass 78 top priority unit."
+  },
+  "sourcePolicy": "Displayed Kahana scan approved by user supersedes previous local-PDF-only acquisition choice. Existing original-PDF page locators and all prior scalars remain unchanged. Screenshot is not claimed pixel-identical to original local PDF. No OCR, grammatical reconstruction, sharpening, smoothing or alternate witness used to supply marks. Browser zoom is the ordinary viewer renderer; subsequent inspection crops may only copy pixels and use integer NEAREST.",
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page215/extension-volumeA-560-page-overview.png",
+      "sha256": "776f9f0400bac5dc8523d1bd87c4f89850c79855fff469ec412f4e1546873f56",
+      "viewerPageNumber": 560,
+      "printedPageNumber": 215,
+      "printedPageHebrew": "רטו",
+      "canonicalLegacyPageNumber": 215,
+      "resolution": "2636x1862",
+      "purpose": "full-printed-page-overview"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page215/extension-volumeA-560-zoom4-upper-right.png",
+      "sha256": "c8b6ae217ce0389efc6e808e03c571f917b0443224789256c706f677b48765a6",
+      "viewerPageNumber": 560,
+      "printedPageNumber": 215,
+      "printedPageHebrew": "רטו",
+      "canonicalLegacyPageNumber": 215,
+      "resolution": "2636x1862",
+      "purpose": "primary-source-screenshot-upper-right"
+    }
+  ]
+}

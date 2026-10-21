@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "book": "2MA",
+  "date": "2026-10-17",
+  "status": "Focused reinspection of all 17 unreadable-point notes complete; none safely resolved",
+  "notesInspected": 17,
+  "resolved": 0,
+  "retained": 17,
+  "canonicalChanged": false,
+  "scope": "All 17 point-omission targets were located in the fresh additional scan image, inspected in page context and enlarged original-pixel crops. Primary scan follow-ups were made for 5:16, 6:11, 6:13 and 12:45. The separately authorized 14:4 restored-consonant note was not proposed for removal. This is a focused point review, not a full chapter or book comparison.",
+  "method": "Embedded-image extraction with pypdf and integer nearest-neighbor cropping only; no contrast adjustment, sharpening, OCR, automated niqqud or grammatical inference. A tentative 6:11 hataf-patah reading was independently rejected by root because the upper point remains fused.",
+  "sourceScans": [
+    {
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+    },
+    {
+      "path": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7"
+    }
+  ],
+  "noteDispositions": [
+    {
+      "noteId": "2ma-1-10-he-1-vowel",
+      "anchor": "המְּשׁוּחִים",
+      "sourcePages": [
+        180
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The he lower mark is a short fused bar touching or approaching the letter foot; its lower contour does not establish the vowel class.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-1-10-meshuchim-extra.png",
+          "sha256": "c3aa2281adf7a7ab5699dcad219419356c6ebe14b07d7de959630eb1bf9c2463",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-1-16-vav-1-vowel-second-word",
+      "anchor": "ופִצְפְּצוּהוּ",
+      "sourcePages": [
+        181
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The first vav lower material remains attached to its stem; a complete separate vowel shape is not visible.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-1-16-ufitzpetzuhu-extra.png",
+          "sha256": "3218efb52a12c1c6187df7264a8cb50fcdc165486a69bb1028dfa70721436f9a",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-2-28-yod-2-dagesh",
+      "anchor": "דִיוּקֵי",
+      "sourcePages": [
+        186
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Interior material at the short yod remains inseparable from its descending stroke; neither distinct dagesh nor clean absence is certified.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-2-28-diyukei-extra.png",
+          "sha256": "fdf702d3cdd84801f5020551795782519bccbaa1e76f5c280af956acc8ce72c6",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-3-26-dalet-3-vowel",
+      "anchor": "וּמַדהִירֵי",
+      "sourcePages": [
+        189
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The dalet lower mark remains a compact dark mass without a complete separable vowel geometry; no expected spelling or grammar was used to classify it.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-3-26-umadhirei-extra.png",
+          "sha256": "3fcb3ab697ee28bc131bdf5a49040c2c75deafa60dad1339205c990e3dc66571",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-5-16-tav-2-vowel",
+      "anchor": "נִתּן",
+      "sourcePages": [
+        196
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The companion shows a horizontal lower tav mark; the primary preserves a compact thick mass. The point contour is insufficient to distinguish flat patah from a damaged qamats/other joined mark.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-5-16-nitan-extra.png",
+          "sha256": "ae670f1987e23ee4d9058b41b64afd68c61e8f7dc3d8b8a6714d1e9ba0d3036f",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-5-16-nitan-primary.png",
+          "sha256": "49c73c0a1219d0cbe02d921ec42096f3d1997496103829a371aac47f128093cc",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-5-22-lamed-3-vowel",
+      "anchor": "פִּילפּוֹס",
+      "sourcePages": [
+        197
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The lamed lower material is joined to its tip; a separately identifiable vowel is not established.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-5-22-philipos-extra.png",
+          "sha256": "4e1a23d5be630e9f4b31579efef25a3d39c9b9eacfd0923078214973d553bdfd",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-6-11-he-2-vowel",
+      "anchor": "מִהרוּ",
+      "sourcePages": [
+        199
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "A horizontal bar, right upper material and lower dot are present, but upper dot separation is not secure. A fresh primary crop suggested hataf-patah; root independently rejected classification because it cannot be distinguished from qamats or a broken stem. Retain the note.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-6-11-miharu-extra.png",
+          "sha256": "9220137d14707383ec0e2757532b5caaa8404c9fe5576e08998baf3ce6ccc610",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-6-11-miharu-primary.png",
+          "sha256": "858730873cc904c0c8b7932c788d37f369cf3f018316e7c04ccc2652360657a2",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-6-13-shin-2-dagesh",
+      "anchor": "הִשָׁאֵר",
+      "sourcePages": [
+        199
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "Shin interior material remains part of or joined to the diagonal middle branch in both the fresh primary and companion crops.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-6-13-hishaer-extra.png",
+          "sha256": "2dd9625743a325b8ce8d160557a38afa0dddf23e72d6283ac6cc73d37fc14abf",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-6-13-hishaer-primary.png",
+          "sha256": "ad7c4dacd6196f844d00853b364ec356fc46243a49d4beb6f2a38fdbdac2ea35",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-7-40-bet-1-vowel",
+      "anchor": "בּיָי",
+      "sourcePages": [
+        204
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The bet lower mark is a joined compact horizontal cluster without a secure full vowel shape.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-7-40-bayay-extra.png",
+          "sha256": "bf48dbefda3ada08c49fb87308569d6e405f3417e0c6643bb4a3a60b32f7d4e1",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-8-4-yod-2-dagesh",
+      "anchor": "הַיְלָדִים",
+      "sourcePages": [
+        204
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The yod remains a solid short stroke without a securely isolated interior dot or a sufficiently clear absence.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-8-4-hayladim-extra.png",
+          "sha256": "0f889af63af38fbb5b1889222013ea2d1dbdc5bf59f6ea7e490a4cedf599e6b7",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-9-29-pe-1-dagesh",
+      "anchor": "פִילפּוֹס",
+      "sourcePages": [
+        212
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The first pe interior is joined to its inner horizontal stroke; presence or absence of a separate dagesh is unresolved.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-9-29-philipos-extra.png",
+          "sha256": "f6f4eda37fa34919ac0b10a7c68c40297b32928a0fbfe0243f95cf32f0195c85",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-9-29-lamed-3-vowel",
+      "anchor": "פִילפּוֹס",
+      "sourcePages": [
+        212
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The lamed tip/lower dark material remains contiguous, so a separately classified vowel cannot be certified.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-9-29-philipos-extra.png",
+          "sha256": "f6f4eda37fa34919ac0b10a7c68c40297b32928a0fbfe0243f95cf32f0195c85",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-11-4-bet-3-vowel",
+      "anchor": "מֵרִבבוֹת",
+      "sourcePages": [
+        217
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The first bet lower cluster contains joined horizontal and right vertical material; it does not establish a complete exact vowel.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-11-4-meribevot-extra.png",
+          "sha256": "afad151f247f046b5dd89043ddd00cbe27eeed4f9731d166a1ae1475357239d9",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-11-25-samekh-2-vowel",
+      "anchor": "נַסיעַם",
+      "sourcePages": [
+        218
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The samekh base and lower region remain incomplete; neither an exact vowel nor clean source absence can be certified.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-11-25-nasiam-extra.png",
+          "sha256": "2784274e0869d1f48614052455d527537796a0bf911bef8742ae01bec3707bae",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-12-45-shin-3-dagesh",
+      "anchor": "קְדֻשָׁה",
+      "sourcePages": [
+        224
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The shin middle interior material is joined to the descending branch in both scans. No securely detached dot is visible.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-12-45-kedusha-extra.png",
+          "sha256": "e8d1652d0c0147cac954079b95e1c392e523739c1f3f938973e5f5ce61fb249a",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-12-45-kedusha-primary.png",
+          "sha256": "ecc750177353bbd7df16009a9a3dc3709fe4ee4d18af1f23da084b7c4e843232",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-15-10-dalet-5-vowel",
+      "anchor": "וַיְעוֹדדֵם",
+      "sourcePages": [
+        231
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The first dalet lower compound cluster remains partially joined and cannot be assigned a full exact vowel geometry.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-15-10-vayeoddem-extra.png",
+          "sha256": "649a2509fabab23699bbd1fcc192e1fa3e2bf5897aabbaab0d46a19832d34f10",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    },
+    {
+      "noteId": "2ma-15-34-het-2-vowel",
+      "anchor": "מֵחלְלוֹ",
+      "sourcePages": [
+        232
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The het lower mark is a short thick bar with indistinct lower contour; the original uncertainty remains.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-2MA/2ma-15-34-mechalalo-extra.png",
+          "sha256": "2d7e3941e6717fad66672bffb54f29b171836fd6e8dc49a056e50f9aa16d947b",
+          "method": "Five-times integer nearest-neighbor enlargement of unchanged embedded scan-image pixels; no enhancement."
+        }
+      ]
+    }
+  ]
+}

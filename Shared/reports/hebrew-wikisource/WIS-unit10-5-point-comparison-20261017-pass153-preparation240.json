@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 153,
+  "integrationPass": 153,
+  "preparationID": 240,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation240-WIS-10-5/source-provenance.json",
+    "sha256": "85c3812f9c14cbda9d2fd7b860790df325fa71e58dc2ea1f513813b36cb64a47"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-10-5-kaf"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-10-5-kaf",
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 5,
+      "anchorBefore": "כּאֲשֶׁר",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Strict offline independently extracted single embedded native PDF image; Pillow/NumPy/SciPy exact arrays and literal native-pixel ASCII; exact crops and integer NEAREST only. Old crop exactRGB matching locates only. No image viewing, OCR, page rendering, enhancement, grammar or borrowed marks supplied any classification.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a8/a8ec2808cc38b406c1f17c9abb0eed466ce5e6e7bb334f5ab726122cf1d6b1f4.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a8/a8ec2808cc38b406c1f17c9abb0eed466ce5e6e7bb334f5ab726122cf1d6b1f4.bin",
+      "inspectedBounds": [
+        646,
+        790,
+        686,
+        855
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation240-WIS-10-5/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 10,
+    "verse": 5,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation240-WIS-10-5/independent-review.json",
+    "sha256": "4def7389e8caa0964eb5619f08bbaf025a53ecc3bf0c0c5949cdd26f4f033946"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation240-WIS-10-5/primary-preparation.json",
+    "sha256": "0bd9db6710315332cfd91970406dd52c36da8ac7c73fe04275303a7306b74d5b"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation240-WIS-10-5/consensus-preparation.json",
+    "sha256": "af9e0a22695308838a356d97328339b4393bf49f811c9026e261069196d165ea"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

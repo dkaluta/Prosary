@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 150,
+  "integrationPass": 150,
+  "preparationID": 217,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation217-WIS-4-1/source-provenance.json",
+    "sha256": "fa1749f68ac199148d021e55b9f5a67bb4793623680ab181831258066d3628c6"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-4-1-letter-1-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-4-1-letter-1-vowel",
+      "book": "WIS",
+      "chapter": 4,
+      "verse": 1,
+      "anchorBefore": "זכְרָהּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "OwnfirstZayin323px[2157,1535,2171,1581] independentlyreadincompleteZayin-Kaf-Resh-He. Narrowstem2161..2164 descends1570..1572, remainscontinuous throughnarrow2160..2162y1573 intoexpandedterminal2158..2164y1576..1578. No detached exactvowel or independentlyprintedabsence certified fromjoinedterminal. LiteralownHe37pxMapiq andfirstwholeTovVav41pxupperHolam supplynoZayinmark. Retain exact disclosure/everyoriginalscalar.",
+      "targetCapture": "primary-151-native.png",
+      "targetSourceIdentifier": "primary-151-native.png",
+      "inspectedBounds": [
+        2153,
+        1525,
+        2178,
+        1590
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation217-WIS-4-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 4,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation217-WIS-4-1/independent-review.json",
+    "sha256": "d8978ef02bd023856bcc8fd4ebb8148297f7032e247d39415b5c725de779e34f"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation217-WIS-4-1/primary-preparation.json",
+    "sha256": "007e44fcf3fa3522ad0d14972c0c3bd6a1216a747f0378f5737c1acaa3236e19"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation217-WIS-4-1/consensus-preparation.json",
+    "sha256": "19f168d33f5542816d1ff3402e357ff30c3e899de040e045eb104adc0199ff67"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,2200 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 8,
+  "book": "BEL",
+  "status": "Five exact original-source vowel proposals independently approved; five targeted notes retained. No source mutation by this author.",
+  "scope": "Ten remaining non-vav, non-yod vowel notes in annotated BEL chapter1 lower Theodotion body only: all four remaining resh/dalet targets, four kaf targets and two mem targets. There are no remaining he vowel notes in the previously screened non-vav inventory. This is a bounded full-glyph/font-comparator study, not an all221-note review.",
+  "method": "Original A2 embedded native pixels and integer nearest-neighbor enlargements only. Each target was checked with complete word context; diagnostic connected point morphology was compared against literal same-font positive marks and alternate-class/bare-letter controls. Native crop bounds and all scales were independently replayed before publication. No OCR, expected grammar, consonant inference, filtering, sharpening, contrast changes, interpolated pixels or upper Septuagint substitution. No browser printing, session changes or new PSIK pixel reliance occurred in this pass.",
+  "sourcePDF": {
+    "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+    "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5"
+  },
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/BEL.json",
+  "canonicalInputSHA256": "9c21e0e0a13f327803bee72a2dcc07a38de7d5910a1fb691910b7c989a640f6a",
+  "canonicalOutputSHA256": "9c21e0e0a13f327803bee72a2dcc07a38de7d5910a1fb691910b7c989a640f6a",
+  "canonicalChanged": false,
+  "canonicalApplicationState": "Root integrates the approved proposals separately. No canonical, central-review, daily, generated, browser-session or saved-PDF mutations by this report author.",
+  "reviewedNoteCount": 10,
+  "resolutionCount": 5,
+  "retainedNoteCount": 5,
+  "beforeBookNoteCount": 221,
+  "expectedRemainingBookNoteCountAfterIntegration": 216,
+  "accepted": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "before": "ויַעַבְדהוּ",
+      "after": "ויַעַבְדֻהוּ",
+      "old": "ויַעַבְדהוּ",
+      "new": "ויַעַבְדֻהוּ",
+      "noteID": "bel-1-23-245-vayaavduhu23-letter5-vowel",
+      "retiredNoteIds": [
+        "bel-1-23-245-vayaavduhu23-letter5-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 5,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05BB"
+      ],
+      "sourcePage": 245,
+      "finding": "Below the dalet ordinary shaft and foot are three additional rounded lobes stepping down and right, separated by narrow waists. Their baseline lies below neighboring letter feet, so they are three point stamps rather than a normal foot plus a two-dot sheva. The same-page alef qibbuts in ויראהו preserves the corresponding three-stamp staircase, wholly detached from its letter body.",
+      "targetEvidence": "bel-1-23-245-vayaavduhu23-letter5-vowel-target",
+      "completeWordEvidence": "bel-1-23-245-vayaavduhu23-letter5-vowel-complete-word",
+      "comparisonEvidence": [
+        "dalet23-lower-point",
+        "alef21-lower-point",
+        "alef-qibbuts-vayarehu21-tight",
+        "alef-qibbuts-vayarehu21-locator"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-23-245-vayaavduhu23-letter1-vowel",
+          "before": "ויַעַבְדהוּ",
+          "after": "ויַעַבְדֻהוּ"
+        },
+        {
+          "noteID": "bel-1-23-245-vayaavduhu23-letter2-dagesh",
+          "before": "ויַעַבְדהוּ",
+          "after": "ויַעַבְדֻהוּ"
+        }
+      ],
+      "beforeVerseTextSHA256": "7f2d3b9dcfcb6b95609dd4a6c7d2359ee6e869dcc95cdb5f4e871b1d2cf97fbc",
+      "afterVerseTextSHA256": "e060333c8d352ba7a75e57fd4ae3083b09a2c87b9c0eb9e82147bd8171fdf46e",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר",
+      "old": "ויֹאמר",
+      "new": "ויֹאמַר",
+      "noteID": "bel-1-20-245-vayomer20-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-20-245-vayomer20-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B7"
+      ],
+      "sourcePage": 245,
+      "finding": "The additional broad shallow lower bar has a long flat continuous bottom and a central white window separating most of it from the mem foot. Literal same-font mem patah controls supply the flat-bar morphology. Tsere controls have two rounded lower nodes and a central waist or separate bridges; qamats has a substantial descending stem, neither present here.",
+      "targetEvidence": "bel-1-20-245-vayomer20-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-20-245-vayomer20-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "mem-patah-malakh36-tight",
+        "malakh36-mem-patah-locator",
+        "mem-patah-mamlkhetu1-tight",
+        "mamlkhetu1-mem-patah-locator",
+        "mem-tsere-meodo8-tight",
+        "mem-tsere-meodo8-word",
+        "mem-tsere-omed3-tight",
+        "mem-tsere-omed3-locator",
+        "mem-qamats-kama7-tight",
+        "mem-qamats-kama7-locator"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-20-245-vayomer20-letter1-vowel",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        },
+        {
+          "noteID": "bel-1-20-245-vayomer20-letter2-dagesh",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        }
+      ],
+      "beforeVerseTextSHA256": "9f868194b3aa8e1c891872d79ab94ec37b5123bfef8d9bc0ed5c58124563ba33",
+      "afterVerseTextSHA256": "0847d9c246407d53b3ee03f8ab71906d432fecbe8e06bfff17caeb8a384e2e6b",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 37,
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר",
+      "old": "ויֹאמר",
+      "new": "ויֹאמַר",
+      "noteID": "bel-1-37-247-vayomer37-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-37-247-vayomer37-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B7"
+      ],
+      "sourcePage": 247,
+      "finding": "The mem has an additional shallow horizontal bar with a long straight lower edge, joined to the ordinary foot through a narrow left neck and otherwise separated by a white channel. Its contour matches both the same-page מלאך mem and a detached same-font ממלכתו mem patah. Tsere has two low tips/waist; qamats has a deep lower stem.",
+      "targetEvidence": "bel-1-37-247-vayomer37-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-37-247-vayomer37-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "mem-patah-malakh36-tight",
+        "malakh36-mem-patah-locator",
+        "mem-patah-mamlkhetu1-tight",
+        "mamlkhetu1-mem-patah-locator",
+        "mem-tsere-meodo8-tight",
+        "mem-tsere-omed3-tight",
+        "mem-qamats-kama7-tight"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-37-247-vayomer37-letter1-vowel",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        },
+        {
+          "noteID": "bel-1-37-247-vayomer37-letter2-dagesh",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        }
+      ],
+      "beforeVerseTextSHA256": "96df282f54a0451b3eb3be0d210895de54c2a3bbf8a6602d642c8be1e177a579",
+      "afterVerseTextSHA256": "0aa877de7e81740caa4c8ddadfee7876fa3a7402b7da39cad3fa2386fd8eba71",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "before": "ויֹאכל",
+      "after": "ויֹאכֵל",
+      "old": "ויֹאכל",
+      "new": "ויֹאכֵל",
+      "noteID": "bel-1-39-247-vayokhal39-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-39-247-vayokhal39-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B5"
+      ],
+      "sourcePage": 247,
+      "finding": "Two low rounded tips surround a central lower valley/white window beneath the kaf foot, matching the entire contour of the same-letter kaf tsere in אוכל7. The kaf segol counterexample in והכר20 has a substantial third central lower node absent from the target; the kaf patah in אכל8 has a single low plateau. Preserve the literal tsere independently of expected verbal reading.",
+      "targetEvidence": "bel-1-39-247-vayokhal39-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-39-247-vayokhal39-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "okhel7-kaf-tsere-tight",
+        "okhel7-kaf-tsere-word",
+        "haker20-kaf-segol-tight",
+        "haker20-kaf-segol-word",
+        "akhal8-kaf-patah-word"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-39-247-vayokhal39-letter1-vowel",
+          "before": "ויֹאכל",
+          "after": "ויֹאכֵל"
+        },
+        {
+          "noteID": "bel-1-39-247-vayokhal39-letter2-dagesh",
+          "before": "ויֹאכל",
+          "after": "ויֹאכֵל"
+        }
+      ],
+      "beforeVerseTextSHA256": "40cef4a48f2fa999feef01b4076922516216b136a04e7444873ae6ead30e3276",
+      "afterVerseTextSHA256": "8f96fb6f5ba7520a71b7cb24845bad05fd5cc64b5534ec0cfa0b503a3bd7c88e",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "before": "ויִטָּרפוּ",
+      "after": "ויִטָּרְפוּ",
+      "old": "ויִטָּרפוּ",
+      "new": "ויִטָּרְפוּ",
+      "noteID": "bel-1-42-247-vayitarfu42-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-42-247-vayitarfu42-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B0"
+      ],
+      "sourcePage": 247,
+      "finding": "Two comparable rounded vertical nodes extend below the ordinary resh shaft with narrow waists, matching the same-page resh in חורשי. Independent same-page mem sheva in למקומו has two such rounded stamps wholly detached from its body, connected to one another only by a one-pixel neck. Qamats has a much broader crossbar and lower stem; the bare resh has neither extra node.",
+      "targetEvidence": "bel-1-42-247-vayitarfu42-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-42-247-vayitarfu42-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "chorsei42-resh-sheva",
+        "chorsei42-locator",
+        "limkomo39-mem-control",
+        "limkomo39-word-control",
+        "bet23-sheva",
+        "resh-qamats-raato42",
+        "resh-bare-vayomer37"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-42-247-vayitarfu42-letter1-vowel",
+          "before": "ויִטָּרפוּ",
+          "after": "ויִטָּרְפוּ"
+        },
+        {
+          "noteID": "bel-1-42-247-vayitarfu42-letter2-dagesh",
+          "before": "ויִטָּרפוּ",
+          "after": "ויִטָּרְפוּ"
+        }
+      ],
+      "beforeVerseTextSHA256": "7fc509a1110167e9f226783bc89933515d9974862bd83b0c6dc5ff547df02050",
+      "afterVerseTextSHA256": "9cee59c6e5fe47d6218fc63f5cdd09ab494255bac76eab37f9ca37ac86650e8b",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    }
+  ],
+  "proposedChanges": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "before": "ויַעַבְדהוּ",
+      "after": "ויַעַבְדֻהוּ",
+      "old": "ויַעַבְדהוּ",
+      "new": "ויַעַבְדֻהוּ",
+      "noteID": "bel-1-23-245-vayaavduhu23-letter5-vowel",
+      "retiredNoteIds": [
+        "bel-1-23-245-vayaavduhu23-letter5-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 5,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05BB"
+      ],
+      "sourcePage": 245,
+      "finding": "Below the dalet ordinary shaft and foot are three additional rounded lobes stepping down and right, separated by narrow waists. Their baseline lies below neighboring letter feet, so they are three point stamps rather than a normal foot plus a two-dot sheva. The same-page alef qibbuts in ויראהו preserves the corresponding three-stamp staircase, wholly detached from its letter body.",
+      "targetEvidence": "bel-1-23-245-vayaavduhu23-letter5-vowel-target",
+      "completeWordEvidence": "bel-1-23-245-vayaavduhu23-letter5-vowel-complete-word",
+      "comparisonEvidence": [
+        "dalet23-lower-point",
+        "alef21-lower-point",
+        "alef-qibbuts-vayarehu21-tight",
+        "alef-qibbuts-vayarehu21-locator"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-23-245-vayaavduhu23-letter1-vowel",
+          "before": "ויַעַבְדהוּ",
+          "after": "ויַעַבְדֻהוּ"
+        },
+        {
+          "noteID": "bel-1-23-245-vayaavduhu23-letter2-dagesh",
+          "before": "ויַעַבְדהוּ",
+          "after": "ויַעַבְדֻהוּ"
+        }
+      ],
+      "beforeVerseTextSHA256": "7f2d3b9dcfcb6b95609dd4a6c7d2359ee6e869dcc95cdb5f4e871b1d2cf97fbc",
+      "afterVerseTextSHA256": "e060333c8d352ba7a75e57fd4ae3083b09a2c87b9c0eb9e82147bd8171fdf46e",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר",
+      "old": "ויֹאמר",
+      "new": "ויֹאמַר",
+      "noteID": "bel-1-20-245-vayomer20-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-20-245-vayomer20-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B7"
+      ],
+      "sourcePage": 245,
+      "finding": "The additional broad shallow lower bar has a long flat continuous bottom and a central white window separating most of it from the mem foot. Literal same-font mem patah controls supply the flat-bar morphology. Tsere controls have two rounded lower nodes and a central waist or separate bridges; qamats has a substantial descending stem, neither present here.",
+      "targetEvidence": "bel-1-20-245-vayomer20-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-20-245-vayomer20-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "mem-patah-malakh36-tight",
+        "malakh36-mem-patah-locator",
+        "mem-patah-mamlkhetu1-tight",
+        "mamlkhetu1-mem-patah-locator",
+        "mem-tsere-meodo8-tight",
+        "mem-tsere-meodo8-word",
+        "mem-tsere-omed3-tight",
+        "mem-tsere-omed3-locator",
+        "mem-qamats-kama7-tight",
+        "mem-qamats-kama7-locator"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-20-245-vayomer20-letter1-vowel",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        },
+        {
+          "noteID": "bel-1-20-245-vayomer20-letter2-dagesh",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        }
+      ],
+      "beforeVerseTextSHA256": "9f868194b3aa8e1c891872d79ab94ec37b5123bfef8d9bc0ed5c58124563ba33",
+      "afterVerseTextSHA256": "0847d9c246407d53b3ee03f8ab71906d432fecbe8e06bfff17caeb8a384e2e6b",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 37,
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר",
+      "old": "ויֹאמר",
+      "new": "ויֹאמַר",
+      "noteID": "bel-1-37-247-vayomer37-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-37-247-vayomer37-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B7"
+      ],
+      "sourcePage": 247,
+      "finding": "The mem has an additional shallow horizontal bar with a long straight lower edge, joined to the ordinary foot through a narrow left neck and otherwise separated by a white channel. Its contour matches both the same-page מלאך mem and a detached same-font ממלכתו mem patah. Tsere has two low tips/waist; qamats has a deep lower stem.",
+      "targetEvidence": "bel-1-37-247-vayomer37-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-37-247-vayomer37-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "mem-patah-malakh36-tight",
+        "malakh36-mem-patah-locator",
+        "mem-patah-mamlkhetu1-tight",
+        "mamlkhetu1-mem-patah-locator",
+        "mem-tsere-meodo8-tight",
+        "mem-tsere-omed3-tight",
+        "mem-qamats-kama7-tight"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-37-247-vayomer37-letter1-vowel",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        },
+        {
+          "noteID": "bel-1-37-247-vayomer37-letter2-dagesh",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        }
+      ],
+      "beforeVerseTextSHA256": "96df282f54a0451b3eb3be0d210895de54c2a3bbf8a6602d642c8be1e177a579",
+      "afterVerseTextSHA256": "0aa877de7e81740caa4c8ddadfee7876fa3a7402b7da39cad3fa2386fd8eba71",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "before": "ויֹאכל",
+      "after": "ויֹאכֵל",
+      "old": "ויֹאכל",
+      "new": "ויֹאכֵל",
+      "noteID": "bel-1-39-247-vayokhal39-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-39-247-vayokhal39-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B5"
+      ],
+      "sourcePage": 247,
+      "finding": "Two low rounded tips surround a central lower valley/white window beneath the kaf foot, matching the entire contour of the same-letter kaf tsere in אוכל7. The kaf segol counterexample in והכר20 has a substantial third central lower node absent from the target; the kaf patah in אכל8 has a single low plateau. Preserve the literal tsere independently of expected verbal reading.",
+      "targetEvidence": "bel-1-39-247-vayokhal39-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-39-247-vayokhal39-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "okhel7-kaf-tsere-tight",
+        "okhel7-kaf-tsere-word",
+        "haker20-kaf-segol-tight",
+        "haker20-kaf-segol-word",
+        "akhal8-kaf-patah-word"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-39-247-vayokhal39-letter1-vowel",
+          "before": "ויֹאכל",
+          "after": "ויֹאכֵל"
+        },
+        {
+          "noteID": "bel-1-39-247-vayokhal39-letter2-dagesh",
+          "before": "ויֹאכל",
+          "after": "ויֹאכֵל"
+        }
+      ],
+      "beforeVerseTextSHA256": "40cef4a48f2fa999feef01b4076922516216b136a04e7444873ae6ead30e3276",
+      "afterVerseTextSHA256": "8f96fb6f5ba7520a71b7cb24845bad05fd5cc64b5534ec0cfa0b503a3bd7c88e",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "before": "ויִטָּרפוּ",
+      "after": "ויִטָּרְפוּ",
+      "old": "ויִטָּרפוּ",
+      "new": "ויִטָּרְפוּ",
+      "noteID": "bel-1-42-247-vayitarfu42-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-42-247-vayitarfu42-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B0"
+      ],
+      "sourcePage": 247,
+      "finding": "Two comparable rounded vertical nodes extend below the ordinary resh shaft with narrow waists, matching the same-page resh in חורשי. Independent same-page mem sheva in למקומו has two such rounded stamps wholly detached from its body, connected to one another only by a one-pixel neck. Qamats has a much broader crossbar and lower stem; the bare resh has neither extra node.",
+      "targetEvidence": "bel-1-42-247-vayitarfu42-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-42-247-vayitarfu42-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "chorsei42-resh-sheva",
+        "chorsei42-locator",
+        "limkomo39-mem-control",
+        "limkomo39-word-control",
+        "bet23-sheva",
+        "resh-qamats-raato42",
+        "resh-bare-vayomer37"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-42-247-vayitarfu42-letter1-vowel",
+          "before": "ויִטָּרפוּ",
+          "after": "ויִטָּרְפוּ"
+        },
+        {
+          "noteID": "bel-1-42-247-vayitarfu42-letter2-dagesh",
+          "before": "ויִטָּרפוּ",
+          "after": "ויִטָּרְפוּ"
+        }
+      ],
+      "beforeVerseTextSHA256": "7fc509a1110167e9f226783bc89933515d9974862bd83b0c6dc5ff547df02050",
+      "afterVerseTextSHA256": "9cee59c6e5fe47d6218fc63f5cdd09ab494255bac76eab37f9ca37ac86650e8b",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    }
+  ],
+  "resolutions": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "before": "ויַעַבְדהוּ",
+      "after": "ויַעַבְדֻהוּ",
+      "old": "ויַעַבְדהוּ",
+      "new": "ויַעַבְדֻהוּ",
+      "noteID": "bel-1-23-245-vayaavduhu23-letter5-vowel",
+      "retiredNoteIds": [
+        "bel-1-23-245-vayaavduhu23-letter5-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 5,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05BB"
+      ],
+      "sourcePage": 245,
+      "finding": "Below the dalet ordinary shaft and foot are three additional rounded lobes stepping down and right, separated by narrow waists. Their baseline lies below neighboring letter feet, so they are three point stamps rather than a normal foot plus a two-dot sheva. The same-page alef qibbuts in ויראהו preserves the corresponding three-stamp staircase, wholly detached from its letter body.",
+      "targetEvidence": "bel-1-23-245-vayaavduhu23-letter5-vowel-target",
+      "completeWordEvidence": "bel-1-23-245-vayaavduhu23-letter5-vowel-complete-word",
+      "comparisonEvidence": [
+        "dalet23-lower-point",
+        "alef21-lower-point",
+        "alef-qibbuts-vayarehu21-tight",
+        "alef-qibbuts-vayarehu21-locator"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-23-245-vayaavduhu23-letter1-vowel",
+          "before": "ויַעַבְדהוּ",
+          "after": "ויַעַבְדֻהוּ"
+        },
+        {
+          "noteID": "bel-1-23-245-vayaavduhu23-letter2-dagesh",
+          "before": "ויַעַבְדהוּ",
+          "after": "ויַעַבְדֻהוּ"
+        }
+      ],
+      "beforeVerseTextSHA256": "7f2d3b9dcfcb6b95609dd4a6c7d2359ee6e869dcc95cdb5f4e871b1d2cf97fbc",
+      "afterVerseTextSHA256": "e060333c8d352ba7a75e57fd4ae3083b09a2c87b9c0eb9e82147bd8171fdf46e",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר",
+      "old": "ויֹאמר",
+      "new": "ויֹאמַר",
+      "noteID": "bel-1-20-245-vayomer20-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-20-245-vayomer20-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B7"
+      ],
+      "sourcePage": 245,
+      "finding": "The additional broad shallow lower bar has a long flat continuous bottom and a central white window separating most of it from the mem foot. Literal same-font mem patah controls supply the flat-bar morphology. Tsere controls have two rounded lower nodes and a central waist or separate bridges; qamats has a substantial descending stem, neither present here.",
+      "targetEvidence": "bel-1-20-245-vayomer20-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-20-245-vayomer20-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "mem-patah-malakh36-tight",
+        "malakh36-mem-patah-locator",
+        "mem-patah-mamlkhetu1-tight",
+        "mamlkhetu1-mem-patah-locator",
+        "mem-tsere-meodo8-tight",
+        "mem-tsere-meodo8-word",
+        "mem-tsere-omed3-tight",
+        "mem-tsere-omed3-locator",
+        "mem-qamats-kama7-tight",
+        "mem-qamats-kama7-locator"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-20-245-vayomer20-letter1-vowel",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        },
+        {
+          "noteID": "bel-1-20-245-vayomer20-letter2-dagesh",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        }
+      ],
+      "beforeVerseTextSHA256": "9f868194b3aa8e1c891872d79ab94ec37b5123bfef8d9bc0ed5c58124563ba33",
+      "afterVerseTextSHA256": "0847d9c246407d53b3ee03f8ab71906d432fecbe8e06bfff17caeb8a384e2e6b",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 37,
+      "before": "ויֹאמר",
+      "after": "ויֹאמַר",
+      "old": "ויֹאמר",
+      "new": "ויֹאמַר",
+      "noteID": "bel-1-37-247-vayomer37-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-37-247-vayomer37-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B7"
+      ],
+      "sourcePage": 247,
+      "finding": "The mem has an additional shallow horizontal bar with a long straight lower edge, joined to the ordinary foot through a narrow left neck and otherwise separated by a white channel. Its contour matches both the same-page מלאך mem and a detached same-font ממלכתו mem patah. Tsere has two low tips/waist; qamats has a deep lower stem.",
+      "targetEvidence": "bel-1-37-247-vayomer37-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-37-247-vayomer37-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "mem-patah-malakh36-tight",
+        "malakh36-mem-patah-locator",
+        "mem-patah-mamlkhetu1-tight",
+        "mamlkhetu1-mem-patah-locator",
+        "mem-tsere-meodo8-tight",
+        "mem-tsere-omed3-tight",
+        "mem-qamats-kama7-tight"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-37-247-vayomer37-letter1-vowel",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        },
+        {
+          "noteID": "bel-1-37-247-vayomer37-letter2-dagesh",
+          "before": "ויֹאמר",
+          "after": "ויֹאמַר"
+        }
+      ],
+      "beforeVerseTextSHA256": "96df282f54a0451b3eb3be0d210895de54c2a3bbf8a6602d642c8be1e177a579",
+      "afterVerseTextSHA256": "0aa877de7e81740caa4c8ddadfee7876fa3a7402b7da39cad3fa2386fd8eba71",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "before": "ויֹאכל",
+      "after": "ויֹאכֵל",
+      "old": "ויֹאכל",
+      "new": "ויֹאכֵל",
+      "noteID": "bel-1-39-247-vayokhal39-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-39-247-vayokhal39-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B5"
+      ],
+      "sourcePage": 247,
+      "finding": "Two low rounded tips surround a central lower valley/white window beneath the kaf foot, matching the entire contour of the same-letter kaf tsere in אוכל7. The kaf segol counterexample in והכר20 has a substantial third central lower node absent from the target; the kaf patah in אכל8 has a single low plateau. Preserve the literal tsere independently of expected verbal reading.",
+      "targetEvidence": "bel-1-39-247-vayokhal39-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-39-247-vayokhal39-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "okhel7-kaf-tsere-tight",
+        "okhel7-kaf-tsere-word",
+        "haker20-kaf-segol-tight",
+        "haker20-kaf-segol-word",
+        "akhal8-kaf-patah-word"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-39-247-vayokhal39-letter1-vowel",
+          "before": "ויֹאכל",
+          "after": "ויֹאכֵל"
+        },
+        {
+          "noteID": "bel-1-39-247-vayokhal39-letter2-dagesh",
+          "before": "ויֹאכל",
+          "after": "ויֹאכֵל"
+        }
+      ],
+      "beforeVerseTextSHA256": "40cef4a48f2fa999feef01b4076922516216b136a04e7444873ae6ead30e3276",
+      "afterVerseTextSHA256": "8f96fb6f5ba7520a71b7cb24845bad05fd5cc64b5534ec0cfa0b503a3bd7c88e",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "before": "ויִטָּרפוּ",
+      "after": "ויִטָּרְפוּ",
+      "old": "ויִטָּרפוּ",
+      "new": "ויִטָּרְפוּ",
+      "noteID": "bel-1-42-247-vayitarfu42-letter4-vowel",
+      "retiredNoteIds": [
+        "bel-1-42-247-vayitarfu42-letter4-vowel"
+      ],
+      "retiredKind": "unreadablePoint",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B0"
+      ],
+      "sourcePage": 247,
+      "finding": "Two comparable rounded vertical nodes extend below the ordinary resh shaft with narrow waists, matching the same-page resh in חורשי. Independent same-page mem sheva in למקומו has two such rounded stamps wholly detached from its body, connected to one another only by a one-pixel neck. Qamats has a much broader crossbar and lower stem; the bare resh has neither extra node.",
+      "targetEvidence": "bel-1-42-247-vayitarfu42-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-42-247-vayitarfu42-letter4-vowel-complete-word",
+      "comparisonEvidence": [
+        "chorsei42-resh-sheva",
+        "chorsei42-locator",
+        "limkomo39-mem-control",
+        "limkomo39-word-control",
+        "bet23-sheva",
+        "resh-qamats-raato42",
+        "resh-bare-vayomer37"
+      ],
+      "otherNoteAnchorUpdates": [
+        {
+          "noteID": "bel-1-42-247-vayitarfu42-letter1-vowel",
+          "before": "ויִטָּרפוּ",
+          "after": "ויִטָּרְפוּ"
+        },
+        {
+          "noteID": "bel-1-42-247-vayitarfu42-letter2-dagesh",
+          "before": "ויִטָּרפוּ",
+          "after": "ויִטָּרְפוּ"
+        }
+      ],
+      "beforeVerseTextSHA256": "7fc509a1110167e9f226783bc89933515d9974862bd83b0c6dc5ff547df02050",
+      "afterVerseTextSHA256": "9cee59c6e5fe47d6218fc63f5cdd09ab494255bac76eab37f9ca37ac86650e8b",
+      "independentApproval": "Root and Wisdom peer separately accepted the complete target/source-context and literal same-font controls; no expected grammar supplies the reading."
+    }
+  ],
+  "observations": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "blockId": null,
+      "id": "bel-1-23-245-vayaavduhu23-letter5-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַעַבְדהוּ",
+      "occurrence": 1,
+      "letterIndex": 5,
+      "mark": "vowel",
+      "sourcePages": [
+        245
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=245",
+      "letter": "ד",
+      "sourcePage": 245,
+      "decision": "approvedLiteralPoint",
+      "finding": "Below the dalet ordinary shaft and foot are three additional rounded lobes stepping down and right, separated by narrow waists. Their baseline lies below neighboring letter feet, so they are three point stamps rather than a normal foot plus a two-dot sheva. The same-page alef qibbuts in ויראהו preserves the corresponding three-stamp staircase, wholly detached from its letter body.",
+      "targetEvidence": "bel-1-23-245-vayaavduhu23-letter5-vowel-target",
+      "completeWordEvidence": "bel-1-23-245-vayaavduhu23-letter5-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 41,
+      "blockId": null,
+      "id": "bel-1-41-247-milvadekha41-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "מִלְּבדּךָ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ד",
+      "sourcePage": 247,
+      "decision": "retainNote",
+      "finding": "Fresh centered full-dalet crop corrects the earlier frame that emphasized the neighboring final kaf. A broad lower diamond below the dalet remains visible, but its filled center does not uniquely distinguish a coalesced multi-dot vowel from a short bar-and-stem vowel. No mark or absence is certified.",
+      "targetEvidence": "bel-1-41-247-milvadekha41-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-41-247-milvadekha41-letter4-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "blockId": null,
+      "id": "bel-1-42-247-vayitarfu42-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויִטָּרפוּ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ר",
+      "sourcePage": 247,
+      "decision": "approvedLiteralPoint",
+      "finding": "Two comparable rounded vertical nodes extend below the ordinary resh shaft with narrow waists, matching the same-page resh in חורשי. Independent same-page mem sheva in למקומו has two such rounded stamps wholly detached from its body, connected to one another only by a one-pixel neck. Qamats has a much broader crossbar and lower stem; the bare resh has neither extra node.",
+      "targetEvidence": "bel-1-42-247-vayitarfu42-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-42-247-vayitarfu42-letter4-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "blockId": null,
+      "id": "bel-1-42-247-kherega42-letter2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "כְרגַע",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ר",
+      "sourcePage": 247,
+      "decision": "retainNote",
+      "finding": "The resh has a broad lower cluster with a tapered continuation. Unlike the accepted qamats, its internal contours do not expose a sufficiently distinct crossbar/deep stem; coalesced multi-dot geometry remains possible. Same-font comparisons do not uniquely fix its vowel class.",
+      "targetEvidence": "bel-1-42-247-kherega42-letter2-vowel-target",
+      "completeWordEvidence": "bel-1-42-247-kherega42-letter2-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "id": "bel-1-17-244-vayashkem-wide-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַשְׁכּם",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        244
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=244",
+      "letter": "כ",
+      "sourcePage": 244,
+      "decision": "retainNote",
+      "finding": "The complete kaf has an enlarged lower mass with shallow twin tips but no sufficiently preserved internal separation to discriminate two-dot from three-dot or bar geometry. The clear same-letter tsere/segol/patah controls establish why a generic paired-looking foot alone is insufficient.",
+      "targetEvidence": "bel-1-17-244-vayashkem-wide-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-17-244-vayashkem-wide-letter4-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "blockId": null,
+      "id": "bel-1-28-246-kaasher-letter1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "כאֲשֶׁר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "כ",
+      "sourcePage": 246,
+      "decision": "retainNote",
+      "finding": "The lower kaf body and added-looking basal mass are fully coalesced. The complete contour lacks distinctive stamps, a separated shallow bar or a clear deep central stem; the literal controls do not uniquely classify it.",
+      "targetEvidence": "bel-1-28-246-kaasher-letter1-vowel-target",
+      "completeWordEvidence": "bel-1-28-246-kaasher-letter1-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "id": "bel-1-27-246-vayokhal-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאכל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "כ",
+      "sourcePage": 246,
+      "decision": "retainNote",
+      "finding": "The kaf lower contour has only a small central protrusion within its broad foot. It does not preserve the diagnostically paired tips/white window of the accepted39 tsere, a complete third node or a clearly separate shallow bar; the point remains uncertain.",
+      "targetEvidence": "bel-1-27-246-vayokhal-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-27-246-vayokhal-letter4-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "blockId": null,
+      "id": "bel-1-39-247-vayokhal39-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאכל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "כ",
+      "sourcePage": 247,
+      "decision": "approvedLiteralPoint",
+      "finding": "Two low rounded tips surround a central lower valley/white window beneath the kaf foot, matching the entire contour of the same-letter kaf tsere in אוכל7. The kaf segol counterexample in והכר20 has a substantial third central lower node absent from the target; the kaf patah in אכל8 has a single low plateau. Preserve the literal tsere independently of expected verbal reading.",
+      "targetEvidence": "bel-1-39-247-vayokhal39-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-39-247-vayokhal39-letter4-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "blockId": null,
+      "id": "bel-1-20-245-vayomer20-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        245
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=245",
+      "letter": "מ",
+      "sourcePage": 245,
+      "decision": "approvedLiteralPoint",
+      "finding": "The additional broad shallow lower bar has a long flat continuous bottom and a central white window separating most of it from the mem foot. Literal same-font mem patah controls supply the flat-bar morphology. Tsere controls have two rounded lower nodes and a central waist or separate bridges; qamats has a substantial descending stem, neither present here.",
+      "targetEvidence": "bel-1-20-245-vayomer20-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-20-245-vayomer20-letter4-vowel-complete-word"
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 37,
+      "blockId": null,
+      "id": "bel-1-37-247-vayomer37-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "מ",
+      "sourcePage": 247,
+      "decision": "approvedLiteralPoint",
+      "finding": "The mem has an additional shallow horizontal bar with a long straight lower edge, joined to the ordinary foot through a narrow left neck and otherwise separated by a white channel. Its contour matches both the same-page מלאך mem and a detached same-font ממלכתו mem patah. Tsere has two low tips/waist; qamats has a deep lower stem.",
+      "targetEvidence": "bel-1-37-247-vayomer37-letter4-vowel-target",
+      "completeWordEvidence": "bel-1-37-247-vayomer37-letter4-vowel-complete-word"
+    }
+  ],
+  "evidenceCrops": [
+    {
+      "name": "bel-1-23-245-vayaavduhu23-letter5-vowel-target",
+      "role": "target",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1193,
+        2435,
+        1257,
+        2525
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-23-245-vayaavduhu23-letter5-vowel-target-native.png",
+          "sha256": "5a6276cc6c701723fa8cc609d16cf521e118c0412037c2e8790108d6fb40340b",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-23-245-vayaavduhu23-letter5-vowel-target-12x.png",
+          "sha256": "3aae51ff0bb35c8827061dfca7d997ab89d277e0108d7a0e0f7ee3b27e78cfd6",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-23-245-vayaavduhu23-letter5-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1127,
+        2400,
+        1381,
+        2545
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-23-245-vayaavduhu23-letter5-vowel-complete-word-native.png",
+          "sha256": "cf777440827bb139b5e4520d2a2d5dd6c440aa33b5c5efd5d4efd48356519908",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-23-245-vayaavduhu23-letter5-vowel-complete-word-4x.png",
+          "sha256": "9067756208a8c7f8d75310f445147043c3cba072413867c2ef872b743253bcec",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-41-247-milvadekha41-letter4-vowel-target",
+      "role": "target",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1700,
+        1920,
+        1748,
+        2030
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-41-247-milvadekha41-letter4-vowel-target-native.png",
+          "sha256": "d062b899c4d6d6b850475b76b3c772f053d9a3c979f4525a7dd44d9f255f44c6",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-41-247-milvadekha41-letter4-vowel-target-12x.png",
+          "sha256": "f6b9ce75c31f8facf34235b6d592578dd0cf669ba8baf185f72f6a419ebf3538",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-41-247-milvadekha41-letter4-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1617,
+        1890,
+        1876,
+        2045
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-41-247-milvadekha41-letter4-vowel-complete-word-native.png",
+          "sha256": "c7329ee83e1b884dfda270be07789d1b10760638f7d5269ce66fbe87c59063df",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-41-247-milvadekha41-letter4-vowel-complete-word-4x.png",
+          "sha256": "d5bb0a9041a85f92fc763aed18f1b6d4106bf4b7b4db15ee9c7f9ec217474753",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-42-247-vayitarfu42-letter4-vowel-target",
+      "role": "target",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1845,
+        2011,
+        1909,
+        2101
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-42-247-vayitarfu42-letter4-vowel-target-native.png",
+          "sha256": "41772343aa99103a22d8f0688a87210a7752b5c10cdd182b05efd0830db09ca9",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-42-247-vayitarfu42-letter4-vowel-target-12x.png",
+          "sha256": "0c3ded74d33163c4fb0169f50a4c994d5cb2a89d14c1375e52c524b52ff4e1cb",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-42-247-vayitarfu42-letter4-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1784,
+        1981,
+        1998,
+        2111
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-42-247-vayitarfu42-letter4-vowel-complete-word-native.png",
+          "sha256": "17372f9802fdb4059e5edff54f2dc84ee5105b799bc0225c8b54ab1042fdb5b3",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-42-247-vayitarfu42-letter4-vowel-complete-word-4x.png",
+          "sha256": "3da6314f1c577d8840b9f8889ea4bb9792c657e995002c097400deff67b93197",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-42-247-kherega42-letter2-vowel-target",
+      "role": "target",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1693,
+        2020,
+        1757,
+        2110
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-42-247-kherega42-letter2-vowel-target-native.png",
+          "sha256": "acf95264e67e627f37d3a1a5afd408591f364bc1e029eb8ae4a37cfd0a97ae4a",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-42-247-kherega42-letter2-vowel-target-12x.png",
+          "sha256": "0e170d1ec3d31e44eb470031837d672f0046245bd990fbff79dd723f22f770a9",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-42-247-kherega42-letter2-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1621,
+        1985,
+        1797,
+        2130
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-42-247-kherega42-letter2-vowel-complete-word-native.png",
+          "sha256": "d8aa34989f5f07500707d847339f77341c395ed8d0fd3c108e87a570c9e2a492",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-42-247-kherega42-letter2-vowel-complete-word-4x.png",
+          "sha256": "9466371b709a961fe5bbaf8cf4c25cee7ff8fc1f7516a95890acf9f8c2b0dc8e",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-17-244-vayashkem-wide-letter4-vowel-target",
+      "role": "target",
+      "sourcePage": 244,
+      "nativeBounds": [
+        1680,
+        3165,
+        1744,
+        3255
+      ],
+      "sourceNativeImageSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-17-244-vayashkem-wide-letter4-vowel-target-native.png",
+          "sha256": "00e7bf9c66b5067b0dca3072286a79ef773fe06d423b56f1adae2639c97419ad",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-17-244-vayashkem-wide-letter4-vowel-target-12x.png",
+          "sha256": "cc93e3893e2ab267e408b7f1b80554e01bdae88dbf29e5d3e1744e2d74a8db51",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-17-244-vayashkem-wide-letter4-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 244,
+      "nativeBounds": [
+        1641,
+        3130,
+        1845,
+        3275
+      ],
+      "sourceNativeImageSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-17-244-vayashkem-wide-letter4-vowel-complete-word-native.png",
+          "sha256": "913aae5e4e9a96b1f2922649c99dc1cc4d60d54ac294f44efae3b670852b0508",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-17-244-vayashkem-wide-letter4-vowel-complete-word-4x.png",
+          "sha256": "104d0e57c7357b6eb36ba9e1f35c02de2dd1829030685978d1e315cc7ca3c244",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-28-246-kaasher-letter1-vowel-target",
+      "role": "target",
+      "sourcePage": 246,
+      "nativeBounds": [
+        1274,
+        1920,
+        1338,
+        2010
+      ],
+      "sourceNativeImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-28-246-kaasher-letter1-vowel-target-native.png",
+          "sha256": "9d342d1eef0278d690355057ef3f119a71978ca5dedb4b8d09a09f7530c9941e",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-28-246-kaasher-letter1-vowel-target-12x.png",
+          "sha256": "8e0d73392c984c18676f737e38f08cd96941a9365da9d9256a2caa86d846cf30",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-28-246-kaasher-letter1-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 246,
+      "nativeBounds": [
+        1151,
+        1880,
+        1350,
+        2035
+      ],
+      "sourceNativeImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-28-246-kaasher-letter1-vowel-complete-word-native.png",
+          "sha256": "46352e0834279e1ff8efb8354626895ed98553ebce2da1d6aed25b5d597328d2",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-28-246-kaasher-letter1-vowel-complete-word-4x.png",
+          "sha256": "2cd579dc5a51053694d9cde73dfd00178d64dc62a7b9b6d26cb7ad61313da882",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-27-246-vayokhal-letter4-vowel-target",
+      "role": "target",
+      "sourcePage": 246,
+      "nativeBounds": [
+        837,
+        1820,
+        901,
+        1910
+      ],
+      "sourceNativeImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-27-246-vayokhal-letter4-vowel-target-native.png",
+          "sha256": "fb1bf5859665d4d0838104218c17d1fa372844bf8c79f7fb955f52051f3a5032",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-27-246-vayokhal-letter4-vowel-target-12x.png",
+          "sha256": "184b3ad49cbb55032c888bc147f65f4fccee1a33932a910c838579c966a532d4",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-27-246-vayokhal-letter4-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 246,
+      "nativeBounds": [
+        801,
+        1780,
+        993,
+        1935
+      ],
+      "sourceNativeImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-27-246-vayokhal-letter4-vowel-complete-word-native.png",
+          "sha256": "080bcefb4f1f33fadbd61a1e8d763ffe8cb140162c416990dcda88fde256a0c8",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-27-246-vayokhal-letter4-vowel-complete-word-4x.png",
+          "sha256": "95949842cf21fa8e28bf82801f30aea1c2aa854666459f3125aa76234a9252a1",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-39-247-vayokhal39-letter4-vowel-target",
+      "role": "target",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1993,
+        1640,
+        2057,
+        1730
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-39-247-vayokhal39-letter4-vowel-target-native.png",
+          "sha256": "d7a85c6b008d18758d5a588808c650696772548a29aaa35ae4a9a4fecea6ff58",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-39-247-vayokhal39-letter4-vowel-target-12x.png",
+          "sha256": "a6d664a4d1cc6db79e1a317430309d1d536ddfe841c9f18b6d753cd7317821f5",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-39-247-vayokhal39-letter4-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1957,
+        1600,
+        2151,
+        1755
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-39-247-vayokhal39-letter4-vowel-complete-word-native.png",
+          "sha256": "392d231cf3ee275f26b3c6fe66f904feabfc275c9ace0b17ebd6642c08b0256b",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-39-247-vayokhal39-letter4-vowel-complete-word-4x.png",
+          "sha256": "f778564112681bc6f07bd32a6657a8021fbe6755aecdae94e9db199e26b98689",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-20-245-vayomer20-letter4-vowel-target",
+      "role": "target",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1768,
+        1965,
+        1832,
+        2055
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-20-245-vayomer20-letter4-vowel-target-native.png",
+          "sha256": "a37d3690c253119c3355157165d2a81b1bc6c7f6d3f64c441b9164770d4d97a7",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-20-245-vayomer20-letter4-vowel-target-12x.png",
+          "sha256": "3f7c4fee4b7e94b651749b3c62ef68221bfa7944b255a7242de22b5972881f6a",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-20-245-vayomer20-letter4-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1730,
+        1930,
+        1929,
+        2075
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-20-245-vayomer20-letter4-vowel-complete-word-native.png",
+          "sha256": "ca66c2eb36e5def0e8b6045cc4a7ace7dfecbcddb4433f5fcd44afcca83e3d29",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-20-245-vayomer20-letter4-vowel-complete-word-4x.png",
+          "sha256": "fa14c5652d636507028f7b96897162de6d3cef41e5f076c0bc7e4d5e8f010771",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-37-247-vayomer37-letter4-vowel-target",
+      "role": "target",
+      "sourcePage": 247,
+      "nativeBounds": [
+        409,
+        1352,
+        473,
+        1442
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-37-247-vayomer37-letter4-vowel-target-native.png",
+          "sha256": "392d75ffc083d4f8c4759f1c98981e9e1ed315cfafabbc86de60e88228351250",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-37-247-vayomer37-letter4-vowel-target-12x.png",
+          "sha256": "2bc5d45752a2a232ffdeec726675e75536bf0c39595f5cca5f7424a48e2a6de3",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bel-1-37-247-vayomer37-letter4-vowel-complete-word",
+      "role": "completeWordContext",
+      "sourcePage": 247,
+      "nativeBounds": [
+        372,
+        1320,
+        570,
+        1460
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-37-247-vayomer37-letter4-vowel-complete-word-native.png",
+          "sha256": "128da675aa5fdf133dac98fe467c6fc9cbf91a690841a04f2aa26132508a7e54",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bel-1-37-247-vayomer37-letter4-vowel-complete-word-4x.png",
+          "sha256": "126fdf2662aca46e130dab7c6177a7e21b40a61aee46474a3d24e710c03e8476",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "chorsei42-resh-sheva",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        755,
+        1920,
+        805,
+        2030
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/chorsei42-resh-sheva-native.png",
+          "sha256": "372edfe701c748c881468a406021d936eb65009ff1190427ee2ed961e2012612",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/chorsei42-resh-sheva-12x.png",
+          "sha256": "7b318e686d59b73aca2f73759b3aa434c05054ad7797f9eaf4efcecafd7a8823",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "chorsei42-locator",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        680,
+        1920,
+        960,
+        2030
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/chorsei42-locator-native.png",
+          "sha256": "5285ecbc7aae1bb754420ac8f7d1837eea6bd00dff10a766c3f892e491ef5f08",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/chorsei42-locator-5x.png",
+          "sha256": "c1017dd9c0e697e38a559c2f8c37962b6e7e70e245dac60627dec8a9fe89aa24",
+          "scale": 5,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "resh-qamats-raato42",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        625,
+        1920,
+        675,
+        2030
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/resh-qamats-raato42-native.png",
+          "sha256": "dd33abded9bc1eb2a50ec14b529d0087526f625ee97fd5bcf6dc35cd866d9efd",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/resh-qamats-raato42-12x.png",
+          "sha256": "f89bb4dcad6814d721a117d069bc2409b295a27096f1c637e84ed7a64f1701a6",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "resh-bare-vayomer37",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        398,
+        1352,
+        431,
+        1442
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/resh-bare-vayomer37-native.png",
+          "sha256": "befacfde50d83be5ec7653c86633ed6ac1affe32279d770861732ddcf8c3bbcf",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/resh-bare-vayomer37-12x.png",
+          "sha256": "a28adc3072a09a8a7026af663c12f92606e8cba82932e2ea235be67def274bc5",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "bet23-sheva",
+      "role": "comparator",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1240,
+        2430,
+        1290,
+        2530
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bet23-sheva-native.png",
+          "sha256": "890b0d748104d7f3fb765d29faa196dc01e894706f31ec25fbf9f2ecfeb46762",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/bet23-sheva-12x.png",
+          "sha256": "f0cdcf8ffada88a6a86b9c146c6d09ad029d926f042f0f88e434ca38b0130900",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-patah-malakh36-tight",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1688,
+        1250,
+        1733,
+        1350
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-patah-malakh36-tight-native.png",
+          "sha256": "d5c0eaffda70f9d55f83c6d2a7679a5121a52b4a47e293e668e41dd226d2d841",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-patah-malakh36-tight-12x.png",
+          "sha256": "fd33afab2521b9fa92eec0d4611c1822f6a1a24ae7b1e290988d793384eec610",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "malakh36-mem-patah-locator",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        1550,
+        1250,
+        1780,
+        1350
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/malakh36-mem-patah-locator-native.png",
+          "sha256": "be3eeb151607d67e894aeced651913ddd77881e4e1f065a1e83cd9092bf3ab2d",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/malakh36-mem-patah-locator-5x.png",
+          "sha256": "252e417cc89d2823ddf8d26fe386e24177eb34040acc92eac93be922a94dcf0c",
+          "scale": 5,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-patah-mamlkhetu1-tight",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        2000,
+        1200,
+        2043,
+        1320
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-patah-mamlkhetu1-tight-native.png",
+          "sha256": "d5d19038a1e52434764685b18d97005dd6205f33cd869df072876a49bae81dcb",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-patah-mamlkhetu1-tight-12x.png",
+          "sha256": "ea7e3797ec8b99202d7256e0db7ab0dac039324e6812d58488bcf4863c93a2bb",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mamlkhetu1-mem-patah-locator",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        1700,
+        1200,
+        2080,
+        1320
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mamlkhetu1-mem-patah-locator-native.png",
+          "sha256": "7f51cedeb7233ca0af822b2046c24217a1d042c7e13a7e228baaab335a3757b9",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mamlkhetu1-mem-patah-locator-4x.png",
+          "sha256": "064853deb05961ec960abcaa0f0b553c1d721f5ed3797d4cdb8365ef809031d0",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-tsere-meodo8-tight",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        820,
+        2070,
+        885,
+        2160
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-tsere-meodo8-tight-native.png",
+          "sha256": "c9c83db7bfe08fc5c3614fd7b2eb8ee58b0afa9dd2dd42a63b24e508d4126d25",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-tsere-meodo8-tight-12x.png",
+          "sha256": "63c3642a60c2e42efc255e8e216416df3bc0d2b791a92c8b919c6f8639ad03b9",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-tsere-omed3-tight",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        1335,
+        1200,
+        1375,
+        1320
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-tsere-omed3-tight-native.png",
+          "sha256": "f72a359892c180108b6cf11b4118afd50d52f7452a2758751f7630159326b781",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-tsere-omed3-tight-12x.png",
+          "sha256": "8f8102143e93b76e0758afb15a3f60f36d9b4be5527139dbf93aa9a4d0881b9f",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-tsere-omed3-locator",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        1200,
+        1200,
+        1500,
+        1320
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-tsere-omed3-locator-native.png",
+          "sha256": "811f7f55cb0971d669f69f123d296e3728231448aeb0ef23fcd1a5ff4a32d8a0",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-tsere-omed3-locator-5x.png",
+          "sha256": "ce5bfbcf90bd120c35c36805b35a27675dfa3bce8ad761491bbdd485410b68a4",
+          "scale": 5,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-qamats-kama7-tight",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        835,
+        1900,
+        895,
+        2000
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-qamats-kama7-tight-native.png",
+          "sha256": "d324d5bf213d7f64fa28117a65d21cb041d119806a12f7867b5b9b89b6a32193",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-qamats-kama7-tight-12x.png",
+          "sha256": "1b49425aa5ab71f21b5ce55871eda7ec8cd7d590565a7258ba05529f10c2f7a3",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-qamats-kama7-locator",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        600,
+        1850,
+        1050,
+        1990
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-qamats-kama7-locator-native.png",
+          "sha256": "2eaa1aeccdd70611aa0b72489ee5e48c934fa55147d7c61e7724b390af576dff",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-qamats-kama7-locator-4x.png",
+          "sha256": "15477a9629738121821e7d9d781abe353c1abda963600da018ce6499c885def3",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-segol-control",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        400,
+        1630,
+        575,
+        1740
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-segol-control-native.png",
+          "sha256": "8acc0cd6d4d302e871108fee94df5bb1a22a66259c5d40876569ffc347722f7b",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-segol-control-5x.png",
+          "sha256": "dc6c75f220b8a40c81f3375bd246785aa01d88a1ef6925657e9c64cf70b9c92d",
+          "scale": 5,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "alef-qibbuts-vayarehu21-locator",
+      "role": "comparator",
+      "sourcePage": 245,
+      "nativeBounds": [
+        300,
+        2140,
+        750,
+        2250
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/alef-qibbuts-vayarehu21-locator-native.png",
+          "sha256": "ec8901fff48fd1b6d3bf4fa489095954128cdce179fffc63bacb3255bc54b46f",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/alef-qibbuts-vayarehu21-locator-4x.png",
+          "sha256": "352e8428e42686b024696c25b1365198e8941a3c126411c9c8acbe3a40037850",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "alef-qibbuts-vayarehu21-tight",
+      "role": "comparator",
+      "sourcePage": 245,
+      "nativeBounds": [
+        580,
+        2140,
+        630,
+        2250
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/alef-qibbuts-vayarehu21-tight-native.png",
+          "sha256": "13ffc0d25c7ab0b7e88bc7e69145cab43f6656681a8fadc75d8cd1e16b3fd626",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/alef-qibbuts-vayarehu21-tight-12x.png",
+          "sha256": "39ad5e18b7f6f853693bae966a526d01a4e18d5234b52cb815652a1370c08ff3",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "alef21-lower-point",
+      "role": "comparator",
+      "sourcePage": 245,
+      "nativeBounds": [
+        597,
+        2198,
+        622,
+        2248
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/alef21-lower-point-native.png",
+          "sha256": "228340544b876e963ff325c209bffe2d639b69f19eb89fcf475393ecb4ee035b",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/alef21-lower-point-20x.png",
+          "sha256": "72a07342a11085e56df1a21959a093ce4fb853d595e14cdb698ba30d287961c3",
+          "scale": 20,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "dalet23-lower-point",
+      "role": "comparator",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1218,
+        2475,
+        1243,
+        2525
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/dalet23-lower-point-native.png",
+          "sha256": "3ddf7fc2385e76da59f8707e3a8f1d634265bf756ee695a2f1a780f1e4668729",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/dalet23-lower-point-20x.png",
+          "sha256": "0ce145e723ab1b13f7b83cf0783cee6a5eabd70770a043a12d3b5276f62adad6",
+          "scale": 20,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "okhel7-kaf-tsere-word",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        500,
+        1850,
+        720,
+        1990
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/okhel7-kaf-tsere-word-native.png",
+          "sha256": "8db63fdc292c1ed1483035e0c5c0523923a097f40b05c59820ae6ddaa172234f",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/okhel7-kaf-tsere-word-5x.png",
+          "sha256": "aeec1120ddee99301398be87cadebf4955400f81f73649ba3771f77690d6dd52",
+          "scale": 5,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "okhel7-kaf-tsere-tight",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        545,
+        1900,
+        590,
+        1990
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/okhel7-kaf-tsere-tight-native.png",
+          "sha256": "636eedde12bf7b695176e9237a33c4c5a1856f7527d2b949f5e6d3d1e45674ee",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/okhel7-kaf-tsere-tight-12x.png",
+          "sha256": "5075cf65b740b21643e99e09073e74394873ae7bf983858d479d83290cc91a5f",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "haker20-kaf-segol-word",
+      "role": "comparator",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1000,
+        1960,
+        1220,
+        2060
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/haker20-kaf-segol-word-native.png",
+          "sha256": "bd3fb4cb034187dcbd65f6084350ab276b17e880712dec107df786b39c9afc35",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/haker20-kaf-segol-word-5x.png",
+          "sha256": "38631ac01a29bb59721152711057c7e0e3a75631e8f513e16eacf1e26055a00c",
+          "scale": 5,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "haker20-kaf-segol-tight",
+      "role": "comparator",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1060,
+        1960,
+        1115,
+        2060
+      ],
+      "sourceNativeImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/haker20-kaf-segol-tight-native.png",
+          "sha256": "daefd5017c33232e15968bebcd7007d37ff188729fadff0ff26469076b4efd0c",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/haker20-kaf-segol-tight-12x.png",
+          "sha256": "5bff02a1c6a90ed36d76f9e2a09c31545401f642568984e974782f3df968d634",
+          "scale": 12,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "akhal8-kaf-patah-word",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        875,
+        2020,
+        1040,
+        2160
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/akhal8-kaf-patah-word-native.png",
+          "sha256": "77151a35c0cf771e721086e50b3c982da09a4d17335be3ab14da9958214fc91d",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/akhal8-kaf-patah-word-5x.png",
+          "sha256": "c32fd49e761ffe805ee083f02d2f2d31b2685d570b4b3353572b8a64b4ab03e8",
+          "scale": 5,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "limkomo39-mem-control",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        735,
+        1640,
+        785,
+        1730
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/limkomo39-mem-control-native.png",
+          "sha256": "5ae19779a67f8ce762b222894b71aa92bbb824b480901c4cb95ffc3438318bd6",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/limkomo39-mem-control-15x.png",
+          "sha256": "7ad8879cf6e1d294149fbf368fd0d42e28ef5c7be991600465579d51c4014ef4",
+          "scale": 15,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "limkomo39-word-control",
+      "role": "comparator",
+      "sourcePage": 247,
+      "nativeBounds": [
+        620,
+        1620,
+        850,
+        1750
+      ],
+      "sourceNativeImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/limkomo39-word-control-native.png",
+          "sha256": "92e8470db0ede788f238277d37f5d92b1e1fc0b64aa8ae0b82f22437d06c128f",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/limkomo39-word-control-5x.png",
+          "sha256": "4d73b67f9e32d45d2726d294722efc3887473e17cb96e59ad1179b5d338c4c65",
+          "scale": 5,
+          "freshNativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "mem-tsere-meodo8-word",
+      "role": "comparator",
+      "sourcePage": 243,
+      "nativeBounds": [
+        600,
+        2020,
+        950,
+        2160
+      ],
+      "sourceNativeImageSHA256": "03adb695716bf2a43e2fbb5f45bf30dc7e0ae6d3fc54c12c37c35d131b1bffa3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-tsere-meodo8-word-native.png",
+          "sha256": "ec91e8300e9b791b20d34120ec7aa8520339c4aedb4430dd79a654ae67c1bfaa",
+          "scale": 1,
+          "freshNativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-BEL/mem-tsere-meodo8-word-4x.png",
+          "sha256": "cb9be55e63353d9087294ae6a50c2c0ccc7f3e1693564c552fe1cfb62082aa40",
+          "scale": 4,
+          "freshNativePixelReplay": true
+        }
+      ]
+    }
+  ],
+  "literalReadingPolicy": "In39 preserve printed kaf tsere exactly; expected verbal reading is neither a reason to supply nor to reject a visible source mark.",
+  "scalarConservation": {
+    "addedPointCount": 5,
+    "removedPointCount": 0,
+    "consonantOrPunctuationChanges": 0,
+    "allProposedWordsHaveUnchangedNoncombiningScalars": true,
+    "otherNoteChanges": "Only anchor strings on the same changed word track its newly certified scalar; IDs, kinds, mark/index metadata and all unrelated anchors remain unchanged.",
+    "proposedRetiredNoteIds": [
+      "bel-1-23-245-vayaavduhu23-letter5-vowel",
+      "bel-1-20-245-vayomer20-letter4-vowel",
+      "bel-1-37-247-vayomer37-letter4-vowel",
+      "bel-1-39-247-vayokhal39-letter4-vowel",
+      "bel-1-42-247-vayitarfu42-letter4-vowel"
+    ]
+  },
+  "priorReportsPreserved": [
+    "BEL-note-reinspection-20261017-pass4.json",
+    "BEL-note-reinspection-20261017-pass7.json",
+    "PSIK-authenticated-source-inspection-20261017.json"
+  ],
+  "limits": [
+    "Kaf17,27,28 and dalet41/resh42kherega remain unresolved; no point supplied from expected reading or from mere presence of attached ink.",
+    "The old yod21 triangular mark was not reopened; no new positive control was found that would settle its class.",
+    "The previously saved PSIK PDFs and historical recovery reports remain preserved; no assumption of independent PSIK photography enters these decisions."
+  ]
+}

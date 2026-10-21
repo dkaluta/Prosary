@@ -1,0 +1,2411 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 14,
+  "book": "WIS",
+  "status": "All seventeen remaining Wisdom daily-reading vowel annotations reviewed; one literal sheva certified and sixteen retained",
+  "applicationState": "pendingRootIntegration; no canonical, central gate, daily, Catholic presentation or generated mutations by the report author",
+  "scope": {
+    "selectedPositionCount": 17,
+    "resolvedPositionCount": 1,
+    "retainedPositionCount": 16,
+    "completeWordCount": 13,
+    "reviewedChapters": [
+      4,
+      5,
+      6,
+      7,
+      10
+    ],
+    "allTargetChaptersContainAnnotations": true,
+    "targetSourcePages": [
+      152,
+      153,
+      154,
+      156,
+      158,
+      165,
+      166
+    ],
+    "dailyReadingAnnotationsFirst": true,
+    "order": "Two-note daily units5:3/5:5/5:8/10:14/10:20 first, then the remaining one-note daily units",
+    "notAWholeBookCollation": true
+  },
+  "method": "Fresh complete-glyph, complete-word and numbered-source-context inspection of all seventeen remaining WIS daily-reading notes. Native original embedded pixels and integer nearest-neighbor enlargements preserve actual point shapes. The accepted bet6:16 point is wholly detached from its completed foot and has two comparably rounded vertical levels with a waist. Literal detached sheva, qamats and fresh SAME-PAGE/SAME-LETTER single hiriq controls distinguish its class. Competing joined classes remain possible at all sixteen other targets, including the rejected mem5:2 tsere lead. Control canonical spellings locate words but never establish an opaque class. No grammar, expected reading, OCR, translation, enhancement, source substitution, or assumed independence of the user-saved PSIK witness supplies a mark. No PSIK/browser session changes occurred. All durable PNGs were freshly replayed scalar-for-pixel against original A2 embedded rasters. Clipped/blank exploratory frames and unused controls are excluded.",
+  "baselineDirectory": "/private/tmp/prosary-hebrew-pass14-20261017/baseline",
+  "baselineGlobalNoteCount": 553,
+  "beforeBookNoteCount": 192,
+  "expectedBookNoteCountAfterThisPacket": 191,
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/WIS.json",
+  "canonicalInputSHA256": "ace29eebcd1f935d682f15336e54a5f8dcc4a8f2c03552edb8ab919f73c8bf9d",
+  "canonicalOutputSHA256": "ace29eebcd1f935d682f15336e54a5f8dcc4a8f2c03552edb8ab919f73c8bf9d",
+  "canonicalChanged": false,
+  "beforeSourceContentSHA256": "08f18a3e08a6583a79a6bfd01999b2dd14453db65f3bf116efd70e2a2d317dc3",
+  "expectedSourceContentSHA256AfterThisPacket": "7c1e7c642613d2d880bbe447787089374ad3a98396d08c135006f8c032ea479e",
+  "sourcePDF": {
+    "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf"
+  },
+  "accepted": [
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 16,
+      "before": "וּבכָל־זְמָמָם",
+      "after": "וּבְכָל־זְמָמָם",
+      "retiredNoteIds": [
+        "wis-6-16-bet"
+      ],
+      "finding": "A complete bet foot is separated by white space from two comparable vertically stacked rounded lobes with an inward waist. The target repeats the literal detached mem-sheva stamp pattern. The fresh same-page bet-hiriq control has only one compact diamond, whereas the target has two levels and roughly twice its height. The literal detached qamats has a broad transverse shoulder and longer narrow central stem, neither of which appears here. This certifies U+05B0 without relying on expected wording."
+    }
+  ],
+  "decisions": [
+    {
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 16,
+      "note": {
+        "id": "wis-6-16-bet",
+        "kind": "unreadablePoint",
+        "anchor": "וּבכָל־זְמָמָם",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          156
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=156"
+      },
+      "oldAnchor": "וּבכָל־זְמָמָם",
+      "newAnchor": "וּבְכָל־זְמָמָם",
+      "addedScalar": "U+05B0",
+      "targetNativeBounds": [
+        1398,
+        1515,
+        1445,
+        1605
+      ],
+      "pointNativeBounds": [
+        1405,
+        1565,
+        1428,
+        1595
+      ],
+      "sourcePage": 156,
+      "finding": "A complete bet foot is separated by white space from two comparable vertically stacked rounded lobes with an inward waist. The target repeats the literal detached mem-sheva stamp pattern. The fresh same-page bet-hiriq control has only one compact diamond, whereas the target has two levels and roughly twice its height. The literal detached qamats has a broad transverse shoulder and longer narrow central stem, neither of which appears here. This certifies U+05B0 without relying on expected wording.",
+      "unitBeforeTextSHA256": "36bb4f0dd881ce2b915f56b6a8bef46346c7573d1d26bff91b374802204a8900",
+      "unitAfterTextSHA256": "407facd51f5dc24af0e417d9ead1f34db440740858bfca2346053a044777fe17",
+      "correctedTextAfterEntirePacket": "כִּי הִיא תְסוֹבֵב וּתְחַפֵּשׂ אֶת־אֲשֶׁר יָקְרוּ לָהּ וּבִנְתִיבוֹת בְּרָצוֹן תוֹפִיעַ לָמוֹ וּבְכָל־זְמָמָם תִּתְמְכֵם׃",
+      "independentRootApproval": true,
+      "independentWisdomPeerApproval": true
+    }
+  ],
+  "inspections": [
+    {
+      "selectedTargetNumber": 1,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 3,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "daily|Wisdom 5:1–5"
+      ],
+      "note": {
+        "id": "wis-5-3-vav",
+        "kind": "unreadablePoint",
+        "anchor": "ויאָנְחוּ",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          153
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+      },
+      "decision": "retainNote",
+      "finding": "The vowel zone remains continuously joined to the vav shaft as a broad vertical swelling; the surviving outline does not uniquely distinguish a point class from a fused foot.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-3-vav-expanded-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-3-vav-expanded-complete-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily01-wis5-3-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily01-wis5-3-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A153-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 2,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 3,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "daily|Wisdom 5:1–5"
+      ],
+      "note": {
+        "id": "wis-5-3-yod",
+        "kind": "unreadablePoint",
+        "anchor": "ויאָנְחוּ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          153
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+      },
+      "decision": "retainNote",
+      "finding": "The detached lower mark has a shallow irregular horizontal contour, but its filled upper boundary and weak lobes do not uniquely distinguish a damaged bar from coalesced horizontal dots.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-3-yod-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-3-yod-complete-20x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily01-wis5-3-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily01-wis5-3-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A153-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 3,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 5,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "daily|Wisdom 5:1–5"
+      ],
+      "note": {
+        "id": "wis-5-5-alef",
+        "kind": "unreadablePoint",
+        "anchor": "איככָה",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          153
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+      },
+      "decision": "retainNote",
+      "finding": "The lower bar merges with the alef left leg; the remaining small lower tips do not uniquely separate a flat bar from a coalesced pair.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-alef-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-alef-complete-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily03-wis5-5-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily03-wis5-5-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A153-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 4,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 5,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "daily|Wisdom 5:1–5"
+      ],
+      "note": {
+        "id": "wis-5-5-first-kaf",
+        "kind": "unreadablePoint",
+        "anchor": "איככָה",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          153
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+      },
+      "decision": "retainNote",
+      "finding": "A long lower extension is present, but source-local kaf controls with already merged qamats/sheva labels retain similarly coalesced outlines. Their labels are not independent class evidence, and no complete distinguishing shoulder or vertical two-node boundary survives uniquely in the target.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-first-kaf-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-first-kaf-complete-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily03-wis5-5-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily03-wis5-5-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A153-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 5,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 8,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16"
+      ],
+      "note": {
+        "id": "wis-5-8-initial-vav",
+        "kind": "unreadablePoint",
+        "anchor": "וגאוּתֵנוּ",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          154
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=154"
+      },
+      "decision": "retainNote",
+      "finding": "Two broad swellings are continuous with the ordinary vav shaft. A complete independent point contour cannot be distinguished securely from the saturated foot and shaft.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-8-vav-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-8-vav-complete-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily05-wis5-8-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily05-wis5-8-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A154-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 6,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 8,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16"
+      ],
+      "note": {
+        "id": "wis-5-8-gimel",
+        "kind": "unreadablePoint",
+        "anchor": "וגאוּתֵנוּ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          154
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=154"
+      },
+      "decision": "retainNote",
+      "finding": "The gimel lower body and proposed point are heavily coalesced. The surviving mass/window does not preserve a unique complete vowel arrangement.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-8-gimel-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-8-gimel-complete-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily05-wis5-8-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily05-wis5-8-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A154-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 7,
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 14,
+      "dailyAppointments": [
+        "daily|Wisdom 10:10–14"
+      ],
+      "note": {
+        "id": "wis-10-14-tet",
+        "kind": "unreadablePoint",
+        "anchor": "תִטּשׁהוּ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          165
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165"
+      },
+      "decision": "retainNote",
+      "finding": "A deep lower extension survives beneath the tet body, but the horizontal shoulder is absorbed into its thick foot. A qamats versus vertically coalesced mark remains insufficiently discriminated; no grammatical vowel is supplied.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-tet-expanded-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-tet-expanded-complete-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily07-wis10-14-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily07-wis10-14-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A165-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 8,
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 14,
+      "dailyAppointments": [
+        "daily|Wisdom 10:10–14"
+      ],
+      "note": {
+        "id": "wis-10-14-shin",
+        "kind": "unreadablePoint",
+        "anchor": "תִטּשׁהוּ",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          165
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165"
+      },
+      "decision": "retainNote",
+      "finding": "The shin lower mass has only shallow uneven tips continuously merged into the base. The complete two-dot versus irregular-bar boundary is not preserved uniquely.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-shin-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-shin-complete-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily07-wis10-14-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily07-wis10-14-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A165-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 9,
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 20,
+      "dailyAppointments": [
+        "daily|Wisdom 10:17–20"
+      ],
+      "note": {
+        "id": "wis-10-20-vav",
+        "kind": "unreadablePoint",
+        "anchor": "ויְהַלָלוּ",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          166
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=166"
+      },
+      "decision": "retainNote",
+      "finding": "The initial vav terminates in one broad filled lower plateau. Its natural foot and merged vowel cannot be uniquely divided into a source-certified class.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-20-vav-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-20-vav-whole-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily09-wis10-20-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily09-wis10-20-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A166-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 10,
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 20,
+      "dailyAppointments": [
+        "daily|Wisdom 10:17–20"
+      ],
+      "note": {
+        "id": "wis-10-20-first-kaf",
+        "kind": "unreadablePoint",
+        "anchor": "הַסּוֹככָה",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          166
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=166"
+      },
+      "decision": "retainNote",
+      "finding": "The first kaf has a broad opaque lower mass and a shallow bottom notch; a degraded bar versus coalesced pair remains plausible. The second kaf in the same word is only a shape comparison, not class proof from its canonical label.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-20-first-kaf-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-20-first-kaf-whole-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily10-wis10-20-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily10-wis10-20-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A166-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 11,
+      "book": "WIS",
+      "chapter": 4,
+      "verse": 10,
+      "dailyAppointments": [
+        "daily|Wisdom 4:7–15"
+      ],
+      "note": {
+        "id": "wis-4-10-letter-3-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "הָעֳבר",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          152
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=152"
+      },
+      "decision": "retainNote",
+      "finding": "The lower bet extension is fused to the ordinary foot. The exposed narrow stem alone does not uniquely distinguish a qamats arrangement from coalesced vertical points.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis4-10-bet-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis4-10-bet-whole-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily11-wis4-10-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily11-wis4-10-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A152-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 12,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 1,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "daily|Wisdom 5:1–5"
+      ],
+      "note": {
+        "id": "wis-5-1-ayin",
+        "kind": "unreadablePoint",
+        "anchor": "יַעמֹד",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          153
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+      },
+      "decision": "retainNote",
+      "finding": "The ayin foot continues into the proposed lower point without a complete class boundary. Natural foot/attached point and competing joined shapes remain unresolved.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-1-ayin-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-1-ayin-whole-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily12-wis5-1-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily12-wis5-1-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A153-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 13,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 2,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–5"
+      ],
+      "note": {
+        "id": "wis-5-2-mem",
+        "kind": "unreadablePoint",
+        "anchor": "מרֹב",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          153
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+      },
+      "decision": "retainNote",
+      "finding": "The upper boundary of the extra lower mass is wholly filled into the mem foot, and only an approximately one-native-pixel lower notch survives. A shallow ragged patah bar remains plausible against tsere; literal tsere controls have clearer upper separation/two attachment necks and paired rounded tips. Peer challenge therefore retained this note.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-2-mem-expanded-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-2-mem-expanded-whole-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily13-wis5-2-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily13-wis5-2-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A153-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 14,
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 15,
+      "dailyAppointments": [
+        "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16"
+      ],
+      "note": {
+        "id": "wis-5-15-bet",
+        "kind": "unreadablePoint",
+        "anchor": "וּביָי",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          154
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=154"
+      },
+      "decision": "retainNote",
+      "finding": "A large opaque lobe is coalesced with the bet foot; its filled boundary does not uniquely preserve a transverse bar, horizontal pair, or vertical arrangement.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-15-bet-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-15-bet-whole-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily14-wis5-15-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily14-wis5-15-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A154-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 15,
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 16,
+      "dailyAppointments": [
+        "daily|Wisdom 6:12–16"
+      ],
+      "note": {
+        "id": "wis-6-16-bet",
+        "kind": "unreadablePoint",
+        "anchor": "וּבכָל־זְמָמָם",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          156
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=156"
+      },
+      "decision": "approvedLiteralShevaAndNoteRetirement",
+      "finding": "A complete bet foot is separated by white space from two comparable vertically stacked rounded lobes with an inward waist. The target repeats the literal detached mem-sheva stamp pattern. The fresh same-page bet-hiriq control has only one compact diamond, whereas the target has two levels and roughly twice its height. The literal detached qamats has a broad transverse shoulder and longer narrow central stem, neither of which appears here. This certifies U+05B0 without relying on expected wording.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-bet-whole-correct-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-bet-whole-correct-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-bet-detached-point-expanded-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-bet-detached-point-expanded-25x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-complete-compound-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-complete-compound-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A156-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 16,
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 9,
+      "dailyAppointments": [
+        "daily|Wisdom 7:7–14"
+      ],
+      "note": {
+        "id": "wis-7-9-mem",
+        "kind": "unreadablePoint",
+        "anchor": "כְּדֹמן",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          158
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=158"
+      },
+      "decision": "retainNote",
+      "finding": "The compact lower mem mark has a broad upper mass and shorter central lower extension, but the fused upper boundary does not uniquely distinguish a short qamats from a degraded triangular vowel. Literal qamats/segol controls remain competing rather than decisive.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-9-mem-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-9-mem-whole-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily16-wis7-9-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily16-wis7-9-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A158-daily-numbered-context-native.png"
+      ]
+    },
+    {
+      "selectedTargetNumber": 17,
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 14,
+      "dailyAppointments": [
+        "daily|Wisdom 7:7–14"
+      ],
+      "note": {
+        "id": "wis-7-14-tav-atek",
+        "kind": "unreadablePoint",
+        "anchor": "עָתק",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          158
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=158"
+      },
+      "decision": "retainNote",
+      "finding": "The tav lower bar has two short bottom tips, but its saturated upper boundary and tiny notch do not uniquely exclude an irregular flat bar. Preserve the disclosure instead of inferring tsere from expected wording.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-14-tav-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-14-tav-whole-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily17-wis7-14-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily17-wis7-14-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A158-daily-numbered-context-native.png"
+      ]
+    }
+  ],
+  "retiredSourceNoteIds": [
+    "wis-6-16-bet"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-3-vav",
+    "wis-5-3-yod",
+    "wis-5-5-alef",
+    "wis-5-5-first-kaf",
+    "wis-5-8-initial-vav",
+    "wis-5-8-gimel",
+    "wis-10-14-tet",
+    "wis-10-14-shin",
+    "wis-10-20-vav",
+    "wis-10-20-first-kaf",
+    "wis-4-10-letter-3-vowel",
+    "wis-5-1-ayin",
+    "wis-5-2-mem",
+    "wis-5-15-bet",
+    "wis-7-9-mem",
+    "wis-7-14-tav-atek"
+  ],
+  "retainedNoteAnchorUpdates": [],
+  "addedCombiningMarks": {
+    "U+05B0 SHEVA": 1
+  },
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/accepted.json",
+    "sha256": "d88197ea63264617d3d5fa6ffb60c608b57b0a5b00f727789446f501d63c7b44"
+  },
+  "originalPDFNativeReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/original-PDF-native-replay.json",
+    "sha256": "d04d66f72f8a589cf60f82a6e3eba694548a95f7da7526c32e91f9b6bfc836a2"
+  },
+  "frames": [
+    {
+      "name": "daily01-wis5-3-word",
+      "sourcePage": 153,
+      "nativeBounds": [
+        1735,
+        1505,
+        2005,
+        1700
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily01-wis5-3-word-native.png",
+          "sha256": "c2919d9a3d51e8ef4a8159ba060047d9bde68874eadaf7eecc168f8038bccef4",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily01-wis5-3-word-4x.png",
+          "sha256": "4fa977bda121a5f439effcda1bd5981411ef3aade937b37fd7b074dfe41b7374",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily03-wis5-5-word",
+      "sourcePage": 153,
+      "nativeBounds": [
+        1985,
+        1875,
+        2340,
+        2070
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily03-wis5-5-word-native.png",
+          "sha256": "04e0d9eb5b0f2deb45afc2753a23ebbd50b44e7397f03e5fc71f10534760300d",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily03-wis5-5-word-4x.png",
+          "sha256": "d0e75b02e7e3e51bca1bd21d59f588a4a1e7bfd5ea022fbdfc95b8d062fb3a61",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily05-wis5-8-word",
+      "sourcePage": 154,
+      "nativeBounds": [
+        325,
+        540,
+        665,
+        740
+      ],
+      "sourceImageRGBPixelSHA256": "6099d228c37bf3d57240a73f314b6749b38aeaaa86308c6c55991f0c6d19a47c",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 154,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily05-wis5-8-word-native.png",
+          "sha256": "b23931ab59332679303348eba79a6da6c01627e88d44bebd9f130ee8d291bdc9",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily05-wis5-8-word-4x.png",
+          "sha256": "8e816de6a976d0b5926c9110925e7edeff5cd8476b329e12bc4b50f4206a7025",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily07-wis10-14-word",
+      "sourcePage": 165,
+      "nativeBounds": [
+        385,
+        1085,
+        925,
+        1315
+      ],
+      "sourceImageRGBPixelSHA256": "90e18b865113a937a27eb757f584aa9cedd6e3c348f696ff43a000dfa28b35f4",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily07-wis10-14-word-native.png",
+          "sha256": "819e28d34625d14eada53557ff5ba17c3e4ebf353899b4c6439b6c9d0e8a1321",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily07-wis10-14-word-4x.png",
+          "sha256": "6083d1aea6ac767ccaf1e0137e9d8b7a8f678860ceb222f049da34e44fa07612",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily09-wis10-20-word",
+      "sourcePage": 166,
+      "nativeBounds": [
+        1295,
+        495,
+        1635,
+        680
+      ],
+      "sourceImageRGBPixelSHA256": "813c1ed685de7cb9a7d768154a5da83be9548f3ad9cd052fad93aa313ffe1a55",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 166,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily09-wis10-20-word-native.png",
+          "sha256": "40437513e8d27e596de138959022bb721e223354d6f4eff6976e932d2eb29588",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily09-wis10-20-word-4x.png",
+          "sha256": "1defe55df7e40bf7995e27ff867b4912f2b8dc6d7d60e11b3135ce55292abdef",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily10-wis10-20-word",
+      "sourcePage": 166,
+      "nativeBounds": [
+        750,
+        520,
+        1075,
+        685
+      ],
+      "sourceImageRGBPixelSHA256": "813c1ed685de7cb9a7d768154a5da83be9548f3ad9cd052fad93aa313ffe1a55",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 166,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily10-wis10-20-word-native.png",
+          "sha256": "7090fee5c6e3cc2e8dd2690e780977951096bcb88dc2e84b9481659430d1ed72",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily10-wis10-20-word-4x.png",
+          "sha256": "b22e590c9595736d446480f642bd807113654ed039d89fc48e511e62508a0a66",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily11-wis4-10-word",
+      "sourcePage": 152,
+      "nativeBounds": [
+        355,
+        1275,
+        615,
+        1475
+      ],
+      "sourceImageRGBPixelSHA256": "8d1f4a4e381e1a4a71295f14550859297a213644158bd6eab1703a6c2ce07470",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 152,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily11-wis4-10-word-native.png",
+          "sha256": "62327552b3e36d7326c0b0cf33e09e0ff9d082c7c1c9c5d66a0fa620046b6e94",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily11-wis4-10-word-4x.png",
+          "sha256": "180de956f9fde3c1670461f9b84bb953a3e75c3ce6546e6a479936badabe49f8",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily12-wis5-1-word",
+      "sourcePage": 153,
+      "nativeBounds": [
+        1955,
+        1335,
+        2170,
+        1500
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily12-wis5-1-word-native.png",
+          "sha256": "0df27fe23048708cd8ba321042dd3bd18804db6346a5945d9c65f5e7d532ec9a",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily12-wis5-1-word-4x.png",
+          "sha256": "06a7f9e15164ec3af7b633b9e20d87179e15d29a141a90b973c716e363ed61a4",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily13-wis5-2-word",
+      "sourcePage": 153,
+      "nativeBounds": [
+        1525,
+        1435,
+        1745,
+        1600
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily13-wis5-2-word-native.png",
+          "sha256": "385cf6030e98bc123b64b7551c5d62ca6e59f938eac675e6585c6decb3943903",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily13-wis5-2-word-4x.png",
+          "sha256": "bcab47ea172a7d70d239898fe2febd17d4c6e120a48f92bbcf90c5375b52f0fd",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily14-wis5-15-word",
+      "sourcePage": 154,
+      "nativeBounds": [
+        2025,
+        1855,
+        2265,
+        2045
+      ],
+      "sourceImageRGBPixelSHA256": "6099d228c37bf3d57240a73f314b6749b38aeaaa86308c6c55991f0c6d19a47c",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 154,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily14-wis5-15-word-native.png",
+          "sha256": "c7be617cfbb9ba50844e6b656903ccd86ef5030eee8aead0b6b4e56e6d6d7aef",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily14-wis5-15-word-4x.png",
+          "sha256": "ddc48ffbba71cbade3660358812ffef9a360908da1730d4d4ea3bd41dc57e0b4",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily15-wis6-16-word",
+      "sourcePage": 156,
+      "nativeBounds": [
+        1275,
+        1465,
+        1525,
+        1615
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 156,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily15-wis6-16-word-native.png",
+          "sha256": "7a6826fa4961cb45967ed03bae983b93f99781411bf30d7e0593a8afe05adaac",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily15-wis6-16-word-4x.png",
+          "sha256": "cdfe9d10636903e3dfe968b58afec539054090089907ab5711b8c6843e7b2941",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily16-wis7-9-word",
+      "sourcePage": 158,
+      "nativeBounds": [
+        815,
+        839,
+        1055,
+        1000
+      ],
+      "sourceImageRGBPixelSHA256": "0d7ac1211bea66c59dfc5114cc596adc9c15fe9e2dcfc2e2c4ca30572b34cfb9",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 158,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily16-wis7-9-word-native.png",
+          "sha256": "99312b3eb678a4aed68f62779931de9d62ee73f65fd474d2a2d331bb07400f3c",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily16-wis7-9-word-4x.png",
+          "sha256": "0b6bb213b65fdbc704585a7abb7928cfdb583222619976d6147caab0263aa030",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "daily17-wis7-14-word",
+      "sourcePage": 158,
+      "nativeBounds": [
+        1655,
+        1475,
+        2035,
+        1640
+      ],
+      "sourceImageRGBPixelSHA256": "0d7ac1211bea66c59dfc5114cc596adc9c15fe9e2dcfc2e2c4ca30572b34cfb9",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 158,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily17-wis7-14-word-native.png",
+          "sha256": "2a23f33532739c3d52f7e1a2352a1f1f52a8f2b3e3bf8b75e3b9aade0500ad96",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/daily17-wis7-14-word-4x.png",
+          "sha256": "7d3088c6b480dc1d2f5460bded96815f5367a9c993aed3607798bcf16a3a04df",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "A153-daily-numbered-context",
+      "sourcePage": 153,
+      "nativeBounds": [
+        0,
+        1210,
+        2529,
+        2195
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A153-daily-numbered-context-native.png",
+          "sha256": "cc3f47aaf78158949a522e5e29fb9fc11140321bf7f1f71228d1e4fbedee99c6",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "A154-daily-numbered-context",
+      "sourcePage": 154,
+      "nativeBounds": [
+        0,
+        415,
+        2480,
+        2170
+      ],
+      "sourceImageRGBPixelSHA256": "6099d228c37bf3d57240a73f314b6749b38aeaaa86308c6c55991f0c6d19a47c",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 154,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A154-daily-numbered-context-native.png",
+          "sha256": "5b3c436d1712ea3d682e512beeb1e9da4aa3de0ad812ca98af4d2b82e8383723",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "A165-daily-numbered-context",
+      "sourcePage": 165,
+      "nativeBounds": [
+        0,
+        960,
+        2516,
+        1440
+      ],
+      "sourceImageRGBPixelSHA256": "90e18b865113a937a27eb757f584aa9cedd6e3c348f696ff43a000dfa28b35f4",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A165-daily-numbered-context-native.png",
+          "sha256": "f08a866e6dc78af64d9f99ee98e3988214411c7ec1df6f2b44ba5e7eb0c4cee2",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "A166-daily-numbered-context",
+      "sourcePage": 166,
+      "nativeBounds": [
+        0,
+        370,
+        2618,
+        810
+      ],
+      "sourceImageRGBPixelSHA256": "813c1ed685de7cb9a7d768154a5da83be9548f3ad9cd052fad93aa313ffe1a55",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 166,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A166-daily-numbered-context-native.png",
+          "sha256": "3b802052c9197e27e2c2a43a1cbe15ca9f26828a6e9e175a0f41858a2d8e529e",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "A152-daily-numbered-context",
+      "sourcePage": 152,
+      "nativeBounds": [
+        0,
+        1150,
+        2481,
+        1600
+      ],
+      "sourceImageRGBPixelSHA256": "8d1f4a4e381e1a4a71295f14550859297a213644158bd6eab1703a6c2ce07470",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 152,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A152-daily-numbered-context-native.png",
+          "sha256": "3080fd9eec8b234057fdde2411fcb1720c27487dee0546c0b59e1049b5166ec0",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "A156-daily-numbered-context",
+      "sourcePage": 156,
+      "nativeBounds": [
+        0,
+        1340,
+        2487,
+        1740
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 156,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A156-daily-numbered-context-native.png",
+          "sha256": "5cf6b4e85b2d44690a4f9452251ad674d8e038f7626a13b616aa5f860036308c",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "A158-daily-numbered-context",
+      "sourcePage": 158,
+      "nativeBounds": [
+        0,
+        714,
+        2484,
+        1765
+      ],
+      "sourceImageRGBPixelSHA256": "0d7ac1211bea66c59dfc5114cc596adc9c15fe9e2dcfc2e2c4ca30572b34cfb9",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 158,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/A158-daily-numbered-context-native.png",
+          "sha256": "c2afef1ae0f73c53eaf6e90d6bae6863aceb2ee2bd8bd452274fe70f654c1f21",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "literal-lamed-qamats13",
+      "sourcePage": 171,
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 171,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-lamed-qamats13-native.png",
+          "sha256": "fe72d5f82bd2d88181be8027113f3c20b7ac26c9bf86bc52ac4c6b6098b6f966",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-lamed-qamats13-15x.png",
+          "sha256": "8698507f79fe834833c775515c772e5a7dd44e8df36b96d9394181073c4afd12",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "literal-lamed-tsere13",
+      "sourcePage": 171,
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 171,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-lamed-tsere13-native.png",
+          "sha256": "55bc1d0f6f7e42cac6c33f90b0ef7384c55428cf5bf59f0e7c81c6260a4e4a0b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-lamed-tsere13-15x.png",
+          "sha256": "b911f7c74216ff9b6002f7867dedd81809060148e7fa93fe139ccd6a2d32439e",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "literal-mem-patah13",
+      "sourcePage": 171,
+      "nativeBounds": [
+        428,
+        1504,
+        470,
+        1574
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 171,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-patah13-native.png",
+          "sha256": "dc0f2fd7d3591c0cc52741a003839412da8e41c35960d09a465c628447a1a089",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-patah13-20x.png",
+          "sha256": "a115c8b8e4645449426b844fe2b874b5d3a5577779ed940bc53cee81d14bdb16",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "literal-mem-sheva13",
+      "sourcePage": 171,
+      "nativeBounds": [
+        748,
+        1405,
+        802,
+        1490
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 171,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-sheva13-native.png",
+          "sha256": "237175447439615b92dbfc1c8b0ca9bb8483706e1483eba93a827bb7bda13a66",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-sheva13-15x.png",
+          "sha256": "495927cd855174ba06b358031ed45d32ba56d23a61526221cd9d14cbabc76186",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-3-yod-complete",
+      "sourcePage": 153,
+      "nativeBounds": [
+        1900,
+        1580,
+        1935,
+        1655
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-3-yod-complete-native.png",
+          "sha256": "ca9672b2688437fdabbc48778f636fca52e9d36fea76c30b387f406155c9a7b7",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-3-yod-complete-20x.png",
+          "sha256": "ad6cb7f3fc200f5cc103dfcf1ce2c383d5766f46be0c9c95df717645f76fcb87",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-5-alef-complete",
+      "sourcePage": 153,
+      "nativeBounds": [
+        2200,
+        1945,
+        2245,
+        2025
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-alef-complete-native.png",
+          "sha256": "ce0fe1ee5cc6bce8fac67049399ea8cc974853f592fd14bc6379c932d76cdf76",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-alef-complete-15x.png",
+          "sha256": "90defc3a8b2df50adaaeaabe6f2fe48210147626f4b906f7a5cf02b4e32cc554",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-5-first-kaf-complete",
+      "sourcePage": 153,
+      "nativeBounds": [
+        2147,
+        1940,
+        2193,
+        2035
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-first-kaf-complete-native.png",
+          "sha256": "9005ea6c96194c6fcd0a634caad8c6c38ecb6632537a285899b93c652cb3ae29",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-first-kaf-complete-15x.png",
+          "sha256": "4384cf2bbc841df3748360c96b898eaece34fffd18dfc5963d10f6a88d0794c3",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-5-second-kaf-literal-control",
+      "sourcePage": 153,
+      "nativeBounds": [
+        2113,
+        1940,
+        2154,
+        2035
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-second-kaf-literal-control-native.png",
+          "sha256": "467f74b439b9c87db2e510186ee236a2ddc9235baf6aa952011d56c36079955c",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-5-second-kaf-literal-control-15x.png",
+          "sha256": "b67df559b4f720769fc6a3a8e76adecde04727bcc18266e424e5166cd9996312",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-8-vav-complete",
+      "sourcePage": 154,
+      "nativeBounds": [
+        550,
+        585,
+        580,
+        680
+      ],
+      "sourceImageRGBPixelSHA256": "6099d228c37bf3d57240a73f314b6749b38aeaaa86308c6c55991f0c6d19a47c",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 154,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-8-vav-complete-native.png",
+          "sha256": "35855578f85c933019285aa1067c670305a78c12c4550c4f032e3d00a4ef3a06",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-8-vav-complete-15x.png",
+          "sha256": "01181a7b65b8d0d59ea17e8c802fd59e3b45d304e9c120d26a15413eb8c008a6",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-8-gimel-complete",
+      "sourcePage": 154,
+      "nativeBounds": [
+        505,
+        585,
+        550,
+        685
+      ],
+      "sourceImageRGBPixelSHA256": "6099d228c37bf3d57240a73f314b6749b38aeaaa86308c6c55991f0c6d19a47c",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 154,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-8-gimel-complete-native.png",
+          "sha256": "dd7eb7b08496af25f92f95c2164cd6465f519e1ed6991684a1ccfbc46fef5843",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-8-gimel-complete-15x.png",
+          "sha256": "80c1d213c4b312c70eb74adaa69b5788fb83fa5727e86f85c03d6a1f12070557",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis10-14-shin-complete",
+      "sourcePage": 165,
+      "nativeBounds": [
+        570,
+        1120,
+        625,
+        1230
+      ],
+      "sourceImageRGBPixelSHA256": "90e18b865113a937a27eb757f584aa9cedd6e3c348f696ff43a000dfa28b35f4",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-shin-complete-native.png",
+          "sha256": "6c14f1d002b52777fbe3425af44969445e245a8b13669a35730570646583abf8",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-shin-complete-15x.png",
+          "sha256": "79f3a60af4ee63d08a8a9648e31869b541bbaff323f7c9d503dadedb844dac20",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-4-haksilim-sheva-control-word",
+      "sourcePage": 153,
+      "nativeBounds": [
+        950,
+        1740,
+        1230,
+        1875
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-4-haksilim-sheva-control-word-native.png",
+          "sha256": "f269b7b29e2606fdd9808d55fa28dcb0f3c91b9c50d8a71053baeb2bf6d2b9ce",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-4-haksilim-sheva-control-word-5x.png",
+          "sha256": "a9113b4d2881e55e2f24765560ab586eb602f252cbb337f5d6eb8c17390b556f",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-1-hakhen-tsere-control-word",
+      "sourcePage": 153,
+      "nativeBounds": [
+        1670,
+        1360,
+        1850,
+        1505
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-1-hakhen-tsere-control-word-native.png",
+          "sha256": "1b9b25f3f9d4d6875e6a525989b94699f0bade819f1e4355b55abfa1e91c10d5",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-1-hakhen-tsere-control-word-5x.png",
+          "sha256": "bf27467e1595836217db6d1609598679597bef07821d93fbdfad0534db1c578c",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis10-14-tet-expanded-complete",
+      "sourcePage": 165,
+      "nativeBounds": [
+        615,
+        1110,
+        675,
+        1250
+      ],
+      "sourceImageRGBPixelSHA256": "90e18b865113a937a27eb757f584aa9cedd6e3c348f696ff43a000dfa28b35f4",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-tet-expanded-complete-native.png",
+          "sha256": "2557ce44cd1fe97f1e2888f8fc9301ab4c66b3cdebe3616d8a056c5dd8093d19",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-tet-expanded-complete-15x.png",
+          "sha256": "86a7fe89a0ecd76cd11d09778c4020970a34e0f4818eed7ed36e721517b3e3b5",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis10-14-shevet-tsere-control-word",
+      "sourcePage": 165,
+      "nativeBounds": [
+        1580,
+        1210,
+        1775,
+        1335
+      ],
+      "sourceImageRGBPixelSHA256": "90e18b865113a937a27eb757f584aa9cedd6e3c348f696ff43a000dfa28b35f4",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-shevet-tsere-control-word-native.png",
+          "sha256": "91fc50fa61937c616d0eb0d9495aa222fd60cd908764a9e7c34bd84bdc0baa43",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-shevet-tsere-control-word-5x.png",
+          "sha256": "059dbc84d27698856a6163d6f280ef76bd4e1190b6f45ef2e85c8226f6e830e7",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis10-14-shem-tsere-control-word",
+      "sourcePage": 165,
+      "nativeBounds": [
+        710,
+        1310,
+        830,
+        1430
+      ],
+      "sourceImageRGBPixelSHA256": "90e18b865113a937a27eb757f584aa9cedd6e3c348f696ff43a000dfa28b35f4",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-shem-tsere-control-word-native.png",
+          "sha256": "16ebc29c23a06f4d101ad57644cb603720015f5a416b5418cc8cc0f57394120e",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-14-shem-tsere-control-word-5x.png",
+          "sha256": "c4c238729286704f59561582f60079ebca0dd19f2a0234c5fd05b627fe2a87e8",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis10-13-mehet-sheva-control-word",
+      "sourcePage": 165,
+      "nativeBounds": [
+        490,
+        1010,
+        650,
+        1140
+      ],
+      "sourceImageRGBPixelSHA256": "90e18b865113a937a27eb757f584aa9cedd6e3c348f696ff43a000dfa28b35f4",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-13-mehet-sheva-control-word-native.png",
+          "sha256": "0720bd9f6cf459d27ede37ca898a56b259eda656901daeb35f1e0774bfa46317",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-13-mehet-sheva-control-word-5x.png",
+          "sha256": "6b47bb6533dde419a7df498e34539d78971b705f3e0047af471f0a1599a39a75",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "literal-mem-qamats3",
+      "sourcePage": 151,
+      "nativeBounds": [
+        1860,
+        1350,
+        1907,
+        1425
+      ],
+      "sourceImageRGBPixelSHA256": "fc35932d988f5798cf9be0f2c33dbb3ebc7bbf433ce33a6d694e4a3f5540226e",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 151,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-qamats3-native.png",
+          "sha256": "de5c254c0d5a1c95e252b62651c32ac05cb1cd8b9e34518ecd66d19a7b40d430",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-qamats3-15x.png",
+          "sha256": "1ce5af3a9f731aab2fba14f8c5d1b3461c2866e846e8b4f45f0bc81a2147237a",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "literal-mem-tsere13",
+      "sourcePage": 171,
+      "nativeBounds": [
+        250,
+        670,
+        300,
+        740
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 171,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-tsere13-native.png",
+          "sha256": "77eeacf849d39d6f0bb9ed12fd4622ef47c2dbfffc86c9a26e7a6cefa14ce108",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-tsere13-15x.png",
+          "sha256": "fe2b28df3b7180633b3b6f80ef35aba78744187890bb5692c0695fa611e3ae5c",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "literal-mem-segol4",
+      "sourcePage": 151,
+      "nativeBounds": [
+        693,
+        1767,
+        739,
+        1838
+      ],
+      "sourceImageRGBPixelSHA256": "fc35932d988f5798cf9be0f2c33dbb3ebc7bbf433ce33a6d694e4a3f5540226e",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 151,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-segol4-native.png",
+          "sha256": "2a5547010a43f4f750f35da7eba9230468d03edc149544a16b2b28970eca745b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-mem-segol4-15x.png",
+          "sha256": "6ecb090583d171362a7a303b0c08a22525da2066f41222f5a701c65120874d03",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "literal-umlalim13-controls-word",
+      "sourcePage": 171,
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 171,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-umlalim13-controls-word-native.png",
+          "sha256": "4013af50ba3b1f3046efbddb6b066a3e08f8718c7df4da9057295f9c298c0697",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/literal-umlalim13-controls-word-4x.png",
+          "sha256": "9bdbd13c7c8725451ebd4e09cc0a5ac09f163a942f177e47b695fbca339b6d90",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis6-16-complete-compound-word",
+      "sourcePage": 156,
+      "nativeBounds": [
+        990,
+        1480,
+        1525,
+        1610
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 156,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-complete-compound-word-native.png",
+          "sha256": "211e27ee740a4892a52cec4584c7aa6be972089cc39b7b7524ae58baf6dc79c1",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-complete-compound-word-4x.png",
+          "sha256": "0640be6892268888d40844bb06f319d04ed4fed703ea2fa4e2569705621632f3",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis6-16-bet-whole-correct",
+      "sourcePage": 156,
+      "nativeBounds": [
+        1398,
+        1515,
+        1445,
+        1605
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 156,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-bet-whole-correct-native.png",
+          "sha256": "91c96da0076fbea88e4931355cc8279a715135c6fe6a91c0bec882f5e6316f62",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-bet-whole-correct-15x.png",
+          "sha256": "214c931c927c29dae667d0dc7bcbb45857e4eda6ba5241e5e5569e9588fa57cf",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis7-9-mem-whole",
+      "sourcePage": 158,
+      "nativeBounds": [
+        880,
+        860,
+        940,
+        970
+      ],
+      "sourceImageRGBPixelSHA256": "0d7ac1211bea66c59dfc5114cc596adc9c15fe9e2dcfc2e2c4ca30572b34cfb9",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 158,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-9-mem-whole-native.png",
+          "sha256": "944689ab84d2b38b7d499908b2da31dc7ec07ed8c4ebb06a21dd4e54b1d9a1f1",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-9-mem-whole-15x.png",
+          "sha256": "63a73d9cf52da6589a8cbf9ae05c78a2ec2b6f3c758096b06452fea0d7cb511d",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis6-16-bet-detached-point-expanded",
+      "sourcePage": 156,
+      "nativeBounds": [
+        1405,
+        1565,
+        1428,
+        1595
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 156,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-bet-detached-point-expanded-native.png",
+          "sha256": "d216820e1b2f72ee74fe84beca5ef4237cd7c2a5dc2fc2bd6ab543e1834a628a",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-16-bet-detached-point-expanded-25x.png",
+          "sha256": "b4e489612a7e7bebae9b713fcd1891e21edba590b8432948ffc434cddf6250d4",
+          "scale": 25,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis10-20-vav-whole",
+      "sourcePage": 166,
+      "nativeBounds": [
+        1570,
+        570,
+        1610,
+        660
+      ],
+      "sourceImageRGBPixelSHA256": "813c1ed685de7cb9a7d768154a5da83be9548f3ad9cd052fad93aa313ffe1a55",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 166,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-20-vav-whole-native.png",
+          "sha256": "66689a171fa475d1318c83e63045e21f27f0cf26a8cf79fdf0ced19dab639859",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-20-vav-whole-15x.png",
+          "sha256": "017c11632371b63a6317b83f85e4873af5df4f450b547d0661a3f45a8df85e1b",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis10-20-first-kaf-whole",
+      "sourcePage": 166,
+      "nativeBounds": [
+        895,
+        575,
+        945,
+        660
+      ],
+      "sourceImageRGBPixelSHA256": "813c1ed685de7cb9a7d768154a5da83be9548f3ad9cd052fad93aa313ffe1a55",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 166,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-20-first-kaf-whole-native.png",
+          "sha256": "9d6a0d218a5dc5b7ef30277fc88d691d3942b270c8e105befbc72daf910c98e6",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis10-20-first-kaf-whole-15x.png",
+          "sha256": "7d3b5d8ddc235e3397e5a2c0bf34528483849fd089abe6b634231043da86a7b9",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis4-10-bet-whole",
+      "sourcePage": 152,
+      "nativeBounds": [
+        450,
+        1350,
+        495,
+        1450
+      ],
+      "sourceImageRGBPixelSHA256": "8d1f4a4e381e1a4a71295f14550859297a213644158bd6eab1703a6c2ce07470",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 152,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis4-10-bet-whole-native.png",
+          "sha256": "2242da95d1a8b8a1fc9c5368814f272607ca6aeaf5077b2c84cb7afb04aa1add",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis4-10-bet-whole-15x.png",
+          "sha256": "f28843d9190a4ff091eaafa21302157a0712f85b0263d57bd116a21d5bce2405",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-1-ayin-whole",
+      "sourcePage": 153,
+      "nativeBounds": [
+        2075,
+        1375,
+        2125,
+        1475
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-1-ayin-whole-native.png",
+          "sha256": "4faca4fcd2de4df06651737727a18ce115e96429e50fadf5ecd51b0e4559e207",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-1-ayin-whole-15x.png",
+          "sha256": "79ae6efaea1924ec7e9ebe5da6ebf6628a634ad446b1e8ba5fd3d1d36aa53e33",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-2-mem-expanded-whole",
+      "sourcePage": 153,
+      "nativeBounds": [
+        1630,
+        1470,
+        1690,
+        1570
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-2-mem-expanded-whole-native.png",
+          "sha256": "7a93befd214a9195c192170875476b06eb6e0f41ffc4e0eb77f3b356bceed102",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-2-mem-expanded-whole-15x.png",
+          "sha256": "54d638b7694b81b486cfc5ffb257b22264eb3140a9ce7f3b52a76d8bfa2d8914",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-15-bet-whole",
+      "sourcePage": 154,
+      "nativeBounds": [
+        2145,
+        1885,
+        2200,
+        1980
+      ],
+      "sourceImageRGBPixelSHA256": "6099d228c37bf3d57240a73f314b6749b38aeaaa86308c6c55991f0c6d19a47c",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 154,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-15-bet-whole-native.png",
+          "sha256": "ee4a46388cab1409d7fc4833689dbf99aea8a587cf8fbed04bf2f139cd20a06b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-15-bet-whole-15x.png",
+          "sha256": "5a58e2d7054b33d1e7cc6e9139f405f42d96950dac416a2c79a48cac0dcb448a",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis7-14-tav-whole",
+      "sourcePage": 158,
+      "nativeBounds": [
+        1830,
+        1520,
+        1880,
+        1620
+      ],
+      "sourceImageRGBPixelSHA256": "0d7ac1211bea66c59dfc5114cc596adc9c15fe9e2dcfc2e2c4ca30572b34cfb9",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 158,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-14-tav-whole-native.png",
+          "sha256": "1eb4a8fbb9deecfd44ac07eb29b153269f0b4a6646ac4a2c3d4f1d73139c5822",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-14-tav-whole-15x.png",
+          "sha256": "6fd61213106d2929638e106fe5984de6891830878ba77508a1fe6b08fd69b58e",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-1-mem-holam-bare-lower-control",
+      "sourcePage": 153,
+      "nativeBounds": [
+        2035,
+        1375,
+        2080,
+        1460
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-1-mem-holam-bare-lower-control-native.png",
+          "sha256": "392747ce34db13ec17a7f7df3f7cde29ae5ab5978ce493c544379b594bcbcf69",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-1-mem-holam-bare-lower-control-15x.png",
+          "sha256": "3caa96b36c84125d0ccb1a4ce5e96bf6a344f876339d42d26c7d0026fd054e43",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "BEL21-literal-detached-segol-point",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1872,
+        2206,
+        1895,
+        2226
+      ],
+      "sourceImageRGBPixelSHA256": "2822bfb2436f0f025160c92560586d772f6d4d663de42e840b4333b4929cef2b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 245,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/BEL21-literal-detached-segol-point-native.png",
+          "sha256": "f3bd0fa3603dff66b92001e3d39a89129db77afbd091960be97b636327a01530",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/BEL21-literal-detached-segol-point-25x.png",
+          "sha256": "447286b9304254fd8885498ed59ef4adc5795012652de1f81a9f5209823ca685",
+          "scale": 25,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "BEL21-literal-detached-segol-word",
+      "sourcePage": 245,
+      "nativeBounds": [
+        1730,
+        2105,
+        1950,
+        2260
+      ],
+      "sourceImageRGBPixelSHA256": "2822bfb2436f0f025160c92560586d772f6d4d663de42e840b4333b4929cef2b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 245,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/BEL21-literal-detached-segol-word-native.png",
+          "sha256": "97ed8c92951be97488388a55417e1cacf1e1f9ce3bc6d77a825461e23ea19163",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/BEL21-literal-detached-segol-word-4x.png",
+          "sha256": "f0f66acb3b06a6c6cb3ce26ecd2d734926ce8e5a1d08083875d92969b52d79fa",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis5-3-vav-expanded-complete",
+      "sourcePage": 153,
+      "nativeBounds": [
+        1920,
+        1575,
+        1965,
+        1660
+      ],
+      "sourceImageRGBPixelSHA256": "7bf974b861adce564f46be601e91e61f4edca3db6a8e224c669274b240b975e7",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 153,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-3-vav-expanded-complete-native.png",
+          "sha256": "3610b13f48b3ffc74739bf88f71e05cc73a195468ba1d37d689190096924c943",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis5-3-vav-expanded-complete-15x.png",
+          "sha256": "3fbd38728a7e2fd3369a7db59b030d9162f852d0593c6798936c50084d0fc6e7",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis7-9-mem-expanded-lower-mark",
+      "sourcePage": 158,
+      "nativeBounds": [
+        890,
+        905,
+        930,
+        943
+      ],
+      "sourceImageRGBPixelSHA256": "0d7ac1211bea66c59dfc5114cc596adc9c15fe9e2dcfc2e2c4ca30572b34cfb9",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 158,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-9-mem-expanded-lower-mark-native.png",
+          "sha256": "5cb17ae9aff6906b8c41c90b15d36e0d4c7e34923823c2f7459dd43568772dce",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis7-9-mem-expanded-lower-mark-25x.png",
+          "sha256": "7d2e4dce8fe4222a305c108d7afaa64d9eeb0535a319b3f8b6993e05d213b20f",
+          "scale": 25,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis6-10-bet-hiriq-expanded-control-word",
+      "sourcePage": 156,
+      "nativeBounds": [
+        1370,
+        735,
+        1730,
+        865
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 156,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-10-bet-hiriq-expanded-control-word-native.png",
+          "sha256": "72838a665df27b95d8d2b006a76895799c6e3163af5cbe0276ad1498b8a79b13",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-10-bet-hiriq-expanded-control-word-5x.png",
+          "sha256": "6b325e1ce41edd1e9c61f57c8aace335457d0584757239813be8f0d2fcc3885d",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis6-10-bet-hiriq-complete",
+      "sourcePage": 156,
+      "nativeBounds": [
+        1605,
+        765,
+        1655,
+        840
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 156,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-10-bet-hiriq-complete-native.png",
+          "sha256": "60a4e2b543ebbae46be436f2b00cdb83f7f2aca221400a8c77ab87d5f7c4e7f0",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-10-bet-hiriq-complete-15x.png",
+          "sha256": "2b0a8be5edf02e0c7f859f66f6c932cdfd52b802ace054ed5266ef8ea6c37e14",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "name": "wis6-10-bet-hiriq-detached-point",
+      "sourcePage": 156,
+      "nativeBounds": [
+        1615,
+        808,
+        1645,
+        838
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 156,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-10-bet-hiriq-detached-point-native.png",
+          "sha256": "a731ff477ea1dde6acb40a3411ee2c5d0fe4a97cb702a0369810cbe632489dbf",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass14-WIS-DAILY/wis6-10-bet-hiriq-detached-point-25x.png",
+          "sha256": "24082418d35c20602d401856d4eabe39873acc929cc9d5e5cec9b00ee637a247",
+          "scale": 25,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    }
+  ],
+  "independentReview": {
+    "root": "Independently viewed complete bet and compound, numbered source16, detached point, literal qamats/sheva and fresh same-page bet-hiriq complete glyph/fullword. Final accepted bet6:16 sheva only; agreed mem5:2 retention because a ragged patah remains possible. All other unproven leads retained.",
+    "wisdomPeer": "Independently accepted bet6:16 sheva from two comparable detached vertical lobes with inward waist against literal sheva/qamats, complete word and source16 continuation. Independently rejected mem5:2 tsere because a shallow irregular patah bar remains possible. The later same-page bet-hiriq counter was additionally checked by root."
+  },
+  "sourceAddressHandling": [
+    "Printed16 begins on the preceding physical row and the compound target is in its next continuation row; the numbered context includes both. The text and source labels are preserved exactly as baseline.",
+    "The complete compound target word is archived independently of its narrower historical locator.",
+    "No adjacent or unrelated consonant/vowel reading is supplied or corrected; only the approved bet sheva is proposed."
+  ],
+  "excludedExploratoryFrameNames": [
+    "literal-alef-qubbuts13",
+    "wis5-3-vav-complete",
+    "wis10-14-tet-complete",
+    "wis6-16-bet-detached-point",
+    "wis5-2-mem-whole",
+    "wis10-14-shin-lower-point",
+    "wis10-14-shem-shin-control-whole",
+    "wis10-14-shevet-shin-control-whole",
+    "wis10-20-second-kaf-control",
+    "wis7-9-mem-lower-mark",
+    "A156-complete-source-page",
+    "wis6-10-bet-hiriq-control-word",
+    "wis6-16-tav-hiriq-control-word",
+    "wis15-7-charash-lower-bare-control-word",
+    "wis15-7-lalush-lower-bare-control-word",
+    "wis6-16-tav-hiriq-complete-control-word"
+  ],
+  "scalarConservation": {
+    "addedPointCount": 1,
+    "removedPointCount": 0,
+    "noncombiningScalarChanges": 0,
+    "existingScalarOrderPreserved": true,
+    "onlyMatchingUnreadablePointNoteRetired": true,
+    "sharedAnchorRefreshCount": 0,
+    "allOtherNotesUnitsBlocksVerseRangesCreditsAndRestoredLettersUnchanged": true
+  },
+  "limits": [
+    "Sixteen daily Wisdom disclosures remain; merged marks are not classified where competing classes survive.",
+    "Source-certified morphology is required even when the expected grammar looks familiar.",
+    "Existing user PDFs, source files and browser sessions remain untouched."
+  ],
+  "priorReportsPreserved": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+      "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+    }
+  ]
+}

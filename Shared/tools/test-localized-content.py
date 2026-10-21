@@ -94,13 +94,15 @@ for bundle, languages in {
             assert not (expected_fallbacks & localized["prayers"].keys())
         assert not any(row["missing_mysteries"].values()), (bundle, language, row["missing_mysteries"])
 
-# Only the seven published Hebrew antiphons are Vicariate prayer text. Display labels
-# and the separately sourced Masoretic/Delitzsch readings must not inherit that claim.
+# The seven published Hebrew antiphons and the explicitly rite-bound Gloria title
+# use Vicariate metadata. Other labels and the separately sourced Scripture do not.
 hebrew_antiphons = json.loads((ROOT / "Shared/content/oAntiphons/content/he.json").read_text())
 vicariate_bodies = {f"{key}Body" for key in (
     "oSapientia", "oAdonai", "oRadixIesse", "oClavisDavid", "oOriens", "oRexGentium", "oEmmanuel",
 )}
-assert hebrew_antiphons["$prayerTraditionByKey"] == {key: "vicariate" for key in vicariate_bodies}
+assert hebrew_antiphons["$prayerTraditionByKey"] == {
+    key: "vicariate" for key in vicariate_bodies | {"gloriaPatriTitle"}
+}
 for key in vicariate_bodies:
     assert "catholic.co.il" in hebrew_antiphons["$sources"][key], key
 assert not vicariate_bodies.intersection(hebrew_antiphons["$scriptureImport"]["prayerKeys"])

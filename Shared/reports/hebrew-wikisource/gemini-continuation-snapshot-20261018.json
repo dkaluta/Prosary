@@ -1,0 +1,408 @@
+{
+  "date": "2026-10-18",
+  "purpose": "Read-only handoff snapshot, NOT a finalized Pass33 baseline or source approval.",
+  "repo": "/Users/dk/Developer/Personal/Prosary",
+  "branch": "feature/home-card-columns",
+  "state": "Pass32 applied, regenerated, audited and tested. Final checkpoint freeze blocked by unrelated localization drift. Pass33 source-only work is tentative and unapplied.",
+  "remainingSourceNotes": 457,
+  "kinds": {
+    "unreadablePoint": 452,
+    "restoredLetter": 5
+  },
+  "resolvedSince650": 193,
+  "reviewedButAmbiguous": 230,
+  "unreviewedUnreadablePoints": 222,
+  "firstCycleReviewed": 423,
+  "firstCycleOriginalUnreadablePoints": 645,
+  "current18LiveFilePins": [
+    {
+      "path": "Shared/content/hebrew-deuterocanon/1MA.json",
+      "sha256": "bfc52934807ab288daf2f447c6e7a916dfc88028be5d7fb38904bd828f4772eb"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/2MA.json",
+      "sha256": "ea84016bc2a2c251cf07a7de635a0977a49ac856534d83309f856aaef1d83fae"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/BAR.json",
+      "sha256": "91a5ae9e5b51ad7ccf7d51f6c902b321b208db2caceedc0ba87b365a50a5ae68"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/BEL.json",
+      "sha256": "f7591f1670e0aabd7058ecd188a22a6375bb384b78da94173ce5c936625f7317"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/ESG.json",
+      "sha256": "6f95936cbb6be511acd6a6f65c6edf4a9af360cd942d2d023df7337efd0bdfd8"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/JDT.json",
+      "sha256": "9f771197c0fe797aa2f8eaaac77e9860d67bdab173c5de1a9b497909f53de199"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/LJE.json",
+      "sha256": "959ed4a00843fcaf02f79500dca28d6eb06146438cbffce4d09959c7f74faa36"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/S3Y.json",
+      "sha256": "ee4512c936406c3d07b9f89aa7a1c93f35ae2c23623921146aaa6bbb6fe2bacc"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/SIR.json",
+      "sha256": "bb7e1cba29a62f5bf3c7ab74a7571797b0ba7cef2f89ebf10ef1be585933119e"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/SUS.json",
+      "sha256": "c3d3e04a11a0c963b4a61e8f9383016482a8bb2c4dc51ba256597e9795a291b3"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/TOB.json",
+      "sha256": "7c722b421ce3ccf5e69bc8cfcb1a2b9a3e0ba03917c2506452a537351840107b"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon/WIS.json",
+      "sha256": "ef730267b4b3622b422199abd4f32ef13fe5b588a8ad88971abf8e5137bd1e4e"
+    },
+    {
+      "path": "Shared/content/hebrew-deuterocanon-review.json",
+      "sha256": "b3dbe197f1c778d69d46a85ca347b2dda8910ff4ad8ccb8f0d6cb401f9cd5c46"
+    },
+    {
+      "path": "Shared/tools/hebrew-daily-reading-reviews.json",
+      "sha256": "1f6b5d009e3cffaa74732e4f0e80b53619c2db4ef0eb72df0fafe6eb86f94cfe"
+    },
+    {
+      "path": "Shared/tools/hebrew-bible-presentation-reviews.json",
+      "sha256": "437587c49938cfb15b4e12fbce9b868f395c87308c417b83132d01d42798df64"
+    },
+    {
+      "path": "Shared/data/bible-catalog.json",
+      "sha256": "6f6c4d07e327fad55f39b4583bc738805a67dd4b10bee638d23f95ebb15e8e57"
+    },
+    {
+      "path": "Shared/data/readings-texts.json",
+      "sha256": "b6b6b25504bf40b862a88f541f3daeb96e7f40f09b0e2995457aeccbdd9eabef"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/LJE-frenkel-pointed-crosswalk.json",
+      "sha256": "e5682e9d448edacf9d2011b8044f1e9ddbd9345debe6f03818be8cb261241ab1"
+    }
+  ],
+  "integration": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-integration-20261017-pass32.json",
+    "sha256": "c68c438301d9aba757185810daa3c2b92f9486992b0bc71491d3bc2790c33bb6",
+    "finalFreezeComplete": false
+  },
+  "tests": {
+    "sharedPassed": 114,
+    "android": {
+      "task": "testDebugUnitTest --rerun-tasks",
+      "suites": 72,
+      "tests": 582,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "apple": {
+      "devicesAndConfigurations": [
+        {
+          "device": {
+            "architecture": "arm64",
+            "deviceId": "00006040-000630380A28801C",
+            "deviceName": "My Mac",
+            "modelName": "MacBook Pro",
+            "osBuildNumber": "26A434",
+            "osVersion": "27.0.1",
+            "platform": "macOS"
+          },
+          "expectedFailures": 0,
+          "failedTests": 0,
+          "passedTests": 56,
+          "skippedTests": 0,
+          "testPlanConfiguration": {
+            "configurationId": "1",
+            "configurationName": "Test Scheme Action"
+          }
+        }
+      ],
+      "environmentDescription": "Prosary · Built with macOS 27.0.1",
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "finishTime": 1792347447.716,
+      "passedTests": 56,
+      "result": "Passed",
+      "runtimeWarnings": [],
+      "skippedTests": 0,
+      "startTime": 1792347419.372,
+      "statistics": [],
+      "testFailures": [],
+      "title": "Test - Prosary",
+      "topInsights": [
+        {
+          "category": "Longest Test Runs",
+          "impact": "16% of duration",
+          "text": "1 longest test run with outlier durations exceeding 1.28s (three standard deviations)"
+        }
+      ],
+      "totalTestCount": 56
+    },
+    "windowsRuntime": "not run on macOS"
+  },
+  "finalizationBlocker": {
+    "path": "iOS/Prosary/Localizable.xcstrings",
+    "preservedBaselineSHA256": "deffffb55235c325e5da512f39fa74de569149d16e355895c7cfc1d9754bbb3f",
+    "currentSHA256": "c4788730124f77d9288962eca6277050302ea8cc2fa042e72c4637270ab635bc",
+    "cause": "not established; preserve current bytes; do not restore or weaken the guard without investigation",
+    "log": "/private/tmp/prosary-hebrew-pass32-20261017/final-validation.log"
+  },
+  "nextTargets": [
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "unit": {
+        "verse": 11,
+        "text": "כִּי־הָרִשְׁעָה מוּגת לֵב מִתְּכוּנָתָהּ וּפִיהָ יָעִיד עָלֶיהָ לְהַרְשִׁיעָהּ וְיַעַן אֲשֶׁר מוּסַר כִּלְיוֹתֶיהָ יְצִיקֶנָּה צָרוֹתֶיהָ תָּמִיד מֵרֹאשׁ תֶּחזה׃",
+        "sourcePages": [
+          180
+        ],
+        "textSHA256": "ad4e7f19b105d987143f32c09aaf4e8beecf3111af22082df51e9b8ed63944b4",
+        "sourceNotes": [
+          {
+            "id": "wis-17-11-gimel-3-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מוּגת",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              180
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=180"
+          },
+          {
+            "id": "wis-17-11-het-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "תֶּחזה",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              180
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=180"
+          },
+          {
+            "id": "wis-17-11-zayin-3-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "תֶּחזה",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              180
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=180"
+          }
+        ]
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "unit": {
+        "verse": 4,
+        "text": "הֵן בּצדק נִמְנַע אוֹר מֵאֵלֶּה וַיֵּעָצְבוּ בַּחֹשֶׁךְ כִּי בְּמַאֲסָר כָּלְאוּ גּוֹי אֲשֶׁר עַל־יָדָם נִתַּן לָעוֹלָם אוֹר תּוֹרַת נֶצַח׃",
+        "sourcePages": [
+          181
+        ],
+        "textSHA256": "61c709ff2e99c7ce3148374a9b406cb46eb7355c798fda6a3fc79c1f94e4c7e3",
+        "sourceNotes": [
+          {
+            "id": "wis-18-4-word5-bet-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "בּצדק",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              181
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181"
+          },
+          {
+            "id": "wis-18-4-word5-tsadi-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "בּצדק",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              181
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181"
+          },
+          {
+            "id": "wis-18-4-word5-dalet-3-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "בּצדק",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              181
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181"
+          }
+        ]
+      }
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "unit": {
+        "verse": 23,
+        "text": "וַיְהִי כַּאֲשֶׁר נָפְלוּ חֲלָלִים ונערְמוּ אֵלֶּה עַל־אֵלֶּה וַיַּעֲמֹד בֵּינֵיהֶם וַיַּעֲצֹר בְּעַד הַזַּעַם וַיַּחֲסֹם אֶת־הַדֶּרֶךְ אֶל־הַחַיִּים׃",
+        "sourcePages": [
+          183
+        ],
+        "textSHA256": "7aa8fe0e005905defa67f2f4a294413873988852a67532697814e84441162581",
+        "sourceNotes": [
+          {
+            "id": "wis-18-23-word12-vav-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ונערְמוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              183
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=183"
+          },
+          {
+            "id": "wis-18-23-word12-nun-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ונערְמוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              183
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=183"
+          },
+          {
+            "id": "wis-18-23-word12-ayin-3-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ונערְמוּ",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              183
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=183"
+          }
+        ]
+      }
+    }
+  ],
+  "pass33Captures": [
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-525-page-overview.png",
+      "sha256": "e712dc865e532f479e29b88e6fd606bb62a86207ecdb320984f78ad19e4b3d3e",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-525-zoom4-left.png",
+      "sha256": "85552480f9518bb9e6b7ffd7ef7d6d557d2116af412298a93ae16a07590a021d",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-525-zoom4-right.png",
+      "sha256": "62b9170628fb267151c6518e327a72eb70bc97b816ea4da7ebcde2f92cc78d48",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-525-zoom6-left.png",
+      "sha256": "c031c5cf319d4374f1dbb0e897d864f78a7600a2b912fe3d1b2704c6288845fe",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-525-zoom6-right.png",
+      "sha256": "e3c6e61efba4c826090b179d1c6c4b9d91164f546c33beec7aee68b21660eaba",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-526-page-overview.png",
+      "sha256": "7e23244721a80b78604d74cec3654b1ab553f4e8125afa8711ea78b6e66d2326",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-526-zoom4-left.png",
+      "sha256": "e93024c1685fe43feaf970b7db39a84cc12fe837c0341c5c9942cf2611f2da2f",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-526-zoom4-lower-left.png",
+      "sha256": "b0e0a47595a81ba2118a8d3d57ff013016c25cb73d8b709d9e9b3e6520014693",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-526-zoom4-lower-right.png",
+      "sha256": "7fd98b7904814038d60df66ff71d1007cbaee1856d3f2b566e8221f1ffb96f25",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-526-zoom4-right.png",
+      "sha256": "37776b67b75339f4e6ea57a4d8a5fc9c4c94c33c80cce541f92e6394c345998c",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-528-page-overview.png",
+      "sha256": "36b3e4ceddcece42f129175d3baf7c0fbfe7ec08aa3ba41c9c654f823cc871e0",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-528-zoom4-left.png",
+      "sha256": "a8758231a1c445ae5f94ccafd268b934d6b8e0b17cf7d68642c7f337c5dfe9f8",
+      "magicHex": "ffd8ffe000104a46"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass33-20261017/extension-volumeA-528-zoom4-right.png",
+      "sha256": "b5d52b60aa6c0d13ae95250ee51b60b3824b73f2d7f026db50e341b3b6c38aad",
+      "magicHex": "ffd8ffe000104a46"
+    }
+  ],
+  "keyEvidence": [
+    {
+      "path": "/private/tmp/prosary-hebrew-pass32-20261017/inputs.json",
+      "sha256": "2e7af683f060f27445161593ce58ee7501fcc52e4e3c97f958a90303264ac383"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass32-20261017/root-visual-decisions.json",
+      "sha256": "a094e6d3f0bcd2edd9986a538e7fc13f42929444a27224f2f6158b1db9635138"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass32-20261017/independent-all-packet-pixel-audit.json",
+      "sha256": "da9f779d6d6216e494e3596a56012232d2be67ad418ccc68b1a54bfea6d09862"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass32-20261017/independent-mutation-audit.json",
+      "sha256": "9d866ba931aa52a4b58948d74092a4b9f2b8c706f7f5f313bb3777a05b378048"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass32-20261017/independent-applied-byte-confirmation.json",
+      "sha256": "0315907fdb300d69bf8f473c26566fd950a669067abb4462994cf157e5d3848c"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass32-20261017/verification.json",
+      "sha256": "19a859361f4174b154e25888e9e80be6bff92d7d954ae43a3a0e6c71390d5793"
+    },
+    {
+      "path": "/private/tmp/prosary-hebrew-pass32-20261017/finalize-evidence-and-priority.py",
+      "sha256": "46eefb7f29c9272e638461ee4f653d8da9e1422fe96ae0e4cd52484978bdce76"
+    }
+  ]
+}

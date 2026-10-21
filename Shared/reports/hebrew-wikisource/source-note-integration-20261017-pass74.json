@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-21",
+  "pass": 74,
+  "startingNoteCount": 269,
+  "removedNoteCount": 2,
+  "remainingNoteCount": 267,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 30,
+      "afterNoteCount": 28,
+      "removedNoteIds": [
+        "bel-1-22-245-vaymitem22-letter1-vowel",
+        "bel-1-22-245-vayiten22-letter1-vowel"
+      ],
+      "beforeDigest": "ba8ac28528f09d6bee523b862bc0478eeb52d2a3a921f278228f4ea0dd3aa6cf",
+      "afterDigest": "1f990ce7c8bf53ac09cf48e3665c3f81d178960ef7ff29f4140ba82f3da1a0cb",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 22,
+          "before": "ויְמִיתֵם הַמֶּלֶךְ ויִּתֵּן אֶת־הַבֵּל מַתָּנָה לְדָנִיֵּאל וְאֶת בֵּל וְאֶת־הֵיכָלוֹ נָתָץ׃",
+          "after": "וָיְמִיתֵם הַמֶּלֶךְ וַיִּתֵּן אֶת־הַבֵּל מַתָּנָה לְדָנִיֵּאל וְאֶת בֵּל וְאֶת־הֵיכָלוֹ נָתָץ׃"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-22-point-comparison-20261017-pass74.json",
+          "sha256": "d0ac7d576f262e8525b238a8165613b68d514c69a7bfda1ae4152462fc3cdda5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass74.json",
+          "sha256": "8143ca17471ece94c6582fdde09aaac88c6632fedf5765be5d7c968ac94eb604"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 0,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-22-point-comparison-20261017-pass74.json",
+      "sha256": "d0ac7d576f262e8525b238a8165613b68d514c69a7bfda1ae4152462fc3cdda5"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass74.json",
+      "sha256": "8143ca17471ece94c6582fdde09aaac88c6632fedf5765be5d7c968ac94eb604"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 267,
+      "removedNotes": 2,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-6f164098e4bb412b8ccfa6e9d9ae5f23625748444b4fc804f657bb457ae44bfe.zip",
+      "archiveSHA256": "46ad3536be7f9f85e209e901ac599154e65fadc7ae1d60fbc925b399694505d7",
+      "archiveBytes": 3109542
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 383,
+      "remainingNoteCount": 267,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 370,
+      "distinctChangedSourceUnits": 133
+    }
+  }
+}

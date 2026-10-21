@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 146,
+  "integrationPass": 146,
+  "preparationID": 200,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters; original PDF, source credit, URL and historical extraction/report provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass200-SUS-offline-originals/source-provenance.json",
+      "sha256": "ca1f120856ef11db1cfe90b59f9b33b11d0ff054af07992854a227883266a13c"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "100percent offline fresh singleembedded pinnedA2PDF239native; historicalownword exactlyreplayed fullRGB crop onlynumericaladdresslocator. NoOCR/render/imageview/enhance/grammar/expectedspelling/normalization/borrowedmarks.",
+  "sourceDocument": "Kahana Volume A2",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    239
+  ],
+  "savedCaptureViewerPageLabels": [],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass200-SUS-offline-originals/primary-239-native.png",
+      "sha256": "5fc8f98986d805dd10859de6485cc41bbcbc8d94f7affdc8b873c6fda85d1cc7",
+      "resolution": [
+        2620,
+        3489
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass200-SUS-offline-originals/source-provenance.json",
+        "sha256": "ca1f120856ef11db1cfe90b59f9b33b11d0ff054af07992854a227883266a13c"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "דב היליר",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "שושנה, נוסח תאודוטיון, תרגום דב היליר, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-SUS-ESG-note-reinspection-20261017-pass2.json",
+          "sha256": "c19efd3da1c73d3f19f998c33d06ba1be0da4fb21bb498209edba6f3266fdd6f"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass146-preparation200-SUS-1-27/source-provenance.json",
+    "sha256": "489d0e4136c8ea494f78bafa460857265c1a27b76a40194579399ed525eefa9f"
+  }
+}

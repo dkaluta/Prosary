@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 147,
+  "integrationPass": 147,
+  "preparationID": 207,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters; original PDF, source credit, URL and historical extraction/report provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass207-TOB-offline-originals/source-provenance.json",
+      "sha256": "94803614d1f4a11da35af945febfeebb06d4e73e26f5f7259f520aee599e354c"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "100percent offline fresh singleembedded pinnedBPDF325native; historicalownword exactfullRGBcrop numericaladdressonly. No web/OCR/render/imageview/enhance/grammar/expectedspelling/normalization/borrowedmark.",
+  "sourceDocument": "Kahana Volume B",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    325
+  ],
+  "savedCaptureViewerPageLabels": [],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass207-TOB-offline-originals/primary-325-native.png",
+      "sha256": "828234e10a63a8743aef5588497c854439c2c8eb771e1cea1d6eb2e16add9561",
+      "resolution": [
+        1650,
+        2550
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass207-TOB-offline-originals/source-provenance.json",
+        "sha256": "94803614d1f4a11da35af945febfeebb06d4e73e26f5f7259f520aee599e354c"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "דב היליר",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "attribution": "ספר טוביה, נוסח קצר, בתרגום דב היליר, בתוך הספרים החיצונים בעריכת אברהם כהנא, כרך ב. תעתיק מן הדפוס שסופק ל־Prosary."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017-pass3.json",
+          "sha256": "01d93083ca96971df5bef9995a5caa5c0850ecc73fab909986f7ea8b625be959"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation207-TOB-5-12/source-provenance.json",
+    "sha256": "df5e01afc96be530949f362c675ad800a82ea6b8eb970f4783eb1237331040d3"
+  }
+}

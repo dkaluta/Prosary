@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 88,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass88-BEL-1-7/source-provenance.json",
+    "sha256": "5c16413260859c11a5ebfaadef38771375d50f463d77e0ddff5d642457822b57"
+  },
+  "sourceNotesBefore": 17,
+  "sourceNotesAfter": 15,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-7-243-vayomer7-letter1-vowel",
+    "bel-1-7-243-vayomer7-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "15d26e29b791a96b3ec840f45a2a7ee329e52c4f05a677425e55859e5d0fbd14",
+  "contentSHA256After": "1ba44c2dd714b25db59ed3e2252642c2e55d0e44905291a392c7010be45f0f20",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "bel-1-7-243-vayomer7-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 7,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "The vav shaft ends at y1292. A detached broad horizontal mark begins y1300, with a wide continuous upper plateau and no long central tail or second vertically separated dot. The same-letter detached patah under lower-source ויהי3 [982,1271,1010,1281] repeats its flat-bar construction. Edge breaks and the five-pixel speck below the bar do not form an additional printed vowel component.",
+      "targetCapture": "extension-volumeA-588-zoom6-mid-mid.png",
+      "letterBounds": [
+        370,
+        1193,
+        408,
+        1292
+      ],
+      "pointBounds": [
+        377,
+        1300,
+        419,
+        1323
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass88-BEL-1-7/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-7-243-vayomer7-letter2-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 7,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "The yod interior dot is a separate connected component, left of its lower stem and below the cap, surrounded by clear white separation. Same-row6 kaf in כי has a similarly detached interior dot [412,970,431,981], area166.",
+      "targetCapture": "extension-volumeA-588-zoom6-mid-mid.png",
+      "letterBounds": [
+        312,
+        1189,
+        350,
+        1250
+      ],
+      "pointBounds": [
+        316,
+        1231,
+        335,
+        1246
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass88-BEL-1-7/independent-pixel-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 7,
+      "before": "ויֹאמֶר לוֹ הַמֶּלֶךְ הַאֵינְךָ חוֹשֵׁב כִּי הַבֵּל הוּא אֵל חַי אוֹ הַאֵינְךָ רוֹאֶה כַּמָּה הוּא אוֹכֵל וְשׁוֹתֶה בְּכָל־יוֹם וָיוֹם׃",
+      "after": "וַיֹּאמֶר לוֹ הַמֶּלֶךְ הַאֵינְךָ חוֹשֵׁב כִּי הַבֵּל הוּא אֵל חַי אוֹ הַאֵינְךָ רוֹאֶה כַּמָּה הוּא אוֹכֵל וְשׁוֹתֶה בְּכָל־יוֹם וָיוֹם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 7,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  }
+}

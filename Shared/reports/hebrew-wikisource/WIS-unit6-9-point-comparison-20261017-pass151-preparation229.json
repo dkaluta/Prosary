@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 229,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation229-WIS-6-9/source-provenance.json",
+    "sha256": "dd24ac3ec517f5876c5521775f3ea6d03b2c8c99a6bd8cfa09544afa7d1f0bc9"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-6-9-shin"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-6-9-shin",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 9,
+      "anchorBefore": "תִכָּשׁלוּ",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own native1032px[348,663,390,717] has fullShin strokes and low broad joined ink. Base narrows into paired lowerlobes: y710 x358..363 and366..371; y711 x358..364 and366..371; y712..715 joins across358..371, then small remnanty716. Entire lower group remains ink-connected to body; no independent exact vowel or defensible exact absence. Existing Shindot/consonants/scalars untouched. Detached TavHiriq and finalVavShuruk controls do not supply Shinmark.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/56/569648a9a162f9e0ae982bae24521307282cf45547b8aff2f57c14c33fb7430f.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/56/569648a9a162f9e0ae982bae24521307282cf45547b8aff2f57c14c33fb7430f.bin",
+      "inspectedBounds": [
+        344,
+        655,
+        393,
+        737
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation229-WIS-6-9/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 6,
+    "verse": 9,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation229-WIS-6-9/independent-review.json",
+    "sha256": "2f246f3c456ae82e58fa3c73c17f839a5881416b2a88e441eb2fe5c880c38099"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation229-WIS-6-9/primary-preparation.json",
+    "sha256": "77ad9d26b1b5fab15fb11ad90967b5be306d2b3dae53b0b940b4f9a4be2062e2"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation229-WIS-6-9/consensus-preparation.json",
+    "sha256": "25a3978852930f388bc9e84114c500a9c055a7bc160ff11cca84047d215dae3a"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

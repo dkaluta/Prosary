@@ -1,0 +1,365 @@
+{
+  "schemaVersion": 1,
+  "book": "1MA",
+  "date": "2026-10-17",
+  "status": "Focused reinspection complete; three source-certified resolutions independently corroborated",
+  "notesInspected": 17,
+  "resolved": 3,
+  "retained": 14,
+  "canonicalChanged": true,
+  "scope": "The 17 canonical note targets not included in the 11-target 2026-10-03 reinspection. Native companion scan targets were examined, with primary-scan follow-up for promising or materially ambiguous shapes. This is a focused note review, not a new whole-book comparison.",
+  "method": "Fresh extraction of embedded scan image pixels with pypdf; unchanged crops and integer nearest-neighbor enlargements only. No contrast adjustment, sharpening, OCR, automatic vocalization or generated pixels were used. The three changed targets received separate root image review.",
+  "sourceScans": [
+    {
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+    },
+    {
+      "path": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7"
+    }
+  ],
+  "resolutions": [
+    {
+      "noteId": "1ma-5-26-qoph-dagesh",
+      "chapter": 5,
+      "verse": 26,
+      "before": "מַקֵדָה",
+      "after": "מַקֵּדָה",
+      "sourcePage": 123,
+      "extraPage": 63,
+      "finding": "The primary scan exposes a discrete detached interior dot within qoph, with white space separating it from the upper/right stroke and descender. The additional scan preserves dark interior material but is less clear and is not the sole classification evidence. The exact occurrence was verified on the page at the start of the second scripture row, after כִספָן in printed verse 26. Root independently inspected the primary, companion and complete-page context.",
+      "beforeTextSHA256": "814a29303e52036d17a020b1b7b3108fff51726c2f5c71cfeb1aba79431e0f65",
+      "afterTextSHA256": "46d3dd595855ec6cf6aa6ca33748aa49ad2f6c8969610b8459378f6f628bde5b",
+      "afterVerseText": "וְכִי רַבִּים מֵהֶם סְגוּרִים אֶל־בָּצְרָה וּבֶצֶר בָּאֲלִים כִספָן מַקֵּדָה וְקַרְנַיִם כָּל־הֶעָרִים הָאֵלֶּה בְּצוּרוֹת וּגְדוֹלוֹת׃",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-26-primary-native.png",
+          "sha256": "e0e6dea46d59c04bab5d95a32a2c9fca193adffd26029c85e02fbbd35f05ce08",
+          "sourceImage": "B123-native.png",
+          "sourceImageSHA256": "38d7a164fc342bb5ee94441627728b17de9fb001ed675e62c5541e6ea1a0577e",
+          "pixelBox": [
+            1200,
+            345,
+            1370,
+            420
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-26-primary-4x.png",
+          "sha256": "6bd5adec66130aaa506ab27f97c79802542a92283392fac6f5390cf0c4b2227a",
+          "sourceImage": "B123-native.png",
+          "sourceImageSHA256": "38d7a164fc342bb5ee94441627728b17de9fb001ed675e62c5541e6ea1a0577e",
+          "pixelBox": [
+            1200,
+            345,
+            1370,
+            420
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-26-extra-native.png",
+          "sha256": "af410f4ad9cdbee4c9411e1ba89b5ce6342693e7d6addaaf10d8cad390993b7f",
+          "sourceImage": "B-extra-63-native.png",
+          "sourceImageSHA256": "ba20ee9c535889a19b7e091b82556528cf86c8aef233362e26b3f599955ada26",
+          "pixelBox": [
+            1260,
+            210,
+            1435,
+            265
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-26-extra-4x.png",
+          "sha256": "8dacb9956111d5f662c802b57b14e9c7323cce61798a9c2fd82ed85470d4de15",
+          "sourceImage": "B-extra-63-native.png",
+          "sourceImageSHA256": "ba20ee9c535889a19b7e091b82556528cf86c8aef233362e26b3f599955ada26",
+          "pixelBox": [
+            1260,
+            210,
+            1435,
+            265
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-26-primary-context.png",
+          "sha256": "e488e689baae0d64dcd0e30f02625ee7768fe1950c949d264d59f12903b0c801",
+          "sourceImage": "B123-native.png",
+          "sourceImageSHA256": "38d7a164fc342bb5ee94441627728b17de9fb001ed675e62c5541e6ea1a0577e",
+          "pixelBox": [
+            120,
+            180,
+            1450,
+            1000
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "resolvedFromVisiblePrint",
+      "independentReviewer": "root: separately inspected native-pixel crops and source-page context, 2026-10-17"
+    },
+    {
+      "noteId": "1ma-5-36-qoph-dagesh",
+      "chapter": 5,
+      "verse": 36,
+      "endVerse": 37,
+      "before": "מַקֵדָה",
+      "after": "מַקֵּדָה",
+      "sourcePage": 124,
+      "extraPage": 64,
+      "finding": "Both scans show a discrete detached dot within qoph, separated by white from the upper/right bowl and descending stroke. Its location was confirmed in the sentence ויקח את כספן מקדה ובצר under the combined printed label 36–37. Root independently inspected both tight crops and complete-page context. This occurrence was assessed separately from 5:26.",
+      "beforeTextSHA256": "e873de4bb938bcda508e697bf707a5bc1014377f5367304b47b2aa0164ea738f",
+      "afterTextSHA256": "99ea04a3f15e393803bdbdd2b49565e8e5a85ba16c14905111f0b02b5b46e945",
+      "afterVerseText": "וּמִשָּׁם נָסַע וַיִּקַּח אֶת כִסְפָן מַקֵּדָה וּבֶצֶר וּשְׁאָר־עָרֵי הַגִּלְעָד׃ אַחַר הַדְּבָרִים הָאֵלֶּה אָסַף טִימוֹתְאוֹס מַחֲנֶה אַחֵר וַיַּחַן לִפְנֵי רָפוֹן מֵעֵבֶר לַנָּחַל׃",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-36-primary-native.png",
+          "sha256": "402a646803f17db243a34c256192756d7d02509b70315fc8b375488eb0177dc9",
+          "sourceImage": "B124-native.png",
+          "sourceImageSHA256": "f603b1a5fbe8b0f3b6bc13a28db40e156c866d4f6f4cf4b6334948aa424f6753",
+          "pixelBox": [
+            745,
+            495,
+            875,
+            560
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-36-primary-4x.png",
+          "sha256": "73d4d46c4f64aedaca10aebeb9843b5433f68eede3a85cd199fe4b4d989f3916",
+          "sourceImage": "B124-native.png",
+          "sourceImageSHA256": "f603b1a5fbe8b0f3b6bc13a28db40e156c866d4f6f4cf4b6334948aa424f6753",
+          "pixelBox": [
+            745,
+            495,
+            875,
+            560
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-36-extra-native.png",
+          "sha256": "7822ff8afda155dfb2201b72136eabfb112e07e79bbf78738d53e7a85c5dbc29",
+          "sourceImage": "B-extra-64-native.png",
+          "sourceImageSHA256": "e16446075140a751da7e180e19a0ea9a96aff31102ca7cc02b95bae368649b11",
+          "pixelBox": [
+            2130,
+            290,
+            2240,
+            345
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-36-extra-4x.png",
+          "sha256": "0e5459d69e0e60a08e7247c7a12ce44f3b9a7f841e567952853221f7c4b620c7",
+          "sourceImage": "B-extra-64-native.png",
+          "sourceImageSHA256": "e16446075140a751da7e180e19a0ea9a96aff31102ca7cc02b95bae368649b11",
+          "pixelBox": [
+            2130,
+            290,
+            2240,
+            345
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-5-36-primary-context.png",
+          "sha256": "1708385b24685ee72411e7a7883379eda090eaff4673c0d54478028c35b3d592",
+          "sourceImage": "B124-native.png",
+          "sourceImageSHA256": "f603b1a5fbe8b0f3b6bc13a28db40e156c866d4f6f4cf4b6334948aa424f6753",
+          "pixelBox": [
+            120,
+            180,
+            1450,
+            620
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "resolvedFromVisiblePrint",
+      "independentReviewer": "root: separately inspected native-pixel crops and source-page context, 2026-10-17"
+    },
+    {
+      "noteId": "1ma-10-37-ayin-vowel",
+      "chapter": 10,
+      "verse": 37,
+      "before": "וְהָעמְדוּ",
+      "after": "וְהָעָמְדוּ",
+      "sourcePage": 148,
+      "extraPage": 76,
+      "finding": "The ayin has a detached lower horizontal head with a central downward stem in the primary scan, matching the visible qamats geometry on the adjacent he. The companion scan preserves the horizontal bar and a separate lower stem. Root independently corroborated this geometry and the opening of printed verse 37. The unusual printed defective form is retained; neither expected grammar nor a parallel edition supplied the vowel.",
+      "beforeTextSHA256": "9b826cf0e363c5136fcc783781f6889768e41eb4e9158bae122d1122608c6275",
+      "afterTextSHA256": "fd927ed7e1a95d8c84f2a81d766a90607ba0c2b66a56c7e30f17512aa298548e",
+      "afterVerseText": "וְהָעָמְדוּ מֵהֶם בְּמִבְצְרֵי הַמֶּלֶךְ הַגְּדוֹלִים וּמֵהֶם יָעַמְדוּ עַל־צָרְכֵי הַמַּלְכוּת אֲשֶׁר לָאֱמוּנָה וַאֲשֶׁר עֲלֵיהֶם וְהָרָאשִׁים מֵהֶם יִהְיוּ וְהָלְכוּ בְּחֻקּוֹתֵיהֶם וְכַאֲשֶׁר צִוָּה הַמֶּלֶךְ בְּאֶרֶץ יְהוּדָה׃",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-10-37-primary-native.png",
+          "sha256": "d10a2465003ffd627f00dc1fd196d23062a575930fe72fb1719657620a6001ac",
+          "sourceImage": "B148-native.png",
+          "sourceImageSHA256": "89d00e51d1f3e5762bc6e6d82e29f9408e562e3dc4ec5b1e879ed2f2a59ee153",
+          "pixelBox": [
+            960,
+            950,
+            1120,
+            1030
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-10-37-primary-4x.png",
+          "sha256": "1f9ac02fa4fd37d35cfc518201ff1e377d97cc9c849aec4e4881aca4c889925d",
+          "sourceImage": "B148-native.png",
+          "sourceImageSHA256": "89d00e51d1f3e5762bc6e6d82e29f9408e562e3dc4ec5b1e879ed2f2a59ee153",
+          "pixelBox": [
+            960,
+            950,
+            1120,
+            1030
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-10-37-extra-native.png",
+          "sha256": "fee5c51941af8ee3e2ae26065cfe25a4fb21085c70ee8faf6407093e5ca25335",
+          "sourceImage": "B-extra-76-native.png",
+          "sourceImageSHA256": "2af12b7dfbd4547ce6619d6ab3b785fc91ee9b13a9a1f99e56d706612d61b445",
+          "pixelBox": [
+            2310,
+            620,
+            2455,
+            680
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-10-37-extra-4x.png",
+          "sha256": "de7c8943f30dfe33d7edbc3d02e1571119393a7d444de4de0aa27cedd68415f2",
+          "sourceImage": "B-extra-76-native.png",
+          "sourceImageSHA256": "2af12b7dfbd4547ce6619d6ab3b785fc91ee9b13a9a1f99e56d706612d61b445",
+          "pixelBox": [
+            2310,
+            620,
+            2455,
+            680
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-1MA/1MA-10-37-primary-context.png",
+          "sha256": "16645067a092ea6fbb62227b824842df8baa8f30e73a2b0e8c30881e252b5a5d",
+          "sourceImage": "B148-native.png",
+          "sourceImageSHA256": "89d00e51d1f3e5762bc6e6d82e29f9408e562e3dc4ec5b1e879ed2f2a59ee153",
+          "pixelBox": [
+            120,
+            180,
+            1450,
+            1100
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "resolvedFromVisiblePrint",
+      "independentReviewer": "root: separately inspected native-pixel crops and source-page context, 2026-10-17"
+    }
+  ],
+  "retainedDisclosures": [
+    {
+      "noteId": "1ma-4-10-yod-dagesh",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-4-18-yod-dagesh",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-5-4-bet-dagesh",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-5-26-samekh-vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-5-34-yod-dagesh",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-6-10-yod-dagesh",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-6-11-bet-dagesh",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-6-26-yod-dagesh",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-6-38-kaf-vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-9-1-bet-vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-9-56-resh-vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-10-46-vav-vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-14-34-tav-vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    },
+    {
+      "noteId": "1ma-15-37-qof-vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The fresh focused scan view still does not establish an exact detached mark or clean absence. Fused lower/interior ink, yod stroke contact or incomplete point geometry prevents a source-certified change; no grammatical or cross-occurrence inference was used."
+    }
+  ],
+  "validation": {
+    "sourceTextOrderUnchanged": true,
+    "consonantsUnchanged": true,
+    "sourcePageAssignmentsUnchanged": true,
+    "remainingNoteIdsBefore": 28,
+    "remainingNoteIdsAfter": 25
+  }
+}

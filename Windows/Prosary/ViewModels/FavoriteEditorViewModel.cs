@@ -50,11 +50,21 @@ public partial class FavoriteEditorViewModel : ObservableObject
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(CreedLabel))]
+    [NotifyPropertyChangedFor(nameof(OpeningPrayersLabel))]
+    [NotifyPropertyChangedFor(nameof(OpeningFatimaLabel))]
+    [NotifyPropertyChangedFor(nameof(FatimaLabel))]
+    [NotifyPropertyChangedFor(nameof(PresenterHint))]
+    [NotifyPropertyChangedFor(nameof(StMichaelLabel))]
+    [NotifyPropertyChangedFor(nameof(FinalSignLabel))]
     private string _languageCode = LanguageCatalog.DefaultSentinel;
 
-    public string CreedLabel => PrayerPackStore.HasApostlesCreed("rosary", LanguageCode)
-        ? Loc.Tr("EdApostlesCreed.Text", "Apostles' Creed")
-        : Loc.Tr("favorite_editor_nicene_creed", "Nicene Creed");
+    public string CreedLabel => RosaryOptionLabels.Creed(LanguageCode);
+    public string OpeningPrayersLabel => RosaryOptionLabels.OpeningPrayers(LanguageCode);
+    public string OpeningFatimaLabel => RosaryOptionLabels.OpeningFatima(LanguageCode);
+    public string FatimaLabel => RosaryOptionLabels.Fatima(LanguageCode);
+    public string PresenterHint => RosaryOptionLabels.PresenterHint(LanguageCode);
+    public string StMichaelLabel => RosaryOptionLabels.StMichael(LanguageCode);
+    public string FinalSignLabel => RosaryOptionLabels.FinalSign(LanguageCode);
 
     public string BaseLanguageCode
     {

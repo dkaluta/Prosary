@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 154,
+  "integrationPass": 154,
+  "preparationID": 259,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation259-WIS-15-19/source-provenance.json",
+    "sha256": "c3f832f26459916bf9677c49964c0b5fb9cf586253105b5063b24a682cbfefdd"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-15-19-het-2-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-15-19-het-2-vowel",
+      "book": "WIS",
+      "chapter": 15,
+      "verse": 19,
+      "anchorBefore": "רָחקוּ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own full fifteen-word actual unit, full target Resh Het Qof Vav and own indexed occurrence inspected in fresh native ASCII. Target second letter Het measured independently; exact attached ink judged only at own printed location.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f1/f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f1/f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d.bin",
+      "inspectedBounds": [
+        938,
+        1611,
+        973,
+        1665
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation259-WIS-15-19/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 15,
+    "verse": 19,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation259-WIS-15-19/independent-review.json",
+    "sha256": "c8c145f2bb637cc5232fba9bbb695d82811baed740f1b83159e3c7ae6e3846db"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation259-WIS-15-19/primary-preparation.json",
+    "sha256": "3e9b1b63ad0d42c5a28ef405f65b58001c8de75abff0260008c4f8c10741aae8"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation259-WIS-15-19/consensus-preparation.json",
+    "sha256": "b39ad3c3d67fdf434202870da4f8e6086280292a8a8bab106d9b1614aef0d58c"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

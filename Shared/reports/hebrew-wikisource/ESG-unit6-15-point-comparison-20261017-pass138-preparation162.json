@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 138,
+  "integrationPass": 138,
+  "preparationID": 162,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation162-ESG-6-15/source-provenance.json",
+    "sha256": "19256c695933e08c9ea62d7c32ec6a31f4a2a3d008508c718c459c4a305cfdcb"
+  },
+  "sourceNotesBefore": 11,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-6-15-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "b7bfc82612d62b1636af75fe257d0d34bb07b0c44df09425d242e06858c3ae72",
+  "contentSHA256After": "21f903caa7f57ed8b6ce7216c4d4c07347b0b550677873cf3ef90617ffaf2258",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-6-15-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "anchorBefore": "נקִיִּים",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Own full Nun body ends1311; seven blank rows precede75px10x8 compact upper point[1510,1319,1520,1327]. Eight blank rows1327..1334 separate lower114px13x10 point[1507,1335,1520,1345]. Points vertically align onright1520; no lateral second/third node or sustained connected stem. Own below1344 through1379 clear. Literal sameword Qof has one101px13x12 compact Hiriq[1461,1322,1474,1334], to right of Qof descending left leg. Following Yod has one111px13x10 compact point[1402,1317,1415,1327], not paired. Own Nun two vertically detached nodes independently support Sheva U05B0. Canonical vowel, grammar, source14 Nun or another witness supplied no ink. Independent peer: Independent peer verifies unique full Nun-Qof-Yod-Yod-finalMem on714row, own first Nun. Body ends1311; upper separate75px10x8 node[1510,1319,1520,1327] and lower114px13x10 node[1507,1335,1520,1345] have eight intervening blank rows and aligned right1520 edges. Both remain detached at64 and192; no lateral third point or connecting stem. Sameword Qof has single101px13x12 lower dot well to right of its separate left descender; thirdYod has single111px13x10 lower dot, its internal64px dot above is separately visible and does not create another lower node. Own Nun two-node vertical configuration supports Sheva U05B0 from own pixels. Inline predecessor1046 and own1060 sof pairs bind source15, excluding source14 other Nun.",
+      "targetCapture": "extension-volumeA-568-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-568-zoom4-upper-right.png",
+      "inspectedBounds": [
+        1499,
+        1240,
+        1535,
+        1312
+      ],
+      "markProposed": "Sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        1507,
+        1319,
+        1520,
+        1345
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation162-ESG-6-15/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 6,
+      "verse": 15,
+      "before": "וְהִנֵּה אֲנַחְנוּ מָצָאנוּ אֶת־הַיְּהוּדִים אֲשֶׁר הַפּוֹשֵׁעַ הַבְּלִיַּעַל הַזֶּה מָסַר אוֹתָם לָאֲבַדּוֹן נקִיִּים מֵעָוֹן כִּי בְּחֻקֵּי צֶדֶק יְכַלְכְּלוּ אֶת־אֹרַח חַיֵּיהֶם׃",
+      "after": "וְהִנֵּה אֲנַחְנוּ מָצָאנוּ אֶת־הַיְּהוּדִים אֲשֶׁר הַפּוֹשֵׁעַ הַבְּלִיַּעַל הַזֶּה מָסַר אוֹתָם לָאֲבַדּוֹן נְקִיִּים מֵעָוֹן כִּי בְּחֻקֵּי צֶדֶק יְכַלְכְּלוּ אֶת־אֹרַח חַיֵּיהֶם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 6,
+    "verse": 15,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation162-ESG-6-15/independent-review.json",
+    "sha256": "ab3b60e7f6b30902c606e30664b7042128a23d93f42a82b2516931db98c2db9f"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation162-ESG-6-15/primary-preparation.json",
+    "sha256": "d9e961f976c2634baedaaaec9b2aa3b6783dc092fdafdbf150572bcb16dccc18"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation162-ESG-6-15/consensus-preparation.json",
+    "sha256": "a34ab245b62743aa8c19712a92b8080f8109fdf170b952a3a144a6c4b2b94efb"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

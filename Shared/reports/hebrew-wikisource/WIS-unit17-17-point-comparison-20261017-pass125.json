@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 125,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass125-WIS-17-17/source-provenance.json",
+    "sha256": "17d189120d0796fa6f8e31139042394aef4a065be77b3952d8a5cb1af941d924"
+  },
+  "sourceNotesBefore": 111,
+  "sourceNotesAfter": 109,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-17-17-nun-1-vowel",
+    "wis-17-17-pe-2-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "a28b4bf2e6755421d7bb54f72719ed088ec59b01500955bb86306600a2231ad3",
+  "contentSHA256After": "8c0a17df1ccbc7c1b474021fb9cc45ac204d188162ac737ec30ce3f350c69315",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "wis-17-17-nun-1-vowel",
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 17,
+      "anchorBefore": "נפגָּעוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "One detached compact oval lower node sits beneath Nun after seven white rows beyond the body ending1373. Its23x15 contour is a single rounded stamp, comparable to same-word internal round points19x15; there is no second lower node, bar or descending stem. Literal same-unit shallow horizontal control at4x is25x10 (about38x15 at6x), substantially longer than this compact oval. The complete lower field certifies a single below-letter round point: Hiriq. Independent peer: Independent complete Nun body ends1373; detached single compact oval[473,1381,496,1396]263px lies wholly below, with full field through1450 excluding second node/stem/bar. Its23x15 rounded contour matches the local round stamp class (same-word Gimel196px and Vav194px each19x15), while independently replayed same-unit literal shallow bar inכפועל is25x10 at4x, approximately38x15 at6x and substantially longer. Certify own Hiriq U05B4 from its single round node, with no inferred grammatical reading.",
+      "targetCapture": "extension-volumeA-525-zoom6-mid-mid.png",
+      "targetSourceIdentifier": "extension-volumeA-525-zoom6-mid-mid.png",
+      "inspectedBounds": [
+        462,
+        1262,
+        515,
+        1373
+      ],
+      "markProposed": "Hiriq",
+      "codePoint": "U+05B4",
+      "pointBounds": [
+        473,
+        1381,
+        496,
+        1396
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass125-WIS-17-17/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-17-17-pe-2-vowel",
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 17,
+      "anchorBefore": "נפגָּעוּ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "The complete detached lower compound has TWO rounded expansions: a broader upper lobe from1377 and a lower rounded lobe through1419, linked only by a narrow diagonal waist. It has no horizontal cap followed by one stem. The literal same-unit first Kaf inכעובד supplies separate round nodes at1108..1120 and1131..1150; their vertical two-node arrangement and rounded upper/lower contours agree after translation, while the same-word Gimel Qamats has one broad head and a long narrow stem. This diagnostic two-level shape supports Sheva despite the small bridge. Independent peer: Independent complete Pe body ends1369; separate534px lower compound[400,1377,419,1419] has a rounded upper expansion1377..1395 and rounded lower expansion1400..1419, linked by a narrow waist1396..1399. Literal SAME-UNIT first Kaf in fullכעובד has detached round upper[2229,1108,2244,1120]159px and lower[2229,1131,2244,1150]250px, establishing the positive vertical two-node contour. Own same-word Gimel Qamats has one broad head then a long uniform stem, which the target does not reproduce. Target small9px lateral edge fragment is not a complete third rounded stamp; two main own lobes are diagnostic. Certify Sheva U05B0, preserving every existing point. Earlierכפועל bar is not treated as Sheva or as canonical authority.",
+      "targetCapture": "extension-volumeA-525-zoom6-mid-mid.png",
+      "targetSourceIdentifier": "extension-volumeA-525-zoom6-mid-mid.png",
+      "inspectedBounds": [
+        366,
+        1262,
+        450,
+        1369
+      ],
+      "markProposed": "Sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        400,
+        1377,
+        419,
+        1419
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass125-WIS-17-17/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 17,
+      "verse": 17,
+      "before": "כְּעוֹבֵד הָאֲדָמָה כְּרוֹעֶה כְּפוֹעֵל הַיָּגֵעַ בָּדָד בַּעֲמָלוֹ כֻּלָּם נפגָּעוּ וַיִּסְבְּלוּ צָרָה קָשָׁה אֵין מָנוֹס מִמֶּנָּה׃",
+      "after": "כְּעוֹבֵד הָאֲדָמָה כְּרוֹעֶה כְּפוֹעֵל הַיָּגֵעַ בָּדָד בַּעֲמָלוֹ כֻּלָּם נִפְגָּעוּ וַיִּסְבְּלוּ צָרָה קָשָׁה אֵין מָנוֹס מִמֶּנָּה׃"
+    }
+  ],
+  "scope": {
+    "chapter": 17,
+    "verse": 17,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass125-WIS-17-17/independent-review.json",
+    "sha256": "4c927bc768896029c521b4435bf194cadb904d6b1077cc013e76a6a6a83b6179"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass125-WIS-17-17/primary-preparation.json",
+    "sha256": "2fbf40d597db79f82f18e712e0eb6986288520fbc5c8acb95e83367604ed7d47"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass125-WIS-17-17/consensus-preparation.json",
+    "sha256": "7c4a78e57d7b4360fe539397cefe924887defd49103da02a52341ab44becca45"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

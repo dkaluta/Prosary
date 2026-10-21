@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-20",
+  "pass": 40,
+  "startingNoteCount": 385,
+  "removedNoteCount": 5,
+  "remainingNoteCount": 380,
+  "books": [
+    {
+      "book": "S3Y",
+      "beforeNoteCount": 33,
+      "afterNoteCount": 28,
+      "removedNoteIds": [
+        "s3y-1-25-word10-letter1-dagesh",
+        "s3y-1-25-word10-letter2-vowel",
+        "s3y-1-25-word21-letter1-vowel",
+        "s3y-1-25-word25-letter1-vowel",
+        "s3y-1-25-word28-letter1-vowel"
+      ],
+      "beforeDigest": "0e96fc66b82e6fb907369d64015bf0b23cd8463e06b103e22250f63c3f8e45f5",
+      "afterDigest": "df5e377c864340e593913c8cc39c1489f028e5ecd6017a20c562df150712c17e",
+      "sourceChanges": [
+        {
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 25,
+          "before": "וְעַבְדֵי הַמֶּלֶךְ אֲשֶׁר הִשְׁלִיכוּ אוֹתָם לֹא חָדְלוּ לְהַסִּיק אֶת־הַכִּבְשָׁן וכאֲשֶׁר הִשְׁלִיכוּ אֶת־שְׁלָשְׁתָּם יַחַד אֶל־הַכִּבְשָׁן וְהַכִּבְשָׁן בּוֹעֵר שִׁבְעָתַיִם בְּחֻמּוֹ וּבְהַשְׁלִיכָם אוֹתָם ויִּהְיוּ הַמַּשְׁלִיכִים מִמַּעַל לָהֶם [ואֲחֵרִים] הִצִּיתוּ מִתַּחְתֵּיהֶם נפְט וּנְעֹרֶת וְזֶפֶת וּזְמֹרוֹת׃",
+          "after": "וְעַבְדֵי הַמֶּלֶךְ אֲשֶׁר הִשְׁלִיכוּ אוֹתָם לֹא חָדְלוּ לְהַסִּיק אֶת־הַכִּבְשָׁן וְכַאֲשֶׁר הִשְׁלִיכוּ אֶת־שְׁלָשְׁתָּם יַחַד אֶל־הַכִּבְשָׁן וְהַכִּבְשָׁן בּוֹעֵר שִׁבְעָתַיִם בְּחֻמּוֹ וּבְהַשְׁלִיכָם אוֹתָם וַיִּהְיוּ הַמַּשְׁלִיכִים מִמַּעַל לָהֶם [וַאֲחֵרִים] הִצִּיתוּ מִתַּחְתֵּיהֶם נֵפְט וּנְעֹרֶת וְזֶפֶת וּזְמֹרוֹת׃",
+          "retiredNoteIds": [
+            "s3y-1-25-word10-letter1-dagesh",
+            "s3y-1-25-word10-letter2-vowel",
+            "s3y-1-25-word21-letter1-vowel",
+            "s3y-1-25-word25-letter1-vowel",
+            "s3y-1-25-word28-letter1-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-25-point-comparison-20261017-pass40.json",
+          "sha256": "e62eb992b4a35187f973a53393f24d011a29c05b0808d1a23c23d695eb1d9a47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass40.json",
+          "sha256": "7eaabecccf95c6be336a1c5e568680592fcf9d7237f78fb53b3433db01b3c907"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 2,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-25-point-comparison-20261017-pass40.json",
+      "sha256": "e62eb992b4a35187f973a53393f24d011a29c05b0808d1a23c23d695eb1d9a47"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass40.json",
+      "sha256": "7eaabecccf95c6be336a1c5e568680592fcf9d7237f78fb53b3433db01b3c907"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 380,
+      "removedNotes": 5,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-7ba2d7d1e8e9b927311f66bc53cce544c681a52e2c7cc940a14067bb5493cf13.zip",
+      "archiveSHA256": "cf6375363fab7acbb4c321c16b7241b91cbacd9a8de6ddaede8ac36bd8fcd37a",
+      "archiveBytes": 3111516
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 270,
+      "remainingNoteCount": 380,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 270,
+      "distinctChangedSourceUnits": 112
+    }
+  }
+}

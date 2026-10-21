@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 144,
+  "integrationPass": 144,
+  "preparationID": 195,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation195-SIR-51-4/source-provenance.json",
+    "sha256": "d41bf62b1e795a6bbd2705731fe9696d4e1c3310e5ad52acd5642c57ca4d049d"
+  },
+  "sourceNotesBefore": 19,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-51-4-resh-vowel"
+  ],
+  "contentSHA256Before": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "contentSHA256After": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-51-4-resh-vowel",
+      "book": "SIR",
+      "chapter": 51,
+      "verse": 4,
+      "anchorBefore": "מֵרבּוֹת",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own secondletter Resh has broad roof1287..1308 at389..397 and rightstem1304..1309 descending into solid rounded terminal1300..1310 at415..420. Stem remains connected to bulb at native128 and also to adjacent Mem lower frame408..410; whole connected Resh+Mem727px47x35[1286,386,1333,421]. No detached exact vowel component or independently interpretable exact absence; blankfieldbelow421 does not certify absence. Full own fiveletter word and actual completeunit/endpoints inspected; retain disclosure and every current scalar unchanged.",
+      "targetCapture": "primary-529-native.png",
+      "targetSourceIdentifier": "primary-529-native.png",
+      "inspectedBounds": [
+        1284,
+        375,
+        1314,
+        429
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation195-SIR-51-4/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 51,
+    "verse": 4,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation195-SIR-51-4/independent-review.json",
+    "sha256": "6d02f36eb7d5a3db6e1094ab82db68d90689f0bd73064ec74c030640c8c53dad"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation195-SIR-51-4/primary-preparation.json",
+    "sha256": "96ca7dcc165d6d9a13de4efaff475190ff36cb79235199437935cadc79155d68"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation195-SIR-51-4/consensus-preparation.json",
+    "sha256": "71b0fe26ad59a93cf2a84e76b4796a0fbe4b6cb5441d3fb7afe3adebc8f51380"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

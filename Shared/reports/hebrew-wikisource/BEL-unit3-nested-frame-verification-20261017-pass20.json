@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "reason": "Root noticed apparent word-scale gap above basal bar. Exact native crops nested pixel-for-pixel prove both word and glyph show identical original ink; displayed rescaling cannot certify detachment. Four vav retentions unchanged.",
+  "ownership": "BEL source author verification, not independent pixel audit",
+  "checks": [
+    {
+      "target": "target03-SECOND-vayehi-vav-COMPLETE-native.png",
+      "word": "word03-vayehi-SECOND-native.png",
+      "targetBounds": [
+        390,
+        1220,
+        425,
+        1330
+      ],
+      "wordBounds": [
+        250,
+        1190,
+        495,
+        1360
+      ],
+      "nestedLocalBounds": [
+        140,
+        30,
+        175,
+        140
+      ],
+      "nativePixelNestingIdentical": true,
+      "targetRGBPixelSHA256": "92575f95993b80f72dc05d388579daa4be65f36f5901a0cce5a0c7d36f3177e0"
+    },
+    {
+      "target": "target04-vayotziu-vav-COMPLETE-native.png",
+      "word": "word04-vayotziu-native.png",
+      "targetBounds": [
+        1263,
+        1330,
+        1294,
+        1420
+      ],
+      "wordBounds": [
+        1090,
+        1280,
+        1380,
+        1455
+      ],
+      "nestedLocalBounds": [
+        173,
+        50,
+        204,
+        140
+      ],
+      "nativePixelNestingIdentical": true,
+      "targetRGBPixelSHA256": "0a199d9deeb1f54ca6cad69bb11a3dc31fdb164053aa14ce438bf8ca04fd0fc8"
+    }
+  ]
+}

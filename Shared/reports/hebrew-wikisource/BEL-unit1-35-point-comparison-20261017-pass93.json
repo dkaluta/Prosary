@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 93,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass93-BEL-1-35/source-provenance.json",
+    "sha256": "a9bea8324925a1f8a391e6dd4a5017f49a9d20bb64d365633a8a42b50629bc3c"
+  },
+  "sourceNotesBefore": 9,
+  "sourceNotesAfter": 8,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "bel-1-35-246-vayomer35-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "bel-1-35-246-vayomer35-letter1-vowel"
+  ],
+  "contentSHA256Before": "b7ad61c875aed351129aab24f211d463b73c9c9d4dba0bb1d97cfb58064aa4d2",
+  "contentSHA256After": "2f5a6389ab0da252456a251142ce8992bfa389c970cd0f286309d5bb4de1c1e8",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "bel-1-35-246-vayomer35-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 35,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The entire initial-vav body is one connected threshold128 component[178,362,228,497], area2548. Its stem descends into a broad joined foot; there is no independently delimited horizontal bar, paired dots or source-visible separation identifying an exact vowel or certifying absence. Compare same-page detached mem patah and two-level lamed sheva, plus the complete same-row yodea word. Root independently replayed the whole glyph and explicitly retained the vowel disclosure. Preserve every current scalar and retain this exact note with an updated anchor only if its companion yod is certified.",
+      "targetCapture": "extension-volumeA-591-zoom6-bottom-right.png",
+      "letterBounds": [
+        170,
+        350,
+        240,
+        515
+      ]
+    },
+    {
+      "noteId": "bel-1-35-246-vayomer35-letter2-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 35,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "At the correctly registered source35 opening yod, body[125,362,167,435], area1823 at threshold128, the main head first recedes at y402..406 and a distinct low-left bulb reappears at x133..144,y408..424. The thin right tail continues independently at x155..166 down to y435; a lower clear window at y421..423 separates bulb from tail. Same-row ordinary yods in the printed two-yod name, body bounds[1567,366,1609,435] and[1624,366,1662,435] from bottom-mid, have only a curving right tail and lack the low-left bulb. The previously certified true34 Daniel yod supplies a detached positive dagesh in the same font/page. Root independently replayed one-pixel native target[120,357,172,445] versus plain[1564,362,1615,445] and explicitly accepted U+05BC. Existing holam[133,332,155,355] is preserved.",
+      "targetCapture": "extension-volumeA-591-zoom6-bottom-right.png",
+      "letterBounds": [
+        120,
+        325,
+        172,
+        445
+      ],
+      "pointBounds": [
+        131,
+        407,
+        146,
+        425
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass93-BEL-1-35/independent-pixel-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 35,
+      "before": "ויֹאמֶר חֲבַקּוּק יְיָ לֹא רָאִיתִי אֶת־בָּבֶל וְאֵינֶנִּי יוֹדֵעַ אֶת־הַבּוֹר׃",
+      "after": "ויֹּאמֶר חֲבַקּוּק יְיָ לֹא רָאִיתִי אֶת־בָּבֶל וְאֵינֶנִּי יוֹדֵעַ אֶת־הַבּוֹר׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 35,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 20,
+  "book": "WIS",
+  "status": "Supersedes only the frozen report contentSHA256After metadata value",
+  "supersededReport": {
+    "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+    "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+  },
+  "correctedField": "contentSHA256After",
+  "oldValue": "6b2bba5a0aac928be07008fe65f700d61fa63eeff20286a85e24c03f7f06f16f",
+  "newValue": "c97e9fe39f043c38db72d237cb230f61a9252709c376bb33df1db487dce042af",
+  "cause": "Author draft mutation updated source25 text, retired the lamed note and refreshed the surviving bet anchor but omitted refreshing existing source25 textSHA256 before calculating the whole-book digest. The original reported after digest is exactly reproduced with that stale unit hash. The existing changedUnits and decision textSHA256After fields were already correct.",
+  "proof": {
+    "baselineCanonicalPath": "/private/tmp/prosary-hebrew-pass20-20261017/baseline/Shared/content/hebrew-deuterocanon/WIS.json",
+    "baselineCanonicalSHA256": "87f6b7e5a434e561dbdfb5490f223c78a3c2ece48c67e950d4c5aa0dcd0bcaa2",
+    "baselineContentSHA256": "75d7643da13d97bb9998ba9098f8c7f70986086cebd88e5891e55d194f567f0b",
+    "unit": {
+      "chapter": 18,
+      "verse": 25,
+      "beforeText": "מִפְּנֵי אֵלֶּה נָסוֹג הַמַּשְׁחִית אֲחֹרָנִית וּמִפְּנֵי אֵלֶּה יָרֵא כִּי מַכַּת זעמְךָ לבדָּהּ שׂפקָה׃",
+      "afterText": "מִפְּנֵי אֵלֶּה נָסוֹג הַמַּשְׁחִית אֲחֹרָנִית וּמִפְּנֵי אֵלֶּה יָרֵא כִּי מַכַּת זעמְךָ לְבדָּהּ שׂפקָה׃",
+      "oldTextSHA256": "21bff181b15a2829793a85c6c490bab1c8d299434dc9cd5b7680202763e81de1",
+      "newTextSHA256": "bae30cc5d07e370f3b24f6559e3b5e766006faef840fa5b9dac23a180399f1b5"
+    },
+    "sameStaleUnitHashReproducesOriginalErroneousAfterDigest": true,
+    "onlyHashRefreshBetweenStaleAndCorrectedDrafts": true,
+    "exactOneU05B0Insertion": true,
+    "retiredSourceNoteId": "wis-18-25-word15-lamed-1-vowel",
+    "retainedBetAnchorUpdate": {
+      "id": "wis-18-25-word15-bet-2-vowel",
+      "before": "לבדָּהּ",
+      "after": "לְבדָּהּ",
+      "occurrence": 1
+    }
+  },
+  "unchanged": {
+    "allOriginalReportBytesAndEvidenceImmutable": true,
+    "allPointDecisionsAndRetentionsUnchanged": true,
+    "allOriginalScalarsAndOrderExceptApprovedInsertionUnchanged": true,
+    "acceptedPacketUnchanged": true,
+    "sourcePDFAndPixelLedgerUnchanged": true,
+    "noCanonicalGateOrGeneratedFilesModifiedByCorrection": true
+  }
+}

@@ -135,7 +135,8 @@ struct RemindersOnlyEditorView: View {
           case .choice:
             Picker(option.localizedName(bundleId: prayer.customDevotionId ?? "", languageCode: prayer.effectiveLanguageCode), selection: choiceBinding(for: option)) {
               ForEach(option.cases ?? [], id: \.id) { optionCase in
-                Text(optionCase.localizedName).tag(optionCase.id)
+                Text(option.localizedCaseName(optionCase, bundleId: prayer.customDevotionId ?? "",
+                                               languageCode: prayer.effectiveLanguageCode)).tag(optionCase.id)
               }
             }
           }

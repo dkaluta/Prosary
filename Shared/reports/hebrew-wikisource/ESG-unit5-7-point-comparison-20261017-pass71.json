@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 71,
+  "book": "ESG",
+  "status": "Three 5:7 unreadablePoint source points certified from authorized Psik scan; all three points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 71.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass71-ESG-5-7/source-provenance.json",
+    "sha256": "22f390ba4f644c23cc23f904837d3c18e52e7bd6fe68522f03141f07e766d9f6"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 221. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 276,
+  "sourceNotesBefore": 28,
+  "sourceNotesAfter": 25,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-5-7-1-vowel",
+    "esg-5-7-2-vowel",
+    "esg-5-7-3-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 3,
+  "addedCombiningMarks": {
+    "esg-5-7-1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    },
+    "esg-5-7-2-vowel": {
+      "combiningMark": "ֵ",
+      "codePoint": "U+05B5",
+      "name": "HEBREW POINT TSERE"
+    },
+    "esg-5-7-3-dagesh": {
+      "combiningMark": "ּ",
+      "codePoint": "U+05BC",
+      "name": "HEBREW POINT DAGESH OR MAPIQ"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 7,
+      "before": "וַיַּהֲפֹךְ אֱלֹהִים אֶת־לֵב הַמֶּלֶךְ לְטוֹב וַיָּקָם מִכִּסְאוֹ בִּבְהָלָה וַיַחזק אֹתָהּ בִּזְרוֹעוֹתָיו עַד־שׁוּב רוּחָהּ אֵלֶיהָ וַיְדַבֵּר אֵלֶיהָ טוֹבוֹת׃",
+      "after": "וַיַּהֲפֹךְ אֱלֹהִים אֶת־לֵב הַמֶּלֶךְ לְטוֹב וַיָּקָם מִכִּסְאוֹ בִּבְהָלָה וַיַחַזֵּק אֹתָהּ בִּזְרוֹעוֹתָיו עַד־שׁוּב רוּחָהּ אֵלֶיהָ וַיְדַבֵּר אֵלֶיהָ טוֹבוֹת׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 7,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 7 on page רכא / 221 (viewer page 566) in Kahana Volume A, Greek Additions to Esther.",
+  "decisions": [
+    {
+      "noteId": "esg-5-7-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "anchor": "וַיַחזק",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Third consonant Het in וַיַחַזֵּק sits at cols 582..521, rows 1417..1485 of extension-volumeA-566-zoom4-upper-right.png on Line 7. Directly beneath the base of Het at rows 1491..1503, cols 584..557 sits a prominent horizontal Patah bar (width 28 px, height 13 px, 319 dense ink pixels). No companion dots exist in the sublinear band. Note is retired with Patah restored to Het -> וַיַחַזֵּק.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass71-ESG-5-7/esg-5-7-vayahazek-het-patah-native.png",
+        "sha256": "54cd0ebea8dc4c01f8d254086e26905d7048df9bcd36c061d88e9771a37615a1"
+      }
+    },
+    {
+      "noteId": "esg-5-7-2-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "anchor": "וַיַחזק",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "markProposed": "tsere",
+      "codePoint": "U+05B5",
+      "markClassification": "Tsere",
+      "finding": "Fourth consonant in וַיַחַזֵּק sits at cols 513..452, rows 1419..1487 of extension-volumeA-566-zoom4-upper-right.png on Line 7. Directly beneath its base at rows 1493..1505, cols 490..465 sit two distinct horizontal punch dots side-by-side (width 8 px at col 486 and width 10 px at col 470, separated by 11 px white margin) forming an unambiguous Tzere. Note is retired with Tzere restored -> וַיַחַזֵּק.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass71-ESG-5-7/esg-5-7-vayahazek-zayin-dagesh-tzere-native.png",
+        "sha256": "2925f67145e66b563c1ddd5f1294c140e05e46101cde10fe44cebbfc6180c4aa"
+      }
+    },
+    {
+      "noteId": "esg-5-7-3-dagesh",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "anchor": "וַיַחזק",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "Fourth consonant in וַיַחַזֵּק contains inside its body cavity at rows 1450..1461, cols 482..475 a clearly stamped circular punch dot (width 8 px, height 12 px, area 77 ink pixels, minimum value 0, surrounded by white space). Note is retired with Dagesh restored -> וַיַחַזֵּק.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass71-ESG-5-7/esg-5-7-vayahazek-native.png",
+        "sha256": "63c5809e075bedd00a9f89fb8fed6eec84b7cf20fe84e40decc413a4a7b148c1"
+      }
+    }
+  ]
+}

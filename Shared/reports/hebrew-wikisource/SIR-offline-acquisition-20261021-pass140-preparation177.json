@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 140,
+  "integrationPass": 140,
+  "preparationID": 177,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass177-SIR-offline-originals/source-provenance.json",
+      "sha256": "4bb1fe16f5643086f0ad47e83ed46562285e5e0200d62bb854ac1ecddd72669d"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "100percent offline saved authorized captures plus fresh native embedded raster from pinned B PDF. Capture folder455 identifier457 physically matches canonicalPDF453, not folder453; broad registration is address-only. No web/browser, OCR, imageviewing, enhancement, smoothing, inference or borrowed point.",
+  "sourceDocument": "Kahana Volume B",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    453
+  ],
+  "savedCaptureViewerPageLabels": [
+    457
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass177-SIR-offline-originals/primary-453-native.png",
+      "sha256": "fabcae57707f041870d7e37014aa1b18d4c5d353090b5fd55aaa09dd63c111f0",
+      "resolution": [
+        1650,
+        2550
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass177-SIR-offline-originals/source-provenance.json",
+        "sha256": "4bb1fe16f5643086f0ad47e83ed46562285e5e0200d62bb854ac1ecddd72669d"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf",
+        "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "אברהם כהנא",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "דברי שמעון בן־סירא, ההדיר ותרגם אברהם כהנא, הספרים החיצונים, כרך ב. נוסח עברי מכתבי־יד והשלמות בתרגום מן היוונית, כפי שנדפסו במהדורה."
+      },
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-page453-second-pass.json",
+          "sha256": "9cc93d8151a87a7bec066feedbd8b926a9ca16946fa17edb71e43d5f4d73a149"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page455/extension-volumeB-457-page-overview.png",
+      "sha256": "29cc769552448a089b72cc8c20ffba96f9dcd6b975da49c3cd5ad97fd8de753e",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page455/extension-volumeB-457-zoom4-header.png",
+      "sha256": "fa3662d4d2cfe6f827b6fffd8e6a96983d46c13bd69b40e1b43e18e098a322fa",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation177-SIR-3-18/source-provenance.json",
+    "sha256": "4c1d2022c2528e301652fa108d6b9342732591eedbaf0c0ec2c2d502f46f5720"
+  }
+}

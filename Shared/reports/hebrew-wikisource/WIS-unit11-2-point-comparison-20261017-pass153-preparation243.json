@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 153,
+  "integrationPass": 153,
+  "preparationID": 243,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation243-WIS-11-2/source-provenance.json",
+    "sha256": "9fd076dde5d2ba9ddcaeb376e28f8affb0eb55d1436a73a8b1539a20ca35b808"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-11-2-vav"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-11-2-vav",
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 2,
+      "anchorBefore": "ויִּטְּעוּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Strict offline independently extracted one embedded native image on PDF166; own Pillow/NumPy/SciPy arrays and literal native-pixel ASCII, exact crops/integer NEAREST only. Old exactRGB crop locates only. No image-viewing, OCR, rendering, enhancement, smoothing, grammar, normalization or borrowed marks.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ea/ea42f8eb07fd60b148f55a8aca2dfc1f007ff2830ecbfc346905728b7642cc14.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ea/ea42f8eb07fd60b148f55a8aca2dfc1f007ff2830ecbfc346905728b7642cc14.bin",
+      "inspectedBounds": [
+        931,
+        850,
+        958,
+        915
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation243-WIS-11-2/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 11,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation243-WIS-11-2/independent-review.json",
+    "sha256": "9a0d01d8493b4615fde1a34d7299d25c8b4967b544b02f19d967dc2fc53463f1"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation243-WIS-11-2/primary-preparation.json",
+    "sha256": "23c4dcc9ab7d3a1b7c993555f8c4ceb9680c8e2e61d533d44d9c22fcb2c0f758"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation243-WIS-11-2/consensus-preparation.json",
+    "sha256": "520db455b2adaf7427c63cc6b0a7a61c745913a46d3723340652196bf0cc6129"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

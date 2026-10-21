@@ -1,0 +1,404 @@
+{
+  "schemaVersion": 1,
+  "target": "NABRE",
+  "reviewedDate": "2026-10-17",
+  "scope": "Optional Hebrew Bible presentation only. The canonical source transcription, source numbering, whole units, gaps, witnesses, and separately reviewed daily mappings remain unchanged. These bounded reading-order correspondences are not a full NABRE verse crosswalk.",
+  "books": {
+    "SIR": {
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+      "method": "Compare the already approved Kahana Hebrew unit clauses directly with the Catholic NABRE published by the USCCB. Pin the complete canonical source digest and each involved full unit, then project only the explicit sequences below. No English wording is imported. The 2026-10-17 second source-note pass changes only separately verified points outside every sequence/boundary unit pinned below; the complete-book digest is refreshed with all ordering evidence unchanged. The third 2026-10-17 focused source-note pass changes only verified points/notes outside every pinned sequence and boundary unit. All Catholic order decisions and their full-unit hashes remain unchanged; refresh the complete-book digest with the new evidence. The fourth source-note pass certifies seven points outside every pinned sequence and boundary unit. All 26 exact unit pins and all Catholic presentation decisions remain unchanged; refresh only the complete-book digest and evidence. The fifth source-note pass certifies one printed yod dot outside every pinned presentation sequence and boundary unit. Refresh the complete-book digest and evidence; all26 exact unit pins and Catholic presentation decisions remain unchanged. The eighth source-note pass certifies isolated printed points in annotated chapters. Refresh the complete-book digest and the 11:34 full-unit hash for its single certified sheva; the chapter-return correspondence and every ordering decision remain unchanged. The other 25 exact unit pins remain byte-identical. On 2026-10-17 the whole-source digest was refreshed for one independently certified Sirach 26:14 yod qubbuts. All 26 exact unit pins, reorderings and chapter returns remain unchanged. On 2026-10-17 the whole-source digest was refreshed for independently certified Sirach dageshes in pass13. All 26 exact unit pins, reorderings and chapter returns remain unchanged.",
+      "reorderings": [
+        {
+          "id": "sir-3-reading-order",
+          "chapter": 3,
+          "sourceVerses": [
+            26,
+            27,
+            25
+          ],
+          "readingVerses": [
+            25,
+            26,
+            27
+          ],
+          "targetPassage": "Sirach 3:25-27",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/3",
+          "rationale": "The pupil/light and knowledge/wisdom proverb precedes the two stubborn-heart sayings. The Hebrew clause contents establish this sequence independently of the numeric labels.",
+          "units": [
+            {
+              "chapter": 3,
+              "verse": 26,
+              "endVerse": null,
+              "textSHA256": "dfb2b3547e8588c270d68b84ccde7171a9ebda81bd61142ff2095db405517567"
+            },
+            {
+              "chapter": 3,
+              "verse": 27,
+              "endVerse": null,
+              "textSHA256": "9a7ad54b33d47cc309a0f5666d8f9eb6bdaec7ecb9db2d724fd3e55de36b3488"
+            },
+            {
+              "chapter": 3,
+              "verse": 25,
+              "endVerse": null,
+              "textSHA256": "3cb8eec972e3a067bbcb1c6e3c7c4ac9afecda735dc3a9f3c79a24b7f75bac9a"
+            }
+          ]
+        },
+        {
+          "id": "sir-10-reading-order",
+          "chapter": 10,
+          "sourceVerses": [
+            3,
+            2,
+            4,
+            5
+          ],
+          "readingVerses": [
+            2,
+            3,
+            5,
+            4
+          ],
+          "targetPassage": "Sirach 10:2-5",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/10",
+          "rationale": "The judge/city-leader comparison precedes the reckless king. The Hebrew source labels 4 and 5 also exchange NABRE content: source 5 concerns sovereignty over the earth and appointment in time (NABRE 4), while source 4 concerns sovereignty over every person and the ruler's glory (NABRE 5). Preserve printed labels 5 then 4; do not numerically sort.",
+          "units": [
+            {
+              "chapter": 10,
+              "verse": 3,
+              "endVerse": null,
+              "textSHA256": "ffdc6e9b12523082a2e0ad1e08f36be5580d287f26b2acbbffd57dadff794e38"
+            },
+            {
+              "chapter": 10,
+              "verse": 2,
+              "endVerse": null,
+              "textSHA256": "270112c2589ce98cf1bc40173ee42c8fb87d4f25d71d2a4d2cdd17f53eb9c4e3"
+            },
+            {
+              "chapter": 10,
+              "verse": 4,
+              "endVerse": null,
+              "textSHA256": "5bb5080894a0ec6e1995a5a1c22d29c525b71f8fe160dba58d9b709ddfbfa8cc"
+            },
+            {
+              "chapter": 10,
+              "verse": 5,
+              "endVerse": null,
+              "textSHA256": "7ab84ef2c4a427e65b260bc699654002b83a9eeb2242b670b7e936a62b0ee0d8"
+            }
+          ]
+        },
+        {
+          "id": "sir-31-reading-order",
+          "chapter": 31,
+          "sourceVerses": [
+            14,
+            15
+          ],
+          "readingVerses": [
+            15,
+            14
+          ],
+          "targetPassage": "Sirach 31:15,14",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/31",
+          "rationale": "NABRE itself places 15 before 14: recognizing the neighbor's feelings precedes the instruction not to reach toward the same dish. Both Hebrew units are independently bounded. Later mixed/repeated units 19-22 are not covered by this review.",
+          "units": [
+            {
+              "chapter": 31,
+              "verse": 14,
+              "endVerse": null,
+              "textSHA256": "7734daa4ef18f8d94107bbf0b90f7f1efe05e1ed326f5e1e47b0cec8d889bbef"
+            },
+            {
+              "chapter": 31,
+              "verse": 15,
+              "endVerse": null,
+              "textSHA256": "2889b2377217d22ab50f6075fbb10a0e13d220e154eaee1cef7293536b7d71fa"
+            }
+          ]
+        },
+        {
+          "id": "sir-33-reading-order",
+          "chapter": 33,
+          "sourceVerses": [
+            28,
+            27
+          ],
+          "readingVerses": [
+            27,
+            28
+          ],
+          "targetPassage": "Sirach 33:27-29",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/33",
+          "rationale": "The yoke/harness and restraint saying precedes the work/idleness saying. Source 28-29 remains one indivisible combined unit. This does not certify or reorder NABRE's separate 20a/21/20b structure.",
+          "units": [
+            {
+              "chapter": 33,
+              "verse": 28,
+              "endVerse": 29,
+              "textSHA256": "84a27424e7a47a47728544027e8e8149e5df5f5c4bb740e306e4c896fc3a0f9f"
+            },
+            {
+              "chapter": 33,
+              "verse": 27,
+              "endVerse": null,
+              "textSHA256": "b795a0b8575368968f6c1d20d11868ec2a04301513726b7370cce860daaa5e5d"
+            }
+          ]
+        },
+        {
+          "id": "sir-36-reading-order",
+          "chapter": 36,
+          "sourceVerses": [
+            26,
+            24,
+            25
+          ],
+          "readingVerses": [
+            24,
+            25,
+            26
+          ],
+          "targetPassage": "Sirach 36:24-26",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/36",
+          "rationale": "The palate/deceit and crooked-heart/experienced-person sayings precede the wife comparison. Source 25 contains additional damaged wording, which remains attached and unchanged; this is whole-unit sequence correspondence, not equality of complete verse contents.",
+          "units": [
+            {
+              "chapter": 36,
+              "verse": 26,
+              "endVerse": null,
+              "textSHA256": "f37713d9d0905edcca6b3b75d65913fdf07df26406e643be52b5e49f556155df"
+            },
+            {
+              "chapter": 36,
+              "verse": 24,
+              "endVerse": null,
+              "textSHA256": "a28d9e6da8696a63ac649aa956db33bffc9042bb91f9e17ef0dc4f54d1d1971c"
+            },
+            {
+              "chapter": 36,
+              "verse": 25,
+              "endVerse": null,
+              "textSHA256": "73c4d346e1b649b2d5475cbcf07d3aae47aee1d5c1ec1837f43e01053fffa3e4"
+            }
+          ]
+        },
+        {
+          "id": "sir-37-reading-order",
+          "chapter": 37,
+          "sourceVerses": [
+            25,
+            24
+          ],
+          "readingVerses": [
+            24,
+            25
+          ],
+          "targetPassage": "Sirach 37:24-25",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/37",
+          "rationale": "The self-wise person's enjoyment and praise precedes the contrast between a person's numbered days and Israel's countless days. The unnumbered wisdom-for-the-people couplet remains immediately before these units, unnumbered.",
+          "units": [
+            {
+              "chapter": 37,
+              "verse": 25,
+              "endVerse": null,
+              "textSHA256": "304e00fd41d36e0952915b54fcf76cb5bed147d3df77a750ef38737c11326a9f"
+            },
+            {
+              "chapter": 37,
+              "verse": 24,
+              "endVerse": null,
+              "textSHA256": "7af3234d125906693440367193b1baf071745aae530203c66a7c1b0f0fa482a4"
+            }
+          ]
+        },
+        {
+          "id": "sir-38-reading-order",
+          "chapter": 38,
+          "sourceVerses": [
+            22,
+            21
+          ],
+          "readingVerses": [
+            21,
+            22
+          ],
+          "targetPassage": "Sirach 38:21-22",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/38",
+          "rationale": "The warning that recalling the dead cannot help them and harms oneself precedes the reminder that their fate will also be one's own.",
+          "units": [
+            {
+              "chapter": 38,
+              "verse": 22,
+              "endVerse": null,
+              "textSHA256": "731da8ab0848b22e7e1cdf6274903058928e3c6f873a76cff90d022bc322bd06"
+            },
+            {
+              "chapter": 38,
+              "verse": 21,
+              "endVerse": null,
+              "textSHA256": "048266069382c0bb96dc8ca6c57dbac4e6a68bc461d6d7115527b2805a524f54"
+            }
+          ]
+        },
+        {
+          "id": "sir-48-reading-order",
+          "chapter": 48,
+          "sourceVerses": [
+            8,
+            7
+          ],
+          "readingVerses": [
+            7,
+            8
+          ],
+          "targetPassage": "Sirach 48:7-8",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/48",
+          "rationale": "Elijah hearing judgments at Sinai/Horeb precedes the anointing and prophetic succession saying.",
+          "units": [
+            {
+              "chapter": 48,
+              "verse": 8,
+              "endVerse": null,
+              "textSHA256": "bde367a3250c524e6e7717cbd83524f3ab2364ea6c997d4d92f5a1f092d1766b"
+            },
+            {
+              "chapter": 48,
+              "verse": 7,
+              "endVerse": null,
+              "textSHA256": "5f398dc459038263995d3ee51c0e26fbf0aece725c1ae34e686d895ddc4befb5"
+            }
+          ]
+        },
+        {
+          "id": "sir-50-reading-order",
+          "chapter": 50,
+          "sourceVerses": [
+            3,
+            2
+          ],
+          "readingVerses": [
+            2,
+            3
+          ],
+          "targetPassage": "Sirach 50:2-3",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/50",
+          "rationale": "The building of the temple wall precedes excavation of the reservoir. The surrounding temple renovation and defense units remain in place.",
+          "units": [
+            {
+              "chapter": 50,
+              "verse": 3,
+              "endVerse": null,
+              "textSHA256": "b141b80f75c268e2855c8a05d50507dcd71bdd0bfcd9314fb5ba864486f130ea"
+            },
+            {
+              "chapter": 50,
+              "verse": 2,
+              "endVerse": null,
+              "textSHA256": "e501417ad030951aba080603d3626acbc5df77cb02cdae0426c5941b9cdb1c19"
+            }
+          ]
+        }
+      ],
+      "chapterReturns": [
+        {
+          "id": "sir-11-34-return",
+          "chapter": 11,
+          "verse": 34,
+          "fromChapter": 12,
+          "afterVerse": 33,
+          "sourcePreviousVerse": 1,
+          "sourceNextVerse": 2,
+          "targetPassage": "Sirach 11:33-34; 12:1-2",
+          "sourceURLs": [
+            "https://bible.usccb.org/bible/sirach/11",
+            "https://bible.usccb.org/bible/sirach/12"
+          ],
+          "rationale": "The warning about the stranger and alienation belongs at the end of chapter 11, after the evildoer warning. The next chapter begins with knowing to whom one does good, then doing good to the righteous. Kahana physically interleaves 12:1 before the labelled 11:34; return that exact unit to its existing source address chapter without relabelling it.",
+          "units": [
+            {
+              "chapter": 11,
+              "verse": 33,
+              "endVerse": null,
+              "textSHA256": "88dcdf1767d3e7ed215bae2c36b9b3744c8e362c3166b64664e2d8e5e7af010a"
+            },
+            {
+              "chapter": 11,
+              "verse": 34,
+              "endVerse": null,
+              "textSHA256": "a0cb74e2aa05235873f765c8c416870b6cd0e5eaee15ea7ea3859c261c6cec77"
+            },
+            {
+              "chapter": 12,
+              "verse": 1,
+              "endVerse": null,
+              "textSHA256": "4a5044f26a726cff5bf13bfdd42c5d005fa1d7057381390619aa0e2b8c2fc0b1"
+            },
+            {
+              "chapter": 12,
+              "verse": 2,
+              "endVerse": null,
+              "textSHA256": "55d7bbee9de27d73e0c0d937b2f92fa2261470433fa7dc00ac8fb3f3200951b8"
+            }
+          ]
+        }
+      ],
+      "deferred": [
+        {
+          "sourcePassage": "Sirach 31:19-22",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/31",
+          "reason": "Printed source units mix and repeat clauses: primary 22 contains the moderation portion of NABRE 22 plus a repeated damaged 19 fragment; the second witness 22 contains the listen-to-my-advice portion. Primary 19 also includes part of NABRE 20. Whole-unit sorting cannot make a complete canonical sequence."
+        },
+        {
+          "sourcePassage": "Sirach 42:23,25,24",
+          "sourceURL": "https://bible.usccb.org/bible/sirach/42",
+          "reason": "Source 23 combines NABRE 23a and 25a; source 25 combines 25b with damaged material corresponding to 22b and 23b. Numeric sorting would still misorder clauses. Splitting or reconstructing those units is outside this reviewed whole-unit projection."
+        },
+        {
+          "sourcePassage": "Sirach 41:14-16; 51:13,19,20 and unnumbered material",
+          "reason": "Overlapping printed witnesses and unnumbered material remain in their reviewed source positions. This projection neither chooses between witnesses nor invents verse addresses."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
+        }
+      ]
+    }
+  }
+}

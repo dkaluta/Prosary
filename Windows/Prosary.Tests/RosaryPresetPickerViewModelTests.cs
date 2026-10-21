@@ -9,6 +9,49 @@ namespace Prosary.Tests;
 
 public class RosaryPresetPickerViewModelTests : IClassFixture<PrayerPackLoaderFixture>
 {
+    [Theory]
+    [InlineData("he", "he-x-gamliel")]
+    [InlineData("he-x-gamliel", "he")]
+    public async Task HebrewOptionCaptionsRefreshWhenTheEditorChangesTradition(string first, string second)
+    {
+        var oldUi = UiLanguageCatalog.Current;
+        try
+        {
+            UiLanguageCatalog.UseLanguageForCurrentSession("he");
+            var original = new Prayer { Kind = PrayerKind.Rosary, LanguageCode = first, IsDefault = true };
+            var store = new MemoryPresetStore(original);
+            var picker = new RosaryPresetPickerViewModel(store);
+            await picker.LoadAsync();
+            var editor = new FavoriteEditorViewModel(store, new SilentReminders());
+            await editor.LoadAsync(original.Id, PrayerKind.Rosary);
+            Assert.Equal(RosaryOptionLabels.OpeningPrayers(first), editor.OpeningPrayersLabel);
+            Assert.Equal(editor.OpeningPrayersLabel, picker.OpeningPrayersLabel);
+            Assert.Equal(editor.OpeningFatimaLabel, picker.OpeningFatimaLabel);
+            Assert.Equal(editor.CreedLabel, picker.CreedLabel);
+
+            var changed = new List<string?>();
+            editor.PropertyChanged += (_, args) => changed.Add(args.PropertyName);
+            editor.LanguageCode = second;
+            Assert.Contains(nameof(editor.OpeningPrayersLabel), changed);
+            Assert.Contains(nameof(editor.OpeningFatimaLabel), changed);
+            Assert.Contains(nameof(editor.PresenterHint), changed);
+            Assert.Contains(nameof(editor.CreedLabel), changed);
+            Assert.Equal(RosaryOptionLabels.OpeningPrayers(second), editor.OpeningPrayersLabel);
+            Assert.Equal(RosaryOptionLabels.OpeningFatima(second), editor.OpeningFatimaLabel);
+            Assert.Equal(RosaryOptionLabels.PresenterHint(second), editor.PresenterHint);
+
+            var generic = original with { Kind = PrayerKind.Custom, CustomDevotionId = "rosary" };
+            var genericEditor = new RemindersOnlyEditorViewModel(new MemoryPresetStore(generic), new SilentReminders());
+            await genericEditor.LoadAsync(generic.Id);
+            Assert.Equal(picker.OpeningPrayersLabel, genericEditor.OptionRows.Single(row => row.Key == "openingPrayers").Label);
+            Assert.Equal(picker.OpeningFatimaLabel, genericEditor.OptionRows.Single(row => row.Key == "openingFatimaPrayer").Label);
+            var antiphon = genericEditor.OptionRows.Single(row => row.Key == "antiphon");
+            Assert.Equal(PrayerPackStore.ResolveDisplayText("rosary", first, "subTuumPraesidiumTitle"),
+                antiphon.Cases.Single(choice => choice.Id == "subTuumPraesidium").LocalizedName);
+        }
+        finally { UiLanguageCatalog.UseLanguageForCurrentSession(oldUi); }
+    }
+
     [Fact]
     public async Task AdHocPrayerForNavigation_ReusesInstanceUntilPickerReloads()
     {

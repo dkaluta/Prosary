@@ -1,0 +1,2478 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 2,
+  "books": [
+    "S3Y",
+    "SUS",
+    "ESG"
+  ],
+  "status": "Focused source-pixel reinspection complete; one independently verified bracket/letter transcription correction",
+  "notesInspected": 60,
+  "resolved": 1,
+  "retained": 59,
+  "notesInspectedByBook": {
+    "S3Y": 31,
+    "SUS": 11,
+    "ESG": 18
+  },
+  "canonicalChanged": [
+    "ESG"
+  ],
+  "scope": "60 exact source-note positions outside the 22 verified positions of the 20261003 focused report: 31 in S3Y, 11 in SUS, and 18 in ESG. All six previously excluded SUS word locations were re-located correctly and their 11 notes inspected. This is a focused note pass, not a fresh whole-book collation.",
+  "method": "Fresh pypdf extraction of original embedded scan pixels; complete-page location checks followed by unchanged native crops and 3x nearest-neighbor enlargement. No sharpening, contrast adjustment, OCR, machine vocalization or grammatical reconstruction. Same-page visible points and paired brackets are comparators, not sources of replacement text. The exact changed ESG glyph received separate root review.",
+  "sourceScan": {
+    "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+    "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf",
+    "downloadURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5"
+  },
+  "alternateScanSearch": {
+    "queries": [
+      "\"Apocrypha_Kahana_A2\" extra",
+      "\"כהנא\" \"הספרים החיצונים\" \"תוספות\" \"דניאל\" pdf"
+    ],
+    "result": "No genuinely clearer independent A2 scan identified in this search. The existing SUS-extra-source-check.json records that sampled Commons Daniel pages were pixel-identical to A2; that historical comparison was consulted, not newly downloaded or reverified. Another translator was not used to supply readings.",
+    "historicalComparisonReport": "Shared/reports/hebrew-wikisource/SUS-extra-source-check.json",
+    "commonsSourceURL": "https://commons.wikimedia.org/wiki/File:ספרים_חיצוניים._תוספות_לספר_דניאל._דוב_היליר.pdf"
+  },
+  "resolutions": [
+    {
+      "book": "ESG",
+      "chapter": 4,
+      "verse": 17,
+      "removedNoteId": "esg-4-17-1-vowel",
+      "before": "[כִּי־ותָעב]",
+      "after": "כִּי־[תָעב]",
+      "beforeVerseText": "אַתָּה תֵדַע צָרָתִי [כִּי־ותָעב] אֲתָעֵב אֶת־אוֹת הַגָּאוֹן אֲשֶׁר עַל־רֹאשִׁי בְּיוֹם הֵרָאוֹתִי אֲתָעֲבֶנּוּ כְּבֶגֶד עִדִּים וְלֹא אֶשָּׂאֶנּוּ בִּימֵי מְנוּחָתִי׃",
+      "afterVerseText": "אַתָּה תֵדַע צָרָתִי כִּי־[תָעב] אֲתָעֵב אֶת־אוֹת הַגָּאוֹן אֲשֶׁר עַל־רֹאשִׁי בְּיוֹם הֵרָאוֹתִי אֲתָעֲבֶנּוּ כְּבֶגֶד עִדִּים וְלֹא אֶשָּׂאֶנּוּ בִּימֵי מְנוּחָתִי׃",
+      "beforeTextSHA256": "e1e8ab40ee08d1f1aa3352c120483b11af527b06ef8e829f9154a40d1ba84e7d",
+      "afterTextSHA256": "13295bf2269551106e67f6e7b5f544e85847b40736fc2a347cc30c9cce7de004",
+      "consonantalChange": "Remove one spurious vav that was a misread opening square bracket. This is not merely niqqud; the bracket is placed around the exact printed three-letter word. No new consonant or vowel is invented.",
+      "retainedNoteUpdate": {
+        "id": "esg-4-17-2-vowel",
+        "anchorBefore": "ותָעב",
+        "anchorAfter": "תָעב",
+        "letterIndexBefore": 3,
+        "letterIndexAfter": 2
+      },
+      "independentReviewer": "root: separately inspected native/enlarged exact word, complete source row and same-page bracket comparison, 2026-10-17",
+      "additionalEvidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/ESG-4-11-bracket-comparator-native.png",
+          "sha256": "ce4bd013f7d4dd165b2b0e1169d16c61cc4f27fbe3cb1cd7aaf4b49224e4897f",
+          "sourceImage": "A2-220-native.png",
+          "sourceImageSHA256": "fb5c541a0166e973bc6f7748cce8bc56d76ae41e71cc5e90d094a3a4621f3ede",
+          "pixelBox": [
+            270,
+            680,
+            710,
+            810
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/ESG-4-11-bracket-comparator-3x.png",
+          "sha256": "77dc5afcaec49046f402c92f6df72a6ae7a8dfc118608d1aa2b093e927f674b6",
+          "sourceImage": "A2-220-native.png",
+          "sourceImageSHA256": "fb5c541a0166e973bc6f7748cce8bc56d76ae41e71cc5e90d094a3a4621f3ede",
+          "pixelBox": [
+            270,
+            680,
+            710,
+            810
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/ESG-4-17-full-row-native.png",
+          "sha256": "f96a458123c76c27c72cffb78021ab17ed702ad876a5c4c315a787d97d457b53",
+          "sourceImage": "A2-220-native.png",
+          "sourceImageSHA256": "fb5c541a0166e973bc6f7748cce8bc56d76ae41e71cc5e90d094a3a4621f3ede",
+          "pixelBox": [
+            200,
+            1435,
+            2150,
+            1565
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "noteId": "sus-1-5-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 5,
+      "anchorBefore": "כּמַנְהִיגֵי",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 237,
+      "wordEvidenceKey": "sus-5-kemanhige",
+      "disposition": "retainDisclosure",
+      "finding": "The kaf lower group is joined to its thick foot; its independent vowel class cannot be certified."
+    },
+    {
+      "noteId": "sus-1-22-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "wordEvidenceKey": "sus-22-eesena",
+      "disposition": "retainDisclosure",
+      "finding": "Alef and sin lower material is continuous with dense letter ink. The distinct neighbouring ayin points and nun dot do not classify the omitted vowels."
+    },
+    {
+      "noteId": "sus-1-22-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "wordEvidenceKey": "sus-22-eesena",
+      "disposition": "retainDisclosure",
+      "finding": "Alef and sin lower material is continuous with dense letter ink. The distinct neighbouring ayin points and nun dot do not classify the omitted vowels."
+    },
+    {
+      "noteId": "sus-1-38-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "anchorBefore": "בְּפנּת",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-38-befinnat",
+      "disposition": "retainDisclosure",
+      "finding": "Pe and nun lower material remains fused with their feet. Clearly visible neighbouring bet sheva and interior dots do not determine the two omitted vowels."
+    },
+    {
+      "noteId": "sus-1-38-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "anchorBefore": "בְּפנּת",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-38-befinnat",
+      "disposition": "retainDisclosure",
+      "finding": "Pe and nun lower material remains fused with their feet. Clearly visible neighbouring bet sheva and interior dots do not determine the two omitted vowels."
+    },
+    {
+      "noteId": "sus-1-47-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "anchorBefore": "ויִפֶן",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-47-vayifen",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower bar joins its descender, and the narrow yod is filled. Neither an exact vowel nor a detached dagesh or reliable clean absence is established."
+    },
+    {
+      "noteId": "sus-1-47-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "anchorBefore": "ויִפֶן",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-47-vayifen",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower bar joins its descender, and the narrow yod is filled. Neither an exact vowel nor a detached dagesh or reliable clean absence is established."
+    },
+    {
+      "noteId": "sus-1-48-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 48,
+      "anchorBefore": "הַאמְנָם",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-48-haumnam",
+      "disposition": "retainDisclosure",
+      "finding": "Alef lower material is a long connected irregular extension, not a securely identifiable detached vowel."
+    },
+    {
+      "noteId": "sus-1-62-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "anchorBefore": "ויִמָלֵט",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 242,
+      "wordEvidenceKey": "sus-62-vayimalet",
+      "disposition": "retainDisclosure",
+      "finding": "Initial vav foot is fused, yod is solid, and the mem interior lower material joins the printed strokes. No exact omitted mark or reliable clean absence is established."
+    },
+    {
+      "noteId": "sus-1-62-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "anchorBefore": "ויִמָלֵט",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 242,
+      "wordEvidenceKey": "sus-62-vayimalet",
+      "disposition": "retainDisclosure",
+      "finding": "Initial vav foot is fused, yod is solid, and the mem interior lower material joins the printed strokes. No exact omitted mark or reliable clean absence is established."
+    },
+    {
+      "noteId": "sus-1-62-letter-3-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "anchorBefore": "ויִמָלֵט",
+      "letterIndexBefore": 3,
+      "mark": "dagesh",
+      "sourcePage": 242,
+      "wordEvidenceKey": "sus-62-vayimalet",
+      "disposition": "retainDisclosure",
+      "finding": "Initial vav foot is fused, yod is solid, and the mem interior lower material joins the printed strokes. No exact omitted mark or reliable clean absence is established."
+    },
+    {
+      "noteId": "s3y-1-16-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 16,
+      "anchorBefore": "ונְּהִי",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-16-venhi",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to its descender; adjacent distinct nun dot and he hiriq are not substitutes for its exact vowel."
+    },
+    {
+      "noteId": "s3y-1-19-word5-letter2-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "anchorBefore": "וְרבְבוֹת",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-19-revavot",
+      "disposition": "retainDisclosure",
+      "finding": "The resh lower group joins its descender in a heavy terminal, without an independently classifiable vowel."
+    },
+    {
+      "noteId": "s3y-1-19-word10-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "anchorBefore": "קרְבָּנֵנוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-19-korbanenu",
+      "disposition": "retainDisclosure",
+      "finding": "The qoph lower mark meets its descending stroke and remains irregular; exact vowel geometry is not independently exposed."
+    },
+    {
+      "noteId": "s3y-1-25-word10-letter1-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "וכאשֶׁר",
+      "letterIndexBefore": 1,
+      "mark": "dagesh",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-25-vekaasher",
+      "disposition": "retainDisclosure",
+      "finding": "The vav and its possible middle/lower material remain ambiguous as a dagesh location; kaf and alef lower groups touch dense letter material. Neither mark restoration nor clean-absence removal is secure."
+    },
+    {
+      "noteId": "s3y-1-25-word10-letter2-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "וכאשֶׁר",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-25-vekaasher",
+      "disposition": "retainDisclosure",
+      "finding": "The vav and its possible middle/lower material remain ambiguous as a dagesh location; kaf and alef lower groups touch dense letter material. Neither mark restoration nor clean-absence removal is secure."
+    },
+    {
+      "noteId": "s3y-1-25-word10-letter3-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "וכאשֶׁר",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-25-vekaasher",
+      "disposition": "retainDisclosure",
+      "finding": "The vav and its possible middle/lower material remain ambiguous as a dagesh location; kaf and alef lower groups touch dense letter material. Neither mark restoration nor clean-absence removal is secure."
+    },
+    {
+      "noteId": "s3y-1-25-word21-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "ויִהְיוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-25-vayihyu",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower bar joins its descender and the narrow yod is filled; separate vowel/dagesh geometry is unavailable."
+    },
+    {
+      "noteId": "s3y-1-25-word21-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "ויִהְיוּ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-25-vayihyu",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower bar joins its descender and the narrow yod is filled; separate vowel/dagesh geometry is unavailable."
+    },
+    {
+      "noteId": "s3y-1-25-word25-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "[ואֲחֵרִים]",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-25-veacherim",
+      "disposition": "retainDisclosure",
+      "finding": "Initial vav ends in joined heavy lower material; its exact vowel remains unreadable. Printed brackets and adjacent hataf points remain as transcribed."
+    },
+    {
+      "noteId": "s3y-1-25-word28-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "נפְט",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-25-neft",
+      "disposition": "retainDisclosure",
+      "finding": "The nun lower group is continuous with its thick descending foot, preventing exact vowel classification."
+    },
+    {
+      "noteId": "s3y-1-26-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 26,
+      "anchorBefore": "ויַעַל",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-26-vayaal",
+      "disposition": "retainDisclosure",
+      "finding": "The vav lower bar is joined and yod is a filled narrow glyph. The separately visible yod patah is preserved and serves only as a same-page shape comparator."
+    },
+    {
+      "noteId": "s3y-1-26-word1-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 26,
+      "anchorBefore": "ויַעַל",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-26-vayaal",
+      "disposition": "retainDisclosure",
+      "finding": "The vav lower bar is joined and yod is a filled narrow glyph. The separately visible yod patah is preserved and serves only as a same-page shape comparator."
+    },
+    {
+      "noteId": "s3y-1-27-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "anchorBefore": "ויֵצֵא",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-27-vayetse",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower foot is continuous with the descender; the narrow yod does not expose an independent dagesh or reliably empty location."
+    },
+    {
+      "noteId": "s3y-1-27-word1-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "anchorBefore": "ויֵצֵא",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-27-vayetse",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower foot is continuous with the descender; the narrow yod does not expose an independent dagesh or reliably empty location."
+    },
+    {
+      "noteId": "s3y-1-27-word2-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "anchorBefore": "ויִשְׂרֹף",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-27-vayisrof",
+      "disposition": "retainDisclosure",
+      "finding": "Vav lower material touches the stem; yod remains a filled narrow glyph. No secure exact omitted mark or clean absence is established."
+    },
+    {
+      "noteId": "s3y-1-27-word2-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "anchorBefore": "ויִשְׂרֹף",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-27-vayisrof",
+      "disposition": "retainDisclosure",
+      "finding": "Vav lower material touches the stem; yod remains a filled narrow glyph. No secure exact omitted mark or clean absence is established."
+    },
+    {
+      "noteId": "s3y-1-28-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "anchorBefore": "וחֲבֵרָיו",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-28-vachaverav",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower group is joined to the letter foot. Adjacent readable hataf points do not identify that vowel."
+    },
+    {
+      "noteId": "s3y-1-28-word7-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "anchorBefore": "ויֶהֱדֹף",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-28-vayehedof",
+      "disposition": "retainDisclosure",
+      "finding": "A detached initial-vav lower mark prompted independent root review, but its lower/right projection and irregular upper bulge do not safely distinguish a vowel class. It is less flat than the same-page yod-patah comparator in verse26. Root independently rejected the proposed patah reading; this disclosure remains. The narrow yod also lacks independently separable dagesh evidence.",
+      "independentReview": "root: exact vowel class not safely distinguishable; retain disclosure, 2026-10-17"
+    },
+    {
+      "noteId": "s3y-1-28-word7-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "anchorBefore": "ויֶהֱדֹף",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-28-vayehedof",
+      "disposition": "retainDisclosure",
+      "finding": "A detached initial-vav lower mark prompted independent root review, but its lower/right projection and irregular upper bulge do not safely distinguish a vowel class. It is less flat than the same-page yod-patah comparator in verse26. Root independently rejected the proposed patah reading; this disclosure remains. The narrow yod also lacks independently separable dagesh evidence."
+    },
+    {
+      "noteId": "s3y-1-29-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 29,
+      "anchorBefore": "ויַעַשׂ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-29-vayaas",
+      "disposition": "retainDisclosure",
+      "finding": "Initial vav foot is fused and yod is solid. Neither exact missing mark nor reliable clean absence is exposed."
+    },
+    {
+      "noteId": "s3y-1-29-word1-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 29,
+      "anchorBefore": "ויַעַשׂ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-29-vayaas",
+      "disposition": "retainDisclosure",
+      "finding": "Initial vav foot is fused and yod is solid. Neither exact missing mark nor reliable clean absence is exposed."
+    },
+    {
+      "noteId": "s3y-1-30-vayaanu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויַעֲנוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 235,
+      "wordEvidenceKey": "s3y-30-vayaanu",
+      "disposition": "retainDisclosure",
+      "finding": "Vav lower material remains joined and the narrow yod interior is filled. Other distinctly printed neighbouring points do not resolve the omitted marks."
+    },
+    {
+      "noteId": "s3y-1-30-vayaanu-yod-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויַעֲנוּ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 235,
+      "wordEvidenceKey": "s3y-30-vayaanu",
+      "disposition": "retainDisclosure",
+      "finding": "Vav lower material remains joined and the narrow yod interior is filled. Other distinctly printed neighbouring points do not resolve the omitted marks."
+    },
+    {
+      "noteId": "s3y-1-30-vayhalelu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויְהַלְלוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 235,
+      "wordEvidenceKey": "s3y-30-vayhalelu",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav ends in a joined thick lower bar; exact vowel class is not separable."
+    },
+    {
+      "noteId": "s3y-1-30-vayshabehu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויְשַׁבְּחוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 235,
+      "wordEvidenceKey": "s3y-30-vayshabehu",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower group joins its descender, preventing exact vowel classification."
+    },
+    {
+      "noteId": "s3y-1-30-vayromemu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויְרוֹמְמוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 235,
+      "wordEvidenceKey": "s3y-30-vayromemu",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower group remains continuous with the stem and does not expose an independent exact vowel."
+    },
+    {
+      "noteId": "s3y-1-35-rakiya-resh-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 35,
+      "anchorBefore": "בִּרקִיעַ",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 235,
+      "wordEvidenceKey": "s3y-35-rakiya",
+      "disposition": "retainDisclosure",
+      "finding": "The resh lower point area is joined to its long descending stroke and cannot be classified securely."
+    },
+    {
+      "noteId": "s3y-1-52-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 52,
+      "anchorBefore": "ועֲנָנִים",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y-52-veananim",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav ends in fused lower material; the exact vowel remains uncertain."
+    },
+    {
+      "noteId": "s3y-1-60-word2-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 60,
+      "anchorBefore": "וחַיַת",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y-60-vachayat",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav has joined lower lobes and the yod remains largely filled with a tiny white break rather than an independently visible dot. No safe exact mark or clean-absence conclusion."
+    },
+    {
+      "noteId": "s3y-1-60-word2-letter3-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 60,
+      "anchorBefore": "וחַיַת",
+      "letterIndexBefore": 3,
+      "mark": "dagesh",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y-60-vachayat",
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav has joined lower lobes and the yod remains largely filled with a tiny white break rather than an independently visible dot. No safe exact mark or clean-absence conclusion."
+    },
+    {
+      "noteId": "s3y-1-68-word3-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 68,
+      "anchorBefore": "מִשְׁאוֹל",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y-68-misheol",
+      "disposition": "retainDisclosure",
+      "finding": "The shin interior strokes are densely connected; a distinct dagesh or reliably empty dot location is not established."
+    },
+    {
+      "noteId": "esg-2-3-1-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "לשְׁמֹר",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg-2-3-lishmor",
+      "disposition": "retainDisclosure",
+      "finding": "Lamed lower material joins its descending foot; the exact vowel is not separable."
+    },
+    {
+      "noteId": "esg-2-3-2-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "בְּכלכלת",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg-2-3-bekalkalat",
+      "disposition": "retainDisclosure",
+      "finding": "The four queried kaf/lamed lower areas are fused with or incomplete beside their letter feet. The readable bet sheva is retained but cannot supply the four omitted vowels."
+    },
+    {
+      "noteId": "esg-2-3-3-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "בְּכלכלת",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg-2-3-bekalkalat",
+      "disposition": "retainDisclosure",
+      "finding": "The four queried kaf/lamed lower areas are fused with or incomplete beside their letter feet. The readable bet sheva is retained but cannot supply the four omitted vowels."
+    },
+    {
+      "noteId": "esg-2-3-4-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "בְּכלכלת",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg-2-3-bekalkalat",
+      "disposition": "retainDisclosure",
+      "finding": "The four queried kaf/lamed lower areas are fused with or incomplete beside their letter feet. The readable bet sheva is retained but cannot supply the four omitted vowels."
+    },
+    {
+      "noteId": "esg-2-3-5-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "בְּכלכלת",
+      "letterIndexBefore": 5,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg-2-3-bekalkalat",
+      "disposition": "retainDisclosure",
+      "finding": "The four queried kaf/lamed lower areas are fused with or incomplete beside their letter feet. The readable bet sheva is retained but cannot supply the four omitted vowels."
+    },
+    {
+      "noteId": "esg-2-3-6-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "לַעָבר",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg-2-3-laavor",
+      "disposition": "retainDisclosure",
+      "finding": "Bet lower material forms an irregular extension from its heavy foot, not a complete independently classifiable vowel."
+    },
+    {
+      "noteId": "esg-3-10-1-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "anchorBefore": "ב[עַם]",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 219,
+      "wordEvidenceKey": "esg-3-10-beam",
+      "disposition": "retainDisclosure",
+      "finding": "Bet lower material is continuous with its foot. The printed inserted word and brackets are preserved; exact bet vowel remains unreadable."
+    },
+    {
+      "noteId": "esg-3-10-2-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "anchorBefore": "מְשׁבְּחֶךָ",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 219,
+      "wordEvidenceKey": "esg-3-10-meshabbacha",
+      "disposition": "retainDisclosure",
+      "finding": "Shin lower material joins its foot and its internal strokes are dense; no exact vowel, detached dagesh, or reliably clear absence is established."
+    },
+    {
+      "noteId": "esg-3-10-3-dagesh",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "anchorBefore": "מְשׁבְּחֶךָ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 219,
+      "wordEvidenceKey": "esg-3-10-meshabbacha",
+      "disposition": "retainDisclosure",
+      "finding": "Shin lower material joins its foot and its internal strokes are dense; no exact vowel, detached dagesh, or reliably clear absence is established."
+    },
+    {
+      "noteId": "esg-4-17-1-vowel",
+      "book": "ESG",
+      "chapter": 4,
+      "verse": 17,
+      "anchorBefore": "ותָעב",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 220,
+      "wordEvidenceKey": "esg-4-17-vetaev",
+      "disposition": "resolvedBracketMisreadAsLetter",
+      "finding": "The supposed initial vav is actually the opening square bracket: a thin vertical rule with short top and bottom horizontal terminals, paired with the closing bracket after bet. The same-page [ודם] brackets have the same shape and are distinctly thinner than that word’s actual vav. The source reads כִּי־[תָעב], not [כִּי־ותָעב]. Root independently confirmed the bracket geometry and full-row occurrence. The remaining ayin lower material is still fused and its exact vowel disclosure is retained."
+    },
+    {
+      "noteId": "esg-4-17-2-vowel",
+      "book": "ESG",
+      "chapter": 4,
+      "verse": 17,
+      "anchorBefore": "ותָעב",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 220,
+      "wordEvidenceKey": "esg-4-17-vetaev",
+      "disposition": "retainDisclosureWithCorrectedAnchor",
+      "finding": "The supposed initial vav is actually the opening square bracket: a thin vertical rule with short top and bottom horizontal terminals, paired with the closing bracket after bet. The same-page [ודם] brackets have the same shape and are distinctly thinner than that word’s actual vav. The source reads כִּי־[תָעב], not [כִּי־ותָעב]. Root independently confirmed the bracket geometry and full-row occurrence. The remaining ayin lower material is still fused and its exact vowel disclosure is retained.",
+      "anchorAfter": "תָעב",
+      "letterIndexAfter": 2
+    },
+    {
+      "noteId": "esg-5-3-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "כמשׁענּה",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 221,
+      "wordEvidenceKey": "esg-5-3-kemoshenna",
+      "disposition": "retainDisclosure",
+      "finding": "All five queried lower vowel groups remain joined to dense letter feet or form incomplete irregular clusters. The separately visible nun interior dot and shin dot remain unchanged."
+    },
+    {
+      "noteId": "esg-5-3-2-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "כמשׁענּה",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 221,
+      "wordEvidenceKey": "esg-5-3-kemoshenna",
+      "disposition": "retainDisclosure",
+      "finding": "All five queried lower vowel groups remain joined to dense letter feet or form incomplete irregular clusters. The separately visible nun interior dot and shin dot remain unchanged."
+    },
+    {
+      "noteId": "esg-5-3-3-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "כמשׁענּה",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 221,
+      "wordEvidenceKey": "esg-5-3-kemoshenna",
+      "disposition": "retainDisclosure",
+      "finding": "All five queried lower vowel groups remain joined to dense letter feet or form incomplete irregular clusters. The separately visible nun interior dot and shin dot remain unchanged."
+    },
+    {
+      "noteId": "esg-5-3-4-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "כמשׁענּה",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 221,
+      "wordEvidenceKey": "esg-5-3-kemoshenna",
+      "disposition": "retainDisclosure",
+      "finding": "All five queried lower vowel groups remain joined to dense letter feet or form incomplete irregular clusters. The separately visible nun interior dot and shin dot remain unchanged."
+    },
+    {
+      "noteId": "esg-5-3-5-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "כמשׁענּה",
+      "letterIndexBefore": 5,
+      "mark": "vowel",
+      "sourcePage": 221,
+      "wordEvidenceKey": "esg-5-3-kemoshenna",
+      "disposition": "retainDisclosure",
+      "finding": "All five queried lower vowel groups remain joined to dense letter feet or form incomplete irregular clusters. The separately visible nun interior dot and shin dot remain unchanged."
+    },
+    {
+      "noteId": "esg-5-4-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 4,
+      "anchorBefore": "מזְהִירָה",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 221,
+      "wordEvidenceKey": "esg-5-4-mezhira",
+      "disposition": "retainDisclosure",
+      "finding": "Mem lower material remains merged into its thick lower stroke, without a classifiable detached vowel."
+    },
+    {
+      "noteId": "esg-6-14-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 14,
+      "anchorBefore": "נעֱזָבִים",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 223,
+      "wordEvidenceKey": "esg-6-14-neezavim",
+      "disposition": "retainDisclosure",
+      "finding": "Nun lower material remains joined to its thick descending foot. The visible neighbouring ayin hataf components do not identify the omitted nun vowel."
+    }
+  ],
+  "wordEvidence": [
+    {
+      "key": "sus-5-kemanhige",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 5,
+      "anchorBefore": "כּמַנְהִיגֵי",
+      "sourcePage": 237,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-5-kemanhige-native.png",
+          "sha256": "f17d7d155cee8202b25908139db86e0360db334c0c0cd280f3667610d8530bcf",
+          "sourceImage": "A2-237-native.png",
+          "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+          "pixelBox": [
+            1875,
+            2155,
+            2110,
+            2240
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-5-kemanhige-3x.png",
+          "sha256": "dd55ee3c1c253a0f21b3d79d8ef8891226f070273c00e365fd20e2d8982e6e57",
+          "sourceImage": "A2-237-native.png",
+          "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+          "pixelBox": [
+            1875,
+            2155,
+            2110,
+            2240
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-22-eesena",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "anchorBefore": "אעֱשׂנָּה",
+      "sourcePage": 239,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-22-eesena-native.png",
+          "sha256": "7b6841ba86b06b5eda552393d0cbc4f9e7a4adf57efa36263e8d3c0f601419e9",
+          "sourceImage": "A2-239-native.png",
+          "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+          "pixelBox": [
+            1850,
+            1260,
+            2080,
+            1390
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-22-eesena-3x.png",
+          "sha256": "d1d0f82eb4754cb753ed72903389519b2b66c4805650955895883d5cdd64f383",
+          "sourceImage": "A2-239-native.png",
+          "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+          "pixelBox": [
+            1850,
+            1260,
+            2080,
+            1390
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-38-befinnat",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "anchorBefore": "בְּפנּת",
+      "sourcePage": 240,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-38-befinnat-native.png",
+          "sha256": "ac64528d556c2f2de0c265b032314f3794c089698451625eb09125f5a32c7ad2",
+          "sourceImage": "A2-240-native.png",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "pixelBox": [
+            1160,
+            1870,
+            1340,
+            2000
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-38-befinnat-3x.png",
+          "sha256": "1fec49e439cd693b92541680435320c823b51ea02d8456d5b5a31b6e728792c0",
+          "sourceImage": "A2-240-native.png",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "pixelBox": [
+            1160,
+            1870,
+            1340,
+            2000
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-47-vayifen",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "anchorBefore": "ויִפֶן",
+      "sourcePage": 240,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-47-vayifen-native.png",
+          "sha256": "c8072c2b11c76100c5f4ccb77cbefec015741df02d00e6b5a116743c4fcc012a",
+          "sourceImage": "A2-240-native.png",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "pixelBox": [
+            1170,
+            2735,
+            1285,
+            2840
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-47-vayifen-3x.png",
+          "sha256": "d87a3caefaae68d22d06c1ac1275a6d4adc5e96e3dbb32ec6a3acf1ba104e8a2",
+          "sourceImage": "A2-240-native.png",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "pixelBox": [
+            1170,
+            2735,
+            1285,
+            2840
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-48-haumnam",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 48,
+      "anchorBefore": "הַאמְנָם",
+      "sourcePage": 240,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-48-haumnam-native.png",
+          "sha256": "bd6d78abda36565bc1f68549285379174bf694e84ff25c9b86e0636dfaf183d2",
+          "sourceImage": "A2-240-native.png",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "pixelBox": [
+            780,
+            2820,
+            980,
+            2940
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-48-haumnam-3x.png",
+          "sha256": "45af3c86a1880ef404626a477a1072f53070abbdae835a0892173ca61dfafdc6",
+          "sourceImage": "A2-240-native.png",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "pixelBox": [
+            780,
+            2820,
+            980,
+            2940
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-62-vayimalet",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "anchorBefore": "ויִמָלֵט",
+      "sourcePage": 242,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-62-vayimalet-native.png",
+          "sha256": "bb557c04cb015a354a6d2ec88d7806a101ba2223324f16a9aa79d2e1c4ca277b",
+          "sourceImage": "A2-242-native.png",
+          "sourceImageSHA256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+          "pixelBox": [
+            1370,
+            2185,
+            1545,
+            2310
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/sus-62-vayimalet-3x.png",
+          "sha256": "3442a642ccef13cecb9b3aab047386035dc799d70b538226531789b8bcd3712e",
+          "sourceImage": "A2-242-native.png",
+          "sourceImageSHA256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+          "pixelBox": [
+            1370,
+            2185,
+            1545,
+            2310
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-16-venhi",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 16,
+      "anchorBefore": "ונְּהִי",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-16-venhi-native.png",
+          "sha256": "ea2c0c6fea9c83623e9125b4fbb91eff680f2007fc9d4ab0e22fb06b29582033",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            580,
+            445,
+            750,
+            525
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-16-venhi-3x.png",
+          "sha256": "70f84838eedbb9b8110ab02e9c048f80863fa415d7a82598a82d68038e533217",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            580,
+            445,
+            750,
+            525
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-19-revavot",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "anchorBefore": "וְרבְבוֹת",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-19-revavot-native.png",
+          "sha256": "35288204775002dfdbcbf800eaac134b6768321da04edb8f188ddc4d6080dee2",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            960,
+            815,
+            1200,
+            910
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-19-revavot-3x.png",
+          "sha256": "3313c9f50386f9237f3a105866cd51fdec88af9e50296ff392c1abd06d8d8588",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            960,
+            815,
+            1200,
+            910
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-19-korbanenu",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "anchorBefore": "קרְבָּנֵנוּ",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-19-korbanenu-native.png",
+          "sha256": "b88921f5f95f8932176ae9c6a26096eee0bd3ab7a6dbd46b5d9ba132bf90a2b5",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            1840,
+            915,
+            2050,
+            1000
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-19-korbanenu-3x.png",
+          "sha256": "7132680e2d89972db1115395259154e1c832c084eb2d45c52e24660e98787424",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            1840,
+            915,
+            2050,
+            1000
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-25-vekaasher",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "וכאשֶׁר",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-25-vekaasher-native.png",
+          "sha256": "c402e4d3c1d93f67b61ff156958bf88a0dc1c5935623f4887ae788c1f06047c7",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            280,
+            1475,
+            495,
+            1565
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-25-vekaasher-3x.png",
+          "sha256": "395bae177cc878ec974466a9ffae974289aef63f06af3ad64549eefeb8772d6d",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            280,
+            1475,
+            495,
+            1565
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-25-vayihyu",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "ויִהְיוּ",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-25-vayihyu-native.png",
+          "sha256": "f4878ab4f90105004c7878763afb69d43e6eaf5e28cc105da5cbf526cd47b2ef",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            1180,
+            1660,
+            1375,
+            1755
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-25-vayihyu-3x.png",
+          "sha256": "ebbc66168cbec56b4f452873429cf4c9bda70b1f7e99d7b850cbaf503857c975",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            1180,
+            1660,
+            1375,
+            1755
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-25-veacherim",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "[ואֲחֵרִים]",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-25-veacherim-native.png",
+          "sha256": "eff72845bef71945e972e5b043472ef81e46869c494fc4ffbed521e8f2650892",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            270,
+            1670,
+            530,
+            1760
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-25-veacherim-3x.png",
+          "sha256": "eb036739eedcf181a37a6e984d1e6f03b18fb5134df294ac2e8abb14d279cd4a",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            270,
+            1670,
+            530,
+            1760
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-25-neft",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "anchorBefore": "נפְט",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-25-neft-native.png",
+          "sha256": "94a4a9e7ecd9756df0bc850f8bc2a7a817dcee8e670a3663309d36b09c85bc20",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            1400,
+            1750,
+            1560,
+            1860
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-25-neft-3x.png",
+          "sha256": "fc26329ad3fbe777b7b1fe07f61d73f1b05b65ab6b23e9eb67ac4752b68dffda",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            1400,
+            1750,
+            1560,
+            1860
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-26-vayaal",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 26,
+      "anchorBefore": "ויַעַל",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-26-vayaal-native.png",
+          "sha256": "39c440e8d37c838452993ec355da4898902e5be09c80e5a4d049271e99029edd",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            620,
+            1750,
+            795,
+            1860
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-26-vayaal-3x.png",
+          "sha256": "fc1acae9212222823e0113c24c37753e742ca05f0ce804a0bcc6ce0d7cbf83be",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            620,
+            1750,
+            795,
+            1860
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-27-vayetse",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "anchorBefore": "ויֵצֵא",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-27-vayetse-native.png",
+          "sha256": "a50892c4dc1f5091d11ebada87090ad1800e68927340aa172ea19ba3024c14d1",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            930,
+            1850,
+            1080,
+            1950
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-27-vayetse-3x.png",
+          "sha256": "b920ef75be0eba10cc489c42841b6379e3c585371975a270d17cd60fd3bfcafc",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            930,
+            1850,
+            1080,
+            1950
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-27-vayisrof",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "anchorBefore": "ויִשְׂרֹף",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-27-vayisrof-native.png",
+          "sha256": "683fac985527962755ba551b1ee28c7b3814b6272b0d2432ea43b9f8faeb82fb",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            710,
+            1850,
+            925,
+            1950
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-27-vayisrof-3x.png",
+          "sha256": "4e9bc13d2737cfa435688e7a6cf3bc166c73f168f131f31e1c2e16e75c0d311a",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            710,
+            1850,
+            925,
+            1950
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-28-vachaverav",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "anchorBefore": "וחֲבֵרָיו",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-28-vachaverav-native.png",
+          "sha256": "9f9d63d635900e5efa00a80d6dc95f40a6a3ce9be480fc0fef40736c15a858b6",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            390,
+            1935,
+            595,
+            2040
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-28-vachaverav-3x.png",
+          "sha256": "4ae9eb1b277c0ae3ce7ce5842b2e8e2e6882fac7a090267a8aa2f2db3f8bea32",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            390,
+            1935,
+            595,
+            2040
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-28-vayehedof",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "anchorBefore": "ויֶהֱדֹף",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-28-vayehedof-native.png",
+          "sha256": "811b989d73ba1b796f4e9cf217b8a68f6b90f0bbb83d61c241c6f1dde7dedd05",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            1600,
+            2030,
+            1830,
+            2140
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-28-vayehedof-3x.png",
+          "sha256": "2789cd9deaf9119d19173e5765b6ed5122293153b3178d96447398a488ae91ae",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            1600,
+            2030,
+            1830,
+            2140
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-29-vayaas",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 29,
+      "anchorBefore": "ויַעַשׂ",
+      "sourcePage": 234,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-29-vayaas-native.png",
+          "sha256": "19e5c4e32d4a5067bfc5830d79006a8bbdf0b40459d2f784e5f12f5b1662592a",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            980,
+            2030,
+            1160,
+            2140
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-29-vayaas-3x.png",
+          "sha256": "88cceb33d25e0e497ec795781ba3e56f0651e7181a49b905d1ace1ad70bf16a4",
+          "sourceImage": "A2-234-native.png",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "pixelBox": [
+            980,
+            2030,
+            1160,
+            2140
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-30-vayaanu",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויַעֲנוּ",
+      "sourcePage": 235,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-30-vayaanu-native.png",
+          "sha256": "d38ba1df9b1bc28a8482e199b87fe4a309e85bd233d7fe131b3ea3a5a5bef309",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            1580,
+            370,
+            1775,
+            480
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-30-vayaanu-3x.png",
+          "sha256": "fcba9d11b802bc24da3daa65d7e5a5ea58028f925a2740e34ddbcb1ab1a5c087",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            1580,
+            370,
+            1775,
+            480
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-30-vayhalelu",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויְהַלְלוּ",
+      "sourcePage": 235,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-30-vayhalelu-native.png",
+          "sha256": "f098467159ab7a7e942e8e2a6fcf8e02be90febf8379d23ebb76cd578f274601",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            910,
+            370,
+            1135,
+            480
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-30-vayhalelu-3x.png",
+          "sha256": "dc1411dc7b915388fb1c5e18eb0ce8c858dc4832e8d609af000e49995a8cd23f",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            910,
+            370,
+            1135,
+            480
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-30-vayshabehu",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויְשַׁבְּחוּ",
+      "sourcePage": 235,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-30-vayshabehu-native.png",
+          "sha256": "dd5f470ae96219896b93cb415bc8d93f878df1486e7b4c2fa1a167c4ec88843b",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            700,
+            370,
+            930,
+            480
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-30-vayshabehu-3x.png",
+          "sha256": "2a99b727eaf066056e2fcebf2a9754de5fb096e6ac67b18f46308827cb032119",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            700,
+            370,
+            930,
+            480
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-30-vayromemu",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchorBefore": "ויְרוֹמְמוּ",
+      "sourcePage": 235,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-30-vayromemu-native.png",
+          "sha256": "a7fdba4e6d4a66917b228ca6cb7bb89f6171fd4310bdb11cfb6358353e017be7",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            470,
+            370,
+            710,
+            480
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-30-vayromemu-3x.png",
+          "sha256": "fd709d543f9ef625b6c35a761968f0db6d814c41011d7bdd5002158c2c8c3fea",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            470,
+            370,
+            710,
+            480
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-35-rakiya",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 35,
+      "anchorBefore": "בִּרקִיעַ",
+      "sourcePage": 235,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-35-rakiya-native.png",
+          "sha256": "1195fbcc95e78427ec980f12d773afa58b5f06892c4fd9fa23c7cff20370cfdc",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            1600,
+            1020,
+            1810,
+            1140
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-35-rakiya-3x.png",
+          "sha256": "a5eb91cc09a6728ad8e432561fbc5a6d5bdd086b8c12ca90bbfc3cbdf603be87",
+          "sourceImage": "A2-235-native.png",
+          "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+          "pixelBox": [
+            1600,
+            1020,
+            1810,
+            1140
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-52-veananim",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 52,
+      "anchorBefore": "ועֲנָנִים",
+      "sourcePage": 236,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-52-veananim-native.png",
+          "sha256": "a07930c3c41f828139d81cfd9cc2935781b0c22e0593bc05ca53c8330d51b8b8",
+          "sourceImage": "A2-236-native.png",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "pixelBox": [
+            1300,
+            700,
+            1500,
+            820
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-52-veananim-3x.png",
+          "sha256": "af4086844d9e95973fb8e7f5d297bd71a9f51b230eebb7d3e3f49a6faaee03b6",
+          "sourceImage": "A2-236-native.png",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "pixelBox": [
+            1300,
+            700,
+            1500,
+            820
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-60-vachayat",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 60,
+      "anchorBefore": "וחַיַת",
+      "sourcePage": 236,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-60-vachayat-native.png",
+          "sha256": "63054ab695fd12b656241f4f88872bb3c9ad81fb30500606bfadd759edb47937",
+          "sourceImage": "A2-236-native.png",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "pixelBox": [
+            1310,
+            1460,
+            1480,
+            1580
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-60-vachayat-3x.png",
+          "sha256": "7638bdcc43237f50d3202812b4661f3a07a875f402593223c62eaa628f8175b8",
+          "sourceImage": "A2-236-native.png",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "pixelBox": [
+            1310,
+            1460,
+            1480,
+            1580
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-68-misheol",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 68,
+      "anchorBefore": "מִשְׁאוֹל",
+      "sourcePage": 236,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-68-misheol-native.png",
+          "sha256": "c7cc8ca4a3a40b021a0ffc763d81106b36f8bc9341058cc8325ebb6c55604aa1",
+          "sourceImage": "A2-236-native.png",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "pixelBox": [
+            1330,
+            2190,
+            1580,
+            2320
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/s3y-68-misheol-3x.png",
+          "sha256": "49a63af94af0d45714ac4bf86983a0af9015698a5d284b46646b0f76504ffe90",
+          "sourceImage": "A2-236-native.png",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "pixelBox": [
+            1330,
+            2190,
+            1580,
+            2320
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-2-3-lishmor",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "לשְׁמֹר",
+      "sourcePage": 217,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-2-3-lishmor-native.png",
+          "sha256": "a45cad73dd61ff01805338777cf199411836ff612621afe2dd77b09bb7eaba1c",
+          "sourceImage": "A2-217-native.png",
+          "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+          "pixelBox": [
+            370,
+            1110,
+            570,
+            1220
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-2-3-lishmor-3x.png",
+          "sha256": "76e84852c5e5e281bf673da7f01f82f91d6c3ae9d7c0de9ee391bf8df01f3c1c",
+          "sourceImage": "A2-217-native.png",
+          "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+          "pixelBox": [
+            370,
+            1110,
+            570,
+            1220
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-2-3-bekalkalat",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "בְּכלכלת",
+      "sourcePage": 217,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-2-3-bekalkalat-native.png",
+          "sha256": "52e87c121e2d6422c3e7835409e4602f73c5c11fc839b4e286bac43d29b777cf",
+          "sourceImage": "A2-217-native.png",
+          "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+          "pixelBox": [
+            1880,
+            1210,
+            2160,
+            1320
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-2-3-bekalkalat-3x.png",
+          "sha256": "9a252ca94c473fcd18377f7de0c2b2057ac94852749e3053e30cbdddc26f0384",
+          "sourceImage": "A2-217-native.png",
+          "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+          "pixelBox": [
+            1880,
+            1210,
+            2160,
+            1320
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-2-3-laavor",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "לַעָבר",
+      "sourcePage": 217,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-2-3-laavor-native.png",
+          "sha256": "bf33e5aa37de1cf299e699fbd0674b19d3e58d624b624d1d8f8b22f70054a3ec",
+          "sourceImage": "A2-217-native.png",
+          "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+          "pixelBox": [
+            1750,
+            1300,
+            1970,
+            1415
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-2-3-laavor-3x.png",
+          "sha256": "cb83a30564cf0b41e746d79283ed985ae50ab13c5a05598585f51293d381fb63",
+          "sourceImage": "A2-217-native.png",
+          "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+          "pixelBox": [
+            1750,
+            1300,
+            1970,
+            1415
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-3-10-beam",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "anchorBefore": "ב[עַם]",
+      "sourcePage": 219,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-3-10-beam-native.png",
+          "sha256": "c9324ac20ad51d9acd173da8ef6b27a0d526cd63ea2ee72eb5dbac8b32f67b68",
+          "sourceImage": "A2-219-native.png",
+          "sourceImageSHA256": "68b7bf927c88005bcb0785c33df93b0a0d320ecd2ed8b11bece564d9dd93261e",
+          "pixelBox": [
+            1560,
+            750,
+            1730,
+            850
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-3-10-beam-3x.png",
+          "sha256": "2ddad9761538f0129cc30b47b066697a0a439d0a92b4da6b351c12c0a9335db9",
+          "sourceImage": "A2-219-native.png",
+          "sourceImageSHA256": "68b7bf927c88005bcb0785c33df93b0a0d320ecd2ed8b11bece564d9dd93261e",
+          "pixelBox": [
+            1560,
+            750,
+            1730,
+            850
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-3-10-meshabbacha",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "anchorBefore": "מְשׁבְּחֶךָ",
+      "sourcePage": 219,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-3-10-meshabbacha-native.png",
+          "sha256": "3e7428f39e77ec3d8159596b5c80098aa1b5491a68e2ca8dbb9e08161f14748d",
+          "sourceImage": "A2-219-native.png",
+          "sourceImageSHA256": "68b7bf927c88005bcb0785c33df93b0a0d320ecd2ed8b11bece564d9dd93261e",
+          "pixelBox": [
+            880,
+            850,
+            1160,
+            960
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-3-10-meshabbacha-3x.png",
+          "sha256": "c06f621181eec7f2691f3169e6d71386f807628206b0f4deeca88633d5637833",
+          "sourceImage": "A2-219-native.png",
+          "sourceImageSHA256": "68b7bf927c88005bcb0785c33df93b0a0d320ecd2ed8b11bece564d9dd93261e",
+          "pixelBox": [
+            880,
+            850,
+            1160,
+            960
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-4-17-vetaev",
+      "book": "ESG",
+      "chapter": 4,
+      "verse": 17,
+      "anchorBefore": "ותָעב",
+      "sourcePage": 220,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-4-17-vetaev-native.png",
+          "sha256": "3d564b02f9d3d8f4e10a64abdf02ba5695a2605bb799be073560f5a44bd84118",
+          "sourceImage": "A2-220-native.png",
+          "sourceImageSHA256": "fb5c541a0166e973bc6f7748cce8bc56d76ae41e71cc5e90d094a3a4621f3ede",
+          "pixelBox": [
+            1150,
+            1440,
+            1420,
+            1560
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-4-17-vetaev-3x.png",
+          "sha256": "fffa23a20412ac4bb30219b2a2a5818bf1f228b666c2bbf1e4e2a65328a3be99",
+          "sourceImage": "A2-220-native.png",
+          "sourceImageSHA256": "fb5c541a0166e973bc6f7748cce8bc56d76ae41e71cc5e90d094a3a4621f3ede",
+          "pixelBox": [
+            1150,
+            1440,
+            1420,
+            1560
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-5-3-kemoshenna",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "כמשׁענּה",
+      "sourcePage": 221,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-5-3-kemoshenna-native.png",
+          "sha256": "dd71fc20ef64304faf89d82c5172751f55ad064ac9cde36523415cf1daa0dcba",
+          "sourceImage": "A2-221-native.png",
+          "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+          "pixelBox": [
+            1600,
+            580,
+            1890,
+            690
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-5-3-kemoshenna-3x.png",
+          "sha256": "9afe0d8ff2103dd74ee94bcb7253a86e8d3ecc72e55b0b183073f7c24c8a943a",
+          "sourceImage": "A2-221-native.png",
+          "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+          "pixelBox": [
+            1600,
+            580,
+            1890,
+            690
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-5-4-mezhira",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 4,
+      "anchorBefore": "מזְהִירָה",
+      "sourcePage": 221,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-5-4-mezhira-native.png",
+          "sha256": "d2d2deaf810422b1a8d0b58c8f67f58beecf5e1bd564e743985306cc6005cb48",
+          "sourceImage": "A2-221-native.png",
+          "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+          "pixelBox": [
+            1690,
+            675,
+            1950,
+            790
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-5-4-mezhira-3x.png",
+          "sha256": "c784dfbba53b4b5ef86c8c83cfced1498fcd80603713cf37a13a75d2bbf78ea4",
+          "sourceImage": "A2-221-native.png",
+          "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+          "pixelBox": [
+            1690,
+            675,
+            1950,
+            790
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg-6-14-neezavim",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 14,
+      "anchorBefore": "נעֱזָבִים",
+      "sourcePage": 223,
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-6-14-neezavim-native.png",
+          "sha256": "5dc25f2be81ccc89fee932d1e55f924b01ff6024fdf5d4913cff764f78f49b11",
+          "sourceImage": "A2-223-native.png",
+          "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+          "pixelBox": [
+            1830,
+            1040,
+            2080,
+            1160
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/esg-6-14-neezavim-3x.png",
+          "sha256": "526509009657031e116bfbc7ea3627a1b7a9da4a8ca8be0bc9a3d313298e1393",
+          "sourceImage": "A2-223-native.png",
+          "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+          "pixelBox": [
+            1830,
+            1040,
+            2080,
+            1160
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    }
+  ],
+  "sourcePageContexts": [
+    {
+      "sourcePage": 217,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-217-complete-native.png",
+        "sha256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+        "sourceImage": "A2-217-native.png",
+        "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+        "pixelBox": [
+          0,
+          0,
+          2615,
+          3485
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 219,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-219-complete-native.png",
+        "sha256": "68b7bf927c88005bcb0785c33df93b0a0d320ecd2ed8b11bece564d9dd93261e",
+        "sourceImage": "A2-219-native.png",
+        "sourceImageSHA256": "68b7bf927c88005bcb0785c33df93b0a0d320ecd2ed8b11bece564d9dd93261e",
+        "pixelBox": [
+          0,
+          0,
+          2600,
+          3474
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 220,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-220-complete-native.png",
+        "sha256": "fb5c541a0166e973bc6f7748cce8bc56d76ae41e71cc5e90d094a3a4621f3ede",
+        "sourceImage": "A2-220-native.png",
+        "sourceImageSHA256": "fb5c541a0166e973bc6f7748cce8bc56d76ae41e71cc5e90d094a3a4621f3ede",
+        "pixelBox": [
+          0,
+          0,
+          2512,
+          3508
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 221,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-221-complete-native.png",
+        "sha256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+        "sourceImage": "A2-221-native.png",
+        "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+        "pixelBox": [
+          0,
+          0,
+          2623,
+          3491
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 223,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-223-complete-native.png",
+        "sha256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+        "sourceImage": "A2-223-native.png",
+        "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+        "pixelBox": [
+          0,
+          0,
+          2619,
+          3488
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 234,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-234-complete-native.png",
+        "sha256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+        "sourceImage": "A2-234-native.png",
+        "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+        "pixelBox": [
+          0,
+          0,
+          2526,
+          3518
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 235,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-235-complete-native.png",
+        "sha256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+        "sourceImage": "A2-235-native.png",
+        "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+        "pixelBox": [
+          0,
+          0,
+          2660,
+          3519
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 236,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-236-complete-native.png",
+        "sha256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+        "sourceImage": "A2-236-native.png",
+        "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+        "pixelBox": [
+          0,
+          0,
+          2522,
+          3515
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 237,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-237-complete-native.png",
+        "sha256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+        "sourceImage": "A2-237-native.png",
+        "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+        "pixelBox": [
+          0,
+          0,
+          2638,
+          3502
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 239,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-239-complete-native.png",
+        "sha256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+        "sourceImage": "A2-239-native.png",
+        "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+        "pixelBox": [
+          0,
+          0,
+          2620,
+          3489
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 240,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-240-complete-native.png",
+        "sha256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+        "sourceImage": "A2-240-native.png",
+        "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+        "pixelBox": [
+          0,
+          0,
+          2503,
+          3502
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 242,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-S3Y-SUS-ESG/A2-242-complete-native.png",
+        "sha256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+        "sourceImage": "A2-242-native.png",
+        "sourceImageSHA256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+        "pixelBox": [
+          0,
+          0,
+          2496,
+          3497
+        ],
+        "scale": 1,
+        "resampling": "none"
+      }
+    }
+  ],
+  "validation": {
+    "all60TargetsOutsidePreviousVerifiedSet": true,
+    "allTargetWordsVerifiedInSourceContext": true,
+    "sourceTextOrderUnchanged": true,
+    "verseLabelsAndSourcePageAssignmentsUnchanged": true,
+    "punctuationChange": "Move opening square bracket from before כי to before תעב, as printed. Other punctuation unchanged.",
+    "consonantsUnchanged": false,
+    "expectedConsonantalChangeOnly": "ESG 4:17 removes one spurious vav misread from the opening bracket. S3Y and SUS canonical files remain byte-identical to pass 2 baseline.",
+    "remainingESGNotesBefore": 51,
+    "remainingESGNotesAfter": 50
+  }
+}

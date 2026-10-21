@@ -249,7 +249,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="EdOpeningPrayers" Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.OpeningPrayersLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid>
@@ -257,7 +257,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="EdOpeningFatima" Grid.Column="0" Text="Fatima Prayer after the opening Glory Be" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.OpeningFatimaLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningFatimaPrayer, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid>
@@ -265,7 +265,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="EdFatima" Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.FatimaLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
                                 </Grid>
                                 <ComboBox HeaderTemplate="{StaticResource WrappingLabelTemplate}" MinWidth="0" x:Uid="PickerEternalRest" HorizontalAlignment="Stretch" Header="For the faithful departed" ItemsSource="{x:Bind ViewModel.EternalRestPlacementOptions}"
@@ -298,7 +298,7 @@
                                     <TextBlock TextWrapping="Wrap" x:Uid="EdPresenterMode" Grid.Column="0" Text="Presenter Mode" VerticalAlignment="Center" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.PresenterMode, Mode=TwoWay}" />
                                 </Grid>
-                                <TextBlock x:Uid="EdPresenterHint" Text="Combine each decade's Hail Marys and Glory Be onto one screen — useful when leading a group aloud from memory."
+                                <TextBlock Text="{x:Bind ViewModel.PresenterHint, Mode=OneWay}"
                                            Style="{StaticResource MutedCaptionTextStyle}" TextWrapping="Wrap" />
                             </StackPanel>
                         </Border>
@@ -327,7 +327,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap" x:Uid="EdStMichael" Grid.Column="0" Text="St. Michael Prayer" VerticalAlignment="Center" />
+                                    <TextBlock TextWrapping="Wrap" Grid.Column="0" Text="{x:Bind ViewModel.StMichaelLabel, Mode=OneWay}" VerticalAlignment="Center" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
                                 </Grid>
                                 <ToggleSwitch HeaderTemplate="{StaticResource WrappingLabelTemplate}" x:Uid="EdLitanyOfLoreto" Header="Pray the Litany of Loreto afterward"
@@ -340,7 +340,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock TextWrapping="Wrap" x:Uid="EdFinalSign" Grid.Column="0" Text="Final Sign of the Cross" VerticalAlignment="Center" />
+                                    <TextBlock TextWrapping="Wrap" Grid.Column="0" Text="{x:Bind ViewModel.FinalSignLabel, Mode=OneWay}" VerticalAlignment="Center" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
                                 </Grid>
                             </StackPanel>

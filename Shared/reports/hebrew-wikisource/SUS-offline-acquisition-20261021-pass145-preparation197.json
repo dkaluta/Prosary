@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 145,
+  "integrationPass": 145,
+  "preparationID": 197,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters; original PDF, source credit, URL and historical extraction/report provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass197-SUS-offline-originals/source-provenance.json",
+      "sha256": "da09eda39660a4df92058c053f5217b35adccaf32f54c36d497e8e170143d356"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "100percent offline pinned A2PDF direct singleembedded native238 plus237 priorunit context. Historical ownword exact fullRGB crop replay, numerical address only. No web/OCR/rendering/imageviewer/enhancement/expectedspelling/normalization/borrowedmark.",
+  "sourceDocument": "Kahana Volume A2",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    238
+  ],
+  "savedCaptureViewerPageLabels": [],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass197-SUS-offline-originals/context-237-native.png",
+      "sha256": "ab09de9eb65cd855d7fd4a3b7f1d0efcc8ddd8c24f13e2c6638bbd3b957ca1fc",
+      "resolution": [
+        2638,
+        3502
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass197-SUS-offline-originals/source-provenance.json",
+        "sha256": "da09eda39660a4df92058c053f5217b35adccaf32f54c36d497e8e170143d356"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "דב היליר",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "שושנה, נוסח תאודוטיון, תרגום דב היליר, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-SUS-ESG-note-reinspection-20261017-pass2.json",
+          "sha256": "c19efd3da1c73d3f19f998c33d06ba1be0da4fb21bb498209edba6f3266fdd6f"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass197-SUS-offline-originals/primary-238-native.png",
+      "sha256": "d7046ceb737f3338410e9d6f8e58efe69d21d2b69a4aea0b7681f29be917639e",
+      "resolution": [
+        2492,
+        3494
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass197-SUS-offline-originals/source-provenance.json",
+        "sha256": "da09eda39660a4df92058c053f5217b35adccaf32f54c36d497e8e170143d356"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "דב היליר",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "שושנה, נוסח תאודוטיון, תרגום דב היליר, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-SUS-ESG-note-reinspection-20261017-pass2.json",
+          "sha256": "c19efd3da1c73d3f19f998c33d06ba1be0da4fb21bb498209edba6f3266fdd6f"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation197-SUS-1-9/source-provenance.json",
+    "sha256": "c1d833460deeadf7e9a3a788aadc80ab87563bc6faed536aff4cf33a8bd70324"
+  }
+}

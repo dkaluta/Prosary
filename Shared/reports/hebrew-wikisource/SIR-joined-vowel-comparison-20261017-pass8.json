@@ -1,0 +1,2383 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "purpose": "Pass8 focused same-font joined-vowel challenge at eight remaining Sirach positions; exact literal proposals only.",
+  "baselineRemainingNotes": 619,
+  "baselineSirachNotes": 29,
+  "reviewedPositionCount": 8,
+  "approvedLiteralVowelProposalCount": 4,
+  "retainedPositionCount": 4,
+  "expectedSirachNotesAfterApprovedProposals": 25,
+  "canonicalApplicationState": "Report author made no canonical edits. SIR remains byte-identical to the pass8 baseline; root integrates approved proposals separately.",
+  "scope": "Only annotated chapters were reviewed. Nearby material on those same source pages supplies font controls. Exploratory31:3 also belongs to an annotated chapter and was rejected as a positive control. No new PSIK exports or translations were used.",
+  "sourcePolicy": "Only fresh original embedded primary/companion pixels, native crops and integer nearest-neighbor enlargements. No OCR, grammar-based supplied points, normalization, filtering, reconstruction or another translation. Physical connectivity alone does not decide readability: full geometry must discriminate against ordinary feet and competing vowel forms.",
+  "sourcePDFs": {
+    "primary": {
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+    },
+    "companion": {
+      "path": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7"
+    }
+  },
+  "canonicalFilesBeforeSHA256": {
+    "Shared/content/hebrew-deuterocanon/SIR.json": "9b5e93ba3f61dba9de0615b0d7f3614292155e70f1dada58f1e282d6a1d1bac8"
+  },
+  "decisions": [
+    {
+      "book": "SIR",
+      "chapter": 3,
+      "verse": 22,
+      "sourcePages": [
+        453
+      ],
+      "noteID": "sir-3-22-he-vowel",
+      "noteBefore": {
+        "id": "sir-3-22-he-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "שֶׁהרְשֵׁיתָ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          453
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=453"
+      },
+      "decision": "approvedLiteralVowelAndNoteRetirementProposal",
+      "before": "שֶׁהרְשֵׁיתָ",
+      "after": "שֶׁהֻרְשֵׁיתָ",
+      "insertedUnicodeScalar": "U+05BB",
+      "unitTextBefore": "בַּמֶּה שֶׁהרְשֵׁיתָ הִתְבּוֹנֵן וְאֵין לְךָ עֵסֶק בַּנִּסְתָּרוֹת׃",
+      "unitTextBeforeSHA256": "492d7835dc70f12dd260e08f3c9ea0a4f995deeb2be53334b13592bc270cb3a2",
+      "unitTextAfterProposed": "בַּמֶּה שֶׁהֻרְשֵׁיתָ הִתְבּוֹנֵן וְאֵין לְךָ עֵסֶק בַּנִּסְתָּרוֹת׃",
+      "unitTextAfterProposedSHA256": "d8be5f131fd38cee4a017f173935870e6f39c9e0e4c82e37a3229f552d228c8b",
+      "retainedNoteIDsRequiringAnchorRefresh": [],
+      "finding": "The he has three fully detached stamps descending diagonally down/right. The same-page kaf in printed3:21 ומכסה has the identical three-point diagonal; the full source words and primary context verify the target. Only qubbuts U+05BB is supplied.",
+      "evidenceKeys": [
+        "sir3-22-he-tight",
+        "sir3-22-word-extra",
+        "sir3-22-word-primary-complete",
+        "sir3-21-mekhusseh-qubuts-control-word",
+        "sir3-21-kaf-qubuts-tight",
+        "page453-body-extra"
+      ],
+      "independentApproval": {
+        "root": true,
+        "wisdom_pass3": true,
+        "bel_pass3": true,
+        "basis": "Exact target, complete word, source-address context and discriminating positive/plain/counter controls independently viewed before approval."
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 10,
+      "sourcePages": [
+        467
+      ],
+      "noteID": "sir-11-10-qof-vowel",
+      "noteBefore": {
+        "id": "sir-11-10-qof-vowel",
+        "anchor": "עִשְׂקךְ",
+        "letterIndex": 3,
+        "mark": "vowel",
+        "kind": "unreadablePoint",
+        "occurrence": 1,
+        "sourcePages": [
+          467
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=467"
+      },
+      "decision": "retainUnresolved",
+      "before": "עִשְׂקךְ",
+      "after": "עִשְׂקךְ",
+      "unitTextBeforeSHA256": "efa56f35528d863cb29c24de24f3b6f0663200fc90539cf5267ac817e839abfb",
+      "finding": "The two detached right-hand stamps coexist with a lower-left lobe connected to the long qof diagonal foot. A sheva with an irregular natural foot and a segol with its left point fused into that foot remain indistinguishable. Plain final qof in חלק shows a tapered foot, but the analogous בחקך crop is itself not an independently secure pointed control and cannot choose the vowel from canonical spelling. Retain unknown.",
+      "evidenceKeys": [
+        "sir11-10-qof-tight",
+        "sir11-10-word-extra",
+        "sir11-19-heleq-bare-qof-control-word",
+        "sir11-19-heleq-finalqof-bare-tight",
+        "sir11-20-behukekha-qof-segol-control-word",
+        "sir11-20-behukekha-qof-unresolved-control"
+      ]
+    },
+    {
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 34,
+      "sourcePages": [
+        468
+      ],
+      "noteID": "sir-11-34-resh-vowel",
+      "noteBefore": {
+        "id": "sir-11-34-resh-vowel",
+        "anchor": "וינַכֶּרךָ",
+        "letterIndex": 5,
+        "mark": "vowel",
+        "kind": "unreadablePoint",
+        "occurrence": 1,
+        "sourcePages": [
+          468
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=468"
+      },
+      "decision": "approvedLiteralVowelAndNoteRetirementProposal",
+      "before": "וינַכֶּרךָ",
+      "after": "וינַכֶּרְךָ",
+      "insertedUnicodeScalar": "U+05B0",
+      "unitTextBefore": "מִשָׁוכֵן זָרִיז זְהִיר דַּרְכֶּךָ וינַכֶּרךָ בְּמַחֲמַדֶּיךָ׃",
+      "unitTextBeforeSHA256": "d11253c7d309431335804b0402642024d7ee952ac8e92259f2dd1532cbb9b3d4",
+      "unitTextAfterProposed": "מִשָׁוכֵן זָרִיז זְהִיר דַּרְכֶּךָ וינַכֶּרְךָ בְּמַחֲמַדֶּיךָ׃",
+      "unitTextAfterProposedSHA256": "a0cb74e2aa05235873f765c8c416870b6cd0e5eaee15ea7ea3859c261c6cec77",
+      "retainedNoteIDsRequiringAnchorRefresh": [
+        "sir-11-34-vav-vowel"
+      ],
+      "finding": "Two vertically stacked stamps occur below the normal resh shaft end. Their placement and shape match the resh sheva in the very same printed34 row דרכך, whereas bare final resh in זהיר stops above both stamp levels. The companion resolves the upper lobe against the saturated primary. Only resh sheva U+05B0 is supplied; the initial-vav uncertainty remains.",
+      "evidenceKeys": [
+        "sir11-34-resh-tight",
+        "sir11-34-word-extra",
+        "sir11-34-word-primary-fresh",
+        "sir11-34-fullrow-extra",
+        "sir11-34-darkekha-control-word",
+        "sir11-34-darkekha-resh-sheva-correct-tight",
+        "sir11-34-zehir-bare-resh-tight"
+      ],
+      "independentApproval": {
+        "root": true,
+        "wisdom_pass3": true,
+        "bel_pass3": true,
+        "basis": "Exact target, complete word, source-address context and discriminating positive/plain/counter controls independently viewed before approval."
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 12,
+      "verse": 16,
+      "sourcePages": [
+        469
+      ],
+      "noteID": "sir-12-16-first-mem-vowel",
+      "noteBefore": {
+        "id": "sir-12-16-first-mem-vowel",
+        "anchor": "מהָמַרוֹת",
+        "letterIndex": 1,
+        "mark": "vowel",
+        "kind": "unreadablePoint",
+        "occurrence": 1,
+        "sourcePages": [
+          469
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=469"
+      },
+      "decision": "approvedLiteralVowelAndNoteRetirementProposal",
+      "before": "מהָמַרוֹת",
+      "after": "מַהָמַרוֹת",
+      "insertedUnicodeScalar": "U+05B7",
+      "unitTextBefore": "בִּשְׂפָתָיו יִתְמַהְמַהּ צָר וּבְלִבּוֹ יַחְשֹׁב מהָמַרוֹת עֲמֻקּוֹת׃ וְגַם אִם־בְּעֵינָיו יַדְמִיעַ אוֹיֵב אִם־מָצָא עֵת לֹא יִשְׂבַּע דָּם׃",
+      "unitTextBeforeSHA256": "9bfbeb3d189bd5109013033d8f170835adbf4bddaea62572d1798d22fd3f9b07",
+      "unitTextAfterProposed": "בִּשְׂפָתָיו יִתְמַהְמַהּ צָר וּבְלִבּוֹ יַחְשֹׁב מַהָמַרוֹת עֲמֻקּוֹת׃ וְגַם אִם־בְּעֵינָיו יַדְמִיעַ אוֹיֵב אִם־מָצָא עֵת לֹא יִשְׂבַּע דָּם׃",
+      "unitTextAfterProposedSHA256": "4ecfcb86cdb1a40d25ef5864b57eee24bc49e9d6e971910e570f2ff238af4a37",
+      "retainedNoteIDsRequiringAnchorRefresh": [],
+      "finding": "A detached broad continuous shallow bar lies below the first mem. Its flat lower edge and shallow lugs match the yod patah in the same printed16 row יחשוב; same-row tav qamats in בשפתיו has a deep descending stem. The paired tsere in עת has a central white division, unlike the continuous target bar. That comparator is printed17, the second half of the present Catholic12:16 unit. Only first-mem patah U+05B7 is supplied.",
+      "evidenceKeys": [
+        "sir12-16-firstmem-tight",
+        "sir12-16-word-extra",
+        "sir12-16-word-primary-fresh",
+        "sir12-16-yachshov-control-word",
+        "sir12-16-yachshov-yod-patah-tight",
+        "sir12-16-bisefatav-control-word",
+        "sir12-16-bisefatav-tav-qamats-tight",
+        "sir12-16-secondhalf-et-control-context",
+        "sir12-16-secondhalf-et-ayin-tsere-tight"
+      ],
+      "independentApproval": {
+        "root": true,
+        "wisdom_pass3": true,
+        "bel_pass3": false,
+        "basis": "Exact target, complete word, source-address context and discriminating positive/plain/counter controls independently viewed before approval."
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 29,
+      "verse": 19,
+      "sourcePages": [
+        491
+      ],
+      "noteID": "sir-29-19-bet-vowel",
+      "noteBefore": {
+        "id": "sir-29-19-bet-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "קַבּלֶת",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          491
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=491"
+      },
+      "decision": "retainUnresolved",
+      "before": "קַבּלֶת",
+      "after": "קַבּלֶת",
+      "unitTextBeforeSHA256": "6faa320e8c5dec580ba004769a082e8f973a3f27c6bc752ff8967cef33362e7b",
+      "finding": "The isolated upper-left tip may be holam or a broken natural bet ascender; no control uniquely separates these. Same-row bare bet in בערבה has a continuous upper tick. The apparent בושת positive is confounded by the next shin dot, and the exploratory31:3 לקבל sample does not independently certify the assumed upper point. No lower vowel is unambiguously readable. Retain unknown.",
+      "evidenceKeys": [
+        "sir29-19-bet-tight",
+        "sir29-19-word-extra",
+        "sir29-19-baaruba-barebet-control-word",
+        "sir29-19-baaruba-firstbet-correct-bare-tight"
+      ]
+    },
+    {
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 16,
+      "sourcePages": [
+        492
+      ],
+      "noteID": "sir-30-16-resh-vowel",
+      "noteBefore": {
+        "id": "sir-30-16-resh-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "שֵׁר־עֶצֶם",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          492
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=492"
+      },
+      "decision": "retainUnresolved",
+      "before": "שֵׁר־עֶצֶם",
+      "after": "שֵׁר־עֶצֶם",
+      "unitTextBeforeSHA256": "07bfdcbb5221d931301b1067a0d70b459cd6befddda9b5915860cfca7ab550be",
+      "finding": "The target resh foot has a small continuous irregular hook. The same-row bare resh in עושר shows an uneven shaft/foot and even small ink breaks, so apparent extra low ink is not uniquely a vowel. Neither companion nor saturated primary separates a diagnostic mark. Retain unknown.",
+      "evidenceKeys": [
+        "sir30-16-resh-tight",
+        "sir30-16-word-extra",
+        "sir30-16-word-primary",
+        "sir30-16-local-controls-context",
+        "sir30-16-osher-bare-resh-tight"
+      ]
+    },
+    {
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 14,
+      "sourcePages": [
+        509
+      ],
+      "noteID": "sir-39-14-resh-vowel",
+      "noteBefore": {
+        "id": "sir-39-14-resh-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "בּרכוּ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          509
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=509"
+      },
+      "decision": "approvedLiteralVowelAndNoteRetirementProposal",
+      "before": "בּרכוּ",
+      "after": "בּרְכוּ",
+      "insertedUnicodeScalar": "U+05B0",
+      "unitTextBefore": "וְכִלְבוֹנָה תִּתְּנוּ רֵיחַ נִיחוֹחַ וְנֵץ תָּנֵצוּ כְּשׁוֹשָׁן׃ תְּנוּ רֵיחַ וְאִמְרוּ שִׁיר בּרכוּ יְיָ עַל־כָּל־הַמַּעֲשִׂים׃ הָבוּ גֹדֶל לִשְׁמוֹ וְהוֹדוּ לוֹ בִּתְהִלָּה׃",
+      "unitTextBeforeSHA256": "0eef1f34a67c6506017f8d2d35d04045174bc6dec6ea0cdfd18665d4a446fc8b",
+      "unitTextAfterProposed": "וְכִלְבוֹנָה תִּתְּנוּ רֵיחַ נִיחוֹחַ וְנֵץ תָּנֵצוּ כְּשׁוֹשָׁן׃ תְּנוּ רֵיחַ וְאִמְרוּ שִׁיר בּרְכוּ יְיָ עַל־כָּל־הַמַּעֲשִׂים׃ הָבוּ גֹדֶל לִשְׁמוֹ וְהוֹדוּ לוֹ בִּתְהִלָּה׃",
+      "unitTextAfterProposedSHA256": "82f96eac9d5911fc57cadc06c3fd3a7057f82b98bda4ff5ebad8a84ef87ed3d2",
+      "retainedNoteIDsRequiringAnchorRefresh": [
+        "sir-39-14-bet-vowel"
+      ],
+      "finding": "Two entirely detached vertically stacked stamps appear to the right and below an already visible broad ordinary resh foot. The same-row bare final resh in שיר has only the shaft/foot; the same-font pointed resh control from11:34 supports the added stamp placement. Only resh sheva U+05B0 is supplied; the bet-vowel uncertainty remains.",
+      "evidenceKeys": [
+        "sir39-14-resh-tight",
+        "sir39-14-word-extra",
+        "sir39-14-word-primary-fresh",
+        "sir39-14-local-controls-context",
+        "sir39-14-shir-riah-control-words",
+        "sir39-14-shir-finalresh-correct-bare-tight",
+        "sir11-34-darkekha-resh-sheva-correct-tight"
+      ],
+      "independentApproval": {
+        "root": true,
+        "wisdom_pass3": true,
+        "bel_pass3": false,
+        "basis": "Exact target, complete word, source-address context and discriminating positive/plain/counter controls independently viewed before approval."
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 51,
+      "verse": 4,
+      "sourcePages": [
+        529
+      ],
+      "noteID": "sir-51-4-resh-vowel",
+      "noteBefore": {
+        "id": "sir-51-4-resh-vowel",
+        "anchor": "מֵרבּוֹת",
+        "letterIndex": 2,
+        "mark": "vowel",
+        "kind": "unreadablePoint",
+        "occurrence": 1,
+        "sourcePages": [
+          529
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=529"
+      },
+      "decision": "retainUnresolved",
+      "before": "מֵרבּוֹת",
+      "after": "מֵרבּוֹת",
+      "unitTextBeforeSHA256": "11083d6e48f505657ff48429d3680bf97e2a6915ba8020ba282e2bcfe99a92b3",
+      "finding": "A broad lower resh foot is continuous with its shaft. Local bare final resh in שקר establishes the ordinary end height but does not uniquely distinguish an enlarged natural foot from an attached point at the target. No separate complete dot/bar arrangement discriminates the vowel. Retain unknown.",
+      "evidenceKeys": [
+        "sir51-4-resh-tight",
+        "sir51-4-word-extra",
+        "sir51-4-local-controls-context",
+        "page529-body-extra",
+        "sir51-5-sheqer-bare-control-word",
+        "sir51-5-sheqer-finalresh-bare-tight"
+      ]
+    }
+  ],
+  "preservationContract": [
+    "Insert exactly one certified vowel scalar per approved target; preserve every pre-existing scalar in relative order.",
+    "Retire only four explicitly approved note IDs. Keep all other note records, updating anchors only where the approved literal changes their shared word.",
+    "Preserve every consonant, existing vowel, punctuation mark, bracket, gap, witness, block, chapter/verse sequence and Catholic ordering decision.",
+    "SIR11:34 is a previously pinned Catholic chapter-return unit; root must refresh its exact unit hash without altering the return decision or order.",
+    "Do not reinterpret ambiguous existing points in comparison words or correct them opportunistically."
+  ],
+  "excludedOrSupersededScratchEvidence": [
+    {
+      "name": "sir11-34-darkekha-resh-sheva-tight",
+      "reason": "Early box[815,1118,841,1160] actually framed kaf, not resh. Completely excluded and superseded by corrected resh box[837,1118,858,1160]; no proposed reading used the wrong letter."
+    },
+    {
+      "name": "sir12-17-et-*",
+      "reason": "Printed17 is the second half of current Catholic12:16. Replaced in durable evidence by sir12-16-secondhalf-et-*; no verse movement proposed."
+    },
+    {
+      "name": "sir39-14-shir-bare-resh-tight and sir39-14-riah-pointed-resh-tight",
+      "reason": "Early tight frames clipped/mislocated the controls. Superseded by complete-word-guided correct bare resh box[1135,1295,1157,1340]."
+    },
+    {
+      "name": "sir29-14-boshet-* and sir31-3-liqbol-*",
+      "reason": "Not valid independent holam positives: adjacent shin-dot placement and uncertain assumed pointing respectively prevent certification. No proposal uses them."
+    },
+    {
+      "name": "sir12-16-he-qamats-tight and sir12-16-secondmem-patah-tight",
+      "reason": "Their own vowel shapes are not independently secure. Neither serves as a named positive control."
+    },
+    {
+      "name": "sir11-20-behukekha-qof-segol-control-word",
+      "reason": "Historical scratch filename reflects canonical spelling only. Its pixels are explicitly treated as an unresolved analogous control, not proof of segol; neutral exact-letter filename used."
+    }
+  ],
+  "sourceImages": [
+    {
+      "sourceImage": "primary-453-native.png",
+      "sha256": "fabcae57707f041870d7e37014aa1b18d4c5d353090b5fd55aaa09dd63c111f0",
+      "dimensions": [
+        1650,
+        2550
+      ],
+      "sourcePDF": "primary",
+      "pdfPage": 453,
+      "primaryPage": 453,
+      "companionSide": null,
+      "halfBounds": null,
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "extra-453-native.png",
+      "sha256": "d415f9c626621c96ffcedd8b25b4d58a27c857d5225b4394b0fa1633fe096179",
+      "dimensions": [
+        1436,
+        2024
+      ],
+      "sourcePDF": "companion",
+      "pdfPage": 233,
+      "primaryPage": 453,
+      "companionSide": "left",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "primary-467-native.png",
+      "sha256": "c1948efbd981c214d3f32e7747f2bc98e14c8efaa75c907371571bc25636cec3",
+      "dimensions": [
+        1650,
+        2550
+      ],
+      "sourcePDF": "primary",
+      "pdfPage": 467,
+      "primaryPage": 467,
+      "companionSide": null,
+      "halfBounds": null,
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "extra-467-native.png",
+      "sha256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+      "dimensions": [
+        1436,
+        2024
+      ],
+      "sourcePDF": "companion",
+      "pdfPage": 240,
+      "primaryPage": 467,
+      "companionSide": "left",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "primary-468-native.png",
+      "sha256": "20eb1b206d6fa244f6844a9a9f20aa2cd71660e94a7db257e859b5b8752854b1",
+      "dimensions": [
+        1650,
+        2550
+      ],
+      "sourcePDF": "primary",
+      "pdfPage": 468,
+      "primaryPage": 468,
+      "companionSide": null,
+      "halfBounds": null,
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "extra-468-native.png",
+      "sha256": "1f3db11a6e6701440e0aa4c734874561c4cde7fc24bf608e3f3a31f6b9774817",
+      "dimensions": [
+        1436,
+        2024
+      ],
+      "sourcePDF": "companion",
+      "pdfPage": 241,
+      "primaryPage": 468,
+      "companionSide": "right",
+      "halfBounds": [
+        1436,
+        0,
+        2872,
+        2024
+      ],
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "primary-469-native.png",
+      "sha256": "c051e4fe399ae911a918e02b9211c4f43da1378c50bab4641e228a79253fa57a",
+      "dimensions": [
+        1650,
+        2550
+      ],
+      "sourcePDF": "primary",
+      "pdfPage": 469,
+      "primaryPage": 469,
+      "companionSide": null,
+      "halfBounds": null,
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "extra-469-native.png",
+      "sha256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "dimensions": [
+        1436,
+        2024
+      ],
+      "sourcePDF": "companion",
+      "pdfPage": 241,
+      "primaryPage": 469,
+      "companionSide": "left",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "primary-491-native.png",
+      "sha256": "d4473b0aa7a4233412fe5a8e6bb08b4bdf3d7c2665c30532d40dd571d338c2d1",
+      "dimensions": [
+        1650,
+        2550
+      ],
+      "sourcePDF": "primary",
+      "pdfPage": 491,
+      "primaryPage": 491,
+      "companionSide": null,
+      "halfBounds": null,
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "extra-491-native.png",
+      "sha256": "34c939c9dfdb159a46e22e3a72791c52509efd749cdfbbb9b93658e0c58a40b8",
+      "dimensions": [
+        1436,
+        2024
+      ],
+      "sourcePDF": "companion",
+      "pdfPage": 252,
+      "primaryPage": 491,
+      "companionSide": "left",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "primary-492-native.png",
+      "sha256": "2dde99ac21c8991acc78556d28d4c87a43e7006b39bb40c384c93f08441a06a8",
+      "dimensions": [
+        1650,
+        2550
+      ],
+      "sourcePDF": "primary",
+      "pdfPage": 492,
+      "primaryPage": 492,
+      "companionSide": null,
+      "halfBounds": null,
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "extra-492-native.png",
+      "sha256": "9f06e68c2033f0f437b966d51964813d884b65ba75c75712c2b3a3791fa4ab24",
+      "dimensions": [
+        1436,
+        2024
+      ],
+      "sourcePDF": "companion",
+      "pdfPage": 253,
+      "primaryPage": 492,
+      "companionSide": "right",
+      "halfBounds": [
+        1436,
+        0,
+        2872,
+        2024
+      ],
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "primary-509-native.png",
+      "sha256": "2f12cc5bb2feab16ee0ac7d19d1664a401d524aa94fb682b9d50cd7f54553d7d",
+      "dimensions": [
+        1650,
+        2550
+      ],
+      "sourcePDF": "primary",
+      "pdfPage": 509,
+      "primaryPage": 509,
+      "companionSide": null,
+      "halfBounds": null,
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "extra-509-native.png",
+      "sha256": "0d1faac989b5e4fbd79c9435adcb70b5f263347016dbdfef9a580691423224f6",
+      "dimensions": [
+        1436,
+        2024
+      ],
+      "sourcePDF": "companion",
+      "pdfPage": 261,
+      "primaryPage": 509,
+      "companionSide": "left",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "primary-529-native.png",
+      "sha256": "a6af4cc1679ec35f4074d74743d638dadd58b3638c50fd54462c660216d9d81a",
+      "dimensions": [
+        1650,
+        2550
+      ],
+      "sourcePDF": "primary",
+      "pdfPage": 529,
+      "primaryPage": 529,
+      "companionSide": null,
+      "halfBounds": null,
+      "freshPDFNativePixelReplay": true
+    },
+    {
+      "sourceImage": "extra-529-native.png",
+      "sha256": "52086142539dded2009cdaee6c985bde98d93f3520df6777cbf5e177198b666e",
+      "dimensions": [
+        1436,
+        2024
+      ],
+      "sourcePDF": "companion",
+      "pdfPage": 271,
+      "primaryPage": 529,
+      "companionSide": "left",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "freshPDFNativePixelReplay": true
+    }
+  ],
+  "evidence": [
+    {
+      "key": "sir3-22-he-tight",
+      "sourceImage": "extra-453-native.png",
+      "sourceImageSHA256": "d415f9c626621c96ffcedd8b25b4d58a27c857d5225b4394b0fa1633fe096179",
+      "pixelBox": [
+        1204,
+        326,
+        1230,
+        366
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-22-he-tight-native.png",
+          "sha256": "3e8be0514e8cd14916e598a0377637548981f7f2c5e5ea5d51c1a1c89de33b1c",
+          "scale": 1,
+          "dimensions": [
+            26,
+            40
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-22-he-tight-20x.png",
+          "sha256": "6991733814aaf5c234999bc2e9e14d58672aedd35ca274b2fac9472b1c20af92",
+          "scale": 20,
+          "dimensions": [
+            520,
+            800
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir3-22-word-extra",
+      "sourceImage": "extra-453-native.png",
+      "sourceImageSHA256": "d415f9c626621c96ffcedd8b25b4d58a27c857d5225b4394b0fa1633fe096179",
+      "pixelBox": [
+        1130,
+        310,
+        1260,
+        365
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-22-word-extra-native.png",
+          "sha256": "9a5d44f5586c5849bf790fb38e8a49620f8f3f84c40aa72e5e97c96dc31d8f4c",
+          "scale": 1,
+          "dimensions": [
+            130,
+            55
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-22-word-extra-6x.png",
+          "sha256": "0ff8687c105b8d2d1159f1b51efff2f87a6c09795cb458a53486972288eea6b4",
+          "scale": 6,
+          "dimensions": [
+            780,
+            330
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-34-resh-tight",
+      "sourceImage": "extra-468-native.png",
+      "sourceImageSHA256": "1f3db11a6e6701440e0aa4c734874561c4cde7fc24bf608e3f3a31f6b9774817",
+      "pixelBox": [
+        611,
+        1122,
+        632,
+        1158
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-resh-tight-native.png",
+          "sha256": "23536a59ba426a7721f0a5007c72ab81e519452c9e40eea7247c3fd0f1f0dfa9",
+          "scale": 1,
+          "dimensions": [
+            21,
+            36
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-resh-tight-20x.png",
+          "sha256": "1c0b4d41e663b8f49aece11d536562a3880a3fd947c89dc3f6ab649a35392969",
+          "scale": 20,
+          "dimensions": [
+            420,
+            720
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-34-word-extra",
+      "sourceImage": "extra-468-native.png",
+      "sourceImageSHA256": "1f3db11a6e6701440e0aa4c734874561c4cde7fc24bf608e3f3a31f6b9774817",
+      "pixelBox": [
+        570,
+        1105,
+        690,
+        1160
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-word-extra-native.png",
+          "sha256": "70dad1aa302511de0228ba126acc72970dc715058074808a9afd2aebe1ca5c7e",
+          "scale": 1,
+          "dimensions": [
+            120,
+            55
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-word-extra-6x.png",
+          "sha256": "fab137b6c0b8bb9911f215e0ec66a11f0b5bf06e15b33cf1fe5cba183d11991e",
+          "scale": 6,
+          "dimensions": [
+            720,
+            330
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir39-14-resh-tight",
+      "sourceImage": "extra-509-native.png",
+      "sourceImageSHA256": "0d1faac989b5e4fbd79c9435adcb70b5f263347016dbdfef9a580691423224f6",
+      "pixelBox": [
+        894,
+        1300,
+        917,
+        1337
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-resh-tight-native.png",
+          "sha256": "44e4d88f4858522eb6e438aec7749b7ef6bc1ee074fb4ab7cc8af0ef08faa0c8",
+          "scale": 1,
+          "dimensions": [
+            23,
+            37
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-resh-tight-20x.png",
+          "sha256": "fa2e32776fe3ef4c2e1149b04a97ffc1a027018645c11b7f6bb1e4663e6cb5ad",
+          "scale": 20,
+          "dimensions": [
+            460,
+            740
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir39-14-word-extra",
+      "sourceImage": "extra-509-native.png",
+      "sourceImageSHA256": "0d1faac989b5e4fbd79c9435adcb70b5f263347016dbdfef9a580691423224f6",
+      "pixelBox": [
+        845,
+        1275,
+        945,
+        1345
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-word-extra-native.png",
+          "sha256": "2878d39774be0a2e5428bafc28e960e40e099089c3719a377e5b3f1e3df10f7a",
+          "scale": 1,
+          "dimensions": [
+            100,
+            70
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-word-extra-6x.png",
+          "sha256": "8a55fbd1af4ca429e79e4714fb7ba9e8ba3e6ff820c73e5b44b4975c170fa002",
+          "scale": 6,
+          "dimensions": [
+            600,
+            420
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-10-qof-tight",
+      "sourceImage": "extra-467-native.png",
+      "sourceImageSHA256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+      "pixelBox": [
+        1030,
+        233,
+        1053,
+        266
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-10-qof-tight-native.png",
+          "sha256": "0a11f1ec5d29c563c382c9dc8e1df02f96a1fb0a2744a3b54e9de1082e76930c",
+          "scale": 1,
+          "dimensions": [
+            23,
+            33
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-10-qof-tight-20x.png",
+          "sha256": "1a074fd35674bb1ed06514b434594cf82cf2affb97cd70cb9a8205817f3d9065",
+          "scale": 20,
+          "dimensions": [
+            460,
+            660
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-10-word-extra",
+      "sourceImage": "extra-467-native.png",
+      "sourceImageSHA256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+      "pixelBox": [
+        1000,
+        220,
+        1100,
+        270
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-10-word-extra-native.png",
+          "sha256": "68bb31bc615573655d008ba9f9bd1fe8b21d0d87abdfcd5c7bf0831ac3a71aca",
+          "scale": 1,
+          "dimensions": [
+            100,
+            50
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-10-word-extra-6x.png",
+          "sha256": "cc2634a6c99323e4099090a496c4f889862f6fc26d1fbcf0e8fd812da290362f",
+          "scale": 6,
+          "dimensions": [
+            600,
+            300
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-firstmem-tight",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        707,
+        1020,
+        732,
+        1059
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-firstmem-tight-native.png",
+          "sha256": "eb681c92a06a8d203d0c13cc369953fca598d0739a98a41366b0493a85b2ca77",
+          "scale": 1,
+          "dimensions": [
+            25,
+            39
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-firstmem-tight-20x.png",
+          "sha256": "346cb3d2ab9816015bbcd53a0d85cba8d61253e98fabe212715b00526f2bf43f",
+          "scale": 20,
+          "dimensions": [
+            500,
+            780
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-word-extra",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        490,
+        1000,
+        770,
+        1060
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-word-extra-native.png",
+          "sha256": "d4dd729acc574724172dbce3bcf4be83cf2cdb5b3a15ec3539ac8d575345febb",
+          "scale": 1,
+          "dimensions": [
+            280,
+            60
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-word-extra-6x.png",
+          "sha256": "53415448cea4675b5cc694fe5c690540f36f986370274f32289ea80d9b259bc3",
+          "scale": 6,
+          "dimensions": [
+            1680,
+            360
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir29-19-bet-tight",
+      "sourceImage": "extra-491-native.png",
+      "sourceImageSHA256": "34c939c9dfdb159a46e22e3a72791c52509efd749cdfbbb9b93658e0c58a40b8",
+      "pixelBox": [
+        757,
+        1358,
+        780,
+        1404
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir29-19-bet-tight-native.png",
+          "sha256": "8e2885ac8154025e7a129a68840766063d928daa4243e748550b0ddb77f1f392",
+          "scale": 1,
+          "dimensions": [
+            23,
+            46
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir29-19-bet-tight-20x.png",
+          "sha256": "746f82e28ad75ed7245ec20540ffd38760bfbe423663508d4b3dbf9c2c4b8216",
+          "scale": 20,
+          "dimensions": [
+            460,
+            920
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir29-19-word-extra",
+      "sourceImage": "extra-491-native.png",
+      "sourceImageSHA256": "34c939c9dfdb159a46e22e3a72791c52509efd749cdfbbb9b93658e0c58a40b8",
+      "pixelBox": [
+        730,
+        1350,
+        825,
+        1415
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir29-19-word-extra-native.png",
+          "sha256": "44a24f5d019518e08de28a9eb6b6fb4c6a23c55c2b21127bbcce6337357835e9",
+          "scale": 1,
+          "dimensions": [
+            95,
+            65
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir29-19-word-extra-6x.png",
+          "sha256": "e8cf6933a1a2da43954d3b0a74ba9820bcfbcfe689efa12ec5aad1f68b90a53a",
+          "scale": 6,
+          "dimensions": [
+            570,
+            390
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir30-16-resh-tight",
+      "sourceImage": "extra-492-native.png",
+      "sourceImageSHA256": "9f06e68c2033f0f437b966d51964813d884b65ba75c75712c2b3a3791fa4ab24",
+      "pixelBox": [
+        860,
+        1270,
+        885,
+        1310
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-resh-tight-native.png",
+          "sha256": "cc32ae6d938ab6b89dac9542f625a0b22a299724bd3e9b456d2e46710e2dce05",
+          "scale": 1,
+          "dimensions": [
+            25,
+            40
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-resh-tight-20x.png",
+          "sha256": "ec35753f9f5592882f96dfaec27c71830b805b5bd9ed7e648bed4577c1ade277",
+          "scale": 20,
+          "dimensions": [
+            500,
+            800
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir30-16-word-extra",
+      "sourceImage": "extra-492-native.png",
+      "sourceImageSHA256": "9f06e68c2033f0f437b966d51964813d884b65ba75c75712c2b3a3791fa4ab24",
+      "pixelBox": [
+        790,
+        1260,
+        925,
+        1320
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-word-extra-native.png",
+          "sha256": "7bd39b069f26c2079177c217a4d39a91fa609d77c352efa00b67b85ddbef7cb0",
+          "scale": 1,
+          "dimensions": [
+            135,
+            60
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-word-extra-6x.png",
+          "sha256": "6407d8e392c0e3522b58c166eb9c98c93298cbd91ecfeb65722ccb5646495b6a",
+          "scale": 6,
+          "dimensions": [
+            810,
+            360
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir51-4-resh-tight",
+      "sourceImage": "extra-529-native.png",
+      "sourceImageSHA256": "52086142539dded2009cdaee6c985bde98d93f3520df6777cbf5e177198b666e",
+      "pixelBox": [
+        1302,
+        252,
+        1329,
+        292
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-4-resh-tight-native.png",
+          "sha256": "1e9ec1ca294a711c96f1eb4bfd60b1f1c093e405d96e2914a0166fee59d408b5",
+          "scale": 1,
+          "dimensions": [
+            27,
+            40
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-4-resh-tight-20x.png",
+          "sha256": "88bdb863fa9db8538af15546b6ac752e5f3747b49de8e0c2e92b216ca271a009",
+          "scale": 20,
+          "dimensions": [
+            540,
+            800
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir51-4-word-extra",
+      "sourceImage": "extra-529-native.png",
+      "sourceImageSHA256": "52086142539dded2009cdaee6c985bde98d93f3520df6777cbf5e177198b666e",
+      "pixelBox": [
+        1225,
+        230,
+        1345,
+        295
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-4-word-extra-native.png",
+          "sha256": "5b6f4abfac7943b1719f6dc6e6935db0be78139a569f6d5464a5bdfc10e60f70",
+          "scale": 1,
+          "dimensions": [
+            120,
+            65
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-4-word-extra-6x.png",
+          "sha256": "023436247459706f971e83a90f00d7482880194bf5a961f1afafd3f17622304e",
+          "scale": 6,
+          "dimensions": [
+            720,
+            390
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir3-22-word-primary-complete",
+      "sourceImage": "primary-453-native.png",
+      "sourceImageSHA256": "fabcae57707f041870d7e37014aa1b18d4c5d353090b5fd55aaa09dd63c111f0",
+      "pixelBox": [
+        1080,
+        495,
+        1250,
+        560
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-22-word-primary-complete-native.png",
+          "sha256": "67d1c31bda575be9b0d8881817ae7001e19375bf8ff1f9e5ab85d2e4272282c9",
+          "scale": 1,
+          "dimensions": [
+            170,
+            65
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-22-word-primary-complete-6x.png",
+          "sha256": "18edaf69dcd31b3056c5015ae75483030f2deeab3244e91da6514026020bf76b",
+          "scale": 6,
+          "dimensions": [
+            1020,
+            390
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-34-word-primary-fresh",
+      "sourceImage": "primary-468-native.png",
+      "sourceImageSHA256": "20eb1b206d6fa244f6844a9a9f20aa2cd71660e94a7db257e859b5b8752854b1",
+      "pixelBox": [
+        610,
+        1580,
+        745,
+        1650
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-word-primary-fresh-native.png",
+          "sha256": "51193c65fffb15e1e3a5366615a9f775c1c6c33cd43af4e16ca6ce9a47c9591b",
+          "scale": 1,
+          "dimensions": [
+            135,
+            70
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-word-primary-fresh-6x.png",
+          "sha256": "e203801088329189858fd9f411545ace16cec2048c770e2ede9ed627b70e5c36",
+          "scale": 6,
+          "dimensions": [
+            810,
+            420
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-word-primary-fresh",
+      "sourceImage": "primary-469-native.png",
+      "sourceImageSHA256": "c051e4fe399ae911a918e02b9211c4f43da1378c50bab4641e228a79253fa57a",
+      "pixelBox": [
+        370,
+        1450,
+        520,
+        1520
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-word-primary-fresh-native.png",
+          "sha256": "5d255e0dfdb32dd42d6d9a1e3d1103e53531393ed252b450dd142be62a08f536",
+          "scale": 1,
+          "dimensions": [
+            150,
+            70
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-word-primary-fresh-6x.png",
+          "sha256": "9083ce4d1333299ffb11c70fd079ad20d45b6bf893b21cbf2117c7ecf4c45824",
+          "scale": 6,
+          "dimensions": [
+            900,
+            420
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir39-14-word-primary-fresh",
+      "sourceImage": "primary-509-native.png",
+      "sourceImageSHA256": "2f12cc5bb2feab16ee0ac7d19d1664a401d524aa94fb682b9d50cd7f54553d7d",
+      "pixelBox": [
+        620,
+        1740,
+        745,
+        1820
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-word-primary-fresh-native.png",
+          "sha256": "daab61824e1b37b1ebfd40590a107ff9882086e20aaafb44c966c6a3688f5c35",
+          "scale": 1,
+          "dimensions": [
+            125,
+            80
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-word-primary-fresh-6x.png",
+          "sha256": "c05735390a94f613e5d04a1160e7864600f70280f261380e0beccc0386114134",
+          "scale": 6,
+          "dimensions": [
+            750,
+            480
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir30-16-word-primary",
+      "sourceImage": "primary-492-native.png",
+      "sourceImageSHA256": "2dde99ac21c8991acc78556d28d4c87a43e7006b39bb40c384c93f08441a06a8",
+      "pixelBox": [
+        825,
+        1745,
+        1000,
+        1830
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-word-primary-native.png",
+          "sha256": "d31bc317a7440ddb86bc022fccaace35c5bf023815721274643f17fe1ff3456b",
+          "scale": 1,
+          "dimensions": [
+            175,
+            85
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-word-primary-6x.png",
+          "sha256": "c338ed12aaaa3ba430d961d54bfe38c2afc1d5586d508da0c29eecf72c40d55d",
+          "scale": 6,
+          "dimensions": [
+            1050,
+            510
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "page453-body-extra",
+      "sourceImage": "extra-453-native.png",
+      "sourceImageSHA256": "d415f9c626621c96ffcedd8b25b4d58a27c857d5225b4394b0fa1633fe096179",
+      "pixelBox": [
+        250,
+        100,
+        1390,
+        850
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/page453-body-extra-native.png",
+          "sha256": "d4fc7f3c99c84f24061a8745f1ef9074c818e5979acc43798df18c5dc00ca112",
+          "scale": 1,
+          "dimensions": [
+            1140,
+            750
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir3-21-mekhusseh-qubuts-control-word",
+      "sourceImage": "extra-453-native.png",
+      "sourceImageSHA256": "d415f9c626621c96ffcedd8b25b4d58a27c857d5225b4394b0fa1633fe096179",
+      "pixelBox": [
+        670,
+        270,
+        850,
+        325
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-21-mekhusseh-qubuts-control-word-native.png",
+          "sha256": "5840b6713851b0c64c6bfbefc2ee8cbd0ff10355e082f7e5944af28ec1a7a297",
+          "scale": 1,
+          "dimensions": [
+            180,
+            55
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-21-mekhusseh-qubuts-control-word-6x.png",
+          "sha256": "446ec68d532d30a59fc6c5f3e27c9b617adc8be95cd4e1bd907a066a3f6c7607",
+          "scale": 6,
+          "dimensions": [
+            1080,
+            330
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir3-21-kaf-qubuts-tight",
+      "sourceImage": "extra-453-native.png",
+      "sourceImageSHA256": "d415f9c626621c96ffcedd8b25b4d58a27c857d5225b4394b0fa1633fe096179",
+      "pixelBox": [
+        816,
+        282,
+        842,
+        324
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-21-kaf-qubuts-tight-native.png",
+          "sha256": "8465ddea1eebd92f55285aecf2b09c174a65083aa11c5400c649c068ad820c9f",
+          "scale": 1,
+          "dimensions": [
+            26,
+            42
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir3-21-kaf-qubuts-tight-20x.png",
+          "sha256": "a48cef1297daaa1344b7ee70e7af30ef8f0043196a98588bfa9b57c824985514",
+          "scale": 20,
+          "dimensions": [
+            520,
+            840
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-34-fullrow-extra",
+      "sourceImage": "extra-468-native.png",
+      "sourceImageSHA256": "1f3db11a6e6701440e0aa4c734874561c4cde7fc24bf608e3f3a31f6b9774817",
+      "pixelBox": [
+        250,
+        1090,
+        1390,
+        1175
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-fullrow-extra-native.png",
+          "sha256": "e2dfab261764dc4c59bb51fbbe3f9d64457360f50ee5a056778cdfad1f6a587c",
+          "scale": 1,
+          "dimensions": [
+            1140,
+            85
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-fullrow-extra-3x.png",
+          "sha256": "2401ab6be06f596b4e94fd5c4ea73f02ef4dbbfc2267b90c05cef887e3bf60b8",
+          "scale": 3,
+          "dimensions": [
+            3420,
+            255
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-34-darkekha-control-word",
+      "sourceImage": "extra-468-native.png",
+      "sourceImageSHA256": "1f3db11a6e6701440e0aa4c734874561c4cde7fc24bf608e3f3a31f6b9774817",
+      "pixelBox": [
+        750,
+        1100,
+        875,
+        1165
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-darkekha-control-word-native.png",
+          "sha256": "7933789b9358eb3cec99357cbad006ca931d0ab600ac1a9e4692a0d1c9ba156c",
+          "scale": 1,
+          "dimensions": [
+            125,
+            65
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-darkekha-control-word-6x.png",
+          "sha256": "44a55d3bf3d4a68c6ec6aa5219c70fc8c58bfc11e0adc4e251a9ccba073b11ed",
+          "scale": 6,
+          "dimensions": [
+            750,
+            390
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-34-darkekha-resh-sheva-correct-tight",
+      "sourceImage": "extra-468-native.png",
+      "sourceImageSHA256": "1f3db11a6e6701440e0aa4c734874561c4cde7fc24bf608e3f3a31f6b9774817",
+      "pixelBox": [
+        837,
+        1118,
+        858,
+        1160
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-darkekha-resh-sheva-correct-tight-native.png",
+          "sha256": "323c39e0f7e7c33bfd6d473a101dbd2b999f518a0d30f00b191cf87bc103a29b",
+          "scale": 1,
+          "dimensions": [
+            21,
+            42
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-darkekha-resh-sheva-correct-tight-20x.png",
+          "sha256": "361f022be54e2ed72140ece4a510330586bc77b49bb0e244110662ca5774a9e0",
+          "scale": 20,
+          "dimensions": [
+            420,
+            840
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-34-zehir-bare-resh-tight",
+      "sourceImage": "extra-468-native.png",
+      "sourceImageSHA256": "1f3db11a6e6701440e0aa4c734874561c4cde7fc24bf608e3f3a31f6b9774817",
+      "pixelBox": [
+        885,
+        1120,
+        910,
+        1158
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-zehir-bare-resh-tight-native.png",
+          "sha256": "f4c7e500ad3e437a0b2c1eba8a287744abbb252384bf514b11a4e9dd01e8daab",
+          "scale": 1,
+          "dimensions": [
+            25,
+            38
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-34-zehir-bare-resh-tight-20x.png",
+          "sha256": "9356ce4ff68554e17aef8337454477ff76db4fff6169bcbcc685ca01a78f0934",
+          "scale": 20,
+          "dimensions": [
+            500,
+            760
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "page469-body-extra",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        250,
+        800,
+        1390,
+        1250
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/page469-body-extra-native.png",
+          "sha256": "2526839e305507a108bf1d9ad708a3fdc00536ba357827cc8c37215bfc9e7cf5",
+          "scale": 1,
+          "dimensions": [
+            1140,
+            450
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-yachshov-control-word",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        730,
+        1010,
+        890,
+        1065
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-yachshov-control-word-native.png",
+          "sha256": "7587babf2dfcc796aa740bb938ea74d129752732be65b974fc8d78b8b000c002",
+          "scale": 1,
+          "dimensions": [
+            160,
+            55
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-yachshov-control-word-6x.png",
+          "sha256": "282ecd40017b8971ae9b6e6c068980a662d8eccb83a200306937681d34567223",
+          "scale": 6,
+          "dimensions": [
+            960,
+            330
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-yachshov-yod-patah-tight",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        808,
+        1025,
+        829,
+        1062
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-yachshov-yod-patah-tight-native.png",
+          "sha256": "e957f200077b4677c0bfbc8e2eecf4d18b8c94e04921d1986debba5e9565a336",
+          "scale": 1,
+          "dimensions": [
+            21,
+            37
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-yachshov-yod-patah-tight-20x.png",
+          "sha256": "679a3cd1fa3e47fb107d3ba0e54337848ec9ccf1b6eab32e20fefaf19e2bc708",
+          "scale": 20,
+          "dimensions": [
+            420,
+            740
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-bisefatav-control-word",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        1060,
+        1010,
+        1390,
+        1065
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-bisefatav-control-word-native.png",
+          "sha256": "143467d052553ce08d4ce5ab69156997c92cd1fed3666bae9cf2aea7a848588c",
+          "scale": 1,
+          "dimensions": [
+            330,
+            55
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-bisefatav-control-word-5x.png",
+          "sha256": "5ad9da8c4ed5fb63c56941b3e87d3f482c93341368fec5794d0c3ff8ce9a7550",
+          "scale": 5,
+          "dimensions": [
+            1650,
+            275
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-bisefatav-tav-qamats-tight",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        1282,
+        1020,
+        1304,
+        1065
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-bisefatav-tav-qamats-tight-native.png",
+          "sha256": "5fb1dfe69aa5bee22ddb401234d68085dd957649bdfa3e2a8047558d9aedbff2",
+          "scale": 1,
+          "dimensions": [
+            22,
+            45
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-bisefatav-tav-qamats-tight-20x.png",
+          "sha256": "5dc4232960b180ff89d038c747baa733d0f3059e5f6f03ff5847fcafc5febf53",
+          "scale": 20,
+          "dimensions": [
+            440,
+            900
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-secondhalf-et-control-context",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        500,
+        1060,
+        900,
+        1110
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-secondhalf-et-control-context-native.png",
+          "sha256": "d23e8d763a4d1d9fd0a9462a8d57de70f1ec3e8408f391f8541cf2b7f75866d3",
+          "scale": 1,
+          "dimensions": [
+            400,
+            50
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-secondhalf-et-control-context-5x.png",
+          "sha256": "dc051b3aeeb03d0ed0f5f3601e7a6f811927cbb77cc99831d22196ffbc243a03",
+          "scale": 5,
+          "dimensions": [
+            2000,
+            250
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir12-16-secondhalf-et-ayin-tsere-tight",
+      "sourceImage": "extra-469-native.png",
+      "sourceImageSHA256": "3be4babfee42e37ff9d15e01d3ddf73fe615a366db82887cc4684aff6e6a03e3",
+      "pixelBox": [
+        763,
+        1073,
+        782,
+        1107
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-secondhalf-et-ayin-tsere-tight-native.png",
+          "sha256": "795df7cfe64adba47195cc758746cc8eb47e31309a925389e39a77ac17d2b55e",
+          "scale": 1,
+          "dimensions": [
+            19,
+            34
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir12-16-secondhalf-et-ayin-tsere-tight-20x.png",
+          "sha256": "3abb1719182facd1231cb603ab89c14ab29f654fd819838c3547b20a67ea9e26",
+          "scale": 20,
+          "dimensions": [
+            380,
+            680
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir39-14-local-controls-context",
+      "sourceImage": "extra-509-native.png",
+      "sourceImageSHA256": "0d1faac989b5e4fbd79c9435adcb70b5f263347016dbdfef9a580691423224f6",
+      "pixelBox": [
+        650,
+        1200,
+        1390,
+        1380
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-local-controls-context-native.png",
+          "sha256": "666305f2f433384d665ed23c68b91100c5475a3f02a56b0496708330632307b6",
+          "scale": 1,
+          "dimensions": [
+            740,
+            180
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-local-controls-context-2x.png",
+          "sha256": "f23d6818e5a9e119828233fe5632febdbbbd88a4a37eaf9cefa02b77ea40fa45",
+          "scale": 2,
+          "dimensions": [
+            1480,
+            360
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir39-14-shir-riah-control-words",
+      "sourceImage": "extra-509-native.png",
+      "sourceImageSHA256": "0d1faac989b5e4fbd79c9435adcb70b5f263347016dbdfef9a580691423224f6",
+      "pixelBox": [
+        1090,
+        1285,
+        1260,
+        1345
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-shir-riah-control-words-native.png",
+          "sha256": "f721f842ef81eb884a4a023b628bb04017b46d6a42271e55a8a620b0df152717",
+          "scale": 1,
+          "dimensions": [
+            170,
+            60
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-shir-riah-control-words-6x.png",
+          "sha256": "fa420e72a1f5d2b0238ee26ea7acf3cc4ee37e0cfc685e315894fc7b7ffe84e4",
+          "scale": 6,
+          "dimensions": [
+            1020,
+            360
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir39-14-shir-finalresh-correct-bare-tight",
+      "sourceImage": "extra-509-native.png",
+      "sourceImageSHA256": "0d1faac989b5e4fbd79c9435adcb70b5f263347016dbdfef9a580691423224f6",
+      "pixelBox": [
+        1135,
+        1295,
+        1157,
+        1340
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-shir-finalresh-correct-bare-tight-native.png",
+          "sha256": "1f9451d92ce06ff8dea56a430bd6f40825f59c9dc7f5fb3f0de05da653dad562",
+          "scale": 1,
+          "dimensions": [
+            22,
+            45
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir39-14-shir-finalresh-correct-bare-tight-20x.png",
+          "sha256": "6ea6034031c3067310aa05e28493ae8cdb5579527a04c05d0c54658ad461c663",
+          "scale": 20,
+          "dimensions": [
+            440,
+            900
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir29-19-baaruba-barebet-control-word",
+      "sourceImage": "extra-491-native.png",
+      "sourceImageSHA256": "34c939c9dfdb159a46e22e3a72791c52509efd749cdfbbb9b93658e0c58a40b8",
+      "pixelBox": [
+        1080,
+        1340,
+        1270,
+        1415
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir29-19-baaruba-barebet-control-word-native.png",
+          "sha256": "2544e51a342af7b29f1cebb7f4bdb735fb8889293ddef02b3b03794b4d0f6d47",
+          "scale": 1,
+          "dimensions": [
+            190,
+            75
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir29-19-baaruba-barebet-control-word-5x.png",
+          "sha256": "0e455d84c4a7181b22020a2dec29a8b5e7b44b99488bf791c7e6b25e7fdc7e65",
+          "scale": 5,
+          "dimensions": [
+            950,
+            375
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir29-19-baaruba-firstbet-correct-bare-tight",
+      "sourceImage": "extra-491-native.png",
+      "sourceImageSHA256": "34c939c9dfdb159a46e22e3a72791c52509efd749cdfbbb9b93658e0c58a40b8",
+      "pixelBox": [
+        1168,
+        1355,
+        1198,
+        1405
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir29-19-baaruba-firstbet-correct-bare-tight-native.png",
+          "sha256": "c6c0d343b701653c284071d4e65f5dba2db534b7a992e41b9a92f8a0880897c9",
+          "scale": 1,
+          "dimensions": [
+            30,
+            50
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir29-19-baaruba-firstbet-correct-bare-tight-20x.png",
+          "sha256": "74ebf78080973fa74e10db0161a8b04f40d8af9667245e87ac70bb7a61466b8a",
+          "scale": 20,
+          "dimensions": [
+            600,
+            1000
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-19-heleq-bare-qof-control-word",
+      "sourceImage": "extra-467-native.png",
+      "sourceImageSHA256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+      "pixelBox": [
+        1030,
+        825,
+        1190,
+        875
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-19-heleq-bare-qof-control-word-native.png",
+          "sha256": "5853b8587a14ad3b5b2e0da3c78629510e027e29709e136ba0b5b8cc7594f53f",
+          "scale": 1,
+          "dimensions": [
+            160,
+            50
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-19-heleq-bare-qof-control-word-6x.png",
+          "sha256": "1f0f112d52e44ebbc49bc328ebad065113f8a3a09e5f3611bb42f74602de5631",
+          "scale": 6,
+          "dimensions": [
+            960,
+            300
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-19-heleq-finalqof-bare-tight",
+      "sourceImage": "extra-467-native.png",
+      "sourceImageSHA256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+      "pixelBox": [
+        1053,
+        844,
+        1076,
+        892
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-19-heleq-finalqof-bare-tight-native.png",
+          "sha256": "4d3b70e92a6b03537be3efea6b24c29e843d8ecda745c1d36173b17eb071ea98",
+          "scale": 1,
+          "dimensions": [
+            23,
+            48
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-19-heleq-finalqof-bare-tight-20x.png",
+          "sha256": "6569e256e4a2e13a0c546464e2ef181218a4fa8ecd633490fc17f465227b885e",
+          "scale": 20,
+          "dimensions": [
+            460,
+            960
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-20-behukekha-qof-segol-control-word",
+      "sourceImage": "extra-467-native.png",
+      "sourceImageSHA256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+      "pixelBox": [
+        920,
+        870,
+        1280,
+        930
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-20-behukekha-qof-segol-control-word-native.png",
+          "sha256": "3a086b47c34186d1aa9cd2f6267557ced6ce33720b01bedc3151fff54cb8ddb0",
+          "scale": 1,
+          "dimensions": [
+            360,
+            60
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-20-behukekha-qof-segol-control-word-5x.png",
+          "sha256": "0075447f9c00542af69fc395fc1bec8d1800a9379a2fced90e1e8ee0c34ed0db",
+          "scale": 5,
+          "dimensions": [
+            1800,
+            300
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir11-20-behukekha-qof-unresolved-control",
+      "sourceImage": "extra-467-native.png",
+      "sourceImageSHA256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+      "pixelBox": [
+        1104,
+        894,
+        1127,
+        927
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-20-behukekha-qof-unresolved-control-native.png",
+          "sha256": "6ee8db2b2ed82fa9b5ac046433afba11ad21e33e4be0aa95c78b4bc976e0ecb6",
+          "scale": 1,
+          "dimensions": [
+            23,
+            33
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir11-20-behukekha-qof-unresolved-control-20x.png",
+          "sha256": "97a85c244dc3b5d5445c7ba543eb3008548b745e5284d0130dd51d94ac22ce45",
+          "scale": 20,
+          "dimensions": [
+            460,
+            660
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir30-16-local-controls-context",
+      "sourceImage": "extra-492-native.png",
+      "sourceImageSHA256": "9f06e68c2033f0f437b966d51964813d884b65ba75c75712c2b3a3791fa4ab24",
+      "pixelBox": [
+        850,
+        1245,
+        1390,
+        1330
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-local-controls-context-native.png",
+          "sha256": "dc03f59dcedad1dc1edfac0eca894d5ca32b9eee74dfae138293e2d73f0b9f72",
+          "scale": 1,
+          "dimensions": [
+            540,
+            85
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-local-controls-context-3x.png",
+          "sha256": "3eba0d97f3d9524b4ff594274f040b67ffaaac581e9682f608a0107d024f8e3a",
+          "scale": 3,
+          "dimensions": [
+            1620,
+            255
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir30-16-osher-bare-resh-tight",
+      "sourceImage": "extra-492-native.png",
+      "sourceImageSHA256": "9f06e68c2033f0f437b966d51964813d884b65ba75c75712c2b3a3791fa4ab24",
+      "pixelBox": [
+        1048,
+        1265,
+        1077,
+        1310
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-osher-bare-resh-tight-native.png",
+          "sha256": "ed0f16be09ed000f2dc49d2146c8eb3779ca4e63392fc4662d44ff36e998d512",
+          "scale": 1,
+          "dimensions": [
+            29,
+            45
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir30-16-osher-bare-resh-tight-20x.png",
+          "sha256": "91c4a4a85a632f4695ac24668e0f9eb8a3b2045952c6e6113adc6c58d55c0728",
+          "scale": 20,
+          "dimensions": [
+            580,
+            900
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir51-4-local-controls-context",
+      "sourceImage": "extra-529-native.png",
+      "sourceImageSHA256": "52086142539dded2009cdaee6c985bde98d93f3520df6777cbf5e177198b666e",
+      "pixelBox": [
+        850,
+        200,
+        1390,
+        340
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-4-local-controls-context-native.png",
+          "sha256": "3afa8175193d9baff19e4222721af76e4bd65303e36514c0ff68139720db69a5",
+          "scale": 1,
+          "dimensions": [
+            540,
+            140
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-4-local-controls-context-2x.png",
+          "sha256": "2c7e0f6669dd411bfd500bb33312e7669a82beb27e6e1d6170bd53fc11f5729c",
+          "scale": 2,
+          "dimensions": [
+            1080,
+            280
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "page529-body-extra",
+      "sourceImage": "extra-529-native.png",
+      "sourceImageSHA256": "52086142539dded2009cdaee6c985bde98d93f3520df6777cbf5e177198b666e",
+      "pixelBox": [
+        250,
+        130,
+        1390,
+        600
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/page529-body-extra-native.png",
+          "sha256": "678e022eb56db4e6754b21a880630df77a44ae04d3231087f9384cec3fc32f5f",
+          "scale": 1,
+          "dimensions": [
+            1140,
+            470
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir51-5-sheqer-bare-control-word",
+      "sourceImage": "extra-529-native.png",
+      "sourceImageSHA256": "52086142539dded2009cdaee6c985bde98d93f3520df6777cbf5e177198b666e",
+      "pixelBox": [
+        980,
+        345,
+        1100,
+        400
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-5-sheqer-bare-control-word-native.png",
+          "sha256": "8e243b3334052affe9e1930002752995da72d01024bc1338dcd9bb1e9c7e087d",
+          "scale": 1,
+          "dimensions": [
+            120,
+            55
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-5-sheqer-bare-control-word-6x.png",
+          "sha256": "5e19b4b430ed067c5a2368a5c910bf57d6b3c83eeb9317cbf0084a14b6f98077",
+          "scale": 6,
+          "dimensions": [
+            720,
+            330
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "sir51-5-sheqer-finalresh-bare-tight",
+      "sourceImage": "extra-529-native.png",
+      "sourceImageSHA256": "52086142539dded2009cdaee6c985bde98d93f3520df6777cbf5e177198b666e",
+      "pixelBox": [
+        1018,
+        350,
+        1039,
+        397
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-5-sheqer-finalresh-bare-tight-native.png",
+          "sha256": "7e943f242d9b115a754d76af56e08aaa03f8e600197c8e394a2afcd0abbe3179",
+          "scale": 1,
+          "dimensions": [
+            21,
+            47
+          ],
+          "freshPDFPixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/sir51-5-sheqer-finalresh-bare-tight-20x.png",
+          "sha256": "8b58f7365b63c5aa8d13b900992fa8277421ec7f99a1adc29bc7986d83b14086",
+          "scale": 20,
+          "dimensions": [
+            420,
+            940
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "page453-primary-body",
+      "sourceImage": "primary-453-native.png",
+      "sourceImageSHA256": "fabcae57707f041870d7e37014aa1b18d4c5d353090b5fd55aaa09dd63c111f0",
+      "pixelBox": [
+        200,
+        200,
+        1600,
+        1000
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/page453-primary-body-native.png",
+          "sha256": "30776d2928cead90d1a081293b17cfb1ecf11b2f2991c903083e81d153609a48",
+          "scale": 1,
+          "dimensions": [
+            1400,
+            800
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "page468-primary-body",
+      "sourceImage": "primary-468-native.png",
+      "sourceImageSHA256": "20eb1b206d6fa244f6844a9a9f20aa2cd71660e94a7db257e859b5b8752854b1",
+      "pixelBox": [
+        200,
+        1400,
+        1600,
+        1800
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/page468-primary-body-native.png",
+          "sha256": "23e6d800093c3e0b8a0e00b94729fe5ac16f084bb704d10d723e77ea69022389",
+          "scale": 1,
+          "dimensions": [
+            1400,
+            400
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "page469-primary-body",
+      "sourceImage": "primary-469-native.png",
+      "sourceImageSHA256": "c051e4fe399ae911a918e02b9211c4f43da1378c50bab4641e228a79253fa57a",
+      "pixelBox": [
+        200,
+        1300,
+        1600,
+        1650
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/page469-primary-body-native.png",
+          "sha256": "86c2796e9b1b67e8b64e43be0649a89e01847f72e8e3f665b7abee0ebab6393f",
+          "scale": 1,
+          "dimensions": [
+            1400,
+            350
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    },
+    {
+      "key": "page509-primary-body",
+      "sourceImage": "primary-509-native.png",
+      "sourceImageSHA256": "2f12cc5bb2feab16ee0ac7d19d1664a401d524aa94fb682b9d50cd7f54553d7d",
+      "pixelBox": [
+        200,
+        1650,
+        1600,
+        2050
+      ],
+      "variants": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-SIR-JOINED-VOWELS/page509-primary-body-native.png",
+          "sha256": "1efe796838b238d3d87c07bbac47aff00d667aa1a866521a37f0af6261cde15a",
+          "scale": 1,
+          "dimensions": [
+            1400,
+            400
+          ],
+          "freshPDFPixelReplay": true
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "freshPDFNativeSourceImagesReplayed": 16,
+    "nativeFramesReplayed": 54,
+    "evidencePNGCount": 101,
+    "allEnlargementsIntegerNearestNeighbor": true,
+    "allPixelsFreshPDFReproduced": true,
+    "canonicalUnchangedFromPass8Baseline": true,
+    "priorImmutableReportsUnchangedSHA256": {
+      "Shared/reports/hebrew-wikisource/MACCABEES-vowel-comparison-20261017-pass7.json": "2e6876aca9d634a68a526dfc4147cc4c033298fde604e3a15f103aa6ab9046df",
+      "Shared/reports/hebrew-wikisource/MACCABEES-patah-reinspection-20261017-pass6.json": "5b04d38ad39b773e422a584660ba3719d8bf65e2f61ce0a2d25032425473f76d",
+      "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35",
+      "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd"
+    },
+    "acceptedChangesOneVowelScalarEach": true,
+    "remainingNoteAnchorsToRefresh": [
+      "sir-11-34-vav-vowel",
+      "sir-39-14-bet-vowel"
+    ]
+  }
+}

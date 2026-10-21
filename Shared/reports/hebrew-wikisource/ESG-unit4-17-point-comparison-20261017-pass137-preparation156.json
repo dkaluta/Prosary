@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 137,
+  "integrationPass": 137,
+  "preparationID": 156,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation156-ESG-4-17/source-provenance.json",
+    "sha256": "bc5b067b1050d2263d6ac8fb9bd3aa9d581de62acbeb03500adc2553eba29117"
+  },
+  "sourceNotesBefore": 15,
+  "sourceNotesAfter": 15,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "esg-4-17-2-vowel"
+  ],
+  "contentSHA256Before": "d09096b0ed396e0e863eef574f6b90c47025dfde4edeb445618b3a91f706d860",
+  "contentSHA256After": "d09096b0ed396e0e863eef574f6b90c47025dfde4edeb445618b3a91f706d860",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "esg-4-17-2-vowel",
+      "book": "ESG",
+      "chapter": 4,
+      "verse": 17,
+      "anchorBefore": "תָעב",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Full own Ayin two upper branches join into broad low bowl. At128 the connected component3734px spans[1325,183,1413,317]; separate left upper branch1255px[1333,183,1371,237] joins only at looser threshold192. Broad low ink descends left1325..1364 through301; a narrow low terminal1357..1371 through316 remains connected to the bowl. Separate right compact225px node[1375,298,1390,317] occurs beside it. At64 lower right remains170px[1376,299,1389,316]; at192289px[1374,297,1391,318]. Own low ink is not a fully detached, independently classifiable mark: body merger prevents certifying whether the connected left terminal belongs to point or consonant. Do not infer Tsere, another point, or exact absence. Sameword Tav Qamats independently shows a long head/stem, but cannot classify own damaged Ayin. Preserve every scalar and exact note.",
+      "targetCapture": "extension-volumeA-565-zoom6-mid-mid.png",
+      "targetSourceIdentifier": "extension-volumeA-565-zoom6-mid-mid.png",
+      "inspectedBounds": [
+        1325,
+        183,
+        1413,
+        317
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation156-ESG-4-17/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 4,
+    "verse": 17,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation156-ESG-4-17/independent-review.json",
+    "sha256": "0266b6619efe7638759c025728d5533984603190aaf407690c83f5513e992d48"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation156-ESG-4-17/primary-preparation.json",
+    "sha256": "ff320dee2f29d855b83ece1984f9843acd7f776346853179d5116610c0131dfd"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation156-ESG-4-17/consensus-preparation.json",
+    "sha256": "8e59f2959a6ed0dcf747aaf42790adbeb7fd30b4abc7debfc3bdede7b3e45fa0"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 148,
+  "integrationPass": 148,
+  "preparationID": 208,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation208-TOB-5-21/source-provenance.json",
+    "sha256": "8588782bb293d91c94dde9ca5f88396806bfeb78ce3e68142fae432e87ba7a08"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "tob-5-21-said-vav-vowel"
+  ],
+  "contentSHA256Before": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "contentSHA256After": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "tob-5-21-said-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 21,
+      "anchorBefore": "ויֹּאמֶר לָהּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Own FIRST Vav in complete five-letter Vav-Yod-Alef-Mem-Resh 1011..1104 independently bound before own Lah 941..987. Vav 179px [1093,727,1104,758] roof narrows into stem1098..1101, continuous at752..754 into expanded solid lower foot1094..1104 y754..757. No separable exact vowel or printed absence can be certified from joined foot. Independently read literal18px upper Yod node and16px own Lah interior node supply no mark. Retain exact disclosure and every original scalar.",
+      "targetCapture": "primary-326-native.png",
+      "targetSourceIdentifier": "primary-326-native.png",
+      "inspectedBounds": [
+        1091,
+        720,
+        1108,
+        770
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation208-TOB-5-21/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 21,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation208-TOB-5-21/independent-review.json",
+    "sha256": "1087bcf3ed25b15361194a462dc6e9f1862832bbf8dce47768b1d41711842f91"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation208-TOB-5-21/primary-preparation.json",
+    "sha256": "bf08e5205ba6c90c7e1251aefae4a5c03e8900a4bf2390f120e8a860a44589fa"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation208-TOB-5-21/consensus-preparation.json",
+    "sha256": "5aa09f9dc9feb4e2a474815756cabc714ef4b0b8826c65e0d5b1a931e086e96d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

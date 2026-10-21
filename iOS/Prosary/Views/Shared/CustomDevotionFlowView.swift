@@ -88,7 +88,8 @@ struct CustomDevotionFlowView: View {
   }
 
   private var beadLayout: BeadLayout {
-    BeadLayout.build(steps: steps, currentIndex: currentIndex, hasClosingCross: hasClosingCross)
+    BeadLayout.build(steps: steps, currentIndex: currentIndex, hasClosingCross: hasClosingCross,
+                     languageCode: languageCode, bundleId: devotionId)
   }
 
   private func beadColumnAreaWidth(hasRoomForSingleMinorColumn: Bool) -> CGFloat {

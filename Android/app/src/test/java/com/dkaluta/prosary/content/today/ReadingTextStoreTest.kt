@@ -431,9 +431,8 @@ class ReadingTextStoreTest {
         }
         val sirach = requireNotNull(store.passage(ReadingCitation("reading", "Sirach", "Sirach 51:13–17"), "masoretic-delitzsch"))
         assertEquals(listOf(9, 10, 11, 12), sirach.verses.map { it.verse })
-        val note = sirach.displayItems.flatMap { it.sourceNotes.orEmpty() }.single { it.id == "sir-51-11-alef-vowel" }
-        assertEquals("וְאזְכֶּרְךָ", note.anchor)
-        assertEquals(listOf(529), note.sourcePages)
+        assertTrue(sirach.verses.single { it.verse == 11 }.text.contains("וְאֶזְכֶּרְךָ"))
+        assertTrue(sirach.displayItems.flatMap { it.sourceNotes.orEmpty() }.isEmpty())
         val daniel = requireNotNull(store.passage(ReadingCitation("reading", "Daniel", "Daniel 3:25, 34–45"), "masoretic-delitzsch"))
         assertEquals("S3Y", daniel.source?.book)
         assertEquals("תפלת עזריה ושירת שלשת הנערים בכבשן", daniel.source?.name)

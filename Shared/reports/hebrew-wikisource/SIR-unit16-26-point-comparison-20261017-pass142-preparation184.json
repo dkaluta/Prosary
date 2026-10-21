@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 142,
+  "integrationPass": 142,
+  "preparationID": 184,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation184-SIR-16-26/source-provenance.json",
+    "sha256": "33a943fcba085f334b245c433e4a6454ab404b533b07e8c808db14a0ac3a8233"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-16-26-nun-dagesh"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-16-26-nun-dagesh",
+      "book": "SIR",
+      "chapter": 16,
+      "verse": 26,
+      "anchorBefore": "תַנֵיהֶם]",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "OwnNun2 abbreviatedhead/body around635..646/1729..1746 mergesatupperright with adjacentTav/precedingLamed union923px[635,1718,708,1757]. Queriedinterior/survivinglowerleftmass cannotindependently separate ordinaryNunhead/shaft/foot from apossibleaddedDot. Compact44px11x5 lowgroup[635,1755,646,1760] doesnotestablishaDagesh andclearwhitespacebesidestampcannotcertifyabsence. Complete5letterword/closingbracketandactualunit independentlybound. LiteralinitialKaf ofcompleteכברא hasseparate14px5x5 internalDot[1266,1743,1271,1748]; thirdResh Holam18px5x4[1214,1725,1219,1729] alsoindependent. TheseconfirmseparatedstampsbutdonotsupplyqueriedNunmark. Retain exactnote/allscalars.",
+      "targetCapture": "primary-475-native.png",
+      "targetSourceIdentifier": "primary-475-native.png",
+      "inspectedBounds": [
+        632,
+        1725,
+        657,
+        1778
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation184-SIR-16-26/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 16,
+    "verse": 26,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation184-SIR-16-26/independent-review.json",
+    "sha256": "6c4485c6a9dabbcbd2657989347aa5f186c57be7f12b5e90dd3a76f95e2b97c1"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation184-SIR-16-26/primary-preparation.json",
+    "sha256": "b36ab9046e85d5b258cd8dff90c8dc5e20e3b553cb391b956aeb7f9f567f5f5f"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation184-SIR-16-26/consensus-preparation.json",
+    "sha256": "efe7483bf5982b9076e6cb9b635dfd84c5bdba8e95519897eb5a99583bba4079"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 123,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass123-WIS-14-11/source-provenance.json",
+    "sha256": "2f14e04fa3a84821712e142a382e8a1ded57f2ff5f3cd943a1fb0811c98e4b38"
+  },
+  "sourceNotesBefore": 113,
+  "sourceNotesAfter": 111,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-14-11-pe-1-dagesh",
+    "wis-14-11-qof-2-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "6ccc4ee99098370f3d6f7de58ff0059689599b5a92bb01ff3b03ff534801c6cd",
+  "contentSHA256After": "a28b4bf2e6755421d7bb54f72719ed088ec59b01500955bb86306600a2231ad3",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-14-11-pe-1-dagesh",
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 11,
+      "anchorBefore": "פְקדָּה",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "The complete Pe has intact head, intrinsic inward left tongue, right wall and lower body. Its expected Dagesh cavity is fully open: field138..154,y1436..1453 has272pixels,min253,max255,zero below192. Same-unit plain Pe in ופח has a matched open cavity285pixelsALL255 and the same inward natural tongue. The literal pointed Pe from עלפי has its own separate37px dot at the corresponding free-cavity position, clearly distinct from its intrinsic tongue. Target exposes adequate intact white space at that position; neither saturation nor abrasion hides a dot. Resolve only the Dagesh category; preserve existing Pe Sheva and all vowels. Independent peer: Independent raw complete Pe preserves its natural inward tongue, head, right bowl and lower body; its free point field138..154/1436..1453 has272pixels,min253,0 below64/128/192. Same-unit plain Pe in completeופח has an intact matching tongue and285pixel cavity ALL255. Literal positive same-witness עלפי Pe has an independently detached37pixel Dagesh to the right of the natural tongue, so target clear field discriminates absence from a fused natural tongue. No abrasion/saturated extra branch prevents this absence reading. Retire only Dagesh uncertainty; retain existing Pe Sheva and every scalar.",
+      "targetCapture": "extension-volumeA-518-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeA-518-zoom4-header.png",
+      "inspectedBounds": [
+        107,
+        1405,
+        165,
+        1507
+      ],
+      "markProposed": "noDagesh",
+      "codePoint": null,
+      "pointBounds": null,
+      "markClassification": "DageshAbsence",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass123-WIS-14-11/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-14-11-qof-2-vowel",
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 11,
+      "anchorBefore": "פְקדָּה",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "Two separate compact rounded lower nodes sit on vertically aligned levels1499..1510 and1512..1525, with last upper ink at1509 and two white rows1510..1511 before the lower node. Both are separate from the Qof descender atx40..50 and its right body. The full lower field contains the complete two-node shape; no body fragment or neighboring point supplies either node. This certifies Sheva. Independent peer: Independent complete Qof has two detached rounded lower nodes[63,1499,73,1510]86pixels and[66,1512,78,1525]118pixels. Both are separate from the descender atx40..50 and main right bowl. Two white rows1510..1511 divide the nodes; raw field excludes a single horizontal bar or lone dot. Certify U+05B0 only; no other vowel supplied.",
+      "targetCapture": "extension-volumeA-518-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeA-518-zoom4-header.png",
+      "inspectedBounds": [
+        37,
+        1407,
+        99,
+        1510
+      ],
+      "markProposed": "Sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        63,
+        1499,
+        78,
+        1525
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass123-WIS-14-11/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 14,
+      "verse": 11,
+      "before": "וְלָכֵן תָּבֹא פְקדָּה גַּם עַל־אֱלִילֵי הַגּוֹיִם כִּי מִפְעַל אֱלֹהִים הָיוּ לְתוֹעֵבָה וּמוֹקֵשׁ לְנַפְשׁוֹת בְּנֵי אָדָם וּפַח לְרַגְלֵי אֱוִילִים׃",
+      "after": "וְלָכֵן תָּבֹא פְקְדָּה גַּם עַל־אֱלִילֵי הַגּוֹיִם כִּי מִפְעַל אֱלֹהִים הָיוּ לְתוֹעֵבָה וּמוֹקֵשׁ לְנַפְשׁוֹת בְּנֵי אָדָם וּפַח לְרַגְלֵי אֱוִילִים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 14,
+    "verse": 11,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass123-WIS-14-11/independent-review.json",
+    "sha256": "dd0127fdfef08cdcf48cbf4a6e49f27426dbffa0dd706b6ffd3bd466b8984b43"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass123-WIS-14-11/primary-preparation.json",
+    "sha256": "9e42cfa0852aa49396fda5687e173a2140d6f1897e4f6712a8064225d96256f8"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass123-WIS-14-11/consensus-preparation.json",
+    "sha256": "59195e9e619fac75b97d7c0064a2058e3e80ebd3b37d88a4a5f367e98933eb03"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

@@ -1,0 +1,869 @@
+{
+  "date": "2026-10-21",
+  "pass": 107,
+  "startingNoteCount": 213,
+  "removedNoteCount": 1,
+  "remainingNoteCount": 212,
+  "reviewedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 1,
+  "books": [
+    {
+      "book": "WIS",
+      "beforeNoteCount": 126,
+      "afterNoteCount": 125,
+      "removedNoteIds": [
+        "wis-5-5-first-kaf"
+      ],
+      "retainedInspectedNoteIds": [
+        "wis-5-5-alef"
+      ],
+      "beforeDigest": "25eb299c51a55326e6354553cdb1180365ae8ec2e123058f2d3117f38420ca7e",
+      "afterDigest": "468a360e45d40ddd838817debf562a927874e56ec1b5528baf84b6079a54ce2a",
+      "sourceChanges": [
+        {
+          "book": "WIS",
+          "chapter": 5,
+          "verse": 5,
+          "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 3,
+              "mark": "ָ",
+              "codePoint": "U+05B8"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-5-point-comparison-20261017-pass107.json",
+          "sha256": "a80bd2c96a61f483c0ac6969320beafc94a8e0ebc10b28e8f9d7d4ee7c917ba2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass107.json",
+          "sha256": "9abb57e5df143a09bc3b94a5cca62832658d94075ae3f7d599334a71a16620c6"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 1,
+  "retainedAnchorUpdateDetails": [
+    {
+      "noteId": "wis-5-5-alef",
+      "before": "איככָה",
+      "after": "איכָכָה"
+    }
+  ],
+  "dailyWholeBookPinsUpdated": 9,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 18,
+  "dailyReviewMetadataUnchangedCount": 11,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [
+    "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+    "daily|Wisdom 5:1–5"
+  ],
+  "dailySelectedPointChanges": [
+    {
+      "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+      "chapter": 5,
+      "verse": 5,
+      "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "sourceNotesBefore": [
+        {
+          "id": "wis-5-5-alef",
+          "kind": "unreadablePoint",
+          "anchor": "איככָה",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        },
+        {
+          "id": "wis-5-5-first-kaf",
+          "kind": "unreadablePoint",
+          "anchor": "איככָה",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        }
+      ],
+      "sourceNotesAfter": [
+        {
+          "id": "wis-5-5-alef",
+          "kind": "unreadablePoint",
+          "anchor": "איכָכָה",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        }
+      ]
+    },
+    {
+      "appointment": "daily|Wisdom 5:1–5",
+      "chapter": 5,
+      "verse": 5,
+      "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "sourceNotesBefore": [
+        {
+          "id": "wis-5-5-alef",
+          "kind": "unreadablePoint",
+          "anchor": "איככָה",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        },
+        {
+          "id": "wis-5-5-first-kaf",
+          "kind": "unreadablePoint",
+          "anchor": "איככָה",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        }
+      ],
+      "sourceNotesAfter": [
+        {
+          "id": "wis-5-5-alef",
+          "kind": "unreadablePoint",
+          "anchor": "איכָכָה",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        }
+      ]
+    }
+  ],
+  "dailyBoundaryTextUpdates": [
+    {
+      "appointment": "daily|Wisdom 5:1–5",
+      "field": "closingText",
+      "sourceBook": "WIS",
+      "selection": {
+        "chapter": 5,
+        "verse": 5
+      },
+      "frozenSourceScalarSpan": [
+        0,
+        64
+      ],
+      "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "approvedInsertionsWithinSpan": [
+        {
+          "offset": 3,
+          "mark": "ָ",
+          "codePoint": "U+05B8"
+        }
+      ]
+    }
+  ],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-unit5-5-point-comparison-20261017-pass107.json",
+      "sha256": "a80bd2c96a61f483c0ac6969320beafc94a8e0ebc10b28e8f9d7d4ee7c917ba2"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass107.json",
+      "sha256": "9abb57e5df143a09bc3b94a5cca62832658d94075ae3f7d599334a71a16620c6"
+    }
+  ],
+  "state": "Applied, regenerated and audited. Recorded Shared, Android and Apple checks passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 212,
+      "removedNotes": 1,
+      "changedArchiveChapters": 1,
+      "changedArchiveMembers": [
+        "chapters/WIS/5.json",
+        "manifest.json"
+      ],
+      "preservedArchiveMembers": 1335,
+      "addedArchiveMembers": [],
+      "removedArchiveMembers": [],
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-9229f9bbd3f45e13a9564f02805d51d737122d84ebf04bceaa3e7a8952fde8fa.zip",
+      "archiveSHA256": "1fed3bc890a88ae9ecba0364a3543db43e09d5ce65e121b2e3a5c4422d5c5596",
+      "archiveBytes": 3108431,
+      "baselineArchive": "Shared/dist/bibles/masoretic-delitzsch-7b22b4e19d030c911cd21d5ada76c0a96c7ad052809f917ff15b56f486f93654.zip",
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [
+        {
+          "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+          "chapter": 5,
+          "verse": 5,
+          "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "sourceNotesBefore": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            },
+            {
+              "id": "wis-5-5-first-kaf",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ],
+          "sourceNotesAfter": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איכָכָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ]
+        },
+        {
+          "appointment": "daily|Wisdom 5:1–5",
+          "chapter": 5,
+          "verse": 5,
+          "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "sourceNotesBefore": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            },
+            {
+              "id": "wis-5-5-first-kaf",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ],
+          "sourceNotesAfter": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איכָכָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ]
+        }
+      ],
+      "dailyChangedRowCount": 2,
+      "dailyChangedAppointmentCount": 2,
+      "matchingNativeDataCopies": 3,
+      "nativeDataCopyMatches": {
+        "Apple": true,
+        "Android": true,
+        "Windows": true
+      },
+      "dailyCurrentPassChangedRowCount": 2,
+      "dailyHistoricalCatchupChangedRowCount": 0,
+      "dailyActualChangedRowCount": 2
+    },
+    "verification": {
+      "build-bible-library": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/build-bible-library.log",
+        "durationSeconds": 10.67,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/build-bible-library.py",
+          "--sync"
+        ],
+        "logSHA256": "d371bf1d2478dfcdd4da262634b471cff2577be719a183f4e15c6cfb96c57d07",
+        "passed": true
+      },
+      "fetch-readings": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/fetch-readings.log",
+        "durationSeconds": 0.33,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/fetch-readings.py",
+          "--localize-only",
+          "--sync"
+        ],
+        "logSHA256": "e992955842d03ea87d10df8bc777939feb45672843f43b92a7c14d9e31efc8fd",
+        "passed": true
+      },
+      "hebrew-deuterocanon": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/hebrew-deuterocanon.log",
+        "durationSeconds": 0.07,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/hebrew_deuterocanon.py"
+        ],
+        "logSHA256": "42bbf7608e36afd3779d18752c0f99f576ce13b6c0e3e576275d87c963610f0e",
+        "passed": true
+      },
+      "asset-deduplication": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/asset-deduplication.log",
+        "durationSeconds": 0.17,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/test-asset-deduplication.py"
+        ],
+        "logSHA256": "ef86bea90e26a5d58506ed3dc0943d23de67bc89de67a92b129d82db5041e42e",
+        "passed": true
+      },
+      "android": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/android.log",
+        "durationSeconds": 20.57,
+        "command": [
+          "./gradlew",
+          "--offline",
+          "testDebugUnitTest",
+          "--rerun"
+        ],
+        "successMarker": "BUILD SUCCESSFUL",
+        "testTaskLines": [
+          "> Task :app:testDebugUnitTest"
+        ],
+        "freshTestTaskExecuted": true,
+        "freshTestResults": {
+          "suites": 73,
+          "tests": 585,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "logSHA256": "2b9ec09507532870a55223037e62dd5a8474d991b2b6b09f25186e9d053666d0",
+        "passed": true
+      },
+      "apple": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/apple.log",
+        "durationSeconds": 49.31,
+        "command": [
+          "xcodebuild",
+          "test",
+          "-scheme",
+          "Prosary",
+          "-destination",
+          "platform=macOS",
+          "-parallel-testing-enabled",
+          "NO",
+          "-only-testing:ProsaryTests"
+        ],
+        "successMarker": "** TEST SUCCEEDED **",
+        "logSHA256": "f1cbfd3c17489c4b2ec6286eec4fccae523ae442152372dd3de51a950ac4efdf",
+        "passed": true
+      }
+    },
+    "sourceMutationApplied": true,
+    "requiredChecksApplicable": true,
+    "requiredChecksMissingOrFailed": [],
+    "checksNotRunOrFailed": [],
+    "protectedRestoredLetterDisclosuresUnchanged": true,
+    "unrelatedTrackedSourceFilesByteUnchanged": true,
+    "unrelatedTrackedSourceFilesChecked": 2274,
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 438,
+      "remainingNoteCount": 212
+    },
+    "preexistingStaleDailyReviewPins": [
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "remainingStaleDailyReviewPins": [
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "preexistingStalePresentationPins": [],
+    "remainingStalePresentationPins": [],
+    "exactDailyCanonicalProjection": {
+      "dailyBoundaryTextUpdates": [
+        {
+          "appointment": "daily|Wisdom 5:1–5",
+          "field": "closingText",
+          "sourceBook": "WIS",
+          "selection": {
+            "chapter": 5,
+            "verse": 5
+          },
+          "frozenSourceScalarSpan": [
+            0,
+            64
+          ],
+          "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "approvedInsertionsWithinSpan": [
+            {
+              "offset": 3,
+              "mark": "ָ",
+              "codePoint": "U+05B8"
+            }
+          ]
+        }
+      ],
+      "dailyRowNoteUpdates": [
+        {
+          "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+          "chapter": 5,
+          "verse": 5,
+          "before": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            },
+            {
+              "id": "wis-5-5-first-kaf",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ],
+          "after": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איכָכָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ]
+        },
+        {
+          "appointment": "daily|Wisdom 5:1–5",
+          "chapter": 5,
+          "verse": 5,
+          "before": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            },
+            {
+              "id": "wis-5-5-first-kaf",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ],
+          "after": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איכָכָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ]
+        }
+      ],
+      "changedRows": [
+        {
+          "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+          "chapter": 5,
+          "verse": 5,
+          "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "sourceNotesBefore": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            },
+            {
+              "id": "wis-5-5-first-kaf",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ],
+          "sourceNotesAfter": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איכָכָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ]
+        },
+        {
+          "appointment": "daily|Wisdom 5:1–5",
+          "chapter": 5,
+          "verse": 5,
+          "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+          "sourceNotesBefore": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            },
+            {
+              "id": "wis-5-5-first-kaf",
+              "kind": "unreadablePoint",
+              "anchor": "איככָה",
+              "occurrence": 1,
+              "letterIndex": 3,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ],
+          "sourceNotesAfter": [
+            {
+              "id": "wis-5-5-alef",
+              "kind": "unreadablePoint",
+              "anchor": "איכָכָה",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                153
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+            }
+          ]
+        }
+      ],
+      "appointmentsCompared": [
+        {
+          "appointment": "daily|Wisdom 10:10–14",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 10:17–20",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 3:1–8",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 3:1–9",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 4:7–15",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 5:1–5",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 6:12–16",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 7:7–14",
+          "payloadAppointmentAbsentAndPreserved": true,
+          "oldAndNewResolverSelectionsAndBoundariesValidated": true
+        }
+      ],
+      "metadataCorrections": [],
+      "historicalCatchupPointCount": 0,
+      "historicalCatchupRetiredIdCount": 0
+    },
+    "verificationRecord": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/verification.json",
+      "sha256": "ff46f8ae8c752efa58bac985519ee50d7172e3a18c860ae6de860eed063d876a"
+    },
+    "secondGenerationByteStability": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/byte-stability.json",
+      "sha256": "e78d41d421918f613a13a5dd530708d2e52e5cf396b5cd73254cfe95da97bf27",
+      "checkedFiles": 113,
+      "passed": true
+    },
+    "integrationAudit": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/integration-audit.json",
+      "sha256": "9735eed3e05b966d824f17f1020df8feaa152818542397238659e79846f12a19"
+    }
+  },
+  "dailyRowNoteUpdates": [
+    {
+      "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+      "chapter": 5,
+      "verse": 5,
+      "before": [
+        {
+          "id": "wis-5-5-alef",
+          "kind": "unreadablePoint",
+          "anchor": "איככָה",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        },
+        {
+          "id": "wis-5-5-first-kaf",
+          "kind": "unreadablePoint",
+          "anchor": "איככָה",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        }
+      ],
+      "after": [
+        {
+          "id": "wis-5-5-alef",
+          "kind": "unreadablePoint",
+          "anchor": "איכָכָה",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        }
+      ]
+    },
+    {
+      "appointment": "daily|Wisdom 5:1–5",
+      "chapter": 5,
+      "verse": 5,
+      "before": [
+        {
+          "id": "wis-5-5-alef",
+          "kind": "unreadablePoint",
+          "anchor": "איככָה",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        },
+        {
+          "id": "wis-5-5-first-kaf",
+          "kind": "unreadablePoint",
+          "anchor": "איככָה",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        }
+      ],
+      "after": [
+        {
+          "id": "wis-5-5-alef",
+          "kind": "unreadablePoint",
+          "anchor": "איכָכָה",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            153
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+        }
+      ]
+    }
+  ],
+  "historicalDailyCatchupPointCount": 0,
+  "historicalDailyCatchupPreviouslyRetiredIdCount": 0
+}

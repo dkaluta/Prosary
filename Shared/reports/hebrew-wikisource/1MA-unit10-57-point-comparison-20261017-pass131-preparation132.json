@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 131,
+  "integrationPass": 131,
+  "preparationID": 132,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "1MA",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass131-preparation132-1MA-10-57/source-provenance.json",
+    "sha256": "ccdfffe2ba7a438d1f959348b3d7c91ce249da71bfed0a00b539e8072ba93e71"
+  },
+  "sourceNotesBefore": 8,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "1ma-10-57-pe-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "07175c48885e515471647c6f0ca7d140db8a6e036a7d9b833424649efea64d3d",
+  "contentSHA256After": "921cd63bbdc3e4b0ecc2c8abf71a9f4327eb10065c245f52a69f80d78295f510",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "1ma-10-57-pe-dagesh",
+      "book": "1MA",
+      "chapter": 10,
+      "verse": 57,
+      "anchorBefore": "וּקְלֵיאָפַטְרָה",
+      "letterIndex": 6,
+      "decision": "retireNote",
+      "finding": "Complete nine-consonant וקליאפטרה independently addresses sixth Pe. The own complete6x Pe contains its natural inward LEFT tongue and RIGHT bowl/foot, plus a separate compact15x15 oval153px[785,415,800,430] in its cavity. The dot is bounded by white gaps on all sides; it does not belong to the natural tongue. Independent4x complete Pe[2405,281,2461,347] reproduces extra detached10x9 node67px[2438,312,2448,321]. Literal SAME-PAGE source58 Pe in full seven-consonant ויפגשהו has the same inward tongue and right wall but a clear central field and no extra node; this literal cavity comparison does not inherit canonical pointing. SAME-UNIT initial Vav has a separate round internal Shuruq node275px for stamp contrast. Certify only Pe Dagesh U05BC; every existing consonant and point, including its lower Patah, remains in order. No grammar/expected name/alternate witness supplies mark. Independent peer: Independent complete nine-letter native name and exact consonant count place Pe sixth. Its natural LEFT tongue remains part of the body, while a separate15x15 compact oval at785..800,415..430 has153 pixels below128, clean LEFT gap120px min222, and RIGHT gap105px min189 with only1 pixel below192 and no bridge. Independent4x full Pe reproduces the detached extra10x9 node67px. Same-page source58 complete seven-letter word supplies a literal Pe with the same tongue but560px corresponding cavity all>=253, excluding natural-tongue confusion. Same-unit Vav internal stamp gives a round point comparator. Certify only U05BC; preserve existing Pe Patah and all other consonants/points.",
+      "targetCapture": "extension-volumeB-152-zoom6-mid-mid.png",
+      "targetSourceIdentifier": "extension-volumeB-152-zoom6-mid-mid.png",
+      "inspectedBounds": [
+        735,
+        369,
+        820,
+        469
+      ],
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "pointBounds": [
+        785,
+        415,
+        800,
+        430
+      ],
+      "markClassification": "Dagesh",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass131-preparation132-1MA-10-57/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 10,
+      "verse": 57,
+      "before": "וַיֵּצֵא תַּלְמַי מִמִּצְרַיִם הוּא וּקְלֵיאָפַטְרָה בִתּוֹ וַיָּבֹא לְעַכּוֹ בִּשְׁנַת שְׁתַּיִם וְשִׁשִּׁים וּמֵאָה׃",
+      "after": "וַיֵּצֵא תַּלְמַי מִמִּצְרַיִם הוּא וּקְלֵיאָפַּטְרָה בִתּוֹ וַיָּבֹא לְעַכּוֹ בִּשְׁנַת שְׁתַּיִם וְשִׁשִּׁים וּמֵאָה׃"
+    }
+  ],
+  "scope": {
+    "chapter": 10,
+    "verse": 57,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass131-preparation132-1MA-10-57/independent-review.json",
+    "sha256": "6cefd68111c6fa947f79e048eefb1968d7d30b6d5f0b7d879a0486d90127f26a"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass131-preparation132-1MA-10-57/primary-preparation.json",
+    "sha256": "b05eb2cd8b72b17a2119db468033f54621993e1ee6d325a76b530ff06a0849a7"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass131-preparation132-1MA-10-57/consensus-preparation.json",
+    "sha256": "1413dad3ca87dac8d13bde26a922f56b2d483c8a73e8ad8f094a93d006270a2a"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

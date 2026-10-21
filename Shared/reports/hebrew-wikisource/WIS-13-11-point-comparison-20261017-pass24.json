@@ -1,0 +1,1619 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 24,
+  "book": "WIS",
+  "status": "Complete first-cycle inspection of WIS 13:11; all five vowel disclosures retained",
+  "applicationState": "No canonical source, gate or generated file modified by author; accepted packet is empty",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "method": "All five annotated positions reviewed in original embedded page171 pixels with complete glyphs, both whole source words, and complete numbered unit context. Literal same-page bar, pair, stem, sheva, segol, hiriq and ordinary letter-base controls plus the same-font page244 complete vav-sheva control challenge each joined silhouette. Native crops and integer NEAREST only; no OCR, expected wording, grammar, smoothing, sharpening, normalization or other witness supplies a reading. Every published PNG is author-replayed from a fresh original PDF extraction, with strict bounds asserted before cropping. The exploratory mislabeled veyisba crop is excluded; the correctly labeled complete okhel word is published instead.",
+  "baselineGlobalSourceNoteCount": 487,
+  "canonicalSHA256Before": "d2417539a707aeea2deeea584bb1d53d25ded6c0199df246310a9f6e333614ee",
+  "contentSHA256Before": "c97e9fe39f043c38db72d237cb230f61a9252709c376bb33df1db487dce042af",
+  "contentSHA256After": "c97e9fe39f043c38db72d237cb230f61a9252709c376bb33df1db487dce042af",
+  "sourceNotesBefore": 189,
+  "sourceNotesAfter": 189,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 5,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-13-11-bet-1-vowel",
+    "wis-13-11-mem-2-vowel",
+    "wis-13-11-vav-1-vowel",
+    "wis-13-11-pe-3-vowel",
+    "wis-13-11-tsadi-4-vowel"
+  ],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "changedUnits": [],
+  "reviewedUnits": [
+    {
+      "chapter": 13,
+      "verse": 11,
+      "originalText": "אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת בּמּשּׂוֹר נֵצֶר נוֹחַ לְטַלְטֵל ויפצּל כָּל־קְלִפָּתוֹ מִסָּבִיב בְּהַשְׂכֵּל וּבְכִשְׁרוֹן מְלָאכָה וְיֵיטִיב עֲשׂוֹת כְּלִי לְצָרְכֵי חַיָּיו׃",
+      "correctedText": "אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת בּמּשּׂוֹר נֵצֶר נוֹחַ לְטַלְטֵל ויפצּל כָּל־קְלִפָּתוֹ מִסָּבִיב בְּהַשְׂכֵּל וּבְכִשְׁרוֹן מְלָאכָה וְיֵיטִיב עֲשׂוֹת כְּלִי לְצָרְכֵי חַיָּיו׃",
+      "textSHA256Before": "6ce3572e1792d8636ed5147c3890b04d155740a7da11403e5d650d440857607d",
+      "textSHA256After": "6ce3572e1792d8636ed5147c3890b04d155740a7da11403e5d650d440857607d",
+      "sourcePages": [
+        171
+      ],
+      "sourceNotes": [
+        {
+          "id": "wis-13-11-bet-1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "בּמּשּׂוֹר",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            171
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171"
+        },
+        {
+          "id": "wis-13-11-mem-2-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "בּמּשּׂוֹר",
+          "occurrence": 1,
+          "letterIndex": 2,
+          "mark": "vowel",
+          "sourcePages": [
+            171
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171"
+        },
+        {
+          "id": "wis-13-11-vav-1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויפצּל",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            171
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171"
+        },
+        {
+          "id": "wis-13-11-pe-3-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויפצּל",
+          "occurrence": 1,
+          "letterIndex": 3,
+          "mark": "vowel",
+          "sourcePages": [
+            171
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171"
+        },
+        {
+          "id": "wis-13-11-tsadi-4-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויפצּל",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "vowel",
+          "sourcePages": [
+            171
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171"
+        }
+      ],
+      "selectedByCompleteDailyAppointment": false
+    }
+  ],
+  "scope": {
+    "priority": "First cycle through still-unreviewed annotated complete units before ambiguity revisits",
+    "chapter": 13,
+    "verse": 11,
+    "allFiveUnitDisclosuresReviewed": true,
+    "allReviewedChaptersContainAnnotationsAtBaseline": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "The page171 row printed יא begins with the end of source13:10, מעשה יד משנות קדם׃. Source13:11 starts at או אם־חרש within that row, continues through the following row, and ends חייו׃ within the row printed יב; the following ואת־הרסיסים begins source13:12. No boundary, label, order or punctuation is changed.",
+  "independentReview": {
+    "root": "Root independently viewed the whole unit, both words, all five complete target glyphs and controls and agreed to retain all five because the fused lower blobs do not separate competing classes. No source point is accepted."
+  },
+  "decisions": [],
+  "inspections": [
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-bet-1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "בּמּשּׂוֹר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet retains its separately visible interior dagesh. Its broad bottom bar merges with a wide downward rectangular body; there is no surviving distinguishing lower stem or separated nodes that defeats compressed sheva, single-node, paired-dot and bar competitors. Clear bet sheva and hiriq and a plain final bet show the relevant alternatives. Retain the vowel note without asserting source absence.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target01-bammassor-bet-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target01-bammassor-bet-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word01-bammassor-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word01-bammassor-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/wis13-11-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-4x.png"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-mem-2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "בּמּשּׂוֹר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem retains its separately visible interior dagesh. Its under-region is a broad horizontal slab connected to the letter base by a narrower bridge; one shallow lower projection does not uniquely distinguish a bar from a filled horizontal pair or compressed stem. The literal detached same-page mem patah, lamed tsere and qamats, and mem sheva are all compared at native pixels. The joined shape remains ambiguous; do not turn the bar-like appearance into an inferred vowel.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target02-bammassor-mem-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target02-bammassor-mem-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word01-bammassor-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word01-bammassor-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/wis13-11-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-4x.png"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-vav-1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויפצּל",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The vav has a continuous shaft and one rounded thickening at its lower endpoint. The same-page holam-vav control shows an ordinary rounded endpoint without an underpoint; the literal vav-sheva control has two additional vertically ordered swellings. A merged single point and ordinary terminal thickening remain competitors for this target. Retain without claiming either a point or its absence.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target03-vayefatzel-vav-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target03-vayefatzel-vav-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word02-vayefatzel-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word02-vayefatzel-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/wis13-11-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-4x.png"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-pe-3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויפצּל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe has a broad body whose lower bar joins a large low rectangular lobe. No detached node, paired lateral contour, or independent stem survives strongly enough to exclude the other literal vowel classes. Compare the detached single-dot, horizontal-pair, bar, stem and three-node controls together with the complete source word. The expected word does not resolve the printing; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target04-vayefatzel-pe-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target04-vayefatzel-pe-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word02-vayefatzel-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word02-vayefatzel-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/wis13-11-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-4x.png"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-tsadi-4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויפצּל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi preserves its separate dagesh at the left of the diagonal. Its lower body and vowel region fuse into one wide block with only a shallow central lower notch. The literal same-unit tsadi segol has three identifiable joined nodes; the detached tsere has two identifiable side lobes, while bar and stem controls are distinct. The target notch alone cannot exclude a filled pair, bar or compressed three-node/stem impression. Retain the vowel note and the existing dagesh.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target05-vayefatzel-tsadi-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target05-vayefatzel-tsadi-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word02-vayefatzel-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word02-vayefatzel-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/wis13-11-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-4x.png"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/wis13-11-numbered-context-native.png",
+      "sha256": "903f60d6e51b5dcec6873c9a1c6c1b7b4d5b08d7e597c675c1f5e00d37a2f613",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        180,
+        1660,
+        2150,
+        1960
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word01-bammassor-COMPLETE-native.png",
+      "sha256": "25cbb5d6e0a7b70916159d2d1909fe210e29105187ce576aec2b678aef3f4ab3",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        335,
+        1665,
+        535,
+        1760
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word01-bammassor-COMPLETE-5x.png",
+      "sha256": "17055abdbea4d173fa48114304fd8de326d20c4045244d1d1565895a5e9d016b",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        335,
+        1665,
+        535,
+        1760
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word02-vayefatzel-COMPLETE-native.png",
+      "sha256": "e1bfd22fe4a10aa9a867277d5eb92be510c2ba342d7514a295a6bebd3c0568c8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1420,
+        1765,
+        1605,
+        1855
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/word02-vayefatzel-COMPLETE-5x.png",
+      "sha256": "6deaa8312e953199ebe2a973485a43e60e0d177c3213f06784baa0d3ab066ae5",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1420,
+        1765,
+        1605,
+        1855
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target01-bammassor-bet-COMPLETE-native.png",
+      "sha256": "7da1a4abfa07d1163bb45433caa812da14eafd72ee6a52f9e1cfa1c9a3877e0e",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        486,
+        1685,
+        527,
+        1755
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target01-bammassor-bet-COMPLETE-15x.png",
+      "sha256": "f1774a74d44c00be0063336464fe5b0f72900ae09dd91e8b25e09f255afa7397",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        486,
+        1685,
+        527,
+        1755
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target02-bammassor-mem-COMPLETE-native.png",
+      "sha256": "70170d2103219b95f3a88476c8e95162824c802637fe2625405be4172ba78c5c",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        447,
+        1685,
+        486,
+        1755
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target02-bammassor-mem-COMPLETE-15x.png",
+      "sha256": "1e318e7bad4921296a0065cbf2dd995eeeb58b72779faaba3144ef20a2a6f4c8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        447,
+        1685,
+        486,
+        1755
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target03-vayefatzel-vav-COMPLETE-native.png",
+      "sha256": "c91312b7dfbda70e58d2bc63e3aa5291a2a6dec8ef9d0e01c7b55bf77d83e684",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1564,
+        1785,
+        1592,
+        1848
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target03-vayefatzel-vav-COMPLETE-15x.png",
+      "sha256": "f12425ebf311d3ad33ba5b0367169086725f37a765b928125a5420fd094551f3",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1564,
+        1785,
+        1592,
+        1848
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target04-vayefatzel-pe-COMPLETE-native.png",
+      "sha256": "bc31b040f047985b962f543a99f6665d772200ca1c9a65358c0a441656e63027",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1513,
+        1785,
+        1547,
+        1848
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target04-vayefatzel-pe-COMPLETE-15x.png",
+      "sha256": "1e47300b2b4b52206eb0e373bd94c60f5cd43973ae9c9e280d72686f53b7eeb7",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1513,
+        1785,
+        1547,
+        1848
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target05-vayefatzel-tsadi-COMPLETE-native.png",
+      "sha256": "eeedd81b82ed822375433a1e22ed787181723921e0a25759f85a8a524686b6b0",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1477,
+        1785,
+        1514,
+        1848
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/target05-vayefatzel-tsadi-COMPLETE-15x.png",
+      "sha256": "022d3a1faa47fded64a31b0ddd32213f10172f1ccc6eb8a49c327d417e54c379",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1477,
+        1785,
+        1514,
+        1848
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-native.png",
+      "sha256": "0ede0384cee237b0e4d5ee0e60c25cf68b6edaeb283001584aedced48bee6658",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        680,
+        1765,
+        890,
+        1855
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-behaskel-COMPLETE-word-5x.png",
+      "sha256": "08b81433fd3683245f494cf3facace01966d7f60c41a0964c847261e5379a586",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        680,
+        1765,
+        890,
+        1855
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-native.png",
+      "sha256": "0c7bfa0169a9fd2ea211b1378590678e3400808d308d5558afaf2b59f421891b",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        200,
+        1765,
+        415,
+        1855
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-melakha-COMPLETE-word-5x.png",
+      "sha256": "b8227dfd0841460dfb8f69057dff475f93b9126faa2423e9e51e3aa755ee26ec",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        200,
+        1765,
+        415,
+        1855
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-native.png",
+      "sha256": "6125e50c443ad7ed6e728e28e9a09a8f6c560d5a2748ced725bafb1ddb44b272",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        200,
+        1665,
+        330,
+        1760
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-netser-COMPLETE-word-5x.png",
+      "sha256": "8e11f622e03d88ad868dc7a6da2bff35fc833fd76e10e9395a3097be46b5fd42",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        200,
+        1665,
+        330,
+        1760
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-native.png",
+      "sha256": "38c6d40c7492421c8bfe16b36dbc78b0f7b1fb069f67d9999076f838b84f2924",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1860,
+        1765,
+        1960,
+        1855
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-noah-COMPLETE-word-5x.png",
+      "sha256": "a2a2e4e27df8f61d106db547bd78ec20c8b1cccd8ae945f77f9da88cd555bb8e",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1860,
+        1765,
+        1960,
+        1855
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-native.png",
+      "sha256": "ed46dcaf4e14f2a23753a03fa58013c3ea6ad84f3908228e2e994f3d4ce0e8a5",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        200,
+        1855,
+        470,
+        1955
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-baavodato-COMPLETE-word-4x.png",
+      "sha256": "953039f8340bcb10f27bfd834d2eeba2fc5cdc042b508fc909b76de02d307bbf",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        200,
+        1855,
+        470,
+        1955
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-native.png",
+      "sha256": "3821fffd0f4cf681d13af84a769b8b2297f17832309de36bd6780a145ed32d1f",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        428,
+        1504,
+        470,
+        1574
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-patah-COMPLETE-15x.png",
+      "sha256": "58b49fff987229602200bd1b5415ad7ec0d67e150dba18f75dd0596bc3a5d2eb",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        428,
+        1504,
+        470,
+        1574
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-native.png",
+      "sha256": "b3de2982216ff58d808aad9a5fb7717341a575778a69727d396a83161ce7837d",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-tsere-COMPLETE-15x.png",
+      "sha256": "795c062c9aead575838dc71b33d156352d1d6f68c87c0c29cc7de802e37dab78",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-native.png",
+      "sha256": "f42225d14f6f33a84108c8557311335da5ea8f9660b04634483cf54c08556d74",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-detached-qamats-COMPLETE-15x.png",
+      "sha256": "6596e0d053aa228a9cb155fe37385e0d02e9389658c9187fd1a9cc7e6071aba8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-native.png",
+      "sha256": "d3c3e23e507e061a1f55857fc37eec0bedd456a7525b2152c8e956104be0d127",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-qamats-COMPLETE-word-4x.png",
+      "sha256": "73acd2c65238d10ed67888ed8c44a4e178c634d1f99749caa489a2f08841832c",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-native.png",
+      "sha256": "2948c1fd48ada7731d53b939b00dbc26e1f89249e3e7952288cbbe05f14c23cb",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        295,
+        1465,
+        560,
+        1605
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-patah-COMPLETE-word-4x.png",
+      "sha256": "531c533fd2be22c99e4e5e40e2307bbd172ab6407e618eaca916a256e71f0cd8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        295,
+        1465,
+        560,
+        1605
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-native.png",
+      "sha256": "a40e9445c75980485ca4a7e1933b866608752e4756cc626486d0bf06419e7287",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1350,
+        340,
+        1460,
+        495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsere-COMPLETE-word-4x.png",
+      "sha256": "9068369c2dd44fc097b142f59e16b056be02033bfdaa0bd7ebf7dbc56ef5e178",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1350,
+        340,
+        1460,
+        495
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-native.png",
+      "sha256": "8953cb2377cd34ecd97618acabb8591dda8f04abc3da5f582547ee12d0d933ef",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1775,
+        1855,
+        1960,
+        1955
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-veyeitiv-COMPLETE-word-5x.png",
+      "sha256": "17dafcd63dd5016240d991e10c5003113fa74be6ad2c318d3c1b4b490a82aabc",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1775,
+        1855,
+        1960,
+        1955
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-native.png",
+      "sha256": "9cf08202a637c0fe440380349ce7d3b38eab1db2c71727a9a279fb181edb8b1f",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        915,
+        1765,
+        1110,
+        1855
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-missaviv-COMPLETE-word-5x.png",
+      "sha256": "64773d0147f0df79dacedd7c340351f0662cf3becb24854a148d3e755938c874",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        915,
+        1765,
+        1110,
+        1855
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-native.png",
+      "sha256": "09a2e86e302b44c122061dde9b9160c137abe5f880b2a887ebbdabac168d387d",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        848,
+        1782,
+        890,
+        1852
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-SHEVA-COMPLETE-15x.png",
+      "sha256": "06f3964de3153b19c09cf4ad52f96acedf1cf0911d2ec0e55ea9c16dd2e07a7e",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        848,
+        1782,
+        890,
+        1852
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-native.png",
+      "sha256": "ac6bac63267854bcd54f6bccb093c5c136cb3c8add1eb443cebcfaeb6d0abf6b",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        369,
+        1785,
+        407,
+        1850
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-mem-SHEVA-COMPLETE-15x.png",
+      "sha256": "62a2b5cd853e5b44613e34ec9ed3af3abfd7ddde66bdd23d45d1a001e5e4ae3e",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        369,
+        1785,
+        407,
+        1850
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-native.png",
+      "sha256": "618b4aad8a8a9500958bc19c33b773b4986be4762e300b405b9d5a7ee6986323",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1902,
+        1767,
+        1929,
+        1845
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-HOLAM-ordinary-foot-COMPLETE-15x.png",
+      "sha256": "c9c07d6aa1cb9f3733ec18f238cc3f90c1596365fc67cea1eed3067f67dbf565",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1902,
+        1767,
+        1929,
+        1845
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-native.png",
+      "sha256": "06f2d6590122acd6c7c86d12f7e206e6708dc80efb4e19154a21234cd94ac84f",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        254,
+        1683,
+        294,
+        1755
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-tsadi-SEGOL-COMPLETE-15x.png",
+      "sha256": "e50a9e46639c8418ec16611b392f7e297d151d76c54f7b0569070274c95d08cb",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        254,
+        1683,
+        294,
+        1755
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-native.png",
+      "sha256": "7259a724eaae06d4c7bbab796ccbbfa6a63e85918ff7baf5594730cc7b5f10a7",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        976,
+        1783,
+        1015,
+        1845
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-bet-HIRIQ-COMPLETE-15x.png",
+      "sha256": "5bafee14e88e56b79ffd440e5c6610001d10a8ac84c5dafe6a0ade9991902072",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        976,
+        1783,
+        1015,
+        1845
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-native.png",
+      "sha256": "11a21fe26e633ab4ee5175b8c8e3953134e1a7ae59dad572042d011369d93a55",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        922,
+        1785,
+        959,
+        1845
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-final-bet-no-underpoint-COMPLETE-15x.png",
+      "sha256": "6dd8b07be9d346b078ffbcf64b73f2c8af02ba7834f8d836debca84ed0ada521",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        922,
+        1785,
+        959,
+        1845
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-native.png",
+      "sha256": "36fe8faaa12dfc16d19a183c7378e63ec20e79ec45793055f627772e1c34b054",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1450,
+        1960,
+        1640,
+        2050
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-okhel-COMPLETE-word-5x.png",
+      "sha256": "4746af01c000c3bf8818b82f4c75a70fe05efb5aaa42a2a85309d35ec5c605fc",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1450,
+        1960,
+        1640,
+        2050
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-native.png",
+      "sha256": "c748d7d3ba95d9cfeddd79b3f6c7c362b2a7f067f85281a0f0d2b8a9b0ae5836",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        730,
+        2785,
+        756,
+        2875
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-15x.png",
+      "sha256": "2d4c444dba86ece2312527751dd6190766b6858248d01e63d316dbaa3aab3bad",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        730,
+        2785,
+        756,
+        2875
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-native.png",
+      "sha256": "ab5fc1efe8f6ed1a57e42938f2bb7af956977ad78795a43f957407508d88fe63",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        550,
+        2760,
+        790,
+        2890
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/control-vav-SHEVA-COMPLETE-word-4x.png",
+      "sha256": "88e0c452c888730ee52f7d81be4d56865c53846feb7666ef2ad3895b845a5b24",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        550,
+        2760,
+        790,
+        2890
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    }
+  ],
+  "nativeFrameCount": 30,
+  "evidenceFileCount": 59,
+  "freshOriginalPageCount": 2,
+  "invariants": {
+    "noSourceScalarChanged": true,
+    "allExistingCombiningOrderPreserved": true,
+    "allFiveSourceNoteObjectsUnchanged": true,
+    "allConsonantsAndSourceUnitBoundariesUnchanged": true,
+    "allOriginalPunctuationAndRestorationDisclosuresPreserved": true,
+    "dailyAndCatholicGatesUntouchedByAuthor": true,
+    "allExportedPNGsFreshlyReplayed": true,
+    "allExportedPNGsWithinOriginalImageBounds": true,
+    "allFiveTargetWordNativeNestingVerified": true,
+    "canonicalStillBaselineAtPublication": true,
+    "priorPinnedReportsUnchanged": true
+  },
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/accepted.json",
+    "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "frameLedger": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/frame-ledger.json",
+    "sha256": "803cf92a63f7cb5ce4a47bb8a9ddeafd6e4383159943e3342cc4dc352ec1e7e8"
+  },
+  "authorPixelReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/author-original-pixel-replay.json",
+    "sha256": "f5a1babc1d5123a2f9c70c7c615e72f8c4823eca4e48d5c843e6ee8f1f8f06b8"
+  },
+  "nativeNestingCheck": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass24-WIS13-11/native-nesting-check.json",
+    "sha256": "57fcbee71a38d80f936be1646a45fd4107015dea887f691db527b690447d0acb"
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "date": "2026-10-21",
+  "pass": 111,
+  "startingNoteCount": 209,
+  "removedNoteCount": 1,
+  "remainingNoteCount": 208,
+  "reviewedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 1,
+  "books": [
+    {
+      "book": "WIS",
+      "beforeNoteCount": 122,
+      "afterNoteCount": 121,
+      "removedNoteIds": [
+        "wis-6-1-vav"
+      ],
+      "retainedInspectedNoteIds": [
+        "wis-6-1-tsadi"
+      ],
+      "beforeDigest": "6395d32857d8402016b42f06eb206182598fa5a1d2f3f1199799af58d81153a0",
+      "afterDigest": "05f4633725394156fa251eb2b21b28c2d26c141918b76ed8f7b4b5feb801ccb0",
+      "sourceChanges": [
+        {
+          "book": "WIS",
+          "chapter": 6,
+          "verse": 1,
+          "before": "וְעַתָּה הַקְשִׁיבוּ מְלָכִים וְהַשְׂכִּילוּ וְהוּסְרוּ שֹׁפְטֵי קַצוי אָרֶץ׃",
+          "after": "וְעַתָּה הַקְשִׁיבוּ מְלָכִים וְהַשְׂכִּילוּ וְהוּסְרוּ שֹׁפְטֵי קַצוֵי אָרֶץ׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 69,
+              "mark": "ֵ",
+              "codePoint": "U+05B5"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-1-point-comparison-20261017-pass111.json",
+          "sha256": "8c01e1beeedd6cd86cdc23ed6c3481daeee428ca0c2d7e2b2e9c2176a3b32d2e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass111.json",
+          "sha256": "fc55be598144b1dd5c864420450f666e2b825e6c0ba6afad947708fe92a8cd00"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 1,
+  "retainedAnchorUpdateDetails": [
+    {
+      "noteId": "wis-6-1-tsadi",
+      "before": "קַצוי",
+      "after": "קַצוֵי"
+    }
+  ],
+  "dailyWholeBookPinsUpdated": 9,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyReviewMetadataUnchangedCount": 11,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-unit6-1-point-comparison-20261017-pass111.json",
+      "sha256": "8c01e1beeedd6cd86cdc23ed6c3481daeee428ca0c2d7e2b2e9c2176a3b32d2e"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass111.json",
+      "sha256": "fc55be598144b1dd5c864420450f666e2b825e6c0ba6afad947708fe92a8cd00"
+    }
+  ],
+  "state": "Applied, regenerated and audited. Recorded Shared, Android and Apple checks passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 208,
+      "removedNotes": 1,
+      "changedArchiveChapters": 1,
+      "changedArchiveMembers": [
+        "chapters/WIS/6.json",
+        "manifest.json"
+      ],
+      "preservedArchiveMembers": 1335,
+      "addedArchiveMembers": [],
+      "removedArchiveMembers": [],
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-22344656435098112d2c35d76763ad8002db785cc903b37352f4a4146fdf54dc.zip",
+      "archiveSHA256": "5a851d323640249bb4d59bf74519c082b4d9be70930e2cc2fd69e3dc8531d54b",
+      "archiveBytes": 3108376,
+      "baselineArchive": "Shared/dist/bibles/masoretic-delitzsch-d71b61d713fedad41da0f98bba737c14ad4c1ad581985239a96267b6a196102f.zip",
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "nativeDataCopyMatches": {
+        "Apple": true,
+        "Android": true,
+        "Windows": true
+      },
+      "dailyCurrentPassChangedRowCount": 0,
+      "dailyHistoricalCatchupChangedRowCount": 0,
+      "dailyActualChangedRowCount": 0
+    },
+    "verification": {
+      "build-bible-library": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/build-bible-library.log",
+        "durationSeconds": 10.88,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/build-bible-library.py",
+          "--sync"
+        ],
+        "logSHA256": "eaffa050e8c5d3de2da69e804ea720cb7065a5d46b57fa0c7f1c57e7b29970dd",
+        "passed": true
+      },
+      "fetch-readings": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/fetch-readings.log",
+        "durationSeconds": 0.37,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/fetch-readings.py",
+          "--localize-only",
+          "--sync"
+        ],
+        "logSHA256": "e992955842d03ea87d10df8bc777939feb45672843f43b92a7c14d9e31efc8fd",
+        "passed": true
+      },
+      "hebrew-deuterocanon": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/hebrew-deuterocanon.log",
+        "durationSeconds": 0.07,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/hebrew_deuterocanon.py"
+        ],
+        "logSHA256": "42bbf7608e36afd3779d18752c0f99f576ce13b6c0e3e576275d87c963610f0e",
+        "passed": true
+      },
+      "asset-deduplication": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/asset-deduplication.log",
+        "durationSeconds": 0.17,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/test-asset-deduplication.py"
+        ],
+        "logSHA256": "ef86bea90e26a5d58506ed3dc0943d23de67bc89de67a92b129d82db5041e42e",
+        "passed": true
+      },
+      "android": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/android.log",
+        "durationSeconds": 21.96,
+        "command": [
+          "./gradlew",
+          "--offline",
+          "testDebugUnitTest",
+          "--rerun"
+        ],
+        "successMarker": "BUILD SUCCESSFUL",
+        "testTaskLines": [
+          "> Task :app:testDebugUnitTest"
+        ],
+        "freshTestTaskExecuted": true,
+        "freshTestResults": {
+          "suites": 73,
+          "tests": 585,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "logSHA256": "7fd1cfd7375d9e7c3d2815e94e8f50e6112824e6ee30e24619087b00b4af5264",
+        "passed": true
+      },
+      "apple": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/apple.log",
+        "durationSeconds": 49.04,
+        "command": [
+          "xcodebuild",
+          "test",
+          "-scheme",
+          "Prosary",
+          "-destination",
+          "platform=macOS",
+          "-parallel-testing-enabled",
+          "NO",
+          "-only-testing:ProsaryTests"
+        ],
+        "successMarker": "** TEST SUCCEEDED **",
+        "logSHA256": "b527088231d3b05688547f0edc0b479bc4af7ffad06df525a1fadf033ddda286",
+        "passed": true
+      }
+    },
+    "sourceMutationApplied": true,
+    "requiredChecksApplicable": true,
+    "requiredChecksMissingOrFailed": [],
+    "checksNotRunOrFailed": [],
+    "protectedRestoredLetterDisclosuresUnchanged": true,
+    "unrelatedTrackedSourceFilesByteUnchanged": true,
+    "unrelatedTrackedSourceFilesChecked": 2274,
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 442,
+      "remainingNoteCount": 208
+    },
+    "preexistingStaleDailyReviewPins": [
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "remainingStaleDailyReviewPins": [
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "preexistingStalePresentationPins": [],
+    "remainingStalePresentationPins": [],
+    "exactDailyCanonicalProjection": {
+      "dailyBoundaryTextUpdates": [],
+      "dailyRowNoteUpdates": [],
+      "changedRows": [],
+      "appointmentsCompared": [
+        {
+          "appointment": "daily|Wisdom 10:10–14",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 10:17–20",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 3:1–8",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 3:1–9",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 4:7–15",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 5:1–5",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 6:12–16",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Wisdom 7:7–14",
+          "payloadAppointmentAbsentAndPreserved": true,
+          "oldAndNewResolverSelectionsAndBoundariesValidated": true
+        }
+      ],
+      "metadataCorrections": [],
+      "historicalCatchupPointCount": 0,
+      "historicalCatchupRetiredIdCount": 0
+    },
+    "verificationRecord": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/verification.json",
+      "sha256": "18b3bcd01ff790bd193e71dba794d74a9c281cae19920f29eaa77a2d5c11ed5c"
+    },
+    "secondGenerationByteStability": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/byte-stability.json",
+      "sha256": "d79313264a5a7441ea954e6017e04934d6ac69dbc35a2094c6289b9b5de4d9ad",
+      "checkedFiles": 113,
+      "passed": true
+    },
+    "integrationAudit": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/integration-audit.json",
+      "sha256": "632bfe020b993285b03adc327486f4a424a5b771f1f2c5244bd6feffa6a997c5"
+    }
+  },
+  "dailyRowNoteUpdates": [],
+  "historicalDailyCatchupPointCount": 0,
+  "historicalDailyCatchupPreviouslyRetiredIdCount": 0
+}

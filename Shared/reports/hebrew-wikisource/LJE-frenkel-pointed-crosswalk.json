@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "book": "LJE",
   "date": "2026-10-02",
-  "status": "complete pointed-source and Brenton-boundary review with one disclosed unreadable dagesh",
+  "status": "complete pointed-source and Brenton-boundary review; all remaining source points resolved",
   "wordingPolicy": "Frenkel 1863 print controls every Hebrew word, spelling, point and punctuation mark. Unicode NFC only; page joins insert one space except after maqaf. Brenton controls the 73 verse divisions. No Hartom text or divisions used.",
   "scanSHA256": "e67bcdad0d6d8e528f79bf8e5ed403c13c1cd220a19cc75038728a0572136345",
   "pageReviewInputs": [
@@ -447,29 +447,15 @@
     {
       "sourceOrdinal": 33,
       "sourceLabel": "לג",
-      "text": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
+      "text": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַּחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
       "pageSpans": [
         {
           "sourcePage": 114,
           "start": 0,
-          "end": 105
+          "end": 106
         }
       ],
-      "sourceNotes": [
-        {
-          "id": "frenkel-lje-f33-nun-dagesh",
-          "kind": "unreadablePoint",
-          "anchor": "תַּנַחְנָה",
-          "occurrence": 1,
-          "letterIndex": 2,
-          "mark": "dagesh",
-          "sourcePages": [
-            114
-          ],
-          "sourceURL": "https://commons.wikimedia.org/wiki/File:Ketuvim_Aharonim_Fraenkel_(Warsaw_1863).djvu?page=114"
-        }
-      ],
-      "textSHA256": "17534d220f90181893a892e74ef149ff9d8857981d7fe58f048d09b9d524b24c"
+      "textSHA256": "20905071e649aff4f5422426759b545d7ca7a1606216afd571ad0370f62fca53"
     },
     {
       "sourceOrdinal": 34,
@@ -1568,10 +1554,10 @@
         {
           "sourceOrdinal": 33,
           "start": 0,
-          "end": 105
+          "end": 106
         }
       ],
-      "hebrew": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
+      "hebrew": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַּחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
       "english": "For how can they be called gods? because women set meat before the gods of silver, gold, and wood.",
       "sourcePages": [
         114
@@ -2274,7 +2260,7 @@
       70,
       72
     ],
-    "sourceNoteCount": 1
+    "sourceNoteCount": 0
   },
   "targetBoundaryReview": {
     "date": "2026-10-02",
@@ -2288,9 +2274,24 @@
       "Verse 64 starts the conclusion that these are not gods; verse 67 begins the signs in heaven, after the blessing/curse of kings in 66.",
       "Verses 70–73 retain the scarecrow, hedge/corpse, rotting purple, and just man as four separate final units.",
       "Frenkel's own lexical and syntactic choices remain, including tenth generation rather than Brenton's seventh. This is a boundary alignment, not a new Hebrew translation.",
-      "The only disclosed mark is the first-nun dagesh in Frenkel section 33 / target verse 30. The readable patah stays in the text."
+      "The first-nun dagesh in Frenkel section33 / target verse30 was resolved from the original native scan on2026-10-17 with independent crop corroboration. The readable patah and every source/target word boundary remain intact; no source-note omission remains."
     ],
     "unresolvedBoundaries": [],
     "missingOrDuplicatedSourceWords": 0
-  }
+  },
+  "sourceCorrections": [
+    {
+      "date": "2026-10-17",
+      "retiredNoteId": "frenkel-lje-f33-nun-dagesh",
+      "sourceOrdinal": 33,
+      "targetVerse": 30,
+      "beforeTextSHA256": "17534d220f90181893a892e74ef149ff9d8857981d7fe58f048d09b9d524b24c",
+      "afterTextSHA256": "20905071e649aff4f5422426759b545d7ca7a1606216afd571ad0370f62fca53",
+      "scope": "One source-visible nun dagesh; exact span lengths increase by one Unicode scalar. Source/target words, boundary positions between words, numbering, pages, order and English counterpart remain unchanged.",
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass3.json",
+        "sha256": "8af0dd5b77f341158e1b2c15c73459cb7ddccabb9c82cf1e810c425f169bf540"
+      }
+    }
+  ]
 }

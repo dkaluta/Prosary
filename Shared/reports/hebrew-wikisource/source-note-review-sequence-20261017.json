@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "status": "First review cycle in progress; second ambiguity cycle explicitly requested",
+  "userInstruction": "after finishing to review all, do another pass on the ambiguous",
+  "scope": "Hebrew deuterocanonical source annotations, preserving source-certified text, whole units, witnesses and verified Catholic presentation",
+  "firstCycle": {
+    "order": "Review annotated daily-reading units first, then remaining unreviewed complete source units in descending note count.",
+    "completionCondition": "Every annotated source unit in the cycle inventory has a bounded original-source review and an explicit disposition for each annotation.",
+    "retainedUnits": "Keep ambiguous points disclosed and continue to unreviewed units. Do not repeatedly reopen a retained unit while other first-cycle units remain unreviewed."
+  },
+  "secondCycle": {
+    "required": true,
+    "startsAfter": "The first cycle completion condition is met.",
+    "scope": "Reinspect every still-ambiguous unreadable-point disclosure, including positions retained in daily-reading units.",
+    "order": "Daily-reading units first, then complete source units in descending remaining ambiguous-note count.",
+    "method": "Make another original-source comparison using complete glyphs, whole words, numbered context, source continuations and literal same-font positive and competing controls. Record fresh decisions even when the point remains unreadable."
+  },
+  "invariants": [
+    "Retire a disclosure only when source evidence supports its exact point decision.",
+    "Preserve every existing scalar and its order when adding a certified point.",
+    "Keep the five restored-letter disclosures.",
+    "Preserve source occurrences, combined units, witnesses, gaps and printed labels.",
+    "Keep the deuterocanonical section after the complete Masoretic ordering and before the New Testament, with verified Catholic relative order and numbering.",
+    "Regenerate native data from Shared and verify byte parity and appropriate checks after an applied batch."
+  ],
+  "currentPriorityEvidence": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-priority-20261017-after-pass15.json",
+    "sha256": "3a3395b55c7069bde2363fcf12b0c7948ddca136226da3c31f1b09d55488b947"
+  }
+}

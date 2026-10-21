@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 153,
+  "integrationPass": 153,
+  "preparationID": 248,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation248-WIS-12-15/source-provenance.json",
+    "sha256": "39db5dc5e2885f6f66363f38736e844e9aaee1d4fac815e54857978df292f813"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-12-15-kaf"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-12-15-kaf",
+      "book": "WIS",
+      "chapter": 12,
+      "verse": 15,
+      "anchorBefore": "תְּכַלְכּל",
+      "letterIndex": 4,
+      "decision": "retainNote",
+      "finding": "Strict offline independent pypdf single embedded native image extraction on saved PDF169; own Pillow/NumPy/SciPy native arrays and literal ASCII. Exact native crops and integer NEAREST only. Old exactRGB replay locates only; no OCR/image-viewer/rendering/enhancement/smoothing/grammar/normalization/expected spelling or borrowed marks.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/77/77632aef4a5d374a2fc12162e4250908058f3f3a9ae8cd6c452c61079e835029.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/77/77632aef4a5d374a2fc12162e4250908058f3f3a9ae8cd6c452c61079e835029.bin",
+      "inspectedBounds": [
+        1846,
+        1718,
+        1881,
+        1780
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation248-WIS-12-15/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 12,
+    "verse": 15,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation248-WIS-12-15/independent-review.json",
+    "sha256": "8a0664b0a093910d6069c5f59932796eccfbccbd0e16dda0556ec72c6890a06b"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation248-WIS-12-15/primary-preparation.json",
+    "sha256": "94066e08b4014a0f9c32388178c3854c28aea575a22cd8b5e62a2327bab6de3a"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation248-WIS-12-15/consensus-preparation.json",
+    "sha256": "004081f1e956d4c968f0698bf7578dabb1be29a4a7730943f43fa13aae3fd319"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

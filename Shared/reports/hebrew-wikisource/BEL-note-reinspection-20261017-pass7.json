@@ -1,0 +1,1235 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 7,
+  "book": "BEL",
+  "status": "One original-source vowel independently certified; approved proposal awaits root integration. Other screened notes retained.",
+  "scope": "Preliminary original-pixel screen of30 non-vav-vowel targets; focused manually identified PSIK/existing-A2 comparison of five remaining point notes at four anchors. Lower Theodotion BEL chapter1 only, A2pages242–247. This is not an all222-note review or a new whole-book transcription.",
+  "method": "Unmodified source-native crops with integer nearest-neighbor enlargement. The PSIK printed excerpt supplies discovery views. The accepted resh qamats is certified from the original A2 embedded pixels by same-page homologous qamats and bare-resh controls, despite a connection between point and letter. No OCR, grammar-based points, sharpening, contrast changes, interpolation or upper-Septuagint substitution. Broad initial projected PSIK frames were sometimes clipped or miscentered and are excluded from point decisions; only manually identified frames are evidence.",
+  "sourcePDF": {
+    "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+    "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5"
+  },
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/BEL.json",
+  "canonicalInputSHA256": "52147cc352f9f9c70369538505258b3c5c9731a912ae6eeef454103c0d0121b1",
+  "canonicalOutputSHA256": "52147cc352f9f9c70369538505258b3c5c9731a912ae6eeef454103c0d0121b1",
+  "canonicalChanged": false,
+  "canonicalApplicationState": "No canonical, central-review, daily or generated mutations by this report author; root integrates approved proposal.",
+  "reviewedNoteCount": 30,
+  "focusedPSIKNoteCount": 5,
+  "resolutionCount": 1,
+  "retainedNoteCount": 29,
+  "beforeBookNoteCount": 222,
+  "expectedRemainingBookNoteCountAfterIntegration": 221,
+  "proposedChanges": [
+    {
+      "noteID": "bel-1-36-247-baseara36-letter4-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "בִסְעָרה",
+      "old": "בִסְעָרה",
+      "new": "בִסְעָרָה",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "letter": "ר",
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B8"
+      ],
+      "retiredKind": "unreadablePoint",
+      "sourcePage": 247,
+      "finding": "The original source resh has an unmistakable horizontal crossbar extending to both sides of the shaft and a substantial perpendicular stem descending below it. The exact same-font, same-page resh in רעתו has this same joined qamats morphology; a bare resh in ויאמר has only a plain terminating foot. The same-word ayin supplies another literal qamats control. The newer PSIK rendering led to the comparison but the original A2 pixels certify the mark.",
+      "decision": "approvedLiteralPoint",
+      "independentApproval": "Root independently viewed the newer crop and four original A2 target/positive/negative comparator crops, and explicitly approved the resh qamats from original source geometry.",
+      "preservation": "Add only resh qamats; retain all other points, consonants, punctuation, source-page boundaries and other notes.",
+      "certificationEvidence": [
+        "baseara36-old-word",
+        "baseara36-old-resh",
+        "baseara36-old-ayin",
+        "raato42-old-resh-qamats",
+        "vayomer37-old-bare-resh"
+      ],
+      "discoveryEvidence": [
+        "baseara36-new",
+        "baseara36-resh-tight-new",
+        "baseara36-ayin-qamats-control-new",
+        "raato42-qamats-resh-control-word-new",
+        "vayomer37-bare-resh-control-word-new"
+      ]
+    }
+  ],
+  "resolutions": [
+    {
+      "noteID": "bel-1-36-247-baseara36-letter4-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "בִסְעָרה",
+      "old": "בִסְעָרה",
+      "new": "בִסְעָרָה",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "letter": "ר",
+      "mark": "vowel",
+      "addedScalars": [
+        "U+05B8"
+      ],
+      "retiredKind": "unreadablePoint",
+      "sourcePage": 247,
+      "finding": "The original source resh has an unmistakable horizontal crossbar extending to both sides of the shaft and a substantial perpendicular stem descending below it. The exact same-font, same-page resh in רעתו has this same joined qamats morphology; a bare resh in ויאמר has only a plain terminating foot. The same-word ayin supplies another literal qamats control. The newer PSIK rendering led to the comparison but the original A2 pixels certify the mark.",
+      "decision": "approvedLiteralPoint",
+      "independentApproval": "Root independently viewed the newer crop and four original A2 target/positive/negative comparator crops, and explicitly approved the resh qamats from original source geometry.",
+      "preservation": "Add only resh qamats; retain all other points, consonants, punctuation, source-page boundaries and other notes.",
+      "certificationEvidence": [
+        "baseara36-old-word",
+        "baseara36-old-resh",
+        "baseara36-old-ayin",
+        "raato42-old-resh-qamats",
+        "vayomer37-old-bare-resh"
+      ],
+      "discoveryEvidence": [
+        "baseara36-new",
+        "baseara36-resh-tight-new",
+        "baseara36-ayin-qamats-control-new",
+        "raato42-qamats-resh-control-word-new",
+        "vayomer37-bare-resh-control-word-new"
+      ]
+    }
+  ],
+  "focusedRetentions": [
+    {
+      "noteID": "bel-1-21-245-vayeesof-wide-letter2-vowel",
+      "decision": "retainNote",
+      "evidence": [
+        "vayeesof21-new",
+        "vayeesof21-yod-new",
+        "vayeesof21-yod-old"
+      ],
+      "finding": "The isolated lower mark has a wide top and a broad short lower center. The available pixels do not uniquely distinguish coalesced multi-dot geometry from a bar-and-stem vowel; no point is supplied from expected reading."
+    },
+    {
+      "noteID": "bel-1-41-247-milvadekha41-letter3-vowel",
+      "decision": "retainNote",
+      "evidence": [
+        "milvadekha41-new"
+      ],
+      "finding": "The bet foot and lower point remain a fused broad mass; complete point morphology is not uniquely recoverable."
+    },
+    {
+      "noteID": "bel-1-41-247-milvadekha41-letter4-vowel",
+      "decision": "retainNote",
+      "evidence": [
+        "milvadekha41-new"
+      ],
+      "finding": "The dalet shaft has a small basal expansion, but the point shape is too poorly resolved to classify or certify absent."
+    },
+    {
+      "noteID": "bel-1-42-247-kherega42-letter2-vowel",
+      "decision": "retainNote",
+      "evidence": [
+        "kherega42-new"
+      ],
+      "finding": "The resh lower cluster remains a compact thickening with short downward continuation; available geometry does not distinguish vowel types securely."
+    }
+  ],
+  "screenedNotes": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "id": "bel-1-1-242-vayeasef-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֵאָסּף",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        242
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=242",
+      "letter": "ס",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "id": "bel-1-1-242-name-letter6-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "אַשְׁטוֹאַגס",
+      "occurrence": 1,
+      "letterIndex": 6,
+      "mark": "vowel",
+      "sourcePages": [
+        242
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=242",
+      "letter": "ג",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "id": "bel-1-1-243-mamlkhetu-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "מַמְלַכתוֹ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        243
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=243",
+      "letter": "כ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 8,
+      "blockId": null,
+      "id": "bel-1-8-243-vayomer8-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        243
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=243",
+      "letter": "מ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "id": "bel-1-17-244-vayashkem-wide-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַשְׁכּם",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        244
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=244",
+      "letter": "כ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 19,
+      "blockId": null,
+      "id": "bel-1-19-245-vayabet19-letter3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַבּט",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        245
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=245",
+      "letter": "ב",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "blockId": null,
+      "id": "bel-1-20-245-vayomer20-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        245
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=245",
+      "letter": "מ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 21,
+      "blockId": null,
+      "id": "bel-1-21-245-vayeesof-wide-letter2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויאֱסֹף",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        245
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=245",
+      "letter": "י",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 23,
+      "blockId": null,
+      "id": "bel-1-23-245-vayaavduhu23-letter5-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַעַבְדהוּ",
+      "occurrence": 1,
+      "letterIndex": 5,
+      "mark": "vowel",
+      "sourcePages": [
+        245
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=245",
+      "letter": "ד",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "id": "bel-1-27-246-vayikah-letter3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויִקּח",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "ק",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "id": "bel-1-27-246-vayvashelm-letter3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויְבשְׁלֵם",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "ב",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "id": "bel-1-27-246-vayokhal-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאכל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "כ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "id": "bel-1-27-246-vayibaka-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויִבָּקע",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "ק",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "blockId": null,
+      "id": "bel-1-28-246-kaasher-letter1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "כאֲשֶׁר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "כ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "blockId": null,
+      "id": "bel-1-28-246-vayomru-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאמרוּ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "מ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 29,
+      "blockId": null,
+      "id": "bel-1-29-246-vayomru-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאמרוּ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "מ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "blockId": null,
+      "id": "bel-1-33-246-bishel-letter2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "בִשׁל",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "ש",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "blockId": null,
+      "id": "bel-1-33-246-vayetse-letter3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֵצא",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "צ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "blockId": null,
+      "id": "bel-1-33-246-laset-letter2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "לָשׂאת",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "ש",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "blockId": null,
+      "id": "bel-1-33-246-vayabel-bet-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויָבל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "letter": "ב",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 36,
+      "blockId": null,
+      "id": "bel-1-36-247-baseara36-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "בִסְעָרה",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ר",
+      "decision": "approvedLiteralPoint",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "The original source resh has an unmistakable horizontal crossbar extending to both sides of the shaft and a substantial perpendicular stem descending below it. The exact same-font, same-page resh in רעתו has this same joined qamats morphology; a bare resh in ויאמר has only a plain terminating foot. The same-word ayin supplies another literal qamats control. The newer PSIK rendering led to the comparison but the original A2 pixels certify the mark."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 37,
+      "blockId": null,
+      "id": "bel-1-37-247-vayomer37-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "מ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 38,
+      "blockId": null,
+      "id": "bel-1-38-247-vayomer38-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹּאמר",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "מ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "blockId": null,
+      "id": "bel-1-39-247-vayokhal39-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויֹאכל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "כ",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 40,
+      "blockId": null,
+      "id": "bel-1-40-247-bayom40-letter1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "בּיוֹם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ב",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 41,
+      "blockId": null,
+      "id": "bel-1-41-247-milvadekha41-letter3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "מִלְּבדּךָ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ב",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 41,
+      "blockId": null,
+      "id": "bel-1-41-247-milvadekha41-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "מִלְּבדּךָ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ד",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "blockId": null,
+      "id": "bel-1-42-247-vayashlekh42-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַּשְׁלךְ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ל",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "blockId": null,
+      "id": "bel-1-42-247-vayitarfu42-letter4-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויִטָּרפוּ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ר",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "blockId": null,
+      "id": "bel-1-42-247-kherega42-letter2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "כְרגַע",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        247
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247",
+      "letter": "ר",
+      "decision": "retainNote",
+      "scope": "Preliminary original-pixel non-vav-vowel screen; not an all-note review",
+      "finding": "No additional vowel class was certified in this bounded original-pixel screen. Prior unresolved point remains; this entry does not assert intentional absence."
+    }
+  ],
+  "evidenceCrops": [
+    {
+      "name": "baseara36-old-resh",
+      "source": {
+        "kind": "originalA2",
+        "sourcePage": 247,
+        "nativeImage": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+        "sha256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4"
+      },
+      "nativeBounds": [
+        1967,
+        1352,
+        2031,
+        1442
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-old-resh-native.png",
+          "sha256": "c68037dbe588df5b1de07b000c19d36ed93782bbaf2453e8865d75b4530249d4",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-old-resh-12x.png",
+          "sha256": "354cd17c0a64b928b5683c76d68f275c148198097bffe62f76d7dc4dcda4841d",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "baseara36-old-ayin",
+      "source": {
+        "kind": "originalA2",
+        "sourcePage": 247,
+        "nativeImage": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+        "sha256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4"
+      },
+      "nativeBounds": [
+        2010,
+        1352,
+        2070,
+        1442
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-old-ayin-native.png",
+          "sha256": "da9404e3a4c09fe588a6f05403b9b4e3199447ca0625d71a5e88de4d6cf19742",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-old-ayin-12x.png",
+          "sha256": "8dfa45389725b53b45caf85bd7351d406e283e0df16059f57a1e1666e01cc3a0",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "vayomer37-old-bare-resh",
+      "source": {
+        "kind": "originalA2",
+        "sourcePage": 247,
+        "nativeImage": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+        "sha256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4"
+      },
+      "nativeBounds": [
+        398,
+        1352,
+        431,
+        1442
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayomer37-old-bare-resh-native.png",
+          "sha256": "befacfde50d83be5ec7653c86633ed6ac1affe32279d770861732ddcf8c3bbcf",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayomer37-old-bare-resh-12x.png",
+          "sha256": "a28adc3072a09a8a7026af663c12f92606e8cba82932e2ea235be67def274bc5",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "raato42-old-locator",
+      "source": {
+        "kind": "originalA2",
+        "sourcePage": 247,
+        "nativeImage": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+        "sha256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4"
+      },
+      "nativeBounds": [
+        500,
+        1920,
+        900,
+        2030
+      ],
+      "scale": 3,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/raato42-old-locator-native.png",
+          "sha256": "fb448acc73e893cff815a1974ba359514c64e6cb4c48217a226e5a88ef3e2602",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/raato42-old-locator-3x.png",
+          "sha256": "9d1151b4ab3881d6f9e589a5050db04e0275a51df6cf1765e7f9a2609e17516b",
+          "scale": 3,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "raato42-old-resh-qamats",
+      "source": {
+        "kind": "originalA2",
+        "sourcePage": 247,
+        "nativeImage": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+        "sha256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4"
+      },
+      "nativeBounds": [
+        625,
+        1920,
+        675,
+        2030
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/raato42-old-resh-qamats-native.png",
+          "sha256": "dd33abded9bc1eb2a50ec14b529d0087526f625ee97fd5bcf6dc35cd866d9efd",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/raato42-old-resh-qamats-12x.png",
+          "sha256": "f89bb4dcad6814d721a117d069bc2409b295a27096f1c637e84ed7a64f1701a6",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "vayeesof21-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "excerptPage": 4,
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-04-1-native.png",
+        "sha256": "8574a67fc8a6fe8b4da7f937af37c1111b54cba2fbc96e9a5d882d8757e87a1b"
+      },
+      "nativeBounds": [
+        670,
+        837,
+        735,
+        875
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayeesof21-new-native.png",
+          "sha256": "527ef984ac2f23000152e9fcd2ab3ca0cd2fdb7b7ff5d350bf356d2eb4c3b192",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayeesof21-new-12x.png",
+          "sha256": "ea7d655db0479f8d6cc6080863881116400f2246f25a63dfbcd975a00e98e5a5",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "baseara36-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "excerptPage": 6,
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-06-1-native.png",
+        "sha256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81"
+      },
+      "nativeBounds": [
+        715,
+        515,
+        800,
+        555
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-new-native.png",
+          "sha256": "9ae0fefbf94b8cc2fa232148ef50ddea24e2f6e72b7f32c1934b25d4cdc16dd6",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-new-12x.png",
+          "sha256": "9ef76b8d2b01bd7b72674072f8a9e9934e560f929bb783521a4b178f92af49a8",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "milvadekha41-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "excerptPage": 6,
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-06-1-native.png",
+        "sha256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81"
+      },
+      "nativeBounds": [
+        612,
+        725,
+        707,
+        765
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/milvadekha41-new-native.png",
+          "sha256": "af46fd50f44ff1abcd6aff97a938cc0b394def509dd98196b8337f8ff46f768d",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/milvadekha41-new-12x.png",
+          "sha256": "f78cf09edb4a50817eae1bdc33cee9c9c3c757899f6c8a3a99108ccb4e0ce567",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "kherega42-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "excerptPage": 6,
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-06-1-native.png",
+        "sha256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81"
+      },
+      "nativeBounds": [
+        601,
+        760,
+        674,
+        801
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/kherega42-new-native.png",
+          "sha256": "4ec584bccd1604ace250b881058c4d8db242f2094e2309ed0522b664b21e0e42",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/kherega42-new-12x.png",
+          "sha256": "50a33fee91402fd179b51487fd845d127a812aff5a9df90620881800182eb9a7",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "baseara36-resh-tight-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "excerptPage": 6,
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-06-1-native.png",
+        "sha256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81"
+      },
+      "nativeBounds": [
+        740,
+        521,
+        756,
+        553
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-resh-tight-new-native.png",
+          "sha256": "008d1b3979a39360016394459e3f567bf69eca45e4db23280bc5e258cdf2b898",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-resh-tight-new-12x.png",
+          "sha256": "ea2dee0170afe26dea1ab469861f453ae807a3ab209f39eb23daca876677c464",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "baseara36-ayin-qamats-control-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "excerptPage": 6,
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-06-1-native.png",
+        "sha256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81"
+      },
+      "nativeBounds": [
+        754,
+        521,
+        770,
+        553
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-ayin-qamats-control-new-native.png",
+          "sha256": "8f2692350298b97fa42d08d89b02133bab191e7612c79dac89c8a26aeaf1eba2",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-ayin-qamats-control-new-12x.png",
+          "sha256": "34cd3cd83d6f6af42a821f58af78edf82e394a7bbd008984b6875144a9b87d2b",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "vayomer37-bare-resh-control-word-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "excerptPage": 6,
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-06-1-native.png",
+        "sha256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81"
+      },
+      "nativeBounds": [
+        149,
+        517,
+        220,
+        555
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayomer37-bare-resh-control-word-new-native.png",
+          "sha256": "e08875b3d7a5fd793a004e24934ee1aa778fe712da171b3a9930d8ff59322b51",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayomer37-bare-resh-control-word-new-12x.png",
+          "sha256": "8ef530bd4ad18c2294f7d423fbedff87e2686c8070f2d520c1034493b66e9354",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "raato42-qamats-resh-control-word-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "excerptPage": 6,
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-06-1-native.png",
+        "sha256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81"
+      },
+      "nativeBounds": [
+        195,
+        727,
+        277,
+        766
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/raato42-qamats-resh-control-word-new-native.png",
+          "sha256": "7291579195150bb5cff47bfb689a9fbb67537afb037199c20c5aa725aa41cb21",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/raato42-qamats-resh-control-word-new-12x.png",
+          "sha256": "f7703769d5e06a66e442d4bee686acfc8cfab17f888c505be72b6dcba685770b",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "vayeesof21-yod-new",
+      "source": {
+        "kind": "PSIKPrintedExcerpt",
+        "nativeImage": "/private/tmp/prosary-psik-authenticated-20261017/user-A-excerpt-04-1-native.png",
+        "sha256": "8574a67fc8a6fe8b4da7f937af37c1111b54cba2fbc96e9a5d882d8757e87a1b",
+        "excerptPage": 4
+      },
+      "nativeBounds": [
+        703,
+        841,
+        721,
+        874
+      ],
+      "scale": 16,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayeesof21-yod-new-native.png",
+          "sha256": "0af3e8f1b1bdf7ec3a491f072b0183e5cc5003d2d0675455536c5c70de9a5bdf",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayeesof21-yod-new-16x.png",
+          "sha256": "04b78d673313610d2c89fa8388b773d5cac4ecb50794467fde1c2e95d619817a",
+          "scale": 16,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "vayeesof21-yod-old",
+      "source": {
+        "kind": "originalA2",
+        "nativeImage": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+        "sha256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+        "sourcePage": 245
+      },
+      "nativeBounds": [
+        1836,
+        2145,
+        1900,
+        2235
+      ],
+      "scale": 12,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayeesof21-yod-old-native.png",
+          "sha256": "9c32b3477b9f36f75cb061f58d4387304ce640091277f6f1d0156700494026ac",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/vayeesof21-yod-old-12x.png",
+          "sha256": "a04b0a3001b545f28f110dc1d3fb3683457f17d9487b586f48acc91e42cfe07f",
+          "scale": 12,
+          "nativePixelReplay": true
+        }
+      ]
+    },
+    {
+      "name": "baseara36-old-word",
+      "source": {
+        "kind": "originalA2",
+        "sourcePage": 247,
+        "nativeImage": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+        "sha256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4"
+      },
+      "nativeBounds": [
+        1930,
+        1350,
+        2160,
+        1445
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-old-word-native.png",
+          "sha256": "f7528b707bd97e0573f02c04fe70a9b5d5214f7eedc7a2d5ecf310810a019d87",
+          "scale": 1,
+          "nativePixelReplay": true
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/baseara36-old-word-3x.png",
+          "sha256": "5240858a31e21d6f4cf3c743ab2627daea00e1959ee5fc7799d2ebe82a3949e9",
+          "scale": 3,
+          "nativePixelReplay": true
+        }
+      ]
+    }
+  ],
+  "priorFindingCorrection": {
+    "priorReport": "BEL-note-reinspection-20261017-pass4.json",
+    "noteID": "bel-1-36-247-baseara36-letter4-vowel",
+    "finding": "Prior retention treated the joined cross/diamond as unclassifiable. Fresh exact same-page qamats and bare-letter controls establish that the crossbar plus deep lower stem has diagnostic qamats morphology even without physical separation."
+  },
+  "sourceInspectionReport": "Shared/reports/hebrew-wikisource/PSIK-authenticated-source-inspection-20261017.json",
+  "limits": [
+    "PSIK physical-scan independence is unproven. Gray pixels or lower saturation alone do not establish a new photographic witness.",
+    "No detached same-font A2 yod-dagesh control was discovered; unresolved yod notes were not retired.",
+    "The initial request for20 completed connected-glyph comparator sets was superseded by authenticated-source inspection; this report does not claim20 full comparator studies."
+  ],
+  "priorReportsPreserved": [
+    "BEL-note-reinspection-20261017-pass4.json",
+    "Kahana-public-scan-recovery-20261017.json"
+  ]
+}

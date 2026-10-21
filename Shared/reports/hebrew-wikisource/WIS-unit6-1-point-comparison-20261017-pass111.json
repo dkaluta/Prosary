@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 111,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/source-provenance.json",
+    "sha256": "ca39e9516c2c4796ac637e59de1ebefa5face44be61d3abec9a0485bdcd41293"
+  },
+  "sourceNotesBefore": 122,
+  "sourceNotesAfter": 121,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-6-1-vav"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-6-1-tsadi"
+  ],
+  "contentSHA256Before": "6395d32857d8402016b42f06eb206182598fa5a1d2f3f1199799af58d81153a0",
+  "contentSHA256After": "05f4633725394156fa251eb2b21b28c2d26c141918b76ed8f7b4b5feb801ccb0",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-6-1-tsadi",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 1,
+      "anchorBefore": "קַצוי",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": null,
+      "targetCapture": "extension-volumeA-500-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-500-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1530,
+        1230,
+        1589,
+        1301
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-6-1-vav",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 1,
+      "anchorBefore": "קַצוי",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": null,
+      "targetCapture": "extension-volumeA-500-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-500-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1486,
+        1230,
+        1514,
+        1314
+      ],
+      "markProposed": "Tsere",
+      "codePoint": "U+05B5",
+      "pointBounds": null,
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 6,
+      "verse": 1,
+      "before": "וְעַתָּה הַקְשִׁיבוּ מְלָכִים וְהַשְׂכִּילוּ וְהוּסְרוּ שֹׁפְטֵי קַצוי אָרֶץ׃",
+      "after": "וְעַתָּה הַקְשִׁיבוּ מְלָכִים וְהַשְׂכִּילוּ וְהוּסְרוּ שֹׁפְטֵי קַצוֵי אָרֶץ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 6,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-6-1-tsadi",
+      "before": "קַצוי",
+      "after": "קַצוֵי"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/independent-review.json",
+    "sha256": "73752a9e19b0d4832e8dd7f61775861150a5d550189aa1a44c897d04c277b665"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/primary-preparation.json",
+    "sha256": "f4efeb26dbef289d0777d8550620fed03eb88e4c4d7803542db6e11abda0bfb1"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass111-WIS-6-1/consensus-preparation.json",
+    "sha256": "2a67c90475f0c425bdd97374dd1049d1c974401d75c590a70c536e5a8531404e"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

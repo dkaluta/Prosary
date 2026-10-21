@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 99,
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass99-SUS-1-23/source-provenance.json",
+    "sha256": "e9cb343074bcdcefc622c01728e8e863a5dff25dc1492af174fa3a21f1ec5647"
+  },
+  "sourceNotesBefore": 13,
+  "sourceNotesAfter": 11,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "sus-1-23-letter-1-vowel",
+    "sus-1-23-letter-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "c311311bf574280d9ab5fae9e262b3c0ec77561cfe7af5c1b7d429a5a542fb32",
+  "contentSHA256After": "cecf654e7fbf4b106ca5c2faa02ee97d4e6f315dd54552b5a6f238d824dffa66",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "sus-1-23-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "The first physical alef has three completely detached rounded point components: an upper left/right pair at the same baseline and a lower centered point. The left upper point is smaller but remains independently white-separated and clearly round. This downward triangle is Segol. The target's own pixels, rather than unit22's similar word, establish the added vowel.",
+      "targetCapture": "extension-volumeA-584-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1384,
+        1337,
+        1443,
+        1406
+      ],
+      "markProposed": "segol",
+      "codePoint": "U+05B6",
+      "pointBounds": [
+        1399,
+        1412,
+        1425,
+        1435
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass99-SUS-1-23/consensus-preparation.json"
+    },
+    {
+      "noteId": "sus-1-23-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "Below the third physical sin are three white-separated rounded components forming the downward Segol triangle. The upper pair shares y1412; the third starts y1427 at the horizontal center. The existing upper sin dot and neighboring ayin hataf-Segol are separately placed and preserved.",
+      "targetCapture": "extension-volumeA-584-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1230,
+        1332,
+        1310,
+        1409
+      ],
+      "markProposed": "segol",
+      "codePoint": "U+05B6",
+      "pointBounds": [
+        1251,
+        1412,
+        1276,
+        1437
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass99-SUS-1-23/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 23,
+      "before": "וְעַתָּה טוֹב לִי כִּי לֹא אעֱשׂנָּה וְאֶפֹּל בִּידֵיכֶם מֵאֲשֶׁר אֶחֱטָא לַיְיָ׃",
+      "after": "וְעַתָּה טוֹב לִי כִּי לֹא אֶעֱשֶׂנָּה וְאֶפֹּל בִּידֵיכֶם מֵאֲשֶׁר אֶחֱטָא לַיְיָ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 23,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass99-SUS-1-23/independent-review.json",
+    "sha256": "59c25027b6aa4475674cfdd2852d6946e9ebd533cf5f5b8da8459c9cd055575d"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass99-SUS-1-23/primary-preparation.json",
+    "sha256": "0f941124939494b272fece203a4e1d8c6cd22832e671839431841bf56e0fc50f"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass99-SUS-1-23/consensus-preparation.json",
+    "sha256": "bc3a37bfa8f1d4c158657896d71e5a06f6bcbac81577866e176f49cc6c7a9ee4"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

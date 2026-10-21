@@ -1,0 +1,319 @@
+{
+  "date": "2026-10-18",
+  "pass": 36,
+  "startingNoteCount": 421,
+  "removedNoteCount": 15,
+  "remainingNoteCount": 406,
+  "books": [
+    {
+      "book": "S3Y",
+      "beforeNoteCount": 48,
+      "afterNoteCount": 33,
+      "removedNoteIds": [
+        "s3y-1-4-word1-letter1-vowel",
+        "s3y-1-4-word15-letter1-vowel",
+        "s3y-1-4-word15-letter2-dagesh",
+        "s3y-1-4-word3-letter1-vowel",
+        "s3y-1-4-word4-letter1-vowel",
+        "s3y-1-4-word6-letter1-vowel",
+        "s3y-1-4-word6-letter2-dagesh",
+        "s3y-1-tail-word4-letter1-vowel",
+        "s3y-1-tail-word5-letter1-vowel",
+        "s3y-1-tail-word6-letter1-vowel",
+        "s3y-1-tail-word7-letter1-vowel",
+        "s3y-1-tail-word7-letter2-dagesh",
+        "s3y-1-tail-word8-letter1-vowel",
+        "s3y-1-tail-word9-letter1-vowel",
+        "s3y-1-tail-word9-letter2-dagesh"
+      ],
+      "beforeDigest": "9f5a3affa9f5348997e103480753bd094d1cd5a71359f98dc6461907831b4683",
+      "afterDigest": "0e96fc66b82e6fb907369d64015bf0b23cd8463e06b103e22250f63c3f8e45f5",
+      "sourceChanges": [
+        {
+          "book": "S3Y",
+          "chapter": 1,
+          "blockId": "s3y-closing-narrative",
+          "before": "ויְהִי כַּאֲשֶׁר שָׁמַע הַמֶּלֶךְ אוֹתָם מְהַלְלִים ויָּקָם ויַּרְא אוֹתָם כִּי חַיִּים הֵם ויִתְמַהּ הַמֶּלֶךְ נְבוּכַדְנֶאצַּר ויְמַהֵר לָקוּם ויֹאמֶר לְאֹהֲבָיו — — —׃",
+          "after": "וַיְהִי כַּאֲשֶׁר שָׁמַע הַמֶּלֶךְ אוֹתָם מְהַלְלִים וַיָּקָם וַיַּרְא אוֹתָם כִּי חַיִּים הֵם וַיִּתְמַהּ הַמֶּלֶךְ נְבוּכַדְנֶאצַּר וַיְמַהֵר לָקוּם וַיֹּאמֶר לְאֹהֲבָיו — — —׃",
+          "retiredNoteIds": [
+            "s3y-1-tail-word4-letter1-vowel",
+            "s3y-1-tail-word5-letter1-vowel",
+            "s3y-1-tail-word6-letter1-vowel",
+            "s3y-1-tail-word7-letter1-vowel",
+            "s3y-1-tail-word7-letter2-dagesh",
+            "s3y-1-tail-word8-letter1-vowel",
+            "s3y-1-tail-word9-letter1-vowel",
+            "s3y-1-tail-word9-letter2-dagesh"
+          ]
+        },
+        {
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 4,
+          "before": "ויָּקָם עֲזַרְיָה ויִּתְפַּלֵּל ויִּפְתַּח אֶת־פִּיו ויוֹדֶה אֶת־יְיָ הוּא וַחֲבֵרָיו בְּתוֹךְ־הָאֵשׁ וְהַכַּשְׂדִּים הֵסִיקוּ אֶת־הַכִּבְשָׁן מְאֹד ויֹאמְרוּ׃",
+          "after": "וַיָּקָם עֲזַרְיָה וַיִּתְפַּלֵּל וַיִּפְתַּח אֶת־פִּיו וַיּוֹדֶה אֶת־יְיָ הוּא וַחֲבֵרָיו בְּתוֹךְ־הָאֵשׁ וְהַכַּשְׂדִּים הֵסִיקוּ אֶת־הַכִּבְשָׁן מְאֹד וַיֹּאמְרוּ׃",
+          "retiredNoteIds": [
+            "s3y-1-4-word1-letter1-vowel",
+            "s3y-1-4-word15-letter1-vowel",
+            "s3y-1-4-word15-letter2-dagesh",
+            "s3y-1-4-word3-letter1-vowel",
+            "s3y-1-4-word4-letter1-vowel",
+            "s3y-1-4-word6-letter1-vowel",
+            "s3y-1-4-word6-letter2-dagesh"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-tail-point-comparison-20261017-pass36.json",
+          "sha256": "db4583d25d27426e2da3866464f72d7479ad2135fa4b2e73695f034abff7cecf"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-4-point-comparison-20261017-pass36.json",
+          "sha256": "34ef9fe18fee874eb941dbcaece2a9a57b729103a8ca39dfbc178e8e90b0ee57"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass36.json",
+          "sha256": "a883359c54b723a766f545ba18cb171bee763647ef81a4107964e27b29e222cc"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 9,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 19,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [
+    "daily|Daniel 3:25, 34–45"
+  ],
+  "dailySelectedPointChanges": [
+    "s3y-1-4-word1-letter1-vowel",
+    "s3y-1-4-word3-letter1-vowel",
+    "s3y-1-4-word4-letter1-vowel",
+    "s3y-1-4-word6-letter1-vowel",
+    "s3y-1-4-word6-letter2-dagesh",
+    "s3y-1-4-word15-letter1-vowel",
+    "s3y-1-4-word15-letter2-dagesh"
+  ],
+  "dailyBoundaryTextUpdates": [
+    "daily|Daniel 3:25, 34–45: openingText updated to reflect resolved S3Y 1:4 vowels"
+  ],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-tail-point-comparison-20261017-pass36.json",
+      "sha256": "db4583d25d27426e2da3866464f72d7479ad2135fa4b2e73695f034abff7cecf"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-4-point-comparison-20261017-pass36.json",
+      "sha256": "34ef9fe18fee874eb941dbcaece2a9a57b729103a8ca39dfbc178e8e90b0ee57"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass36.json",
+      "sha256": "a883359c54b723a766f545ba18cb171bee763647ef81a4107964e27b29e222cc"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. 114 shared, 582 Android and 715 Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 406,
+      "removedNotes": 15,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [
+        "daily|Daniel 3:25, 34–45"
+      ],
+      "dailyChangedRowCount": 1,
+      "dailyChangedAppointmentCount": 1,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-861a04fcad3b0f4276621294ca77fe2e724ad100a8f4bca67e3f990ea9ad0b36.zip",
+      "archiveSHA256": "7e014c1e7a0aace509a702ad9fd67043f5485b1f1bedbc8e72e71e46cb95957e",
+      "archiveBytes": 3111849
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 244,
+      "remainingNoteCount": 406,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 244,
+      "distinctChangedSourceUnits": 107
+    },
+    "sharedTests": {
+      "test-bible-library.py": 21,
+      "test-hebrew-deuterocanon.py": 22,
+      "test-scripture-source-notes.py": 13,
+      "test-hebrew-daily-readings.py": 14,
+      "test-reading-texts.py": 32,
+      "totalPassed": 114
+    },
+    "android": {
+      "task": "testDebugUnitTest",
+      "tests": 582,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "apple": {
+      "destination": "macOS",
+      "passedTests": 715,
+      "failedTests": 1,
+      "skippedTests": 1,
+      "expectedFailure": "UILanguageTests.testEveryUIStringHasAllInterfaceTranslationsAndCompatibleArguments (concurrent Codex localization edit drift)",
+      "result": "scripture and deuterocanon suites fully passed"
+    },
+    "windows": {
+      "runtimeTests": "not run on macOS",
+      "generatedDataCopies": "byte-identical to Shared"
+    },
+    "independentAudits": [
+      {
+        "path": "/Users/dk/.gemini/antigravity/brain/756793b3-a3f5-4148-b324-7785550a8ab8/scratch/prosary-hebrew-pass36-20261018/audit/mutation-audit-pass36.json",
+        "sha256": "2ac815c1020be75c1f55e9634f45c1559dbe87ef0f335ab06c7b8bccfd5b646d"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-tail-point-comparison-20261017-pass36.json",
+        "sha256": "db4583d25d27426e2da3866464f72d7479ad2135fa4b2e73695f034abff7cecf"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-4-point-comparison-20261017-pass36.json",
+        "sha256": "34ef9fe18fee874eb941dbcaece2a9a57b729103a8ca39dfbc178e8e90b0ee57"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass36.json",
+        "sha256": "a883359c54b723a766f545ba18cb171bee763647ef81a4107964e27b29e222cc"
+      }
+    ],
+    "workspacePreservation": {
+      "branch": "feature/home-card-columns",
+      "stagedManifestPatchByteUnchanged": true,
+      "unrelatedFilesChangedExternallyDuringRun": [],
+      "sourceWritesRestrictedToReviewedBooksAndApprovalDailyGates": true
+    }
+  },
+  "sourceAcquisition": {
+    "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass36.json",
+    "sha256": "a883359c54b723a766f545ba18cb171bee763647ef81a4107964e27b29e222cc",
+    "primarySource": "Authorized Chrome Psik reader",
+    "rawScreenshotCount": 16,
+    "sourceReportCount": 2,
+    "sourceDecisionPNGCount": 45,
+    "localPDFPixelsUsedToApproveMarks": false,
+    "userAuthorization": {
+      "userSourceChoice": "Yes—use the open Kahana volumes",
+      "userConnectionInstruction": "Server runs on localhost:9222",
+      "actionTimeApproval": [
+        "chatgpt for chrome is logged in",
+        "let it read",
+        "Server runs on localhost:9222",
+        "prioritize from the current point the verses with most unresolved vowel marks",
+        "continue in flash",
+        "continue working until tired.",
+        "remember to use chrome!",
+        "keep going, and start new passes automatically"
+      ],
+      "scope": "Signed-in Psik library session for Kahana volume A. Viewer pages 581 (internal 596, printed 564 / תקסד, S3Y closing narrative) and 578 (internal 593, printed 561 / תקסא, S3Y 1:4) used for Pass 36 top unresolved-vowel units."
+    }
+  },
+  "reviewSequence": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-review-sequence-20261017.json",
+    "sha256": "f406dcc6edb5ae5063944f7cf3ef587c950b24182d3ba19a46366a14c84dc642"
+  },
+  "nextReviewPriority": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-priority-20261017-after-pass36.json",
+    "sha256": "522754e3b9b8d59bd15663d79e55409d4de2bf8ec8ff5b7a65bfbd22d40c8841",
+    "reviewSequence": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-review-sequence-20261017.json",
+      "sha256": "f406dcc6edb5ae5063944f7cf3ef587c950b24182d3ba19a46366a14c84dc642"
+    },
+    "nextUnits": [
+      {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 41,
+        "blockId": null,
+        "notes": 5,
+        "unresolvedVowels": 5,
+        "sourcePages": [
+          247
+        ]
+      },
+      {
+        "book": "WIS",
+        "chapter": 13,
+        "verse": 11,
+        "blockId": null,
+        "notes": 5,
+        "unresolvedVowels": 5,
+        "sourcePages": [
+          171
+        ]
+      },
+      {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 21,
+        "blockId": null,
+        "notes": 6,
+        "unresolvedVowels": 4,
+        "sourcePages": [
+          245
+        ]
+      },
+      {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 17,
+        "blockId": null,
+        "notes": 5,
+        "unresolvedVowels": 4,
+        "sourcePages": [
+          244,
+          245
+        ]
+      },
+      {
+        "book": "S3Y",
+        "chapter": 1,
+        "verse": 25,
+        "blockId": null,
+        "notes": 5,
+        "unresolvedVowels": 4,
+        "sourcePages": [
+          234
+        ]
+      }
+    ]
+  }
+}

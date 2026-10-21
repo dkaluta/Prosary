@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 41,
+  "book": "BEL",
+  "status": "Four source 1:3 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 41 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/source-provenance.json",
+    "sha256": "c72c450fd50def834299916f36c9b4cfb202906385a3ab815e310a9303627090"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 243 / תקעא (viewer page 588, internal 603). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point. Screenshot replay is not PDF embedded-pixel replay.",
+  "baselineGlobalSourceNoteCount": 380,
+  "canonicalSHA256Before": "2d5dcc47fbf18b4f990ea0c8d8600d9347dbbf3f2764c44d1db6cb73bd186c88",
+  "contentSHA256Before": "f3c8a93251e34c147ecaef198dce0703d7b1d5cfcf1b0fed9cdc52a6a130f96a",
+  "sourceNotesBefore": 77,
+  "sourceNotesAfter": 73,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-3-243-vayehi-first-letter1-vowel",
+    "bel-1-3-243-venikhbad-letter1-vowel",
+    "bel-1-3-243-vayehi-second-letter1-vowel",
+    "bel-1-3-243-vayotziu-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 4,
+  "addedCombiningMarks": {
+    "U+05B0": 1,
+    "U+05B7": 3
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 3,
+      "before": "ויְהִי דָנִיֵּאל עוֹמֵד לִפְנֵי הַמֶּלֶךְ ונִכְבָּד מִכָּל־רֵעָיו׃ ויְהִי לְאַנְשֵׁי בָבֶל צֶלֶם וּשְׁמוֹ בֵּל ויּוֹצִיאוּ עָלָיו [לְמַאֲכָלוֹ] בְּכָל־יוֹם וָיוֹם שְׁתֵּים עֶשְׂרֵה סְאָה חִטִּים וְאַרְבָּעִים כְּבָשִׂים וְשֵׁשׁ בַּתִּים יָיִן׃",
+      "after": "וַיְהִי דָנִיֵּאל עוֹמֵד לִפְנֵי הַמֶּלֶךְ וְנִכְבָּד מִכָּל־רֵעָיו׃ וַיְהִי לְאַנְשֵׁי בָבֶל צֶלֶם וּשְׁמוֹ בֵּל וַיּוֹצִיאוּ עָלָיו [לְמַאֲכָלוֹ] בְּכָל־יוֹם וָיוֹם שְׁתֵּים עֶשְׂרֵה סְאָה חִטִּים וְאַרְבָּעִים כְּבָשִׂים וְשֵׁשׁ בַּתִּים יָיִן׃",
+      "beforeTextSHA256": "726ea571f2dcd9ff737b18d870f76c673ea69247f4193f43a38089878a214098",
+      "afterTextSHA256": "9998159d83cab6d01733df17d5d4166e6c096830d2f740287678dbb9773eca4d"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 3,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label ג on page תקעא / 243 (viewer page 588, internal page 603) identifies the unit covering verse 3-4 (printed lines 1-3 of verse 3). Canonical verse 3, endVerse 4, and sourcePages [243] are preserved.",
+  "decisions": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 3,
+      "before": "ויְהִי",
+      "after": "וַיְהִי",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "bel-1-3-243-vayehi-first-letter1-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "ויְהִי",
+      "baselineUnitScalarInsertionOffset": 1,
+      "baselinePhysicalSpan": [
+        0,
+        6
+      ],
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B7"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 3,
+      "before": "ונִכְבָּד",
+      "after": "וְנִכְבָּד",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "bel-1-3-243-venikhbad-letter1-vowel"
+      ],
+      "addedCodePoint": "U+05B0",
+      "baselineAnchor": "ונִכְבָּד",
+      "baselineUnitScalarInsertionOffset": 43,
+      "baselinePhysicalSpan": [
+        42,
+        51
+      ],
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B0"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 3,
+      "before": "ויְהִי",
+      "after": "וַיְהִי",
+      "occurrence": 2,
+      "retiredNoteIds": [
+        "bel-1-3-243-vayehi-second-letter1-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "ויְהִי",
+      "baselineUnitScalarInsertionOffset": 68,
+      "baselinePhysicalSpan": [
+        67,
+        73
+      ],
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B7"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 3,
+      "before": "ויּוֹצִיאוּ",
+      "after": "וַיּוֹצִיאוּ",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "bel-1-3-243-vayotziu-letter1-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "ויּוֹצִיאוּ",
+      "baselineUnitScalarInsertionOffset": 112,
+      "baselinePhysicalSpan": [
+        111,
+        122
+      ],
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B7"
+      ]
+    }
+  ],
+  "points": [
+    {
+      "noteId": "bel-1-3-243-vayehi-first-letter1-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial vav of וַיְהִי at the opening of verse 3 line 1, a clear, solid horizontal stroke forming a patah is distinctly stamped beneath the stem, contrasting with the two vertical punch dots of sheva under וְנִכְבָּד.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi1-vav-target-word-zoom4.png",
+          "sha256": "ae9b33b3b2c21c6106a13b756fee5c7963a4f82fa61844677e5b7a70444de1eb",
+          "dimensions": "115x110",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi1-vav-target-word-zoom4-x4.png",
+            "sha256": "f25419ff06a0a4829063943dabf8cd1b64a2d20fcee1a73d3247bfb8b55ce6cb",
+            "dimensions": "460x440",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi1-vav-whole-glyph-zoom4.png",
+          "sha256": "b1017e7aac0bebded1d45b55702374b03b778fa4befa64e96d99c214eb0e1d55",
+          "dimensions": "35x105",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi1-vav-whole-glyph-zoom4-x4.png",
+            "sha256": "830067cb1e8e6d4449efa4200d4fbc1ad65692ef134fd4ae88f0aae863952db5",
+            "dimensions": "140x420",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi1-vav-positive-control-zoom4.png",
+          "sha256": "a2f4c1e99a27e86b6cc65830e52c2485feb3fadc5868915e624bdc4a7876ae96",
+          "dimensions": "45x40",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi1-vav-positive-control-zoom4-x4.png",
+            "sha256": "4d9117e5676d94aa5f96da59787e115012989e3e39af6f723d333b319f71e687",
+            "dimensions": "180x160",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi1-vav-competing-control-zoom4.png",
+          "sha256": "b97ce761df979667d23703409b934c75832ba2825a41be9c898434a2a74aedfa",
+          "dimensions": "40x40",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi1-vav-competing-control-zoom4-x4.png",
+            "sha256": "6e682f7b822086507a519de2a243d9cebf821cdcd79aa41a40990db41be0dc19",
+            "dimensions": "160x160",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "bel-1-3-243-venikhbad-letter1-vowel",
+      "reading": "sheva",
+      "scalar": "U+05B0",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial vav of וְנִכְבָּד, two distinct circular punch dots in a vertical column forming a sheva are visibly stamped (upper centroid y=1152, lower y=1164), contrasting with the horizontal stroke of patah under וַיּוֹצִיאוּ.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-venikhbad-vav-target-word-zoom4.png",
+          "sha256": "054759606b4458c42dc0745d0f2e64f5f012b92c16575bd0ebfdf3d7e643666f",
+          "dimensions": "135x115",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-venikhbad-vav-target-word-zoom4-x4.png",
+            "sha256": "2deb9ec3d0eab9ec477ec296fa66829e024c877dfb3c640a323aab39523dcfb9",
+            "dimensions": "540x460",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-venikhbad-vav-whole-glyph-zoom4.png",
+          "sha256": "feab24c7e4bc1fe7247686c0b96dd5ef5c6b492657fe811c0150f07922f6736f",
+          "dimensions": "40x110",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-venikhbad-vav-whole-glyph-zoom4-x4.png",
+            "sha256": "8b94b6850098d46f8d3909b007c8e4f8923dbaf92c2f87e8eba9a46d7f8cc61b",
+            "dimensions": "160x440",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-venikhbad-vav-positive-control-zoom4.png",
+          "sha256": "b97ce761df979667d23703409b934c75832ba2825a41be9c898434a2a74aedfa",
+          "dimensions": "40x40",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-venikhbad-vav-positive-control-zoom4-x4.png",
+            "sha256": "6e682f7b822086507a519de2a243d9cebf821cdcd79aa41a40990db41be0dc19",
+            "dimensions": "160x160",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-venikhbad-vav-competing-control-zoom4.png",
+          "sha256": "a2f4c1e99a27e86b6cc65830e52c2485feb3fadc5868915e624bdc4a7876ae96",
+          "dimensions": "45x40",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-venikhbad-vav-competing-control-zoom4-x4.png",
+            "sha256": "4d9117e5676d94aa5f96da59787e115012989e3e39af6f723d333b319f71e687",
+            "dimensions": "180x160",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "bel-1-3-243-vayehi-second-letter1-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial vav of the second וַיְהִי (following רֵעָיו׃ at the end of line 1), a solid horizontal bar (w=26, h=10 at y=1146..1154) is distinctly stamped forming a patah, followed by sheva under yod, contrasting with the vertical dots of sheva under וְנִכְבָּד.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi2-vav-target-word-zoom4.png",
+          "sha256": "5d22737c2aa148a84f320e1a3045b856c5990127cab09a479041087a40e28559",
+          "dimensions": "220x115",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi2-vav-target-word-zoom4-x4.png",
+            "sha256": "daea7cdfd7a017e2154ed12a1521a09c7f4e3c2b41833b421f59411449a71149",
+            "dimensions": "880x460",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi2-vav-whole-glyph-zoom4.png",
+          "sha256": "b61578fc1667112ced792aecb200d7b1db223484702e267fbd03105fd249be72",
+          "dimensions": "50x100",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi2-vav-whole-glyph-zoom4-x4.png",
+            "sha256": "989bf847b8cf5373e2c0454724ae092e582faee111180a456d8b514ffd00466f",
+            "dimensions": "200x400",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi2-vav-positive-control-zoom4.png",
+          "sha256": "a2f4c1e99a27e86b6cc65830e52c2485feb3fadc5868915e624bdc4a7876ae96",
+          "dimensions": "45x40",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi2-vav-positive-control-zoom4-x4.png",
+            "sha256": "4d9117e5676d94aa5f96da59787e115012989e3e39af6f723d333b319f71e687",
+            "dimensions": "180x160",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi2-vav-competing-control-zoom4.png",
+          "sha256": "b97ce761df979667d23703409b934c75832ba2825a41be9c898434a2a74aedfa",
+          "dimensions": "40x40",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayehi2-vav-competing-control-zoom4-x4.png",
+            "sha256": "6e682f7b822086507a519de2a243d9cebf821cdcd79aa41a40990db41be0dc19",
+            "dimensions": "160x160",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "bel-1-3-243-vayotziu-letter1-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial vav of וַיּוֹצִיאוּ on line 2, a solid horizontal bar at x=665..695, y=1328..1340 (w=31, h=13) is clearly stamped beneath the stem forming a patah, contrasting with the two vertical dots of sheva under וְנִכְבָּד.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayotziu-vav-target-word-zoom4.png",
+          "sha256": "39ecc786bb8ec3308486286f477778852a1ed7895f0d0896c9115457ee1c5c77",
+          "dimensions": "270x120",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayotziu-vav-target-word-zoom4-x4.png",
+            "sha256": "673f1869d555a84903529d5e4582f97174fefb40658a66e481a94f8ff0852602",
+            "dimensions": "1080x480",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayotziu-vav-whole-glyph-zoom4.png",
+          "sha256": "5d38616434f520c63233d2724fc934d5c1c72e4c459d44096fc3b0800a94752a",
+          "dimensions": "55x110",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayotziu-vav-whole-glyph-zoom4-x4.png",
+            "sha256": "3813ad90d91145752bf74bbf1065b6553ec8d9c999c708e890ed3ea1c568aeaa",
+            "dimensions": "220x440",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayotziu-vav-positive-control-zoom4.png",
+          "sha256": "b2928eaac998cd12742b3df6f7c0790a63a2bb691160f4d468f63358fc1f890b",
+          "dimensions": "35x30",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayotziu-vav-positive-control-zoom4-x4.png",
+            "sha256": "8a1dd7b9ded5d1b4c78333210ad1a310ca8628dd9c92133228f6f7a8e2770045",
+            "dimensions": "140x120",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayotziu-vav-competing-control-zoom4.png",
+          "sha256": "b97ce761df979667d23703409b934c75832ba2825a41be9c898434a2a74aedfa",
+          "dimensions": "40x40",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass41-BEL-1-3/bel-1-3-vayotziu-vav-competing-control-zoom4-x4.png",
+            "sha256": "6e682f7b822086507a519de2a243d9cebf821cdcd79aa41a40990db41be0dc19",
+            "dimensions": "160x160",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    }
+  ],
+  "contentSHA256After": "15e02458fbe65b09117dc4677c07ad097216f2a6f41d38a9cb6b6a422446be44"
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 228,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation228-WIS-6-6/source-provenance.json",
+    "sha256": "37121512368537a6f68f4b9f384a01d710263504c765f5e88b25d96fb2d5fcbc"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-6-6-samekh"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-6-6-samekh",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 6,
+      "anchorBefore": "יִוָּסרוּ",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Direct own complete word literal ASCII: Samekh bowl bottom1934..1945 remains ink-connected to irregular lower mass y1946..1953, across approximately720..735; there is no independently separable exact vowel form. Shared1351px component [712,1906,764,1963] includes ownSamekh and precedingVav due top contact, with distinct lower extensions. Blank surroundings cannot certifyabsence. Retain unreadable vowel disclosure and every original scalar; no reconstruction from grammar or neighboring controls.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b0/b0a34faec23b23a7c7263060ec63f0a5b66b917e7d80f7e66e32a99ea4c4a464.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b0/b0a34faec23b23a7c7263060ec63f0a5b66b917e7d80f7e66e32a99ea4c4a464.bin",
+      "inspectedBounds": [
+        710,
+        1900,
+        747,
+        1960
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation228-WIS-6-6/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 6,
+    "verse": 6,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation228-WIS-6-6/independent-review.json",
+    "sha256": "93a1714b14b0771fd2726d0a1aff9b7c99ab1618b45f0535a74edf51274f6bcc"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation228-WIS-6-6/primary-preparation.json",
+    "sha256": "02ca95563c663e7597c3f22b26c916cc7a5ed7a79daedda54226e53fbacb43a1"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation228-WIS-6-6/consensus-preparation.json",
+    "sha256": "7a6b3064a4d80c8ac0596173860c183fd584fb0d7919b1b6d68b6a42e44d2d7d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,3527 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 3,
+  "book": "WIS",
+  "status": "One source-certified qamats restored and one false-positive yod-vowel note retired after contrasting same-page comparison and independent root review",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "method": "Direct visual inspection of110 remaining point-note targets across chapters7–17 and19 in original PDF embedded image pixels. These targets are disjoint from WIS-source-note-review-20261017.json and WIS-note-reinspection-20261017-pass2.json.21 chapter19 targets were also inspected on2026-10-03; this pass is an additional look at those original pixels. Prior report bounds locate most crops but do not certify readings. Incorrect or overly broad locators were replaced by verified word crops. Nearest-neighbor enlargement only, with native-resolution proof for the accepted decisions; no OCR, sharpening, grammatical point supply or invented text. Point classification requires discriminating geometry and contrasting same-page exemplars. A tentative7:1 tsadi qamats proposal was withdrawn because fused tsadi sheva can yield a similar foot and stem. Authorized restored consonants and their source notes are excluded.",
+  "canonicalSHA256Before": "d894ec4f6bb5b4bb2d6f9407f157a44f4d027e5f36fb0e3e65d49138eca1034d",
+  "canonicalSHA256After": "51a21c1dcf26e206706b7edfd0145242430b7063d0a601aab92c9d298e2c712c",
+  "reviewedSourceNoteCount": 110,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 108,
+  "sourceNotesBefore": 208,
+  "sourceNotesAfter": 206,
+  "retiredSourceNoteIds": [
+    "wis-12-9-resh",
+    "wis-13-11-yod-2-vowel"
+  ],
+  "primaryTextChanged": true,
+  "combiningMarksAdded": 1,
+  "restoredConsonantsChanged": false,
+  "decisions": [
+    {
+      "chapter": 12,
+      "verse": 9,
+      "retiredNote": {
+        "id": "wis-12-9-resh",
+        "kind": "unreadablePoint",
+        "anchor": "נִמְרץ",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          169
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=169"
+      },
+      "originalText": "וְהֵן לֹא־נִבְצַר מִמְּךָ לָתֵת אֶת־הַפּוֹשְׁעִים בִּידֵי הַצַּדִּיקִים בְּמַעֲרֶכֶת מִלְחָמָה אוֹ לְהַשְׁמִידָם בְּחַיּוֹת טוֹרְפוֹת אוֹ בְּמַאֲמָר נִמְרץ בְּפַעַם אַחַת׃",
+      "correctedText": "וְהֵן לֹא־נִבְצַר מִמְּךָ לָתֵת אֶת־הַפּוֹשְׁעִים בִּידֵי הַצַּדִּיקִים בְּמַעֲרֶכֶת מִלְחָמָה אוֹ לְהַשְׁמִידָם בְּחַיּוֹת טוֹרְפוֹת אוֹ בְּמַאֲמָר נִמְרָץ בְּפַעַם אַחַת׃",
+      "oldAnchor": "נִמְרץ",
+      "newAnchor": "נִמְרָץ",
+      "addedMark": "qamats",
+      "finding": "The resh has a wide horizontal crossbar projecting to both sides of the shaft and a narrow descending stem. Same-page12:8 רָעִים has the same resh qamats outline;12:9 טוֹרְפוֹת has a narrower vertically lobed resh sheva. These contrasting same-page shapes certify qamats.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-9-resh-target.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-9-resh-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-raim-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-torfot-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-169-upper-context.png"
+      ],
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "independentRootReview": "Root separately viewed target, source context and contrasting same-page comparators and explicitly approved this exact change before canonical editing."
+    },
+    {
+      "chapter": 13,
+      "verse": 11,
+      "retiredNote": {
+        "id": "wis-13-11-yod-2-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ויפצּל",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          171
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171"
+      },
+      "originalText": "אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת בּמּשּׂוֹר נֵצֶר נוֹחַ לְטַלְטֵל ויפצּל כָּל־קְלִפָּתוֹ מִסָּבִיב בְּהַשְׂכֵּל וּבְכִשְׁרוֹן מְלָאכָה וְיֵיטִיב עֲשׂוֹת כְּלִי לְצָרְכֵי חַיָּיו׃",
+      "correctedText": "אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת בּמּשּׂוֹר נֵצֶר נוֹחַ לְטַלְטֵל ויפצּל כָּל־קְלִפָּתוֹ מִסָּבִיב בְּהַשְׂכֵּל וּבְכִשְׁרוֹן מְלָאכָה וְיֵיטִיב עֲשׂוֹת כְּלִי לְצָרְכֵי חַיָּיו׃",
+      "oldAnchor": "ויפצּל",
+      "newAnchor": "ויפצּל",
+      "addedMark": null,
+      "finding": "The short yod is intact, with a clear white column beneath its tip through the vowel line. Same-page unpointed yods in13:11 חַיָּיו and לְצָרְכֵי have the same short shape and clear region; וְיֵיטִיב shows the separate printed tsere below a short yod. The omission note is a false positive; no text or point is supplied.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yod-target.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yod-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-11-12-context.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-chayav-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-tsarkhey-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yiteev-query.png"
+      ],
+      "decision": "retireFalsePositiveSourceNote",
+      "independentRootReview": "Root separately viewed target, source context and contrasting same-page comparators and explicitly approved this exact change before canonical editing."
+    }
+  ],
+  "inspections": [
+    {
+      "chapter": 7,
+      "verse": 1,
+      "id": "wis-7-1-first-tsadi",
+      "anchor": "מִצּאֱצָאֵי",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        157
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The first tsadi foot and lower mark form one broad mass with a descending stem. Its outline resembles same-word tsadi qamats, but the accepted tsadi sheva at16:6 also yields a broad fused foot and stem. The counterexample defeats a unique qamats classification; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS7-mitsea1.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-first-tsadi-target.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-second-tsadi-comparator.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-1-native-context.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-mitsar6.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 2,
+      "id": "wis-7-2-pe",
+      "anchor": "הָקְפּאתִי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        157
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe lower region has a broad saturated lobe joined to the foot; no independent vowel components can be separated.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-author-hukpeti2.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 9,
+      "id": "wis-7-9-mem",
+      "anchor": "כְּדֹמן",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem foot and low diamond-like extension remain joined, without enough independently visible point components to distinguish a specific vowel.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-root-tight-karmen.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 14,
+      "id": "wis-7-14-tav-atek",
+      "anchor": "עָתק",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tav lower mark is joined to the left foot as a bent low bar; its original components remain indistinguishable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-author-atek14.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "id": "wis-7-15-kaf-kahagut",
+      "anchor": "כּהָגוּת",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower region is a narrow vertically thickened stem joined to its wide foot; no distinct vowel head or point count is certified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-author-kahagut15.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "id": "wis-7-15-kaf-kiyaut",
+      "anchor": "כּיָאוּת",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf foot descends into a low rectangular lobe; the lower mark cannot be classified independently of the foot.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS7-kiyaut15.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "id": "wis-7-15-first-nun",
+      "anchor": "חַנּנּי",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The first nun lower foot and added ink form one saturated diagonal mass; point separation remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS7-hanani15.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "id": "wis-7-15-second-nun",
+      "anchor": "חַנּנּי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The second nun terminates in an enlarged hooked lower mass; the original vowel components are not separately visible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS7-hanani15.png"
+      ]
+    },
+    {
+      "chapter": 8,
+      "verse": 1,
+      "id": "wis-8-1-first-kaf",
+      "anchor": "וּתְכלְכֵּל",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        160
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The first kaf has a low thickened foot, with the lower vowel region joined into that foot. A distinct mark or certified unpointed state cannot be established.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS8-tight-utekhalkel1.png"
+      ]
+    },
+    {
+      "chapter": 8,
+      "verse": 3,
+      "id": "wis-8-3-het",
+      "anchor": "יַחשָׂהּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        160
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The het lower right region has an attached descending lobe; the compound vowel cannot be separated into certified components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS8-author-yahsah3.png"
+      ]
+    },
+    {
+      "chapter": 8,
+      "verse": 6,
+      "id": "wis-8-6-tsadi",
+      "anchor": "יוֹצר",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        160
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi has a low joined cluster with a small white void, rather than distinctly separated vowel components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS8-root-query-yotser6.png"
+      ]
+    },
+    {
+      "chapter": 9,
+      "verse": 9,
+      "id": "wis-9-9-tsadi",
+      "anchor": "מִצוֹתֶיךָ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        162
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi lower region is extended into a thick vertical terminus joined to its natural foot; the original point cannot be uniquely classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS9-query-mitzvot9.png"
+      ]
+    },
+    {
+      "chapter": 9,
+      "verse": 12,
+      "id": "wis-9-12-qof",
+      "anchor": "וְאִיקר",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        163
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The qof lower mark is fused into the short arm beside the descender; there is no separately legible vowel outline.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS9-query-ikar12.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 5,
+      "id": "wis-10-5-kaf",
+      "anchor": "כּאֲשֶׁר",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        164
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower foot is broad and thickened, without a separate vowel shape; a printed omission cannot be certified from the saturated foot.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-author-kaasher5.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 7,
+      "id": "wis-10-7-het",
+      "anchor": "הַחרַבָה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        164
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lower het cluster joins a horizontal segment and a descending right lobe; the compound vowel components remain unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-tight-horava7.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 8,
+      "id": "wis-10-8-ayin",
+      "anchor": "בְּעזבָם",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        164
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The ayin foot has a horizontal side projection and descending lobe in continuous ink; the compound-point structure remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-tight-bezovam8.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 8,
+      "id": "wis-10-8-zayin",
+      "anchor": "בְּעזבָם",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        164
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The zayin terminus is a thick vertically lobed stroke; the lower vowel cannot be classified separately.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-tight-bezovam8.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 14,
+      "id": "wis-10-14-tet",
+      "anchor": "תִטּשׁהוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        165
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tet lower foot has a thick attached vertical extension; the original vowel components cannot be distinguished.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-more-titsh14whole.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 14,
+      "id": "wis-10-14-shin",
+      "anchor": "תִטּשׁהוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        165
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The shin base is a saturated lower mass with no independently separated vowel components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-more-titsh14whole.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 20,
+      "id": "wis-10-20-vav",
+      "anchor": "ויְהַלָלוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The initial vav ends in a broad horizontal foot, swallowing the vowel region; this does not certify a specific point or absence.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS10-yehalelu20.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 20,
+      "id": "wis-10-20-first-kaf",
+      "anchor": "הַסּוֹככָה",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The first kaf foot is thick and saturated, with no separate lower point shape.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS10-sokhekha20.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 21,
+      "id": "wis-10-21-vav",
+      "anchor": "ותַּרְנֵן",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The vav lower terminus is a broad horizontal lobe joined to the shaft; its original lower point remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-query-taron21.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 2,
+      "id": "wis-11-2-vav",
+      "anchor": "ויִּטְּעוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The vav lower foot forms one thick horizontal mass with the vowel region; no specific point is separately legible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-query-yiteu2.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 6,
+      "id": "wis-11-6-kaf",
+      "anchor": "יַכזיב",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf has a downward extension joined to its broad foot; the lower mark cannot be uniquely classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-query-yakozev6.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 6,
+      "id": "wis-11-6-zayin",
+      "anchor": "יַכזיב",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The zayin lower stroke is narrow and vertically irregular, without separable vowel components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-query-yakozev6.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 8,
+      "id": "wis-11-8-kaf",
+      "anchor": "כּאֲשֶׁר",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf bottom is saturated into a low lobe. The white space below does not resolve the ink merged into the foot.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS11-kaasher8.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 8,
+      "id": "wis-11-8-bet",
+      "anchor": "בּחרוֹן",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet lower foot is broad and thickened; no independently legible vowel shape or intact unpointed foot is established.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-author-heron8whole.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 8,
+      "id": "wis-11-8-het",
+      "anchor": "בּחרוֹן",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        166
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The het lower edge has a joined downward projection on its right side; compound-point separation remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-author-heron8whole.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 18,
+      "id": "wis-11-18-tsadi",
+      "anchor": "צחנַת",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        167
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi lower base is a saturated mass, with no distinctly separated vowel components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-query-tsahanath18.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 18,
+      "id": "wis-11-18-het",
+      "anchor": "צחנַת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        167
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The het lower right corner ends in a joined low square projection; the original compound point cannot be certified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-query-tsahanath18.png"
+      ]
+    },
+    {
+      "chapter": 11,
+      "verse": 21,
+      "id": "wis-11-21-ayin",
+      "anchor": "עזְּךָ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        167
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The ayin lower stroke extends through a long joined lobe; the original vowel components are not separately legible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-author-oz21.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 2,
+      "id": "wis-12-2-bet",
+      "anchor": "וּבאֲשֶׁר",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        168
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet lower foot and vowel region form a continuous thick lobe; no unique vowel shape is visible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-tight-vocal2whole.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 5,
+      "id": "wis-12-5-vav",
+      "anchor": "ו[יַעַרכוּ]",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        168
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The initial vav bottom has an irregular horizontal foot joined to lower ink; the vowel cannot be classified. Bracketed source text and authorized restorations remain unchanged.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS12-yaarkhu5.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 5,
+      "id": "wis-12-5-resh",
+      "anchor": "ו[יַעַרכוּ]",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        168
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The resh lower stroke is joined to adjacent letter and point ink, without a distinct lower point shape. Bracketed source text remains unchanged.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS12-yaarkhu5.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 5,
+      "id": "wis-12-5-he",
+      "anchor": "ההוֹזִים",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        168
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The initial he right leg terminates in a broad low mass; the vowel is not independently legible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-last-nahuzim5whole.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 8,
+      "id": "wis-12-8-tsadi",
+      "anchor": "הַצּרְעָה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        169
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi lower foot and added ink remain saturated into one lobe; the vowel cannot be uniquely classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-tight-tsirea8full.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 8,
+      "id": "wis-12-8-kaf",
+      "anchor": "כּשְׁלחַ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        169
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower extension is joined to the foot and tapers vertically; separate vowel components remain uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-last-keshalakh8.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 8,
+      "id": "wis-12-8-lamed",
+      "anchor": "כּשְׁלחַ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        169
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lamed lower hook extends into a narrow vertically lobed mass; the original point components are unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-last-keshalakh8.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 9,
+      "id": "wis-12-9-resh",
+      "anchor": "נִמְרץ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        169
+      ],
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "The resh has a wide horizontal crossbar projecting to both sides of the shaft and a narrow descending stem. Same-page12:8 רָעִים has the same resh qamats outline;12:9 טוֹרְפוֹת has a narrower vertically lobed resh sheva. These contrasting same-page shapes certify qamats.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-9-resh-target.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-9-resh-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-raim-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-torfot-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-169-upper-context.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 10,
+      "id": "wis-12-10-pe",
+      "anchor": "תֵהָפךְ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        169
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe lower area is thick and joined, with a small interior void but no separate vowel components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-query-tehafekh10.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 15,
+      "id": "wis-12-15-kaf",
+      "anchor": "תְּכַלְכּל",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        169
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower mass has two joined lobes and a small white void; the original vowel cannot be uniquely classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-query-tekalkel15.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 18,
+      "id": "wis-12-18-lamed",
+      "anchor": "בִּיכָלתְּךָ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        169
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lamed lower terminus is vertically irregular and joined into a thick lobe; no distinct vowel outline is certified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-query-bikholetekha18.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 24,
+      "id": "wis-12-24-resh",
+      "anchor": "וְכִנְעָרים",
+      "letterIndex": 5,
+      "mark": "vowel",
+      "sourcePages": [
+        170
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The resh lower stroke has a low enlarged terminus joined to the shaft; the separate original mark cannot be read.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS12-kineaarim24.png"
+      ]
+    },
+    {
+      "chapter": 12,
+      "verse": 26,
+      "id": "wis-12-26-tsadi",
+      "anchor": "קִצּהּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        170
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi foot extends through a thick lower lobe into a narrow stem; its natural foot and point are not independently separable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS12-qitsa26.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 1,
+      "id": "wis-13-1-kaf-2-vowel",
+      "anchor": "אָכן",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        170
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf foot and lower ink make a low two-lobed joined mass; the original vowel remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-author-akhen1.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-bet-1-vowel",
+      "anchor": "בּמּשּׂוֹר",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet lower foot is enlarged and saturated, swallowing its lower mark.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-saw11-mem-correct.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-mem-2-vowel",
+      "anchor": "בּמּשּׂוֹר",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem lower foot has a broad joined low lobe; point count and original shape remain unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-saw11-mem-correct.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-vav-1-vowel",
+      "anchor": "ויפצּל",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The vav ends in a thick low rectangular terminus; joined point ink cannot be distinguished from its foot.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-vayfatsel11-full.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-yod-2-vowel",
+      "anchor": "ויפצּל",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "decision": "retireFalsePositiveSourceNote",
+      "finding": "The short yod is intact, with a clear white column beneath its tip through the vowel line. Same-page unpointed yods in13:11 חַיָּיו and לְצָרְכֵי have the same short shape and clear region; וְיֵיטִיב shows the separate printed tsere below a short yod. The omission note is a false positive; no text or point is supplied.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yod-target.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yod-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-11-12-context.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-chayav-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-tsarkhey-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yiteev-query.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-pe-3-vowel",
+      "anchor": "ויפצּל",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe foot is a thick saturated low mass; no specific vowel components are separately legible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-vayfatsel11-full.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 11,
+      "id": "wis-13-11-tsadi-4-vowel",
+      "anchor": "ויפצּל",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi lower foot ends in two joined lobes, without sufficient separation to classify the vowel.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-vayfatsel11-full.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 13,
+      "id": "wis-13-13-tsadi-4-vowel",
+      "anchor": "וְיַקְציעהוּ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi has a short downward extension joined to its broad natural foot; the original lower mark remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-ve-yaktsieu13.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 13,
+      "id": "wis-13-13-ayin-6-vowel",
+      "anchor": "וְיַקְציעהוּ",
+      "letterIndex": 6,
+      "mark": "vowel",
+      "sourcePages": [
+        171
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The ayin lower foot is thick and irregular with joined side ink; its vowel components remain unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-ve-yaktsieu13.png"
+      ]
+    },
+    {
+      "chapter": 14,
+      "verse": 1,
+      "id": "wis-14-1-vav-1-vowel",
+      "anchor": "וישַׁוּע",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        172
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The initial vav has a thick lower rectangular terminus joined to its shaft; no independently legible vowel is visible. The previously retired final-ayin note is unaffected.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-cry1-complete.png"
+      ]
+    },
+    {
+      "chapter": 14,
+      "verse": 5,
+      "id": "wis-14-5-bet-1-vowel",
+      "anchor": "בתֵּבָה",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        172
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet foot is a thick low mass extending into the vowel region; its original components remain indistinguishable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-ark5.png"
+      ]
+    },
+    {
+      "chapter": 14,
+      "verse": 7,
+      "id": "wis-14-7-resh-3-vowel",
+      "anchor": "יְבֹרךְ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        172
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The resh lower shaft bends into a thick lateral foot; the original lower-point shape is joined and uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-7-yvorakh.png"
+      ]
+    },
+    {
+      "chapter": 14,
+      "verse": 11,
+      "id": "wis-14-11-qof-2-vowel",
+      "anchor": "פְקדָּה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        173
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The qof short arm terminates in a thick vertical extension beside the descender; its vowel cannot be uniquely classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-pekuda11-complete.png"
+      ]
+    },
+    {
+      "chapter": 14,
+      "verse": 18,
+      "id": "wis-14-18-nun-2-vowel",
+      "anchor": "הֵניעָה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        174
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The nun lower foot descends into a short joined lobe; the original lower mark is not separately visible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-artisan18-exact.png"
+      ]
+    },
+    {
+      "chapter": 14,
+      "verse": 25,
+      "id": "wis-14-25-kaf-2-vowel",
+      "anchor": "בְּכלָּם",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        174
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower ink is a narrow sloping vertical cluster with unresolved internal separation. Nearby כְּאֶחָד also has a foot-joined sheva; a broad joined outline alone cannot justify a different vowel.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-all25-exact.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-kaechad-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-25-sheva-context.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 1,
+      "id": "wis-15-1-kaf-2-vowel",
+      "anchor": "תְּכלְכֵּל",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        175
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The first kaf lower foot is enlarged and saturated; the separate vowel is not legible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS15-tekalkel1.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 8,
+      "id": "wis-15-8-lamed-1-vowel",
+      "anchor": "לקָּח",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        175
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lamed lower hook extends into a thick diagonal lobe; the lower mark cannot be independently classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS15-author-taken8.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 18,
+      "id": "wis-15-18-mem-1-vowel",
+      "anchor": "משְׁלָן",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        176
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem lower stroke and vowel region form a joined low cluster, without a unique visible point shape.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS15-moshlan18-complete.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 19,
+      "id": "wis-15-19-het-2-vowel",
+      "anchor": "רָחקוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        176
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The het lower right region has a joined descending lobe; the original lower point components remain uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS15-rakhqu19-complete.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 1,
+      "id": "wis-16-1-bet-1-vowel",
+      "anchor": "בּהֲמוֹן",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        176
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet lower foot is thick and saturated with joined low ink; the original vowel is unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-bahamon1.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 6,
+      "id": "wis-16-6-lamed-1-vowel",
+      "anchor": "למִּצְעָר",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        177
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lamed lower hook has a broad horizontal extension in continuous ink; the vowel cannot be uniquely classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-mitsar6.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 16,
+      "id": "wis-16-16-nun-1-vowel",
+      "anchor": "נפָגְּעוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        178
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The initial nun lower foot extends into a dark low lobe; the original vowel is not separately legible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-nifgeu16-word.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 18,
+      "id": "wis-16-18-tet-3-vowel",
+      "anchor": "שָׁקְטה",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        178
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tet lower region has a thick joined diamond and stem; point components cannot be separated from the natural foot.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-shakta18.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 19,
+      "id": "wis-16-19-lamed-3-vowel",
+      "anchor": "תִּתְלקּח",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        178
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lamed lower hook ends in a broad lateral lobe; the original lower mark remains inseparable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-titlak19-complete.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 19,
+      "id": "wis-16-19-qof-4-vowel",
+      "anchor": "תִּתְלקּח",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        178
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The qof short arm and descender meet through low joined ink; the separate vowel cannot be identified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-titlak19-complete.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 19,
+      "id": "wis-16-19-pe-4-vowel",
+      "anchor": "הַחֲנֵפה",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        178
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe lower area has a large saturated lobe and short descending stem; the original point remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-hanefa19.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 20,
+      "id": "wis-16-20-kaf-3-vowel",
+      "anchor": "הֶאֱכלְתָּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        178
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf bottom is a saturated low cluster with no separately identifiable vowel components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-eat20-tight.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 22,
+      "id": "wis-16-22-qof-3-vowel",
+      "anchor": "תִּיקד",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        178
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "In the correctly located תִּיקד, the qof short arm terminates in a broad joined foot beside its descender; the vowel is not independently legible. The older query crop labelled tiqad instead contains תבער and is excluded for this target.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS16-22-correct.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 23,
+      "id": "wis-16-23-alef-1-vowel",
+      "anchor": "אולָם",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The alef lower stroke is small and close to damaged second-letter ink; it does not certify the original vowel or a secure printed omission. The authorized restored vav and its disclosure remain unchanged.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-ulam23-tight.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 29,
+      "id": "wis-16-29-mem-2-vowel",
+      "anchor": "יִמּס",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem foot is thick and saturated, swallowing its lower vowel region.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS16-author-yimas29.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 1,
+      "id": "wis-17-1-ayin-3-vowel",
+      "anchor": "תִּתְעינָה",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The ayin lower foot is joined into a large descending lobe; compound-point components remain indistinguishable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-verb1.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 3,
+      "id": "wis-17-3-bet-1-vowel",
+      "anchor": "בּחֶבְיוֹן",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet foot joins a long central downward stroke; the original vowel cannot be uniquely distinguished from joined point components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS17-author-hevyon3.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 3,
+      "id": "wis-17-3-nun-1-vowel",
+      "anchor": "נפזרוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The nun foot ends in a thick low lobe, with no independently legible vowel.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-nifzeru3.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 3,
+      "id": "wis-17-3-pe-2-vowel",
+      "anchor": "נפזרוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe lower foot descends into joined ink; the original point outline is not separately legible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-nifzeru3.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 3,
+      "id": "wis-17-3-zayin-3-vowel",
+      "anchor": "נפזרוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The zayin shaft and lower mark form a joined cross-shaped cluster. That outline alone does not uniquely establish the original point.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-nifzeru3.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 5,
+      "id": "wis-17-5-mem-1-vowel",
+      "anchor": "מהַגִּיהַּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem lower foot is dark and irregular, with no separately visible vowel components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-mehagia5.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 7,
+      "id": "wis-17-7-dalet-2-vowel",
+      "anchor": "חָדלּוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The dalet shaft terminates in a broad horizontal foot joined to the lower mark; its original components remain unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-hadlu7.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 11,
+      "id": "wis-17-11-gimel-3-vowel",
+      "anchor": "מוּגת",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The gimel lower foot has two joined lobes and a small white void; the original vowel components are inseparable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-mugat11.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 11,
+      "id": "wis-17-11-het-2-vowel",
+      "anchor": "תֶּחזה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The het lower region has two low lobes connected by a thin bridge of ink; the original vowel cannot be classified without resolving that join.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-tacheze11-complete.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 11,
+      "id": "wis-17-11-zayin-3-vowel",
+      "anchor": "תֶּחזה",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The zayin lower shaft ends in a broad fused head and short stem; its original components remain uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-tacheze11-complete.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 14,
+      "id": "wis-17-14-het-1-vowel",
+      "anchor": "חדַל־אוֹנִים",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The het lower right corner joins a short low square lobe; the vowel cannot be independently read.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS17-author-hadel14-complete.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 17,
+      "id": "wis-17-17-nun-1-vowel",
+      "anchor": "נפגָּעוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The nun foot is thick and low, with the original vowel region inseparable from it.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS17-author-nifgeu17-complete.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 17,
+      "id": "wis-17-17-pe-2-vowel",
+      "anchor": "נפגָּעוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe lower foot ends in a narrow vertical stem continuous with the body; no unique vowel components can be certified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS17-author-nifgeu17-complete.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 18,
+      "id": "wis-17-18-pe-2-vowel",
+      "anchor": "עֳפאִים",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        180
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe lower region is saturated and extends through a short downward stem; the original point remains unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-ofaim18-complete.png"
+      ]
+    },
+    {
+      "chapter": 17,
+      "verse": 21,
+      "id": "wis-17-21-ayin-2-vowel",
+      "anchor": "הֶעתִיד",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        181
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The ayin lower foot is a thick descending lobe without separately legible compound-point components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-atid21.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 1,
+      "id": "wis-19-1-word1-vav-1-vowel",
+      "anchor": "ואת",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        183
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The vav lower shaft is thick and irregular; its vowel region does not reveal distinct point components or a certified unpointed foot.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-opening1-full.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 1,
+      "id": "wis-19-1-word1-alef-2-vowel",
+      "anchor": "ואת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        183
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The alef lower foot is enlarged into a joined horizontal lobe; the original point remains indistinguishable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-opening1-full.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 3,
+      "id": "wis-19-3-word2-gimel-1-vowel",
+      "anchor": "גּרְשׁוּם",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The gimel lower foot and adjacent low stroke are joined and irregular; a specific original vowel cannot be certified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-gereshum3.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 4,
+      "id": "wis-19-4-word3-samekh-1-vowel",
+      "anchor": "סאת",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The samekh lower loop extends into a thick downward stem; the original lower-point components remain joined.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-saat4.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 4,
+      "id": "wis-19-4-word3-alef-2-vowel",
+      "anchor": "סאת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The alef lower foot has a short horizontal side projection in continuous ink; no distinct vowel outline can be established.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-saat4.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 5,
+      "id": "wis-19-5-word4-shin-2-vowel",
+      "anchor": "מְשׁנּה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The shin lower shaft and low ink form one long joined cluster; point components remain unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-meshunnah5-full.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 5,
+      "id": "wis-19-5-word4-nun-3-vowel",
+      "anchor": "מְשׁנּה",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The nun lower foot is dark and thickened, with an attached low lobe; the original vowel remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-meshunnah5-full.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 6,
+      "id": "wis-19-6-word5-qof-3-vowel",
+      "anchor": "לִפְקדּוֹתֶיךָ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The qof short arm and lower point are joined into a broad low cluster beside its descender; the specific vowel remains unreadable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-6-qof.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 6,
+      "id": "wis-19-6-word6-shin-2-vowel",
+      "anchor": "יִשׁמְרוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The shin base extends into a wide saturated low lobe; original vowel components cannot be separated.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-yishameru6-full.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 7,
+      "id": "wis-19-7-word7-kaf-2-vowel",
+      "anchor": "מְכסֶּה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower mark forms a sloping vertically joined cluster beneath its foot, with unresolved internal separation.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-mekhuseh7-full.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 9,
+      "id": "wis-19-9-word8-vav-1-vowel",
+      "anchor": "ויְשׁוֹמָמוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The initial vav ends in a broad horizontal lower foot; the point is inseparable from that foot.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-vishm9.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 9,
+      "id": "wis-19-9-word9-vav-1-vowel",
+      "anchor": "ויְהַלָלוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The initial vav lower shaft terminates in a broad horizontal lobe joined to the vowel region; no specific point is separately visible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-halelu9.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 10,
+      "id": "wis-19-10-word10-mem-2-vowel",
+      "anchor": "הַמּצָאוֹת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem lower foot has saturated joined ink, preventing classification of its original vowel or certification of a printed omission.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-hamtsaot10.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 13,
+      "id": "wis-19-13-word11-ayin-1-vowel",
+      "anchor": "עוֹנוֹתֵיהֶם",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The ayin lower foot joins a horizontal side projection and descending right lobe; the compound point components remain indistinguishable.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-13-ayin.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 17,
+      "id": "wis-19-17-word12-he-1-vowel",
+      "anchor": "הכּוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The he lower right leg extends into a thick sloping low stroke; the vowel cannot be uniquely classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-author-huku17-correct.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 18,
+      "id": "wis-19-18-word13-tsadi-1-vowel",
+      "anchor": "צלילי",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi base joins a long low stem; its vowel components are not independently legible.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-tzlilei18.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 18,
+      "id": "wis-19-18-word13-lamed-2-vowel",
+      "anchor": "צלילי",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The first lamed lower hook has a joined horizontal extension; the separate vowel remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-tzlilei18.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 18,
+      "id": "wis-19-18-word13-lamed-4-vowel",
+      "anchor": "צלילי",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The second lamed lower hook is thick and rounded, with joined lower ink; the original vowel cannot be classified.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-tzlilei18.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 18,
+      "id": "wis-19-18-word14-kaf-1-vowel",
+      "anchor": "כּאֲשֶׁר",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        185
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf foot is a saturated low mass, without separately legible lower vowel components.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-kaasher18-comparator.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 22,
+      "id": "wis-19-22-word15-mem-1-vowel",
+      "anchor": "מהוֹשִׁיעם",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        186
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem lower area has joined lobes and a small white void; a specific original vowel remains uncertain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-author-mehoshiam22.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 22,
+      "id": "wis-19-22-word15-ayin-6-vowel",
+      "anchor": "מהוֹשִׁיעם",
+      "letterIndex": 6,
+      "mark": "vowel",
+      "sourcePages": [
+        186
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The ayin foot extends into an irregular low side lobe; its original compound vowel components remain unresolved.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-author-mehoshiam22.png"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS7-mitsea1.png",
+      "page": 157,
+      "nativeBounds": [
+        1005,
+        1110,
+        1245,
+        1220
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "75f124caf0c040d6d622640f5287ceaf8db15aa5620f02517efb8c8bb653545c"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-author-hukpeti2.png",
+      "page": 157,
+      "nativeBounds": [
+        1330,
+        1290,
+        1850,
+        1405
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "a5346cd5d0a6614f4f2c908730f42d74f3da21b7924488c8ac5218c146661dc6"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-root-tight-karmen.png",
+      "page": 158,
+      "nativeBounds": [
+        840,
+        864,
+        1030,
+        975
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "7a3bba726b5c91468aa5b5d241e8d782e06ea87690a340f1036d1adfe375171d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-author-atek14.png",
+      "page": 158,
+      "nativeBounds": [
+        1680,
+        1500,
+        2010,
+        1615
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "0384205a6ae1a2f9644066d6e44fdd3f673f1018491216c88bfff17970472415"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-author-kahagut15.png",
+      "page": 158,
+      "nativeBounds": [
+        1430,
+        1700,
+        1850,
+        1820
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "567344f9afbc8c1a41b1142d6f861ebce490353de61114a91264e32524f9acec"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS7-kiyaut15.png",
+      "page": 158,
+      "nativeBounds": [
+        850,
+        1680,
+        1050,
+        1785
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "553b4f4c351e4ca5aa52650d2078788535c72a2797fee94e0037ea616d421b38"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS7-hanani15.png",
+      "page": 158,
+      "nativeBounds": [
+        375,
+        1680,
+        505,
+        1770
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "cda5cc4885958f2e3f47af1f586ea9680ff0e37f1c214325ca58574063183140"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS8-tight-utekhalkel1.png",
+      "page": 160,
+      "nativeBounds": [
+        840,
+        1120,
+        1190,
+        1250
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "699a87e48cc68e4222e53a879cd5f7d5792edcf2e80b62f1940a3df5357afb79"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS8-author-yahsah3.png",
+      "page": 160,
+      "nativeBounds": [
+        1630,
+        1370,
+        2150,
+        1520
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "4dd4f85b4624e2336917fbd23fd4033319dfc0bdccf75e4019402acb4229cda2"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS8-root-query-yotser6.png",
+      "page": 160,
+      "nativeBounds": [
+        585,
+        1770,
+        1120,
+        1895
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "1ea1702980532fb66415e98c650c3d1d834fb765e1426a1e1893b45fe71226d8"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS9-query-mitzvot9.png",
+      "page": 162,
+      "nativeBounds": [
+        250,
+        1820,
+        1100,
+        1940
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "3a83bfcae25b81a892fa89f7abdd18af46bb75e84cefca855ab4848acac8fdc1"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS9-query-ikar12.png",
+      "page": 163,
+      "nativeBounds": [
+        1090,
+        840,
+        1670,
+        980
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "33da30cbd950bbf596a48644b67d9d5b6ee2000b6a37406e77bd1a349cf7e9a4"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-author-kaasher5.png",
+      "page": 164,
+      "nativeBounds": [
+        500,
+        750,
+        850,
+        900
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "2cc6825ffaedb9f24d4e851126d37313f7c1b53b0deefd91b23497f8c3878d08"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-tight-horava7.png",
+      "page": 164,
+      "nativeBounds": [
+        1800,
+        1110,
+        2040,
+        1260
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "231758143396184b951a54e2e2b6ed2dca1b96ca6405139e3f7d911c526d6714"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-tight-bezovam8.png",
+      "page": 164,
+      "nativeBounds": [
+        1900,
+        1420,
+        2090,
+        1530
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "15de8d1ee5267f14acb213def0650e2963059b6766604aba743526f2f2814496"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-more-titsh14whole.png",
+      "page": 165,
+      "nativeBounds": [
+        410,
+        1110,
+        900,
+        1290
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "bedaeb6bd2e6943bdeead6b801cbff7f6c5b75a9188ee86af1744af2ddff8c24"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS10-yehalelu20.png",
+      "page": 166,
+      "nativeBounds": [
+        1320,
+        520,
+        1610,
+        655
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "1450b44ce19e73d1df1ef9006da3d263839ca33e1d34f0fb77656c41862cdc7b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS10-sokhekha20.png",
+      "page": 166,
+      "nativeBounds": [
+        775,
+        545,
+        1050,
+        660
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "d26668a9185211acbe996fe0d9e50106a2f6e2ba801793a4edcd1b8cddfb0817"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS10-query-taron21.png",
+      "page": 166,
+      "nativeBounds": [
+        760,
+        620,
+        1160,
+        755
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "255aa6755c6ebf8217522749e777a2aeee4b0727610b24748a2d8cdc700e8038"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-query-yiteu2.png",
+      "page": 166,
+      "nativeBounds": [
+        730,
+        830,
+        1150,
+        1010
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "67f469c9dfa57fc738d44db4f9fce5d49a167872998b2d006592fb8490eb49da"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-query-yakozev6.png",
+      "page": 166,
+      "nativeBounds": [
+        300,
+        1190,
+        760,
+        1350
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "2a1465f166e294e92d7183b44f141dbd8f70de067a1ca453a11da9ffe1c982ef"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS11-kaasher8.png",
+      "page": 166,
+      "nativeBounds": [
+        1860,
+        1450,
+        2130,
+        1630
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "fef5e91ef20188cc90b7020816e5a50ce2f23775cfe5769627e599c80a860883"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-author-heron8whole.png",
+      "page": 166,
+      "nativeBounds": [
+        300,
+        1470,
+        600,
+        1580
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "2dc498b24497a9a2c30618e7d53603abce63451ffa97ae4e9af5555f83ff440d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-query-tsahanath18.png",
+      "page": 167,
+      "nativeBounds": [
+        190,
+        1290,
+        610,
+        1460
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "1b7ecddc7c3e24c5a210c0c536041d9179c0da764bd4c84eb42f9c7cdd94100a"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS11-author-oz21.png",
+      "page": 167,
+      "nativeBounds": [
+        1020,
+        1730,
+        1310,
+        1850
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "31b61c237e04b6fcf235e891e1df53aa187ca43da15834392dce646686d8bd8f"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-tight-vocal2whole.png",
+      "page": 168,
+      "nativeBounds": [
+        1530,
+        1040,
+        2010,
+        1170
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "a252978624291d6e16aaed23e5a747e37472e224e0b45e0aada141a6e838bd86"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS12-yaarkhu5.png",
+      "page": 168,
+      "nativeBounds": [
+        1580,
+        1300,
+        1920,
+        1425
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "a7a4c3d75a253d80a9fd588573cd4bfd2c94443331437115cae037f527cbd3b6"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-last-nahuzim5whole.png",
+      "page": 168,
+      "nativeBounds": [
+        295,
+        1305,
+        600,
+        1430
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "e85ffaaa61e13c018f5c3db13657346fa0d79df25c78b4f27c816619bb5725b7"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-tight-tsirea8full.png",
+      "page": 169,
+      "nativeBounds": [
+        1230,
+        570,
+        1540,
+        730
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "724881a968b599ec3af58a99b5d196a201f50d0bd34ab39421e8b93776396e90"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-last-keshalakh8.png",
+      "page": 169,
+      "nativeBounds": [
+        1090,
+        580,
+        1340,
+        715
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "680698bf5ead53cb5e3511a3246d01f9092490a2f542658094f157939df88bf7"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-more-nimrats9.png",
+      "page": 169,
+      "nativeBounds": [
+        190,
+        770,
+        440,
+        900
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "ea7e8ee9d98a7f92a6b61277e42fe907ee6cc9579404df322511d76a6b13db6c"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-query-tehafekh10.png",
+      "page": 169,
+      "nativeBounds": [
+        1150,
+        1010,
+        1500,
+        1140
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "36819e03189340675401801883806c8a81656d63532eb7227d686362bbcada0f"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-query-tekalkel15.png",
+      "page": 169,
+      "nativeBounds": [
+        1680,
+        1690,
+        2070,
+        1790
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "389bcae9aea328df3fdd685432d654895773b889410771c0d238f77d8c286f20"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-query-bikholetekha18.png",
+      "page": 169,
+      "nativeBounds": [
+        190,
+        2070,
+        530,
+        2190
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "af70b26baf83a0eadf3c30540d4e48b06819552066f8b32d897c8bb17d596897"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS12-kineaarim24.png",
+      "page": 170,
+      "nativeBounds": [
+        1270,
+        1200,
+        1620,
+        1340
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "d9a06a740d7ed31cd16dea3b4b9a31d827744d37860e2d8c765c691816e611ad"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS12-qitsa26.png",
+      "page": 170,
+      "nativeBounds": [
+        1230,
+        1640,
+        1460,
+        1770
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "90f36e174f6dc36f9dbfceabb9c806b135d2bdb81074b9cb295091c00846829e"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-author-akhen1.png",
+      "page": 170,
+      "nativeBounds": [
+        1640,
+        1770,
+        1900,
+        1880
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "3152c282911b3b618092907fb908ee3ddc3ed1297e1c58f778a016606d49727b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-saw11-mem-correct.png",
+      "page": 171,
+      "nativeBounds": [
+        430,
+        1685,
+        540,
+        1810
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "7a4b12359bd7852198a32b38fc5383508315bb9777e07339b912f3ef68fa7e0d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-vayfatsel11-full.png",
+      "page": 171,
+      "nativeBounds": [
+        1400,
+        1770,
+        1660,
+        1900
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "a2d9b8798a353315c07a2857bf7c3798e9b31c2c53679c9b1a0f0da90e20364b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS13-ve-yaktsieu13.png",
+      "page": 171,
+      "nativeBounds": [
+        820,
+        2035,
+        1125,
+        2155
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "70db943a4f9e04520ec37652d3c4a41ccf06edb077d09e7e66d940bf662298cd"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-cry1-complete.png",
+      "page": 172,
+      "nativeBounds": [
+        1750,
+        1190,
+        2100,
+        1320
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "1a2c3592972740923ff9acdcf945287f664b41f2f1d7ff4b8dcee6523fe35911"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-ark5.png",
+      "page": 172,
+      "nativeBounds": [
+        730,
+        1630,
+        1060,
+        1745
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "07452110c7d698e52f3a12b5f0d8850f4f29449986d32e52de7c8a49d21ef536"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-7-yvorakh.png",
+      "page": 172,
+      "nativeBounds": [
+        400,
+        1830,
+        650,
+        1940
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "9af220a219c2581e83c338489a3ad1a83209cdec91209228a82e06e0b7e03c48"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-pekuda11-complete.png",
+      "page": 173,
+      "nativeBounds": [
+        960,
+        665,
+        1250,
+        805
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "76d12031eea7a702e41e0165bc70d4e3b292578c71231f06a51518aa9956c7c6"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-artisan18-exact.png",
+      "page": 174,
+      "nativeBounds": [
+        1320,
+        640,
+        2040,
+        770
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "9de9e4d20bbb22321c01272bddaac5c7c9a39357dd614d7e69737dcb003f0f30"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-author-all25-exact.png",
+      "page": 174,
+      "nativeBounds": [
+        1160,
+        1660,
+        1410,
+        1800
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "0087eae1bb92500cc6d716e9afefe90bde829d4c6b0b27d3605e9eacca2cece9"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS15-tekalkel1.png",
+      "page": 175,
+      "nativeBounds": [
+        360,
+        775,
+        565,
+        880
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "ec400b72547a86205768b5d629518ec9c9070513e1903f87ef81347d6cf0cbeb"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS15-author-taken8.png",
+      "page": 175,
+      "nativeBounds": [
+        175,
+        1800,
+        530,
+        1915
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "2243ac50067b74b91fd8515f6811cbafe7ec63eb774fd1b3e3fcc6553ce7f6bf"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS15-moshlan18-complete.png",
+      "page": 176,
+      "nativeBounds": [
+        1005,
+        1490,
+        1265,
+        1600
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "339a002e1403a01f08b9cad54b8eec55f6bc9faec87034975a9d816503227315"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS15-rakhqu19-complete.png",
+      "page": 176,
+      "nativeBounds": [
+        830,
+        1590,
+        1180,
+        1695
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "c16df12966115a76ec2aa02efe3efb43a4f203a31b0e2e8b0ad395d4ab7126bc"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-bahamon1.png",
+      "page": 176,
+      "nativeBounds": [
+        555,
+        1650,
+        770,
+        1770
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "cbb64e096be6e18a40d9c75a58489195442df3ab85550fced92e3b6fdceee6da"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-mitsar6.png",
+      "page": 177,
+      "nativeBounds": [
+        215,
+        880,
+        445,
+        1000
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "913388fc688120e858973e9541dd2dcf1119b2a9c70c1476897cf3a501bd9aa9"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-nifgeu16-word.png",
+      "page": 178,
+      "nativeBounds": [
+        490,
+        765,
+        690,
+        870
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "c779c9fe0b0e6749fe686f7c7a07dbc92f058ca9ce77b68062063d595a661e68"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-shakta18.png",
+      "page": 178,
+      "nativeBounds": [
+        915,
+        1040,
+        1135,
+        1180
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "9973521cb75dfb82c0305ca10ee616a5088702fce7e8e198487d7100f9578fb7"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-titlak19-complete.png",
+      "page": 178,
+      "nativeBounds": [
+        1290,
+        1210,
+        1640,
+        1345
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "3e8ac6128c1ca8f42fa6868b20b3eec30819ef374d3b45dad251d6fccabf7231"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-hanefa19.png",
+      "page": 178,
+      "nativeBounds": [
+        1460,
+        1320,
+        1695,
+        1450
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "c18a6b9ee3c90eb626d9414ffabc67ee23143982e2081a1c2518bed24fc87453"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-eat20-tight.png",
+      "page": 178,
+      "nativeBounds": [
+        930,
+        1340,
+        1170,
+        1420
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "9383cd6831209ee506e1fe88d5c5073a067e760f4c5a2543189ac8e2a1626a6f"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS16-22-correct.png",
+      "page": 178,
+      "nativeBounds": [
+        1130,
+        1770,
+        1470,
+        1920
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "35ae250f1e6b08dbcd7d07471b45b52d5d5c1f3060a9c809ad21d61eeb341df6"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS16-ulam23-tight.png",
+      "page": 179,
+      "nativeBounds": [
+        1800,
+        480,
+        1970,
+        620
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "7b22d7d89828d19cf521e0eff36a955dee2cb5b2e5cf1c4a0a0744f2ec4e77c8"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS16-author-yimas29.png",
+      "page": 179,
+      "nativeBounds": [
+        800,
+        1210,
+        1240,
+        1370
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "afe2799f6bca37936fe2dcbad51df985de92079275da1b3171c0522afd830d79"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-verb1.png",
+      "page": 179,
+      "nativeBounds": [
+        412,
+        1335,
+        606,
+        1435
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "c6f0da170d9cbcdd37343a6fca006468c1a0a27465911803fc94d16891afbe7e"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS17-author-hevyon3.png",
+      "page": 179,
+      "nativeBounds": [
+        900,
+        1600,
+        1190,
+        1740
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "68caa8010e1a448e39d9659b344de157507a3cb92f35ad4f3b12e96878717e32"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-nifzeru3.png",
+      "page": 179,
+      "nativeBounds": [
+        1815,
+        1735,
+        1970,
+        1815
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "494cd502417a725db509fc12020d8e65d154c8e3915f2589b81efff5357b75cb"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-mehagia5.png",
+      "page": 180,
+      "nativeBounds": [
+        1095,
+        363,
+        1250,
+        425
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "88cfd845e5f0e6989f2da1c90478d025cbe87988fd79c314240cfc17bcf6628f"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-hadlu7.png",
+      "page": 180,
+      "nativeBounds": [
+        1550,
+        630,
+        1700,
+        720
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "a0f81310966ef3ea9e8ba00d08423bc6c7a334223da2959e7f63d68ccbb52273"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-mugat11.png",
+      "page": 180,
+      "nativeBounds": [
+        1730,
+        1010,
+        1820,
+        1085
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "c021f0b23ceb22a2688141b4adf650b62ca4a1a9ed1cf78bf69500b68bbfbee3"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-tacheze11-complete.png",
+      "page": 180,
+      "nativeBounds": [
+        575,
+        1100,
+        750,
+        1200
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "40280d1f6de7590f6f8e3b499bc5daadb227f2d192a8d05405d5b145a0c8a136"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS17-author-hadel14-complete.png",
+      "page": 180,
+      "nativeBounds": [
+        350,
+        1330,
+        810,
+        1490
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "b8ea0162f9f96a7bccc34cd59d84369c599aa36c09875e938e6d1f34866665de"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS17-author-nifgeu17-complete.png",
+      "page": 180,
+      "nativeBounds": [
+        875,
+        1830,
+        1150,
+        1980
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "2e1a111f8f9b74eea68e1782a17ca9ddc4406930c2869ba9711f0519d34487bd"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-ofaim18-complete.png",
+      "page": 180,
+      "nativeBounds": [
+        1160,
+        2010,
+        1370,
+        2140
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "4ff1e97482d3dacc136f9db599689eb154390c829f3b72da1703a5fe64a3e798"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS17-atid21.png",
+      "page": 181,
+      "nativeBounds": [
+        1260,
+        535,
+        1465,
+        625
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "8ebd43aa989b58e596a6ede4ae80cc1a07c182a9b0701c5c4bdd7d09bf0587d2"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-opening1-full.png",
+      "page": 183,
+      "nativeBounds": [
+        1670,
+        1780,
+        2070,
+        1940
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "cf3e5de44d0ea4f48a5854e3805df2d06527f3898d0671a097e1b01412119673"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-gereshum3.png",
+      "page": 184,
+      "nativeBounds": [
+        1470,
+        600,
+        1740,
+        745
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "beea723db85c6274387c597561b4e413665c2f2377aa934aca529ec76bca3863"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-saat4.png",
+      "page": 184,
+      "nativeBounds": [
+        1215,
+        820,
+        1420,
+        965
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "07c3c0bec8a05ae0bda1d93bd5b1f910e5498cc80259c3a9e26fd9bb9cb78122"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-meshunnah5-full.png",
+      "page": 184,
+      "nativeBounds": [
+        880,
+        920,
+        1220,
+        1090
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "3ef6f1ae35a9f7a041eacd541b6c4e6cebca5bbde91cbaea131c61ddd12944e7"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-6-qof.png",
+      "page": 184,
+      "nativeBounds": [
+        1190,
+        1010,
+        1460,
+        1145
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "4729625c7b17bc6aec005af3b53ba0e6b29a60377d07db893e9b01530e1f3398"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-yishameru6-full.png",
+      "page": 184,
+      "nativeBounds": [
+        630,
+        1005,
+        1010,
+        1140
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "1e66fcf86743b2c42a10705681702ce57e7507775abf367b323c073caa03efb7"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-mekhuseh7-full.png",
+      "page": 184,
+      "nativeBounds": [
+        1810,
+        1320,
+        2080,
+        1470
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "c8378bcf6cc2dbf7dfbb17b8c935311eecfee2833acc97943317a57281545993"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-vishm9.png",
+      "page": 184,
+      "nativeBounds": [
+        1500,
+        1395,
+        1750,
+        1530
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "32fba94a438c13016aa35099f3a8860da15c3e98a25304b4294a46123b9cee77"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-halelu9.png",
+      "page": 184,
+      "nativeBounds": [
+        355,
+        1395,
+        590,
+        1530
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "0c29444f6f12077112c615274b6e476669a9731262cc6f8f4244f287d6ed9c13"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-hamtsaot10.png",
+      "page": 184,
+      "nativeBounds": [
+        925,
+        1495,
+        1235,
+        1645
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "5dc325b3593115c67196f27f7520f78807ac303630de1b3ce77d6660c7673f7d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-13-ayin.png",
+      "page": 185,
+      "nativeBounds": [
+        200,
+        510,
+        620,
+        650
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "e4c8a8ef3567de48584810a5db2f0c24011ecce797e603676c86e20520cb1f54"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-author-huku17-correct.png",
+      "page": 185,
+      "nativeBounds": [
+        1540,
+        1080,
+        1760,
+        1215
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "2f752beda53909f06ce1f18216199c631e48c956f059578bd67917a50ee7d0cc"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-tzlilei18.png",
+      "page": 185,
+      "nativeBounds": [
+        185,
+        1255,
+        565,
+        1415
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "d6029bb7f466fbee14a65b6551f0a09551520980ce87cc60a3cc15c65009b4c0"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/source-gate-WIS19-kaasher18-comparator.png",
+      "page": 185,
+      "nativeBounds": [
+        705,
+        1255,
+        955,
+        1410
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "52ac754f97e32e61105eee3b8e0bac447a1e6f34e4d8483f3177785e6e3f1667"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS19-author-mehoshiam22.png",
+      "page": 186,
+      "nativeBounds": [
+        215,
+        580,
+        630,
+        730
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "a7b7138ce1b29a89129f69f10e9e856a8a463344cbfe92a00729c5bf7f5781e2"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-first-tsadi-target.png",
+      "page": 157,
+      "nativeBounds": [
+        1155,
+        1128,
+        1215,
+        1208
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "sha256": "cd2fd04dc2274994bd901422a880ae470ea9337f8053fa0b4df738be1b2f2a2f"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-second-tsadi-comparator.png",
+      "page": 157,
+      "nativeBounds": [
+        1082,
+        1128,
+        1142,
+        1208
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "sha256": "03cb7c39198453db28df9439c70c73c7d1d94bc8d40a51d48a7621544140a3cc"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-1-native-context.png",
+      "page": 157,
+      "nativeBounds": [
+        950,
+        1080,
+        1300,
+        1240
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "sha256": "39fd487185d6c4095e2f629a70ab1b62044130c5548032d4857c5400bddbdc08"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-9-resh-target.png",
+      "page": 169,
+      "nativeBounds": [
+        250,
+        790,
+        300,
+        875
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "sha256": "75067f6ed9c40ae5348167a94978317ce17717081cfd4c7945ff345d3049035f"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-raim-query.png",
+      "page": 169,
+      "nativeBounds": [
+        920,
+        580,
+        1130,
+        705
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sha256": "178e60e7419e76642308a0d258682095766310086a027e1756367d45a35c37d4"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-torfot-query.png",
+      "page": 169,
+      "nativeBounds": [
+        705,
+        770,
+        930,
+        900
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sha256": "1f9b7df0b30731e54a3eefdbf2cfb0660a99134ceb4dc269b6a7225d982f827b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-169-upper-context.png",
+      "page": 169,
+      "nativeBounds": [
+        180,
+        390,
+        2050,
+        940
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "1d9d92ac6766ab6049abf9a96529809c11f6d3cbb7591ee843e3ab1c9cb357ce"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yod-target.png",
+      "page": 171,
+      "nativeBounds": [
+        1525,
+        1770,
+        1580,
+        1890
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "sha256": "355e9e681b03b96f4a5c53876f7f652e506b160fd0ce73daaa2d254498a6af52"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-11-12-context.png",
+      "page": 171,
+      "nativeBounds": [
+        180,
+        1760,
+        1930,
+        1980
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "0a6b990eb8550d8d9bd1628d2e981b2efbd4af80a72ef91053f3934c995d89c5"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-chayav-query.png",
+      "page": 171,
+      "nativeBounds": [
+        1110,
+        1860,
+        1260,
+        1980
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sha256": "29d56ad6f88f98875d8aab9da2107af341192bcf137792f93b972fd5dc0bac8c"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-tsarkhey-query.png",
+      "page": 171,
+      "nativeBounds": [
+        1230,
+        1860,
+        1470,
+        1980
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sha256": "1868b874c9d50858d1248b003107664a5296fd1200b718b921f248aa8e841b80"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yiteev-query.png",
+      "page": 171,
+      "nativeBounds": [
+        1800,
+        1860,
+        2040,
+        1980
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sha256": "969b57490f36beec4f6e4c8f008fef9e4ea9cce48227610f0bd3d115294f94bb"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-kaechad-query.png",
+      "page": 174,
+      "nativeBounds": [
+        960,
+        1660,
+        1170,
+        1800
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sha256": "6d7370c7adc7f58667b0da252cd5ca2301904abe1994c6d0b02ea0a1cc79d48b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS14-25-sheva-context.png",
+      "page": 174,
+      "nativeBounds": [
+        350,
+        1540,
+        2260,
+        1830
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "9a78d69745f31346d1c7b288caa9c9f9df5e776e127ce9f585263b96e6f5100d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-9-resh-target-native.png",
+      "page": 169,
+      "nativeBounds": [
+        250,
+        790,
+        300,
+        875
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "15460a288992301726ecaf4e3726f960f245097356a52b7060c3e671bb4a9260"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-raim-query-native.png",
+      "page": 169,
+      "nativeBounds": [
+        920,
+        580,
+        1130,
+        705
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "20601afce7992dd2166a05db654bf0438d614b1fd8b83a38a31bf5a755109f8a"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS12-torfot-query-native.png",
+      "page": 169,
+      "nativeBounds": [
+        705,
+        770,
+        930,
+        900
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "a50a64d26fda325042c7f981cd9bbc4ca0b31fbfbf13f81586118f00909c7497"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yod-target-native.png",
+      "page": 171,
+      "nativeBounds": [
+        1525,
+        1770,
+        1580,
+        1890
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "04f7606a6cc689685ad279c403802e745a0a095702e7b042aa5e1d18befa3dc8"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-chayav-query-native.png",
+      "page": 171,
+      "nativeBounds": [
+        1110,
+        1860,
+        1260,
+        1980
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "277f096b06fb939d22fa69eea3e2f0f732501124ca3ed830db9436eeb780fb65"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-tsarkhey-query-native.png",
+      "page": 171,
+      "nativeBounds": [
+        1230,
+        1860,
+        1470,
+        1980
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "11d03f38008f75bc7d730cfd739dce0b41337be5d0c0a18e022f5e160c23c696"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS13-yiteev-query-native.png",
+      "page": 171,
+      "nativeBounds": [
+        1800,
+        1860,
+        2040,
+        1980
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "8de0e00b9ee93e93f563d22c50522a263eca9249852568ca758a5d0b2e6ffd1e"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-first-tsadi-target-native.png",
+      "page": 157,
+      "nativeBounds": [
+        1155,
+        1128,
+        1215,
+        1208
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "1aeaac352d0b5d4a5a02124d68837b0498a87930eec39d0854a00b24fc08d19b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-WIS/WIS7-second-tsadi-comparator-native.png",
+      "page": 157,
+      "nativeBounds": [
+        1082,
+        1128,
+        1142,
+        1208
+      ],
+      "scale": 1,
+      "resampling": "nearest-neighbor",
+      "sha256": "3545056ff98a66c0ea99aa33a2df1c6388c0a6d0add2f5a7c35a9c927ea8f4c8"
+    }
+  ],
+  "sourcePages": [
+    {
+      "page": 157,
+      "nativeRasterSHA256": "17bb96c6342dcbc16e7967217a1f058ca28f744ea7b66eb86c523982984dd9d4",
+      "nativeSize": [
+        2628,
+        3588
+      ]
+    },
+    {
+      "page": 158,
+      "nativeRasterSHA256": "f75544ae05ee5e3cb0e649ffc15b10588603e6615cf38c1d6d181241e1eb8036",
+      "nativeSize": [
+        2484,
+        3487
+      ]
+    },
+    {
+      "page": 160,
+      "nativeRasterSHA256": "a03466ddfefad75e2007d57fb5928056070a0cfc71f6eded7515d86513003f78",
+      "nativeSize": [
+        2499,
+        3498
+      ]
+    },
+    {
+      "page": 162,
+      "nativeRasterSHA256": "19f6fd1c6c997173343e5c2f796ef75b2e0d1325e8d1bcb473e1ef6ab914d43e",
+      "nativeSize": [
+        2598,
+        3567
+      ]
+    },
+    {
+      "page": 163,
+      "nativeRasterSHA256": "648a407d281825bb47c546233fd85b03b342689f4473b55237563eac8996ff79",
+      "nativeSize": [
+        2599,
+        3567
+      ]
+    },
+    {
+      "page": 164,
+      "nativeRasterSHA256": "a8ec2808cc38b406c1f17c9abb0eed466ce5e6e7bb334f5ab726122cf1d6b1f4",
+      "nativeSize": [
+        2703,
+        3638
+      ]
+    },
+    {
+      "page": 165,
+      "nativeRasterSHA256": "6130874d858422359ec0cd84910244ee680178872d98388fb7759119d07aea69",
+      "nativeSize": [
+        2516,
+        3510
+      ]
+    },
+    {
+      "page": 166,
+      "nativeRasterSHA256": "ea42f8eb07fd60b148f55a8aca2dfc1f007ff2830ecbfc346905728b7642cc14",
+      "nativeSize": [
+        2618,
+        3581
+      ]
+    },
+    {
+      "page": 167,
+      "nativeRasterSHA256": "f86bdc9bcc253f93b7a43cf3115cfc8882ce64983221a866eb18506908e7d0db",
+      "nativeSize": [
+        2559,
+        3540
+      ]
+    },
+    {
+      "page": 168,
+      "nativeRasterSHA256": "71f2a753b22bb6761c030db48feb9beb59f9cb3800022f8267e1bf912fd7ff19",
+      "nativeSize": [
+        2690,
+        3629
+      ]
+    },
+    {
+      "page": 169,
+      "nativeRasterSHA256": "77632aef4a5d374a2fc12162e4250908058f3f3a9ae8cd6c452c61079e835029",
+      "nativeSize": [
+        2477,
+        3482
+      ]
+    },
+    {
+      "page": 170,
+      "nativeRasterSHA256": "c83677d8d755e8f842a344f43fb52d9ba856f7064cce28cf7b05f7abc471bd0c",
+      "nativeSize": [
+        2613,
+        3577
+      ]
+    },
+    {
+      "page": 171,
+      "nativeRasterSHA256": "d4127635048e09371471c66b9dd180dafc0d2b93f012b37e28576cc58192702b",
+      "nativeSize": [
+        2507,
+        3503
+      ]
+    },
+    {
+      "page": 172,
+      "nativeRasterSHA256": "847098e398331dfde2e263e3ca946b01638eb8c90a41cea2674d40614d28aeb9",
+      "nativeSize": [
+        2644,
+        3598
+      ]
+    },
+    {
+      "page": 173,
+      "nativeRasterSHA256": "4f9d8d3843dd8ef2c9f6186a1edf06bb7e52a344410b0b8fd8d08361aed13409",
+      "nativeSize": [
+        2525,
+        3516
+      ]
+    },
+    {
+      "page": 174,
+      "nativeRasterSHA256": "29801610bb6c83b52de916a5e9fa292a0c2b6fe3dc7cd0e8bc09e6a7df945d5e",
+      "nativeSize": [
+        2657,
+        3607
+      ]
+    },
+    {
+      "page": 175,
+      "nativeRasterSHA256": "c9b5a29401d66da94a875bf6d6e8031ba69293326566c046856387157a474296",
+      "nativeSize": [
+        2534,
+        3523
+      ]
+    },
+    {
+      "page": 176,
+      "nativeRasterSHA256": "f11a42ae085b6f68e2b9c54efd6b5bc31865a5cf235ea500792659f96aeb933d",
+      "nativeSize": [
+        2654,
+        3605
+      ]
+    },
+    {
+      "page": 177,
+      "nativeRasterSHA256": "2a88d22b0f9623d1fef6df332a79f13248cd05fdca042a7bb55972b336ac0e0c",
+      "nativeSize": [
+        2560,
+        3541
+      ]
+    },
+    {
+      "page": 178,
+      "nativeRasterSHA256": "2aeb3d6fdae01484b67b96a2f0b1afce4605fde391cc3f27996c15cfec52a224",
+      "nativeSize": [
+        2610,
+        3575
+      ]
+    },
+    {
+      "page": 179,
+      "nativeRasterSHA256": "a8e1e164a0d3680660956d357d7b23014e59c49451b84fa8c4089c75718281f3",
+      "nativeSize": [
+        2540,
+        3526
+      ]
+    },
+    {
+      "page": 180,
+      "nativeRasterSHA256": "b0f83edc21d9a8ef13d06f87077a7ffda9f65bae0968a49716b7565a84b5b1b2",
+      "nativeSize": [
+        2637,
+        3593
+      ]
+    },
+    {
+      "page": 181,
+      "nativeRasterSHA256": "2f3633131cfae3945f8a25dbd5b9eb880c7e0d10f0c5ca3335901330ab23fe72",
+      "nativeSize": [
+        2543,
+        3529
+      ]
+    },
+    {
+      "page": 183,
+      "nativeRasterSHA256": "d662e07371c1863e13d5a31586367845d95d0da64f5d2a41b6741ca09db784ba",
+      "nativeSize": [
+        2534,
+        3522
+      ]
+    },
+    {
+      "page": 184,
+      "nativeRasterSHA256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+      "nativeSize": [
+        2561,
+        3541
+      ]
+    },
+    {
+      "page": 185,
+      "nativeRasterSHA256": "cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82",
+      "nativeSize": [
+        2464,
+        3473
+      ]
+    },
+    {
+      "page": 186,
+      "nativeRasterSHA256": "b59b1a33e2fa6e385e72cdbd656248eacf95506ea073973b40b71ac554a51c46",
+      "nativeSize": [
+        2529,
+        3519
+      ]
+    }
+  ],
+  "validation": {
+    "comparisonBaseline": "/private/tmp/prosary-hebrew-pass3-20261017/baseline/Shared/content/hebrew-deuterocanon/WIS.json",
+    "disjointFromBothEarlier20261017FocusedNoteSets": true,
+    "exactChangedVerseAddresses": [
+      "12:9",
+      "13:11"
+    ],
+    "textChangedVerseAddresses": [
+      "12:9"
+    ],
+    "allOtherVerseRowsUnchanged": true,
+    "sourceConsonantsAndPunctuationUnchanged": true,
+    "sourceOrderAndBoundariesUnchanged": true,
+    "allRemainingSourceNotesByteEquivalent": true,
+    "allEvidenceHashesVerified": true,
+    "priorReportsUnmodified": true
+  },
+  "limits": [
+    "No new witness or clearer scan is claimed.",
+    "108 inspected point notes remain unresolved.",
+    "Initial approval of7:1 tsadi qamats was explicitly withdrawn before edits when a fused-sheva counterexample defeated certainty.",
+    "This report does not update central source approvals, daily or Catholic presentation manifests, generated archives or platform copies."
+  ]
+}

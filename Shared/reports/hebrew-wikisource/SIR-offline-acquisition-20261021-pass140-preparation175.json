@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 140,
+  "integrationPass": 140,
+  "preparationID": 175,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Existing authorized offline Psik Chrome captures; no browser or network access. Legacy and saved capture page labels retained; printed pagination is not inferred.",
+  "additionalSourceProvenance": [],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Offline saved overview/header only supply final evidence. Native local primaryPDF pages447..452 were consulted solely as numerical address locators: folder449identifier451 registers actual447, correct449 is folder451identifier453. No PDF raster/crop supplies mark.",
+  "sourceDocument": "Kahana Volume B",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    449
+  ],
+  "savedCaptureViewerPageLabels": [
+    453
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page451/extension-volumeB-453-page-overview.png",
+      "sha256": "3c61272d52d6e1e683e38b54326acf2a5ffc8254b218d06230e8cf9173d2666e",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page451/extension-volumeB-453-zoom4-header.png",
+      "sha256": "41f87552d939a35b7624327581a4688f54a9e0c538808ec938bdbfdf75e5a271",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation175-SIR-1-3/source-provenance.json",
+    "sha256": "4714e3fdb4bbe158f23036227533756c69bbbdff05c9bff1118987c28c728d9f"
+  }
+}

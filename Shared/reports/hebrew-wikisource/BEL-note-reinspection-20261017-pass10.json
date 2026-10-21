@@ -1,0 +1,1613 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 10,
+  "book": "BEL",
+  "status": "Five exact original-source vowel omissions independently certified; one selected vowel note retained",
+  "applicationState": "pendingRootIntegration; no canonical, central approval, daily, presentation or generated file edited by this report author",
+  "scope": {
+    "reviewedSourceNoteCount": 6,
+    "reviewedChapters": [
+      1
+    ],
+    "allTargetChaptersContainAnnotations": true,
+    "targetLetters": [
+      "samekh",
+      "gimel",
+      "qof",
+      "qof",
+      "tsadi",
+      "lamed"
+    ],
+    "sixRemainingNonVavYodVowelsOutsidePass8And9TargetSets": true,
+    "independentAdditionsAgentDageshPacketExcluded": true,
+    "notAWholeBookRecollation": true
+  },
+  "method": "Fresh bounded whole-glyph comparison of six remaining non-vav/yod BEL vowel annotations outside the Pass8/9 selected targets. Original embedded A2 pixels, lower Theodotion body only. Literal detached segol, tsere and qamats stamps and exact-letter positive/competing contours discriminate three-node segol, horizontal tsere pair, shallow patah plateau, vertical sheva and deep qamats stem. Same-page bare-lamed and bare-samekh controls rule out natural terminal shapes. Connectivity alone neither rejects a surviving diagnostic contour nor certifies a merged shape; the filled tsadi remains unresolved. All84 durable native/nearest-neighbor images were freshly replayed from six original PDF page images. Wrong, clipped and upper-recension exploratory locators were excluded before decisions. No OCR, grammar, expected spelling, translation, image generation, enhancement or new-scan independence assumption supplies marks. Existing source labels/Catholic unit boundaries remain unchanged.",
+  "sourcePDF": {
+    "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf"
+  },
+  "baselineDirectory": "/private/tmp/prosary-hebrew-pass10-20261017/baseline",
+  "baselineGlobalNoteCount": 599,
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/BEL.json",
+  "canonicalInputSHA256": "85f718703d4dacbd12fe8298680ce671be0543c818807329ab3b6b9170439937",
+  "canonicalOutputSHA256": "85f718703d4dacbd12fe8298680ce671be0543c818807329ab3b6b9170439937",
+  "canonicalChanged": false,
+  "beforeBookNoteCount": 209,
+  "expectedVowelPacketOnlyBookNoteCountAfter": 204,
+  "beforeSourceContentSHA256": "1447603f083e0480d57406829b24a5cdfe3639c7be4ca92c88daa77793f8e2b6",
+  "expectedVowelPacketOnlySourceContentSHA256After": "f006a36359fea6f5f9ceca1f892888e6eb0844128e2125cf5d7c9847cb245371",
+  "expectedDigestMeaning": "Apply only these five vowel insertions and their exact note retirements/anchor refreshes to the stable599 baseline. Root may combine an independently approved additions-agent dagesh packet; that combined BEL digest must be computed separately.",
+  "reviewedSourceNoteCount": 6,
+  "resolvedSourceNoteCount": 5,
+  "retainedInspectedSourceNoteCount": 1,
+  "addedCombiningMarks": {
+    "U+05B6 SEGOL": 2,
+    "U+05B5 TSERE": 2,
+    "U+05B7 PATAH": 1
+  },
+  "retiredSourceNoteIds": [
+    "bel-1-1-242-vayeasef-letter4-vowel",
+    "bel-1-1-242-name-letter6-vowel",
+    "bel-1-27-246-vayikah-letter3-vowel",
+    "bel-1-27-246-vayibaka-letter4-vowel",
+    "bel-1-42-247-vayashlekh42-letter4-vowel"
+  ],
+  "retainedSourceNoteIds": [
+    "bel-1-33-246-vayetse-letter3-vowel"
+  ],
+  "accepted": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "before": "ויֵאָסּף",
+      "after": "ויֵאָסֶּף",
+      "retiredNoteIds": [
+        "bel-1-1-242-vayeasef-letter4-vowel"
+      ],
+      "finding": "Below the already complete samekh foot are two upper lobes with a white window and an additional central lower node. The literal detached lamed segol has the same three-node triangular stamp; the same-font samekh qamats has a deep descending stem and the same-page bare final samekh lacks an added lower stamp. This surviving geometry certifies literal segol even though ink joins it to the foot."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "before": "אַשְׁטוֹאַגס",
+      "after": "אַשְׁטוֹאַגֶס",
+      "retiredNoteIds": [
+        "bel-1-1-242-name-letter6-vowel"
+      ],
+      "finding": "The completed gimel body/foot has three additional rounded nodes below it: two upper stamps around a white window and a third central lower stamp. The detached same-font lamed segol anchors that triangular point class; the exact gimel tsere control retains only two low tips/window, while a detached qamats has a shoulder and deeper stem. The extra third stamp identifies segol without expected name spelling."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "before": "ויִקּח",
+      "after": "ויִקַּח",
+      "retiredNoteIds": [
+        "bel-1-27-246-vayikah-letter3-vowel"
+      ],
+      "finding": "A broad shallow continuous lower bar extends rightward from the qof lower curve, with a long flat lower edge. Both exact same-font qof patah controls in הקרקע repeat this plateau. The qof tsere has two rounded low tips and a central valley, qamats has a deep center stem, and sheva has vertical stamps. The target preserves the flat bar discriminator despite its joins to the ordinary stem/curve."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "before": "ויִבָּקע",
+      "after": "ויִבָּקֵע",
+      "retiredNoteIds": [
+        "bel-1-27-246-vayibaka-letter4-vowel"
+      ],
+      "finding": "Below the ordinary qof curve are two rounded low tips around a central valley/waist. The exact same-letter tsere in ומקל repeats the full two-node contour. Both qof patah controls instead have a long continuous plateau, qamats has an additional deep center stem, and sheva is vertical. No third central lower node survives here; the printed two-node arrangement supports tsere independently of expected verbal spelling."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "before": "ויַּשְׁלךְ",
+      "after": "ויַּשְׁלֵךְ",
+      "retiredNoteIds": [
+        "bel-1-42-247-vayashlekh42-letter4-vowel"
+      ],
+      "finding": "The lamed descending oblique foot has an added horizontal two-node base, with two low tips and a middle valley/notch beyond the ordinary terminal. The detached same-verse lamed tsere repeats that pair. Same-page bare lamed controls end in a single oblique/rounded terminal; sheva has vertical nodes, segol a third central lower node, and detached exact-lamed qamats a crossbar with a deep stem. These controls resolve the bare-foot challenge and support tsere from surviving shape alone."
+    }
+  ],
+  "decisions": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "before": "ויֵאָסּף",
+      "after": "ויֵאָסֶּף",
+      "retiredNoteIds": [
+        "bel-1-1-242-vayeasef-letter4-vowel"
+      ],
+      "finding": "Below the already complete samekh foot are two upper lobes with a white window and an additional central lower node. The literal detached lamed segol has the same three-node triangular stamp; the same-font samekh qamats has a deep descending stem and the same-page bare final samekh lacks an added lower stamp. This surviving geometry certifies literal segol even though ink joins it to the foot.",
+      "retiredNote": {
+        "id": "bel-1-1-242-vayeasef-letter4-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ויֵאָסּף",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          242
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=242"
+      },
+      "addedScalar": "U+05B6",
+      "sourcePage": 242,
+      "targetNativeBounds": [
+        1730,
+        2670,
+        1775,
+        2790
+      ],
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh1-target-expanded-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh1-target-expanded-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-1-242-vayeasef-letter4-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-1-242-vayeasef-letter4-vowel-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh-gimel1-numbered-lower-Theodotion-context-native.png"
+      ],
+      "comparisonEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bare-samekh-name1-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bare-samekh-name1-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh10-qamats-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh10-qamats-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/sarah10-samekh-qamats-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/sarah10-samekh-qamats-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel36-TSERE-correct-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel36-TSERE-correct-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayatsigehu36-gimel-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayatsigehu36-gimel-tsere-word-5x.png"
+      ],
+      "independentApproval": "Root and wisdom peer separately accepted target, full word/source address and positive/competing same-font contours before publication. The peer requested bare-lamed controls and accepted the lamed only after that challenge was resolved."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "before": "אַשְׁטוֹאַגס",
+      "after": "אַשְׁטוֹאַגֶס",
+      "retiredNoteIds": [
+        "bel-1-1-242-name-letter6-vowel"
+      ],
+      "finding": "The completed gimel body/foot has three additional rounded nodes below it: two upper stamps around a white window and a third central lower stamp. The detached same-font lamed segol anchors that triangular point class; the exact gimel tsere control retains only two low tips/window, while a detached qamats has a shoulder and deeper stem. The extra third stamp identifies segol without expected name spelling.",
+      "retiredNote": {
+        "id": "bel-1-1-242-name-letter6-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "אַשְׁטוֹאַגס",
+        "occurrence": 1,
+        "letterIndex": 6,
+        "mark": "vowel",
+        "sourcePages": [
+          242
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=242"
+      },
+      "addedScalar": "U+05B6",
+      "sourcePage": 242,
+      "targetNativeBounds": [
+        1285,
+        2670,
+        1325,
+        2790
+      ],
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel1-target-expanded-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel1-target-expanded-15x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-1-242-name-letter6-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-1-242-name-letter6-vowel-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh-gimel1-numbered-lower-Theodotion-context-native.png"
+      ],
+      "comparisonEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel36-TSERE-correct-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel36-TSERE-correct-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayatsigehu36-gimel-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayatsigehu36-gimel-tsere-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-fullword-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-fullword-5x.png"
+      ],
+      "independentApproval": "Root and wisdom peer separately accepted target, full word/source address and positive/competing same-font contours before publication. The peer requested bare-lamed controls and accepted the lamed only after that challenge was resolved."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "before": "ויִקּח",
+      "after": "ויִקַּח",
+      "retiredNoteIds": [
+        "bel-1-27-246-vayikah-letter3-vowel"
+      ],
+      "finding": "A broad shallow continuous lower bar extends rightward from the qof lower curve, with a long flat lower edge. Both exact same-font qof patah controls in הקרקע repeat this plateau. The qof tsere has two rounded low tips and a central valley, qamats has a deep center stem, and sheva has vertical stamps. The target preserves the flat bar discriminator despite its joins to the ordinary stem/curve.",
+      "retiredNote": {
+        "id": "bel-1-27-246-vayikah-letter3-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ויִקּח",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          246
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246"
+      },
+      "addedScalar": "U+05B7",
+      "sourcePage": 246,
+      "targetNativeBounds": [
+        1190,
+        1710,
+        1254,
+        1845
+      ],
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikah27-qof-target-expanded-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikah27-qof-target-expanded-12x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-27-246-vayikah-letter3-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-27-246-vayikah-letter3-vowel-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qof27-numbered-lower-Theodotion-context-native.png"
+      ],
+      "comparisonEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-first-QOF-patah-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-first-QOF-patah-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-second-QOF-patah-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-second-QOF-patah-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-qof-patah-fullword-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-qof-patah-fullword-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-QOF-qamats-correct-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-QOF-qamats-correct-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-qof-qamats-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-qof-qamats-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-word-5x.png"
+      ],
+      "independentApproval": "Root and wisdom peer separately accepted target, full word/source address and positive/competing same-font contours before publication. The peer requested bare-lamed controls and accepted the lamed only after that challenge was resolved."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "before": "ויִבָּקע",
+      "after": "ויִבָּקֵע",
+      "retiredNoteIds": [
+        "bel-1-27-246-vayibaka-letter4-vowel"
+      ],
+      "finding": "Below the ordinary qof curve are two rounded low tips around a central valley/waist. The exact same-letter tsere in ומקל repeats the full two-node contour. Both qof patah controls instead have a long continuous plateau, qamats has an additional deep center stem, and sheva is vertical. No third central lower node survives here; the printed two-node arrangement supports tsere independently of expected verbal spelling.",
+      "retiredNote": {
+        "id": "bel-1-27-246-vayibaka-letter4-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ויִבָּקע",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          246
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246"
+      },
+      "addedScalar": "U+05B5",
+      "sourcePage": 246,
+      "targetNativeBounds": [
+        484,
+        1800,
+        548,
+        1945
+      ],
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayibaka27-qof-target-expanded-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayibaka27-qof-target-expanded-12x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-27-246-vayibaka-letter4-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-27-246-vayibaka-letter4-vowel-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qof27-numbered-lower-Theodotion-context-native.png"
+      ],
+      "comparisonEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-first-QOF-patah-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-first-QOF-patah-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-second-QOF-patah-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-second-QOF-patah-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-qof-patah-fullword-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-qof-patah-fullword-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-QOF-qamats-correct-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-QOF-qamats-correct-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-qof-qamats-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-qof-qamats-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-12x.png"
+      ],
+      "independentApproval": "Root and wisdom peer separately accepted target, full word/source address and positive/competing same-font contours before publication. The peer requested bare-lamed controls and accepted the lamed only after that challenge was resolved."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "before": "ויַּשְׁלךְ",
+      "after": "ויַּשְׁלֵךְ",
+      "retiredNoteIds": [
+        "bel-1-42-247-vayashlekh42-letter4-vowel"
+      ],
+      "finding": "The lamed descending oblique foot has an added horizontal two-node base, with two low tips and a middle valley/notch beyond the ordinary terminal. The detached same-verse lamed tsere repeats that pair. Same-page bare lamed controls end in a single oblique/rounded terminal; sheva has vertical nodes, segol a third central lower node, and detached exact-lamed qamats a crossbar with a deep stem. These controls resolve the bare-foot challenge and support tsere from surviving shape alone.",
+      "retiredNote": {
+        "id": "bel-1-42-247-vayashlekh42-letter4-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ויַּשְׁלךְ",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          247
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=247"
+      },
+      "addedScalar": "U+05B5",
+      "sourcePage": 247,
+      "targetNativeBounds": [
+        1020,
+        1885,
+        1073,
+        2030
+      ],
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-target-expanded-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-target-expanded-12x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-target-complete-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-target-complete-5x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-numbered-lower-Theodotion-context-native.png"
+      ],
+      "comparisonEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-TSERE-vayaalehu-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-TSERE-vayaalehu-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayaalehu42-lamed-tsere-fullword-expanded-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayaalehu42-lamed-tsere-fullword-expanded-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/malakh36-lamed-sheva-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/malakh36-lamed-sheva-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/malakh36-lamed-sheva-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/malakh36-lamed-sheva-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-fullword-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-fullword-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel41-BARE-LAMED-correct-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel41-BARE-LAMED-correct-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel41-bare-lamed-fullword-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel41-bare-lamed-fullword-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel38-BARE-LAMED-correct-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel38-BARE-LAMED-correct-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel38-bare-lamed-fullword-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel38-bare-lamed-fullword-4x.png"
+      ],
+      "independentApproval": "Root and wisdom peer separately accepted target, full word/source address and positive/competing same-font contours before publication. The peer requested bare-lamed controls and accepted the lamed only after that challenge was resolved."
+    }
+  ],
+  "retained": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 33,
+      "note": {
+        "id": "bel-1-33-246-vayetse-letter3-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ויֵצא",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          246
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246"
+      },
+      "decision": "retainNote",
+      "finding": "The tsadi lower mass is compact and filled. Its shallow lower irregularity does not retain a uniquely classifiable pair/bar/third-node arrangement. A fresh literal exact-tsadi segol control in צלם shows a diagnostic three-node/window stamp, but the target has no comparable preserved discriminator. Retain the note; neither the point class nor absence is proved.",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-33-246-vayetse-letter3-vowel-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-33-246-vayetse-letter3-vowel-target-12x.png"
+      ],
+      "completeWordEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-33-246-vayetse-letter3-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-33-246-vayetse-letter3-vowel-word-4x.png"
+      ],
+      "numberedContextEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tsadi33-numbered-lower-Theodotion-context-native.png"
+      ],
+      "comparisonEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tselem3-tsadi-segol-probe-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tselem3-tsadi-segol-probe-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tselem3-tsadi-segol-fullword-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tselem3-tsadi-segol-fullword-5x.png"
+      ]
+    }
+  ],
+  "retainedNoteAnchorUpdates": [
+    {
+      "id": "bel-1-1-242-vayeasef-letter1-vowel",
+      "oldAnchor": "ויֵאָסּף",
+      "newAnchor": "ויֵאָסֶּף"
+    },
+    {
+      "id": "bel-1-1-242-vayeasef-letter2-dagesh",
+      "oldAnchor": "ויֵאָסּף",
+      "newAnchor": "ויֵאָסֶּף"
+    },
+    {
+      "id": "bel-1-27-246-vayikah-letter1-vowel",
+      "oldAnchor": "ויִקּח",
+      "newAnchor": "ויִקַּח"
+    },
+    {
+      "id": "bel-1-27-246-vayikah-letter2-dagesh",
+      "oldAnchor": "ויִקּח",
+      "newAnchor": "ויִקַּח"
+    },
+    {
+      "id": "bel-1-27-246-vayibaka-letter1-vowel",
+      "oldAnchor": "ויִבָּקע",
+      "newAnchor": "ויִבָּקֵע"
+    },
+    {
+      "id": "bel-1-27-246-vayibaka-letter2-dagesh",
+      "oldAnchor": "ויִבָּקע",
+      "newAnchor": "ויִבָּקֵע"
+    },
+    {
+      "id": "bel-1-42-247-vayashlekh42-letter1-vowel",
+      "oldAnchor": "ויַּשְׁלךְ",
+      "newAnchor": "ויַּשְׁלֵךְ"
+    }
+  ],
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/accepted.json",
+    "sha256": "bf550d7e3f29b1832ac3dc203fea6ccc0b81572f94414cfc6f9427684668da8d"
+  },
+  "originalPDFNativeReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/original-PDF-native-replay.json",
+    "sha256": "9951e2a28d99f91545a24671b65d19bceeb6626a904635b92e8d071062977b8d"
+  },
+  "evidenceCrops": [
+    {
+      "name": "bel-1-1-242-vayeasef-letter4-vowel-word",
+      "page": 242,
+      "nativeBounds": [
+        1680,
+        2670,
+        1870,
+        2790
+      ],
+      "scale": 4,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-1-242-vayeasef-letter4-vowel-word-native.png",
+          "sha256": "2f4b4c2fc4b7ff4c6a87cf92ec71d611257c5dd1c448fe2bc4097d5f7fa23fdb",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-1-242-vayeasef-letter4-vowel-word-4x.png",
+          "sha256": "b7009595dc7c43d5b944a94a97f2650f36fed132c9f5e2c0ebe5b6667911ce57",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "name": "bel-1-1-242-name-letter6-vowel-word",
+      "page": 242,
+      "nativeBounds": [
+        1200,
+        2670,
+        1540,
+        2790
+      ],
+      "scale": 4,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-1-242-name-letter6-vowel-word-native.png",
+          "sha256": "cc1809b6b4f5c6041ae68326d0bad91db01fed38c1908009db1063fb6c01160a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-1-242-name-letter6-vowel-word-4x.png",
+          "sha256": "83b1f5baaef8a508c83b0e194461e805ee39eefc5cc377671e99c97d29b9d023",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "name": "bel-1-27-246-vayikah-letter3-vowel-word",
+      "page": 246,
+      "nativeBounds": [
+        1170,
+        1720,
+        1310,
+        1825
+      ],
+      "scale": 4,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-27-246-vayikah-letter3-vowel-word-native.png",
+          "sha256": "eca36120dfc38ebff048d21164bc08d672a96fcdb9e4424d4cf2a4e3be397ddf",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-27-246-vayikah-letter3-vowel-word-4x.png",
+          "sha256": "ba0806e9287b5a2e6d7d0c45c13671f721e7b6821c2748fab645535d187f5834",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "name": "bel-1-27-246-vayibaka-letter4-vowel-word",
+      "page": 246,
+      "nativeBounds": [
+        460,
+        1810,
+        640,
+        1920
+      ],
+      "scale": 4,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-27-246-vayibaka-letter4-vowel-word-native.png",
+          "sha256": "d368442d71a0d726e1de4772e560eafb2b67199063cc4e24a689ce9bb76d2366",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-27-246-vayibaka-letter4-vowel-word-4x.png",
+          "sha256": "db240180d0130d36a47c33ea174cef5ad7ba596fb5355c125eaf4fa8c393afe3",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "name": "bel-1-33-246-vayetse-letter3-vowel-word",
+      "page": 246,
+      "nativeBounds": [
+        1880,
+        2750,
+        2035,
+        2870
+      ],
+      "scale": 4,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-33-246-vayetse-letter3-vowel-word-native.png",
+          "sha256": "60797ab31d0d1ddb3e995c36708dfe5c9cef844ea5f16da990c7f6c5a88b2dd1",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-33-246-vayetse-letter3-vowel-word-4x.png",
+          "sha256": "4ca8899ad153bd0410c1122304235a87f25c7ac0fa2eb6630d9ede50744a0416",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "name": "lamed42-target-complete",
+      "page": 247,
+      "nativeBounds": [
+        990,
+        1885,
+        1230,
+        2030
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-target-complete-native.png",
+          "sha256": "cdf95f01980acd269a80b52a7d70ca9695a99ebb9d60bdedc5a07b01bbc0173b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-target-complete-5x.png",
+          "sha256": "7df01519cd3c94bf613001720d474694e4f87449ce27cea852250d583c537908",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "samekh1-target-expanded",
+      "page": 242,
+      "nativeBounds": [
+        1730,
+        2670,
+        1775,
+        2790
+      ],
+      "scale": 15,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh1-target-expanded-native.png",
+          "sha256": "70d001fd1da1fc4bb3b5e53eb4ffe4d32da4b3a071993c9ff67edcc4a3f592ef",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh1-target-expanded-15x.png",
+          "sha256": "fa576c6efe79f34e4b5215c11a51f2f9e50165c0ca845b959171378cc0db23d9",
+          "scale": 15
+        }
+      ]
+    },
+    {
+      "name": "gimel1-target-expanded",
+      "page": 242,
+      "nativeBounds": [
+        1285,
+        2670,
+        1325,
+        2790
+      ],
+      "scale": 15,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel1-target-expanded-native.png",
+          "sha256": "77ab18bf67637e131f391dd3b33b9839a887f42fec326b1ea96c08ea99447610",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel1-target-expanded-15x.png",
+          "sha256": "4628f0341cd744d70ba7ac37de692a27fe53da626f7edd68bf54661d56dcfe74",
+          "scale": 15
+        }
+      ]
+    },
+    {
+      "name": "vayikah27-qof-target-expanded",
+      "page": 246,
+      "nativeBounds": [
+        1190,
+        1710,
+        1254,
+        1845
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikah27-qof-target-expanded-native.png",
+          "sha256": "c2a4b67c0b87568333bcebf1ac3f1da609fe0ab4df634d23877630c5e039c190",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikah27-qof-target-expanded-12x.png",
+          "sha256": "668616107ea1bed96731c46bd9bfa218e6dee6f2a121cb4de3b07cf3a68e7dce",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "vayibaka27-qof-target-expanded",
+      "page": 246,
+      "nativeBounds": [
+        484,
+        1800,
+        548,
+        1945
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayibaka27-qof-target-expanded-native.png",
+          "sha256": "20828395f554ad1e6915e831b11618764ebf90398b1d82d608592023638108aa",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayibaka27-qof-target-expanded-12x.png",
+          "sha256": "3edcefd7b657a7455b5d417d46e34365571a070496f5f6aff45d03fafa3de932",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "bel-1-33-246-vayetse-letter3-vowel-target",
+      "page": 246,
+      "nativeBounds": [
+        1902,
+        2765,
+        1966,
+        2855
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-33-246-vayetse-letter3-vowel-target-native.png",
+          "sha256": "147d1aa963b9a3ffb918ae789aa9e59336f1e38b074d16d046371533f16e78db",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bel-1-33-246-vayetse-letter3-vowel-target-12x.png",
+          "sha256": "5d96e7b9ba1c2449ba953ca16ae5d384bb3ed29d93566b01c3f357ce139f6226",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "lamed42-target-expanded",
+      "page": 247,
+      "nativeBounds": [
+        1020,
+        1885,
+        1073,
+        2030
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-target-expanded-native.png",
+          "sha256": "ed39530ffbb609ce858aeed87015cdf5b52a215c5f4b4496880f59088154d7b6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-target-expanded-12x.png",
+          "sha256": "4e1d12f155f273cbaf07079a892e4433c8edfbc3553b042279783e3792b28cd5",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "vayatsigehu36-gimel-tsere-word",
+      "page": 247,
+      "nativeBounds": [
+        1690,
+        1345,
+        1940,
+        1455
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayatsigehu36-gimel-tsere-word-native.png",
+          "sha256": "8056653d29a98416cc2dabc341a49491e8c56f6e63c3729c6c395a54d44c0e4c",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayatsigehu36-gimel-tsere-word-5x.png",
+          "sha256": "e3e5fb72d12fac7bdf2295b2bad97bc5f605761a2eb47a315c67dcc40629ef6d",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "gimel36-TSERE-correct-tight",
+      "page": 247,
+      "nativeBounds": [
+        1788,
+        1345,
+        1825,
+        1450
+      ],
+      "scale": 15,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel36-TSERE-correct-tight-native.png",
+          "sha256": "3e08ced613c43c18062320b02e421f43bca34dd876fa03cbc6901bc6a7dd5b56",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/gimel36-TSERE-correct-tight-15x.png",
+          "sha256": "7f535722adbace52ce1b3f4f0659111ef5f4a8bb9e53b058247c17d9d7251433",
+          "scale": 15
+        }
+      ]
+    },
+    {
+      "name": "hamelech40-lamed-segol-word",
+      "page": 247,
+      "nativeBounds": [
+        400,
+        1630,
+        575,
+        1740
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-word-native.png",
+          "sha256": "8acc0cd6d4d302e871108fee94df5bb1a22a66259c5d40876569ffc347722f7b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-word-5x.png",
+          "sha256": "dc6c75f220b8a40c81f3375bd246785aa01d88a1ef6925657e9c64cf70b9c92d",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "hamelech40-lamed-segol-probe",
+      "page": 247,
+      "nativeBounds": [
+        435,
+        1630,
+        480,
+        1740
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-native.png",
+          "sha256": "60d07d957693684d48a6e92f8c248915f2eec1db6ce5dc4eb503ed8140cc574d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/hamelech40-lamed-segol-probe-12x.png",
+          "sha256": "7d5f16d5f7fc1a1c44bd27308c64f60a67cd7885310d9569979d5e3b329eb1d8",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "bare-samekh-name1",
+      "page": 242,
+      "nativeBounds": [
+        1220,
+        2670,
+        1290,
+        2790
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bare-samekh-name1-native.png",
+          "sha256": "484ff64fa3dae6be96e295764f2de83215658445abeb3b2567de1033143e69ae",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/bare-samekh-name1-12x.png",
+          "sha256": "cfa27b744eb470a7249410eac5da97404e6030a95893bb2aa62eddfb894f18d3",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "samekh10-qamats-tight",
+      "page": 244,
+      "nativeBounds": [
+        1405,
+        2010,
+        1455,
+        2140
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh10-qamats-tight-native.png",
+          "sha256": "a83177d99a08bb12a0e2e708f4a4aaf51c7f02c721fe9e4f7017daceb8015199",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh10-qamats-tight-12x.png",
+          "sha256": "0feb86c18fd4bef39bd6612ef5dfce36bf36e35a6d8315f903346b0f4ebda332",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "sarah10-samekh-qamats-word",
+      "page": 244,
+      "nativeBounds": [
+        1325,
+        2010,
+        1455,
+        2140
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/sarah10-samekh-qamats-word-native.png",
+          "sha256": "1eaa65050dfccdeeb90389cb11ce885ea1fad490532eac63e1ac1a56aa1f9455",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/sarah10-samekh-qamats-word-5x.png",
+          "sha256": "91b826f0c729be97440974b80a450114c1188c8e145fd7fde3fd0a0a0fd60b8b",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "lamed42-TSERE-vayaalehu-tight",
+      "page": 247,
+      "nativeBounds": [
+        1484,
+        1910,
+        1525,
+        2020
+      ],
+      "scale": 15,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-TSERE-vayaalehu-tight-native.png",
+          "sha256": "6dec61daa0fc6c726f5987b5d34d64014076c896cc3e303bd32fd61f289fd6da",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-TSERE-vayaalehu-tight-15x.png",
+          "sha256": "2cad02a9f92c2a3dc186b42ecd4b5cbd77c1733c5e67a28fb1bdc2c3f6fd0939",
+          "scale": 15
+        }
+      ]
+    },
+    {
+      "name": "malakh36-lamed-sheva-word",
+      "page": 247,
+      "nativeBounds": [
+        1550,
+        1250,
+        1780,
+        1350
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/malakh36-lamed-sheva-word-native.png",
+          "sha256": "be3eeb151607d67e894aeced651913ddd77881e4e1f065a1e83cd9092bf3ab2d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/malakh36-lamed-sheva-word-5x.png",
+          "sha256": "252e417cc89d2823ddf8d26fe386e24177eb34040acc92eac93be922a94dcf0c",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "malakh36-lamed-sheva-probe",
+      "page": 247,
+      "nativeBounds": [
+        1650,
+        1250,
+        1695,
+        1350
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/malakh36-lamed-sheva-probe-native.png",
+          "sha256": "c893bc50e5544941a83f2c81b4280885a83fbc4c48c30d43b4855e75278fc41a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/malakh36-lamed-sheva-probe-12x.png",
+          "sha256": "4ef6c4aa1b794aafe508d1db53351409aa6d27fdcca0bb8643b92e500e326b80",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "laset33-lamed-qamats-fullword",
+      "page": 246,
+      "nativeBounds": [
+        1450,
+        2750,
+        1640,
+        2870
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-fullword-native.png",
+          "sha256": "2596ec25c3180c524d2749b92ae9081f9ad490f48f5a4d9c31cfc8e186d84a8d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-fullword-5x.png",
+          "sha256": "d583da70722fd05721e32b4baacffc82f26ade39ad352c529c1a067d0784f83f",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "laset33-lamed-qamats-tight",
+      "page": 246,
+      "nativeBounds": [
+        1585,
+        2750,
+        1640,
+        2870
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-tight-native.png",
+          "sha256": "093d5fd56dd12ca6a170beaa55b1e4946accc334dfa34c75fc9f8e01db4c7785",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/laset33-lamed-qamats-tight-12x.png",
+          "sha256": "6290eb6168197d94170fbfdee92c1092cb32426628d2672da9b9c686721e40b8",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "daniel41-bare-lamed-fullword",
+      "page": 247,
+      "nativeBounds": [
+        375,
+        1790,
+        605,
+        1970
+      ],
+      "scale": 4,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel41-bare-lamed-fullword-native.png",
+          "sha256": "0f09937af76045056aa55bad725999b4de1538ead3eb12e57d33680d58ce6c4e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel41-bare-lamed-fullword-4x.png",
+          "sha256": "949aff2477a51bd12a27d96b0b65d2afe7c34495eb09c1159a451b58c187424a",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "name": "daniel41-BARE-LAMED-correct-tight",
+      "page": 247,
+      "nativeBounds": [
+        400,
+        1810,
+        447,
+        1940
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel41-BARE-LAMED-correct-tight-native.png",
+          "sha256": "069e277dd3fc63f1375602dac5372244a37b574fba742668501875ee3523e2bf",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel41-BARE-LAMED-correct-tight-12x.png",
+          "sha256": "f64e15b294eca0884a338d69c314e87b86d66f34dd9046b334510f315a102df0",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "daniel38-bare-lamed-fullword",
+      "page": 247,
+      "nativeBounds": [
+        1910,
+        1510,
+        2145,
+        1670
+      ],
+      "scale": 4,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel38-bare-lamed-fullword-native.png",
+          "sha256": "94abdf28a47e8b4c4c3424f3c6b6882c24da9b5b15b7078120b06be2ed5262ca",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel38-bare-lamed-fullword-4x.png",
+          "sha256": "0c8e4e8df04ec2762265525b205961e385e5daabfc74a23b1be5ef45453081e8",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "name": "daniel38-BARE-LAMED-correct-tight",
+      "page": 247,
+      "nativeBounds": [
+        1975,
+        1525,
+        2015,
+        1660
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel38-BARE-LAMED-correct-tight-native.png",
+          "sha256": "ab530fd32ad0caeb7e7981f4cdb4ca56278339b39754679b9032a74c7d208041",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/daniel38-BARE-LAMED-correct-tight-12x.png",
+          "sha256": "a2ab9f698d05d0423977446f8db43c1b4ce441104ec14e8f1255413bb7d28495",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "maqel26-qof-tsere-word",
+      "page": 245,
+      "nativeBounds": [
+        575,
+        2710,
+        725,
+        2840
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-word-native.png",
+          "sha256": "467dc13cd278e03d5a9b3afbadad3643bd4d94ea7d11bae20ae60c5414d2a5f8",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-word-5x.png",
+          "sha256": "5f2ba9dcb67f2c6ed76a84fd15a357e34376865c2c9e4c0b4c6089f282596e39",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "maqel26-qof-tsere-probe",
+      "page": 245,
+      "nativeBounds": [
+        605,
+        2730,
+        655,
+        2835
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-probe-native.png",
+          "sha256": "f8e4027749aac954d857be94b526d035fafbf41c030ed3702ef3b46a462e8fec",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/maqel26-qof-tsere-probe-12x.png",
+          "sha256": "316c09e3aeb37f0922815404ffa803ee7040c0b977ca0d134d10b769a2cc6ff7",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "qarqa20-qof-patah-fullword",
+      "page": 245,
+      "nativeBounds": [
+        1200,
+        1950,
+        1385,
+        2060
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-qof-patah-fullword-native.png",
+          "sha256": "a61cc77631791af933b0cc9bbcb28d50a15bb5d26353554a048281c62320b286",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-qof-patah-fullword-5x.png",
+          "sha256": "0c955518a35f1c333d9ad448200cfe960607064c20ad0bfd9e15e9b39f414070",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "qarqa20-first-QOF-patah-tight",
+      "page": 245,
+      "nativeBounds": [
+        1310,
+        1950,
+        1355,
+        2060
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-first-QOF-patah-tight-native.png",
+          "sha256": "ac8d947b9331ed5d35d7ac8122e462ef51247595a1e3edb70eaa79c9143773a1",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-first-QOF-patah-tight-12x.png",
+          "sha256": "8c5a69184bc02218e46717be3617f293ab7ba0ddde53f7130c394fb78ec8051e",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "qarqa20-second-QOF-patah-tight",
+      "page": 245,
+      "nativeBounds": [
+        1240,
+        1950,
+        1280,
+        2060
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-second-QOF-patah-tight-native.png",
+          "sha256": "9ba3004712baca795954455820807bf51c66b2935e66b6f332caa37c0c219acf",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qarqa20-second-QOF-patah-tight-12x.png",
+          "sha256": "21b69ca719e758f43ad331ca1887e3967abb8c72872c07468d37f7a4e48176ce",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "vayakam39-qof-qamats-word",
+      "page": 247,
+      "nativeBounds": [
+        570,
+        1540,
+        760,
+        1660
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-qof-qamats-word-native.png",
+          "sha256": "1ed9ee8500017e528e7776a01906e4e09488ac96559ecf3df6ee338c41b40e3e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-qof-qamats-word-5x.png",
+          "sha256": "9f71c6407b5d6dcdd5b19e449c1ab959dcd545b5785f0d22f3b809678f848ca8",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "vayakam39-QOF-qamats-correct",
+      "page": 247,
+      "nativeBounds": [
+        620,
+        1540,
+        665,
+        1660
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-QOF-qamats-correct-native.png",
+          "sha256": "c408736754de6eee3a90a3af355cdae0f289d7eb00ffcb7b4d9a8ecc15afbae6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayakam39-QOF-qamats-correct-12x.png",
+          "sha256": "e8af67d24c099f8e97fcd131812f3563d4874b0401806e4a77db5474dc47b067",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "vayikra41-qof-sheva-word",
+      "page": 247,
+      "nativeBounds": [
+        1560,
+        1835,
+        1770,
+        1960
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-word-native.png",
+          "sha256": "54b6f35c600b2dc1f01216d29bb9fd7dd07f1fcb23feb0f99c5f10c4383c7dbf",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-word-5x.png",
+          "sha256": "bbbd1a74b9abde1806c139a27d44c7f70e823ff37aa92d44d78ce0b661d2e065",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "vayikra41-qof-sheva-probe",
+      "page": 247,
+      "nativeBounds": [
+        1655,
+        1830,
+        1705,
+        1960
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-probe-native.png",
+          "sha256": "1a6d3b06606cc96843cb68057dcf8867549673dac7664c7a15471457fa297991",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayikra41-qof-sheva-probe-12x.png",
+          "sha256": "252731d072fead871f125a5da5d1a190ce8ed683dc9287adce3b85cccbad3d3a",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "tselem3-tsadi-segol-fullword",
+      "page": 243,
+      "nativeBounds": [
+        1570,
+        1320,
+        1705,
+        1430
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tselem3-tsadi-segol-fullword-native.png",
+          "sha256": "47960483b294d5ba4650ab66fde8308832d052b89f8660f0a3a9f2fb0ec7e9fb",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tselem3-tsadi-segol-fullword-5x.png",
+          "sha256": "beb1690acaa4aa8b0574c9f10a1a407a27f57195762ee69e4421d861ab54e3bf",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "tselem3-tsadi-segol-probe",
+      "page": 243,
+      "nativeBounds": [
+        1645,
+        1320,
+        1695,
+        1430
+      ],
+      "scale": 12,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tselem3-tsadi-segol-probe-native.png",
+          "sha256": "bfe903c477b28415ca38d0e5b86aa5ca2bad9591e06f6420a7aa8a66a90a6daf",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tselem3-tsadi-segol-probe-12x.png",
+          "sha256": "395e6b414589747cbb65b96458028277d6b4246d5fe4390150a82318147cd5c2",
+          "scale": 12
+        }
+      ]
+    },
+    {
+      "name": "samekh-gimel1-numbered-lower-Theodotion-context",
+      "page": 242,
+      "nativeBounds": [
+        0,
+        2540,
+        2496,
+        2835
+      ],
+      "scale": 1,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/samekh-gimel1-numbered-lower-Theodotion-context-native.png",
+          "sha256": "60a29b10df07c3c09251da7a706f9eace4179a185924ce0c9d594f6612de3838",
+          "scale": 1
+        }
+      ]
+    },
+    {
+      "name": "lamed42-numbered-lower-Theodotion-context",
+      "page": 247,
+      "nativeBounds": [
+        0,
+        1860,
+        2698,
+        2160
+      ],
+      "scale": 1,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/lamed42-numbered-lower-Theodotion-context-native.png",
+          "sha256": "e498f96bbd0fe4f700fa5f43db7f91bbf057490783f0eab9e9f78c8a8ee2b61f",
+          "scale": 1
+        }
+      ]
+    },
+    {
+      "name": "vayaalehu42-lamed-tsere-fullword-expanded",
+      "page": 247,
+      "nativeBounds": [
+        1410,
+        1885,
+        1690,
+        2030
+      ],
+      "scale": 5,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayaalehu42-lamed-tsere-fullword-expanded-native.png",
+          "sha256": "d2042a727b34bcffb94f56d1050ccf66aead613fb036cf16713039d8485d1554",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/vayaalehu42-lamed-tsere-fullword-expanded-5x.png",
+          "sha256": "1aee7ca8eb3cacb5362bbb2de88955728a602ef1a2c4a9a7526aac2bc88628a2",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "qof27-numbered-lower-Theodotion-context",
+      "page": 246,
+      "nativeBounds": [
+        0,
+        1640,
+        2489,
+        1945
+      ],
+      "scale": 1,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/qof27-numbered-lower-Theodotion-context-native.png",
+          "sha256": "6f1b2043566f05890000150bc6bc63cb1a5fe4b684671f35f0639b63f0fa7b5c",
+          "scale": 1
+        }
+      ]
+    },
+    {
+      "name": "tsadi33-numbered-lower-Theodotion-context",
+      "page": 246,
+      "nativeBounds": [
+        0,
+        2600,
+        2489,
+        2900
+      ],
+      "scale": 1,
+      "freshOriginalPDFReplayPassed": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-BEL-VOWELS/tsadi33-numbered-lower-Theodotion-context-native.png",
+          "sha256": "3e69dcf1d8d22065503190ee3a8f3bc3f6f538f0b9c24648b27ac08334df06a5",
+          "scale": 1
+        }
+      ]
+    }
+  ],
+  "independentReview": {
+    "root": "Separately accepted both three-node segols and lamed tsere after complete words, numbered lower-Theodotion contexts, point controls and detached exact-lamed qamats. Separately accepted both qof points after correct exact glyphs, whole words, two literal qof-patah controls, qof-tsere and qof-qamats/sheva counters.",
+    "wisdomPeer": "Separately accepted both segols. Challenged whether the lamed low pair could be a natural split foot; accepted only after two correct same-page bare-lamed complete glyphs/words and the numbered42 source context. Separately accepted both qof points after exact target/wholeword/positive/competing controls and the full original246 lower Theodotion printed27 two-row unit."
+  },
+  "scalarConservation": {
+    "pointAdditions": 5,
+    "pointRemovals": 0,
+    "noncombiningScalarChanges": 0,
+    "existingScalarOrderPreserved": true,
+    "retiredOnlyTheFiveExactUnreadablePointNotes": true,
+    "otherNotesUnchangedExceptEnumeratedSharedWordAnchors": true,
+    "allOtherSourceMetadataCreditsChapterVerseRangesAndBoundariesUnchanged": true,
+    "verseTextReplay": [
+      {
+        "chapter": 1,
+        "verse": 1,
+        "beforeTextSHA256": "b6603779db82181178607ab90038fd0b0776e468f6fbe9684af517a402e46118",
+        "afterTextSHA256": "6d194baac1627e2db332b541e871ca4c2345fd41612867eabdafd15e789106a4",
+        "addedPointCount": 2
+      },
+      {
+        "chapter": 1,
+        "verse": 27,
+        "beforeTextSHA256": "d3e9a8977f147ac2e70a89e7e96f8c56b603d35a7552b0e0ad5c4e14da6a580a",
+        "afterTextSHA256": "7dee40971304bd99e8a1dd779ba8911e5a5ef8fb84a757aa82ff1b422a747973",
+        "addedPointCount": 2
+      },
+      {
+        "chapter": 1,
+        "verse": 42,
+        "beforeTextSHA256": "9cee59c6e5fe47d6218fc63f5cdd09ab494255bac76eab37f9ca37ac86650e8b",
+        "afterTextSHA256": "2f41e960af3adf05c510dd658dbd5b1ca071251af52e3eb186fffa2dbfba2377",
+        "addedPointCount": 1
+      }
+    ]
+  },
+  "priorReportsPreserved": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass4.json",
+      "sha256": "9477c310d2e6674df9f26ce46d566e5f3c9b2588e883bac06fd53ae29cc934df"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass7.json",
+      "sha256": "d61f75c812cccc30a270a84820113d44bb15b11f06db3eeb45bd8cc4e4d6c211"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass8.json",
+      "sha256": "5f8c4e1a8c5d4ceb321f1d1cf7e34ee7fc3fbbb54b31aad374970277b7c08608"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass9.json",
+      "sha256": "1d8cabda7d3fe62c59909446e511ea0484ffc67e17db302e73d86103a2c57b84"
+    }
+  ],
+  "limits": [
+    "The retained tsadi remains disclosed; a filled foot or tiny notch alone does not establish a vowel or its absence.",
+    "No PSIK reader/session changes or PDF print/export operations were performed by this report author; all readings are certified from the original A2 source.",
+    "The independent dagesh study is not included in this packet, note count delta or expected vowel-only content digest."
+  ]
+}

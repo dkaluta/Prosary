@@ -1,5 +1,10 @@
 .DS_Store
 
+# Full source-review evidence is a verified release asset; compact reports and
+# the SHA-256 inventory remain in Git. Existing tracked evidence stays tracked.
+/Shared/reports/hebrew-wikisource/source-note-evidence/
+/scratch/
+
 # Immutable Bible downloads are release assets, even with a global ZIP ignore rule.
 !/Shared/dist/bibles/*.zip
 

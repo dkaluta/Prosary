@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 156,
+  "integrationPass": 156,
+  "preparationID": 277,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation277-WIS-19-3/source-provenance.json",
+    "sha256": "a02c15af55adb03c289bdf9596ec6672423bcc0d68404dea8fd6b0db9cbec6bf"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-19-3-word2-gimel-1-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-19-3-word2-gimel-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 3,
+      "anchorBefore": "גּרְשׁוּם",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Own native PDF embeddedimage extraction; exact native RGB crops and literalASCII only. Oldcrop exactRGB match located only. Own complete20physical21lexical unit with actual prior/final inline sofs; own fulltarget and fullcontrols. Canonicalanchor is metadataonly. TightletterBounds deliberately CLIPPED initialGimel region; complete1256pxconnectedcomponent includes followingResh [1601,668,1652,726], so no claim tightcrop is wholelettercomponent.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c6/c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c6/c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8.bin",
+      "inspectedBounds": [
+        1633,
+        650,
+        1655,
+        740
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation277-WIS-19-3/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 19,
+    "verse": 3,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation277-WIS-19-3/independent-review.json",
+    "sha256": "6de5b222823f8cbced4510fcc9ebb60a55a0fb3d4d4d3f5072fb27f9a3e113a6"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation277-WIS-19-3/primary-preparation.json",
+    "sha256": "ceb821c6f5d2ce03a2d869cb19d68986bd28e2408f91879516fa25a815a26d1c"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation277-WIS-19-3/consensus-preparation.json",
+    "sha256": "9239e4155cc00da5ebc6b512fa39c83c52e5e9dc457a3dff79f558fed6519bc6"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

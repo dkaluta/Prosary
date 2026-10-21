@@ -1,0 +1,2080 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 3,
+  "book": "TOB",
+  "status": "Two source-certified vowels restored after tight native-pixel reinspection and independent root review",
+  "scope": "Every one of the14 remaining canonical point-note targets in the upper short recension, reinspected in primaryB and actual companion scan. All14 were inspected previously; this pass uses tighter glyph isolation and additional same-page comparisons, not a new witness. Lower long-recension text and commentary are excluded.",
+  "method": "Fresh pypdf extraction of original embedded rasters, native-pixel crops, and integer nearest-neighbor enlargement only. Tight15× crops reveal one-pixel white gaps obscured perceptually in older wider5× crops. No OCR, sharpening, interpolation, automatic vocalization or grammatical restoration. Resolve only complete printed shapes independently corroborated by root.",
+  "sourceScans": [
+    {
+      "scan": "primary",
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+    },
+    {
+      "scan": "extra",
+      "path": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7"
+    }
+  ],
+  "canonicalSHA256Before": "5a5f84beb316a2fb4c6b0517e441c9f493f3413fb73e88e67e6ba49656372fc9",
+  "canonicalSHA256After": "7c722b421ce3ccf5e69bc8cfcb1a2b9a3e0ba03917c2506452a537351840107b",
+  "reviewedSourceNoteCount": 14,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 12,
+  "sourceNotesBefore": 14,
+  "sourceNotesAfter": 12,
+  "retiredSourceNoteIds": [
+    "tob-5-5-dalet-vowel",
+    "tob-5-18-said-vav-vowel"
+  ],
+  "primaryTextChanged": true,
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "chapter": 5,
+      "verse": 5,
+      "retiredNote": {
+        "id": "tob-5-5-dalet-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "בְּמָדי",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          324
+        ],
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=324"
+      },
+      "originalText": "וַיֹּאמֶר לוֹ הָאוּכַל לָלֶכֶת עִמְּךָ לְרָגָא בְּמָדי אִם־יוֹדֵעַ אַתָּה אֶת־הַמְּקוֹמוֹת [הָאֵלֶּה]׃",
+      "correctedText": "וַיֹּאמֶר לוֹ הָאוּכַל לָלֶכֶת עִמְּךָ לְרָגָא בְּמָדָי אִם־יוֹדֵעַ אַתָּה אֶת־הַמְּקוֹמוֹת [הָאֵלֶּה]׃",
+      "oldAnchor": "בְּמָדי",
+      "newAnchor": "בְּמָדָי",
+      "addedMark": "qamats",
+      "finding": "The tight companion crop reveals a complete white native-pixel row between the thin dalet shaft and the lower mark. The mark has an isolated broad horizontal head and a narrow central descending stem, matching the same-word mem qamats. Primary lower ink is fused and serves only to corroborate the target location.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-extra.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-mem-qamats-extra.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-primary.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-upper-recension-extra.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-upper-recension-primary.png"
+      ],
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "independentRootReview": "Root separately viewed tight native-pixel target, source context and verified comparison shapes, and explicitly approved this exact mark and note removal before canonical editing."
+    },
+    {
+      "chapter": 5,
+      "verse": 18,
+      "retiredNote": {
+        "id": "tob-5-18-said-vav-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ותֹּאמֶר לְטוֹבִי",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          326
+        ],
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf#page=326"
+      },
+      "originalText": "וַתֵּבְךְ חַנָּה אִמּוֹ ותֹּאמֶר לְטוֹבִי מַה־זֶּה שִׁלַּחְתָּ אֶת־בְּנֵנוּ הֲלֹא הוּא מִשְׁעֶנֶת יָדֵנוּ בַּאֲשֶׁר הוּא יוֹצֵא וּבָא לְפָנֵינוּ׃",
+      "correctedText": "וַתֵּבְךְ חַנָּה אִמּוֹ וַתֹּאמֶר לְטוֹבִי מַה־זֶּה שִׁלַּחְתָּ אֶת־בְּנֵנוּ הֲלֹא הוּא מִשְׁעֶנֶת יָדֵנוּ בַּאֲשֶׁר הוּא יוֹצֵא וּבָא לְפָנֵינוּ׃",
+      "oldAnchor": "ותֹּאמֶר",
+      "newAnchor": "וַתֹּאמֶר",
+      "addedMark": "patah",
+      "finding": "The tight companion crop reveals a complete white native-pixel row separating the lower mark from the vav shaft. The detached mark is a broad horizontal bar with a flat lower edge and no narrow descending stem, matching same-page5:18 initial vav in וַתֵּבְךְ. Primary lower material is fused but corroborates target location.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-vav-extra-tight.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-vav-extra-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-initial-vav-patah-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-row-extra.png"
+      ],
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "independentRootReview": "Root separately viewed tight native-pixel target, source context and verified comparison shapes, and explicitly approved this exact mark and note removal before canonical editing."
+    }
+  ],
+  "inspections": [
+    {
+      "noteId": "tob-1-1-gimel-vowel",
+      "chapter": 1,
+      "verse": 1,
+      "sourcePage": 312,
+      "extraPage": 163,
+      "extraSide": "right",
+      "anchor": "גּבָּאֵל",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion exposes a detached short thick lower bar, but multiple shallow downward projections remain within it. It does not yield a unique complete vowel outline. The primary has a fused lower gimel foot; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-1-1-gimel-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-1-1-gimel-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-1-1-gimel-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-1-1-gimel-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-2-3-mem-vowel",
+      "chapter": 2,
+      "verse": 3,
+      "sourcePage": 316,
+      "extraPage": 165,
+      "extraSide": "right",
+      "anchor": "משְׁלָךְ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion lower mem cluster is detached from the letter but has an irregular top with two short upward projections and a heavy low stem. Its component count cannot be uniquely established. The primary lower region is fused; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-2-3-mem-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-2-3-mem-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-2-3-mem-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-2-3-mem-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-1-vav-vowel",
+      "chapter": 5,
+      "verse": 1,
+      "sourcePage": 323,
+      "extraPage": 168,
+      "extraSide": "left",
+      "anchor": "ויַּעַן",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The initial vav lower bar meets the thin shaft and has an irregular right lower tab. Comparison with same-page plain vav and certified patah identifies a lower-ink issue but does not establish the complete original point; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-vav-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-vav-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-vav-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-vav-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-1-second-vav-vowel",
+      "chapter": 5,
+      "verse": 1,
+      "sourcePage": 323,
+      "extraPage": 168,
+      "extraSide": "left",
+      "anchor": "ויֹּאמֶר לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion initial vav has a horizontal lower bar joined to its sloping stem. This outline does not securely distinguish a complete original vowel from distorted joined lower ink; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-second-vav-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-second-vav-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-second-vav-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-second-vav-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-3-initial-vav-vowel",
+      "chapter": 5,
+      "verse": 3,
+      "sourcePage": 323,
+      "extraPage": 168,
+      "extraSide": "left",
+      "anchor": "ויִּתֶּן־לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion crop shows the lower mark detached from the vav shaft, with a broad horizontal head and short broad indented lower lobe. Although it resembles same-page vav patah,5:10 וָיְבָרְכוּ exposes a short broad vav qamats with a comparable lower lobe. That counterexample defeats unique classification. Root explicitly withdrew the initial patah approval before edits; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-3-initial-vav-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-3-initial-vav-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-3-initial-vav-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-3-initial-vav-extra-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-vav-extra-tight.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-second-vav-patah-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-rows-extra.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-10-vav-qamats-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-10-vav-row-extra.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-5-dalet-vowel",
+      "chapter": 5,
+      "verse": 5,
+      "sourcePage": 324,
+      "extraPage": 169,
+      "extraSide": "right",
+      "anchor": "בְּמָדי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "The tight companion crop reveals a complete white native-pixel row between the thin dalet shaft and the lower mark. The mark has an isolated broad horizontal head and a narrow central descending stem, matching the same-word mem qamats. Primary lower ink is fused and serves only to corroborate the target location.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-5-dalet-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-5-dalet-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-5-dalet-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-5-dalet-extra-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-extra.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-mem-qamats-extra.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-primary.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-upper-recension-extra.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-upper-recension-primary.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-10-ayin-vowel",
+      "chapter": 5,
+      "verse": 10,
+      "sourcePage": 324,
+      "extraPage": 169,
+      "extraSide": "right",
+      "anchor": "רֵעהוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion ayin lower region is crowded by its left stroke and adjacent low ink, leaving a joined horizontal cluster with irregular projections. The complete original point remains unreadable in both scans; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-10-ayin-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-10-ayin-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-10-ayin-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-10-ayin-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-12-first-vav-vowel",
+      "chapter": 5,
+      "verse": 12,
+      "sourcePage": 325,
+      "extraPage": 169,
+      "extraSide": "left",
+      "anchor": "ויֹּאמֶר לוֹ הֲשֵׁבֶט",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion vav terminates in an irregular joined horizontal cluster with a small low tab, and the primary is fused. These do not establish one exact complete vowel shape; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-12-first-vav-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-12-first-vav-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-12-first-vav-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-12-first-vav-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-17-ayin-vowel",
+      "chapter": 5,
+      "verse": 17,
+      "sourcePage": 325,
+      "extraPage": 169,
+      "extraSide": "left",
+      "anchor": "לְרֵעהוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion ayin lower material has two shallow projections joined by a thin horizontal segment, crowded by the letter foot. The original point cannot be uniquely identified. Primary lower ink is merged; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-ayin-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-ayin-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-ayin-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-ayin-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-17-said-vav-vowel",
+      "chapter": 5,
+      "verse": 17,
+      "sourcePage": 326,
+      "extraPage": 170,
+      "extraSide": "right",
+      "anchor": "ויֹּאמֶר לוֹ אָבִיו",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion vav shaft meets a short horizontal lower bar; the primary joins the lower material into a thick foot. Neither exposes a securely complete detached vowel; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-said-vav-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-said-vav-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-said-vav-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-said-vav-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-18-said-vav-vowel",
+      "chapter": 5,
+      "verse": 18,
+      "sourcePage": 326,
+      "extraPage": 170,
+      "extraSide": "right",
+      "anchor": "ותֹּאמֶר לְטוֹבִי",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "The tight companion crop reveals a complete white native-pixel row separating the lower mark from the vav shaft. The detached mark is a broad horizontal bar with a flat lower edge and no narrow descending stem, matching same-page5:18 initial vav in וַתֵּבְךְ. Primary lower material is fused but corroborates target location.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-18-said-vav-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-18-said-vav-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-18-said-vav-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-18-said-vav-extra-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-vav-extra-tight.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-vav-extra-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-initial-vav-patah-query.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-row-extra.png"
+      ]
+    },
+    {
+      "noteId": "tob-5-21-said-vav-vowel",
+      "chapter": 5,
+      "verse": 21,
+      "sourcePage": 326,
+      "extraPage": 170,
+      "extraSide": "right",
+      "anchor": "ויֹּאמֶר לָהּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion lower vav bar is crowded by the shaft and has an irregular downward right edge; its complete original components cannot be certified. Primary lower material is fused; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-21-said-vav-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-21-said-vav-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-21-said-vav-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-21-said-vav-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-6-8-gimel-vowel",
+      "chapter": 6,
+      "verse": 8,
+      "sourcePage": 327,
+      "extraPage": 170,
+      "extraSide": "left",
+      "anchor": "יִפָּגעוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion exposes low fragments beside the gimel foot, but contact with the sloping letter stroke and shaft prevents a unique count of independent vowel points. The primary lower ink remains joined; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-6-8-gimel-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-6-8-gimel-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-6-8-gimel-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-6-8-gimel-extra-6x.png"
+      ]
+    },
+    {
+      "noteId": "tob-9-5-second-gabael-gimel-vowel",
+      "chapter": 9,
+      "verse": 5,
+      "sourcePage": 335,
+      "extraPage": 174,
+      "extraSide": "left",
+      "anchor": "גבָּאֵל",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The companion exposes a detached short thick lower bar with shallow lower projections, not one uniquely classifiable complete vowel. The primary gimel foot is fused. The earlier occurrence of this name is not used to supply its point; retain the note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-9-5-gimel-primary-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-9-5-gimel-primary-6x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-9-5-gimel-extra-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-9-5-gimel-extra-6x.png"
+      ]
+    }
+  ],
+  "reviewMetadataCorrection": {
+    "field": "review.method",
+    "before": "Complete word, consonant, readable-vowel, punctuation and boundary comparison of the upper short recension against both supplied and independently scanned print, with independent chapter reviews, source-inventoried labels/pages, and root reconciliation of focused findings. Seventeen exact unreadable vowels remain explicitly disclosed; no missing consonants or words are waived.",
+    "after": "Complete word, consonant, readable-vowel, punctuation and boundary comparison of the upper short recension against both supplied and independently scanned print, with independent chapter reviews, source-inventoried labels/pages, and root reconciliation of focused findings. Twelve exact unreadable vowels remain explicitly disclosed; no missing consonants or words are waived.",
+    "reason": "The initial whole-book method still said Seventeen despite earlier reductions. Correct only that factual count phrase to actual current Twelve; preserve the rest of the method."
+  },
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-1-1-gimel-primary-native.png",
+      "scan": "primary",
+      "page": 312,
+      "nativeBounds": [
+        190,
+        550,
+        340,
+        630
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "a48d8a50d4dcbd50a11e2a24f92ce58377bb4f3cfd2c6b2225053571116f461c"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-1-1-gimel-primary-6x.png",
+      "scan": "primary",
+      "page": 312,
+      "nativeBounds": [
+        190,
+        550,
+        340,
+        630
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "eab8847c03ad804cfe50660389d202e2680b841e284d28c6ab7ff73f7c9bdae0"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-1-1-gimel-extra-native.png",
+      "scan": "extra",
+      "page": 163,
+      "nativeBounds": [
+        1685,
+        465,
+        1785,
+        525
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "463e238c859816f02b23bc918f12325415c72398905e0fbb5a31b2a074791069"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-1-1-gimel-extra-6x.png",
+      "scan": "extra",
+      "page": 163,
+      "nativeBounds": [
+        1685,
+        465,
+        1785,
+        525
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "177ef2fe4523c31c55401b98ce7c99287ed4407ee5a74ad58d743e69894a511b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-2-3-mem-primary-native.png",
+      "scan": "primary",
+      "page": 316,
+      "nativeBounds": [
+        670,
+        695,
+        795,
+        775
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "b498751302a9510ac7da3b16125623f2b8b11df21346309f2e1c5c1d79bbbd4e"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-2-3-mem-primary-6x.png",
+      "scan": "primary",
+      "page": 316,
+      "nativeBounds": [
+        670,
+        695,
+        795,
+        775
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "f8d17672e4f986c0710f89635b1126c2ed4a56123252ad31bbed3c2b238b6839"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-2-3-mem-extra-native.png",
+      "scan": "extra",
+      "page": 165,
+      "nativeBounds": [
+        2050,
+        465,
+        2140,
+        520
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "159ecfbeb5f53e9b7d514f3a86655767bea473ce565abf8da90b5ad2831b0247"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-2-3-mem-extra-6x.png",
+      "scan": "extra",
+      "page": 165,
+      "nativeBounds": [
+        2050,
+        465,
+        2140,
+        520
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "b2deea5dd8fbc77e5788418e7505ac22a6d404d55397c216d3775697650d52fb"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-vav-primary-native.png",
+      "scan": "primary",
+      "page": 323,
+      "nativeBounds": [
+        1195,
+        900,
+        1270,
+        980
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "ae76c85e95da853c656935f3fc6ce397c935ef29fedcee3fad9b9695af067076"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-vav-primary-6x.png",
+      "scan": "primary",
+      "page": 323,
+      "nativeBounds": [
+        1195,
+        900,
+        1270,
+        980
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "524c4df65083bd927878d58af6dc5850dbe60fc393df1f3ab97e8dfe7deb2592"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-vav-extra-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1245,
+        580,
+        1315,
+        645
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "4fd7ce94a183f226f5aecfbff42711a82f8d0f740796c6f48e1060cd00c221a2"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-vav-extra-6x.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1245,
+        580,
+        1315,
+        645
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "04183e6ebded34ecf4ca1b7ad98f09a3f6bfd2326f2efb13f3f094eb63d387c9"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-second-vav-primary-native.png",
+      "scan": "primary",
+      "page": 323,
+      "nativeBounds": [
+        985,
+        905,
+        1085,
+        985
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "995bb77c3652d7ff1ec681059ed3eb1231ab8b71374b84732722a1649c76045b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-second-vav-primary-6x.png",
+      "scan": "primary",
+      "page": 323,
+      "nativeBounds": [
+        985,
+        905,
+        1085,
+        985
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "0581fe32bdbedf6dfb74ef0cd26ab08118beb42c2626d4f6a8b593630bef9854"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-second-vav-extra-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1075,
+        580,
+        1165,
+        645
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "0559270119b5961527b0241123f1d78c71bf2ef93c1736cc37577b9bdd996fd9"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-1-second-vav-extra-6x.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1075,
+        580,
+        1165,
+        645
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "b075035748cdd6df268bdaccdc58885904258092307246301549cfe8956de971"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-3-initial-vav-primary-native.png",
+      "scan": "primary",
+      "page": 323,
+      "nativeBounds": [
+        530,
+        960,
+        680,
+        1035
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "dacb6c653707c880c5dc8515dc59ebf75a15059bcc0b8d6b4eb4e4bf3ff49e01"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-3-initial-vav-primary-6x.png",
+      "scan": "primary",
+      "page": 323,
+      "nativeBounds": [
+        530,
+        960,
+        680,
+        1035
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "832fd871446ef4895c4790c23101cb44e66fae8cb720148d9491c053165a2a2c"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-3-initial-vav-extra-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        705,
+        638,
+        815,
+        695
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "ca6c4275bc9c60f767d809c652e51243d0079daef958b66e5e18aa777ae0b70e"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-3-initial-vav-extra-6x.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        705,
+        638,
+        815,
+        695
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "39b7661e18f8cbeab26d7dfc1517f02e6beef87f24417baccdefe66875b5f3ca"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-5-dalet-primary-native.png",
+      "scan": "primary",
+      "page": 324,
+      "nativeBounds": [
+        1110,
+        460,
+        1235,
+        545
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "7858d1fd47d2759a0be0f984ddef13da614b8f6b473f9a84688f2a075a028ebf"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-5-dalet-primary-6x.png",
+      "scan": "primary",
+      "page": 324,
+      "nativeBounds": [
+        1110,
+        460,
+        1235,
+        545
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "091fe271d209681f39a78b22643caa10db74717661adf471ab04c13cf0937f18"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-5-dalet-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2410,
+        260,
+        2495,
+        315
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "229bfe242ef092395f685539a1c2c01df8465230ffb1fcb321082d17916d35c8"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-5-dalet-extra-6x.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2410,
+        260,
+        2495,
+        315
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "85eb64506297c9f445e88f8181a256f67c0362d20bc5c2179ad9b4684a6670f6"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-10-ayin-primary-native.png",
+      "scan": "primary",
+      "page": 324,
+      "nativeBounds": [
+        200,
+        770,
+        390,
+        860
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "969a4ba0a0c5c0a75f5aa5eb199bd6ae2c28fecf5ac11ed3e4a1a34a8fe7d7fa"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-10-ayin-primary-6x.png",
+      "scan": "primary",
+      "page": 324,
+      "nativeBounds": [
+        200,
+        770,
+        390,
+        860
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "f37120e339ed0a0c3386ec8f03cb4b23f0273d2cf202ee54460f458d73c76698"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-10-ayin-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1710,
+        500,
+        1800,
+        550
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "45cf8074ca03bbb5635abdc36af8f879391cc1d26297771725e55988d6ae918a"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-10-ayin-extra-6x.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1710,
+        500,
+        1800,
+        550
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "21e32d87fb81436a048c69c2d93400a0d2fa0a446fab643bf41cb6f411004302"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-12-first-vav-primary-native.png",
+      "scan": "primary",
+      "page": 325,
+      "nativeBounds": [
+        1150,
+        330,
+        1265,
+        410
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "99ce4e60b62940cee1c5c69c8cdb2fe903c33ce0a3a9ff5302c6061b4e4ded9c"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-12-first-vav-primary-6x.png",
+      "scan": "primary",
+      "page": 325,
+      "nativeBounds": [
+        1150,
+        330,
+        1265,
+        410
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "6cfea2b235813ce5e97c43480ddd6af1f97efa6c3a012a57db942568ae7914d0"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-12-first-vav-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1190,
+        225,
+        1280,
+        280
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "f6a4993542a234eb19303bb143435f222924f3d784a056d4b11554a08ac1a140"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-12-first-vav-extra-6x.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1190,
+        225,
+        1280,
+        280
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "2b4157ce6f2a50ebb6fa169eb2b39e9e2a8b619426476b28974d19d790f759a4"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-ayin-primary-native.png",
+      "scan": "primary",
+      "page": 325,
+      "nativeBounds": [
+        540,
+        940,
+        680,
+        1015
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "5b1df571d8297dee4570429c51660255daaff4e4e9327749d88d938167858097"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-ayin-primary-6x.png",
+      "scan": "primary",
+      "page": 325,
+      "nativeBounds": [
+        540,
+        940,
+        680,
+        1015
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "44d42d4f709cc573c54930a668ecd3d058335cd6794a5fe0d21afc6ddd693008"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-ayin-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        755,
+        645,
+        855,
+        705
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "ab8e094c5404067babbfcbd32bc76a37bf6427954fe8d396baa20a007c91ddcd"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-ayin-extra-6x.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        755,
+        645,
+        855,
+        705
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "d11638a51b5d8790c67efc0e7fd4a49e0cf84f585be4f8ee4f85f05c2ee781f9"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-said-vav-primary-native.png",
+      "scan": "primary",
+      "page": 326,
+      "nativeBounds": [
+        430,
+        330,
+        540,
+        410
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "f6a2a25238e14c60b6c464d32ead1aff38bc627f3a08b9987bacf4040928f1ab"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-said-vav-primary-6x.png",
+      "scan": "primary",
+      "page": 326,
+      "nativeBounds": [
+        430,
+        330,
+        540,
+        410
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "70f803a8638bd7c87bd229dbfea177609a96a0845322eb3c8d85c9bc89f5406c"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-said-vav-extra-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1890,
+        180,
+        1985,
+        235
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "89006a157a2da33d32811e3237b375b15ea51472e4c43bf9b67a091d6bb1d031"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-17-said-vav-extra-6x.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1890,
+        180,
+        1985,
+        235
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "c538af4b7ba0c1535c0ef80c06c62df4cde56b0bd823ddac6759f861efc785af"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-18-said-vav-primary-native.png",
+      "scan": "primary",
+      "page": 326,
+      "nativeBounds": [
+        835,
+        515,
+        970,
+        590
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "24f28e64618947b183855fad6d45c55b2c5731d523a9ac1bbc5a53bab4201ba3"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-18-said-vav-primary-6x.png",
+      "scan": "primary",
+      "page": 326,
+      "nativeBounds": [
+        835,
+        515,
+        970,
+        590
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "341bb134e3f9d85adddf54e2f54bd4f3db1e534281756f423f9fdad453d52040"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-18-said-vav-extra-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2210,
+        320,
+        2310,
+        375
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "a8e39fcc74c143c72b25e2b6868194fb193ed3aa6db7a695cf0e6f2b86a8a3c0"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-18-said-vav-extra-6x.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2210,
+        320,
+        2310,
+        375
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "ae466cdc6c5f50c30f5ea0af2e0b8ba6027e455ad2f36f835f452489a88dd26d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-21-said-vav-primary-native.png",
+      "scan": "primary",
+      "page": 326,
+      "nativeBounds": [
+        1000,
+        705,
+        1110,
+        785
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "e1c50fd4b3bd8ccada5a14d5e836d84949d86f12219bffbfb11de31d6dd5e611"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-21-said-vav-primary-6x.png",
+      "scan": "primary",
+      "page": 326,
+      "nativeBounds": [
+        1000,
+        705,
+        1110,
+        785
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "30716897d69beca90c7ce286f3f76a615f8c94c56a87e2de54b0dca984de02ae"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-21-said-vav-extra-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2330,
+        460,
+        2425,
+        515
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "6c9b8fe2465528bf84f42182ab3ccf0dded8f80c8e4841a2b71fad2c99136192"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-5-21-said-vav-extra-6x.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2330,
+        460,
+        2425,
+        515
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "df9a458116e522c569dc943b8e4aa29e46d1ca6e569ec463e584d29ab15f7500"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-6-8-gimel-primary-native.png",
+      "scan": "primary",
+      "page": 327,
+      "nativeBounds": [
+        1050,
+        630,
+        1160,
+        710
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "15ad380f34df7679c9dd3e4ce2b9d32730255bb2df7a2266f67345e292aa8455"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-6-8-gimel-primary-6x.png",
+      "scan": "primary",
+      "page": 327,
+      "nativeBounds": [
+        1050,
+        630,
+        1160,
+        710
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "973555f26c5ff59b9d993e987a2eb40924f0199fc76454713957eecbd21658f1"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-6-8-gimel-extra-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1180,
+        425,
+        1260,
+        480
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "d5720dbfefef3ee34ba7268e560841de7c197d360b5df5281e5f4499286f02e0"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-6-8-gimel-extra-6x.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1180,
+        425,
+        1260,
+        480
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "ccba2c316e2d07109c05c3aff00adc11b38f9ddca38da45a2c4d54e202aa4b82"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-9-5-gimel-primary-native.png",
+      "scan": "primary",
+      "page": 335,
+      "nativeBounds": [
+        650,
+        345,
+        775,
+        420
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "e4949d509bd6ff36fb7da1de7bbd6c4020ae5480bc2805e0cc74b067f9b11617"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-9-5-gimel-primary-6x.png",
+      "scan": "primary",
+      "page": 335,
+      "nativeBounds": [
+        650,
+        345,
+        775,
+        420
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "02132f8b0a5ab27fd4cfcb04619c920cf63737a73d731ee8b5f0b6d0a1899cf8"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-9-5-gimel-extra-native.png",
+      "scan": "extra",
+      "page": 174,
+      "nativeBounds": [
+        835,
+        210,
+        920,
+        265
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "c571c8f53557baa7ac24ca1f41a3d8ba750beb9c4078bb820b1d58ded95b6f8d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB-9-5-gimel-extra-6x.png",
+      "scan": "extra",
+      "page": 174,
+      "nativeBounds": [
+        835,
+        210,
+        920,
+        265
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "9d540bd546dd403201f3c0427393b089f8819aa28076a9c4a76f8508d571c02a"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2432,
+        270,
+        2452,
+        307
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "234dc0c968408f9302a02a573c53d30d27f4b6fe6e57c3aa5fe6f3c1a0f00057"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-extra.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2432,
+        270,
+        2452,
+        307
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "a757ab3f2d38801bc2aa71de52c0f80cdac05e13f44c80f28190bf05298e7d3a"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-mem-qamats-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2450,
+        270,
+        2474,
+        307
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "f7edb761b3d596404bb734b24fbc0c6ca2f1fa1364d49e2d5d0ea132b84fb83b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-mem-qamats-extra.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2450,
+        270,
+        2474,
+        307
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "7ec591ac5468139eb48ed2baf463a61541045793996e447d199f34fc431ccfc5"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-primary-native.png",
+      "scan": "primary",
+      "page": 324,
+      "nativeBounds": [
+        1143,
+        478,
+        1168,
+        539
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "51e0fc9fda2c757582d4ad2cee3c251ae915b77f9da28ffaf9fe4168c944208d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-target-primary.png",
+      "scan": "primary",
+      "page": 324,
+      "nativeBounds": [
+        1143,
+        478,
+        1168,
+        539
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "sha256": "3e7c8da78cd3eab70b84096617bc7f1f69add03b44cfacdd9d7876895845347f"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-upper-recension-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1700,
+        120,
+        2730,
+        580
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "4bdca24e3e1a58cefe5caa2258c42fcffd528d0eb54803d7f0c0edc8a64c7d9a"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-upper-recension-extra.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1700,
+        120,
+        2730,
+        580
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "4bdca24e3e1a58cefe5caa2258c42fcffd528d0eb54803d7f0c0edc8a64c7d9a"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-upper-recension-primary-native.png",
+      "scan": "primary",
+      "page": 324,
+      "nativeBounds": [
+        100,
+        180,
+        1500,
+        880
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "3ce71bca5f8b2c67168308bc649a5c427dca8ae8d6f41f642af8c70a8613b216"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-upper-recension-primary.png",
+      "scan": "primary",
+      "page": 324,
+      "nativeBounds": [
+        100,
+        180,
+        1500,
+        880
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "3ce71bca5f8b2c67168308bc649a5c427dca8ae8d6f41f642af8c70a8613b216"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-10-vav-row-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1700,
+        490,
+        2660,
+        550
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "ff84e81d935d451e9f226fc677fcbe33f10b9dd7d733fda74732a35f699de675"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-10-vav-row-extra.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1700,
+        490,
+        2660,
+        550
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "sha256": "5f2b185f3a69eea8b7898d9f051f284efd37f66090c6890f73029df6ba6e6afa"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-1-vav-row-extra-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        690,
+        575,
+        1340,
+        645
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "1205cc0cc4b469d693ace1fef946e1462d6f51907348f8229e4421eae2f19e35"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-1-vav-row-extra.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        690,
+        575,
+        1340,
+        645
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "sha256": "ab5c459f729658d657cf9c1bcde2dd7447a924bbe0a35de214c1deafe54cc216"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-17-vav-row-extra-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1700,
+        175,
+        2600,
+        240
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "c96ad8cd3d76856c6471cd821b433dd4578f31e8b33083773bc5d6a5297b255b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-17-vav-row-extra.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1700,
+        175,
+        2600,
+        240
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "sha256": "1e15aebb8a351415d1e1cc8e2802a58cba8a36a104ee2eceff419ea10b9a832c"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB1-1-gimel-extra-tight-native.png",
+      "scan": "extra",
+      "page": 163,
+      "nativeBounds": [
+        1756,
+        480,
+        1777,
+        513
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "99c9923d74cb927bc7e6bced969fda02c9e3747d57097f7c4dd2ee579c2d8062"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB1-1-gimel-extra-tight.png",
+      "scan": "extra",
+      "page": 163,
+      "nativeBounds": [
+        1756,
+        480,
+        1777,
+        513
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "32d8433b522f44f95138e948b8ce41b347b0b2bd42cf4e571468ee6f5652e477"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB2-3-mem-extra-tight-native.png",
+      "scan": "extra",
+      "page": 165,
+      "nativeBounds": [
+        2115,
+        480,
+        2138,
+        514
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "66633cdcfaa400ea947318e0b6dc07263575b6ccc19a6cd403f3b55d57e0e070"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB2-3-mem-extra-tight.png",
+      "scan": "extra",
+      "page": 165,
+      "nativeBounds": [
+        2115,
+        480,
+        2138,
+        514
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "a43ddddf3ae977e3f401ffd55bd5d47763eaa162674a35816d0a6231c01ce3fc"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-1-second-vav-extra-tight-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1141,
+        595,
+        1158,
+        628
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "4818b16e2c77021113fb74ffdeb3c6e33596ceb7950ed661428ebe3c3eae6662"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-1-second-vav-extra-tight.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1141,
+        595,
+        1158,
+        628
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "6e269cd8cfe4b419cf18698e174cd389218e02e7f326c99426f8d67d5f5d0973"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-1-plain-vav-extra-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1032,
+        595,
+        1060,
+        628
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "f26474d3ad2befa45d15d696a9ea47023ee6f59f75333c6b78f2bfbeec1d8ec3"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-1-plain-vav-extra.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1032,
+        595,
+        1060,
+        628
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "bdc5076e4f45e5a609165413950cf0b739f0b8fdc854fac69eadfa8d2ad5344e"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-vav-extra-tight-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        792,
+        651,
+        808,
+        681
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "ce14632aaacd619ef22c66a0d91f8fb66d96cb96714de7ed64e09b8b1a55552d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-vav-extra-tight.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        792,
+        651,
+        808,
+        681
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "67779eb818206be6c3232f3d014a3b1b8319b4c5d2eb75b0625d2c7778a1fc26"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-12-vav-extra-tight-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1256,
+        235,
+        1274,
+        265
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "569771156ddef6d4a08cbbfb8dbecf148186bb0d99597af4d6abcda67d777246"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-12-vav-extra-tight.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        1256,
+        235,
+        1274,
+        265
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "389cdaac9c7f8b37d41219471eef445cb6d18a93ac13d645c05447ee37e2c21e"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-17-vav-extra-tight-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1962,
+        193,
+        1979,
+        223
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "a92e683f286a7e77873c52ec8d9f12f4956dc8523e0e8e594599486251c645a3"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-17-vav-extra-tight.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1962,
+        193,
+        1979,
+        223
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "6a41f6ef3c2582b09b4be45f61f3a0b1a441283cdb65fe5cd7f557389912a307"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-vav-extra-tight-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2291,
+        333,
+        2305,
+        362
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "8afb8f41c986da842d96318bcba9992a54dd9de5a5c5a311a54ffd0a111dd5f2"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-vav-extra-tight.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2291,
+        333,
+        2305,
+        362
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "31301fd67d366b29f417440db7643b33217ccf9f61514d5430182d74dccb2a68"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-21-vav-extra-tight-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2405,
+        472,
+        2420,
+        502
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "d6d790b6ef1f85182e39798a061130a7c8233cf315ef8139e78fa1e837a21720"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-21-vav-extra-tight.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2405,
+        472,
+        2420,
+        502
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "87382ea0d91a6244062337ba6cc482a867b1d2d0c016d44f9dfeda520a008896"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB6-8-gimel-extra-tight-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1218,
+        439,
+        1236,
+        466
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "7f65215ed85e5d32e37448adff0872fdd93eef1704991e6938ecaecc1b7071af"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB6-8-gimel-extra-tight.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1218,
+        439,
+        1236,
+        466
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "d92b6a83609bab132bcdd13ea6d479cdbdcce2d987c6d35902cefffaadcacce5"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB9-5-gimel-extra-tight-native.png",
+      "scan": "extra",
+      "page": 174,
+      "nativeBounds": [
+        898,
+        224,
+        914,
+        252
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "99990baa391f1afb2ec7ae2fdbf75607534f21643c4e93d687abf90ed86cdc08"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB9-5-gimel-extra-tight.png",
+      "scan": "extra",
+      "page": 174,
+      "nativeBounds": [
+        898,
+        224,
+        914,
+        252
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "0466beafdf2ce242c73d5eca79faa98c8b06d3f553c1d93f6bce214f9097df88"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-rows-extra-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        450,
+        620,
+        1450,
+        735
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "9b14b89794cfbff115829322ded274854bdec22ea3e93910258ec904794381c9"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-rows-extra.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        450,
+        620,
+        1450,
+        735
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "sha256": "f353099b334c7fc6d7e0d76a89f9eaec03dad711dbb8d618afdf44b9dae85ba3"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-row-extra-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1700,
+        320,
+        2660,
+        385
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "530d56fb8413ec8758aaec0ad5f3d5b690122c249644e36d05951281637f79d9"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-row-extra.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        1700,
+        320,
+        2660,
+        385
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "sha256": "098885367e2c0b6a78df2dadda2c7d9b1695ef8bb56f85a582d7745390046352"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-segol-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2475,
+        160,
+        2580,
+        220
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "0fc98a095caf15772e3756c6f547bf58b135850e9e2319befaf95a7b3eb7bcf7"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-5-dalet-segol-extra.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2475,
+        160,
+        2580,
+        220
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "81f75e1ac06cb0aaee54ac2794b84d0b79c2353d6f0cae54a2071f53243f431d"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-7-het-patah-extra-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2140,
+        350,
+        2245,
+        405
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "4052507d495da640f60d0fec1ac27b24a455222a29b5a984361cd81cc8c5afee"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-7-het-patah-extra.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2140,
+        350,
+        2245,
+        405
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "sha256": "b2916a092a008a1cf55ce2a2061a2d0856122b04e88eb5d45ee57e0657564530"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-second-vav-patah-query-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1348,
+        683,
+        1383,
+        730
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "a1c493599a4240ccdee7f0424252375d521aa042440f05e053176efc3152b40e"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-3-second-vav-patah-query.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1348,
+        683,
+        1383,
+        730
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "sha256": "3444ec9baf33dee163b87c6da5cf488d03ee1d4a2a92dbcff891e2a7f823dcf2"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-initial-vav-patah-query-native.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2495,
+        327,
+        2527,
+        365
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "1200374cbcbbc28749165e30145c91244c1006e4e4e78ce1b0ba81121ea0c87f"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-18-initial-vav-patah-query.png",
+      "scan": "extra",
+      "page": 170,
+      "nativeBounds": [
+        2495,
+        327,
+        2527,
+        365
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "sha256": "eb109b14874e8e0922d0f39c08858d109ae4e34e3d5b88c4728b96f208685e42"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-10-vav-qamats-query-native.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2005,
+        500,
+        2055,
+        543
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "359a4483e8eb1f17fd5274e8768460c22fb433301bf0356fab080aa0d4dc483b"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-10-vav-qamats-query.png",
+      "scan": "extra",
+      "page": 169,
+      "nativeBounds": [
+        2005,
+        500,
+        2055,
+        543
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "sha256": "1b6acb425a46c58cea1228372de0e4ee467a78c2de696917e8f93ce455564556"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-1-first-vav-extra-tight-native.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1293,
+        593,
+        1310,
+        626
+      ],
+      "scale": 1,
+      "resampling": "none",
+      "sha256": "a1c0510d00fbe30a2576c1839461e228d0fb35648cf51a75405be70f84a1a436"
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-TOB/TOB5-1-first-vav-extra-tight.png",
+      "scan": "extra",
+      "page": 168,
+      "nativeBounds": [
+        1293,
+        593,
+        1310,
+        626
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "sha256": "26a54e5621dfd80df375b274358c413f9fdd69ef08e417bfc43f1e4c4d58fcc0"
+    }
+  ],
+  "sourcePages": [
+    {
+      "scan": "primary",
+      "page": 312,
+      "nativeRasterSHA256": "7c3df70adf578aab97fbba14f110c16da30b97286af1034780004a9ed50d403a",
+      "nativeSize": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "scan": "primary",
+      "page": 316,
+      "nativeRasterSHA256": "dd65929d2564b1fa69e707c5142b793275cb586df5a34994bc9fdefdb5ddf3d8",
+      "nativeSize": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "scan": "primary",
+      "page": 323,
+      "nativeRasterSHA256": "e3c481db64c80b7de2f3f51989948227f876a4e5c725259de226230233721228",
+      "nativeSize": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "scan": "primary",
+      "page": 324,
+      "nativeRasterSHA256": "44d2d19f2099bc34d894dd0911888496c19df913701b147e666569b4e6571f4b",
+      "nativeSize": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "scan": "primary",
+      "page": 325,
+      "nativeRasterSHA256": "828234e10a63a8743aef5588497c854439c2c8eb771e1cea1d6eb2e16add9561",
+      "nativeSize": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "scan": "primary",
+      "page": 326,
+      "nativeRasterSHA256": "dd2a8acdb7f0d2dc6c4dc5ca42a6603b7bb98b3c8b0ca4d16ee37dc5cb2bf531",
+      "nativeSize": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "scan": "primary",
+      "page": 327,
+      "nativeRasterSHA256": "6dbd49c55830f47507859b79f4d795196e043d1c9a062d3896ea23a32b47b5e5",
+      "nativeSize": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "scan": "primary",
+      "page": 335,
+      "nativeRasterSHA256": "e7b7b075b6c689494640a9aedeb388cb1aece5d39cdd83d637d133959e26d23c",
+      "nativeSize": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "scan": "extra",
+      "page": 163,
+      "nativeRasterSHA256": "2da8c4dfb1a6d8a02355715cc6056dc9f1bb47a453bed5ddfc7aa76f473a2b0f",
+      "nativeSize": [
+        2872,
+        2024
+      ]
+    },
+    {
+      "scan": "extra",
+      "page": 165,
+      "nativeRasterSHA256": "2c3fe9accf66a04e058f0c868695dcc74529c9ae6301717955684c467380c876",
+      "nativeSize": [
+        2872,
+        2024
+      ]
+    },
+    {
+      "scan": "extra",
+      "page": 168,
+      "nativeRasterSHA256": "aa69b3baf82fa96097eb8c8c231782caaf180f15065aa399959b817b7fd38f7f",
+      "nativeSize": [
+        2872,
+        2024
+      ]
+    },
+    {
+      "scan": "extra",
+      "page": 169,
+      "nativeRasterSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+      "nativeSize": [
+        2872,
+        2024
+      ]
+    },
+    {
+      "scan": "extra",
+      "page": 170,
+      "nativeRasterSHA256": "9765c1e9be1512524b390bf09acb5620ea497e130c4cacd0b1bd901532939f7d",
+      "nativeSize": [
+        2872,
+        2024
+      ]
+    },
+    {
+      "scan": "extra",
+      "page": 174,
+      "nativeRasterSHA256": "deb5dd1c3a2acb1611ef9e4dba3306160cf02ee13d4046ad7f7cefcdbf8c8f65",
+      "nativeSize": [
+        2872,
+        2024
+      ]
+    }
+  ],
+  "validation": {
+    "comparisonBaseline": "/private/tmp/prosary-hebrew-pass3-20261017/baseline/Shared/content/hebrew-deuterocanon/TOB.json",
+    "exactChangedVerseAddresses": [
+      "5:5",
+      "5:18"
+    ],
+    "allOtherVerseRowsUnchanged": true,
+    "allRemainingSourceNotesEquivalent": true,
+    "sourceConsonantsAndPunctuationUnchanged": true,
+    "sourceOrderAndBoundariesUnchanged": true,
+    "shortRecensionIdentityPreserved": true,
+    "threeEarlierTOBCorrectionsPreserved": true,
+    "allEvidenceHashesVerified": true,
+    "priorPinnedReportsUnmodified": true
+  },
+  "limits": [
+    "No new witness or whole-book collation is claimed.",
+    "Twelve inspected point notes remain unresolved; joined and fragmentary marks were not supplied from expected readings.",
+    "An initially approved5:3 vav patah proposal was explicitly withdrawn before edits when a short broad qamats counterexample defeated unique classification; its note remains.",
+    "Central source approvals, daily and presentation manifests, generated archives and platform copies are not edited by this report."
+  ]
+}

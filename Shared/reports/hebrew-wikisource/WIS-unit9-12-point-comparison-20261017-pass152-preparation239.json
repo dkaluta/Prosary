@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 152,
+  "integrationPass": 152,
+  "preparationID": 239,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation239-WIS-9-12/source-provenance.json",
+    "sha256": "1e333f1961b717e2605692f6f47e1734be31d0fedce5f00c0859f9e45de44fb6"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-9-12-qof"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-9-12-qof",
+      "book": "WIS",
+      "chapter": 9,
+      "verse": 12,
+      "anchorBefore": "וְאִיקר",
+      "letterIndex": 4,
+      "decision": "retainNote",
+      "finding": "Independently inspect fresh native own full word and Qof via literal ASCII. Qof is single connected 738-pixel component [1458,868,1490,924]; irregular attached lower mass is inseparable in scan from the descender. Neither exact vowel class/count nor a printed absence is independently supported. Retain original disclosure; no scalar added or removed.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/64/648a407d281825bb47c546233fd85b03b342689f4473b55237563eac8996ff79.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/64/648a407d281825bb47c546233fd85b03b342689f4473b55237563eac8996ff79.bin",
+      "inspectedBounds": [
+        1455,
+        862,
+        1492,
+        930
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation239-WIS-9-12/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 9,
+    "verse": 12,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation239-WIS-9-12/independent-review.json",
+    "sha256": "38d8e6e20af6d7f4bfb935b864c641caf0d5b2f1afd521018f687c780f8e70c1"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation239-WIS-9-12/primary-preparation.json",
+    "sha256": "66196a18fb9375f83dbb5b9822f3fb456faf5b36bea4577cb8d8ea2b5d61b515"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation239-WIS-9-12/consensus-preparation.json",
+    "sha256": "4ba7c3e8b47dcbe146b8c51586af19835f6d45e056a33bcacf968cc62be678a0"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

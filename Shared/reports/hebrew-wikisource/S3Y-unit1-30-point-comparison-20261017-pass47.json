@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 47,
+  "book": "S3Y",
+  "status": "Four source 1:30 points certified from authorized Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 47 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/source-provenance.json",
+    "sha256": "d841f3c08d64e41783ada628dab05cb74b5e91ac489c38530a2e0e51fbd158b2"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 235 / רלה (viewer page 580, internal 595). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 356,
+  "sourceNotesBefore": 28,
+  "sourceNotesAfter": 24,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-30-vayaanu-vav-vowel",
+    "s3y-1-30-vayhalelu-vav-vowel",
+    "s3y-1-30-vayshabehu-vav-vowel",
+    "s3y-1-30-vayromemu-vav-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 4,
+  "addedCombiningMarks": {
+    "U+05B7": 4
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 30,
+      "before": "ויַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד ויְהַלְלוּ ויְשַׁבְּחוּ ויְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+      "after": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+      "beforeTextSHA256": "3696ceaacebbc8808504dd20a4a9c00c9c0de119adf68ec92cf1f6dde72abf46",
+      "afterTextSHA256": "5cedd1cca1a25b80b50631b585ed40a394892ca324a4dfaa1d5f2933423a3599"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 30,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label ל on page רלה / 235 (viewer page 580, internal page 595) identifies the unit covering verse 30. Canonical verse 30 and sourcePages [235] are preserved.",
+  "decisions": [
+    {
+      "noteId": "s3y-1-30-vayaanu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "ויַּעֲנוּ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial Vav stem sits a solid continuous horizontal rectangular stroke (w=18px, h=8px at x=1505..1523, y=896..904). Confirmed stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/s3y-1-30-vayaanu-vav-vowel-target-native.png",
+        "sha256": "126065bf8e2245afab4048a883b3cb0e547c25ddf47120eda15019b0ee822c7e"
+      }
+    },
+    {
+      "noteId": "s3y-1-30-vayhalelu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "ויְהַלְלוּ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial Vav stem sits a solid continuous horizontal rectangular stroke at y=889..903 (w=16px, h=8px at x=1206..1221). Confirmed stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/s3y-1-30-vayhalelu-vav-vowel-target-native.png",
+        "sha256": "5686080828ab89ea27852081917644721b1acedd8ace936141f4ad244f761d36"
+      }
+    },
+    {
+      "noteId": "s3y-1-30-vayshabehu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "ויְשַׁבְּחוּ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial Vav stem sits a solid horizontal stroke at y=888..902 (w=16px, h=8px at x=1138..1154). Confirmed stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/s3y-1-30-vayshabehu-vav-vowel-target-native.png",
+        "sha256": "29443df67cfc4f467118dc5db32a67c63b0646785a2850169d1898b77b57f031"
+      }
+    },
+    {
+      "noteId": "s3y-1-30-vayromemu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "ויְרוֹמְמוּ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial Vav stem sits a solid horizontal stroke at y=888..902 (w=16px, h=8px at x=928..944). Confirmed stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/s3y-1-30-vayromemu-vav-vowel-target-native.png",
+        "sha256": "aaa3a57217c954105193354c550b46f8520a1924257766aad6b7704a9db6cd70"
+      }
+    }
+  ]
+}

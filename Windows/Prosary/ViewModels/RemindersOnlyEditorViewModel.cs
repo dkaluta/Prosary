@@ -93,9 +93,12 @@ public partial class RemindersOnlyEditorViewModel : ObservableObject
                 // value even before the user has ever touched them; Save stores explicit
                 // overrides for every row.
                 var value = customOptions.GetValueOrDefault(option.Key) ?? option.DefaultValue;
-                var creedLabel = option.Key == "apostlesCreed" && !PrayerPackStore.HasApostlesCreed(devotionId, prayer.LanguageCode)
+                var label = devotionId == "rosary" ? RosaryOptionLabels.CustomOption(option.Key, prayer.LanguageCode) : null;
+                label ??= option.Key == "apostlesCreed" && !PrayerPackStore.HasApostlesCreed(devotionId, prayer.LanguageCode)
                     ? Loc.Tr("favorite_editor_nicene_creed", "Nicene Creed") : null;
-                OptionRows.Add(new DevotionOptionRowViewModel(option, value, creedLabel));
+                var presentedOption = devotionId == "rosary"
+                    ? RosaryOptionLabels.WithAntiphonTitles(option, prayer.LanguageCode) : option;
+                OptionRows.Add(new DevotionOptionRowViewModel(presentedOption, value, label));
             }
         }
 

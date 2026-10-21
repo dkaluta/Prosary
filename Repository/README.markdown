@@ -33,6 +33,13 @@ templates, SQL migrations, HMAC-cookie sessions, request-derived WebAuthn RP inf
 - **Catalog**: `/` (search + language filter), `GET /api/bundles`, and the versioned
   **`/index.json`** contract (`{prosaryRepository: 1, bundles: [...]}`) the apps' Browse tab
   reads. Downloads go through `/api/download/<id>` (counts, then redirects to the blob).
+  The exact superseded upload `repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin` is retired:
+  catalog/detail/download access and republication are blocked. Migration `0003` removes its
+  row and prevents older deployments from recreating it. `scripts/retire-bundles.ts` defaults
+  to a read-only check; `--apply` also removes its public blob, verifies the live repository
+  target, and applies that targeted database guard. Run with the repository's production
+  environment injected, never with a different project's credentials. Native cleanup takes
+  effect when each device runs the updated app.
 - **Database**: schema in `migrations/NNNN_*.sql` — forward-only, idempotent, tracked in
   `_migrations`. Apply locally with `npm run db:migrate`; in production with
   `POST /api/admin/migrate` (header `x-admin-secret: $ADMIN_SECRET`).

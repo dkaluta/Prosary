@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 69,
+  "book": "BEL",
+  "status": "Three 1:39 unreadablePoint source points certified from authorized Psik scan; all three points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 69.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass69-BEL-1-39/source-provenance.json",
+    "sha256": "efdc9b49b4e328137536ef5d22846edbe9a503466cc1c8a09b5352e830a5c361"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 247. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 282,
+  "sourceNotesBefore": 37,
+  "sourceNotesAfter": 34,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-39-247-vayakam39-letter1-vowel",
+    "bel-1-39-247-vayokhal39-letter1-vowel",
+    "bel-1-39-247-daniel39a-letter3-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 3,
+  "addedCombiningMarks": {
+    "bel-1-39-247-vayakam39-letter1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    },
+    "bel-1-39-247-vayokhal39-letter1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    },
+    "bel-1-39-247-daniel39a-letter3-dagesh": {
+      "combiningMark": "ּ",
+      "codePoint": "U+05BC",
+      "name": "HEBREW POINT DAGESH OR MAPIQ"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 39,
+      "before": "ויָּקָם דָּנִיֵאל ויֹּאכֵל וּמַלְאַךְ הָאֱלֹהִים הֵשִׁיב אֶת־חֲבַקּוּק כְּרֶגַע לִמְקוֹמוֹ׃",
+      "after": "וָיָּקָם דָּנִיֵּאל וָיֹּאכֵל וּמַלְאַךְ הָאֱלֹהִים הֵשִׁיב אֶת־חֲבַקּוּק כְּרֶגַע לִמְקוֹמוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 39,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 39 on page רמז / 247 (viewer page 592) in Kahana Volume A, Bel and the Dragon.",
+  "decisions": [
+    {
+      "noteId": "bel-1-39-247-vayakam39-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "anchor": "ויָּקָם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Initial consonant Vav of וָיָּקָם sits at cols 1521..1494, rows 1540..1605 of extension-volumeA-592-zoom4-upper-right.png. Beneath the base of Vav at rows 1611..1643 sits an unambiguous T-shaped Qamats (width 28 px horizontal bar at rows 1611..1623 with 314 dense ink pixels, plus vertical descending stem at rows 1624..1644 with 201 dense ink pixels). Total height 33 px, 515 ink pixels. Note is retired and Qamats restored to initial Vav -> וָיָּקָם.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass69-BEL-1-39/bel-1-39-vayakam-native.png",
+        "sha256": "23920dcaa7fd34ae1cbc1f4b5d82fbff82d281f2888f190a8be9544a77c7b991"
+      }
+    },
+    {
+      "noteId": "bel-1-39-247-vayokhal39-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "anchor": "ויֹּאכֵל",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Initial consonant Vav of וָיֹּאכֵל sits at cols 1175..1148, rows 1542..1604 of extension-volumeA-592-zoom4-upper-right.png. Beneath the base of Vav at rows 1611..1641 sits an unambiguous T-shaped Qamats with horizontal bar at rows 1612..1622 (width 26 px, height 10 px, 215 ink pixels) and vertical descending stem at rows 1626..1640 (width 13 px, height 15 px, 126 ink pixels). Total height 30 px, 341 ink pixels. Note is retired and Qamats restored to initial Vav -> וָיֹּאכֵל.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass69-BEL-1-39/bel-1-39-vayokhal-native.png",
+        "sha256": "778a496bbe429120a7c7af531df769adcbaf5db80e3636fdbca951e26669b879"
+      }
+    },
+    {
+      "noteId": "bel-1-39-247-daniel39a-letter3-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 39,
+      "anchor": "דָּנִיֵאל",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "Third consonant Yod of דָּנִיֵּאל sits at cols 1403..1379, rows 1535..1579 of extension-volumeA-592-zoom4-upper-right.png on Line 9. Inside the body cavity at cols 1393..1384, rows 1566..1572 sits a clear, stamped oval Dagesh punch dot (width 10 px, height 7 px, 43 dark pixels, minimum value 2, surrounded by white paper). Beneath the Yod at rows 1608..1618 is the Tzere mark. Note is retired with Dagesh confirmed present in Yod -> דָּנִיֵּאל.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass69-BEL-1-39/bel-1-39-daniel-native.png",
+        "sha256": "976480da5fc6c3b49ce4bbf3bda215735d1f797bf3d0e848c2babb7e5cde3c4f"
+      }
+    }
+  ]
+}

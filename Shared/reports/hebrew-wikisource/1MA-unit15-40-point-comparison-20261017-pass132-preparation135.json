@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 132,
+  "integrationPass": 132,
+  "preparationID": 135,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "1MA",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation135-1MA-15-40/source-provenance.json",
+    "sha256": "e449bab02f76141c755c400019c4defe04ec15c77e894383c3ece8517bea4812"
+  },
+  "sourceNotesBefore": 6,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "1ma-15-40-qof-vowel"
+  ],
+  "contentSHA256Before": "3d7b9b0f3a879e333463a77084a9ade6a22f7f3d71ee6ff7dedf023dbd92dc8b",
+  "contentSHA256After": "3d7b9b0f3a879e333463a77084a9ade6a22f7f3d71ee6ff7dedf023dbd92dc8b",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "1ma-15-40-qof-vowel",
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 40,
+      "anchorBefore": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The complete own initial Qof has a left intrinsic descender from852 through909 and a right bowl ending884. An extra RIGHTWARD shallow plate joins the left descender around889..899; combined lower component[1206,852,1247,910]777px, with right upper tip appearing887..889 and a flat merged band890..897. A horizontal vowel is plausible, but the left-side contribution is inseparable from the intrinsic descender/body foot, and the right tip plus merged band does not expose two bounded horizontal nodes or a uniquely independent single bar. Literal SAME-UNIT Vav in complete source40opening ויבא has a shallow attached plate703..715 without lower stem; SAME-UNIT Yod has detached475px Qamats head+stem703..734. SAME-WORD Nun has separate88/93px vertical nodes and Dalet has three isolated lower nodes. These exact contrasts delimit possibilities without certifying the own fused contribution. Retain note; no borrowed reading from another קנדביוס occurrence, grammar or expected spelling, and no printed absence claimed. Independent peer: Independent full seven-letter name fixes initial Qof. Its intrinsic LEFT descender is a long vertical mass through909, and the proposed lower horizontal plate joins that same mass around889..899. The rightward plate and local rounded tip are visible, but their union with the natural descender cannot uniquely expose whether a single vowel bar or two partially merged horizontal nodes produced the ink. Same-unit initial Vav shows an attached shallow plate without further stem, while Yod detached Qamats shows separate broad head plus long stem. Same-word Nun and Dalet provide explicit two-node and triangular-node lower shapes. Target retains class ambiguity after those literal comparisons; no connectivity-only veto, borrowed name vowel, or printed absence claim.",
+      "targetCapture": "extension-volumeB-177-zoom4-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeB-177-zoom4-mid-right.png",
+      "inspectedBounds": [
+        1206,
+        813,
+        1268,
+        910
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation135-1MA-15-40/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 15,
+    "verse": 40,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation135-1MA-15-40/independent-review.json",
+    "sha256": "1bec948eb827633c065573b8b069eddbe4e57eac758239a0e082d84bbd2d7525"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation135-1MA-15-40/primary-preparation.json",
+    "sha256": "ee29d00dcbca02263f1164e2c78661cab856244dbf3335d1e311d3ecf060cb90"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation135-1MA-15-40/consensus-preparation.json",
+    "sha256": "5d9e0cf65cd60f17027ccbc302053fd662818d7dce69606907b3b8efb0e2d7d5"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

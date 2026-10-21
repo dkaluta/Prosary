@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 91,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass91-BEL-1-12/source-provenance.json",
+    "sha256": "1cfbe353c74f240f3331b411e02ae6d82d2083b2ec22387fa1cbc9047d55fda1"
+  },
+  "sourceNotesBefore": 12,
+  "sourceNotesAfter": 11,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "bel-1-12-244-vayomru12-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "bel-1-12-244-vayomru12-letter1-vowel"
+  ],
+  "contentSHA256Before": "1626b2226e610b49991b1e011e4ba3ee6c1c887570168633b71da867f2d1e51f",
+  "contentSHA256After": "01faf60fe5688d0ea3d927b586ffd603913b3f4f9f95c84cdeac9c23b929cb6d",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "bel-1-12-244-vayomru12-letter2-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 12,
+      "anchorBefore": "ויֹאמְרוּ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "After the broad upper yod head recedes to its narrow right tail, a new rounded lower-left lobe appears and subsequently rejoins the tail. The lobe is printed and geometrically distinct from the ordinary straight plain-yod tail in יהי10. Same-page Daniel11 supplies a fully detached positive dot at the corresponding interior site. The target has an ink bridge; the decision relies on the second round branch, not connected-component count alone. Root independent comparison is required before adding U+05BC.",
+      "targetCapture": "extension-volumeA-589-zoom6-lower-mid.png",
+      "letterBounds": [
+        627,
+        309,
+        661,
+        378
+      ],
+      "pointBounds": null,
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass91-BEL-1-12/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-12-244-vayomru12-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 12,
+      "anchorBefore": "ויֹאמְרוּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The initial vav long shaft broadens into a heavy lower base, with the lower point zone physically joined to it. The connected stamp has no clean, independently bounded exact vowel configuration. Retain the disclosure rather than infer patah or qamats from neighboring prefixes or grammar.",
+      "targetCapture": "extension-volumeA-589-zoom6-lower-mid.png",
+      "letterBounds": [
+        677,
+        312,
+        726,
+        439
+      ]
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 12,
+      "before": "ויֹאמְרוּ כֹּהֲנֵי בֵּל הִנֵּה אֲנַחְנוּ רֹצִים הַחוּצָה וְאַתָּה הַמֶּלֶךְ שִׂים־נָא אֶת־הַמַּאֲכָלִים [וְאֶת־הַיַּיִן] וּסְגֹר אֶת־הַדֶּלֶת וַחֲתֹם אוֹתָהּ בְּטַבַּעְתֶּךָ׃",
+      "after": "ויֹּאמְרוּ כֹּהֲנֵי בֵּל הִנֵּה אֲנַחְנוּ רֹצִים הַחוּצָה וְאַתָּה הַמֶּלֶךְ שִׂים־נָא אֶת־הַמַּאֲכָלִים [וְאֶת־הַיַּיִן] וּסְגֹר אֶת־הַדֶּלֶת וַחֲתֹם אוֹתָהּ בְּטַבַּעְתֶּךָ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 12,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  },
+  "supplementaryReviews": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass91-BEL-1-12/pass91-bel-12-independent-pixel-review.json",
+      "sha256": "05b03fa761cbd2697e8cf67ca6b27d9e5facf87613e9e08e368e0b92523beb95"
+    }
+  ]
+}

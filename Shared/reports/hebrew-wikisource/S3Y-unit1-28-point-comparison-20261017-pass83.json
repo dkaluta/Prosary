@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 83,
+  "book": "S3Y",
+  "status": "Two 1:28 source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 83.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass83-S3Y-1-28/source-provenance.json",
+    "sha256": "d77e5acf2c7e4aa2b1147257e5bbf38852e3b84635eb7b72701c6ce2e9096f46"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 234. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 251,
+  "sourceNotesBefore": 13,
+  "sourceNotesAfter": 11,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-28-word5-letter1-vowel",
+    "s3y-1-28-word7-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "s3y-1-28-word5-letter1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 28,
+      "before": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃",
+      "after": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וַחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 28,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 28 on page רלד / 234 (viewer page 579) in Kahana Volume A, Prayer of Azariah and Song of the Three Children.",
+  "decisions": [
+    {
+      "noteId": "s3y-1-28-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "וחֲבֵרָיו",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Beneath the initial Vav of וחֲבֵרָיו at x=210..235, high-resolution zoom 6 capture reveals a solid horizontal Patah bar spanning 26 pixels wide and 24 pixels tall (rows 653..676) stamped directly below the Vav stem, followed by 22 rows of clean white paper below. Distinct from Sheva; matches positive control Patah. Confirmed printed Patah (U+05B7).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass83-S3Y-1-28/s3y-1-28-vehaverav-vav-patah-native.png",
+        "sha256": "a25c645bda105488b987318f858b18861ddf7380fc94465bd8edea55cf05a0aa"
+      }
+    },
+    {
+      "noteId": "s3y-1-28-word7-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "ויֶּהֱדֹף",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Beneath the initial Vav of ויֶּהֱדֹף at x=873..883, 32 consecutive vertical rows (rows 883..914) are 100% clean white paper (brightness 255.0). The initial Vav is printed unpointed without a vowel mark; the Segol and Dagesh are on the subsequent Yod (יֶּ). Confirmed unpointed consonant for initial Vav.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass83-S3Y-1-28/s3y-1-28-vayehedof-vav-unpointed-native.png",
+        "sha256": "0a92f6554dcbd6ba969b181fe777e39bbb95f7289b84074d74e61a2d9626c069"
+      }
+    }
+  ]
+}

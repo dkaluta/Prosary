@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 70,
+  "book": "ESG",
+  "status": "Three 3:10 unreadablePoint source points certified from authorized Psik scan; all three points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 70.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+    "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 219. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 279,
+  "sourceNotesBefore": 31,
+  "sourceNotesAfter": 28,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-3-10-1-vowel",
+    "esg-3-10-2-vowel",
+    "esg-3-10-3-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "esg-3-10-2-vowel": {
+      "combiningMark": "ִ",
+      "codePoint": "U+05B4",
+      "name": "HEBREW POINT HIRIQ"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 3,
+      "verse": 10,
+      "before": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+      "after": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 3,
+    "verse": 10,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 10 on page ריט / 219 (viewer page 564) in Kahana Volume A, Greek Additions to Esther.",
+  "decisions": [
+    {
+      "noteId": "esg-3-10-1-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "anchor": "ב[עַם]",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "unpointedConsonant",
+      "finding": "Initial consonant Bet in ב[עַם] sits at cols 1181..1155, rows 638..700 of extension-volumeA-564-zoom4-mid-right.png on Line 9. Sublinear inspection of the band beneath Bet at cols 1185..1157, rows 705..739 reveals 100% pure white paper with zero ink pixels. The internal cavity of Bet is also pure white paper (no Dagesh). In contrast, adjacent Ayin receives a prominent stamped Patah bar at cols 1163..1133, rows 710..721. The initial Bet was left unpointed in Kahana. The note is retired with Bet remaining unpointed -> ב[עַם].",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/esg-3-10-beam-native.png",
+        "sha256": "b0647f3e4c7b105ce1cdf68149b45f395b30e88ad3495be11dbd1fe36cf23002"
+      }
+    },
+    {
+      "noteId": "esg-3-10-2-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "anchor": "מְשׁבְּחֶךָ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "hiriq",
+      "codePoint": "U+05B4",
+      "markClassification": "Hiriq",
+      "finding": "Second consonant Shin in מְשִׁבְּחֶךָ sits at cols 415..351, rows 995..1068 of extension-volumeA-564-zoom4-mid-right.png on Line 11-12. Directly beneath the Shin baseline at cols 390..378, rows 1073..1088 sits an unambiguous, stamped elliptical Hiriq punch dot (width 13 px, height 11 px, 140 dark ink pixels, minimum value 0, surrounded by white margins). Note is retired and Hiriq restored to Shin -> מְשִׁבְּחֶךָ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/esg-3-10-meshibekhekha-shin-native.png",
+        "sha256": "e4abbca86343c10c1795fc23e09c9ba7b8a2cfbf7b43e1aac548e8c4e5638284"
+      }
+    },
+    {
+      "noteId": "esg-3-10-3-dagesh",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "anchor": "מְשׁבְּחֶךָ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "unpointedConsonant",
+      "finding": "Second consonant Shin in מְשִׁבְּחֶךָ at cols 415..351, rows 995..1068 has three branches (cols 425..410, cols 395..380, cols 365..350). The inner cavities between branches (cols 405..395 and cols 378..365, rows 1025..1046) are completely clear white paper with zero ink (no Dagesh punch dot). In contrast, the following consonant Bet (cols 344..318) has a clear stamped Dagesh in its center cavity. The Shin lacks Dagesh in Kahana. Note is retired with Shin confirmed without Dagesh.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/esg-3-10-meshibekhekha-native.png",
+        "sha256": "9811dc0dba0b018e557a28a48624aad60919b10c4303756843ce1ae7f0470878"
+      }
+    }
+  ]
+}

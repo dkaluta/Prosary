@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 79,
+  "book": "ESG",
+  "status": "Two 1:14 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 79.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass79-ESG-1-14/source-provenance.json",
+    "sha256": "c975c10b85545504ec5106ceacd011716f9e9ebf185659e993a0d15e008a0e03"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 216. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 259,
+  "sourceNotesBefore": 23,
+  "sourceNotesAfter": 21,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-1-14-1-vowel",
+    "esg-1-14-2-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "esg-1-14-1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    },
+    "esg-1-14-2-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 14,
+      "before": "וַיַּחְקֹר הַמֶּלֶךְ אֶת־שְׁנֵי הַסָּרִיסִים ויוֹדוּ [עַל־פִּשְׁעָם] ויוּבְלוּ [לְמָוֶת]׃",
+      "after": "וַיַּחְקֹר הַמֶּלֶךְ אֶת־שְׁנֵי הַסָּרִיסִים וַיּוֹדוּ [עַל־פִּשְׁעָם] וַיּוּבְלוּ [לְמָוֶת]׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 14,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 14 on page רטז / 216 (viewer page 561) in Kahana Volume A2, Additions to Esther.",
+  "decisions": [
+    {
+      "noteId": "esg-1-14-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 14,
+      "anchor": "ויוֹדוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Initial consonant Vav in וַיּוֹדוּ sits at cols 190..165, rows 704..746 of extension-volumeA-561-zoom4-upper-right.png on Line 4. Directly at the base of the Vav stem at rows 780..794 (cols 155..130) sits a solid horizontal Patah bar (width 26 px, height 14 px, min brightness 0), with sublinear space beneath (rows 796..820) confirmed completely blank pure white paper. Note is retired with Patah restored to initial Vav -> וַיּוֹדוּ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass79-ESG-1-14/esg-1-14-vayodu-native.png",
+        "sha256": "0977faed4cd8a79c1574351e71b4112a165339796648facce1c28cf58bff7b9f"
+      }
+    },
+    {
+      "noteId": "esg-1-14-2-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 14,
+      "anchor": "ויוּבְלוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Initial consonant Vav in וַיּוּבְלוּ sits at cols 1550..1525, rows 705..746 of extension-volumeA-561-zoom4-upper-left.png on Line 4. Directly beneath the base of the Vav stem at rows 779..791 (cols 1550..1525) sits a solid horizontal Patah bar (width 25 px, height 12 px, min brightness 0), with sublinear space beneath confirmed completely blank pure white paper. Note is retired with Patah restored to initial Vav -> וַיּוּבְלוּ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass79-ESG-1-14/esg-1-14-vayuvlu-native.png",
+        "sha256": "24b82ba696f1739df0ab8e1fbf1a40de414c04fa1e8a22bea421cbecc4c67e10"
+      }
+    }
+  ]
+}

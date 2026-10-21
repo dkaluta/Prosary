@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 144,
+  "integrationPass": 144,
+  "preparationID": 194,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation194-SIR-49-10/source-provenance.json",
+    "sha256": "0036679e1b912fbdac72959e82879efeaa3e030f18299ce52644700b19c3094b"
+  },
+  "sourceNotesBefore": 19,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-49-10-yod-dagesh"
+  ],
+  "contentSHA256Before": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "contentSHA256After": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-49-10-yod-dagesh",
+      "book": "SIR",
+      "chapter": 49,
+      "verse": 10,
+      "anchorBefore": "וַיוֹשַׁ[גְבוּהוּ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Native ASCII independently binds own full Vav-Yod-Vav-Shin-bracket-Gimel-Bet-Vav-He-Vav at572..724, y440..485. Own secondYod is compact solid99px10x17 component[700,447,710,464], tapering into left/down terminal with no separate internal dot. A dot merged into this small saturated frame cannot be distinguished from the body; neither an exact own Dagesh nor exact printed absence can be certified. Preserve disclosure and every existing scalar. Otherword Vav dot11px[610,459,613,463] and complete controlword Bet dot17px[534,460,538,465] are literal detached nodes, only controls and no transferred point.",
+      "targetCapture": "primary-527-native.png",
+      "targetSourceIdentifier": "primary-527-native.png",
+      "inspectedBounds": [
+        698,
+        438,
+        712,
+        488
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation194-SIR-49-10/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 49,
+    "verse": 10,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation194-SIR-49-10/independent-review.json",
+    "sha256": "27388d1c6bf8a0658564acaa10591d56223e18bbba4a320afb1faa30f3139bc1"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation194-SIR-49-10/primary-preparation.json",
+    "sha256": "c4d2fec8c8589390bcffc50fc6bfc3f85eae7efcb0703aed04979cb3b9a6bb6f"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation194-SIR-49-10/consensus-preparation.json",
+    "sha256": "e5f3bbf698a895e70f3c1db0f58d9838dbd61adb43204a6db536702ad8aafadd"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

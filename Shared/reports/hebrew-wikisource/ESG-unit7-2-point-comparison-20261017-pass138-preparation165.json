@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 138,
+  "integrationPass": 138,
+  "preparationID": 165,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation165-ESG-7-2/source-provenance.json",
+    "sha256": "74dd733d3424a4ed27b10b28dd8aae7f846374d56278266aaabfc3ebb4747f5d"
+  },
+  "sourceNotesBefore": 9,
+  "sourceNotesAfter": 8,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-7-2-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "c9fa00f71d99e0dca21e4e4238901888af2fe6c1d70d1cc4c5721bd21c7feaca",
+  "contentSHA256After": "43857531d84bb9f39e7eb0e5b44a49caf0bbcec133fc233df076012208af0006",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-7-2-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 2,
+      "anchorBefore": "אזְכֹּר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Own complete Alef ends534 at128. Three detached lower compact nodes:60px7x10[1566,538,1573,548] leftupper,80px10x10[1581,538,1591,548] rightupper,97px12x13[1571,551,1583,564] lowercenter. Uppernodes share538..547 baseline; three blank rows548..550 separate lowercenter node. No connecting strokes at128; all three remain distinct at64/192. Own triangle with two upper and one centered lower node supports Segol U05B6. Sameword Zayin has separate112px15x12 and105px13x10 vertically stacked nodes539..550 and556..565; sameword Kaf has single122px13x13 compact upper Holam[1453,443,1466,456]. Their own pixels certify literal pairedvertical and singleupper classes but do not supply targetmark. Own Alef three-node topology supplies reading, not canonical pointing/grammar or prior bracketedword. Independent peer: Independent peer confirms own unbracketed Alef-Zayin-Kaf-Resh after physically separate bracketedזכור. Own Alef ends534; three detached compact nodes60px[1566,538,1573,548],80px[1581,538,1591,548],97px[1571,551,1583,564] form equal-top/bottom lateral upperpair with distinct centered lowernode. Three blank rows548..550 separate lowernode from upperpair; no horizontal/vertical ink bridge. This triangular topology directly certifies Segol U05B6. Complete sameword Zayin has two vertically detached112px[1515,539,1530,551]/105px[1514,556,1527,566] nodes (five blank rows between); different literal Sheva topology, not a grammar label. Sameword Kaf upperdot is unrelated to lower Alef. Saved native4x is sole class evidence; explored lowerresolutionPDF not used. Source2 physically startsLEFT873 after1actualsof1203 withהן[זכור]אזכר, continuesRIGHT915 throughדבר+actualsof966 before3המעין; exact ownoccurrence/index1.",
+      "targetCapture": "extension-volumeA-569-zoom4-mid-left.png",
+      "targetSourceIdentifier": "extension-volumeA-569-zoom4-mid-left.png",
+      "inspectedBounds": [
+        1548,
+        461,
+        1607,
+        535
+      ],
+      "markProposed": "Segol",
+      "codePoint": "U+05B6",
+      "pointBounds": [
+        1566,
+        538,
+        1591,
+        564
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation165-ESG-7-2/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 7,
+      "verse": 2,
+      "before": "הֵן [זָכֹר] אזְכֹּר אֶת־הַחֲלוֹם אֲשֶׁר חָזִיתִי עַל־הַדְּבָרִים הָאֵלֶּה וְהִנֵּה לֹא נָפַל מֵהֶם דָּבָר׃",
+      "after": "הֵן [זָכֹר] אֶזְכֹּר אֶת־הַחֲלוֹם אֲשֶׁר חָזִיתִי עַל־הַדְּבָרִים הָאֵלֶּה וְהִנֵּה לֹא נָפַל מֵהֶם דָּבָר׃"
+    }
+  ],
+  "scope": {
+    "chapter": 7,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation165-ESG-7-2/independent-review.json",
+    "sha256": "6c7e17d8e1d33c2c0e18ca3c2e733deae19479316a6c690e4d3bd2c924f1d0b3"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation165-ESG-7-2/primary-preparation.json",
+    "sha256": "3834d5e4e7f323c9978989b9bef3f2fee984bc29c71fa3eb03f09c5c2999f92a"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation165-ESG-7-2/consensus-preparation.json",
+    "sha256": "7cf48f12aa20be95d2eb2a0f1047cbf0bba545047cb386eb7c9e117903af82f2"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

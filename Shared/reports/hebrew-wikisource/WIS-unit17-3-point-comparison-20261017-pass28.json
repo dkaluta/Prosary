@@ -1,0 +1,3529 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 28,
+  "book": "WIS",
+  "status": "All four vowel disclosures retained after complete source17:3 comparison",
+  "applicationState": "Pending independent peer and root audit; author modified only new evidence/report/temp files",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "method": "Fresh native first embedded-page-image pixels from the original PDF, strict bounds asserted before every crop, native or integer NEAREST only. Complete three-row numbered source unit, both whole target words and all four glyphs inspected with literal competing controls. No OCR, enhancement, smoothing, sharpening, normalization, grammar, expected spelling or another witness supplies a mark. Author replay is not independent.",
+  "baselineGlobalSourceNoteCount": 474,
+  "baselineVerification": {
+    "path": "/private/tmp/prosary-wis17-3-pass28-20261017/baseline-verification.json",
+    "sha256": "c80f02d53e752cbf1def9c9752df4d62043875393e3a475bc8a13c203228f219",
+    "all18BaselineJSONsEqualLive": true
+  },
+  "canonicalSHA256Before": "dd813400a5ed51de44c7d65b9604c6b19eab379733f2dac3d0643a793f269d32",
+  "contentSHA256Before": "790f69aaf283da83ddf9888114b25a4d4da9a29cf2c3e0455ca223e680209cdc",
+  "contentSHA256After": "790f69aaf283da83ddf9888114b25a4d4da9a29cf2c3e0455ca223e680209cdc",
+  "sourceNotesBefore": 186,
+  "sourceNotesAfter": 186,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 4,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-17-3-bet-1-vowel",
+    "wis-17-3-nun-1-vowel",
+    "wis-17-3-pe-2-vowel",
+    "wis-17-3-zayin-3-vowel"
+  ],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "changedUnits": [],
+  "decisions": [],
+  "inspections": [
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "id": "wis-17-3-bet-1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "בּחֶבְיוֹן",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet retains its readable dagesh and broad baseline. A nearly vertical lower extension has a shallow middle thickening and a terminal bulb, but no uniquely separable two-node, single-node or bar/stem anatomy survives. The nearby printed bet-sheva shapes in bemachshchei and bevateihem are similarly joined neutral comparisons, not proof of this point. Literal bet hiriq and tsere plus detached qamats and same-font sheva show plausible fused alternatives. Retain the vowel disclosure without asserting source absence.",
+      "physicalLocation": {
+        "id": "wis-17-3-bet-1-vowel",
+        "anchorScalarSpan": [
+          51,
+          61
+        ],
+        "physicalTokenScalarSpan": [
+          51,
+          61
+        ],
+        "targetConsonantScalarOffset": 51,
+        "targetClusterScalarSpan": [
+          51,
+          53
+        ],
+        "targetCluster": "בּ",
+        "targetClusterScalars": [
+          "U+05D1",
+          "U+05BC"
+        ]
+      },
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-2x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-qamats-controls-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-5x.png"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "id": "wis-17-3-nun-1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "נפזרוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The nun has a broad diagonal foot and one rounded downward continuation. Same-page nidchu and nivhalu provide matching joined lower bulbs; literal nun hiriq can attach to the foot, while the nun qamats control carries a head and lower stem that could merge into the same opaque mass. Literal nun sheva also shows how the upper node may join the foot. The target does not resolve those classes, so retain its vowel note.",
+      "physicalLocation": {
+        "id": "wis-17-3-nun-1-vowel",
+        "anchorScalarSpan": [
+          95,
+          101
+        ],
+        "physicalTokenScalarSpan": [
+          95,
+          101
+        ],
+        "targetConsonantScalarOffset": 95,
+        "targetClusterScalarSpan": [
+          95,
+          96
+        ],
+        "targetCluster": "נ",
+        "targetClusterScalars": [
+          "U+05E0"
+        ]
+      },
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-2x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-qamats-controls-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-5x.png"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "id": "wis-17-3-pe-2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "נפזרוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe has a saturated lower letter mass and a narrow descending extension ending in one bulb. Literal pe sheva shows two levels under its baseline, whereas the target has no independently identifiable upper node; a merged upper node or a different vowel head absorbed into the baseline remains possible. The same-page nefashot pe also has an opaque pointed foot and is treated as a neutral shape, not as a source of the missing vowel. Retain the exact note.",
+      "physicalLocation": {
+        "id": "wis-17-3-pe-2-vowel",
+        "anchorScalarSpan": [
+          95,
+          101
+        ],
+        "physicalTokenScalarSpan": [
+          95,
+          101
+        ],
+        "targetConsonantScalarOffset": 96,
+        "targetClusterScalarSpan": [
+          96,
+          97
+        ],
+        "targetCluster": "פ",
+        "targetClusterScalars": [
+          "U+05E4"
+        ]
+      },
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-2x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-qamats-controls-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-5x.png"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "id": "wis-17-3-zayin-3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "נפזרוּ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        179
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=179",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The zayin shaft narrows before a broad transverse lower mass and a further lower bulb. Same-page kizroach and literal yizafu supply true vertical sheva controls, but the fresh same-chapter zarach and zarua zayin-qamats controls have the same broad upper mass plus descending lower lobe. The target upper mass is broad enough that a stemmed head competes directly with two merged vertical nodes. Literal hiriq, patah and unpointed zayin fix the other classes but do not defeat sheva versus qamats. Retain rather than selecting a vowel from expected spelling.",
+      "physicalLocation": {
+        "id": "wis-17-3-zayin-3-vowel",
+        "anchorScalarSpan": [
+          95,
+          101
+        ],
+        "physicalTokenScalarSpan": [
+          95,
+          101
+        ],
+        "targetConsonantScalarOffset": 97,
+        "targetClusterScalarSpan": [
+          97,
+          98
+        ],
+        "targetCluster": "ז",
+        "targetClusterScalars": [
+          "U+05D6"
+        ]
+      },
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-2x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-qamats-controls-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-5x.png"
+      ]
+    }
+  ],
+  "physicalNoteLocations": [
+    {
+      "id": "wis-17-3-bet-1-vowel",
+      "anchorScalarSpan": [
+        51,
+        61
+      ],
+      "physicalTokenScalarSpan": [
+        51,
+        61
+      ],
+      "targetConsonantScalarOffset": 51,
+      "targetClusterScalarSpan": [
+        51,
+        53
+      ],
+      "targetCluster": "בּ",
+      "targetClusterScalars": [
+        "U+05D1",
+        "U+05BC"
+      ]
+    },
+    {
+      "id": "wis-17-3-nun-1-vowel",
+      "anchorScalarSpan": [
+        95,
+        101
+      ],
+      "physicalTokenScalarSpan": [
+        95,
+        101
+      ],
+      "targetConsonantScalarOffset": 95,
+      "targetClusterScalarSpan": [
+        95,
+        96
+      ],
+      "targetCluster": "נ",
+      "targetClusterScalars": [
+        "U+05E0"
+      ]
+    },
+    {
+      "id": "wis-17-3-pe-2-vowel",
+      "anchorScalarSpan": [
+        95,
+        101
+      ],
+      "physicalTokenScalarSpan": [
+        95,
+        101
+      ],
+      "targetConsonantScalarOffset": 96,
+      "targetClusterScalarSpan": [
+        96,
+        97
+      ],
+      "targetCluster": "פ",
+      "targetClusterScalars": [
+        "U+05E4"
+      ]
+    },
+    {
+      "id": "wis-17-3-zayin-3-vowel",
+      "anchorScalarSpan": [
+        95,
+        101
+      ],
+      "physicalTokenScalarSpan": [
+        95,
+        101
+      ],
+      "targetConsonantScalarOffset": 97,
+      "targetClusterScalarSpan": [
+        97,
+        98
+      ],
+      "targetCluster": "ז",
+      "targetClusterScalars": [
+        "U+05D6"
+      ]
+    }
+  ],
+  "reviewedUnit": {
+    "chapter": 17,
+    "verse": 3,
+    "originalText": "הֵם אָמְרוּ לְהִסָּתֵר בְּמַחְשְׁכֵּי פִּשְׁעֵיהֶם בּחֶבְיוֹן הַנְּשִׁיָּה לְלֹא אוֹר וְהִנֵּה נפזרוּ כִּי־נִבְהָלוּ מְאֹד וּמֵחֲזוֹן שָׁוְא הָחֳרְדוּ׃",
+    "correctedText": "הֵם אָמְרוּ לְהִסָּתֵר בְּמַחְשְׁכֵּי פִּשְׁעֵיהֶם בּחֶבְיוֹן הַנְּשִׁיָּה לְלֹא אוֹר וְהִנֵּה נפזרוּ כִּי־נִבְהָלוּ מְאֹד וּמֵחֲזוֹן שָׁוְא הָחֳרְדוּ׃",
+    "textSHA256Before": "6bb3402549a9908a57586a1b2ebea43e251cf153364593ad0109251e0698172d",
+    "textSHA256After": "6bb3402549a9908a57586a1b2ebea43e251cf153364593ad0109251e0698172d",
+    "sourcePages": [
+      179
+    ]
+  },
+  "scope": {
+    "chapter": 17,
+    "verse": 3,
+    "allFourUnitDisclosuresReviewed": true,
+    "priority": "First-cycle complete annotated units before retained ambiguity revisits",
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Source17:3 starts with hem at the far left of the row whose right margin carries gimel. That row also ends the prior source unit. Source3 continues across the next full row from amru to vehineh, then begins the following row at its right with nifzru and ends at hachoradu plus sof pasuq before gam opens source4 farther left. Preserve all three row segments and the literal source numbering; no boundaries or punctuation change.",
+  "independentReview": {
+    "status": "pending; original-pixel replay in this report is author-owned"
+  },
+  "evidenceFiles": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-native.png",
+      "sha256": "d8ed19969c9687bafa793e210bba4c4704030c002a71f28b2730f39a0430d87b",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        170,
+        1515,
+        2140,
+        1810
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-2x.png",
+      "sha256": "808886687dba6c618901a68e0d06767ff506ec9990d90a5abc4bee4b57ef8b82",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        170,
+        1515,
+        2140,
+        1810
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-native.png",
+      "sha256": "bfb870809ed6fc1cb5dd7c48424111a9b92c51fe6afb2747b7c767a0b20a5ac8",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        860,
+        1620,
+        1075,
+        1730
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-5x.png",
+      "sha256": "5dbf4cc2d0cd7448b7ad22e50246ce431d2f091d4d22b1aa0b32dd984cb957de",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        860,
+        1620,
+        1075,
+        1730
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-native.png",
+      "sha256": "a9f3f6df92d375cdb28d8e42e6bd9544ef61b22b14b1204b1b1a8471c60ac19d",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1810,
+        1725,
+        1995,
+        1830
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-5x.png",
+      "sha256": "96c189be71b8aaaf05c40b8f7f4eb44cf754a8116343ec386d0bc5ddcc9c39d6",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1810,
+        1725,
+        1995,
+        1830
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-native.png",
+      "sha256": "8a80b9285ee1f556dcf55cb171568318965c0ab60dee35cf657094c263b5dcdd",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1010,
+        1640,
+        1055,
+        1715
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-15x.png",
+      "sha256": "fec7e08085ca50492f4ac83e4193610ab8ee0c2612491eb1ca6d8f78cb2d803e",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1010,
+        1640,
+        1055,
+        1715
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-native.png",
+      "sha256": "020121b42c7c859b9692e0c9269879267145e6a7092835da2eab03c45596d5ec",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1938,
+        1735,
+        1968,
+        1800
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-15x.png",
+      "sha256": "9bac3245db0e193140f245cedaa0cdd4469cb7d88a4c61c5e5659398fb0d167a",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1938,
+        1735,
+        1968,
+        1800
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-native.png",
+      "sha256": "02a30ce2811ff43aa352713e3d0136db3b653bb5130b5ac9ac666e8c28c909f4",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1904,
+        1735,
+        1938,
+        1810
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-15x.png",
+      "sha256": "1be49576013041c14292c3cf2bafd74fa3f0738f0690b41e867311410aff130d",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1904,
+        1735,
+        1938,
+        1810
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-native.png",
+      "sha256": "7eb03afe6f745ea88bc6cc2833972d65e7ac869dd5bac3c0cfbc6139efe7f282",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1884,
+        1735,
+        1904,
+        1810
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-15x.png",
+      "sha256": "e505867747c412de06490ad3c827aad60148529960e0ccefe48f2ac473b0de47",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1884,
+        1735,
+        1904,
+        1810
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-native.png",
+      "sha256": "719336aade55c374680ae31e6c1734ec606fe0b3511896fc6949e210e68ce4db",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        785,
+        1145,
+        950,
+        1245
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-5x.png",
+      "sha256": "ac2bb6e1e4341dfe6d78ffcdfc9cbecb862a0dac5fa8834a4a7fbab9d51ffb02",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        785,
+        1145,
+        950,
+        1245
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-native.png",
+      "sha256": "cfaee896f0e249300f58361076fecbabeab9cc8eb0e4dd6c7a2cbd67a3a49fb9",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        205,
+        1340,
+        395,
+        1440
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-5x.png",
+      "sha256": "7dddad283dc71e7abf6b0383943cdc0535d0e2ea79cfb06bf0c7b33f8a6aecea",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        205,
+        1340,
+        395,
+        1440
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-native.png",
+      "sha256": "9019152a604f7f84785262e7749354cf05f896785805c88a72aad548ecd71c80",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        885,
+        1525,
+        1025,
+        1620
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-5x.png",
+      "sha256": "60aa9b267eee11424eb08ae03f2b3b71625099e9882c3e680a2d8bb031aeb1b7",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        885,
+        1525,
+        1025,
+        1620
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-native.png",
+      "sha256": "d0d9e2c14d8f128280c6bfebffe15273cb439d4604d4a4de1b2e1a94af96e119",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1335,
+        1620,
+        1580,
+        1730
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-5x.png",
+      "sha256": "c48809200c09cfcdc56d9f06c438301c88b0e33bba44e96ea65e42e704cb8884",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1335,
+        1620,
+        1580,
+        1730
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-native.png",
+      "sha256": "42be89871af7bc9230a82302c2c1c9d0f05c45cd373c7b8c759cb0d8e028f2f4",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1535,
+        1725,
+        1740,
+        1830
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-5x.png",
+      "sha256": "fffda64870245db554d004a9d0ff724612d0b370aeae786924f69dc3bff8e734",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1535,
+        1725,
+        1740,
+        1830
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-native.png",
+      "sha256": "08cee6ee28739558babab26b7dcc7be1218b06cf857a98087192f54a805178ae",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1720,
+        1900,
+        1995,
+        2010
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-5x.png",
+      "sha256": "eebf56ba42e61c5c76f48f48bfc1d259daa8fc4137aa4537fabd39997fa2463a",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1720,
+        1900,
+        1995,
+        2010
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-native.png",
+      "sha256": "68343daff2c3201d2b4c7e1643bbd99b6c3ae5a170f52aebb8734d06a5283514",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1540,
+        1430,
+        1665,
+        1530
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-5x.png",
+      "sha256": "2b0b610df37cdfcdabcee41b71d6211a71456e7dce755e574bfe4e96dc6f1b65",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1540,
+        1430,
+        1665,
+        1530
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-native.png",
+      "sha256": "18bfb25b666be721ab75ed81f8aa98c1447c927038b728f74253fa940e0a9ab4",
+      "page": 153,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        730,
+        600,
+        910,
+        700
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-5x.png",
+      "sha256": "31c7896799026aa62dcc9d127e34c9c47a00121a1fac096ba9a61c4941e8d8c2",
+      "page": 153,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        730,
+        600,
+        910,
+        700
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-native.png",
+      "sha256": "5826fcf8dee6edb87d99eac7366102b6ce00d9208853f6063a714e70cfe51545",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1810,
+        970,
+        2020,
+        1075
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-5x.png",
+      "sha256": "ad17afeb8ec0316524c2d64b1e71d0183b27021687f45aa1804a80452abc82cd",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1810,
+        970,
+        2020,
+        1075
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-native.png",
+      "sha256": "84046e00089f5b0b032f92d457a590a7ee5ce6e8094ba473267bc6174e785e9b",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1790,
+        675,
+        1970,
+        780
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-5x.png",
+      "sha256": "c49e3e6cf56cc3ebad49cb3f351fdecbf9c2c4be201fa394dc4d05d073895507",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1790,
+        675,
+        1970,
+        780
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-native.png",
+      "sha256": "e8c71831391c83e7d015eeadc60bb94134ecc79aa5b0445681f65dc5e9eb82cd",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1566,
+        1450,
+        1590,
+        1520
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-15x.png",
+      "sha256": "4b52b0c86482651683497e79467319cfc564a01d24489ae65d35778077250efa",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1566,
+        1450,
+        1590,
+        1520
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-native.png",
+      "sha256": "1e8a21681c31d70b183297bb51867a87101adcb94ff298a2ab49bc2525faa4f8",
+      "page": 153,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        850,
+        620,
+        878,
+        690
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-15x.png",
+      "sha256": "ecf3d39ffae53a757e14e121a5f5b668b6dc7b0b9592a667085af5480d6bc83b",
+      "page": 153,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        850,
+        620,
+        878,
+        690
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-native.png",
+      "sha256": "696ab522b6298095e7e6b9fce404bea91bd5e798cc4ef86ece5e48cb4d4fd6bc",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1943,
+        992,
+        1968,
+        1067
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-15x.png",
+      "sha256": "243f4c29547dd216d5958f5ebe6dae767c65f2a5516ae179353762981191d6df",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1943,
+        992,
+        1968,
+        1067
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-native.png",
+      "sha256": "43cbf788e21f6669fdc99728b3f9ffc429ef822835e69592e187dad6aa29715b",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1880,
+        705,
+        1908,
+        778
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-15x.png",
+      "sha256": "d834c73611a6bea9b9e97719658f0091c02d802c1384ea707b9ea626b2383c5b",
+      "page": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1880,
+        705,
+        1908,
+        778
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-qamats-controls-row-native.png",
+      "sha256": "c5810244e76032a139895c340a03b3cc017e6625a6856cdfbe33eedc4ec7aeb3",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        180,
+        300,
+        2160,
+        850
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-native.png",
+      "sha256": "a889a55ac6b42f58e3d64b3e19f3cf36f646dd716ca742c3ced231fc5f9e85a5",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1390,
+        1515,
+        1655,
+        1635
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-5x.png",
+      "sha256": "4639103daee3912353957b8748efd6a8cf9c795bb4c8f813d8a1ff4766e53fa4",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1390,
+        1515,
+        1655,
+        1635
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-native.png",
+      "sha256": "a97744e50a2aaf657381d74ecb3d6282bf8bc931dc48878b7bd5cdf839572b5b",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        485,
+        335,
+        610,
+        450
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-5x.png",
+      "sha256": "dcf63c520101cbe11957abf120411d3de6008be825cbe6ddaa7040ca849acc6a",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        485,
+        335,
+        610,
+        450
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-native.png",
+      "sha256": "0c9a3a0308b0a347ef38f24823d8b3e333f19788ea57372ba3a35ab774ad84c4",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        215,
+        335,
+        360,
+        450
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-5x.png",
+      "sha256": "c1f2eb28c1524ba79a5a39917a5c5ff7cbb2a68d31808380e9fbe0215cfcac16",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        215,
+        335,
+        360,
+        450
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-native.png",
+      "sha256": "c577e8f19c2e403d6fac38e07debd7c79b54c70d7bbdf44f5451b39d83c5c5e9",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        875,
+        1170,
+        895,
+        1235
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-15x.png",
+      "sha256": "7ff2ca1d89091838997cc3c86813c1aeacfc8b6a25d28c0aff191c8c30ac9734",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        875,
+        1170,
+        895,
+        1235
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-native.png",
+      "sha256": "8411d724ebfd6cb422e21a23ba7dbf5fe3e271cca41885ad5078aaf7e9cb6a12",
+      "page": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        590,
+        1625,
+        633,
+        1710
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-15x.png",
+      "sha256": "52d41c093ab09c4517342c21e0b0995ea8e3279bdeb917d52329fcaeaa425608",
+      "page": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        590,
+        1625,
+        633,
+        1710
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-native.png",
+      "sha256": "49633660cd323313bc02be8f9b2c2babc06fc5bbb84424afe0019f49770521e0",
+      "page": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        545,
+        1615,
+        730,
+        1715
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-5x.png",
+      "sha256": "6fe20144d433da0c80632606d0044dbb05af301284511125c3cd7d580ec84fba",
+      "page": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        545,
+        1615,
+        730,
+        1715
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-native.png",
+      "sha256": "62d51c35ceeee0fde878e4ad0354d26e59f2a4c0ea2b1f5814d66585ddf0b0f7",
+      "page": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        930,
+        1340,
+        975,
+        1415
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-15x.png",
+      "sha256": "577313f0a58c739b811c2373712678e41add59ee420f1d1bcd8641620947242e",
+      "page": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        930,
+        1340,
+        975,
+        1415
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-native.png",
+      "sha256": "ce3b1493a2778b71da9522dc7abedc08926b85e8aee75a00cc5ae065b2203183",
+      "page": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        770,
+        1325,
+        1015,
+        1425
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-5x.png",
+      "sha256": "984543e539509135bd11a94fa14acdbae2fb60f78069c22a2861ea1c94713c58",
+      "page": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        770,
+        1325,
+        1015,
+        1425
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-native.png",
+      "sha256": "f42225d14f6f33a84108c8557311335da5ea8f9660b04634483cf54c08556d74",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-15x.png",
+      "sha256": "6596e0d053aa228a9cb155fe37385e0d02e9389658c9187fd1a9cc7e6071aba8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-native.png",
+      "sha256": "d3c3e23e507e061a1f55857fc37eec0bedd456a7525b2152c8e956104be0d127",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-5x.png",
+      "sha256": "d5648906ef8aee507b88b02730a5e2cab4d5964ab1c72a72cc38588926cbc916",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-native.png",
+      "sha256": "28e3446ebb7b181ba15f4c12cab02709411d66231e4bf9cb70117d1e99bb5ec6",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        574,
+        365,
+        595,
+        435
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-15x.png",
+      "sha256": "aed4384ecb270b7799bfa56ce8d35bc58f910894335f3382fbab5c6aa372b45f",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        574,
+        365,
+        595,
+        435
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-native.png",
+      "sha256": "b9198f06e0bce251c9634ca50130abe56b3fcebcd74d4b1c470ffc1c533e5f1d",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        325,
+        365,
+        346,
+        435
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-15x.png",
+      "sha256": "138520066e433fc5175c35730410becba627e736eaf80e8d124d83cb5edc0620",
+      "page": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        325,
+        365,
+        346,
+        435
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-native.png",
+      "sha256": "2d7cf3f517030842ea6c19fac4c9812a4b934ea96464911a4c3a4aad73e54858",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1520,
+        1650,
+        1560,
+        1720
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-15x.png",
+      "sha256": "55044f3ce14a13ca75a99e48165929b3abfe3df80507cb8440d4a6b9464d3233",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1520,
+        1650,
+        1560,
+        1720
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-native.png",
+      "sha256": "e80c691e0b88e32117fd6c501606eec7cd93ac97fd3f33ea877827ac17aba053",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        990,
+        1545,
+        1020,
+        1615
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-15x.png",
+      "sha256": "a5ba0240525ead38637a62de0076876b4417faaf6986d3ccbd37009cb370602f",
+      "page": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        990,
+        1545,
+        1020,
+        1615
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-native.png",
+      "sha256": "d1b8019ede893cd0090206443ae578ebff2fae0cf4148b3c512dc9f90433bd6c",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1200,
+        1210,
+        1670,
+        1330
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-5x.png",
+      "sha256": "bbaf95f6c9efa9ec40b67b29fc5be3f1a9d5e61c53b232c4b71ad9ec5fd139e0",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1200,
+        1210,
+        1670,
+        1330
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-native.png",
+      "sha256": "3f1dcd37d2c818dcd6b555db12b021ff066d0721dfa452c5f75a93fecac6a539",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1317,
+        1245,
+        1344,
+        1313
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-15x.png",
+      "sha256": "7632312e7f528c56d63a36c3ff3d04ee052f8e686f7dc321688575ee14729782",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1317,
+        1245,
+        1344,
+        1313
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-native.png",
+      "sha256": "f797516147baca82eed9661838c288f0c6c06c389d5a1629d5afc1b85bee2318",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1510,
+        540,
+        1950,
+        665
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-5x.png",
+      "sha256": "81fa760cb602fcf5596990f05af01248d3b2d80cce4c6b3d5489ee39a345de33",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1510,
+        540,
+        1950,
+        665
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-native.png",
+      "sha256": "60c1c94ba55d45ca875b9743bbefe6e8dfa43adcf93b7948c7af31ac6668751b",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1390,
+        1110,
+        1680,
+        1240
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-5x.png",
+      "sha256": "48f65138c24f211cdeba2c82b1c57a22d1d812bebc45f6669c5b54ede1309028",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1390,
+        1110,
+        1680,
+        1240
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-native.png",
+      "sha256": "e066ec1b3008e98ace47a1383e92e712f5b42bb9a70faaac03c336ba844a1ceb",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1777,
+        580,
+        1804,
+        645
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-15x.png",
+      "sha256": "041bb8253e337f97840c97fd43fe29e27506223e3959c26821e13704991de945",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1777,
+        580,
+        1804,
+        645
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-native.png",
+      "sha256": "4d2f0214aa71910df295163733527f17837b6d87094c9f77ca7af2d7591e040b",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1526,
+        1154,
+        1553,
+        1222
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-15x.png",
+      "sha256": "2b5c867826f53cbd678d16f454bf3e54d736d9213d3213e819aa6c805c2a989f",
+      "page": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1526,
+        1154,
+        1553,
+        1222
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-native.png",
+      "sha256": "ed750fc0c7af4ee9788fa4a9c842a2983b403a6a3fc08a9507b3a2d7b662e7e0",
+      "page": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        380,
+        1690,
+        430,
+        1790
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+      "sha256": "42f0d09e1c64496cd46efa2ef92f15508104852ea2feea90eb32d7d60ccbaf73",
+      "page": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        380,
+        1690,
+        430,
+        1790
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-native.png",
+      "sha256": "391122d95a0a77be390bcac59587de5889b3f630059e7c3bdc68e7e8304bcb1c",
+      "page": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        330,
+        1665,
+        665,
+        1800
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-5x.png",
+      "sha256": "5323a20945db946139b7551b3db866da64ad530cb9678d7ecd87089e9a794261",
+      "page": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        330,
+        1665,
+        665,
+        1800
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    }
+  ],
+  "frames": [
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        170,
+        1515,
+        2140,
+        1810
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-native.png",
+          "sha256": "d8ed19969c9687bafa793e210bba4c4704030c002a71f28b2730f39a0430d87b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/WIS17-3-complete-numbered-context-2x.png",
+          "sha256": "808886687dba6c618901a68e0d06767ff506ec9990d90a5abc4bee4b57ef8b82",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        860,
+        1620,
+        1075,
+        1730
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-native.png",
+          "sha256": "bfb870809ed6fc1cb5dd7c48424111a9b92c51fe6afb2747b7c767a0b20a5ac8",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word01-bechevyon-COMPLETE-5x.png",
+          "sha256": "5dbf4cc2d0cd7448b7ad22e50246ce431d2f091d4d22b1aa0b32dd984cb957de",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1810,
+        1725,
+        1995,
+        1830
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-native.png",
+          "sha256": "a9f3f6df92d375cdb28d8e42e6bd9544ef61b22b14b1204b1b1a8471c60ac19d",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/word02-nifzru-COMPLETE-5x.png",
+          "sha256": "96c189be71b8aaaf05c40b8f7f4eb44cf754a8116343ec386d0bc5ddcc9c39d6",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1010,
+        1640,
+        1055,
+        1715
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-native.png",
+          "sha256": "8a80b9285ee1f556dcf55cb171568318965c0ab60dee35cf657094c263b5dcdd",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target01-bet-COMPLETE-15x.png",
+          "sha256": "fec7e08085ca50492f4ac83e4193610ab8ee0c2612491eb1ca6d8f78cb2d803e",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1938,
+        1735,
+        1968,
+        1800
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-native.png",
+          "sha256": "020121b42c7c859b9692e0c9269879267145e6a7092835da2eab03c45596d5ec",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target02-nun-COMPLETE-15x.png",
+          "sha256": "9bac3245db0e193140f245cedaa0cdd4469cb7d88a4c61c5e5659398fb0d167a",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1904,
+        1735,
+        1938,
+        1810
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-native.png",
+          "sha256": "02a30ce2811ff43aa352713e3d0136db3b653bb5130b5ac9ac666e8c28c909f4",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target03-pe-COMPLETE-15x.png",
+          "sha256": "1be49576013041c14292c3cf2bafd74fa3f0738f0690b41e867311410aff130d",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1884,
+        1735,
+        1904,
+        1810
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-native.png",
+          "sha256": "7eb03afe6f745ea88bc6cc2833972d65e7ac869dd5bac3c0cfbc6139efe7f282",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/target04-zayin-COMPLETE-15x.png",
+          "sha256": "e505867747c412de06490ad3c827aad60148529960e0ccefe48f2ac473b0de47",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        785,
+        1145,
+        950,
+        1245
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-native.png",
+          "sha256": "719336aade55c374680ae31e6c1734ec606fe0b3511896fc6949e210e68ce4db",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-kizroach-COMPLETE-word-5x.png",
+          "sha256": "ac2bb6e1e4341dfe6d78ffcdfc9cbecb862a0dac5fa8834a4a7fbab9d51ffb02",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        205,
+        1340,
+        395,
+        1440
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-native.png",
+          "sha256": "cfaee896f0e249300f58361076fecbabeab9cc8eb0e4dd6c7a2cbd67a3a49fb9",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nefashot-COMPLETE-word-5x.png",
+          "sha256": "7dddad283dc71e7abf6b0383943cdc0535d0e2ea79cfb06bf0c7b33f8a6aecea",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        885,
+        1525,
+        1025,
+        1620
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-native.png",
+          "sha256": "9019152a604f7f84785262e7749354cf05f896785805c88a72aad548ecd71c80",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nidchu-COMPLETE-word-5x.png",
+          "sha256": "60aa9b267eee11424eb08ae03f2b3b71625099e9882c3e680a2d8bb031aeb1b7",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1335,
+        1620,
+        1580,
+        1730
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-native.png",
+          "sha256": "d0d9e2c14d8f128280c6bfebffe15273cb439d4604d4a4de1b2e1a94af96e119",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-bemachshchei-COMPLETE-word-5x.png",
+          "sha256": "c48809200c09cfcdc56d9f06c438301c88b0e33bba44e96ea65e42e704cb8884",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1535,
+        1725,
+        1740,
+        1830
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-native.png",
+          "sha256": "42be89871af7bc9230a82302c2c1c9d0f05c45cd373c7b8c759cb0d8e028f2f4",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/sameunit-nivhalu-COMPLETE-word-5x.png",
+          "sha256": "fffda64870245db554d004a9d0ff724612d0b370aeae786924f69dc3bff8e734",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1720,
+        1900,
+        1995,
+        2010
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-native.png",
+          "sha256": "08cee6ee28739558babab26b7dcc7be1218b06cf857a98087192f54a805178ae",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-balahot-COMPLETE-word-5x.png",
+          "sha256": "eebf56ba42e61c5c76f48f48bfc1d259daa8fc4137aa4537fabd39997fa2463a",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1540,
+        1430,
+        1665,
+        1530
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-native.png",
+          "sha256": "68343daff2c3201d2b4c7e1643bbd99b6c3ae5a170f52aebb8734d06a5283514",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/same-page-haoz-COMPLETE-word-5x.png",
+          "sha256": "2b0b610df37cdfcdabcee41b71d6211a71456e7dce755e574bfe4e96dc6f1b65",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 153,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        730,
+        600,
+        910,
+        700
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-native.png",
+          "sha256": "18bfb25b666be721ab75ed81f8aa98c1447c927038b728f74253fa940e0a9ab4",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-COMPLETE-word-5x.png",
+          "sha256": "31c7896799026aa62dcc9d127e34c9c47a00121a1fac096ba9a61c4941e8d8c2",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1810,
+        970,
+        2020,
+        1075
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-native.png",
+          "sha256": "5826fcf8dee6edb87d99eac7366102b6ce00d9208853f6063a714e70cfe51545",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-COMPLETE-word-5x.png",
+          "sha256": "ad17afeb8ec0316524c2d64b1e71d0183b27021687f45aa1804a80452abc82cd",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1790,
+        675,
+        1970,
+        780
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-native.png",
+          "sha256": "84046e00089f5b0b032f92d457a590a7ee5ce6e8094ba473267bc6174e785e9b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-COMPLETE-word-5x.png",
+          "sha256": "c49e3e6cf56cc3ebad49cb3f351fdecbf9c2c4be201fa394dc4d05d073895507",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1566,
+        1450,
+        1590,
+        1520
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-native.png",
+          "sha256": "e8c71831391c83e7d015eeadc60bb94134ecc79aa5b0445681f65dc5e9eb82cd",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-plain-haoz-zayin-COMPLETE-15x.png",
+          "sha256": "4b52b0c86482651683497e79467319cfc564a01d24489ae65d35778077250efa",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 153,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        850,
+        620,
+        878,
+        690
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-native.png",
+          "sha256": "1e8a21681c31d70b183297bb51867a87101adcb94ff298a2ab49bc2525faa4f8",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-ziknat-zayin-hiriq-COMPLETE-15x.png",
+          "sha256": "ecf3d39ffae53a757e14e121a5f5b668b6dc7b0b9592a667085af5480d6bc83b",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1943,
+        992,
+        1968,
+        1067
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-native.png",
+          "sha256": "696ab522b6298095e7e6b9fce404bea91bd5e798cc4ef86ece5e48cb4d4fd6bc",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-yizafu-zayin-sheva-COMPLETE-15x.png",
+          "sha256": "243f4c29547dd216d5958f5ebe6dae767c65f2a5516ae179353762981191d6df",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 155,
+      "originalSize": [
+        2529,
+        3519
+      ],
+      "nativeBounds": [
+        1880,
+        705,
+        1908,
+        778
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-native.png",
+          "sha256": "43cbf788e21f6669fdc99728b3f9ffc429ef822835e69592e187dad6aa29715b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-zaam-zayin-patah-COMPLETE-15x.png",
+          "sha256": "d834c73611a6bea9b9e97719658f0091c02d802c1384ea707b9ea626b2383c5b",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        180,
+        300,
+        2160,
+        850
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-qamats-controls-row-native.png",
+          "sha256": "c5810244e76032a139895c340a03b3cc017e6625a6856cdfbe33eedc4ec7aeb3",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1390,
+        1515,
+        1655,
+        1635
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-native.png",
+          "sha256": "a889a55ac6b42f58e3d64b3e19f3cf36f646dd716ca742c3ced231fc5f9e85a5",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bemateihem-expanded-COMPLETE-word-5x.png",
+          "sha256": "4639103daee3912353957b8748efd6a8cf9c795bb4c8f813d8a1ff4766e53fa4",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        485,
+        335,
+        610,
+        450
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-native.png",
+          "sha256": "a97744e50a2aaf657381d74ecb3d6282bf8bc931dc48878b7bd5cdf839572b5b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-COMPLETE-word-5x.png",
+          "sha256": "dcf63c520101cbe11957abf120411d3de6008be825cbe6ddaa7040ca849acc6a",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        215,
+        335,
+        360,
+        450
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-native.png",
+          "sha256": "0c9a3a0308b0a347ef38f24823d8b3e333f19788ea57372ba3a35ab774ad84c4",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-COMPLETE-word-5x.png",
+          "sha256": "c1f2eb28c1524ba79a5a39917a5c5ff7cbb2a68d31808380e9fbe0215cfcac16",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        875,
+        1170,
+        895,
+        1235
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-native.png",
+          "sha256": "c577e8f19c2e403d6fac38e07debd7c79b54c70d7bbdf44f5451b39d83c5c5e9",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-zayin-sheva-COMPLETE-15x.png",
+          "sha256": "7ff2ca1d89091838997cc3c86813c1aeacfc8b6a25d28c0aff191c8c30ac9734",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        590,
+        1625,
+        633,
+        1710
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-native.png",
+          "sha256": "8411d724ebfd6cb422e21a23ba7dbf5fe3e271cca41885ad5078aaf7e9cb6a12",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-COMPLETE-15x.png",
+          "sha256": "52d41c093ab09c4517342c21e0b0995ea8e3279bdeb917d52329fcaeaa425608",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        545,
+        1615,
+        730,
+        1715
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-native.png",
+          "sha256": "49633660cd323313bc02be8f9b2c2babc06fc5bbb84424afe0019f49770521e0",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-pe-sheva-umipnei-COMPLETE-word-5x.png",
+          "sha256": "6fe20144d433da0c80632606d0044dbb05af301284511125c3cd7d580ec84fba",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        930,
+        1340,
+        975,
+        1415
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-native.png",
+          "sha256": "62d51c35ceeee0fde878e4ad0354d26e59f2a4c0ea2b1f5814d66585ddf0b0f7",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-COMPLETE-15x.png",
+          "sha256": "577313f0a58c739b811c2373712678e41add59ee420f1d1bcd8641620947242e",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 183,
+      "originalSize": [
+        2534,
+        3522
+      ],
+      "nativeBounds": [
+        770,
+        1325,
+        1015,
+        1425
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-native.png",
+          "sha256": "ce3b1493a2778b71da9522dc7abedc08926b85e8aee75a00cc5ae065b2203183",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-bet-tsere-beineihem-COMPLETE-word-5x.png",
+          "sha256": "984543e539509135bd11a94fa14acdbae2fb60f78069c22a2861ea1c94713c58",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-native.png",
+          "sha256": "f42225d14f6f33a84108c8557311335da5ea8f9660b04634483cf54c08556d74",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-class-COMPLETE-15x.png",
+          "sha256": "6596e0d053aa228a9cb155fe37385e0d02e9389658c9187fd1a9cc7e6071aba8",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-native.png",
+          "sha256": "d3c3e23e507e061a1f55857fc37eec0bedd456a7525b2152c8e956104be0d127",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/literal-qamats-COMPLETE-word-5x.png",
+          "sha256": "d5648906ef8aee507b88b02730a5e2cab4d5964ab1c72a72cc38588926cbc916",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        574,
+        365,
+        595,
+        435
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-native.png",
+          "sha256": "28e3446ebb7b181ba15f4c12cab02709411d66231e4bf9cb70117d1e99bb5ec6",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarach-zayin-qamats-COMPLETE-15x.png",
+          "sha256": "aed4384ecb270b7799bfa56ce8d35bc58f910894335f3382fbab5c6aa372b45f",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 181,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        325,
+        365,
+        346,
+        435
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-native.png",
+          "sha256": "b9198f06e0bce251c9634ca50130abe56b3fcebcd74d4b1c470ffc1c533e5f1d",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samechapter-zarua-zayin-qamats-COMPLETE-15x.png",
+          "sha256": "138520066e433fc5175c35730410becba627e736eaf80e8d124d83cb5edc0620",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        1520,
+        1650,
+        1560,
+        1720
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-native.png",
+          "sha256": "2d7cf3f517030842ea6c19fac4c9812a4b934ea96464911a4c3a4aad73e54858",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-bet-sheva-local-COMPLETE-15x.png",
+          "sha256": "55044f3ce14a13ca75a99e48165929b3abfe3df80507cb8440d4a6b9464d3233",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 179,
+      "originalSize": [
+        2540,
+        3526
+      ],
+      "nativeBounds": [
+        990,
+        1545,
+        1020,
+        1615
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-native.png",
+          "sha256": "e80c691e0b88e32117fd6c501606eec7cd93ac97fd3f33ea877827ac17aba053",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/samepage-nun-hiriq-local-COMPLETE-15x.png",
+          "sha256": "a5ba0240525ead38637a62de0076876b4417faaf6986d3ccbd37009cb370602f",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1200,
+        1210,
+        1670,
+        1330
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-native.png",
+          "sha256": "d1b8019ede893cd0090206443ae578ebff2fae0cf4148b3c512dc9f90433bd6c",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-COMPLETE-word-5x.png",
+          "sha256": "bbaf95f6c9efa9ec40b67b29fc5be3f1a9d5e61c53b232c4b71ad9ec5fd139e0",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1317,
+        1245,
+        1344,
+        1313
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-native.png",
+          "sha256": "3f1dcd37d2c818dcd6b555db12b021ff066d0721dfa452c5f75a93fecac6a539",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-tanhem-sheva-nun-COMPLETE-15x.png",
+          "sha256": "7632312e7f528c56d63a36c3ff3d04ee052f8e686f7dc321688575ee14729782",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1510,
+        540,
+        1950,
+        665
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-native.png",
+          "sha256": "f797516147baca82eed9661838c288f0c6c06c389d5a1629d5afc1b85bee2318",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-nun-classes-COMPLETE-word-5x.png",
+          "sha256": "81fa760cb602fcf5596990f05af01248d3b2d80cce4c6b3d5489ee39a345de33",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1390,
+        1110,
+        1680,
+        1240
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-native.png",
+          "sha256": "60c1c94ba55d45ca875b9743bbefe6e8dfa43adcf93b7948c7af31ac6668751b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-COMPLETE-word-5x.png",
+          "sha256": "48f65138c24f211cdeba2c82b1c57a22d1d812bebc45f6669c5b54ede1309028",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1777,
+        580,
+        1804,
+        645
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-native.png",
+          "sha256": "e066ec1b3008e98ace47a1383e92e712f5b42bb9a70faaac03c336ba844a1ceb",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-venitnah-first-nun-hiriq-COMPLETE-15x.png",
+          "sha256": "041bb8253e337f97840c97fd43fe29e27506223e3959c26821e13704991de945",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 158,
+      "originalSize": [
+        2484,
+        3487
+      ],
+      "nativeBounds": [
+        1526,
+        1154,
+        1553,
+        1222
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-native.png",
+          "sha256": "4d2f0214aa71910df295163733527f17837b6d87094c9f77ca7af2d7591e040b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/local-bikhnafeha-qamats-nun-COMPLETE-15x.png",
+          "sha256": "2b5c867826f53cbd678d16f454bf3e54d736d9213d3213e819aa6c805c2a989f",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        380,
+        1690,
+        430,
+        1790
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-native.png",
+          "sha256": "ed750fc0c7af4ee9788fa4a9c842a2983b403a6a3fc08a9507b3a2d7b662e7e0",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+          "sha256": "42f0d09e1c64496cd46efa2ef92f15508104852ea2feea90eb32d7d60ccbaf73",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "sourcePDFPage": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        330,
+        1665,
+        665,
+        1800
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-native.png",
+          "sha256": "391122d95a0a77be390bcac59587de5889b3f630059e7c3bdc68e7e8304bcb1c",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/ESG-beiti-avi-COMPLETE-word-5x.png",
+          "sha256": "5323a20945db946139b7551b3db866da64ad530cb9678d7ecd87089e9a794261",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    }
+  ],
+  "nativeFrameCount": 44,
+  "evidenceFileCount": 87,
+  "freshOriginalPageCount": 8,
+  "excludedExploratoryFrames": [
+    {
+      "files": [
+        "samepage-bemateihem-COMPLETE-word-native.png",
+        "samepage-bemateihem-COMPLETE-word-5x.png"
+      ],
+      "reason": "Initial local word frame clipped the bottom of the second bet; replaced by expanded frame. Excluded from published evidence."
+    }
+  ],
+  "controlInterpretation": "Local joined controls whose shape is itself fused are neutral comparisons, regardless of transliteration or vowel labels in filenames. Literal class controls are assessed directly by their whole native contours.",
+  "invariants": {
+    "allPriorScalarsAndCombiningOrderPreserved": true,
+    "allConsonantsPunctuationAndSourceBoundariesUnchanged": true,
+    "allRestoredLetterDisclosuresPreserved": true,
+    "noAnchorOrOccurrenceChanged": true,
+    "canonicalAndAllGatesUntouchedByAuthor": true,
+    "allPublishedPNGsReplayedFromFreshOriginal": true,
+    "allCropsStrictlyWithinSourceBounds": true,
+    "allFourTargetsNestInWholeWords": true,
+    "canonicalStillBaselineAtPublication": true
+  },
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/accepted.json",
+    "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "frameLedger": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/frame-ledger.json",
+    "sha256": "134e3135ed64ef681672a265eb6ecdd58d2a0c641eb28fc80d54b3d3829f8b4f"
+  },
+  "nativeNestingCheck": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/native-nesting-check.json",
+    "sha256": "c5a9ff859ac9802a3a0e38dafbd1d55460f8381ca93f58765fdbd00a51aa9095"
+  },
+  "authorPixelReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT17-3/author-original-pixel-replay.json",
+    "sha256": "88a9d8af8dc4871cbd44a975f3b4bbc2582953c1ebd181452faa531d6dff4821"
+  }
+}

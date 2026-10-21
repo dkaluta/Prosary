@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 55,
+  "book": "BEL",
+  "status": "Three 1:9 source points certified from authorized Psik scan across printed page boundary 243-244; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 55.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass55-BEL-1-9/source-provenance.json",
+    "sha256": "25a6ee3f355db50065efb6e30cca115a1fc0f1fdffb7fa862c140b4ab6d4762d"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan across pages 243-244. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 323,
+  "sourceNotesBefore": 58,
+  "sourceNotesAfter": 55,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-9-243-vayiktzof-letter1-vowel",
+    "bel-1-9-244-vayikra9-letter1-vowel",
+    "bel-1-9-244-vayomer9-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 9,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 9 spanning pages רמג-רמד / 243-244 (viewer pages 588-589) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "bel-1-9-243-vayiktzof-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 9,
+      "anchor": "ויִּקְצֹף",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויִּקְצֹף on printed page 243 consists of a printed vertical stem with pure white paper underneath across rows 1263..1285. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass55-BEL-1-9/bel-1-9-vav-vayiktzof-target-native.png",
+        "sha256": "d2bd1d009380bd0541f916ce5c24b2860f8c79e23d8d5443a7c281d9b89af8f3"
+      }
+    },
+    {
+      "noteId": "bel-1-9-244-vayikra9-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 9,
+      "anchor": "ויִּקְרָא",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויִּקְרָא on printed page 244 consists of a bare vertical stem with 38 vertical rows of pure white paper underneath. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass55-BEL-1-9/bel-1-9-vav-vayikra-target-native.png",
+        "sha256": "d3fd914442bc6df35ce97dabb5cc02a0314589fb8e03632e8b1e67aa56bfbec9"
+      }
+    },
+    {
+      "noteId": "bel-1-9-244-vayomer9-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 9,
+      "anchor": "ויֹּאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויֹּאמֶר on printed page 244 consists of a bare vertical stem with pure white paper beneath (rows 194..220). Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass55-BEL-1-9/bel-1-9-vav-vayomer-target-native.png",
+        "sha256": "0e5d242a9ebf4fe3342fbcd830cde11d8d27f4b251cc45da5b16f18878c98634"
+      }
+    }
+  ]
+}

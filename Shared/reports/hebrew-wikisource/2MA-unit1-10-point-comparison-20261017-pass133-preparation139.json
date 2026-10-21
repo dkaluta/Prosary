@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 133,
+  "integrationPass": 133,
+  "preparationID": 139,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "2MA",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation139-2MA-1-10/source-provenance.json",
+    "sha256": "b4ca088d2b499cc1f4a3e3ad6f349c1d6f5dea9e7c3a24439d33e49f1fe8f19b"
+  },
+  "sourceNotesBefore": 8,
+  "sourceNotesAfter": 8,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "2ma-1-10-he-1-vowel"
+  ],
+  "contentSHA256Before": "d3e81b238e6666e486b2dadeea3a32fca61796f61ae982a2d8972e9a8831592c",
+  "contentSHA256After": "d3e81b238e6666e486b2dadeea3a32fca61796f61ae982a2d8972e9a8831592c",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "2ma-1-10-he-1-vowel",
+      "book": "2MA",
+      "chapter": 1,
+      "verse": 10,
+      "anchorBefore": "המְּשׁוּחִים",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The physically correct initial He is complete in native raw capture, with detached lower stamp[1404,675,1437,690] area419 at threshold128. The stamp is a saturated broad irregular horizontal mass with small undulations; exact subdivisions of Patah versus merged horizontal nodes or another point are not uniquely certified. SAME-LETTER precedingHe has similarly unresolved horizontal mass[1867,675,1898,690] area376; its canonical vowel does NOT label the control. Literal sameword Mem has a vertically arranged joined-lobe lower compound, exact class uncertified, and is used only as observed geometry. Independent native replay finds one threshold128 component[1348,680,1361,711],area274 with an approximately8px-wide bridge through689..697; no physical separation is claimed. Historical whole-word/point replay agrees with the current placement but supplies no independently resolved exact point. Disclosure retained; neither absence nor a specific vowel is asserted.",
+      "targetCapture": "extension-volumeB-182-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeB-182-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1380,
+        575,
+        1470,
+        720
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation139-2MA-1-10/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 10,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation139-2MA-1-10/independent-review.json",
+    "sha256": "00bece90f836994b7d36a28708a1264ea2b5fa178b8630b35d27cbb23d666bbf"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation139-2MA-1-10/primary-preparation.json",
+    "sha256": "853c0507b0706f275b4d4ad7092b2df221a161ab3a6ca6541d7729a3b431f91a"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation139-2MA-1-10/consensus-preparation.json",
+    "sha256": "78aa55da41c31b481620d2d618f564e70d735baa986882332cc7b1f495fdcd8c"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

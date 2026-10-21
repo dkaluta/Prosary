@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 108,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 2 retained.",
+  "applicationState": "All disclosures retained; canonical book/review metadata unchanged. Tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass108-WIS-5-8/source-provenance.json",
+    "sha256": "359c2ec38e2bfb41642fdfb9a36085aa748abda7f06c9ff782587ff25600a2be"
+  },
+  "sourceNotesBefore": 125,
+  "sourceNotesAfter": 125,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 2,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-8-gimel",
+    "wis-5-8-initial-vav"
+  ],
+  "contentSHA256Before": "468a360e45d40ddd838817debf562a927874e56ec1b5528baf84b6079a54ce2a",
+  "contentSHA256After": "468a360e45d40ddd838817debf562a927874e56ec1b5528baf84b6079a54ce2a",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-5-8-initial-vav",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 8,
+      "anchorBefore": "וגאוּתֵנוּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The first Vav remains a continuous narrow shaft into the sublinear band through652. Literal same-word terminal Shuruq Vav ends633 and has its own detached internal dot, establishing a shorter ordinary terminal. The target has no separated diagnostic mark or stable two-node contour: retain its vowel disclosure.",
+      "targetCapture": "native-154.png",
+      "targetSourceIdentifier": "native-154.png",
+      "inspectedBounds": [
+        551,
+        597,
+        568,
+        652
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass108-WIS-5-8/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-5-8-gimel",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 8,
+      "anchorBefore": "וגאוּתֵנוּ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "The second physical Gimel has a compact foot/lower ink cluster ending643. Its own foot and possible point cannot be separated securely into a named vowel. The same-page Yod Sheva has a separate below-body two-lobed cluster; no equivalent independent point geometry can be certified beneath this Gimel. Retain the disclosure; do not supply a vowel from spelling or grammar.",
+      "targetCapture": "native-154.png",
+      "targetSourceIdentifier": "native-154.png",
+      "inspectedBounds": [
+        530,
+        597,
+        549,
+        643
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass108-WIS-5-8/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 8,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass108-WIS-5-8/independent-review.json",
+    "sha256": "2fb6104fec80efcabab04a5549e3c6291cf4f7bd81b931537f9dc69246bec5a1"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass108-WIS-5-8/primary-preparation.json",
+    "sha256": "5f970143ea61154865ef665500b15ced836ad5dc2cba871d87ba6008f06077d1"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass108-WIS-5-8/consensus-preparation.json",
+    "sha256": "c14fffeabbb796da71e068c2c9602db8ed4b77dff8ff1d2d5e0f6513534f0848"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

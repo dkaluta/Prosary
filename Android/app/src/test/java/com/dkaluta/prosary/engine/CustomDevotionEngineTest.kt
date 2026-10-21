@@ -901,15 +901,15 @@ class CustomDevotionEngineTest {
         assertTrue("their Hail Mary", variant.any { it.body.contains("שָׁלוֹם לָךְ מִרְיָם") })
 
         // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
-        // app's own in plain Hebrew.
+        // Vicariate's in the Vicariate's rite.
         val hebrew = steps("rosary", language = "he", customOptions = mapOf("apostlesCreed" to "true"))
         assertEquals("אות הצלב", variant.first().title)
         assertEquals("סימן הצלב", hebrew.first().title)
         assertEquals("אני מאמין", hebrew[1].title)
         assertTrue(variant.any { it.title.startsWith("שלום לך מרים") })
-        assertTrue(hebrew.any { it.title.startsWith("שלום לך") })
+        assertTrue(hebrew.any { it.title.startsWith("שמחי מרים") })
         assertTrue(variant.any { it.title == "השבח לאב" })
-        assertTrue(hebrew.any { it.title == "שבח לאב" })
+        assertTrue(hebrew.any { it.title == "כבוד לאב" })
 
         // The Mission has no Fatima wording. The default precedence places English before
         // the Vicariate, so this specific prayer follows that order rather than jumping to it.

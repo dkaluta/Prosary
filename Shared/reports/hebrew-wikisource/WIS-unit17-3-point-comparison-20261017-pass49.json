@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 49,
+  "book": "WIS",
+  "status": "Four source 17:3 points certified from authorized Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 49 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass49-WIS-17-3/source-provenance.json",
+    "sha256": "95655c9a9a58fd95bb596721558956c6bb7a48c1410e8f7a0771ff2ea2e3d49c"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 179 / קעט (viewer page 524, internal 539). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 348,
+  "sourceNotesBefore": 156,
+  "sourceNotesAfter": 152,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-17-3-bet-1-vowel",
+    "wis-17-3-nun-1-vowel",
+    "wis-17-3-pe-2-vowel",
+    "wis-17-3-zayin-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 17,
+      "verse": 3,
+      "before": "הֵם אָמְרוּ לְהִסָּתֵר בְּמַחְשְׁכֵּי פִּשְׁעֵיהֶם בּחֶבְיוֹן הַנְּשִׁיָּה לְלֹא אוֹר וְהִנֵּה נפזרוּ כִּי־נִבְהָלוּ מְאֹד וּמֵחֲזוֹן שָׁוְא הָחֳרְדוּ׃",
+      "after": "הֵם אָמְרוּ לְהִסָּתֵר בְּמַחְשְׁכֵּי פִּשְׁעֵיהֶם בּחֶבְיוֹן הַנְּשִׁיָּה לְלֹא אוֹר וְהִנֵּה נפזרוּ כִּי־נִבְהָלוּ מְאֹד וּמֵחֲזוֹן שָׁוְא הָחֳרְדוּ׃",
+      "beforeTextSHA256": "6bb3402549a9908a57586a1b2ebea43e251cf153364593ad0109251e0698172d",
+      "afterTextSHA256": "6bb3402549a9908a57586a1b2ebea43e251cf153364593ad0109251e0698172d"
+    }
+  ],
+  "scope": {
+    "chapter": 17,
+    "verse": 3,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label ג on page קעט / 179 (viewer page 524, internal page 539) identifies the unit covering verse 3. Canonical verse 3 and sourcePages [179] are preserved.",
+  "decisions": [
+    {
+      "noteId": "wis-17-3-bet-1-vowel",
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "anchor": "בּחֶבְיוֹן",
+      "letterIndex": 1,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Bet carries a printed center Dagesh; the region below the letter base across y=1495..1520 (x=960..1005) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass49-WIS-17-3/wis-17-3-bet-1-vowel-target-native.png",
+        "sha256": "76928c68cbd146d9613d25c5ef87fe715e9fd029aaf5038bb44720dad807ca08"
+      }
+    },
+    {
+      "noteId": "wis-17-3-nun-1-vowel",
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "anchor": "נפזרוּ",
+      "letterIndex": 1,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Nun terminates at y=1640; the region below across y=1642..1665 (x=1670..1710) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass49-WIS-17-3/wis-17-3-nun-1-vowel-target-native.png",
+        "sha256": "3e84656e445d69ef9e65fdddb1104f148a5550e12f62e32456cf6b6baa395e1c"
+      }
+    },
+    {
+      "noteId": "wis-17-3-pe-2-vowel",
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "anchor": "נפזרוּ",
+      "letterIndex": 2,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Letter 2 (Pe) terminates at y=1640; the region below across y=1642..1665 (x=1630..1675) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass49-WIS-17-3/wis-17-3-pe-2-vowel-target-native.png",
+        "sha256": "9508131278205aa3c20437baed463888651655c06d97252ddfffd25e6a81d4a9"
+      }
+    },
+    {
+      "noteId": "wis-17-3-zayin-3-vowel",
+      "book": "WIS",
+      "chapter": 17,
+      "verse": 3,
+      "anchor": "נפזרוּ",
+      "letterIndex": 3,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Letter 3 (Zayin) terminates at y=1640; the region below across y=1642..1665 (x=1590..1635) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass49-WIS-17-3/wis-17-3-zayin-3-vowel-target-native.png",
+        "sha256": "5dd5e040a127e7257d355b500f5aa82848c2aa0761caded519a50ef20410b22a"
+      }
+    }
+  ]
+}

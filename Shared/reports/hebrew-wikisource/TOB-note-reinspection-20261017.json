@@ -1,0 +1,910 @@
+{
+  "schemaVersion": 1,
+  "book": "TOB",
+  "date": "2026-10-17",
+  "status": "Focused reinspection complete; exact source-certified resolutions independently corroborated",
+  "notesInspected": 17,
+  "resolved": 3,
+  "retained": 14,
+  "canonicalChanged": true,
+  "scope": "Every one of the17 remaining canonical source-note targets. Each was located in the upper short recension of both primary and companion scans using full passage context and recension separators. Lower-recension text was excluded. This is a focused note review, not a new whole-book collation.",
+  "method": "Fresh embedded image extraction with pypdf, unchanged native-pixel crops and integer nearest-neighbor enlargements only. No OCR, sharpening, contrast adjustment, automatic vocalization or generated pixels. Exact changed glyphs were independently inspected by root.",
+  "sourceScans": [
+    {
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "nativeImageDimensions": [
+        1650,
+        2550
+      ]
+    },
+    {
+      "path": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B_extra_scan.pdf",
+      "downloadURL": "https://upload.wikimedia.org/wikisource/he/a/a8/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "nativeImageDimensions": [
+        2872,
+        2024
+      ]
+    }
+  ],
+  "resolutions": [
+    {
+      "noteId": "tob-5-3-dalet-vowel",
+      "chapter": 5,
+      "verse": 3,
+      "sourcePage": 324,
+      "extraPage": 169,
+      "extraSide": "right",
+      "finding": "The companion exposes two separate upper dots with a third centered below, all detached from the thin dalet descender: segol. The primary is fused and is not used alone to classify the mark. Both reviewers confirmed the upper short-recension first row, בעודני חי, continuing verse3 before verse4 starts. Root independently confirmed the three-dot geometry in the native and enlarged crops. The initial-vav note in this same verse remains.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-3-dalet-primary-native.png",
+          "sha256": "ceff868192cf6b3043455314037cf11f4cb78c9b6fc3438ef1d73f2154e3ddf1",
+          "sourceImage": "TOB-B-324-native.png",
+          "sourceImageSHA256": "54ce96a4d8c202094ee413cefaf1d674f98e3a71c6b45f626f43785c38af6be4",
+          "pixelBox": [
+            1210,
+            335,
+            1340,
+            420
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-3-dalet-extra-native.png",
+          "sha256": "caeccdc37022bf44c99c1f146760512c010c8698a6f6fc5ad9be750608dfa939",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            2475,
+            160,
+            2580,
+            220
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-3-dalet-primary-4x.png",
+          "sha256": "93e6075157eee838acd8aed2cd8fe853efef6c150775fa81b2beecfbfe5f8959",
+          "sourceImage": "TOB-B-324-native.png",
+          "sourceImageSHA256": "54ce96a4d8c202094ee413cefaf1d674f98e3a71c6b45f626f43785c38af6be4",
+          "pixelBox": [
+            1210,
+            335,
+            1340,
+            420
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-3-dalet-extra-5x.png",
+          "sha256": "9ffbd6a2c58bfc51ef0d76fbc1a14c9ef1a577623c5e02f734fb80abb3e47f52",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            2475,
+            160,
+            2580,
+            220
+          ],
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-3-dalet-primary-context.png",
+          "sha256": "f3028654ae2363824042d79f22dd44469490068446b762fc94ed3f6483441956",
+          "sourceImage": "TOB-B-324-native.png",
+          "sourceImageSHA256": "54ce96a4d8c202094ee413cefaf1d674f98e3a71c6b45f626f43785c38af6be4",
+          "pixelBox": [
+            100,
+            180,
+            1500,
+            880
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-3-dalet-extra-context.png",
+          "sha256": "33565010a4b2fc9e5f0817800a7d0acfa623cec749f7cd3b6eb48e74eda4dce0",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            1680,
+            120,
+            2700,
+            580
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "before": "בְעוֹדנִי",
+      "after": "בְעוֹדֶנִי",
+      "beforeTextSHA256": "aeed23073459d7ad75ad3427d4b7a8d5554c3ac51090c6aac0dbb23134bde66c",
+      "afterTextSHA256": "135f441fc080dbfd75af37fadab497cc2cd1655090f9419a052240c3a093ab4e",
+      "afterVerseText": "ויִּתֶּן־לוֹ אֶת כְּתָב־הַיָּד וַיֹּאמֶר לוֹ בַּקֵּשׁ־לְךָ אִישׁ אֲשֶׁר יֵלֵךְ עִמְּךָ וְאָנֹכִי אֶתֶּן־לוֹ אֶת־שְׂכָרוֹ בְעוֹדֶנִי חַי וְלֵךְ קַח אֶת־הַכֶּסֶף׃",
+      "disposition": "resolvedFromVisiblePrint",
+      "independentReviewer": "root: independently inspected native source crops and short-recension context, 2026-10-17"
+    },
+    {
+      "noteId": "tob-5-7-het-vowel",
+      "chapter": 5,
+      "verse": 7,
+      "sourcePage": 324,
+      "extraPage": 169,
+      "extraSide": "right",
+      "finding": "The companion shows a clean separate horizontal rectangle below het, with white space below and no downward stem: patah. The primary lower material is fused and is not used alone to classify the mark. Root independently corroborated the native and enlarged crops and the occurrence in the upper short recension under the combined verse7–8 label.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-7-het-primary-native.png",
+          "sha256": "26a62bb87571a437f2bdbd3215bfb75ecf3af36ff56739b7461cb7abd3fb4d50",
+          "sourceImage": "TOB-B-324-native.png",
+          "sourceImageSHA256": "54ce96a4d8c202094ee413cefaf1d674f98e3a71c6b45f626f43785c38af6be4",
+          "pixelBox": [
+            765,
+            580,
+            910,
+            665
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-7-het-extra-native.png",
+          "sha256": "dcb4da43cf4e3427a4293534c5bd8ecb8d0f1dd78bccb4fd5a6358ae754bbcf8",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            2140,
+            350,
+            2245,
+            405
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-7-het-primary-4x.png",
+          "sha256": "83588706ab8f68d8d42df6181a640a550cf72be1e2347abd2ac3607a05f2cb14",
+          "sourceImage": "TOB-B-324-native.png",
+          "sourceImageSHA256": "54ce96a4d8c202094ee413cefaf1d674f98e3a71c6b45f626f43785c38af6be4",
+          "pixelBox": [
+            765,
+            580,
+            910,
+            665
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-7-het-extra-5x.png",
+          "sha256": "19eaf46da6505513eeb4d56330d758c28707972db503a79a4eb4808af5af3034",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            2140,
+            350,
+            2245,
+            405
+          ],
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-7-het-primary-context.png",
+          "sha256": "f3028654ae2363824042d79f22dd44469490068446b762fc94ed3f6483441956",
+          "sourceImage": "TOB-B-324-native.png",
+          "sourceImageSHA256": "54ce96a4d8c202094ee413cefaf1d674f98e3a71c6b45f626f43785c38af6be4",
+          "pixelBox": [
+            100,
+            180,
+            1500,
+            880
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-7-het-extra-context.png",
+          "sha256": "33565010a4b2fc9e5f0817800a7d0acfa623cec749f7cd3b6eb48e74eda4dce0",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            1680,
+            120,
+            2700,
+            580
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "before": "חכֶּה־לִי",
+      "after": "חַכֶּה־לִי",
+      "beforeTextSHA256": "886bca9e6afe4eae6bb9431d74af30a101d4a7f4dc24e3d9afdd3dd03332250c",
+      "afterTextSHA256": "ed48430fae9fdfd47de885e1c5fc593b7b73c69495a76ed6f867e1c87e3716f1",
+      "afterVerseText": "וַיֹּאמֶר לוֹ טוֹבִיָּה חַכֶּה־לִי וְאַגִּידָה לְאָבִי׃ וַיֹּאמֶר אֵלָיו לֵךְ וְאַל־תְּאַחֵר׃",
+      "disposition": "resolvedFromVisiblePrint",
+      "independentReviewer": "root: independently inspected native source crops and short-recension context, 2026-10-17"
+    },
+    {
+      "noteId": "tob-5-15-dalet-vowel",
+      "chapter": 5,
+      "verse": 15,
+      "sourcePage": 325,
+      "extraPage": 169,
+      "extraSide": "left",
+      "finding": "The companion exposes the dalet mark separately below its thin descender, with a flat lower edge and no downward stem: patah. A small left upper spur does not form a qamats stem. The primary is fused and is not used alone to classify the mark. Root independently corroborated both native and enlarged crops and the exact upper-recension verse15 occurrence continuing on the next line.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-15-dalet-primary-native.png",
+          "sha256": "90022372538fc344b82277c2092f5ee3a3887a9dc201e43e8650c3b439dedf2a",
+          "sourceImage": "TOB-B-325-native.png",
+          "sourceImageSHA256": "afe2c243d45f7cecf30cd97d9f1f321207fdc056c7a0f232e5a2436312ba27fa",
+          "pixelBox": [
+            1095,
+            875,
+            1265,
+            955
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-15-dalet-extra-native.png",
+          "sha256": "216da533c7308dacd86222ff71b72737b4cfc404fc2b34db25e52ed6aee7478f",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            1155,
+            600,
+            1280,
+            660
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-15-dalet-primary-4x.png",
+          "sha256": "c5ff0c697e4878f34ec47b41b519bb21e61e25f59d55cd6de153e038999a43e5",
+          "sourceImage": "TOB-B-325-native.png",
+          "sourceImageSHA256": "afe2c243d45f7cecf30cd97d9f1f321207fdc056c7a0f232e5a2436312ba27fa",
+          "pixelBox": [
+            1095,
+            875,
+            1265,
+            955
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-15-dalet-extra-5x.png",
+          "sha256": "01e8fdb4fdeceb2acf872a8aec82436d849d2a254d84514063b75952177ee026",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            1155,
+            600,
+            1280,
+            660
+          ],
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-15-dalet-primary-context.png",
+          "sha256": "9b2304a3449638992f6d92ebb9efb483003c10e5a032fff962af4df70c3769f7",
+          "sourceImage": "TOB-B-325-native.png",
+          "sourceImageSHA256": "afe2c243d45f7cecf30cd97d9f1f321207fdc056c7a0f232e5a2436312ba27fa",
+          "pixelBox": [
+            100,
+            180,
+            1500,
+            1070
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-15-dalet-extra-context.png",
+          "sha256": "d401774e37bc554e524f5168f66e6b52fa5538ec8a7d99497bf9a6dd594abf03",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            480,
+            120,
+            1460,
+            750
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "before": "אֲדרְכְּמוֹן",
+      "after": "אֲדַרְכְּמוֹן",
+      "beforeTextSHA256": "c6e4245a9517d75fbc36c6f7df8d17f485f5b1defc645409ff141e66fe3ff474",
+      "afterTextSHA256": "ce817a2bb7c7d1ba0ebfcf582eb29808e22eb3feb9b16550fab98a01f3dc3397",
+      "afterVerseText": "אַךְ אֱמָר־לִי מַה־הַשָּׂכָר אֲשֶׁר אֶתֶּן־לָךְ אֲדַרְכְּמוֹן לַיּוֹם וְאֶת־צָרְכְּךָ כַּאֲשֶׁר לִבְנִי׃",
+      "disposition": "resolvedFromVisiblePrint",
+      "independentReviewer": "root: independently inspected native source crops and short-recension context, 2026-10-17"
+    }
+  ],
+  "retainedDisclosures": [
+    {
+      "noteId": "tob-1-1-gimel-vowel",
+      "chapter": 1,
+      "verse": 1,
+      "sourcePage": 312,
+      "extraPage": 163,
+      "extraSide": "right",
+      "finding": "The primary has fused lower gimel ink. The companion has a short thick lower bar with multiple shallow downward projections; it does not establish a unique exact vowel class.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-1-1-gimel-primary-native.png",
+          "sha256": "8037a8e869654569c50bc5c63d65ea04a714a9f6af083005ea2174255620a011",
+          "sourceImage": "TOB-B-312-native.png",
+          "sourceImageSHA256": "9c3799148abb9434bb6314f1d9f8e137bf2373bf6e82882ac8ade10178e76a7f",
+          "pixelBox": [
+            190,
+            550,
+            340,
+            630
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-1-1-gimel-extra-native.png",
+          "sha256": "b5b06a9da2d3701bc87ef35155d9ac637f54d46e67b827c26497b3be5355f5af",
+          "sourceImage": "TOB-extra-163-native.png",
+          "sourceImageSHA256": "8518bd60f18d09631953b057ddc4b0dbf3858d2893bab92a008b431ef05a0763",
+          "pixelBox": [
+            1685,
+            465,
+            1785,
+            525
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-2-3-mem-vowel",
+      "chapter": 2,
+      "verse": 3,
+      "sourcePage": 316,
+      "extraPage": 165,
+      "extraSide": "right",
+      "finding": "The lower mem mark remains a compact dark knot with incomplete geometry. The distinct adjacent shin sheva does not determine this mem vowel.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-2-3-mem-primary-native.png",
+          "sha256": "9db2e35b08918071d112bb373d42260c09d87e60ac7ee3b37a7d37ca95464fdd",
+          "sourceImage": "TOB-B-316-native.png",
+          "sourceImageSHA256": "87e904df89310175bac302c63a36c7f2f49916f02fc7356ae34964ae4c46062c",
+          "pixelBox": [
+            670,
+            695,
+            795,
+            775
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-2-3-mem-extra-native.png",
+          "sha256": "01bc891c1718761ccb1aa6bd57de14568d810c4afa591cea713f2b3f22785441",
+          "sourceImage": "TOB-extra-165-native.png",
+          "sourceImageSHA256": "b0d3d178865d116cc44fc0e2fd548937925fdcc730d5d5252aa294b7754be34b",
+          "pixelBox": [
+            2050,
+            465,
+            2140,
+            520
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-1-vav-vowel",
+      "chapter": 5,
+      "verse": 1,
+      "sourcePage": 323,
+      "extraPage": 168,
+      "extraSide": "left",
+      "finding": "The lower horizontal foot remains joined to the vav descender; its exact vowel class is not separable from the letter.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-1-vav-primary-native.png",
+          "sha256": "aaf5528b36576c365f64152ba5241fb02ce17f9de5077521aeed4c0bec202ef4",
+          "sourceImage": "TOB-B-323-native.png",
+          "sourceImageSHA256": "e5367935381ab1dc359f10c7d1c235cccc4901057fab9e00ee3b14dfcc999da4",
+          "pixelBox": [
+            1195,
+            900,
+            1270,
+            980
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-1-vav-extra-native.png",
+          "sha256": "d23f3936b6957c6438a246888cee3b891d21a27b00b071f9da94084188d6c9ba",
+          "sourceImage": "TOB-extra-168-native.png",
+          "sourceImageSHA256": "054778ee789d0cf704d596e0fbe67ed14d5234d9ccf830642040490d59e7d9e9",
+          "pixelBox": [
+            1245,
+            580,
+            1315,
+            645
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-1-second-vav-vowel",
+      "chapter": 5,
+      "verse": 1,
+      "sourcePage": 323,
+      "extraPage": 168,
+      "extraSide": "left",
+      "finding": "A detached primary triangular fragment prompted extra-scan checking, but the companion joins the lower horizontal material to the vav descender. These do not securely classify the vowel.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-1-second-vav-primary-native.png",
+          "sha256": "43641a01c67cc34aa91484b75b5728f7cef78010a7de065d8391964bf149af0f",
+          "sourceImage": "TOB-B-323-native.png",
+          "sourceImageSHA256": "e5367935381ab1dc359f10c7d1c235cccc4901057fab9e00ee3b14dfcc999da4",
+          "pixelBox": [
+            985,
+            905,
+            1085,
+            985
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-1-second-vav-extra-native.png",
+          "sha256": "94594ef9c2484c342b408e2ebbe0729ceda698f9fd6807437fae650c38e7836c",
+          "sourceImage": "TOB-extra-168-native.png",
+          "sourceImageSHA256": "054778ee789d0cf704d596e0fbe67ed14d5234d9ccf830642040490d59e7d9e9",
+          "pixelBox": [
+            1075,
+            580,
+            1165,
+            645
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-3-initial-vav-vowel",
+      "chapter": 5,
+      "verse": 3,
+      "sourcePage": 323,
+      "extraPage": 168,
+      "extraSide": "left",
+      "finding": "The horizontal foot remains joined to the initial vav descender in the companion and fused in the primary; the initial-vav disclosure is preserved independently of the resolved later dalet.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-3-initial-vav-primary-native.png",
+          "sha256": "7da8e4542b406aa336e98e915e8e31874fa7681253d62c43f4883b4730553b6a",
+          "sourceImage": "TOB-B-323-native.png",
+          "sourceImageSHA256": "e5367935381ab1dc359f10c7d1c235cccc4901057fab9e00ee3b14dfcc999da4",
+          "pixelBox": [
+            530,
+            960,
+            680,
+            1035
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-3-initial-vav-extra-native.png",
+          "sha256": "275bf883c11d10f74a068bc9ea0bb676f0270131705634c8ed7d68e7b4fac408",
+          "sourceImage": "TOB-extra-168-native.png",
+          "sourceImageSHA256": "054778ee789d0cf704d596e0fbe67ed14d5234d9ccf830642040490d59e7d9e9",
+          "pixelBox": [
+            705,
+            638,
+            815,
+            695
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-5-dalet-vowel",
+      "chapter": 5,
+      "verse": 5,
+      "sourcePage": 324,
+      "extraPage": 169,
+      "extraSide": "right",
+      "finding": "The dalet lower mark meets or closely crowds the descending stroke, with thick contact material above its lower segment; this is not a securely complete detached vowel form.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-5-dalet-primary-native.png",
+          "sha256": "a4acf8c5fdc49cd09bc2ca01bbd46090812d1e28cb6171b60e9f67d1bb0f91ac",
+          "sourceImage": "TOB-B-324-native.png",
+          "sourceImageSHA256": "54ce96a4d8c202094ee413cefaf1d674f98e3a71c6b45f626f43785c38af6be4",
+          "pixelBox": [
+            1110,
+            460,
+            1235,
+            545
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-5-dalet-extra-native.png",
+          "sha256": "988b641f6b92a63841f2d9d02d7c51fee243c12379d8ae9187507e6aaa625c46",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            2410,
+            260,
+            2495,
+            315
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-10-ayin-vowel",
+      "chapter": 5,
+      "verse": 10,
+      "sourcePage": 324,
+      "extraPage": 169,
+      "extraSide": "right",
+      "finding": "The ayin lower material remains joined or crowded by its left stroke, with no securely complete detached vowel geometry.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-10-ayin-primary-native.png",
+          "sha256": "9177e4afd1a74bffdc9f6b13183d58235fc0637b08e42298725967795aadd1fe",
+          "sourceImage": "TOB-B-324-native.png",
+          "sourceImageSHA256": "54ce96a4d8c202094ee413cefaf1d674f98e3a71c6b45f626f43785c38af6be4",
+          "pixelBox": [
+            200,
+            770,
+            390,
+            860
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-10-ayin-extra-native.png",
+          "sha256": "300d328d691ab1be0b837706b9d893574fea8293ecc31977dc7d18027ae6d770",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            1710,
+            500,
+            1800,
+            550
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-12-first-vav-vowel",
+      "chapter": 5,
+      "verse": 12,
+      "sourcePage": 325,
+      "extraPage": 169,
+      "extraSide": "left",
+      "finding": "The lower vav material remains joined to the descender and irregular at its foot; the exact vowel cannot be read independently.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-12-first-vav-primary-native.png",
+          "sha256": "9f75d313bbb2f9b241b34eab44f83e51759c20a5f5cadfe03ca474ccb15299a1",
+          "sourceImage": "TOB-B-325-native.png",
+          "sourceImageSHA256": "afe2c243d45f7cecf30cd97d9f1f321207fdc056c7a0f232e5a2436312ba27fa",
+          "pixelBox": [
+            1150,
+            330,
+            1265,
+            410
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-12-first-vav-extra-native.png",
+          "sha256": "e75636608d6f552a1af36ef026dd55c44a89bccdbfc4f63dec9c5cc088bbfa70",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            1190,
+            225,
+            1280,
+            280
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-17-ayin-vowel",
+      "chapter": 5,
+      "verse": 17,
+      "sourcePage": 325,
+      "extraPage": 169,
+      "extraSide": "left",
+      "finding": "The small lower ayin material remains crowded by its descending left stroke and does not securely establish the exact omitted vowel.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-17-ayin-primary-native.png",
+          "sha256": "1bf5ed3319fe48e85215144b313c456ff4f84e0661767152f77bafb0d6c4bf6c",
+          "sourceImage": "TOB-B-325-native.png",
+          "sourceImageSHA256": "afe2c243d45f7cecf30cd97d9f1f321207fdc056c7a0f232e5a2436312ba27fa",
+          "pixelBox": [
+            540,
+            940,
+            680,
+            1015
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-17-ayin-extra-native.png",
+          "sha256": "42d28dacf6fa2bdfb567f372b41409e1cbfcbe6dc9fcc8e794293023f91340dc",
+          "sourceImage": "TOB-extra-169-native.png",
+          "sourceImageSHA256": "e877213347b5f2059a50f0968a1827c9177914ca28bd4eeab492c91f1c912b8b",
+          "pixelBox": [
+            755,
+            645,
+            855,
+            705
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-17-said-vav-vowel",
+      "chapter": 5,
+      "verse": 17,
+      "sourcePage": 326,
+      "extraPage": 170,
+      "extraSide": "right",
+      "finding": "The lower bar is fused to the initial vav descender; neither scan establishes an exact vowel distinct from the letter.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-17-said-vav-primary-native.png",
+          "sha256": "bca795f0823bae8fa7eb60f8d4e8b7d219b3330010562f9a33b87ccd7e4d3845",
+          "sourceImage": "TOB-B-326-native.png",
+          "sourceImageSHA256": "0e4954799c9339e49e324f0042fb291e1b6b49090facf81ea7bf73df56e7415c",
+          "pixelBox": [
+            430,
+            330,
+            540,
+            410
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-17-said-vav-extra-native.png",
+          "sha256": "1d732f9a0bbc06335405b4d65e809566a65cc2cae611243a910b53bdd0fc0be7",
+          "sourceImage": "TOB-extra-170-native.png",
+          "sourceImageSHA256": "1f1736ea3593982c8861346f4940a67c2597a1594ba3236bfe9385fdee334e69",
+          "pixelBox": [
+            1890,
+            180,
+            1985,
+            235
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-18-said-vav-vowel",
+      "chapter": 5,
+      "verse": 18,
+      "sourcePage": 326,
+      "extraPage": 170,
+      "extraSide": "right",
+      "finding": "The vav descender joins a thick lower foot; no exact detached vowel geometry is exposed.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-18-said-vav-primary-native.png",
+          "sha256": "ab68d2fd9f8e525b3644007e6d3aad84542f188dd4b95d9a74626e053c49afd7",
+          "sourceImage": "TOB-B-326-native.png",
+          "sourceImageSHA256": "0e4954799c9339e49e324f0042fb291e1b6b49090facf81ea7bf73df56e7415c",
+          "pixelBox": [
+            835,
+            515,
+            970,
+            590
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-18-said-vav-extra-native.png",
+          "sha256": "ba452495aa2db6d77ef62bb5883c99e73e9e79548c869683c9c15b21d087fe33",
+          "sourceImage": "TOB-extra-170-native.png",
+          "sourceImageSHA256": "1f1736ea3593982c8861346f4940a67c2597a1594ba3236bfe9385fdee334e69",
+          "pixelBox": [
+            2210,
+            320,
+            2310,
+            375
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-5-21-said-vav-vowel",
+      "chapter": 5,
+      "verse": 21,
+      "sourcePage": 326,
+      "extraPage": 170,
+      "extraSide": "right",
+      "finding": "The initial vav lower material touches the descender and ends irregularly; an exact vowel cannot be distinguished.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-21-said-vav-primary-native.png",
+          "sha256": "cb7fce7a681e3d05e116eb8bed3d386a1c6b36235cd3ae52b56033cb3cae92a0",
+          "sourceImage": "TOB-B-326-native.png",
+          "sourceImageSHA256": "0e4954799c9339e49e324f0042fb291e1b6b49090facf81ea7bf73df56e7415c",
+          "pixelBox": [
+            1000,
+            705,
+            1110,
+            785
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-5-21-said-vav-extra-native.png",
+          "sha256": "dab0606df45dac871c5c435a48a4cc6d8b15a925918e8bfbed1a4ded9a2415c3",
+          "sourceImage": "TOB-extra-170-native.png",
+          "sourceImageSHA256": "1f1736ea3593982c8861346f4940a67c2597a1594ba3236bfe9385fdee334e69",
+          "pixelBox": [
+            2330,
+            460,
+            2425,
+            515
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-6-8-gimel-vowel",
+      "chapter": 6,
+      "verse": 8,
+      "sourcePage": 327,
+      "extraPage": 170,
+      "extraSide": "left",
+      "finding": "The gimel lower region preserves partial points and stroke contact without a complete securely classifiable vowel. Nearby pe and yod points do not supply the omitted gimel mark.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-6-8-gimel-primary-native.png",
+          "sha256": "b0e0cd652b2fe1546548b878f7690d3e0b20c11bca30820b1a89400aee6520e2",
+          "sourceImage": "TOB-B-327-native.png",
+          "sourceImageSHA256": "83ae3354872db8639a0c8bcdcefcebc26ff3bd669426a5382e30cc3d64d7a350",
+          "pixelBox": [
+            1050,
+            630,
+            1160,
+            710
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-6-8-gimel-extra-native.png",
+          "sha256": "ab6ff659db751faed0a20a9c2d01276f00b930bcb782716e32a43e23c11427ab",
+          "sourceImage": "TOB-extra-170-native.png",
+          "sourceImageSHA256": "1f1736ea3593982c8861346f4940a67c2597a1594ba3236bfe9385fdee334e69",
+          "pixelBox": [
+            1180,
+            425,
+            1260,
+            480
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    },
+    {
+      "noteId": "tob-9-5-second-gabael-gimel-vowel",
+      "chapter": 9,
+      "verse": 5,
+      "sourcePage": 335,
+      "extraPage": 174,
+      "extraSide": "left",
+      "finding": "The second Gabael gimel has a thick lower bar with small downward projections in the companion and a fused primary base. The exact vowel remains uncertain; the earlier Gabael occurrence is not used to fill it.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-9-5-gimel-primary-native.png",
+          "sha256": "0616f2a2ea3a8f5b2cf4ca7834a65a440f35fcd518ddd188478e020f944ecab4",
+          "sourceImage": "TOB-B-335-native.png",
+          "sourceImageSHA256": "5420e14d46af6daddfde1fb9b172357c2a33cc209c9266d2601d625f788d1334",
+          "pixelBox": [
+            650,
+            345,
+            775,
+            420
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-TOB/TOB-9-5-gimel-extra-native.png",
+          "sha256": "e42f8fb0c5b345ce2e769f57af1e6d3a47adbaabe239f1d71de87e8dd846e11f",
+          "sourceImage": "TOB-extra-174-native.png",
+          "sourceImageSHA256": "97ec724a65e040e3663b02576b8cfb8b827375deb70480b62eb79b8ef377e523",
+          "pixelBox": [
+            835,
+            210,
+            920,
+            265
+          ],
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "disposition": "retainDisclosure"
+    }
+  ],
+  "validation": {
+    "sourceTextOrderUnchanged": true,
+    "consonantsUnchanged": true,
+    "sourcePageAssignmentsUnchanged": true,
+    "remainingNoteIdsBefore": 17,
+    "remainingNoteIdsAfter": 14
+  }
+}

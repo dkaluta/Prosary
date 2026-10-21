@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-21",
+  "pass": 54,
+  "startingNoteCount": 326,
+  "removedNoteCount": 3,
+  "remainingNoteCount": 323,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 61,
+      "afterNoteCount": 58,
+      "removedNoteIds": [
+        "bel-1-8-243-vayitzhak-letter1-vowel",
+        "bel-1-8-243-vayomer8-letter1-vowel",
+        "bel-1-8-243-vayomer8-letter4-vowel"
+      ],
+      "beforeDigest": "23c25b1372b7cafc1b414654d0c1726f178d3ee197c761c837026d34bafae248",
+      "afterDigest": "5ffd092ab54b834c0739bfeb25fbd17e6fe24420d2052b3f71b7ea83829926ae",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 8,
+          "before": "ויִּצְחַק דָּנִיֵּאל ויֹּאמר אַל־תַּשֵּׁל אֶת־נַפְשְׁךָ הַמֶּלֶךְ כִּי הוּא מִפְּנִימָה חֶרֶשׂ וּמִחוּץ נְחֹשֶׁת וְלֹא אָכַל מֵעוֹדוֹ׃",
+          "after": "ויִּצְחַק דָּנִיֵּאל ויֹּאמֶר אַל־תַּשֵּׁל אֶת־נַפְשְׁךָ הַמֶּלֶךְ כִּי הוּא מִפְּנִימָה חֶרֶשׂ וּמִחוּץ נְחֹשֶׁת וְלֹא אָכַל מֵעוֹדוֹ׃",
+          "retiredNoteIds": [
+            "bel-1-8-243-vayitzhak-letter1-vowel",
+            "bel-1-8-243-vayomer8-letter1-vowel",
+            "bel-1-8-243-vayomer8-letter4-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-8-point-comparison-20261017-pass54.json",
+          "sha256": "7873b09b34a13c55e546815f9537d639bfcf0171e4b6676726315ce893655c69"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass54.json",
+          "sha256": "b90f5a7e0ca16901998b6876321a3c933e0fbe15babf5eab3529da160e6a3395"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-8-point-comparison-20261017-pass54.json",
+      "sha256": "7873b09b34a13c55e546815f9537d639bfcf0171e4b6676726315ce893655c69"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass54.json",
+      "sha256": "b90f5a7e0ca16901998b6876321a3c933e0fbe15babf5eab3529da160e6a3395"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 323,
+      "removedNotes": 3,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-af9a2580b546d082b464faf30187e89befa6439d5124b69055de841a0f361ff6.zip",
+      "archiveSHA256": "ea5c617f1657b783f4fb72ffc400d77975c043cede6601ed1762260885fb1f10",
+      "archiveBytes": 3110455
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 327,
+      "remainingNoteCount": 323,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 327,
+      "distinctChangedSourceUnits": 118
+    }
+  }
+}

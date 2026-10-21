@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-21",
+  "pass": 61,
+  "startingNoteCount": 305,
+  "removedNoteCount": 3,
+  "remainingNoteCount": 302,
+  "books": [
+    {
+      "book": "SUS",
+      "beforeNoteCount": 18,
+      "afterNoteCount": 15,
+      "removedNoteIds": [
+        "sus-1-18-letter-1-vowel",
+        "sus-1-18-letter-4-vowel",
+        "sus-1-18-tsadi-vowel"
+      ],
+      "beforeDigest": "7e474828cc5484ed5bd35ae52fa7de322f71e22de38d67ac318a223b18324d71",
+      "afterDigest": "4aec5e6a58bfd624df429a8ad369478a53ac952143635d9da5841f3837d7921d",
+      "sourceChanges": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-unit1-18-point-comparison-20261017-pass61.json",
+          "sha256": "1717e361fbf7a24f44d123a97b1314015e65b1d4112913de611016e52ffc0a89"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-chrome-acquisition-20261018-pass61.json",
+          "sha256": "3e2bd8c80a6ebbe0e43e881c768f4ed0fa21dd3d8819eb6b7e1d09ca85bab11e"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/SUS-unit1-18-point-comparison-20261017-pass61.json",
+      "sha256": "1717e361fbf7a24f44d123a97b1314015e65b1d4112913de611016e52ffc0a89"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SUS-chrome-acquisition-20261018-pass61.json",
+      "sha256": "3e2bd8c80a6ebbe0e43e881c768f4ed0fa21dd3d8819eb6b7e1d09ca85bab11e"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 302,
+      "removedNotes": 3,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-691b72d80c394e90aefd8178949b007f521f7fa85045bfb85265700d9f813171.zip",
+      "archiveSHA256": "726f7ba3cf2b95d108b22ff765a8eaed602a5f8583f1f10fb3bb096d3afa3761",
+      "archiveBytes": 3110153
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 348,
+      "remainingNoteCount": 302,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 348,
+      "distinctChangedSourceUnits": 123
+    }
+  }
+}

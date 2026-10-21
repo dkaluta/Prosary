@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 66,
+  "book": "WIS",
+  "status": "Three 18:23 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 66.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass66-WIS-18-23/source-provenance.json",
+    "sha256": "0986dffe2a3245c5606beb394e4fc77e47f76b95886cdf9055096775c6cf582f"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 183. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 290,
+  "sourceNotesBefore": 132,
+  "sourceNotesAfter": 129,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-18-23-word12-vav-1-vowel",
+    "wis-18-23-word12-nun-2-vowel",
+    "wis-18-23-word12-ayin-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "wis-18-23-word12-vav-1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    },
+    "wis-18-23-word12-nun-2-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 18,
+      "verse": 23,
+      "before": "וַיְהִי כַּאֲשֶׁר נָפְלוּ חֲלָלִים ונערְמוּ אֵלֶּה עַל־אֵלֶּה וַיַּעֲמֹד בֵּינֵיהֶם וַיַּעֲצֹר בְּעַד הַזַּעַם וַיַּחֲסֹם אֶת־הַדֶּרֶךְ אֶל־הַחַיִּים׃",
+      "after": "וַיְהִי כַּאֲשֶׁר נָפְלוּ חֲלָלִים וָנַערְמוּ אֵלֶּה עַל־אֵלֶּה וַיַּעֲמֹד בֵּינֵיהֶם וַיַּעֲצֹר בְּעַד הַזַּעַם וַיַּחֲסֹם אֶת־הַדֶּרֶךְ אֶל־הַחַיִּים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 18,
+    "verse": 23,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 23 on page קפג / 183 (viewer page 528) in Kahana Volume A, Wisdom of Solomon.",
+  "decisions": [
+    {
+      "noteId": "wis-18-23-word12-vav-1-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 23,
+      "anchor": "ונערְמוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Initial Vav exhibits an unmistakable T-shaped Qamats mark stamped directly beneath its vertical stem at rows 1612..1639 of extension-volumeA-528-zoom6-top-right.png. The mark features a horizontal crossbar at rows 1612..1624 (spanning cols 176..215, width 40 px) and a central vertical descending leg at rows 1626..1639 (spanning cols 195..212, width 18 px). Both flanks beneath the bar are clear white paper. This morphology matches the positive Qamats controls on Line 8. Restores Qamats under initial Vav to form וָ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass66-WIS-18-23/wis-18-23-word12-vav-1-vowel-native.png",
+        "sha256": "318c9d6e7a3368739cfd5b3ef1f80bec12a4cccabd7edcde1ea63b3c503dd7c9"
+      }
+    },
+    {
+      "noteId": "wis-18-23-word12-nun-2-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 23,
+      "anchor": "ונערְמוּ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Second consonant Nun features a clear, flat horizontal ink stroke directly beneath its consonant body at rows 1612..1633, cols 63..87 of extension-volumeA-528-zoom6-top-right.png (width 24 px, height 21 px, 388 ink pixels). The mark terminates cleanly without any descending vertical leg, with rows 1634..1645 beneath it remaining unprinted white space. This confirms a standard Patah mark under Nun to form נַ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass66-WIS-18-23/wis-18-23-word12-nun-2-vowel-native.png",
+        "sha256": "5ba1430bd5cdc7f4f052bbfd786c5c7d82a11eae858e1a1788913bdb9a41c863"
+      }
+    },
+    {
+      "noteId": "wis-18-23-word12-ayin-3-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 23,
+      "anchor": "ונערְמוּ",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "none",
+      "markClassification": "unpointedConsonant",
+      "finding": "Third consonant Ayin terminates cleanly at baseline row 1606. Inspection of the sublinear band beneath Ayin across cols 28..63, rows 1606..1645 shows 100% unprinted white paper with zero ink pixels. Kahana printed an unpointed consonant (bare Ayin, ע) preceding Resh with Sheva (רְ). Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass66-WIS-18-23/wis-18-23-word12-ayin-3-vowel-native.png",
+        "sha256": "91d5b4dc69a2ba7f15d32be9fa8b0705743d7db2f88d40c20432bc7cd9ce2f49"
+      }
+    }
+  ]
+}

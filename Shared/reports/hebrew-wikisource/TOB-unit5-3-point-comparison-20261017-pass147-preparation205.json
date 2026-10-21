@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 147,
+  "integrationPass": 147,
+  "preparationID": 205,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation205-TOB-5-3/source-provenance.json",
+    "sha256": "33d2b2ad8bf63e8169f75f82a63bc1d6b31d04fdc404317f9d8c5744d17dbcc8"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "tob-5-3-initial-vav-vowel"
+  ],
+  "contentSHA256Before": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "contentSHA256After": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "tob-5-3-initial-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "ויִּתֶּן־לוֹ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Whole owncompound Vav-Yod-Tav-Nun-Lamed-Vav546..650 independentlyread inUPPER SHORTrecension323row969..1016, targetFIRSTVav639..650 distinctfromlastVav546..555. OwnfirstVav174px11x30[639,981,650,1011] roof/rightstem descendsinto joinedbroadfoot1006..1009 withsmallterminal1010; no independentlyseparatepoint or uniquelycertifiablevowelclass/absence. Keep exactdisclosure/allscalars. OwnTav detached17px4x5interiornode[617,992,621,997] andownYod detached18px5x4lowernode[630,1006,635,1010] independentlyliteral; no transferredmarks. Wholeactual3 boundafter2sof683..694, throughentirelastSHORTrowbeforewitnessrule1101..1113, continuing324TOProw and endingrealsof812..825 before4וילךLEFTsamefirstrow. Lowerlongrecension and old5:1work notsuppliers.",
+      "targetCapture": "primary-323-native.png",
+      "targetSourceIdentifier": "primary-323-native.png",
+      "inspectedBounds": [
+        637,
+        977,
+        655,
+        1018
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation205-TOB-5-3/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 3,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation205-TOB-5-3/independent-review.json",
+    "sha256": "62bc1a8da50e675ac056720addd50e6793495f465ee5e45dc8b4fb3ca1eed4ab"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation205-TOB-5-3/primary-preparation.json",
+    "sha256": "7e88d7fe36ca99a4bf45a4178f09b5c55e31c85c83dbcd4f0dba9ae5b6d2daec"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation205-TOB-5-3/consensus-preparation.json",
+    "sha256": "9f9b96e3a28ee37edaef38ba058c1f5c79571bb4360e22aba3fb25cd4605086d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

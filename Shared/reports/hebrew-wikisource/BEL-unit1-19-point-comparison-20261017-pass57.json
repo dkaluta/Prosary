@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 57,
+  "book": "BEL",
+  "status": "Three 1:19 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 57.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass57-BEL-1-19/source-provenance.json",
+    "sha256": "b700eb9c031e087b7e0caae31ca3d3a665cb5371a03792aca494b209d4fd4f35"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 245. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 317,
+  "sourceNotesBefore": 52,
+  "sourceNotesAfter": 49,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-19-245-vayehi19-letter1-vowel",
+    "bel-1-19-245-vayabet19-letter1-vowel",
+    "bel-1-19-245-vayikra19-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "bel-1-19-245-vayikra19-letter1-vowel": "ַ"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 19,
+      "before": "ויְהִי כַּאֲשֶׁר פָּתְחוּ אֶת־הַדְּלָתוֹת ויַּבֵּט הַמֶּלֶךְ אֶל־הַשֻּׁלְחָן ויִּקְרָא קוֹל גָּדוֹל גָּדוֹל אַתָּה בֵל וְאֵין עִמְּךָ רְמִיָּה עַד־מָה׃",
+      "after": "ויְהִי כַּאֲשֶׁר פָּתְחוּ אֶת־הַדְּלָתוֹת ויַּבֵּט הַמֶּלֶךְ אֶל־הַשֻּׁלְחָן וַיִּקְרָא קוֹל גָּדוֹל גָּדוֹל אַתָּה בֵל וְאֵין עִמְּךָ רְמִיָּה עַד־מָה׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 19,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 19 on page רמה / 245 (viewer page 590) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "bel-1-19-245-vayehi19-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 19,
+      "anchor": "ויְהִי",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויְהִי consists of a bare vertical stem ending cleanly at row 1108 with 34 vertical rows of 100% pure white paper (all pixel values = 255 across rows 1111..1144) beneath it. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass57-BEL-1-19/bel-1-19-vav-vayehi-target-native.png",
+        "sha256": "6ea9e279fc315197bad330294794be9d565657444df2e3afadd0fdfae75c3aeb"
+      }
+    },
+    {
+      "noteId": "bel-1-19-245-vayabet19-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 19,
+      "anchor": "ויַּבֵּט",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויַּבֵּט consists of a bare vertical stem ending cleanly at row 1099 with 44 vertical rows of 100% pure white paper (all pixel values = 255 across rows 1101..1144) beneath it. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass57-BEL-1-19/bel-1-19-vav-vayabet-target-native.png",
+        "sha256": "a6d766fb8d102aab75e9a3867ae28d3dc2fd19b16fe8a28681e5f218d95ccf0c"
+      }
+    },
+    {
+      "noteId": "bel-1-19-245-vayikra19-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 19,
+      "anchor": "ויִּקְרָא",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "ַ",
+      "markClassification": "Vowel",
+      "finding": "Initial Vav of ויִּקְרָא carries an unmistakable stamped horizontal Patah bar (rows 1496..1508, cols 1498..1518, 203 dark pixels, min=0) matching positive Patah controls on the same page. Point restored as printed Patah (U+05B7). Anchor updated to וַיִּקְרָא.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass57-BEL-1-19/bel-1-19-vav-vayikra-target-native.png",
+        "sha256": "98ff7ff9b1d84db5fc3da9849e9210c052d8b2508e99d59ef709599c65b1445e"
+      }
+    }
+  ]
+}

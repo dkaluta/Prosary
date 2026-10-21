@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 107,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/source-provenance.json",
+    "sha256": "6bd94cb049386bf4677e14342df72307d90f8399b88425edd90ec3f88654e308"
+  },
+  "sourceNotesBefore": 126,
+  "sourceNotesAfter": 125,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-5-5-first-kaf"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-5-alef"
+  ],
+  "contentSHA256Before": "25eb299c51a55326e6354553cdb1180365ae8ec2e123058f2d3117f38420ca7e",
+  "contentSHA256After": "468a360e45d40ddd838817debf562a927874e56ec1b5528baf84b6079a54ce2a",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-5-5-alef",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 5,
+      "anchorBefore": "איככָה",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The initial Alef has an asymmetric lower plate with two broad lobes joined into the oblique body. A white lower recess separates parts of the lobes, but the top bridge and letter terminal obscure independent point boundaries. The queried field does not uniquely distinguish paired points from a horizontal bar distorted by body contact, and cannot certify absence. Retain the disclosure without deriving a reading from the word's expected form.",
+      "targetCapture": "extension-volumeA-498-zoom6-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-498-zoom6-mid-right.png",
+      "inspectedBounds": [
+        1287,
+        1515,
+        1379,
+        1646
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-5-5-first-kaf",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 5,
+      "anchorBefore": "איככָה",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "The first Kaf body reaches the common baseline near1626. Below that baseline is a new broad horizontal bar at1634..1648, followed by a narrower central stem continuing to1684. The attached point has the complete bar-plus-long-stem Qamats geometry. The very next physical Kaf, already transcribed with Qamats, independently has the same pattern: new broad bar near1638..1647 and narrower stem to1680. The corresponding upper letter bodies are distinct, so this is a same-letter literal control rather than a repeated-word substitution. The clear long lower stem excludes the flat Patah comparator and does not form a simple two-round-node Sheva.",
+      "targetCapture": "extension-volumeA-498-zoom6-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-498-zoom6-mid-right.png",
+      "inspectedBounds": [
+        1141,
+        1512,
+        1226,
+        1684
+      ],
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "pointBounds": [
+        1157,
+        1634,
+        1196,
+        1684
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 5,
+      "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 5,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-5-5-alef",
+      "before": "איככָה",
+      "after": "איכָכָה"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/independent-review.json",
+    "sha256": "9d6d81c3b5ece385732745c6e273b29a2bb9b126a2d6fecfd0cb0e9dc8c4f26d"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/primary-preparation.json",
+    "sha256": "b40b981a0eabf8557914ce4071cec3e4b5a1cb1151928e392a6534a414f221f7"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass107-WIS-5-5/consensus-preparation.json",
+    "sha256": "0d47f846a4ae133f3f59a6467a9792adb72c5a82fb15d3bf156e53c8ba05a53d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "field": "closingText",
+        "sourceBook": "WIS",
+        "selection": {
+          "chapter": 5,
+          "verse": 5
+        },
+        "frozenSourceScalarSpan": [
+          0,
+          64
+        ],
+        "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+        "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+        "approvedInsertionsWithinSpan": [
+          {
+            "offset": 3,
+            "mark": "ָ",
+            "codePoint": "U+05B8"
+          }
+        ]
+      }
+    ],
+    "dailyRowNoteUpdates": [
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "chapter": 5,
+        "verse": 5,
+        "before": [
+          {
+            "id": "wis-5-5-alef",
+            "kind": "unreadablePoint",
+            "anchor": "איככָה",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          },
+          {
+            "id": "wis-5-5-first-kaf",
+            "kind": "unreadablePoint",
+            "anchor": "איככָה",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ],
+        "after": [
+          {
+            "id": "wis-5-5-alef",
+            "kind": "unreadablePoint",
+            "anchor": "איכָכָה",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ]
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "chapter": 5,
+        "verse": 5,
+        "before": [
+          {
+            "id": "wis-5-5-alef",
+            "kind": "unreadablePoint",
+            "anchor": "איככָה",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          },
+          {
+            "id": "wis-5-5-first-kaf",
+            "kind": "unreadablePoint",
+            "anchor": "איככָה",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ],
+        "after": [
+          {
+            "id": "wis-5-5-alef",
+            "kind": "unreadablePoint",
+            "anchor": "איכָכָה",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ]
+      }
+    ],
+    "changedRows": [
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "chapter": 5,
+        "verse": 5,
+        "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+        "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+        "sourceNotesBefore": [
+          {
+            "id": "wis-5-5-alef",
+            "kind": "unreadablePoint",
+            "anchor": "איככָה",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          },
+          {
+            "id": "wis-5-5-first-kaf",
+            "kind": "unreadablePoint",
+            "anchor": "איככָה",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ],
+        "sourceNotesAfter": [
+          {
+            "id": "wis-5-5-alef",
+            "kind": "unreadablePoint",
+            "anchor": "איכָכָה",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ]
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "chapter": 5,
+        "verse": 5,
+        "before": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+        "after": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+        "sourceNotesBefore": [
+          {
+            "id": "wis-5-5-alef",
+            "kind": "unreadablePoint",
+            "anchor": "איככָה",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          },
+          {
+            "id": "wis-5-5-first-kaf",
+            "kind": "unreadablePoint",
+            "anchor": "איככָה",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ],
+        "sourceNotesAfter": [
+          {
+            "id": "wis-5-5-alef",
+            "kind": "unreadablePoint",
+            "anchor": "איכָכָה",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ]
+      }
+    ],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

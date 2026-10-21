@@ -1,0 +1,4368 @@
+{
+  "date": "2026-10-17",
+  "pass": 3,
+  "book": "BEL",
+  "reviewer": "bel_pass3",
+  "scope": "All 148 remaining notes not covered by the two focused 2026-10-03 reinspection reports and the 2026-10-17 pass2 report: 43 notes on A2 page244, 32 on245, 44 on246 and29 on247. Lower Theodotion body only. These are fresh focused-review targets, not claims that original transcription never inspected them.",
+  "method": "Visually read all95 distinct word crops from original embedded source pixels, with bounded 3x nearest-neighbor enlargements and native context. Inspect target letters separately for detached dots, unambiguous vowel configurations, or certifiable false-positive notes. No OCR, filtering, sharpening, reconstructed vocalization, grammar, or upper Septuagint recension substitutes for the source.",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/BEL.json",
+  "canonicalInputSHA256": "df8bb4c81359c7ccb40db690665aa07954c296f40b201436523cc525ead851ad",
+  "canonicalOutputSHA256": "df8bb4c81359c7ccb40db690665aa07954c296f40b201436523cc525ead851ad",
+  "canonicalChanged": false,
+  "reviewedNoteCount": 148,
+  "resolutionCount": 0,
+  "retainedNoteCount": 148,
+  "remainingBookNoteCount": 224,
+  "proposedChanges": [],
+  "freshTargetDefinition": [
+    "BEL-note-reinspection-20261003.json",
+    "BEL-remaining-note-reinspection-20261003.json",
+    "BEL-note-reinspection-20261017-pass2.json"
+  ],
+  "pageCounts": {
+    "244": 43,
+    "245": 32,
+    "246": 44,
+    "247": 29
+  },
+  "contextEvidence": [
+    {
+      "sourcePage": 244,
+      "nativeBounds": [
+        290,
+        1840,
+        2120,
+        3280
+      ],
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-lower-native.png",
+      "sha256": "59b5f55266019471748175ef6ce448dcd8086d768209f63082529b6137580e9e"
+    },
+    {
+      "sourcePage": 245,
+      "nativeBounds": [
+        360,
+        1670,
+        2140,
+        2830
+      ],
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-lower-native.png",
+      "sha256": "06a2839867abe8ae61573933b3ebca76c99e7cebaf1322ebe62bcf2b22a862a0"
+    },
+    {
+      "sourcePage": 246,
+      "nativeBounds": [
+        260,
+        1690,
+        2050,
+        3070
+      ],
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-lower-native.png",
+      "sha256": "630dee2a32fc5818174af62a89dbff357f2982045fc1ce9644057e254208e32e"
+    },
+    {
+      "sourcePage": 247,
+      "nativeBounds": [
+        350,
+        1210,
+        2230,
+        2130
+      ],
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-lower-native.png",
+      "sha256": "1e765dc37d1abc3c441b1c2091772bab0b99a3298a9e7e16617f5f1f9bbd3314"
+    }
+  ],
+  "wordEvidence": {
+    "244-daniel10a": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1875,
+        2028,
+        2100,
+        2128
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel10a-native.png",
+          "sha256": "f6922cccbd7a81eb15b920e74afd765b43352b587e584ca1decb64fb65445f92",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel10a-3x.png",
+          "sha256": "d50fcd9f530a687a350ceec36a9bd1fdcc4e4b889488c8ef98bac660b808d40a",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-daniel10b": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        705,
+        2028,
+        900,
+        2128
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel10b-native.png",
+          "sha256": "3923cf2d348097a6b418070f9f8da2554cb64fac4d92e304492bbfe044d29d8d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel10b-3x.png",
+          "sha256": "e5b4be420dc1663a248b5a1cffd5bba33d782db3e47d6cb4bf1c4bd8cca923cb",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-daniel11": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1650,
+        2210,
+        1895,
+        2318
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel11-native.png",
+          "sha256": "c7717da29a6998514cda2bdb4c3db565d3b63b0cb24fea8634bbf0b5a7e08ec7",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel11-3x.png",
+          "sha256": "c8ec81abad553dc7e40dc39dccc05e0363c1758066f7d04d36ef161c48937f9d",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-daniel13": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        700,
+        2495,
+        900,
+        2598
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel13-native.png",
+          "sha256": "2405534a7a94d62000fb47027701a669f3d539b45bd8b893e8a4ff448667584b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel13-3x.png",
+          "sha256": "47e298359ee41c155e6717bc498ae432205ac66b0d98a8c29e963f40f58bb5b7",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-daniel15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        555,
+        2775,
+        775,
+        2880
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel15-native.png",
+          "sha256": "f82227957bf95bce8c996c3a019cf270fa649fe798cdadca7017370adf9a54fd",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel15-3x.png",
+          "sha256": "ef3cdd2ece75e01206ceb150bd4632883449992fc8527520106da722f1f4aff2",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-daniel17-fixed": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        985,
+        3155,
+        1225,
+        3275
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel17-fixed-native.png",
+          "sha256": "92dcfd1d0db3238efdeb7c38c8fcf456f693c86e1818b705b4195f425d9f59fc",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-daniel17-fixed-3x.png",
+          "sha256": "764d0ea5db1db81d925603b9ccc4869d451d30ac0b54ad6a0a3107483484d6fc",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayahtemu15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1315,
+        2965,
+        1525,
+        3075
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayahtemu15-native.png",
+          "sha256": "cf63e116a9a8b60e309f3f8026e1120bc6a3a58a0d4b2f60f3e84d7e13d2dc19",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayahtemu15-3x.png",
+          "sha256": "c3fdc7a328a6e61c5ff9e371cf49464af5056f1a9749e12319fab02569f2eff7",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayasem15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1600,
+        2775,
+        1775,
+        2880
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayasem15-native.png",
+          "sha256": "61a969997f75d0aaff6f239991246bc655f9a5ae50786ce8029149e0367fb599",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayasem15-3x.png",
+          "sha256": "d1853287029ded5d0517c1b53402039b9c978096b6fc627f3f237dbafa65ad18",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayashkem-wide": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1630,
+        3155,
+        1875,
+        3275
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayashkem-wide-native.png",
+          "sha256": "5884fad8407470054287b77d97f14595e91a4d8abcc4d207521d1fdc0ca8fee5",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayashkem-wide-3x.png",
+          "sha256": "a9fc542016665a3a45a85cd5ce2fb93fa2f0df1722a6dffeb569f456c2cf033a",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayaviu15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1700,
+        2870,
+        1910,
+        2980
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayaviu15-native.png",
+          "sha256": "bcf277953b656b1722f73beabfc9fafc6d08a025cf3392d383432ffcadefd899",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayaviu15-3x.png",
+          "sha256": "2a49372ad4fa34ab03619b53e8299c18522d38b350079e89ebc2915724e130c4",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayavou16": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        295,
+        2965,
+        490,
+        3075
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayavou16-native.png",
+          "sha256": "f86c04c976a5b8963b9e50ff1c90096d10bb73caf26afe67d27407f56a162bc6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayavou16-3x.png",
+          "sha256": "68d105043b497571e6bac98e3276a8046c542478c9efcc5493af10b0f8818821",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayehi14": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1520,
+        2585,
+        1720,
+        2700
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayehi14-native.png",
+          "sha256": "06b9b63bf7f35e398960694cf9586ef1ff183a45271e8cb322fd7ac1d986e1f6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayehi14-3x.png",
+          "sha256": "007a2d5a00a4b6f0ba98a87c59a0b4fe64b3d9a5511b953677cc380bcc7955f2",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayehi15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        460,
+        2680,
+        630,
+        2795
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayehi15-native.png",
+          "sha256": "979371a5755304095c76418a80fdc0d9e7f02e49d1bd1098803b20358aefade5",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayehi15-3x.png",
+          "sha256": "0a8bd22569f4f407d827882548f977491bc7b971674f95b67d61078441aec7a0",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayelekh11": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        305,
+        2119,
+        470,
+        2220
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayelekh11-native.png",
+          "sha256": "ae85c6dc3aeba8a11bcb6519adbcd4a285a8bfe41670c887cd57aaf5eb7b3abc",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayelekh11-3x.png",
+          "sha256": "89545ecdb94331bd8af50e77889d1f64ee157180ab9f8c9d0e29db889bb9ea54",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayelkhu15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        480,
+        2965,
+        675,
+        3075
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayelkhu15-native.png",
+          "sha256": "770249178f9246d6f90282126fb8ec8223e588cb4ec7e3983b9cd083a8af8bc6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayelkhu15-3x.png",
+          "sha256": "339a357576f04ec260645a87d8d6c6e323e9ffb5ad33832d70455a3b7f26a38f",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayetseu15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        295,
+        2870,
+        470,
+        2980
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayetseu15-native.png",
+          "sha256": "e65d9d12abbdcc87b5c21679322c7050ec1d4b887b8a6fcef76a0e2ffccff9c5",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayetseu15-3x.png",
+          "sha256": "1c97a3f551e9a76c86b65834cde4744232fc4502ab9f964bf6cefdbd8d5eb81c",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayikra9": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1885,
+        1840,
+        2100,
+        1930
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayikra9-native.png",
+          "sha256": "42ca93a908afd998aca876f7c13fa5b8911ccc7116500f4e1eb91dc8c591cccd",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayikra9-3x.png",
+          "sha256": "8604f00922fbc292bb9371ad8321d2d0eee3ba8546733a02cbd935b91174a31f",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayisgeru15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1860,
+        2965,
+        2085,
+        3075
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayisgeru15-native.png",
+          "sha256": "8a0b34dda7549a78eda1975265223ac2c2bcec3763e7de90776139d505881007",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayisgeru15-3x.png",
+          "sha256": "7008b808dbe498c7830124dd7c430a5caa0b91d140f6d1be57381e8922605ec4",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayishtu16": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1850,
+        3155,
+        2120,
+        3275
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayishtu16-native.png",
+          "sha256": "ad356f6f72e877ea76bbfc0ca455d9bc44599054a41673a963f760859df13e20",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayishtu16-3x.png",
+          "sha256": "80d9823f91c1f860a3d6f82fafcab96c69e91d2f795afdd54bec6de73249ac95",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayizreu15": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1355,
+        2870,
+        1565,
+        2980
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayizreu15-native.png",
+          "sha256": "3185853c5a1239a387cb30e416650edb2bd1b7f3e7902b1e265b2c47871068af",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayizreu15-3x.png",
+          "sha256": "25d74b5590be03801b24faa2a99dd49b62d387de0fa3e313c7f485fdba6331e5",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayokhelu16": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        530,
+        3060,
+        735,
+        3170
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayokhelu16-native.png",
+          "sha256": "52edb5cf6e4855d6569224aedc00226baaff034ccec4fddf32d08bd93ebe982a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayokhelu16-3x.png",
+          "sha256": "d377a519b42181192e8ed96b7e9e020ba0a0a3ef57f6e26253af143bb6cf5154",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayomer10": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        890,
+        2028,
+        1080,
+        2128
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayomer10-native.png",
+          "sha256": "2606bad59a871360913de2acbdc3cbf2f5f3cc87c7a2ba0cc92f0ad8b59fa817",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayomer10-3x.png",
+          "sha256": "a62ba54bb70d9cc01f0e72a2dfd9c84f27b8162b28f3b86c73c63892514c3e91",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayomer17": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        655,
+        3155,
+        870,
+        3275
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayomer17-native.png",
+          "sha256": "3a3965990dd5e336e594cd83344d3036c58b0270725478955733628509fce84d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayomer17-3x.png",
+          "sha256": "b54be8af1a1564cbf7b4d656bd5da51a1af62bba531ad5c9403376908325cfcd",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayomer9": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1500,
+        1840,
+        1705,
+        1930
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayomer9-native.png",
+          "sha256": "6c3e687599fbc2311696b0360528ec0cc67347bb30ac0f80276960a001b1712b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayomer9-3x.png",
+          "sha256": "c4b144897e109fa3f2d7e138108aa1ef1ea073437c624ab396046dfbbd4dc057",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "244-vayomru12": {
+      "sourcePage": 244,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+      "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+      "nativeBounds": [
+        1060,
+        2210,
+        1270,
+        2318
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayomru12-native.png",
+          "sha256": "db63206f3460f0faeda49cbdd752a6f85e4e0516f553e4fbe690a46e8d09d94a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/244-vayomru12-3x.png",
+          "sha256": "c4b5494c40c576a46bae6578a1f034ffcae3337a5244ca9a2c3119c8e709e6ae",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-daniel17": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1660,
+        1670,
+        1855,
+        1770
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel17-native.png",
+          "sha256": "83788181f6a3c95ef90aa8eba1434254870a9b905f8fe2bae84d4503c7686bc5",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel17-3x.png",
+          "sha256": "bd5edd1c86fdb663dccd342b71c283c6243df29f5709428277221b9c365d06df",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-daniel20": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1000,
+        1865,
+        1200,
+        1970
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel20-native.png",
+          "sha256": "dabb0a1f539667bda324f84fa2b678d3519cf0bcb2d775b5c3522e8f68747250",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel20-3x.png",
+          "sha256": "dbdec6fd7c708e4ec270bf7976b6cbc5a1dd728c28a8aff4f9250da9e19f990f",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-daniel22": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        910,
+        2340,
+        1125,
+        2465
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel22-native.png",
+          "sha256": "897af653f34e83c097820f1b8255f56393db421cceabf1a41b2ada4282e6e2f3",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel22-3x.png",
+          "sha256": "a28a6640e7a1364e8220666a221ab9f62bf9782375856fb6fffffc4ef0f602d5",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-daniel23": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1900,
+        2535,
+        2135,
+        2660
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel23-native.png",
+          "sha256": "bc993d40a12287e64fe53e6ce39cd7e3d98a90b48dfcaa6d626edc83dc73b182",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel23-3x.png",
+          "sha256": "4cd434de9950c44ec5c61e296347f9e8e22d923e4962868e23a9c1e86a57ce87",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-daniel25": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1620,
+        2630,
+        1865,
+        2755
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel25-native.png",
+          "sha256": "d4633ca92ba4b87e2415072c9b267973c0d1eb7e540925ffaa8111fbc093349a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-daniel25-3x.png",
+          "sha256": "8fa3c67e38fec3dadbd262c963b79b2b22af3bb3eaaf2dcb32cba055c9208d4c",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayaavduhu23": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1080,
+        2440,
+        1390,
+        2560
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayaavduhu23-native.png",
+          "sha256": "507af0481aad0efb4cbf82599d303c75525df9aaf6ad5c1ed6b40c24df32ab50",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayaavduhu23-3x.png",
+          "sha256": "c6a9ea2b642cda883d6307f7c2523679840330058d199d9440442992c2f63639",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayabet19": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1680,
+        1760,
+        1870,
+        1875
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayabet19-native.png",
+          "sha256": "6c41f0e4d49e2603e83c48e23cb41ae772b73221d1ab3fc62f40fca911a49e1b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayabet19-3x.png",
+          "sha256": "3bada33ef5c58bb61d0eb0060ab96006be215a2597e91d75aba546897a1d1e78",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayahazek20": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        830,
+        1865,
+        1025,
+        1970
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayahazek20-native.png",
+          "sha256": "7e2883ad8adc4a4b52819800e2d7813279cba0bafdc2bade6b488947d40ff776",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayahazek20-3x.png",
+          "sha256": "28898c200fad2e2620eab3c6dd9a89add426f0f224d7978b5b00ad5bbf592c56",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayarehu-wide": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        515,
+        2150,
+        745,
+        2270
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayarehu-wide-native.png",
+          "sha256": "d21498f8717d72417a22c36ab5b9faa3c74c807d8ae65a45094954e4969e2886",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayarehu-wide-3x.png",
+          "sha256": "4d7744645408603bf9a767180891359a81bcbf6032c8a3c895fafbd764faf73d",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayeesof-wide": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1700,
+        2150,
+        1935,
+        2270
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayeesof-wide-native.png",
+          "sha256": "4203559b586132007c44bab96ece62df7ad2e683bd57f23fd2b14190a10d2186",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayeesof-wide-3x.png",
+          "sha256": "7002b84031c85fa823dacb819987a84723876f987d24ed2470199f52f10f559b",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayehi19": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        880,
+        1670,
+        1055,
+        1770
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayehi19-native.png",
+          "sha256": "7cf3921ca3bfc46690bdb6079a3b760f029de8bc86eeb002291f111d939c0c85",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayehi19-3x.png",
+          "sha256": "a84f39ad551ac7a6a15d5247f722e189f88805481776704411442d9dba517aee",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayehi23": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1790,
+        2440,
+        1980,
+        2560
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayehi23-native.png",
+          "sha256": "cb9e368836ab9adb07f2aec4acba21b0ac683e3ef1edd4152f39051ca0118797",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayehi23-3x.png",
+          "sha256": "137465585bfb0702cde9e26a9a945365b890c104f7116a25eba79e3b337095f0",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayikra19": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1045,
+        1760,
+        1235,
+        1875
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayikra19-native.png",
+          "sha256": "a29bb8018f4e01d12d0e3ca92f6590c21bb8527b307332fffb83c6ab716f31d0",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayikra19-3x.png",
+          "sha256": "136a6a707304b3eb1379a670a60007b9ae22840c523325b42a18ea7be6f4003d",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayiktzof21": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        360,
+        2055,
+        575,
+        2170
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayiktzof21-native.png",
+          "sha256": "0c5a2e3fe8a89b2e51cbe574839a07bafbad5832721debe9142de5786e0a2149",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayiktzof21-3x.png",
+          "sha256": "2312957444befd83b48db7bf73c119a2842e3a8ea3b8f797cc07f6c6a36bd00d",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayiten22": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1580,
+        2340,
+        1760,
+        2465
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayiten22-native.png",
+          "sha256": "a2ef7bc74dc7c92f578631e51df1c92ba3cc419d518e0a0372c9375440529b1e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayiten22-3x.png",
+          "sha256": "76c80d4fac295b9ab8ab4daa6581ead9d0c081a9bf2d6e2e8a6a5f667e14283a",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayitzhak20": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1190,
+        1865,
+        1400,
+        1970
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayitzhak20-native.png",
+          "sha256": "b77dedee8dcbb62f9abce7ea33e4fccd8bb162880871fbc6a36659c5ee6ae0cd",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayitzhak20-3x.png",
+          "sha256": "bf5dbbfb6b0cd7e1ec4d76d3eb3729acce400e491b30760def14a9b6a2eb4ba8",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vaymitem22": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1910,
+        2340,
+        2120,
+        2465
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vaymitem22-native.png",
+          "sha256": "5a963ab7adc02111f100d2b4dd6f05a4c62b3583f14fdab87368310b9865c3bd",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vaymitem22-3x.png",
+          "sha256": "989855074954e85226a32722e3c9ae3b4e9a9a74e64ffd5330309b65ba46aff2",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayomer17": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1440,
+        1670,
+        1645,
+        1770
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer17-native.png",
+          "sha256": "a867ec8108d76ec8f5577d68a78ba7c06b5627b87ccca3177ad5d42cd84eba34",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer17-3x.png",
+          "sha256": "aa46cd5919ce413133d93ce029a11bc4790c828a42fd0cb7487fbecab5a02e1d",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayomer20": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1710,
+        1960,
+        1920,
+        2075
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer20-native.png",
+          "sha256": "297402580b0d817dbad7b1cda6d9a453ce407dc4d2f3712bd70246996fd79354",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer20-3x.png",
+          "sha256": "6e0cbba04ff6c6abf5690f2537142bd6a5cc75e8d4688e3239b975b5052b89e7",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayomer21": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1880,
+        2055,
+        2125,
+        2170
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer21-native.png",
+          "sha256": "9b5df5b0cbdec84a99bb90e569a859c4add66a8f4ab4ffe6ec3a41bccde7e9ed",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer21-3x.png",
+          "sha256": "c3b2db6e1eee6a008b2b3270e3c7875425244aa0564c62ad8fb3e8011909ced0",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayomer23": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        525,
+        2440,
+        765,
+        2560
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer23-native.png",
+          "sha256": "ce70fce073b2df50a69e6dcc22a83a3ea49e454f649b45586fef49de12c2caa3",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer23-3x.png",
+          "sha256": "6040cbd32b0c84d6a2c484f8651f110cf4ac98ebc7cc5890faccbc539ed8b096",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayomer25": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        1840,
+        2630,
+        2090,
+        2755
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer25-native.png",
+          "sha256": "b14b503ae64f750ac2178a5b39808a4ed58e2adb796dfdb0e7eb47076f22d394",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer25-3x.png",
+          "sha256": "d1428c6d9d32a676914a594568ff13d646f8454aa68aa00a58c7c3c4e9aa99e6",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "245-vayomer26": {
+      "sourcePage": 245,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "nativeBounds": [
+        360,
+        2730,
+        585,
+        2840
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer26-native.png",
+          "sha256": "7275ca13661e943802f3f60799af3d60a8d98e625e1d9b46cba5ce742506ab80",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/245-vayomer26-3x.png",
+          "sha256": "9baac1e74b4083f468d39bc9b9bdf4b2cdbf1bc0aa006b5315f4789501308cbe",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-daniel27": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        965,
+        1700,
+        1160,
+        1810
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel27-native.png",
+          "sha256": "0dab3a93edfdb3a14cc420c677666d612d3f180f4078b9bad9177c85cddf5958",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel27-3x.png",
+          "sha256": "5182b47a70aa6542047c10379d68f52da09547b28b0bc0f5a72b4b1120a6691a",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-daniel29": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1810,
+        2180,
+        2030,
+        2305
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel29-native.png",
+          "sha256": "b02c352eea8eb6da65b9e70875d1a8c336c859bd256ca6602a25f6cacfdf25a8",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel29-3x.png",
+          "sha256": "8928fba0186e9def1592aaa038836f9ebc4108d49db5adf2061b82181ce12168",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-daniel30": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        630,
+        2275,
+        1030,
+        2405
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel30-native.png",
+          "sha256": "c229479d3315add0d6d75dd69ac8adbce70b8034a841fa4e910e00a461da766e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel30-3x.png",
+          "sha256": "5376743d07dea6ad747cb66835a6bf6fd6cbf430c25f23deb79d27affea3513e",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-daniel31": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        480,
+        2560,
+        725,
+        2695
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel31-native.png",
+          "sha256": "4f57013e53051aa20600f33ac2de62aef676bfc931bf2683e523af8e89518d7f",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel31-3x.png",
+          "sha256": "e1313fc11d7c3c45386c91e011a2c4d16ff6c1c11fd5ca286f398a80ba189669",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-daniel34": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        605,
+        2855,
+        855,
+        2985
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel34-native.png",
+          "sha256": "bc327158153d2b74287a7349f19b9955c0eaceceb516b2db0fd3e13b88a475bd",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-daniel34-3x.png",
+          "sha256": "f9796d79a65ee6253753a4ac339dabe44ca36a4ce3d907abe5d3ffe5212322aa",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayaas27": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1730,
+        1790,
+        1910,
+        1910
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayaas27-native.png",
+          "sha256": "aa38aaec6a48eb767d175cca7f6397014da5612323bf46859ecd3e7024a9e715",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayaas27-3x.png",
+          "sha256": "04a93d6fdc325a9680acf8952e7313d0937612328fde692eb0a859ec0da32738",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayabel33": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        730,
+        2660,
+        970,
+        2790
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayabel33-native.png",
+          "sha256": "1387d6d68c566e4c57cb7e8dd373392ceac4e3a189de610d9d09727d7031e695",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayabel33-3x.png",
+          "sha256": "66a70fba7a903cb3e14b4c3eb94a64c848d3dd1218b822ad4d50697684ecc057",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayar30": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        435,
+        2180,
+        615,
+        2305
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayar30-native.png",
+          "sha256": "596a74443aaa8f7008ec396887827bc9766db9f26d2fcc2c59d1820bfc4c12c1",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayar30-3x.png",
+          "sha256": "8c8a7defbd66c4037a62a938427ca5473a18bf04243250b3bd9f01c1e02b4b99",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayashlikhu31": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        400,
+        2275,
+        700,
+        2405
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayashlikhu31-native.png",
+          "sha256": "2af6691420a8ac445f2ece8b2a97322c71dd03e0e4fbbc1e719c73a8e9d79070",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayashlikhu31-3x.png",
+          "sha256": "f39b0873f924bf2598feb149e180e4685efd0f12bfae0aa6da19ebd2a6f8870f",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayavou29": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        990,
+        2085,
+        1205,
+        2210
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayavou29-native.png",
+          "sha256": "1aab55d54a331e81f7d74ace3294e15d0d0025785afba3b9d6df83c55c3b6c18",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayavou29-3x.png",
+          "sha256": "8ffed48fdd57380aba194fcb6e8ea95cde9ea33ecff9503b9ae1d7f01bb8742e",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayehi28": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1350,
+        1890,
+        1540,
+        2010
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayehi28-native.png",
+          "sha256": "c0ec88243875d05603460732d7f728ad397f30925958f7bf2aa78f16bd3742cb",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayehi28-3x.png",
+          "sha256": "198d103108e5c15c87ced21c50ab539cb770fe529175ee770c1787ae113ddff0",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayehi31": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1380,
+        2375,
+        1540,
+        2490
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayehi31-native.png",
+          "sha256": "7ab513c6fcffce22c70036dac567b5735a102fba0d39284fccbd85aa00d506c2",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayehi31-3x.png",
+          "sha256": "1648b23288ca127679e4af11f72c9008c1e0ba00190083a248b40091258d5578",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayetse33": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1820,
+        2755,
+        2030,
+        2890
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayetse33-native.png",
+          "sha256": "a3872289d8f87a7a6106f5560f5065ae34cb58bdcea0e46b6aabca9e93c4b72d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayetse33-3x.png",
+          "sha256": "dee1332c03947da5f38ffd11eea06c5df3a9eccae480048d52d001ba09e39469",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayibaka": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        455,
+        1790,
+        640,
+        1910
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayibaka-native.png",
+          "sha256": "b2ca0b12605cb313485e5305d1ee8bc396d6813e51a37ec8712425c251d8151b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayibaka-3x.png",
+          "sha256": "d620db071e259bd124466ce703e0fe2b2376320661f7fa3326ece9533b67f5a6",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayikah": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1160,
+        1700,
+        1330,
+        1810
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayikah-native.png",
+          "sha256": "04347b65abc1ed7aeb3b39b2f00f79200786a145244f9ff10f0342806c4c6716",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayikah-3x.png",
+          "sha256": "9a012643b20e6d6ca72bbcdf46426fd4b723d314c32cfa7c3fa24da35188e71f",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayilunu28": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1820,
+        1985,
+        2035,
+        2110
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayilunu28-native.png",
+          "sha256": "f3476117ba6820483253c80430bc19a140ff3d93b2679baf71458055239e3940",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayilunu28-3x.png",
+          "sha256": "268499c1ff6ae5323e62e741e7289600fe63dd836b20b9a6c950109378e09da2",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayirgezu": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        420,
+        1890,
+        615,
+        2010
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayirgezu-native.png",
+          "sha256": "89b6b33aaf6a80eebf80a1020c7d176ca403b8795bf888a154da1be316658f91",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayirgezu-3x.png",
+          "sha256": "16a97f2552ad9919054beffb5700c2530eedd06f02486e6d65146c6bd1335df5",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayiten27": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1380,
+        1790,
+        1565,
+        1910
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayiten27-native.png",
+          "sha256": "10c2ef15b096db975dc64d9c5328bbb3044e0e23e66c14e4b7859574f7ae8934",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayiten27-3x.png",
+          "sha256": "e2b62d979ee77358fa64af10a51a4af7fb2ae3df3e64383bd94c71faaa0d7139",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayiten30": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1340,
+        2275,
+        1530,
+        2405
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayiten30-native.png",
+          "sha256": "5cff16cab18a0901b0c621101929e36dcb3c4f08ffc1029c49c93c0be5ed06f7",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayiten30-3x.png",
+          "sha256": "683ea3a2d7542cc3ff1ede92e35d829c498d01eebc434b458c0ab36086046847",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayokhal": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        820,
+        1790,
+        1000,
+        1910
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayokhal-native.png",
+          "sha256": "1679fe3d522425c4948d1230ce4fea81ebbe475cfb3f76cbc0c28539babc6507",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayokhal-3x.png",
+          "sha256": "e64ad58d94a8e4d78ff12f47887427bf37d8296e3746458438366e3485f9f1d2",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayomer27": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        260,
+        1790,
+        460,
+        1910
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomer27-native.png",
+          "sha256": "c29b1d6afda61256bbc2fc0e9964ba75e5cdcbd7dad49f6328fe931248c4c1d7",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomer27-3x.png",
+          "sha256": "d778ef0e568e5d95daf06c326f4b4ceea27d96d2b168061b0dfa328ee834dc33",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayomer34": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        685,
+        2755,
+        925,
+        2890
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomer34-native.png",
+          "sha256": "a23baf178212c5d17d37fd3103902d5036eaebdb5f342fd9fa1cede035fe2813",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomer34-3x.png",
+          "sha256": "2d07e5880e733431e93e933a0227ec8b6295e51454aa462a0f337ecaca7e99a1",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayomer35": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1570,
+        2950,
+        1820,
+        3070
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomer35-native.png",
+          "sha256": "00f80b3c8d0c6be4df6deff50179d1948a1fe650275e11d170925378746099ff",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomer35-3x.png",
+          "sha256": "a51277771d996d75ccfd72cd0eab9f4c21e1657664610e96750fb143c9fa87b7",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayomru28": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        1325,
+        1985,
+        1560,
+        2110
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomru28-native.png",
+          "sha256": "fd6d62da66cbc872a82d4a80683218a5f4b2fbb91efa5189103cc0feef6f7367",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomru28-3x.png",
+          "sha256": "f8fd42c9fdb26e441b80cec673a74a273ab25b2742e8aec8da299c218c528a30",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayomru29": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        480,
+        2085,
+        720,
+        2210
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomru29-native.png",
+          "sha256": "bdf6e6cd6356c393858698d8a13d8fddf356626d584f42905496612b11d702ec",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayomru29-3x.png",
+          "sha256": "9e05420a647de61c3d12e203e8bf0825cdeb7c1741bcf6895b5fb6d0fde11d59",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "246-vayvashelm": {
+      "sourcePage": 246,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "nativeBounds": [
+        260,
+        1700,
+        500,
+        1810
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayvashelm-native.png",
+          "sha256": "9e9b07d28216637929ed14295d897a76599fa14ed1069af48922051042628ec7",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/246-vayvashelm-3x.png",
+          "sha256": "c432bf693dc7a03bd98118cfb41bc8f35ac21aeaf41634670a87c493c7ff6d7b",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-daniel38a": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1910,
+        1540,
+        2145,
+        1660
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-daniel38a-native.png",
+          "sha256": "0b13dc6fc3c8120a3f00ec2e618de4a011d11a15f4d8003b98c13295fb16042d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-daniel38a-3x.png",
+          "sha256": "c4e91b46421fe41406463b0a27f3e5279e960aec6c64ab0a2d24764293d5eac0",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-daniel39a": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        370,
+        1540,
+        590,
+        1660
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-daniel39a-native.png",
+          "sha256": "d8fbe89e05b76927e1d628c257a6581544a4bc950c892a7dd544aab131597e82",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-daniel39a-3x.png",
+          "sha256": "a069c7752e43024072e007a51d740c12e15da20bc72da77e219785f033e2c13f",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-daniel40b": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1910,
+        1835,
+        2145,
+        1960
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-daniel40b-native.png",
+          "sha256": "5ddba494230bffdda7a322e3a564b58d0854e421633343e4486428cc51017baf",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-daniel40b-3x.png",
+          "sha256": "c88b2c46b15c7155505880396884b8dd1650be265ca992d8e24763a689998209",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-daniel41a": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        375,
+        1835,
+        595,
+        1960
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-daniel41a-native.png",
+          "sha256": "9c021594a3f049efd9ec945e03e5faf52b97536886a434b2019d8b1d4e4e7ce6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-daniel41a-3x.png",
+          "sha256": "f21d54d3dc2c7d4ec25d0961701be2c3fe2cc3cc0d6e00e8adfd26ceb6556e7f",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayaalehu42": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1410,
+        1930,
+        1690,
+        2050
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayaalehu42-native.png",
+          "sha256": "8ffead6edb54631cfa0efc34fa051e3625efcfec5d70fcdbea56698ec4ea769d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayaalehu42-3x.png",
+          "sha256": "d05b975fe8bb4331d18bab4da7655bf5065d86f1bdb1f5f97ee7825aa3c0a48d",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayahazek36": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1700,
+        1250,
+        1950,
+        1355
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayahazek36-native.png",
+          "sha256": "3dc745da884b9bd05ac633e9adbf3a3234e87d6482e3e0878977073c1bb5c67b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayahazek36-3x.png",
+          "sha256": "914e0af22e8e7243775e67149bac0b4a0f96aaf63f1569db7465d4ba94edc6e8",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayakam39": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        570,
+        1540,
+        760,
+        1660
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayakam39-native.png",
+          "sha256": "1ed9ee8500017e528e7776a01906e4e09488ac96559ecf3df6ee338c41b40e3e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayakam39-3x.png",
+          "sha256": "b8c331780123e3e4b8f33b86152b19f2e3ecdcea52b9827cde6067283a18c52f",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayar40": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        545,
+        1735,
+        750,
+        1860
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayar40-native.png",
+          "sha256": "698729d3725ffdd39eaf8eb9b9a6e9a35d229ef659ae6fdf0deaf32d9dc43dbe",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayar40-3x.png",
+          "sha256": "81aa66045891de9161f82bc8fbeafa90aee605b9f3ea1d82a580aff68307e1a7",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayashlekh42": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1010,
+        1930,
+        1220,
+        2050
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayashlekh42-native.png",
+          "sha256": "bdcfef89b7d9511014000fb06cb4e1e7f8cd161bb29010503a85ee753e340b11",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayashlekh42-3x.png",
+          "sha256": "7cb16e1b855b57e13437f9ec8900cc814a3730d9a7a74444f407e3cc3015a3a3",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayatsigehu36": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1690,
+        1345,
+        1940,
+        1455
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayatsigehu36-native.png",
+          "sha256": "8056653d29a98416cc2dabc341a49491e8c56f6e63c3729c6c395a54d44c0e4c",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayatsigehu36-3x.png",
+          "sha256": "221366c02b9a21085a474e21e5b2d3b407725000ab7d2bddcb0cc2371bc325c8",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayavo40": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        990,
+        1735,
+        1170,
+        1860
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayavo40-native.png",
+          "sha256": "627ce8e836f2142372e078288c6a0e1e4304208c739f77d3f25c335b7538b7ac",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayavo40-3x.png",
+          "sha256": "053d5c29430773f500b13ae0f5e73004de7278667dc68edee93a3f84f8cd9f2c",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayikra37": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        750,
+        1345,
+        960,
+        1455
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayikra37-native.png",
+          "sha256": "4efd7bf48a59bb3dad4fc617d80971f034e1aa5a9842aead929bf29e926b088e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayikra37-3x.png",
+          "sha256": "9b90aba1cb689c1627b180264de276b33dab23196ff04b4866b361a35c32121b",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayikra41": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1560,
+        1835,
+        1770,
+        1960
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayikra41-native.png",
+          "sha256": "54b6f35c600b2dc1f01216d29bb9fd7dd07f1fcb23feb0f99c5f10c4383c7dbf",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayikra41-3x.png",
+          "sha256": "fdcac9c8b482a03450611cddef436d0ffdf1484729d58173da66df266ff61d0d",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayisaehu36": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        370,
+        1250,
+        600,
+        1355
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayisaehu36-native.png",
+          "sha256": "79e8f6b9a8222ad9627ab3b79cda3d2aaa3b905e2bc20a38073086507180f41c",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayisaehu36-3x.png",
+          "sha256": "06b40a568a3b2479abe01c5b58cb0ad79ece5900a83be7deaf0c37d08223b090",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayitarfu42": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1800,
+        2030,
+        2080,
+        2145
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayitarfu42-native.png",
+          "sha256": "37fd9658402ae92331b0c56a6cb64a81b939139ff67ee4d86ecfb4b20388a74e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayitarfu42-3x.png",
+          "sha256": "995be089cb5281cf6801174262df3e68642734ac6a71e2e045cd2f8abdcd8bfe",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayohez36": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1030,
+        1250,
+        1220,
+        1355
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayohez36-native.png",
+          "sha256": "6b83bf235eb78bf1f3c304121bd280fd087df370bf92b0d4ca8aebfbc42b19c7",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayohez36-3x.png",
+          "sha256": "71ebd699773814f79fd8c64b84bd62a53e02075c3cf7d671014e2498615f9706",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayokhal39": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1920,
+        1640,
+        2145,
+        1760
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayokhal39-native.png",
+          "sha256": "304c4ee849097a05c08bd0aa5e0c7a1bcc46efc0856d08142f8d7e7424353400",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayokhal39-3x.png",
+          "sha256": "6d9872d9d4d27640066809d87e70772206f87c77fc5a5179e585dffd9f475752",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayomer37": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        370,
+        1345,
+        595,
+        1455
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayomer37-native.png",
+          "sha256": "216acafb01654afae7a9b531fde0439dbe57c5647e91c941665db8dbdd1b5ef9",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayomer37-3x.png",
+          "sha256": "6d8185a82a935793a35e707a4466a4f6721d0b48c4762ffbcb868b434770095c",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayomer38": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        380,
+        1445,
+        595,
+        1550
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayomer38-native.png",
+          "sha256": "036fac3bba1cc3cefecd50b9b8c6f316b3cd547233e7812d54d8be3740d3ec65",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayomer38-3x.png",
+          "sha256": "9386834ad66196b6d4ff17f6d47fc7077f2374e81a1d3a5f2ede6e6b633fb8f0",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-vayomer41": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1110,
+        1835,
+        1355,
+        1960
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayomer41-native.png",
+          "sha256": "265029d22a238e320cea5e7e97bdb396c2dc47c38b6b431c40c00dd89efb1de0",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-vayomer41-3x.png",
+          "sha256": "96fea1462bc3db371d70180a556fe4ec13595a86b550653613976d48cd927bd0",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    },
+    "247-veein41": {
+      "sourcePage": 247,
+      "nativeSource": "/private/tmp/prosary-hebrew-review-20261017/A2-247.png",
+      "sourceSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+      "nativeBounds": [
+        1910,
+        1930,
+        2145,
+        2050
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-veein41-native.png",
+          "sha256": "104ae0a16a0fdbd4e334e661ce25d4d9e2cc94eefcb3a05ca1616e2eb87b2ff9",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-veein41-3x.png",
+          "sha256": "69ca063d08e3edb00bbc362cf6352d8605e0e12880f5a79ce7de642ebe560726",
+          "scale": 3
+        }
+      ],
+      "transformation": "Original embedded image crop, native pixels and 3x nearest-neighbor enlargement only; no filtering."
+    }
+  },
+  "falsePositiveInvestigation": {
+    "noteID": "bel-1-41-247-veein41-letter1-vowel",
+    "hypothesis": "The initial vav of ואֵין might be printed bare rather than contain an unreadable vowel; retire its note only if source absence is certifiable.",
+    "decision": "retainNote",
+    "independentReviewer": "root",
+    "independentFinding": "Target basal thickening is materially broader than the narrow stems/plain comparator feet. Its joined lateral protrusion still could contain a fused vowel. White below alone does not certify absence.",
+    "evidence": [
+      {
+        "name": "veein-vav",
+        "sourcePage": 247,
+        "nativeBounds": [
+          2108,
+          1938,
+          2140,
+          2010
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-veein-vav-native.png",
+            "sha256": "e86cdc560c6957717abde142d2f863d35d429bb41f219c0d7c7549bb376f203f",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-veein-vav-15x.png",
+            "sha256": "999741c9d3ee8e3f50d60c43bdd291c6d6841d30ebbf67d10eee390805e4110c",
+            "scale": 15
+          }
+        ]
+      },
+      {
+        "name": "kol41",
+        "sourcePage": 247,
+        "nativeBounds": [
+          1450,
+          1835,
+          1580,
+          1950
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-kol41-native.png",
+            "sha256": "22c8926fb7f1b7f33923e287f5c463a41a95954ac9dde006605d0229dd675305",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-kol41-5x.png",
+            "sha256": "5fdfaeda56006fc775428ad57ec47cd8788951ef853c5f7389254dbf4b5dae3e",
+            "scale": 5
+          }
+        ]
+      },
+      {
+        "name": "bayom40",
+        "sourcePage": 247,
+        "nativeBounds": [
+          1810,
+          1735,
+          2010,
+          1860
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-bayom40-native.png",
+            "sha256": "77236203ddedd2a4bbe7cc369e4d7230741945f98a8890a94a29823a125bd819",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-BEL/247-bayom40-5x.png",
+            "sha256": "80b26fc1d9e97182c4dd5529963f5b574cd31595aa271d1d3a30c940a261594b",
+            "scale": 5
+          }
+        ]
+      }
+    ]
+  },
+  "results": [
+    {
+      "noteID": "bel-1-9-244-vayikra9-letter1-vowel",
+      "chapter": 1,
+      "verse": 9,
+      "anchor": "ויִקְרָא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayikra9"
+    },
+    {
+      "noteID": "bel-1-9-244-vayikra9-letter2-dagesh",
+      "chapter": 1,
+      "verse": 9,
+      "anchor": "ויִקְרָא",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayikra9"
+    },
+    {
+      "noteID": "bel-1-9-244-vayomer9-letter1-vowel",
+      "chapter": 1,
+      "verse": 9,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayomer9"
+    },
+    {
+      "noteID": "bel-1-9-244-vayomer9-letter2-dagesh",
+      "chapter": 1,
+      "verse": 9,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayomer9"
+    },
+    {
+      "noteID": "bel-1-10-244-daniel10a-letter3-dagesh",
+      "chapter": 1,
+      "verse": 10,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-daniel10a"
+    },
+    {
+      "noteID": "bel-1-10-244-daniel10b-letter3-dagesh",
+      "chapter": 1,
+      "verse": 10,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 2,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-daniel10b"
+    },
+    {
+      "noteID": "bel-1-10-244-vayomer10-letter1-vowel",
+      "chapter": 1,
+      "verse": 10,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayomer10"
+    },
+    {
+      "noteID": "bel-1-10-244-vayomer10-letter2-dagesh",
+      "chapter": 1,
+      "verse": 10,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayomer10"
+    },
+    {
+      "noteID": "bel-1-11-244-daniel11-letter4-dagesh",
+      "chapter": 1,
+      "verse": 11,
+      "anchor": "וְדָנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-daniel11"
+    },
+    {
+      "noteID": "bel-1-11-244-vayelekh11-letter1-vowel",
+      "chapter": 1,
+      "verse": 11,
+      "anchor": "ויֵלֶךְ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayelekh11"
+    },
+    {
+      "noteID": "bel-1-11-244-vayelekh11-letter2-dagesh",
+      "chapter": 1,
+      "verse": 11,
+      "anchor": "ויֵלֶךְ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayelekh11"
+    },
+    {
+      "noteID": "bel-1-12-244-vayomru12-letter1-vowel",
+      "chapter": 1,
+      "verse": 12,
+      "anchor": "ויֹאמְרו",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayomru12"
+    },
+    {
+      "noteID": "bel-1-12-244-vayomru12-letter2-dagesh",
+      "chapter": 1,
+      "verse": 12,
+      "anchor": "ויֹאמְרו",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayomru12"
+    },
+    {
+      "noteID": "bel-1-12-244-vayomru12-letter6-dagesh",
+      "chapter": 1,
+      "verse": 12,
+      "anchor": "ויֹאמְרו",
+      "occurrence": 1,
+      "letterIndex": 6,
+      "letter": "ו",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The final vav head/stem and putative interior dot remain joined; its white pocket does not separate a point from the glyph. Retain the exact existing dot-omission note.",
+      "evidence": "244-vayomru12"
+    },
+    {
+      "noteID": "bel-1-13-244-daniel13-letter3-dagesh",
+      "chapter": 1,
+      "verse": 13,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-daniel13"
+    },
+    {
+      "noteID": "bel-1-14-244-vayehi14-letter1-vowel",
+      "chapter": 1,
+      "verse": 14,
+      "anchor": "ויְהִי",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayehi14"
+    },
+    {
+      "noteID": "bel-1-15-244-vayehi15-letter1-vowel",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויְהִי",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayehi15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayasem15-letter1-vowel",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויָשֶׂם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayasem15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayasem15-letter2-dagesh",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויָשֶׂם",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayasem15"
+    },
+    {
+      "noteID": "bel-1-15-244-daniel15-letter4-dagesh",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "וְדָנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-daniel15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayaviu15-letter1-vowel",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויָבִיאוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayaviu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayaviu15-letter2-dagesh",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויָבִיאוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayaviu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayizreu15-letter1-vowel",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויִזְרְעוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayizreu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayizreu15-letter2-dagesh",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויִזְרְעוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayizreu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayetseu15-letter1-vowel",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויֵצְאו",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayetseu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayetseu15-letter2-dagesh",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויֵצְאו",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayetseu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayisgeru15-letter1-vowel",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויִסְגְּרוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayisgeru15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayisgeru15-letter2-dagesh",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויִסְגְּרוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayisgeru15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayahtemu15-letter1-vowel",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויַחְתְּמוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayahtemu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayahtemu15-letter2-dagesh",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויַחְתְּמוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayahtemu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayelkhu15-letter1-vowel",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויֵלֵכו",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayelkhu15"
+    },
+    {
+      "noteID": "bel-1-15-244-vayelkhu15-letter2-dagesh",
+      "chapter": 1,
+      "verse": 15,
+      "anchor": "ויֵלֵכו",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayelkhu15"
+    },
+    {
+      "noteID": "bel-1-16-244-vayavou16-letter1-vowel",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויָבֹאו",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayavou16"
+    },
+    {
+      "noteID": "bel-1-16-244-vayavou16-letter2-dagesh",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויָבֹאו",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayavou16"
+    },
+    {
+      "noteID": "bel-1-16-244-vayokhelu16-letter1-vowel",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויֹאכְלו",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayokhelu16"
+    },
+    {
+      "noteID": "bel-1-16-244-vayokhelu16-letter2-dagesh",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויֹאכְלו",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayokhelu16"
+    },
+    {
+      "noteID": "bel-1-16-244-vayishtu16-letter1-vowel",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויִשְׁתּוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayishtu16"
+    },
+    {
+      "noteID": "bel-1-16-244-vayishtu16-letter2-dagesh",
+      "chapter": 1,
+      "verse": 16,
+      "anchor": "ויִשְׁתּוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayishtu16"
+    },
+    {
+      "noteID": "bel-1-17-244-vayashkem-wide-letter1-vowel",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "ויַשְׁכּם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayashkem-wide"
+    },
+    {
+      "noteID": "bel-1-17-244-vayashkem-wide-letter2-dagesh",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "ויַשְׁכּם",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayashkem-wide"
+    },
+    {
+      "noteID": "bel-1-17-244-daniel17-fixed-letter4-dagesh",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "וְדָנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-daniel17-fixed"
+    },
+    {
+      "noteID": "bel-1-17-244-vayomer17-letter1-vowel",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "244-vayomer17"
+    },
+    {
+      "noteID": "bel-1-17-244-vayomer17-letter2-dagesh",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "244-vayomer17"
+    },
+    {
+      "noteID": "bel-1-17-245-daniel17-letter3-dagesh",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-daniel17"
+    },
+    {
+      "noteID": "bel-1-17-245-vayomer17-letter1-vowel",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 2,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayomer17"
+    },
+    {
+      "noteID": "bel-1-17-245-vayomer17-letter2-dagesh",
+      "chapter": 1,
+      "verse": 17,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 2,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayomer17"
+    },
+    {
+      "noteID": "bel-1-19-245-vayehi19-letter1-vowel",
+      "chapter": 1,
+      "verse": 19,
+      "anchor": "ויְהִי",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayehi19"
+    },
+    {
+      "noteID": "bel-1-19-245-vayabet19-letter1-vowel",
+      "chapter": 1,
+      "verse": 19,
+      "anchor": "ויַבּט",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayabet19"
+    },
+    {
+      "noteID": "bel-1-19-245-vayabet19-letter2-dagesh",
+      "chapter": 1,
+      "verse": 19,
+      "anchor": "ויַבּט",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayabet19"
+    },
+    {
+      "noteID": "bel-1-19-245-vayikra19-letter1-vowel",
+      "chapter": 1,
+      "verse": 19,
+      "anchor": "ויִקְרָא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayikra19"
+    },
+    {
+      "noteID": "bel-1-19-245-vayikra19-letter2-dagesh",
+      "chapter": 1,
+      "verse": 19,
+      "anchor": "ויִקְרָא",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayikra19"
+    },
+    {
+      "noteID": "bel-1-20-245-vayitzhak20-letter1-vowel",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויִצְחַק",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayitzhak20"
+    },
+    {
+      "noteID": "bel-1-20-245-vayitzhak20-letter2-dagesh",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויִצְחַק",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayitzhak20"
+    },
+    {
+      "noteID": "bel-1-20-245-daniel20-letter3-dagesh",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-daniel20"
+    },
+    {
+      "noteID": "bel-1-20-245-vayahazek20-letter1-vowel",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויַחְזֵק",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayahazek20"
+    },
+    {
+      "noteID": "bel-1-20-245-vayahazek20-letter2-dagesh",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויַחְזֵק",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayahazek20"
+    },
+    {
+      "noteID": "bel-1-20-245-vayomer20-letter1-vowel",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayomer20"
+    },
+    {
+      "noteID": "bel-1-20-245-vayomer20-letter2-dagesh",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayomer20"
+    },
+    {
+      "noteID": "bel-1-21-245-vayomer21-letter1-vowel",
+      "chapter": 1,
+      "verse": 21,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayomer21"
+    },
+    {
+      "noteID": "bel-1-21-245-vayomer21-letter2-dagesh",
+      "chapter": 1,
+      "verse": 21,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayomer21"
+    },
+    {
+      "noteID": "bel-1-21-245-vayiktzof21-letter1-vowel",
+      "chapter": 1,
+      "verse": 21,
+      "anchor": "ויִקְצֹף",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayiktzof21"
+    },
+    {
+      "noteID": "bel-1-21-245-vayeesof-wide-letter1-vowel",
+      "chapter": 1,
+      "verse": 21,
+      "anchor": "ויאֱסף",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayeesof-wide"
+    },
+    {
+      "noteID": "bel-1-21-245-vayarehu-wide-letter1-vowel",
+      "chapter": 1,
+      "verse": 21,
+      "anchor": "ויַרְאֻהוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayarehu-wide"
+    },
+    {
+      "noteID": "bel-1-22-245-vaymitem22-letter1-vowel",
+      "chapter": 1,
+      "verse": 22,
+      "anchor": "ויְמִיתֵם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vaymitem22"
+    },
+    {
+      "noteID": "bel-1-22-245-vayiten22-letter1-vowel",
+      "chapter": 1,
+      "verse": 22,
+      "anchor": "ויִתֵּן",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayiten22"
+    },
+    {
+      "noteID": "bel-1-22-245-daniel22-letter4-dagesh",
+      "chapter": 1,
+      "verse": 22,
+      "anchor": "לְדָנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-daniel22"
+    },
+    {
+      "noteID": "bel-1-23-245-vayehi23-letter1-vowel",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "ויְהִי",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayehi23"
+    },
+    {
+      "noteID": "bel-1-23-245-vayaavduhu23-letter1-vowel",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "ויַעַבְדהוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayaavduhu23"
+    },
+    {
+      "noteID": "bel-1-23-245-vayaavduhu23-letter2-dagesh",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "ויַעַבְדהוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayaavduhu23"
+    },
+    {
+      "noteID": "bel-1-23-245-vayomer23-letter1-vowel",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayomer23"
+    },
+    {
+      "noteID": "bel-1-23-245-daniel23-letter4-dagesh",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "לְדָנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-daniel23"
+    },
+    {
+      "noteID": "bel-1-25-245-vayomer25-letter1-vowel",
+      "chapter": 1,
+      "verse": 25,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayomer25"
+    },
+    {
+      "noteID": "bel-1-25-245-daniel25-letter3-dagesh",
+      "chapter": 1,
+      "verse": 25,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-daniel25"
+    },
+    {
+      "noteID": "bel-1-26-245-vayomer26-letter1-vowel",
+      "chapter": 1,
+      "verse": 26,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "245-vayomer26"
+    },
+    {
+      "noteID": "bel-1-26-245-vayomer26-letter2-dagesh",
+      "chapter": 1,
+      "verse": 26,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "245-vayomer26"
+    },
+    {
+      "noteID": "bel-1-27-246-daniel-letter3-dagesh",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-daniel27"
+    },
+    {
+      "noteID": "bel-1-27-246-vayikah-letter1-vowel",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִקּח",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayikah"
+    },
+    {
+      "noteID": "bel-1-27-246-vayikah-letter2-dagesh",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִקּח",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayikah"
+    },
+    {
+      "noteID": "bel-1-27-246-vayvashelm-letter1-vowel",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויְבשְׁלֵם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayvashelm"
+    },
+    {
+      "noteID": "bel-1-27-246-vayaas27-letter1-vowel",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויַעַשׂ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayaas27"
+    },
+    {
+      "noteID": "bel-1-27-246-vayaas27-letter2-dagesh",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויַעַשׂ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayaas27"
+    },
+    {
+      "noteID": "bel-1-27-246-vayiten27-letter1-vowel",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִתְּן",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayiten27"
+    },
+    {
+      "noteID": "bel-1-27-246-vayiten27-letter2-dagesh",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִתְּן",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayiten27"
+    },
+    {
+      "noteID": "bel-1-27-246-vayokhal-letter1-vowel",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויֹאכל",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayokhal"
+    },
+    {
+      "noteID": "bel-1-27-246-vayokhal-letter2-dagesh",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויֹאכל",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayokhal"
+    },
+    {
+      "noteID": "bel-1-27-246-vayibaka-letter1-vowel",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִבָּקע",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayibaka"
+    },
+    {
+      "noteID": "bel-1-27-246-vayibaka-letter2-dagesh",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִבָּקע",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayibaka"
+    },
+    {
+      "noteID": "bel-1-27-246-vayomer27-letter1-vowel",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayomer27"
+    },
+    {
+      "noteID": "bel-1-27-246-vayomer27-letter2-dagesh",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayomer27"
+    },
+    {
+      "noteID": "bel-1-28-246-vayehi28-letter1-vowel",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "ויְהִי",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayehi28"
+    },
+    {
+      "noteID": "bel-1-28-246-vayirgezu-letter1-vowel",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "ויִרְגְזוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayirgezu"
+    },
+    {
+      "noteID": "bel-1-28-246-vayirgezu-letter2-dagesh",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "ויִרְגְזוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayirgezu"
+    },
+    {
+      "noteID": "bel-1-28-246-vayilunu28-letter1-vowel",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "ויִלּוֹנוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayilunu28"
+    },
+    {
+      "noteID": "bel-1-28-246-vayilunu28-letter2-dagesh",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "ויִלּוֹנוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayilunu28"
+    },
+    {
+      "noteID": "bel-1-28-246-vayomru28-letter1-vowel",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "ויֹאמרוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayomru28"
+    },
+    {
+      "noteID": "bel-1-28-246-vayomru28-letter2-dagesh",
+      "chapter": 1,
+      "verse": 28,
+      "anchor": "ויֹאמרוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayomru28"
+    },
+    {
+      "noteID": "bel-1-29-246-daniel-letter3-dagesh",
+      "chapter": 1,
+      "verse": 29,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-daniel29"
+    },
+    {
+      "noteID": "bel-1-29-246-vayavou29-letter1-vowel",
+      "chapter": 1,
+      "verse": 29,
+      "anchor": "ויָבֹאוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayavou29"
+    },
+    {
+      "noteID": "bel-1-29-246-vayavou29-letter2-dagesh",
+      "chapter": 1,
+      "verse": 29,
+      "anchor": "ויָבֹאוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayavou29"
+    },
+    {
+      "noteID": "bel-1-29-246-vayomru29-letter1-vowel",
+      "chapter": 1,
+      "verse": 29,
+      "anchor": "ויֹאמרוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayomru29"
+    },
+    {
+      "noteID": "bel-1-29-246-vayomru29-letter2-dagesh",
+      "chapter": 1,
+      "verse": 29,
+      "anchor": "ויֹאמרוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayomru29"
+    },
+    {
+      "noteID": "bel-1-30-246-daniel-letter3-dagesh",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-daniel30"
+    },
+    {
+      "noteID": "bel-1-30-246-vayar30-letter1-vowel",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "ויַרְא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayar30"
+    },
+    {
+      "noteID": "bel-1-30-246-vayar30-letter2-dagesh",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "ויַרְא",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayar30"
+    },
+    {
+      "noteID": "bel-1-30-246-vayiten30-letter1-vowel",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "ויִתֵּן",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayiten30"
+    },
+    {
+      "noteID": "bel-1-30-246-vayiten30-letter2-dagesh",
+      "chapter": 1,
+      "verse": 30,
+      "anchor": "ויִתֵּן",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayiten30"
+    },
+    {
+      "noteID": "bel-1-31-246-daniel-letter3-dagesh",
+      "chapter": 1,
+      "verse": 31,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-daniel31"
+    },
+    {
+      "noteID": "bel-1-31-246-vayashlikhu31-letter1-vowel",
+      "chapter": 1,
+      "verse": 31,
+      "anchor": "ויַשְׁלִיכוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayashlikhu31"
+    },
+    {
+      "noteID": "bel-1-31-246-vayashlikhu31-letter2-dagesh",
+      "chapter": 1,
+      "verse": 31,
+      "anchor": "ויַשְׁלִיכוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayashlikhu31"
+    },
+    {
+      "noteID": "bel-1-31-246-vayehi31-letter1-vowel",
+      "chapter": 1,
+      "verse": 31,
+      "anchor": "ויְהִי",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayehi31"
+    },
+    {
+      "noteID": "bel-1-33-246-vayabel33-letter1-vowel",
+      "chapter": 1,
+      "verse": 33,
+      "anchor": "ויָבל",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayabel33"
+    },
+    {
+      "noteID": "bel-1-33-246-vayabel33-letter2-dagesh",
+      "chapter": 1,
+      "verse": 33,
+      "anchor": "ויָבל",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayabel33"
+    },
+    {
+      "noteID": "bel-1-33-246-vayetse33-letter1-vowel",
+      "chapter": 1,
+      "verse": 33,
+      "anchor": "ויֵצא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayetse33"
+    },
+    {
+      "noteID": "bel-1-33-246-vayetse33-letter2-dagesh",
+      "chapter": 1,
+      "verse": 33,
+      "anchor": "ויֵצא",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayetse33"
+    },
+    {
+      "noteID": "bel-1-34-246-daniel-letter3-dagesh",
+      "chapter": 1,
+      "verse": 34,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-daniel34"
+    },
+    {
+      "noteID": "bel-1-34-246-vayomer34-letter1-vowel",
+      "chapter": 1,
+      "verse": 34,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayomer34"
+    },
+    {
+      "noteID": "bel-1-34-246-vayomer34-letter2-dagesh",
+      "chapter": 1,
+      "verse": 34,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayomer34"
+    },
+    {
+      "noteID": "bel-1-35-246-vayomer35-letter1-vowel",
+      "chapter": 1,
+      "verse": 35,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "246-vayomer35"
+    },
+    {
+      "noteID": "bel-1-35-246-vayomer35-letter2-dagesh",
+      "chapter": 1,
+      "verse": 35,
+      "anchor": "ויֹאמֶר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "246-vayomer35"
+    },
+    {
+      "noteID": "bel-1-36-247-vayahazek36-letter1-vowel",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויַחֲזֵק",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayahazek36"
+    },
+    {
+      "noteID": "bel-1-36-247-vayohez36-letter1-vowel",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויֹּאחֶז",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayohez36"
+    },
+    {
+      "noteID": "bel-1-36-247-vayisaehu36-letter1-vowel",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויִשָׂאֵהוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayisaehu36"
+    },
+    {
+      "noteID": "bel-1-36-247-vayisaehu36-letter2-dagesh",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויִשָׂאֵהוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-vayisaehu36"
+    },
+    {
+      "noteID": "bel-1-36-247-vayatsigehu36-letter1-vowel",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויַּצִּיגֵהוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayatsigehu36"
+    },
+    {
+      "noteID": "bel-1-37-247-vayikra37-letter1-vowel",
+      "chapter": 1,
+      "verse": 37,
+      "anchor": "ויִּקְרָא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayikra37"
+    },
+    {
+      "noteID": "bel-1-37-247-vayomer37-letter1-vowel",
+      "chapter": 1,
+      "verse": 37,
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayomer37"
+    },
+    {
+      "noteID": "bel-1-37-247-vayomer37-letter2-dagesh",
+      "chapter": 1,
+      "verse": 37,
+      "anchor": "ויֹאמר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-vayomer37"
+    },
+    {
+      "noteID": "bel-1-38-247-vayomer38-letter1-vowel",
+      "chapter": 1,
+      "verse": 38,
+      "anchor": "ויֹּאמר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayomer38"
+    },
+    {
+      "noteID": "bel-1-38-247-daniel38a-letter3-dagesh",
+      "chapter": 1,
+      "verse": 38,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-daniel38a"
+    },
+    {
+      "noteID": "bel-1-39-247-vayakam39-letter1-vowel",
+      "chapter": 1,
+      "verse": 39,
+      "anchor": "ויָקָם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayakam39"
+    },
+    {
+      "noteID": "bel-1-39-247-vayakam39-letter2-dagesh",
+      "chapter": 1,
+      "verse": 39,
+      "anchor": "ויָקָם",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-vayakam39"
+    },
+    {
+      "noteID": "bel-1-39-247-vayokhal39-letter1-vowel",
+      "chapter": 1,
+      "verse": 39,
+      "anchor": "ויֹאכל",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayokhal39"
+    },
+    {
+      "noteID": "bel-1-39-247-vayokhal39-letter2-dagesh",
+      "chapter": 1,
+      "verse": 39,
+      "anchor": "ויֹאכל",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-vayokhal39"
+    },
+    {
+      "noteID": "bel-1-39-247-daniel39a-letter3-dagesh",
+      "chapter": 1,
+      "verse": 39,
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-daniel39a"
+    },
+    {
+      "noteID": "bel-1-40-247-vayavo40-letter1-vowel",
+      "chapter": 1,
+      "verse": 40,
+      "anchor": "ויָּבֹא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayavo40"
+    },
+    {
+      "noteID": "bel-1-40-247-vayar40-letter1-vowel",
+      "chapter": 1,
+      "verse": 40,
+      "anchor": "ויַרְא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayar40"
+    },
+    {
+      "noteID": "bel-1-40-247-vayar40-letter2-dagesh",
+      "chapter": 1,
+      "verse": 40,
+      "anchor": "ויַרְא",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-vayar40"
+    },
+    {
+      "noteID": "bel-1-40-247-daniel40b-letter3-dagesh",
+      "chapter": 1,
+      "verse": 40,
+      "anchor": "דָנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-daniel40b"
+    },
+    {
+      "noteID": "bel-1-41-247-vayikra41-letter1-vowel",
+      "chapter": 1,
+      "verse": 41,
+      "anchor": "ויִקְרָא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayikra41"
+    },
+    {
+      "noteID": "bel-1-41-247-vayikra41-letter2-dagesh",
+      "chapter": 1,
+      "verse": 41,
+      "anchor": "ויִקְרָא",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-vayikra41"
+    },
+    {
+      "noteID": "bel-1-41-247-vayomer41-letter1-vowel",
+      "chapter": 1,
+      "verse": 41,
+      "anchor": "ויֹאמַר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayomer41"
+    },
+    {
+      "noteID": "bel-1-41-247-vayomer41-letter2-dagesh",
+      "chapter": 1,
+      "verse": 41,
+      "anchor": "ויֹאמַר",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-vayomer41"
+    },
+    {
+      "noteID": "bel-1-41-247-veein41-letter1-vowel",
+      "chapter": 1,
+      "verse": 41,
+      "anchor": "ואֵין",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "False-positive hypothesis rejected after independent root inspection. The vav has no detached mark, but its basal thickening and lateral protrusion could contain joined vowel ink. Plain same-page holam-vav comparators do not establish clean absence. Retain omission; no supplied vowel and no note deletion.",
+      "evidence": "247-veein41"
+    },
+    {
+      "noteID": "bel-1-41-247-daniel41a-letter3-dagesh",
+      "chapter": 1,
+      "verse": 41,
+      "anchor": "דָנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-daniel41a"
+    },
+    {
+      "noteID": "bel-1-42-247-vayaalehu42-letter1-vowel",
+      "chapter": 1,
+      "verse": 42,
+      "anchor": "ויַעֲלֵהוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayaalehu42"
+    },
+    {
+      "noteID": "bel-1-42-247-vayaalehu42-letter2-dagesh",
+      "chapter": 1,
+      "verse": 42,
+      "anchor": "ויַעֲלֵהוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "letter": "י",
+      "mark": "dagesh",
+      "decision": "retainNote",
+      "finding": "The small yod has saturated or bridged interior ink. Tiny white pockets or a projecting spur do not enclose a separately readable dagesh or establish clean absence. Retain the exact dagesh-omission note.",
+      "evidence": "247-vayaalehu42"
+    },
+    {
+      "noteID": "bel-1-42-247-vayashlekh42-letter1-vowel",
+      "chapter": 1,
+      "verse": 42,
+      "anchor": "ויַּשְׁלךְ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayashlekh42"
+    },
+    {
+      "noteID": "bel-1-42-247-vayitarfu42-letter1-vowel",
+      "chapter": 1,
+      "verse": 42,
+      "anchor": "ויִטָּרפוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "letter": "ו",
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The initial vav lower mark joins its stem/foot as a basal mass. No independent point configuration can be classified or certified absent from these original pixels. Retain the exact vowel-omission note and all readable neighboring marks.",
+      "evidence": "247-vayitarfu42"
+    }
+  ],
+  "verification": {
+    "canonicalByteIdenticalToPass3Baseline": true,
+    "all224BookNotesPreserved": true,
+    "all148ReviewedIDsUniqueAndPresent": true,
+    "all95NativeWordCropsMatchSourceBounds": true,
+    "all95EnlargementsAreNearestNeighborOnly": true,
+    "noCanonicalCentralDailyOrGeneratedDataEdited": true
+  }
+}

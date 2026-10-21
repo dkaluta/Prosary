@@ -1,0 +1,1004 @@
+{
+  "date": "2026-10-17",
+  "pass": 2,
+  "book": "BEL",
+  "scope": "28 remaining non-prefix vowel notes on A2 pages 244–247, lower Theodotion body only. These were not in the two focused 2026-10-03 reinspection reports; their original transcription reports remain relevant.",
+  "method": "Read original embedded source-image pixels and bounded nearest-neighbor enlargements. Retain each note when the printed point cannot be distinguished from joined letter ink. No reconstructed vocalization, OCR, expected grammar, or upper Septuagint recension substitutes for this text.",
+  "sourcePDF": "Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/BEL.json",
+  "canonicalInputSHA256": "df8bb4c81359c7ccb40db690665aa07954c296f40b201436523cc525ead851ad",
+  "reviewedNoteCount": 28,
+  "resolutionCount": 0,
+  "retainedNoteCount": 28,
+  "remainingBookNoteCount": 224,
+  "proposedChanges": [],
+  "contextEvidence": [
+    {
+      "sourcePage": 245,
+      "source": "/private/tmp/prosary-hebrew-review-20261017/A2-245.png",
+      "sourceSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+      "box": [
+        360,
+        1670,
+        2140,
+        2830
+      ],
+      "scale": 1,
+      "native": "/private/tmp/prosary-hebrew-pass2-20261017/BEL245lower-native.png",
+      "enlarged": "/private/tmp/prosary-hebrew-pass2-20261017/BEL245lower-1x.png",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/BEL245lower-native.png",
+          "sha256": "06a2839867abe8ae61573933b3ebca76c99e7cebaf1322ebe62bcf2b22a862a0",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/BEL245lower-1x.png",
+          "sha256": "06a2839867abe8ae61573933b3ebca76c99e7cebaf1322ebe62bcf2b22a862a0",
+          "scale": 1
+        }
+      ]
+    },
+    {
+      "sourcePage": 246,
+      "source": "/private/tmp/prosary-hebrew-review-20261017/A2-246.png",
+      "sourceSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+      "box": [
+        260,
+        1690,
+        2050,
+        3070
+      ],
+      "scale": 1,
+      "native": "/private/tmp/prosary-hebrew-pass2-20261017/BEL246lower-native.png",
+      "enlarged": "/private/tmp/prosary-hebrew-pass2-20261017/BEL246lower-1x.png",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/BEL246lower-native.png",
+          "sha256": "630dee2a32fc5818174af62a89dbff357f2982045fc1ce9644057e254208e32e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/BEL246lower-1x.png",
+          "sha256": "630dee2a32fc5818174af62a89dbff357f2982045fc1ce9644057e254208e32e",
+          "scale": 1
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "noteID": "bel-1-17-244-vayashkem-wide-letter4-vowel",
+      "verse": 17,
+      "originalWord": "ויַשְׁכּם",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The kaf lower area is a broad joined mass with two shallow lower lobes; individual vowel points cannot be recovered.",
+      "evidence": {
+        "sourcePage": 244,
+        "source": "/private/tmp/prosary-hebrew-review-20261017/A2-244.png",
+        "sourceSHA256": "e72e82740e9f8b996a66b8a16cf6b893a52827ffc8ddd12a0791770e06b45f65",
+        "box": [
+          1635,
+          3160,
+          1845,
+          3260
+        ],
+        "scale": 3,
+        "native": "/private/tmp/prosary-hebrew-pass2-20261017/244-vayashkem17-native.png",
+        "enlarged": "/private/tmp/prosary-hebrew-pass2-20261017/244-vayashkem17-3x.png",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/244-vayashkem17-native.png",
+            "sha256": "c765787408945a8804256fdc27b1bc183868be34e2e4525db5c78cccb0775133",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/244-vayashkem17-3x.png",
+            "sha256": "430dcd5d2788530c8ffff704e9ebaf6ac69d855b4b5978d234157979f80b6b7b",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-19-245-vayabet19-letter3-vowel",
+      "verse": 19,
+      "originalWord": "ויַבּט",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "Two lower lobes are connected to the bet baseline. The small white gap does not securely establish a complete tsere or exclude a third fused point.",
+      "evidence": {
+        "sourcePage": 245,
+        "sourceImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+        "pixelBox": [
+          1730,
+          1770,
+          1900,
+          1870
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayabet19-native.png",
+            "sha256": "303c878f7a5ee5e487e4dc2d768b16ebac7fb143183071e5ffaa9fd05c94f249",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayabet19-3x.png",
+            "sha256": "cc7e002b14b10aa78dd2c3d11b24c6a678de13468f03d60e7b3e990a5a011c3d",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-20-245-vayomer20-letter4-vowel",
+      "verse": 20,
+      "originalWord": "ויֹאמר",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The mem foot joins a flattened lower mark around a small white slit. Its precise vowel shape is not recoverable.",
+      "evidence": {
+        "sourcePage": 245,
+        "sourceImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+        "pixelBox": [
+          1740,
+          1960,
+          1920,
+          2060
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayomer20-native.png",
+            "sha256": "ef9bec5da816ea7834594ec3af92749efc6dab36dbe7a664b5eb8efc9bcb500a",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayomer20-3x.png",
+            "sha256": "bed97d3cc0c5ae0ea163a07d7ca510160f090b0b95d04cc88bf88baed375ac92",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-21-245-vayeesof-wide-letter2-vowel",
+      "verse": 21,
+      "originalWord": "ויאֱסף",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The yod lower mark is a filled triangular cluster. The samekh upper protrusion joins its roof, with no separately legible vowel mark.",
+      "evidence": {
+        "sourcePage": 245,
+        "sourceImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+        "pixelBox": [
+          1750,
+          2140,
+          1930,
+          2240
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayeesof21-native.png",
+            "sha256": "d1b65b7ccf562b05d3efef5051aaa25fd7501bbbad2e2e9927ff5b9321728fb4",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayeesof21-3x.png",
+            "sha256": "8201735228f86dcf1a795218548d46c806dbe629f2851419036f2d8c8a24daae",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-21-245-vayeesof-wide-letter4-vowel",
+      "verse": 21,
+      "originalWord": "ויאֱסף",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The yod lower mark is a filled triangular cluster. The samekh upper protrusion joins its roof, with no separately legible vowel mark.",
+      "evidence": {
+        "sourcePage": 245,
+        "sourceImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+        "pixelBox": [
+          1750,
+          2140,
+          1930,
+          2240
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayeesof21-native.png",
+            "sha256": "d1b65b7ccf562b05d3efef5051aaa25fd7501bbbad2e2e9927ff5b9321728fb4",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayeesof21-3x.png",
+            "sha256": "8201735228f86dcf1a795218548d46c806dbe629f2851419036f2d8c8a24daae",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-23-245-vayaavduhu23-letter5-vowel",
+      "verse": 23,
+      "originalWord": "ויַעַבְדהוּ",
+      "letterIndex": 5,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The dalet stem ends in an irregular curved extension; no separately classifiable lower mark is visible.",
+      "evidence": {
+        "sourcePage": 245,
+        "sourceImageSHA256": "4afba3ccb3ead15145af9d167a3d7bb5d0072af61fa34954c98c662ac47cdfed",
+        "pixelBox": [
+          1140,
+          2430,
+          1380,
+          2530
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayaavdehu23-native.png",
+            "sha256": "b0ba2cb26ea0385bbb4f36b79fe3fb886b752e1d7a1d8480521c3d948f919f88",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/245-vayaavdehu23-3x.png",
+            "sha256": "5a7c70acf27a6794a7dea52c65b5add88356b8d1bac4e79fb41187761a4923c7",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-27-246-vayikah-letter3-vowel",
+      "verse": 27,
+      "originalWord": "ויִקּח",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "A horizontal extension joins the descending qof stem. The overlap prevents a secure distinction between possible vowel shapes.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          1170,
+          1720,
+          1310,
+          1825
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayikah27-native.png",
+            "sha256": "eca36120dfc38ebff048d21164bc08d672a96fcdb9e4424d4cf2a4e3be397ddf",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayikah27-3x.png",
+            "sha256": "72a1dd876f5f29112fdbc747150feb1535775c0442535ac23611d1fc2e442d62",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-27-246-vayvashelm-letter3-vowel",
+      "verse": 27,
+      "originalWord": "ויְבשְׁלֵם",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The bet lower mark and baseline are saturated together in a broad block.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          260,
+          1710,
+          485,
+          1820
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayvashelm27-native.png",
+            "sha256": "6819a5ada7fe3ccf7bd291f49bf9d31482d45769a94d7dc49b9d723ca67e9987",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayvashelm27-3x.png",
+            "sha256": "c56c191d361f6401df7fd5cc579dbfbe5daafb37eadc4a81863e9dc6915290af",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-27-246-vayokhal-letter4-vowel",
+      "verse": 27,
+      "originalWord": "ויֹאכל",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The kaf lower point area is a joined rounded mass with no recoverable dot separation.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          810,
+          1810,
+          985,
+          1920
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayokhal27-native.png",
+            "sha256": "e0fa4c80870f2789f01532d4119b5a463285736e8193bb735dcfc0fc1357158c",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayokhal27-3x.png",
+            "sha256": "82339e54af3dfef0b7c32119a17d998455b084a7757e7266c6ceb6785b2d05c9",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-27-246-vayibaka-letter4-vowel",
+      "verse": 27,
+      "originalWord": "ויִבָּקע",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The lower qof mark overlaps its stroke; its terminal geometry remains ambiguous.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          460,
+          1810,
+          640,
+          1920
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayibaka27-native.png",
+            "sha256": "d368442d71a0d726e1de4772e560eafb2b67199063cc4e24a689ce9bb76d2366",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayibaka27-3x.png",
+            "sha256": "a736e59bd80b04c84b71ee42fa12d1ced0fbd27b42bf50186f9ad3b19e82ec5e",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-28-246-kaasher-letter1-vowel",
+      "verse": 28,
+      "originalWord": "כאֲשֶׁר",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The kaf baseline and lower point area form a filled mass.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          1160,
+          1910,
+          1340,
+          2020
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-kaasher28-native.png",
+            "sha256": "6403209162e0d89f036b8e12c3550bdb14e19235e60d70a313eafdfb7464d64b",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-kaasher28-3x.png",
+            "sha256": "0bb49db309b8461bb60ae20637d14e553e0d40aa6d900dd2158f0a3a007c05a5",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-28-246-vayomru-letter4-vowel",
+      "verse": 28,
+      "originalWord": "ויֹאמרוּ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The mem lower mark is attached around a small white slit; the remaining ink does not resolve its class.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          1320,
+          2010,
+          1530,
+          2120
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayomru28-native.png",
+            "sha256": "19ef229dcb54cc0076ebf54cb27ee4c12f614ba78cd881056145f03e26ca3b60",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayomru28-3x.png",
+            "sha256": "5e20cd176b5618ed3cb6a82ea7bbbfc9f7500c3f180ff9bef4a5aa2ce24e1ae5",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-29-246-vayomru-letter4-vowel",
+      "verse": 29,
+      "originalWord": "ויֹאמרוּ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The mem lower mark is fused to its foot around a small white hole; the visible shape is not decisive.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          505,
+          2100,
+          705,
+          2210
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayomru29-native.png",
+            "sha256": "5f7716f7ad5bb7a881ce3605b5d0376dfdbc07cfd8ebf3395e39eaf85370b7ef",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayomru29-3x.png",
+            "sha256": "dcfd1c5de340f0f7334dce20afd6e0613aa264b52f1079dd297b51fa85e91002",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-33-246-bishel-letter2-vowel",
+      "verse": 33,
+      "originalWord": "בִשׁל",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The shin foot and lower mark form a solid block without separated points.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          1020,
+          2650,
+          1170,
+          2770
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-bishel33-native.png",
+            "sha256": "2764c88ac295870f7916ee3bd35f8a9b5323b635d049d8cf44a339b1871739f1",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-bishel33-3x.png",
+            "sha256": "cab3c81467b3d8af6b727bd23f3465d5b7b5a9276dfbdc624b41cbebd8e5fbbf",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-33-246-vayabel-bet-vowel",
+      "verse": 33,
+      "originalWord": "ויָבל",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The bet foot has a joined lower mass with a narrow extension, insufficient to classify the printed vowel.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          730,
+          2650,
+          880,
+          2770
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayabel33-native.png",
+            "sha256": "ea753c8e8e8ade5ecd9a81ee32261a59aa23d081b35b7e295c7615651b0e116e",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayabel33-3x.png",
+            "sha256": "940c431cbbe9c65d11a50b518b5acfb8ab88e7e42650d74f4551ae915f19657d",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-33-246-vayetse-letter3-vowel",
+      "verse": 33,
+      "originalWord": "ויֵצא",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The tsadi baseline and lower mark are merged into a broad block.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          1880,
+          2750,
+          2035,
+          2870
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayetse33-native.png",
+            "sha256": "60797ab31d0d1ddb3e995c36708dfe5c9cef844ea5f16da990c7f6c5a88b2dd1",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-vayetse33-3x.png",
+            "sha256": "4bc9ec0ff2d6f3e6ed03a2569e2015e6357965e3bdf1b641553759e66df250b8",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-33-246-laset-letter2-vowel",
+      "verse": 33,
+      "originalWord": "לָשׂאת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The sin foot is saturated with the lower point area. Separate dots cannot be read.",
+      "evidence": {
+        "sourcePage": 246,
+        "sourceImageSHA256": "cad805287f5a1339018a19c57322fe989c61f64992afa449bea5c51fc71b1fef",
+        "pixelBox": [
+          1450,
+          2750,
+          1640,
+          2870
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-laset33-native.png",
+            "sha256": "2596ec25c3180c524d2749b92ae9081f9ad490f48f5a4d9c31cfc8e186d84a8d",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/246-laset33-3x.png",
+            "sha256": "074fd1c83d0c7bc9be58eefd2aed28bfcf2558a60792590d63b63fbe4e9ebe27",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-36-247-baseara36-letter4-vowel",
+      "verse": 36,
+      "originalWord": "בִסְעָרה",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The resh ends in a solid irregular cross/diamond. A possible descending trace does not distinguish the vowel class securely.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          1930,
+          1350,
+          2160,
+          1445
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-baseara36-native.png",
+            "sha256": "f7528b707bd97e0573f02c04fe70a9b5d5214f7eedc7a2d5ecf310810a019d87",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-baseara36-3x.png",
+            "sha256": "5240858a31e21d6f4cf3c743ab2627daea00e1959ee5fc7799d2ebe82a3949e9",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-37-247-vayomer37-letter4-vowel",
+      "verse": 37,
+      "originalWord": "ויֹאמר",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The mem foot and lower mark join around a small white notch; the point class remains uncertain.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          380,
+          1350,
+          560,
+          1445
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayomer37-native.png",
+            "sha256": "1ab9b59d36d071a40ccaa71bb1307b3db7f32468e01b0e595164e59851f3eb79",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayomer37-3x.png",
+            "sha256": "37ddd7a9fb17f8efa5b1e6aa4eb03eef3c062a3f45493ef0c658d2ab1c6cf6ca",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-38-247-vayomer38-letter4-vowel",
+      "verse": 38,
+      "originalWord": "ויֹּאמר",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The mem foot encloses a small white opening above a joined lower mass, with no recoverable dot layout.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          380,
+          1450,
+          560,
+          1540
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayomer38-native.png",
+            "sha256": "d1706a1b6f718d9bbd618c7ed08a1296fb2f97f2f0ac463c0a59c8d58fb53b70",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayomer38-3x.png",
+            "sha256": "e4e36ece9e9927b3a66e65c24fd6d433d4403b088d824082423c3b7ea436687c",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-38-247-zakhor38-letter2-vowel",
+      "verse": 38,
+      "originalWord": "זָכר",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The kaf thick lower baseline and upward protrusion joined to its left roof do not expose a separately classifiable vowel. The upper shape cannot securely be distinguished from a merged point or letter serif, and fused lower ink does not certify intentional absence. Retain the note.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          1810,
+          1545,
+          1970,
+          1645
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-zakhor38-native.png",
+            "sha256": "d7dfc5e807a9ed35ec7572f64e391501c5e2d78390faf05328b5fc3c55fca8b9",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-zakhor38-3x.png",
+            "sha256": "d9748f39f206eb298487a0f61e39b46aed544d90296a609c628735e54bbfb6c0",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-39-247-vayokhal39-letter4-vowel",
+      "verse": 39,
+      "originalWord": "ויֹאכל",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The kaf lower lobes merge with its foot; no reliable vowel classification is possible.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          1970,
+          1630,
+          2170,
+          1740
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayokhal39-native.png",
+            "sha256": "85f9f4195bf3796533dbe261626716a995eaf1e61cf7d1749a060b92f3e51c85",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayokhal39-3x.png",
+            "sha256": "e2d7953c39ddb548a831b17a104fff7e340151df86c829a9ca2d000df1e4589f",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-40-247-bayom40-letter1-vowel",
+      "verse": 40,
+      "originalWord": "בּיוֹם",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The bet lower mark forms a broad solid mass joined to its baseline.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          1840,
+          1730,
+          2005,
+          1840
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-bayom40-native.png",
+            "sha256": "98ba28fde92969082197ecbdddb1907a6b33aa19de1537c536dedc63aff33ef0",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-bayom40-3x.png",
+            "sha256": "faee9f00755042f2c488fe0883e2c162d39e0cbcc15e5760f7af5a55a3a13742",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-41-247-milvadekha41-letter3-vowel",
+      "verse": 41,
+      "originalWord": "מִלְּבדּךָ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The bet lower mark is fused into its baseline; the dalet lower mark is a solid irregular cluster, not separately legible points.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          1640,
+          1920,
+          1870,
+          2030
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-milvadekha41-native.png",
+            "sha256": "22574604842d691734d6998e3525e7bd7543a935fd1d10759cd06454f7f8c012",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-milvadekha41-3x.png",
+            "sha256": "b1add1de762460d1c0f2aad66569b67170afbc8185f1c15d2a186094c16e98e9",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-41-247-milvadekha41-letter4-vowel",
+      "verse": 41,
+      "originalWord": "מִלְּבדּךָ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The bet lower mark is fused into its baseline; the dalet lower mark is a solid irregular cluster, not separately legible points.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          1640,
+          1920,
+          1870,
+          2030
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-milvadekha41-native.png",
+            "sha256": "22574604842d691734d6998e3525e7bd7543a935fd1d10759cd06454f7f8c012",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-milvadekha41-3x.png",
+            "sha256": "b1add1de762460d1c0f2aad66569b67170afbc8185f1c15d2a186094c16e98e9",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-42-247-vayashlekh42-letter4-vowel",
+      "verse": 42,
+      "originalWord": "ויַּשְׁלךְ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The lamed lower mark is flattened against its foot and lacks separable point geometry.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          990,
+          1920,
+          1170,
+          2030
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayashlekh42-native.png",
+            "sha256": "d99ad2c898c1c8b7812909bdfb71d9de09133ba086565da2add680d55431fcf1",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayashlekh42-3x.png",
+            "sha256": "79fcc0c702211598e810f546b5cfe80389da7d1c7bb40fd3d88b026c982d93af",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-42-247-vayitarfu42-letter4-vowel",
+      "verse": 42,
+      "originalWord": "ויִטָּרפוּ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The resh lower mark joins its vertical stroke, preventing a secure vowel classification.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          1770,
+          2015,
+          1990,
+          2115
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayitarfu42-native.png",
+            "sha256": "4a0c7857062dec4addd1a8d8d24ce4a5ac3ccf315b19e9b39ac8418e9e9ffbf2",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-vayitarfu42-3x.png",
+            "sha256": "808e6d69e9f99f78b5337cada90a5d503440399a4bae98c2ea4f17d0ce156959",
+            "scale": 3
+          }
+        ]
+      }
+    },
+    {
+      "noteID": "bel-1-42-247-kherega42-letter2-vowel",
+      "verse": 42,
+      "originalWord": "כְרגַע",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainNote",
+      "finding": "The resh lower mark merges with its stem and lacks a recoverable point arrangement.",
+      "evidence": {
+        "sourcePage": 247,
+        "sourceImageSHA256": "06c27bb37ff0278fe8d16d6878c73f489d71794da6a37ee9606d4af7edc17fb4",
+        "pixelBox": [
+          1570,
+          2015,
+          1790,
+          2115
+        ],
+        "scale": 3,
+        "resampling": "nearest-neighbor",
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-kherega42-native.png",
+            "sha256": "2e1c44ac2092bb28ae7bda54ef4daa92579aa950dd5f0c19ca65404ffef0a498",
+            "scale": 1
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-BEL/247-kherega42-3x.png",
+            "sha256": "3d929d88ecf2cb15d70b5629ed104b8baa7a2bcd3124a0526d4d484c579827e7",
+            "scale": 3
+          }
+        ]
+      }
+    }
+  ],
+  "independentReview": {
+    "scope": "10 word crops covering 12 notes, including vayabet19, vayomer20, vayikah27 and zakhor38, plus lower-body context.",
+    "finding": "No additional source-certified mark recovered; retained findings supported. Zakhor38 description expanded to include the upper protrusion.",
+    "verifiedEvidenceFiles": 56,
+    "verification": "All recorded file hashes, original PDF and page hashes, native crop coordinates, exact nearest-neighbor enlargements, 28 note identities/anchors/letter indices/source pages, and unchanged 224-note canonical inventory verified."
+  }
+}

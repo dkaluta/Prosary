@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 97,
+  "book": "S3Y",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass97-S3Y-1-60/source-provenance.json",
+    "sha256": "dd751ab7394e606afaaf285369d7357b27de073149259628b6938a0f64eaee0b"
+  },
+  "sourceNotesBefore": 9,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-60-word2-letter1-vowel",
+    "s3y-1-60-word2-letter3-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "84c7095304a8da52dad00d2de7dce06c91e75f2232844bcfd81fd7e594461d66",
+  "contentSHA256After": "d1f129724960a1e9139f38dc28c73537e07d34c628737fdae0e47fd74c73494b",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "s3y-1-60-word2-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 60,
+      "anchorBefore": "וחַיַת",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "The local ordinary final shuruq Vav in הללוהו has the same head baseline and ends by y370, with no left branch below it. The target shaft instead continues to a new left round lobe at x1678..1692,y375..389, followed by a detached round lower node [1678,394,1697,413], area272. These two extra levels lie below the ordinary Vav terminal. They align with the same-unit bet-Sheva upper/lower round levels379..395 and399..417 (roughly4pixels lower); they do not form a horizontal bar or a single isolated hiriq. The upper node is joined to the shaft but its new left branch after the ordinary terminal level is physically diagnostic. This conclusion revises the initial conservative retention only after the literal local ordinary-Vav comparison.",
+      "targetCapture": "extension-volumeA-581-zoom6-mid-mid.png",
+      "inspectedBounds": [
+        1655,
+        260,
+        1693,
+        390
+      ],
+      "markProposed": "sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        1678,
+        375,
+        1697,
+        413
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass97-S3Y-1-60/consensus-preparation.json"
+    },
+    {
+      "noteId": "s3y-1-60-word2-letter3-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 60,
+      "anchorBefore": "וחַיַת",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "The third physical consonant is the short yod between het and tav. A completely detached lower-left interior dot occupies [1497,302,1513,313], with white separation from the yod head/right terminal. Its position and contour match the literal detached-yod-dagesh positive; the ordinary-yod counter has no second branch or detached dot.",
+      "targetCapture": "extension-volumeA-581-zoom6-mid-mid.png",
+      "inspectedBounds": [
+        1494,
+        260,
+        1528,
+        325
+      ],
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "pointBounds": [
+        1497,
+        302,
+        1513,
+        313
+      ],
+      "markClassification": "Dagesh",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass97-S3Y-1-60/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 60,
+      "before": "בָּרְכוּ אֶת־יְיָ בְּהֵמוֹת וחַיַת הָאָרֶץ הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃",
+      "after": "בָּרְכוּ אֶת־יְיָ בְּהֵמוֹת וְחַיַּת הָאָרֶץ הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 60,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass97-S3Y-1-60/independent-review.json",
+    "sha256": "6e4495b6d463ea7919aff6d482c3f129942c4012b331742ce8c1362361f87ef2"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass97-S3Y-1-60/primary-preparation.json",
+    "sha256": "0a5b0256f9b3d9358b0c3d02427121169c681706c9b6e045f70e773e7647298c"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass97-S3Y-1-60/consensus-preparation.json",
+    "sha256": "f756a49edbc8f9dbb1a55c1117a5e63a850fee759371c8a6344dd8879d2495db"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Daniel 3:47–51",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

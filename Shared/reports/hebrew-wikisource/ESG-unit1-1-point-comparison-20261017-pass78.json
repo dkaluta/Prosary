@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 78,
+  "book": "ESG",
+  "status": "Two 1:1 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 78.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass78-ESG-1-1/source-provenance.json",
+    "sha256": "8758ba1e29a093f9dfb47843f559afe3e7fd4f88b201ba7d52b2ca2e7be99e9c"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 215. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 261,
+  "sourceNotesBefore": 25,
+  "sourceNotesAfter": 23,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-1-1-1-vowel",
+    "esg-1-1-2-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "esg-1-1-1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    },
+    "esg-1-1-2-vowel": {
+      "combiningMark": "ְ",
+      "codePoint": "U+05B0",
+      "name": "HEBREW POINT SHEVA"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 1,
+      "before": "בַּשָּׁנָה הַשֵּׁנִית למְלֹךְ הַמֶּלֶךְ הַגָּדוֹל אֲחַשְׁוֵרוֹשׁ בְּאֶחָד לְנִיסָן חָזָה חֲלוֹם מָרְדְּכי בֶּן־יָאִיר בֶּן־שִׁמְעִי בֶּן־קִישׁ לְמַטֵּה בִנְיָמִן׃",
+      "after": "בַּשָּׁנָה הַשֵּׁנִית לְמְלֹךְ הַמֶּלֶךְ הַגָּדוֹל אֲחַשְׁוֵרוֹשׁ בְּאֶחָד לְנִיסָן חָזָה חֲלוֹם מָרְדְּכָי בֶּן־יָאִיר בֶּן־שִׁמְעִי בֶּן־קִישׁ לְמַטֵּה בִנְיָמִן׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 1 on page רטו / 215 (viewer page 560) in Kahana Volume A2, Additions to Esther.",
+  "decisions": [
+    {
+      "noteId": "esg-1-1-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Consonant Kaf (letter 4) in מָרְדְּכָי sits at cols 1395..1365, rows 348..418 of extension-volumeA-560-zoom4-upper-right.png on Line 2. Directly beneath Kaf sits a classic Kahana-font Qamats with a solid horizontal bar at rows 426..434 (cols 1395..1370) and a distinct vertical stem descending from the center of the bar at rows 436..449 (cols 1386..1375). Pure white paper surrounds the stem on both left and right (values 255). Note is retired with Qamats restored under Kaf -> מָרְדְּכָי.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass78-ESG-1-1/esg-1-1-mordecai-native.png",
+        "sha256": "edb0629e79ba878f2b91964ed3d22a50f7f8644dbf820bd7e0af1bfedf3a4b81"
+      }
+    },
+    {
+      "noteId": "esg-1-1-2-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "למְלֹךְ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "sheva",
+      "codePoint": "U+05B0",
+      "markClassification": "Sheva",
+      "finding": "Initial consonant Lamed (letter 1) in לְמְלֹךְ sits at cols 1235..1215, rows 167..236 of extension-volumeA-560-zoom4-upper-right.png on Line 1. Directly beneath the base of the Lamed sit two circular punch dots stacked vertically at rows 248..252 and 264..268, centered at col 1219, separated by pure white paper at rows 256..260. This confirms a clear Sheva. Note is retired with Sheva restored to initial Lamed -> לְמְלֹךְ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass78-ESG-1-1/esg-1-1-limlokh-native.png",
+        "sha256": "09f67611faecfacb2034dcdd817d4394cbc89a3f14f928ce84b8e94ff6fc736f"
+      }
+    }
+  ]
+}

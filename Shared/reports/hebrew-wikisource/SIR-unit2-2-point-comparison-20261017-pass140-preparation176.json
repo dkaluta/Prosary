@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 140,
+  "integrationPass": 140,
+  "preparationID": 176,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation176-SIR-2-2/source-provenance.json",
+    "sha256": "e41cd3ee9579cb2f7d92e0da42964c5674310db5e5b0b14f6f22d265197d2f9f"
+  },
+  "sourceNotesBefore": 21,
+  "sourceNotesAfter": 21,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-2-2-vav-vowel"
+  ],
+  "contentSHA256Before": "2fe6fdb434aa7724f97567defa24a45c63edc3fbbf7310c864d803f316cb1739",
+  "contentSHA256After": "2fe6fdb434aa7724f97567defa24a45c63edc3fbbf7310c864d803f316cb1739",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-2-2-vav-vowel",
+      "book": "SIR",
+      "chapter": 2,
+      "verse": 2,
+      "anchorBefore": "וחֲזָק",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Complete own four consonants Vav-Het-Zayin-Qof independently identified. Initial Vav is one1125px34x87 connected component[735,462,769,549]; vertical stem continues through535 directly into broad shallow lower mass537..548. No exact body/point separation. Clear field below549 cannot certify absence; attached horizontal foot alone cannot establish Patah against damaged point/body alternatives. Own Het has independent detached broad plate674..700/537..549 plus upper/lower right nodes705..715/537..547 and705..718/555..567, literal HatafPatah. Own Zayin has detached443px25x31 broad upper bar631..656/539..552 and narrow descending stem through569, literal Qamats. Neither literal control resolves attached own Vav; retain exact original note and all scalars.",
+      "targetCapture": "extension-volumeB-455-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeB-455-zoom4-upper-right.png",
+      "inspectedBounds": [
+        735,
+        462,
+        769,
+        549
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation176-SIR-2-2/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 2,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation176-SIR-2-2/independent-review.json",
+    "sha256": "07617cfcd503471bf28fbe07a92adae7172cb845f7d7d3f82613083f53c1bfd6"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation176-SIR-2-2/primary-preparation.json",
+    "sha256": "c4f79881764d72c70be89869518a888a8f4f168ad2d2c5d9fc974b8eea1b1711"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation176-SIR-2-2/consensus-preparation.json",
+    "sha256": "5aff254328d7695f3bf14b1f198ebd96a3f40ae0019d8c2772ad3d65a5db70bd"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

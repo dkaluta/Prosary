@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 60,
+  "book": "BEL",
+  "status": "Three 1:40 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 60.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass60-BEL-1-40/source-provenance.json",
+    "sha256": "9a356824b89c13ff5d73f47e367439a31757e34a2138ace994bcd90efe6ba891"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 247. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 308,
+  "sourceNotesBefore": 43,
+  "sourceNotesAfter": 40,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-40-247-bayom40-letter1-vowel",
+    "bel-1-40-247-vayavo40-letter1-vowel",
+    "bel-1-40-247-vayar40-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "bel-1-40-247-bayom40-letter1-vowel": "ַ",
+    "bel-1-40-247-vayar40-letter1-vowel": "ַ"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 40,
+      "before": "וְהַמֶּלֶךְ הָלַךְ בּיּוֹם הַשְּׁבִיעִי לִסְפֹּד לְדָנִיֵּאל ויָּבֹא אֶל־הַבּוֹר ויַּרְא וְהִנֵּה דָנִיֵּאל יוֹשֵׁב׃",
+      "after": "וְהַמֶּלֶךְ הָלַךְ בַּיּוֹם הַשְּׁבִיעִי לִסְפֹּד לְדָנִיֵּאל ויָּבֹא אֶל־הַבּוֹר וַיַּרְא וְהִנֵּה דָנִיֵּאל יוֹשֵׁב׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 40,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 40 on page רמז / 247 (viewer page 592) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "bel-1-40-247-bayom40-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 40,
+      "anchor": "בּיּוֹם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "ַ",
+      "markClassification": "Vowel",
+      "finding": "Bet of בּיּוֹם carries an unmistakable stamped horizontal Patah bar (rows 1532..1548, cols 867..905, min=0) beneath the base of Bet. Point restored as printed Patah (U+05B7). Anchor updated to בַּיּוֹם.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass60-BEL-1-40/bel-1-40-bet-bayom-target-native.png",
+        "sha256": "6af064b18925f4f15613835beb0532f3bd243592f703873abf34c9a78124e82a"
+      }
+    },
+    {
+      "noteId": "bel-1-40-247-vayavo40-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 40,
+      "anchor": "ויָּבֹא",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויָּבֹא consists of a bare vertical head/stem ending at row 1630 with 50+ vertical rows of pure white paper (rows 1633..1684, cols 1221..1230) beneath it. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass60-BEL-1-40/bel-1-40-vav-vayavo-target-native.png",
+        "sha256": "09f733fbe9a6f36c7af70e66bad7f2b1fb9fffd6e1a99246fdff73d9735a2f38"
+      }
+    },
+    {
+      "noteId": "bel-1-40-247-vayar40-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 40,
+      "anchor": "ויַּרְא",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "ַ",
+      "markClassification": "Vowel",
+      "finding": "Initial Vav of ויַּרְא carries an unmistakable stamped horizontal Patah bar (rows 1654..1672, cols 725..740, min=0) matching positive Patah controls. Point restored as printed Patah (U+05B7). Anchor updated to וַיַּרְא.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass60-BEL-1-40/bel-1-40-vav-vayar-target-native.png",
+        "sha256": "8698cbbca8e9a54f76f4219cf919f16826bdf6c505f9a98ec0511a63201074bd"
+      }
+    }
+  ]
+}

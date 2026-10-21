@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 45,
+  "book": "ESG",
+  "status": "Four source 2:3 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 45 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass45-ESG-2-3/source-provenance.json",
+    "sha256": "8706d51dcfd088d29fb9c3b60a7fbe33ea455d1e18af27d37a2131e95db1ee0b"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 217 / ריז (viewer page 562, internal 577). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 364,
+  "sourceNotesBefore": 44,
+  "sourceNotesAfter": 40,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-2-3-1-vowel",
+    "esg-2-3-3-vowel",
+    "esg-2-3-4-vowel",
+    "esg-2-3-5-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "U+05B0": 1
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 2,
+      "verse": 3,
+      "before": "אַף כִּי־כָבַשְׁתִּי עַמִּים רַבִּים וְלָכַדְתִּי כָּל־אַרְצוֹת תֵּבֵל גָּמַרְתִּי לִנְהֹג תָּמִיד בְּמִדַּת הַיֹּשֶׁר וְהַחֶסֶד וְלֹא לְהִתְאַמֵּר בְּגֵאוּת הַשִּׁלְטוֹן לשְׁמֹר בְּכָלכלת עַל־חַיֵּי נְתִינַי מִגֹּן לִדְאֹג לְמַמְלַכְתִּי כִּי תִּהְיֶה שְׁקֵטָה וְנוֹחָה לַעֲבָר־בָּהּ לָתוּר אוֹתָהּ עַד־קְצֵה גְבוּלוֹתֶיהָ וּלְחַדֵּשׁ בָּהּ אֶת־הַשָּׁלוֹם תַּאֲוַת נֶפֶשׁ כָּל־בְּנֵי אָדָם׃",
+      "after": "אַף כִּי־כָבַשְׁתִּי עַמִּים רַבִּים וְלָכַדְתִּי כָּל־אַרְצוֹת תֵּבֵל גָּמַרְתִּי לִנְהֹג תָּמִיד בְּמִדַּת הַיֹּשֶׁר וְהַחֶסֶד וְלֹא לְהִתְאַמֵּר בְּגֵאוּת הַשִּׁלְטוֹן לְשְׁמֹר בְּכָלכלת עַל־חַיֵּי נְתִינַי מִגֹּן לִדְאֹג לְמַמְלַכְתִּי כִּי תִּהְיֶה שְׁקֵטָה וְנוֹחָה לַעֲבָר־בָּהּ לָתוּר אוֹתָהּ עַד־קְצֵה גְבוּלוֹתֶיהָ וּלְחַדֵּשׁ בָּהּ אֶת־הַשָּׁלוֹם תַּאֲוַת נֶפֶשׁ כָּל־בְּנֵי אָדָם׃",
+      "beforeTextSHA256": "f1e15620a6b397ffa4654cf769bc37d5babf955e7f9eae8692949d185ece485b",
+      "afterTextSHA256": "ef7a9c630f7ddcb8a2499172f48433e9d82be76e0291f8e8c1d1204c43776898"
+    }
+  ],
+  "scope": {
+    "chapter": 2,
+    "verse": 3,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label ג on page ריז / 217 (viewer page 562, internal page 577) identifies the unit covering verse 3 (Theodotion / Greek additions line 3). Canonical verse 3 and sourcePages [217] are preserved.",
+  "decisions": [
+    {
+      "noteId": "esg-2-3-1-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchor": "לשְׁמֹר",
+      "letterIndex": 1,
+      "decision": "proposePrintedShevaAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B0",
+      "markClassification": "Sheva",
+      "finding": "Under initial lamed foot (ending y=1650) sits a clear 8px white gap (y=1651..1658) followed by upper punch dot at y=1659..1673 (height 15px, width 14px), an 8px white gap at y=1674..1681, and lower punch dot at y=1682..1700 (height 19px, width 18px). Two strictly vertically aligned circular punch dots with zero lateral displacement confirm stamped Sheva U+05B0.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass45-ESG-2-3/esg-2-3-1-vowel-target-native.png",
+        "sha256": "8fb98b97ae11f11bff3dd042fafb603ad75ced06f0d49132fefa065724b2570e"
+      }
+    },
+    {
+      "noteId": "esg-2-3-3-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchor": "בְּכָלכלת",
+      "letterIndex": 3,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Letter 3 (lamed) stem tapers to y=1650. The entire region below it across y=1651..1675 is clean, pristine white paper (0 ink pixels). No absorbed, merged, or unreadable vowel mark exists in the print; confirmed unpointed in Kahana edition.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass45-ESG-2-3/esg-2-3-3-vowel-target-native.png",
+        "sha256": "b9893a8e06f41570e3c84a54ac8e6055e9ba46588e3576b7a5df8fd5aba4bfde"
+      }
+    },
+    {
+      "noteId": "esg-2-3-4-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchor": "בְּכָלכלת",
+      "letterIndex": 4,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Letter 4 (kaf) lower stroke terminates at y=1650. The region below across y=1651..1675 is pristine white paper with 0 ink pixels. No vowel mark was stamped or absorbed under letter 4; confirmed unpointed in Kahana edition.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass45-ESG-2-3/esg-2-3-4-vowel-target-native.png",
+        "sha256": "0cca6dfd63eeb0c67fc08c6e41424b25047b0772c36c628de8e19f1872c9cc89"
+      }
+    },
+    {
+      "noteId": "esg-2-3-5-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "anchor": "בְּכָלכלת",
+      "letterIndex": 5,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Letter 5 (lamed) lower body terminates at y=1650. The region below across y=1651..1675 has 0 ink pixels on pristine white paper. No vowel mark exists under letter 5; confirmed unpointed in Kahana edition.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass45-ESG-2-3/esg-2-3-5-vowel-target-native.png",
+        "sha256": "1af874f456bdfc481aae6859c3ae7e904ae50de064d0e970631d426e29e8f67d"
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 142,
+  "integrationPass": 142,
+  "preparationID": 186,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation186-SIR-29-19/source-provenance.json",
+    "sha256": "298e2878b6fa8c4a448bbbe36bd4ec0eab9534521f05c2d938614c84bcf8a9ae"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-29-19-bet-vowel"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-29-19-bet-vowel",
+      "book": "SIR",
+      "chapter": 29,
+      "verse": 19,
+      "anchorBefore": "קַבּלֶת",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own secondBet is single2205px body[2054,719,2118,790]; nativeASCII shows fullrightstem feedsinto broad solidbase770..789 with no white body/point separation. Exactlower mark cannot be certified from joinedfoot; clearbelow790 does not establish absence. Own interiorDagesh independently detached81px10x11[2080,749,2090,760]. SamewordthirdLamed has detached three-nodeSegol91/66upper and86lower, with correct fullLamed; this demonstrates literal detachedpoints without supplying ownBet. Retain originalBetvowel disclosure and allscalars.",
+      "targetCapture": "extension-volumeB-495-zoom4-lower-left.png",
+      "targetSourceIdentifier": "extension-volumeB-495-zoom4-lower-left.png",
+      "inspectedBounds": [
+        2050,
+        715,
+        2125,
+        835
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation186-SIR-29-19/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 29,
+    "verse": 19,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation186-SIR-29-19/independent-review.json",
+    "sha256": "5abe903919cadd90ad0725290b542b9d8db106052296b897ec601fb1b774d374"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation186-SIR-29-19/primary-preparation.json",
+    "sha256": "38753878731327fd5a9879139273292092725906c36c86f9b233dd0f867d77b3"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation186-SIR-29-19/consensus-preparation.json",
+    "sha256": "bcdcf84a0ca0be5ad346cf5c3a24d8e758532ada2f2dfa339b7dd4bc909ba2c4"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 128,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass128-WIS-19-4/source-provenance.json",
+    "sha256": "73fbff175659403c23dd7614b23a94318ab8103d783055bfb22b94b8cb4274f7"
+  },
+  "sourceNotesBefore": 109,
+  "sourceNotesAfter": 108,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-19-4-word3-samekh-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-19-4-word3-alef-2-vowel"
+  ],
+  "contentSHA256Before": "8c0a17df1ccbc7c1b474021fb9cc45ac204d188162ac737ec30ce3f350c69315",
+  "contentSHA256After": "f69813b85c52305ad6663fc59cf3c16ec801d9312d8a44f431d96005cb9d0744",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-19-4-word3-samekh-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 4,
+      "anchorBefore": "סאת",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Own mark is detached from the complete Samekh body by blank rows398..399. It has an upper rounded lobe through410, a narrower five-pixel waist through411..415, and a renewed wider lower rounded lobe through427. Both lobes lie below the glyph, with no body terminal ambiguity. SAMEUNIT initial Yod Sheva in the full addressed wordימלאו has two round levels101+117pixels; its Lamed Sheva is a connected two-lobe273pixel stamp of the same28pixel height and renewed lower head. Competing SAMEUNIT Mem Qamats inמצא has a25pixel-wide upper head narrowing to a straight stem, unlike the target lower re-expansion. Native two-level contour supports Sheva U05B0, without supplying it from spelling or connectivity alone. Independent peer: Independently complete Samekh body ends397, blank398..399 separates own210px lower compound[253,400,265,428]. An upper8px rounded head400..410 narrows to5px waist411..414 before a renewed12px round lower head418..427. Literal SAMEUNIT Yod has two detached round nodes101+117px at395..408 and413..423, and Lamed connected273px upper/lower heads at398..426. Mem Qamats instead begins with a25px head then a uniform8px stem; its lower ink irregularity does not erase that much broader upper-head distinction. Own two narrow rounded levels positively certify Sheva U05B0; mere connectivity does not decide classification.",
+      "targetCapture": "extension-volumeA-529-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-529-zoom4-upper-right.png",
+      "inspectedBounds": [
+        229,
+        326,
+        288,
+        398
+      ],
+      "markProposed": "Sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        253,
+        400,
+        265,
+        428
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass128-WIS-19-4/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-19-4-word3-alef-2-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 4,
+      "anchorBefore": "סאת",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own Alef lower compound[178,400,204,410]213pixels has two unequal upper lobes initially separated through400..402, then joined through403..409, with internal holes and a flat final base. A shallow Patah is possible, but literal SAMEUNIT Tav Tsere inבצרותיהם has two horizontal round nodes141+92pixels with combined29x13 span; the26x10 own compound does not uniquely exclude a fused/damaged pair. Existing Mem Patah flat bar contrasts, and clean lower1353pixel field excludes a descending stem but cannot distinguish these two horizontal classes. Retain disclosure and add no Alef scalar. Independent peer: Independent Root challenge rejects an exact Patah certification. Own detached26x10 compound213px[178,400,204,410] has LEFT11px/RIGHT3px upper lobes separated400..402, merged middle403..404, internal lower holes405..407 and flat base408..409. Flat Mem Patah200px28x8 is possible comparison, but SAMEUNIT Tav actual Tsere has two separate141/92px rounded nodes[1962,400,1975,413] and[1980,400,1991,412], combined29x13. Own irregular compound cannot uniquely exclude fused/damaged horizontal pair. Clean field below412 excludes descending/third mark but not this competing class. Retain unchanged; no Alef scalar added.",
+      "targetCapture": "extension-volumeA-529-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-529-zoom4-upper-right.png",
+      "inspectedBounds": [
+        163,
+        326,
+        219,
+        398
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass128-WIS-19-4/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 19,
+      "verse": 4,
+      "before": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סאת עָנְשָׁם בְּצָרוֹתֵיהֶם׃",
+      "after": "כִּי הַמִּשְׁפָּט אֲשֶׁר נִגְזַר בְּצֶדֶק הִסָּה אוֹתָם לִנְתִיב זֶה הוּא הִשְׁכִּיחֵם אֶת־אֲשֶׁר מָצָא אוֹתָם לְמַעַן יְמַלְּאוּ סְאת עָנְשָׁם בְּצָרוֹתֵיהֶם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 19,
+    "verse": 4,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-19-4-word3-alef-2-vowel",
+      "before": "סאת",
+      "after": "סְאת"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass128-WIS-19-4/independent-review.json",
+    "sha256": "4a254c5630a52b712dddac4251b041011f803f36ee59fe7ef4b46dc3364b40ab"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass128-WIS-19-4/primary-preparation.json",
+    "sha256": "d729acabd5088bd4c288aa066bb322fc2252d7fe570716b6a8b8f1418af09ef0"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass128-WIS-19-4/consensus-preparation.json",
+    "sha256": "14365c275cac87570122048d96ff287a86b40f7aea6672bd8e977c68a0ee7002"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

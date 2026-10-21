@@ -737,7 +737,7 @@ public class RosaryEngineTests : IClassFixture<PrayerPackLoaderFixture>
         var opening = hebrew.Where(step => step.ImageOverrideKey?.StartsWith("virtue_") == true)
             .ToList();
         Assert.Equal(
-            ["שלום לך (1 מתוך 3)", "שלום לך (2 מתוך 3)", "שלום לך (3 מתוך 3)"],
+            ["שמחי מרים (1 מתוך 3)", "שמחי מרים (2 מתוך 3)", "שמחי מרים (3 מתוך 3)"],
             opening.Select(step => step.Title));
         Assert.All(opening, step => Assert.Contains('\u05B0', step.Body));
         var aramaic = _engine.BuildSteps(SpecificRosary(languageCode: "arc"))

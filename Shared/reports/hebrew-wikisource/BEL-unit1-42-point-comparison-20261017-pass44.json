@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 44,
+  "book": "BEL",
+  "status": "Four source 1:42 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 44 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass44-BEL-1-42/source-provenance.json",
+    "sha256": "9930d7e774348f7307cca0dc3a2da8b7eaeb9e20cdae1a3772f47b9cef8ea7e0"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 247 / תקעה (viewer page 592, internal 607). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 368,
+  "sourceNotesBefore": 65,
+  "sourceNotesAfter": 61,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-42-247-vayaalehu42-letter1-vowel",
+    "bel-1-42-247-vayashlekh42-letter1-vowel",
+    "bel-1-42-247-vayitarfu42-letter1-vowel",
+    "bel-1-42-247-kherega42-letter2-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 4,
+  "addedCombiningMarks": {
+    "U+05B7": 4
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 42,
+      "before": "ויַּעֲלֵהוּ מִן־הַבּוֹר ויַּשְׁלֵךְ אֶת־חוֹרְשֵׁי רָעָתוֹ אֶל־הַבּוֹר ויִּטָּרְפוּ כְרגַע לְעֵינָיו׃",
+      "after": "וַיַּעֲלֵהוּ מִן־הַבּוֹר וַיַּשְׁלֵךְ אֶת־חוֹרְשֵׁי רָעָתוֹ אֶל־הַבּוֹר וַיִּטָּרְפוּ כְרַגַע לְעֵינָיו׃",
+      "beforeTextSHA256": "4b05a7e6f3b06497f62d1a37c44d7c7dd286bc4dfb4dff08f65e236cb93dd1ff",
+      "afterTextSHA256": "97f0710d4fc14561e00789b83026761d7131c7191b4b5b4240b7a01efd80ce15"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 42,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label מב on page תקעה / 247 (viewer page 592, internal page 607) identifies the unit covering verse 42 (Theodotion line 4). Canonical verse 42 and sourcePages [247] are preserved.",
+  "decisions": [
+    {
+      "noteId": "bel-1-42-247-vayaalehu42-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "anchor": "ויַּעֲלֵהוּ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial vav foot sits a sharp horizontal bar (width 30 px, height 9 px) with clean white space separating it from the letter base and adjacent yod. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass44-BEL-1-42/bel-1-42-247-vayaalehu42-letter1-vowel-target-native.png",
+        "sha256": "3af865378702bb18bac75ab41f115e1adc63984b9723e11f7bd4c6332ea03628"
+      }
+    },
+    {
+      "noteId": "bel-1-42-247-vayashlekh42-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "anchor": "ויַּשְׁלֵךְ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial vav foot sits a clean horizontal bar (width 30 px, height 8 px) with distinct ink separation from the vav stroke. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass44-BEL-1-42/bel-1-42-247-vayashlekh42-letter1-vowel-target-native.png",
+        "sha256": "866dd200519b0bc7e94517a185239a8ea00ec9d1f43c4621fdce8e5df99638ab"
+      }
+    },
+    {
+      "noteId": "bel-1-42-247-vayitarfu42-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "anchor": "ויִּטָּרְפוּ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial vav foot sits a solid, bold horizontal bar (width 30 px, height 12 px) with clean white margins. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass44-BEL-1-42/bel-1-42-247-vayitarfu42-letter1-vowel-target-native.png",
+        "sha256": "a5318d20b79c9bb473e0be6d72bc6e909eaffff229b5d3654666a2876b28b19a"
+      }
+    },
+    {
+      "noteId": "bel-1-42-247-kherega42-letter2-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 42,
+      "anchor": "כְרגַע",
+      "letterIndex": 2,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under letter 2 (resh) sits an isolated, solid horizontal rectangular bar (width 11 px, height 9 px at x=948..958, y=700..709). All surrounding pixels are clean white paper with zero lower dot. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass44-BEL-1-42/bel-1-42-247-kherega42-letter2-vowel-target-native.png",
+        "sha256": "2f68fcf79dbe57cd15fc88963004fb4ef0cb74b1dce36338656327a5564daa43"
+      }
+    }
+  ]
+}

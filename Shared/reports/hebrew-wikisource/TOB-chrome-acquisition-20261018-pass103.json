@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 103,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-offline-originals/source-provenance.json",
+      "sha256": "38ea6b61a4f56dc725d0e62915acbe58933eb166d365d7d9bdbb00071840b03d"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "sourceDocument": "Kahana Volume B",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    325,
+    326
+  ],
+  "savedCaptureViewerPageLabels": [
+    329
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page327/extension-volumeB-329-page-overview.png",
+      "sha256": "6214fd944c6f2d4c2432f5140ec0496cdb7284a56df4dc8a30e67e9b8f40b1b9",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-offline-originals/primary-325-native.png",
+      "sha256": "828234e10a63a8743aef5588497c854439c2c8eb771e1cea1d6eb2e16add9561",
+      "resolution": [
+        1650,
+        2550
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-offline-originals/source-provenance.json",
+        "sha256": "38ea6b61a4f56dc725d0e62915acbe58933eb166d365d7d9bdbb00071840b03d"
+      },
+      "originalPDF": {
+        "scan": "primary",
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "דב היליר",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "attribution": "ספר טוביה, נוסח קצר, בתרגום דב היליר, בתוך הספרים החיצונים בעריכת אברהם כהנא, כרך ב. תעתיק מן הדפוס שסופק ל־Prosary."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017-pass3.json",
+          "sha256": "01d93083ca96971df5bef9995a5caa5c0850ecc73fab909986f7ea8b625be959"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-connected-vowel-reinspection-20261017-pass5.json",
+          "sha256": "0558be19cf521c1189ad43f5572a0af6e33ed3610ace9ce89010ab8fd742494b"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-offline-originals/primary-326-native.png",
+      "sha256": "dd2a8acdb7f0d2dc6c4dc5ca42a6603b7bb98b3c8b0ca4d16ee37dc5cb2bf531",
+      "resolution": [
+        1650,
+        2550
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-offline-originals/source-provenance.json",
+        "sha256": "38ea6b61a4f56dc725d0e62915acbe58933eb166d365d7d9bdbb00071840b03d"
+      },
+      "originalPDF": {
+        "scan": "primary",
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "דב היליר",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "attribution": "ספר טוביה, נוסח קצר, בתרגום דב היליר, בתוך הספרים החיצונים בעריכת אברהם כהנא, כרך ב. תעתיק מן הדפוס שסופק ל־Prosary."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017-pass3.json",
+          "sha256": "01d93083ca96971df5bef9995a5caa5c0850ecc73fab909986f7ea8b625be959"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-connected-vowel-reinspection-20261017-pass5.json",
+          "sha256": "0558be19cf521c1189ad43f5572a0af6e33ed3610ace9ce89010ab8fd742494b"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page327/extension-volumeB-329-zoom4-upper-left.png",
+      "sha256": "1c5c98fdbf20f76fbe04f302ae8106f250dea90f50a5bd472e35e4741d5555fa",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page326/extension-volumeB-328-zoom4-upper-left.png",
+      "sha256": "fa707ff157d76d3250575ff10fe90629204e85f717cf43780e25853f724fb1a7",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page325/extension-volumeB-327-zoom4-upper-right.png",
+      "sha256": "be948613dbbcf4a31c0ad90da49ad8f4472f6a53c918b46e7096203820e51703",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-5-17/source-provenance.json",
+    "sha256": "cfa53b85515912042335d519b52c508ffd1339d7acfc48012ada2dd0ccedceb9"
+  }
+}

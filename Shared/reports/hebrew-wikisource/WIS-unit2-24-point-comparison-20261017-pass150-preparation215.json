@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 150,
+  "integrationPass": 150,
+  "preparationID": 215,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation215-WIS-2-24/source-provenance.json",
+    "sha256": "9969fc5220518aa4785e03e86a16591365703e80ef780630156190cc832640a5"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-2-24-vav"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-2-24-vav",
+      "book": "WIS",
+      "chapter": 2,
+      "verse": 24,
+      "anchorBefore": "ויֵדָעוּהוּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "OwninitialVav346pxsinglecomponent[1186,1469,1204,1517] narrowstem1197..1201 descends1508..1509 into broad lowerbar1190..1204 y1511..1516 through continuousink1510..1511. Broadbar has irregular expanded lobes and remains joined toletter; no independentlyseparableexactvowel orprintedabsence certified. Whole sevenletterword, sole ownoccurrence, completeactual24bothpoeticparts and realfinalsof inspected. Samewordsecond/finalVav39px/41px detachedshuruq controls provide no targetmark. Preserve exactdisclosure and everyoriginalscalar.",
+      "targetCapture": "primary-149-native.png",
+      "targetSourceIdentifier": "primary-149-native.png",
+      "inspectedBounds": [
+        1182,
+        1460,
+        1210,
+        1525
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation215-WIS-2-24/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 2,
+    "verse": 24,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation215-WIS-2-24/independent-review.json",
+    "sha256": "0dffda240862c9943f3ed535f1803874f56cf1676cc9efa0d0a25a901510576a"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation215-WIS-2-24/primary-preparation.json",
+    "sha256": "40e11eb8f2980422f8694f9e222304c45ee068a8013e4d782049fb16448203dd"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass150-preparation215-WIS-2-24/consensus-preparation.json",
+    "sha256": "0d3c8f667421c84bde93f8e5b5ed091176b51050eb369d06866d39bb349db534"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

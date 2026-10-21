@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 118,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-offline-originals/source-provenance.json",
+      "sha256": "d53053f91d9023fc9c16007bbad35f25af7677e75ec831617a698c0bea0604a0"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Existing offline Chrome captures for native target/control marks plus exact historically hash-pinned Kahana A2 embedded raster for complete source scope. No new browser/network acquisition.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    166
+  ],
+  "savedCaptureViewerPageLabels": [
+    511
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-offline-originals/native-166.png",
+      "sha256": "ea42f8eb07fd60b148f55a8aca2dfc1f007ff2830ecbfc346905728b7642cc14",
+      "resolution": [
+        2618,
+        3581
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-offline-originals/source-provenance.json",
+        "sha256": "d53053f91d9023fc9c16007bbad35f25af7677e75ec831617a698c0bea0604a0"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "מנחם שטיין",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "חכמת שלמה, תרגום מנחם שטיין, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page166/extension-volumeA-511-page-overview.png",
+      "sha256": "ee08de4af03687c351452205f89773476a64ccd37eb3ad38cd8f5371810eeafe",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page166/extension-volumeA-511-zoom4-upper-left.png",
+      "sha256": "5d11d3032858a803b51ab62515be1ec97cbfb4b9efa1e98c870d2d7a4d027362",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page166/extension-volumeA-511-zoom4-upper-right.png",
+      "sha256": "9ab18fc264110483ccf45f1a82c69e26894763bc4385c17d9650445d959eba4d",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-11-6/source-provenance.json",
+    "sha256": "1f699adee88b868ad54718aac803132dc5acb27bebc1388cc9ac733c28358e4c"
+  }
+}

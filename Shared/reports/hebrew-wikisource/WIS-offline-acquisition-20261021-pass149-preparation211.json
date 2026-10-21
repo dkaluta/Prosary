@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 149,
+  "integrationPass": 149,
+  "preparationID": 211,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters; original PDF, source credit, URL and historical extraction/report provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass211-WIS-offline-originals/source-provenance.json",
+      "sha256": "c87727a0c05aad5941be7fa707fc95014f660f382de20c5182fee24aacab6451"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "100percent offline pinned A2PDF145 singleembedded native/fullRGB/ASCII. Historical exactRGB crop replay address only. No web/OCR/render/display/enhancement/grammar/normalization/expected spelling/borrowed marks.",
+  "sourceDocument": "Kahana Volume A2",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    145
+  ],
+  "savedCaptureViewerPageLabels": [],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass211-WIS-offline-originals/primary-145-native.png",
+      "sha256": "3b7b39e6c7d2126e43766ba3c74d4f9bce09910b678a471dd8a94ad579951cc3",
+      "resolution": [
+        2591,
+        3562
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass211-WIS-offline-originals/source-provenance.json",
+        "sha256": "c87727a0c05aad5941be7fa707fc95014f660f382de20c5182fee24aacab6451"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "מנחם שטיין",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "חכמת שלמה, תרגום מנחם שטיין, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation211-WIS-1-3/source-provenance.json",
+    "sha256": "a8f4f4ae797deda10b4ccbdad29c4cca81ad65451a6b250d16d7b8146b8cce4e"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 157,
+  "integrationPass": 157,
+  "preparationID": 281,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass157-preparation281-WIS-19-17/source-provenance.json",
+    "sha256": "d878d92c68c599eb7c340b7a5127b479b8aee5a8d8a83c45a53f565fba421c62"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-19-17-word12-he-1-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-19-17-word12-he-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 17,
+      "anchorBefore": "הכּוּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Own independent pypdf extraction of exactly one embedded image from SHA-pinned offline PDF; native Pillow/NumPy/SciPy arrays and literal ASCII exact native crops only. Historical exact RGB fullword crop locates addresses only. No viewer, OCR, rendering, enhancement, smoothing, expected spelling, grammar, normalization or borrowed marks. Own physical unit, fullwords, controls, occurrence, letter index and actual inline sof boundaries established independently.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ca/cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ca/cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82.bin",
+      "inspectedBounds": [
+        1704,
+        1110,
+        1742,
+        1185
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass157-preparation281-WIS-19-17/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 19,
+    "verse": 17,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass157-preparation281-WIS-19-17/independent-review.json",
+    "sha256": "2f6036c82d82187394ed3acac7be55ca1002f3bf85fedd88481a7a6e43211081"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass157-preparation281-WIS-19-17/primary-preparation.json",
+    "sha256": "691754b4eddd970b42f3ed2666b2f0ba52a0e5a13e84650581600808273f1b43"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass157-preparation281-WIS-19-17/consensus-preparation.json",
+    "sha256": "b3d8c583b4ce8cf5ae5159e5e6727555b1e28a98e1902cc45749d68cdc933645"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

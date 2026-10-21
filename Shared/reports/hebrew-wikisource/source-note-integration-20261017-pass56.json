@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-21",
+  "pass": 56,
+  "startingNoteCount": 320,
+  "removedNoteCount": 3,
+  "remainingNoteCount": 317,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 55,
+      "afterNoteCount": 52,
+      "removedNoteIds": [
+        "bel-1-16-244-vayavou16-letter1-vowel",
+        "bel-1-16-244-vayokhelu16-letter1-vowel",
+        "bel-1-16-244-vayishtu16-letter1-vowel"
+      ],
+      "beforeDigest": "608af82cf1cecf5875a0fd09138b717ba2617674d6c3c01102c2d6ea66400452",
+      "afterDigest": "4eadc82927667b729adb1aa851b6627d55a81a15e3d23a997270f8946f1980d3",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 16,
+          "before": "ויָּבֹאוּ הַכֹּהֲנִים בַּלַּיְלָה כְּמִשְׁפָּטָם [הֵם] וּנְשֵׁיהֶם וּבְנֵיהֶם ויֹּאכְלוּ אֶת־הַכֹּל ויִּשְׁתּוּ׃",
+          "after": "ויָּבֹאוּ הַכֹּהֲנִים בַּלַּיְלָה כְּמִשְׁפָּטָם [הֵם] וּנְשֵׁיהֶם וּבְנֵיהֶם ויֹּאכְלוּ אֶת־הַכֹּל ויִּשְׁתּוּ׃",
+          "retiredNoteIds": [
+            "bel-1-16-244-vayavou16-letter1-vowel",
+            "bel-1-16-244-vayokhelu16-letter1-vowel",
+            "bel-1-16-244-vayishtu16-letter1-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-16-point-comparison-20261017-pass56.json",
+          "sha256": "80737b6b83b8a05ff31f1883a2817fb111ba57b83fb9c457a12b6ed2039ddc98"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass56.json",
+          "sha256": "1a4d912706e821a35d803e71337d240b64b810ccd4b95393e8ea6722e7f0ee7d"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-16-point-comparison-20261017-pass56.json",
+      "sha256": "80737b6b83b8a05ff31f1883a2817fb111ba57b83fb9c457a12b6ed2039ddc98"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass56.json",
+      "sha256": "1a4d912706e821a35d803e71337d240b64b810ccd4b95393e8ea6722e7f0ee7d"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 317,
+      "removedNotes": 3,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-5ae35b40647b212c8159c054f74fefa3b33587f90a7d0065dd6e5ad7413b8fb3.zip",
+      "archiveSHA256": "1d56097c776da079e27f95cc3a460427c6d8ac178da5079731e0c67e78f109d4",
+      "archiveBytes": 3110359
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 333,
+      "remainingNoteCount": 317,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 333,
+      "distinctChangedSourceUnits": 119
+    }
+  }
+}

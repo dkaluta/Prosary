@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 110,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass110-WIS-5-23/source-provenance.json",
+    "sha256": "dd8d5b58358963e73f1eeae241a00d6702a4d49e2d120fe7e85fd064f31ed9b3"
+  },
+  "sourceNotesBefore": 123,
+  "sourceNotesAfter": 122,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-5-23-middle-vav"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-23-ayin"
+  ],
+  "contentSHA256Before": "59ec22bdd7b2b712ae07b3aca2eabef90473b6cda0d8143b6c4fd76366f17c7d",
+  "contentSHA256After": "6395d32857d8402016b42f06eb206182598fa5a1d2f3f1199799af58d81153a0",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-5-23-ayin",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 23,
+      "anchorBefore": "וְעולָתָה",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "The second physical Ayin has a small low asymmetric stamp, separate by component topology but closely crowded by its lower oblique foot. Its broad top narrows to a short lower-right tab, with a tiny separate6pixel remnant below. This does not uniquely distinguish a short-stem Qamats from an irregular horizontal sign or merged paired-point contour. The same-word lamed/tav Qamats controls have clear long stems, but cannot supply this target's missing diagnostic contour. Retain and do not certify absence.",
+      "targetCapture": "extension-volumeA-500-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-500-zoom4-upper-right.png",
+      "inspectedBounds": [
+        1699,
+        1058,
+        1755,
+        1138
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass110-WIS-5-23/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-5-23-middle-vav",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 23,
+      "anchorBefore": "וְעולָתָה",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "The third physical Vav ends1127, followed by TWO completely detached rounded nodes at the same x1679..1689, one y1135..1143 and the other1148..1161. White rows separate letter, upper node and lower node. This vertical pair is Sheva and matches the same-word initial Vav's already transcribed two-level Sheva. It is not a horizontal bar or a single Hiriq. Full above-context is included; no Holam or other point is inferred from the neighboring lamed ascender or previous-row fragments.",
+      "targetCapture": "extension-volumeA-500-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-500-zoom4-upper-right.png",
+      "inspectedBounds": [
+        1661,
+        1058,
+        1689,
+        1127
+      ],
+      "markProposed": "sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        1679,
+        1135,
+        1689,
+        1161
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass110-WIS-5-23/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 23,
+      "before": "וְיָקִים עֲלֵיהֶם רוּחַ גְּבוּרָה וּכְסוּפָה יְפִיצֵם וְעולָתָה תָּשִׂים כָּל־הָאָרֶץ לִשְׁמָמָה וְהָרִשְׁעָה תָּמִיט כִּסְאוֹת נְדִיבִים׃",
+      "after": "וְיָקִים עֲלֵיהֶם רוּחַ גְּבוּרָה וּכְסוּפָה יְפִיצֵם וְעוְלָתָה תָּשִׂים כָּל־הָאָרֶץ לִשְׁמָמָה וְהָרִשְׁעָה תָּמִיט כִּסְאוֹת נְדִיבִים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 23,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-5-23-ayin",
+      "before": "וְעולָתָה",
+      "after": "וְעוְלָתָה"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass110-WIS-5-23/independent-review.json",
+    "sha256": "2e2042abc31628b2bac51549cc6c751a22626ebce5ea80e5b16522f79dd937ea"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass110-WIS-5-23/primary-preparation.json",
+    "sha256": "e7ebcc5ea8d75d72325452a0a518b8f470a718dcfda0bf4cdd8cf3cb7ff9951a"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass110-WIS-5-23/consensus-preparation.json",
+    "sha256": "f0c51633abd8040b1f5970fcd59f06e570e89c9bd50462fa3f4a318824db19e6"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

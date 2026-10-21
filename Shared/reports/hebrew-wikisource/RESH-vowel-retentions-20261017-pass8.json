@@ -1,0 +1,775 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 8,
+  "books": [
+    "WIS",
+    "S3Y"
+  ],
+  "status": "Nine annotated resh-vowel positions reinspected; all nine retained",
+  "applicationState": "source-only retained findings; no canonical correction proposed",
+  "baselineGlobalSourceNoteCount": 619,
+  "method": "Original embedded A2 pixels only, complete word contexts and selected exact resh/control views. Seven WIS word frames were freshly replayed from the PDF; only5:21 and6:4 received new exact-letter enlargements. The same-page155 resh in הרודים has a naturally enlarged lower foot, so a single lower bulb is insufficient to certify hiriq. The five other WIS positions remain unsupported by the word-level frames and are not claimed to have a newly isolated point. Two S3Y sites received complete glyph views, full source row context and same-page pointed/plain resh comparisons; an independent peer also could not exclude ordinary resh foot plus one point from apparent two-node sheva. Connectedness alone is not a rejection; these shapes fail to distinguish the exact point reliably. No OCR, expected Hebrew, grammatical completion, smoothing or reconstruction supplies a mark.",
+  "scope": {
+    "allChaptersContainAnnotations": true,
+    "WISWordFrames": 7,
+    "WISNewExactTargetFrames": 2,
+    "S3YCompleteGlyphTargets": 2,
+    "notWholeBookRecollation": true
+  },
+  "sourceScan": {
+    "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf"
+  },
+  "reviewedSourceNoteIds": [
+    "wis-5-21-resh",
+    "wis-6-4-resh",
+    "wis-6-18-resh",
+    "wis-12-5-resh",
+    "wis-12-24-resh",
+    "wis-14-7-resh-3-vowel",
+    "wis-18-5-word6-resh-3-vowel",
+    "s3y-1-19-word5-letter2-vowel",
+    "s3y-1-35-rakiya-resh-vowel"
+  ],
+  "resolvedSourceNoteCount": 0,
+  "retainedSourceNoteCount": 9,
+  "findings": [
+    {
+      "note": {
+        "book": "WIS",
+        "chapter": 5,
+        "verse": 21,
+        "blockId": null,
+        "id": "wis-5-21-resh",
+        "kind": "unreadablePoint",
+        "anchor": "מיְשִׁירים",
+        "occurrence": 1,
+        "letterIndex": 5,
+        "mark": "vowel",
+        "sourcePages": [
+          155
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=155"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    },
+    {
+      "note": {
+        "book": "WIS",
+        "chapter": 6,
+        "verse": 4,
+        "blockId": null,
+        "id": "wis-6-4-resh",
+        "kind": "unreadablePoint",
+        "anchor": "מֵישָׁרים",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          155
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=155"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    },
+    {
+      "note": {
+        "book": "WIS",
+        "chapter": 6,
+        "verse": 18,
+        "blockId": null,
+        "id": "wis-6-18-resh",
+        "kind": "unreadablePoint",
+        "anchor": "עֲרבּת",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          156
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=156"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    },
+    {
+      "note": {
+        "book": "WIS",
+        "chapter": 12,
+        "verse": 5,
+        "blockId": null,
+        "id": "wis-12-5-resh",
+        "kind": "unreadablePoint",
+        "anchor": "ו[יַעַרכוּ]",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          168
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=168"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    },
+    {
+      "note": {
+        "book": "WIS",
+        "chapter": 12,
+        "verse": 24,
+        "blockId": null,
+        "id": "wis-12-24-resh",
+        "kind": "unreadablePoint",
+        "anchor": "וְכִנְעָרים",
+        "occurrence": 1,
+        "letterIndex": 5,
+        "mark": "vowel",
+        "sourcePages": [
+          170
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=170"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    },
+    {
+      "note": {
+        "book": "WIS",
+        "chapter": 14,
+        "verse": 7,
+        "blockId": null,
+        "id": "wis-14-7-resh-3-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "יְבֹרךְ",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          172
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=172"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    },
+    {
+      "note": {
+        "book": "WIS",
+        "chapter": 18,
+        "verse": 5,
+        "blockId": null,
+        "id": "wis-18-5-word6-resh-3-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "יִסּרתָּם",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          181
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    },
+    {
+      "note": {
+        "book": "S3Y",
+        "chapter": 1,
+        "verse": 19,
+        "blockId": null,
+        "id": "s3y-1-19-word5-letter2-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "וְרבְבוֹת",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          234
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    },
+    {
+      "note": {
+        "book": "S3Y",
+        "chapter": 1,
+        "verse": 35,
+        "blockId": null,
+        "id": "s3y-1-35-rakiya-resh-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "בִּרקִיעַ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          235
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+      },
+      "disposition": "retainDisclosure",
+      "finding": "Exact vowel is not distinguished securely from ordinary foot geometry or a partly merged point; preserve the existing note and text."
+    }
+  ],
+  "independentS3YReview": "The separate Wisdom reviewer inspected full target glyphs and pointed/plain controls for both S3Y positions and retained both because an upper natural shaft swelling plus one lower point could mimic two-dot sheva.",
+  "supersededScratchFrames": "The initial mesharetai6-4 locator ended before the full lower point region. Only the repaired full-height frame is archived. No wrong glyph or clipped lower-region scratch frame is used as proof.",
+  "evidence": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-5-21-resh-word-native.png",
+      "sha256": "10c81aab7047ef3a6e97d36b6a380fba3bbb7e866b63035c03c0898ae943a5a9",
+      "sourcePage": 155,
+      "pixelBox": [
+        1520,
+        750,
+        1810,
+        890
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-5-21-resh-word-4x.png",
+      "sha256": "22f1ae750319271a20e0a1c9ead3dd5e277a9b8b0b7d2c90faddd1b55f7197d4",
+      "sourcePage": 155,
+      "pixelBox": [
+        1520,
+        750,
+        1810,
+        890
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-6-4-resh-word-native.png",
+      "sha256": "c47a5a590a10ada2dae58adfb095b38fba5b840951a7851dcbaf1402f5ac16d8",
+      "sourcePage": 155,
+      "pixelBox": [
+        615,
+        1590,
+        820,
+        1705
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-6-4-resh-word-4x.png",
+      "sha256": "e2c89d7204d7c96a8bfa5ec93dfb7457806007d800a20bcb4091662eb8cbf446",
+      "sourcePage": 155,
+      "pixelBox": [
+        615,
+        1590,
+        820,
+        1705
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-6-18-resh-word-native.png",
+      "sha256": "3d9e2f056efc86aabf5f7d340cc60a725799c2a5eda1e9bcfe0d03e4d6c52f92",
+      "sourcePage": 156,
+      "pixelBox": [
+        1010,
+        1750,
+        1260,
+        1890
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-6-18-resh-word-4x.png",
+      "sha256": "b8812d72175330360f7e96d54baccbc4add803459f86f9a120def891f2534cdb",
+      "sourcePage": 156,
+      "pixelBox": [
+        1010,
+        1750,
+        1260,
+        1890
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-12-5-resh-word-native.png",
+      "sha256": "303c9e0ceb1e526c66e35bbec217903ddff67cd5cc4d24c6d3266192ecac56c7",
+      "sourcePage": 168,
+      "pixelBox": [
+        1580,
+        1300,
+        1920,
+        1425
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-12-5-resh-word-4x.png",
+      "sha256": "d87ac76025db6cb675e906b0f1608b8bd394fa447ed47d7c20ef5bb9b83990c2",
+      "sourcePage": 168,
+      "pixelBox": [
+        1580,
+        1300,
+        1920,
+        1425
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-12-24-resh-word-native.png",
+      "sha256": "d0db2df6df4c8aa33a5dffb40e18b57c303bcbfe61f1a6375dd9d0d018f5c7c2",
+      "sourcePage": 170,
+      "pixelBox": [
+        1270,
+        1200,
+        1620,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-12-24-resh-word-4x.png",
+      "sha256": "e3239572fe869368c32c3628f0902f5c0a88aacdfdd07f0c68ee9286ccf09475",
+      "sourcePage": 170,
+      "pixelBox": [
+        1270,
+        1200,
+        1620,
+        1340
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-14-7-resh-3-vowel-word-native.png",
+      "sha256": "832c475db9c0afc25dc7ca94bd8e58215d5c1ba212f0e65acf52408032c87f81",
+      "sourcePage": 172,
+      "pixelBox": [
+        400,
+        1830,
+        650,
+        1940
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-14-7-resh-3-vowel-word-4x.png",
+      "sha256": "b5152fceaab1830bb63581ce0d50b627667eee7f50e2e66c434e7dc62a13ca5f",
+      "sourcePage": 172,
+      "pixelBox": [
+        400,
+        1830,
+        650,
+        1940
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-18-5-word6-resh-3-vowel-word-native.png",
+      "sha256": "523e8a4acf4b4ccd2d19a2da22ef24ff4b6b2b60286537bf5ef3ef0e345e112d",
+      "sourcePage": 181,
+      "pixelBox": [
+        620,
+        1360,
+        1050,
+        1475
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis-18-5-word6-resh-3-vowel-word-4x.png",
+      "sha256": "73bcc59fee0672109794ed4b73b239cf5569a00946f5522d8529cfb90559100c",
+      "sourcePage": 181,
+      "pixelBox": [
+        620,
+        1360,
+        1050,
+        1475
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/beraqim5-21-locator-native.png",
+      "sha256": "22f97031432ceeb6408cfba9b7913cef5c347059d181199cb35b7b4e3f88402c",
+      "sourcePage": 155,
+      "pixelBox": [
+        1830,
+        750,
+        2110,
+        890
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/beraqim5-21-locator-4x.png",
+      "sha256": "1b140412df4b462cdd20eb5f479583f8a14988578e28c2d92b87f3ebe5ab9205",
+      "sourcePage": 155,
+      "pixelBox": [
+        1830,
+        750,
+        2110,
+        890
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/harodim6-2-locator-native.png",
+      "sha256": "45386db14bc2b682f56163a2e90ec1a69855647b951fffb06e9aa7e833fbb143",
+      "sourcePage": 155,
+      "pixelBox": [
+        1800,
+        1320,
+        2080,
+        1445
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/harodim6-2-locator-4x.png",
+      "sha256": "6bf2c28f08358530ca48cd936935141060e904b509e294db15ee4dbe816c21ac",
+      "sourcePage": 155,
+      "pixelBox": [
+        1800,
+        1320,
+        2080,
+        1445
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/yivasru6-6-locator-native.png",
+      "sha256": "023575768465a4c1f66f75c9e78f45c920e4aa27bea3436e5a024803e9f9243b",
+      "sourcePage": 155,
+      "pixelBox": [
+        600,
+        1860,
+        880,
+        1980
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/yivasru6-6-locator-4x.png",
+      "sha256": "932a678d6f34b275ada20686dcf353c6c5916cf244c0c561af91efa37782b16d",
+      "sourcePage": 155,
+      "pixelBox": [
+        600,
+        1860,
+        880,
+        1980
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis5-21-resh-tight-native.png",
+      "sha256": "23d21051dbeb0761a5bf2fa49dd452988c4ebcddc2399c1561188ef29bb307e6",
+      "sourcePage": 155,
+      "pixelBox": [
+        1585,
+        795,
+        1625,
+        870
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis5-21-resh-tight-15x.png",
+      "sha256": "d137e1ca5d4bdc8090b1ff7caf782d94cd598dd2f9d7cbf7ca8626de7fa6bba9",
+      "sourcePage": 155,
+      "pixelBox": [
+        1585,
+        795,
+        1625,
+        870
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis6-4-resh-tight-native.png",
+      "sha256": "bea11aaa6a26c52b95feb4a00ad9de8cd12db37d62ea151b56fa216432369496",
+      "sourcePage": 155,
+      "pixelBox": [
+        680,
+        1620,
+        722,
+        1685
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/wis6-4-resh-tight-15x.png",
+      "sha256": "7d646d739a5ef2bd1770513b099f5a5ca540608aa815f23c495a06ed5d53b9f4",
+      "sourcePage": 155,
+      "pixelBox": [
+        680,
+        1620,
+        722,
+        1685
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/harodim6-2-bare-resh-tight-native.png",
+      "sha256": "8fead82924d39dd256a4b5963b9f9563a4f8b1491628e1864312f857cf67fa0c",
+      "sourcePage": 155,
+      "pixelBox": [
+        1970,
+        1360,
+        2010,
+        1425
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/harodim6-2-bare-resh-tight-15x.png",
+      "sha256": "b3631e3413ae20ae2f9673050f67e60e16f4abbb8c10b96e8a7ba8c29d4aaaf1",
+      "sourcePage": 155,
+      "pixelBox": [
+        1970,
+        1360,
+        2010,
+        1425
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/addirim6-5-control-full-native.png",
+      "sha256": "37be57c4c6d4e9a36844cc8fc280d4deebb41d669a871a0987e92c9a9a8b18c8",
+      "sourcePage": 155,
+      "pixelBox": [
+        430,
+        1795,
+        710,
+        1880
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/addirim6-5-control-full-4x.png",
+      "sha256": "9a8bbc2ada401aa6a61a9f1405942e288da78d04fdd2c8b3d33c419bbdd34b20",
+      "sourcePage": 155,
+      "pixelBox": [
+        430,
+        1795,
+        710,
+        1880
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/mesharetai6-4-control-full-native.png",
+      "sha256": "35452853b20b16885c09d9a37cefb740eb75e9b51aab3ab0473086cb52037c9c",
+      "sourcePage": 155,
+      "pixelBox": [
+        1900,
+        1590,
+        2230,
+        1740
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/mesharetai6-4-control-full-4x.png",
+      "sha256": "d7f9773630f14d446ca70b58f98fd80b56a1d6d11eb62c23ca806757e51bf1b2",
+      "sourcePage": 155,
+      "pixelBox": [
+        1900,
+        1590,
+        2230,
+        1740
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/s3y19-row-2x.png",
+      "sha256": "2cb16b107588512cb928e78901d2efc2fdaa4ad61b92bd9ff76de4f4ceb1abb1",
+      "sourcePage": 234,
+      "pixelBox": [
+        260,
+        805,
+        2100,
+        935
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/s3y35-and-controls-2x.png",
+      "sha256": "6b86ee6ab1db9097bceeae33af5e94ac78078c0546855058028df6f838452dc3",
+      "sourcePage": 235,
+      "pixelBox": [
+        550,
+        1050,
+        2120,
+        1350
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/s3y19-resh-native.png",
+      "sha256": "59395d92e8df36947734f209eac68117fe82de075ea3aadfe0a577edb1445167",
+      "sourcePage": 234,
+      "pixelBox": [
+        1114,
+        830,
+        1161,
+        913
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/s3y19-resh-12x.png",
+      "sha256": "a800917f60e354acca333f64b1c30a9371d288e012afdd6c32bf6b2aa1349656",
+      "sourcePage": 234,
+      "pixelBox": [
+        1114,
+        830,
+        1161,
+        913
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/s3y35-resh-native.png",
+      "sha256": "31118ca35dfa06089c614a8c8d2f6334a89ebe2762a665e8fec3e065053cf8a0",
+      "sourcePage": 235,
+      "pixelBox": [
+        1713,
+        1050,
+        1759,
+        1137
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/s3y35-resh-12x.png",
+      "sha256": "1a03c3f710a3d3e80a19631a5fe6f9df43fc511e3c6e80d7f7f0ba0009b93ed8",
+      "sourcePage": 235,
+      "pixelBox": [
+        1713,
+        1050,
+        1759,
+        1137
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/baruch35-control-locator-native.png",
+      "sha256": "1c63ff77cff3e07a6b4390db35362e23510167f2597de9283bce7bcb3c17d2fb",
+      "sourcePage": 235,
+      "pixelBox": [
+        1850,
+        1040,
+        2110,
+        1150
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/baruch35-control-locator-5x.png",
+      "sha256": "3a35a59899a5a9f91ca55ded3d89a8f62b5ba4b815a76473b17a9adea501a648",
+      "sourcePage": 235,
+      "pixelBox": [
+        1850,
+        1040,
+        2110,
+        1150
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/barchu36-control-locator-native.png",
+      "sha256": "3ea2c9eaafcf5fcd41b7c62fb9f94f2cb98101d72a9f8282f56586cc517b5f9a",
+      "sourcePage": 235,
+      "pixelBox": [
+        1850,
+        1160,
+        2110,
+        1240
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/barchu36-control-locator-5x.png",
+      "sha256": "ba20387eba13861f36beb12762d6fb829dc9554d49d2a529a965649c1c6c5000",
+      "sourcePage": 235,
+      "pixelBox": [
+        1850,
+        1160,
+        2110,
+        1240
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/S3Y-1-19-word-016-context-native.png",
+      "sha256": "35288204775002dfdbcbf800eaac134b6768321da04edb8f188ddc4d6080dee2",
+      "sourcePage": 234,
+      "pixelBox": [
+        960,
+        815,
+        1200,
+        910
+      ],
+      "scale": 1,
+      "resampling": "none"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass8-RESH-RETAINED/S3Y-1-35-word-033-context-native.png",
+      "sha256": "1195fbcc95e78427ec980f12d773afa58b5f06892c4fd9fa23c7cff20370cfdc",
+      "sourcePage": 235,
+      "pixelBox": [
+        1600,
+        1020,
+        1810,
+        1140
+      ],
+      "scale": 1,
+      "resampling": "none"
+    }
+  ],
+  "validation": {
+    "originalPDFHashVerified": true,
+    "allArchivedCropsReplayedExactly": 42,
+    "canonicalSourceFilesUnchangedByThisReport": true
+  }
+}

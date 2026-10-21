@@ -52,7 +52,8 @@ struct RosaryFlowView: View {
 
   private var beadLayout: BeadLayout {
     BeadLayout.build(steps: steps, currentIndex: currentIndex,
-                     hasClosingCross: sessionPrayer.rosary.includeFinalSignOfCross)
+                     hasClosingCross: sessionPrayer.rosary.includeFinalSignOfCross,
+                     languageCode: sessionPrayer.resolvedLanguageCode)
   }
 
   private var previousMysteryIndex: Int? {

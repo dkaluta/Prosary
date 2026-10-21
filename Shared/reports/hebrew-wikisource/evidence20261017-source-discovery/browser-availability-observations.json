@@ -1,0 +1,75 @@
+{
+  "method": "Exact URLs and visible accessibility text observed through ordinary Chrome pages on2026-10-17. These are manually recorded observations, not HTML byte captures. Navigation success alone was not counted as content availability.",
+  "NLI1956": {
+    "catalogURL": "https://www.nli.org.il/he/books/NNL_ALEPH990013008210205171/NLI",
+    "catalogVisible": true,
+    "catalogDetails": [
+      "הספרים החיצונים",
+      "מהד ב",
+      "תל אביב : מסדה",
+      "תשט״ז"
+    ],
+    "onlineControlResolver": "https://nli.alma.exlibrisgroup.com/view/uresolver/972NNL_INST/openurl?&u.ignore_date_coverage=true&rft.mms_id=990013008210205171&rfr_id=info:sid/primo.exlibrisgroup.com&svc_dat=viewit&is_new_ui=true&rft_dat=language=heb",
+    "readerURL": "https://ebooks.psik.io/book?book_id=4720",
+    "readerTitle": "הספר לא נמצא | פסיק",
+    "visibleHeading": "הספר לא נמצא",
+    "visibleBody": "ייתכן שהקישור שגוי, או שהספר הוסר מהספרייה.",
+    "result": "Unavailable reader; no source-book body accessed."
+  },
+  "NLI1937": {
+    "catalogURL": "https://www.nli.org.il/he/books/NNL_ALEPH990013254340205171/NLI",
+    "catalogVisible": true,
+    "catalogDetails": [
+      "תל אביב : הוצאת מקורות",
+      "תרצ״ז",
+      "A2 pages330–653; B2 pages292–530",
+      "A2 copy11 catalog note describes handwritten editorial corrections; no digital copy of those corrections was found."
+    ],
+    "readerURL": "https://tablet.otzar.org/#/book/146853/p/-1/t/827980/fs/0/start/0/end/0/c",
+    "readerTitle": "אגרת יוסף / סופר, יוסף",
+    "visibleText": [
+      "ספר אגרת יוסף",
+      "הקדמה",
+      "מתוך 25"
+    ],
+    "result": "Wrong book; no Kahana source-body access."
+  },
+  "oldCatalogLink": {
+    "URL": "https://aleph.nli.org.il/F?doc_number=001964789&func=direct&local_base=nnl01",
+    "observedWebToolStatus": 410,
+    "result": "Gone; followed the actual Wikisource catalog link rather than guessing record URLs."
+  },
+  "currentPSIKCatalog": {
+    "URL": "https://ebooks.psik.io/book/12307/הספרים-החיצונים--לתורה-לנביאים-לכתובים-ושאר-ספרים-חיצונים--כרך-ב",
+    "title": "הספרים החיצונים : לתורה לנביאים לכתובים ושאר ספרים חיצונים : כרך ב",
+    "visibleDetails": [
+      "אברהם כהנא",
+      "כרמל",
+      "2025",
+      "534 עמודים",
+      "Read preview",
+      "Sign up for Psik+",
+      "₪39 לחודש"
+    ],
+    "result": "Correct current public catalog entry; subscription and preview are offered. No target body pages requested, no login or purchase performed. Prior research already verified only cover/copyright sample and photographic1956 credits; no new body raster was obtained."
+  },
+  "fallbackTabs": [
+    {
+      "URL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf",
+      "visibleDescription": "אברהם כהנא, הספרים החיצונים. כרך ראשון, ספר שני: לנביאים ולכתובים.",
+      "visiblePages": 325,
+      "originalPDF": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+      "replaced": "Agent-created wrong Otzar lookup tab; marked deliverable."
+    },
+    {
+      "URL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "visibleDescription": "אברהם כהנא, הספרים החיצונים. כרך שני, שאר ספרים חיצונים.",
+      "visiblePages": 530,
+      "originalPDF": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf",
+      "replaced": "Agent-created missing PSIK lookup tab; marked deliverable."
+    }
+  ],
+  "unrelatedUserTabsChanged": false,
+  "authOrPaywallBypass": false,
+  "peopleContacted": false
+}

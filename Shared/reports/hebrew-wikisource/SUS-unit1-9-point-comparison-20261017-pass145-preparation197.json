@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 145,
+  "integrationPass": 145,
+  "preparationID": 197,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation197-SUS-1-9/source-provenance.json",
+    "sha256": "c1d833460deeadf7e9a3a788aadc80ab87563bc6faed536aff4cf33a8bd70324"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sus-1-9-letter-1-vowel"
+  ],
+  "contentSHA256Before": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "contentSHA256After": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sus-1-9-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 9,
+      "anchorBefore": "ונַּהַפְכוּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Own firstVav377px18x47[1998,1342,2016,1389] forms narrowstem2008..2013 downthrough1379, then expands leftward into solid lowerterminal2001..2016 y1382..1388; exactnativeASCII shows uninterruptedneck at1380..1383. No detached exactvowelclass or independentprintedabsence canbecertified fromjoinedfoot; lowerblankfieldafter1389 isnotabsenceproof. AdjacentNun detached lowerbar118px[1977,1380,1995,1388] belongs ownsecondletter and supplies nomark. OwnfinalVav literalShuruq and completecontrolDaletinteriordot are inspected separately withouttransfer. Retain exactdisclosure/alloriginalscalars.",
+      "targetCapture": "primary-238-native.png",
+      "targetSourceIdentifier": "primary-238-native.png",
+      "inspectedBounds": [
+        1993,
+        1335,
+        2025,
+        1406
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation197-SUS-1-9/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 9,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation197-SUS-1-9/independent-review.json",
+    "sha256": "8f9c6a41d349b7d8332246566d00c490f932c726c7ee4c02e0f366a064411501"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation197-SUS-1-9/primary-preparation.json",
+    "sha256": "439178ba1063b972c1d98602c80ee50f0255025bdf86752579468e624a3a14e6"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass145-preparation197-SUS-1-9/consensus-preparation.json",
+    "sha256": "70ec72e12a2747d1b5d06a1d473cc39e7778254c791226d69bd6783da1add0a7"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

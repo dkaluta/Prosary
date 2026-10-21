@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 124,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass124-WIS-offline-originals/source-provenance.json",
+      "sha256": "ed5bdbe3b004bc98789484cb77f9e02fffe85fb472332a614bae606876b57c7d"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Existing offline Chrome captures plus exact historically hash-pinned embedded primary Kahana A2 raster for complete source span. No new browser/network acquisition.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    179
+  ],
+  "savedCaptureViewerPageLabels": [
+    524
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass124-WIS-offline-originals/native-179.png",
+      "sha256": "a8e1e164a0d3680660956d357d7b23014e59c49451b84fa8c4089c75718281f3",
+      "resolution": [
+        2540,
+        3526
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass124-WIS-offline-originals/source-provenance.json",
+        "sha256": "ed5bdbe3b004bc98789484cb77f9e02fffe85fb472332a614bae606876b57c7d"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "מנחם שטיין",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "חכמת שלמה, תרגום מנחם שטיין, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page179/extension-volumeA-524-page-overview.png",
+      "sha256": "b26fa9e212c8c926177483e9b7c009f8640115fed41ae4bfee2f382dbf43ea5d",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page179/extension-volumeA-524-zoom4-header.png",
+      "sha256": "40f3e8f695f52097ac5283fd88c6c4a2e5da2597162c5effd27cc1b469037f23",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page179/extension-volumeA-524-zoom6-top-right.png",
+      "sha256": "475b78a2e9c5789b9e870e25758b7e4325acbfd20662463ef0fc142b89afac48",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass124-WIS-16-23/source-provenance.json",
+    "sha256": "97b765b10a5473e161b54fcf6a16f8aca237d045acd288a68110dfbc7f291183"
+  }
+}

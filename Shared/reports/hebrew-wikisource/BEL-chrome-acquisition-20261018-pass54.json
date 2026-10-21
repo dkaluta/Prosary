@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-21",
+  "pass": 54,
+  "legacyBatchPathDate": "20261017",
+  "browser": {
+    "name": "Chrome",
+    "id": "1",
+    "type": "extension_and_cdp_localhost_9222",
+    "tabId": "61A89F755E6D3DC9B0343D03370493BF",
+    "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+    "title": "Kahana external books volume A in Psik reader"
+  },
+  "authorization": {
+    "userSourceChoice": "Yes—use the open Kahana volumes",
+    "userConnectionInstruction": "Server runs on localhost:9222",
+    "actionTimeApproval": [
+      "continue the pass",
+      "do pass 41",
+      "do 40, then immediately do 42, 43, 44, 45, etc",
+      "restored both pages",
+      "ensure you are using chrome",
+      "could we preemptively capture everything with notes?",
+      "start working on them until exhaustion"
+    ],
+    "scope": "Signed-in Psik library session for Kahana volume A. Viewer page 588 (internal 603, printed 243 / רמג, BEL 1:8) used for Pass 54 top unresolved-vowel unit."
+  },
+  "sourcePolicy": "Displayed Kahana scan approved by user supersedes previous local-PDF-only acquisition choice. Existing original-PDF page locators and all prior scalars remain unchanged. Screenshot is not claimed pixel-identical to original local PDF. No OCR, grammatical reconstruction, sharpening, smoothing or alternate witness used to supply marks. Browser zoom is the ordinary viewer renderer; subsequent inspection crops may only copy pixels and use integer NEAREST.",
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page243/extension-volumeA-588-page-overview.png",
+      "sha256": "f1d3cbcf56f867eb69c0fa4b1f168ee9b57e198de0443c2c684da2640ff4b929",
+      "viewerPageNumber": 588,
+      "internalPdfPageNumber": 603,
+      "printedPageNumber": 243,
+      "printedPageHebrew": "רמג",
+      "canonicalLegacyPageNumber": 243,
+      "resolution": "2636x1862",
+      "purpose": "full-printed-page-overview"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page243/extension-volumeA-588-zoom4-mid-right.png",
+      "sha256": "8370e19ed24d71e2588b3f4223d8cb9115c2677e057e50a6fbde98f0cbc109d1",
+      "viewerPageNumber": 588,
+      "internalPdfPageNumber": 603,
+      "printedPageNumber": 243,
+      "printedPageHebrew": "רמג",
+      "canonicalLegacyPageNumber": 243,
+      "resolution": "2636x1862",
+      "purpose": "primary-source-screenshot"
+    }
+  ]
+}

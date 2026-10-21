@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 140,
+  "integrationPass": 140,
+  "preparationID": 175,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation175-SIR-1-3/source-provenance.json",
+    "sha256": "4714e3fdb4bbe158f23036227533756c69bbbdff05c9bff1118987c28c728d9f"
+  },
+  "sourceNotesBefore": 21,
+  "sourceNotesAfter": 21,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-1-3-1-dagesh"
+  ],
+  "contentSHA256Before": "2fe6fdb434aa7724f97567defa24a45c63edc3fbbf7310c864d803f316cb1739",
+  "contentSHA256After": "2fe6fdb434aa7724f97567defa24a45c63edc3fbbf7310c864d803f316cb1739",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-1-3-1-dagesh",
+      "book": "SIR",
+      "chapter": 1,
+      "verse": 3,
+      "anchorBefore": "גֹבַהּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Own completeGimel forms single1369px36x72 connected upperroof/rightstem/lowerleftfoot. Its upperinterior across1305..1321 is saturated/irregular with tiny pinholes and no independently detached interior node. Clear spaces beside lowerstem cannot certify absence throughout the dagesh-bearing interior. Ownsameword finalHe has independently detached94px12x13 interiorMappiq[1112,1330,1124,1343], while ownGimel has detached96px13x10 aboveHolam[1232,1279,1245,1289]. These literal detached dots demonstrate separateness but cannot supply Gimel interior mark. Retain exact disclosure/allscalars; neither dagesh nor absence certified.",
+      "targetCapture": "extension-volumeB-453-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeB-453-zoom4-header.png",
+      "inspectedBounds": [
+        1227,
+        1299,
+        1263,
+        1371
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation175-SIR-1-3/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 3,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation175-SIR-1-3/independent-review.json",
+    "sha256": "e4d5a39e4f21307a9222799e48008c49d264f983f712676d7a41eb173def9af5"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation175-SIR-1-3/primary-preparation.json",
+    "sha256": "2ad61dcbf582c257a33f50ad2e84ca2f8295135d587de81f9878be937781a266"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation175-SIR-1-3/consensus-preparation.json",
+    "sha256": "0b52536822e62290541c1c415cb8cb188f02ebbed6123df85d6a45973778daae"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

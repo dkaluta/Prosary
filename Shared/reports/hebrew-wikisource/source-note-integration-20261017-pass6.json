@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-17",
+  "pass": 6,
+  "startingNoteCount": 630,
+  "removedNoteCount": 1,
+  "remainingNoteCount": 629,
+  "books": [
+    {
+      "book": "2MA",
+      "beforeNoteCount": 12,
+      "afterNoteCount": 11,
+      "removedNoteIds": [
+        "2ma-15-34-het-2-vowel"
+      ],
+      "beforeDigest": "db4e22295d0233e22c08e75a34ac294ada250ef311a008cdb076623a458632bd",
+      "afterDigest": "2a8327d372071aa258ac1080f07bd8ba7b55fa7896b5465d3b61ac7ec7dfe642",
+      "sourceChanges": [
+        {
+          "book": "2MA",
+          "chapter": 15,
+          "verse": 34,
+          "before": "מֵחלְלוֹ",
+          "after": "מֵחַלְלוֹ",
+          "retiredNoteIds": [
+            "2ma-15-34-het-2-vowel"
+          ],
+          "finding": "The original companion shows a broad flat eight-pixel vowel bar with only shallow one-pixel bottom lugs, matching the same-page hei patah. It lacks the deep central qamats stem and is wider/continuous compared with the adjacent mem tsere. Root and independent reviewer confirmed the exact word and printed35/Catholic15:34 source unit."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-patah-reinspection-20261017-pass6.json",
+          "sha256": "5b04d38ad39b773e422a584660ba3719d8bf65e2f61ce0a2d25032425473f76d"
+        }
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/MACCABEES-patah-reinspection-20261017-pass6.json",
+      "sha256": "5b04d38ad39b773e422a584660ba3719d8bf65e2f61ce0a2d25032425473f76d"
+    }
+  ],
+  "dailyWholeBookPinsUpdated": 2,
+  "allCompleteDailyAppointmentsByteUnchanged": 20,
+  "allCatholicPresentationFilesByteUnchanged": true,
+  "otherElevenSourceBooksByteUnchanged": true,
+  "discovery": "User-provided PSIK PDF excerpt preserved in Downloads/prosary; review limited to its one remaining annotated source unit. The final certification uses the existing original companion scan.",
+  "state": "applied, regenerated, source replay and data parity verified,114 shared576 Android56 Apple tests passed",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 629,
+      "notesByBook": {
+        "TOB": 12,
+        "JDT": 0,
+        "WIS": 203,
+        "SIR": 29,
+        "BAR": 0,
+        "1MA": 12,
+        "2MA": 11,
+        "LJE": 0,
+        "ESG": 50,
+        "S3Y": 65,
+        "SUS": 25,
+        "BEL": 222
+      },
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "unchangedDailyReadingsPayload": true,
+      "matchingNativeDataCopies": 3,
+      "verifiedReferencedEvidenceFiles": 63,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-c9ce253dae127138a062e93091c8cea206313dae1ae9b50011e3f4ab64b9aff7.zip",
+      "archiveSHA256": "c1c2fbbe6a7da6211c3a1f47a5e099bdaa76448af9d3c66dfea2ffe2f9c59ce3",
+      "archiveBytes": 3115724
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 21,
+      "remainingNoteCount": 629,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "SIR",
+        "WIS"
+      ],
+      "exactSourceUnitChanges": 21,
+      "changedArchiveChapters": 18,
+      "preservedArchiveMembers": 1318,
+      "allSourceBodiesReplayOnlyApprovedChanges": true,
+      "allCatholicPresentationDecisionsAnd26PinsUnchanged": true,
+      "dailyPayloadChanges": [
+        "2MA12:45 certified dagesh and matching note retirement"
+      ],
+      "savedUserPDFUnchanged": "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך ב.pdf"
+    },
+    "sharedTests": {
+      "test-bible-library.py": 21,
+      "test-hebrew-deuterocanon.py": 22,
+      "test-scripture-source-notes.py": 13,
+      "test-bible-source-structure.py": 12,
+      "test-hebrew-daily-readings.py": 14,
+      "test-reading-texts.py": 32,
+      "totalPassed": 114
+    },
+    "android": {
+      "task": "testDebugUnitTest --rerun-tasks",
+      "suites": 71,
+      "tests": 576,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "apple": {
+      "destination": "macOS",
+      "passedTests": 56,
+      "failedTests": 0,
+      "skippedTests": 0,
+      "result": "passed",
+      "resultBundle": "Test-Prosary-2026.10.17_14-08-44-+0300.xcresult"
+    },
+    "windows": {
+      "runtimeTests": "not run on macOS",
+      "generatedDataCopies": "byte-identical to Shared"
+    },
+    "generationChecks": {
+      "bibleLibrarySecondPass": "passed, byte-stable",
+      "readingTexts": "passed, byte-stable",
+      "readingMappings": "passed",
+      "scopedDiffWhitespace": "passed"
+    }
+  }
+}

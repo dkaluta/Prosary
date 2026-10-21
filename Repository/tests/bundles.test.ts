@@ -43,6 +43,27 @@ function bundleWithLanguages(languages: unknown[]): Uint8Array {
   ]);
 }
 
+test("retired community identity cannot be republished but built-in and other authors remain valid", async () => {
+  const makeBundle = (id: string) => buildZip([
+    { name: "manifest.json", data: json({
+      formatVersion: 2, id, kind: id, displayName: "Litany of Loreto",
+      hasCatalog: false, languages: ["he"],
+    }) },
+    { name: "devotion.json", data: json({ type: "steps", steps: [] }) },
+    { name: "content/he.json", data: json({ prayers: {}, mysteries: {} }) },
+  ]);
+  for (const id of ["litanyOfMaryTheBlessedEverVirgin", "repo.stgamliel-il.litanyOfMaryTheBlessedEverVirgin"]) {
+    await assert.rejects(
+      () => validateAndRestamp(makeBundle(id), "stgamliel-il"),
+      (error: unknown) => error instanceof BundleError && error.message.includes("retired"),
+    );
+  }
+  const sameNameOtherAuthor = await validateAndRestamp(makeBundle("litanyOfMaryTheBlessedEverVirgin"), "pilgrim");
+  assert.equal(sameNameOtherAuthor.id, "repo.pilgrim.litanyOfMaryTheBlessedEverVirgin");
+  const builtInName = await validateAndRestamp(makeBundle("litanyOfLoreto"), "stgamliel-il");
+  assert.equal(builtInName.id, "repo.stgamliel-il.litanyOfLoreto");
+});
+
 test("an oversized upload is rejected from its declared byte length before it is read", () => {
   assert.doesNotThrow(() => assertBundleByteLength(MAX_BUNDLE_BYTES));
   assert.throws(

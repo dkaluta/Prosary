@@ -1,0 +1,1257 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 12,
+  "book": "SUS",
+  "status": "Four exact yod dagesh omissions independently approved; one uncertainty retained; no canonical changes by author",
+  "applicationState": "pendingRootIntegration",
+  "scope": {
+    "reviewedSourceNoteCount": 5,
+    "reviewedChapters": [
+      1
+    ],
+    "letter": "yod",
+    "mark": "dagesh",
+    "allTargetAndControlChaptersAlreadyAnnotated": {
+      "SUS:1": 22,
+      "WIS:8": 3,
+      "WIS:13": 9
+    },
+    "notWholeBookRecollation": true
+  },
+  "baselineDirectory": "/private/tmp/prosary-hebrew-pass12-20261017/baseline",
+  "baselineGlobalNoteCount": 582,
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/SUS.json",
+  "canonicalInputSHA256": "f0490c87c1814a242c3aadcf9fbc79210e2d1c1379654dc6230ccfb5739109b9",
+  "canonicalOutputSHA256": "f0490c87c1814a242c3aadcf9fbc79210e2d1c1379654dc6230ccfb5739109b9",
+  "canonicalChanged": false,
+  "beforeBookSourceNoteCount": 22,
+  "expectedPacketOnlySourceNoteCountAfter": 18,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 1,
+  "beforeSourceContentSHA256": "b550cb627cac4c19be76cdd598fe6532f8a4bcfbbca0af80743a0b17fde1aff3",
+  "expectedPacketOnlySourceContentSHA256After": "7e474828cc5484ed5bd35ae52fa7de322f71e22de38d67ac318a223b18324d71",
+  "method": "Fresh native full glyphs, complete words, complete numbered contexts and margin strips, with exact same-A2-font paired pointed/plain yods and three literal local bare yods. Added compact low-left nodes below a left concavity and beside the continuing right tail distinguish dagesh from the ordinary yod head/hook. A pinhole or bridge alone neither certifies nor rejects the point. Existing canonical marks supply word locators only, never the missing point. All durable images freshly replay from original embedded PDF pixels with integer nearest-neighbor enlargement; no OCR, expected word, grammar, alternate translation, filtering, reconstruction or new-witness assumption.",
+  "accepted": [
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 6,
+      "before": "וַיִתְחַזְּקוּ",
+      "after": "וַיִּתְחַזְּקוּ",
+      "retiredNoteIds": [
+        "sus-1-6-letter-2-dagesh"
+      ],
+      "finding": "The exact yod in source6 has an added compact lower-left node below a left concavity/white band, beside the separately continuing right tail. Its contour and position match the pointed first yod in same-font WIS13:10 חיים and approved WIS8:3 חיֵי, and differ from the three plain same-unit6 יהויקים yods and the plain second חיים yod. The added lower-left lobe is diagnostic despite its ink attachment."
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 14,
+      "before": "ויָסֹבּוּ",
+      "after": "ויָּסֹבּוּ",
+      "retiredNoteIds": [
+        "sus-1-14-letter-2-dagesh"
+      ],
+      "finding": "The exact yod in source14 has an added compact lower-left node below a left concavity/white band, beside the separately continuing right tail. Its contour and position match the pointed first yod in same-font WIS13:10 חיים and approved WIS8:3 חיֵי, and differ from the three plain same-unit6 יהויקים yods and the plain second חיים yod. The added lower-left lobe is diagnostic despite its ink attachment. The target is the first word ויסבו at A2:238[1600,1810,1630,1850]; the older[1430,1788,1485,1883] frame is the following וישובו and is excluded as target proof, though correctly named fresh frames of that word serve as a local pointed comparison."
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 27,
+      "before": "ויִתְבּוֹשָׁשׁוּ",
+      "after": "ויִּתְבּוֹשָׁשׁוּ",
+      "retiredNoteIds": [
+        "sus-1-27-letter-2-dagesh"
+      ],
+      "finding": "The exact yod in source27 has an added compact lower-left node below a left concavity/white band, beside the separately continuing right tail. Its contour and position match the pointed first yod in same-font WIS13:10 חיים and approved WIS8:3 חיֵי, and differ from the three plain same-unit6 יהויקים yods and the plain second חיים yod. The added lower-left lobe is diagnostic despite its ink attachment."
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "before": "ויִפֶן",
+      "after": "ויִּפֶן",
+      "retiredNoteIds": [
+        "sus-1-47-letter-2-dagesh"
+      ],
+      "finding": "The exact yod in source47 has an added compact lower-left node below a left concavity/white band, beside the separately continuing right tail. Its contour and position match the pointed first yod in same-font WIS13:10 חיים and approved WIS8:3 חיֵי, and differ from the three plain same-unit6 יהויקים yods and the plain second חיים yod. The added lower-left lobe is diagnostic despite its ink attachment."
+    }
+  ],
+  "retiredSourceNoteIds": [
+    "sus-1-14-letter-2-dagesh",
+    "sus-1-27-letter-2-dagesh",
+    "sus-1-47-letter-2-dagesh",
+    "sus-1-6-letter-2-dagesh"
+  ],
+  "retainedSourceNoteIds": [
+    "sus-1-62-letter-2-dagesh"
+  ],
+  "allRemainingSourceNoteIdsAfterPacket": [
+    "sus-1-14-letter-1-vowel",
+    "sus-1-17-letter-1-vowel",
+    "sus-1-18-letter-1-vowel",
+    "sus-1-18-letter-4-vowel",
+    "sus-1-18-tsadi-vowel",
+    "sus-1-22-letter-1-vowel",
+    "sus-1-22-letter-3-vowel",
+    "sus-1-23-letter-1-vowel",
+    "sus-1-23-letter-3-vowel",
+    "sus-1-27-letter-1-vowel",
+    "sus-1-38-letter-2-vowel",
+    "sus-1-38-letter-3-vowel",
+    "sus-1-40-letter-1-vowel",
+    "sus-1-47-letter-1-vowel",
+    "sus-1-5-letter-1-vowel",
+    "sus-1-62-letter-1-vowel",
+    "sus-1-62-letter-2-dagesh",
+    "sus-1-9-letter-1-vowel"
+  ],
+  "retainedAnchorUpdates": [
+    {
+      "noteId": "sus-1-14-letter-1-vowel",
+      "before": "ויָסֹבּוּ",
+      "after": "ויָּסֹבּוּ"
+    },
+    {
+      "noteId": "sus-1-27-letter-1-vowel",
+      "before": "ויִתְבּוֹשָׁשׁוּ",
+      "after": "ויִּתְבּוֹשָׁשׁוּ"
+    },
+    {
+      "noteId": "sus-1-47-letter-1-vowel",
+      "before": "ויִפֶן",
+      "after": "ויִּפֶן"
+    }
+  ],
+  "unitTextHashChangesAfterPacket": [
+    {
+      "chapter": 1,
+      "verse": 6,
+      "beforeTextSHA256": "466349850e0fc987032bec7b923f2503053c37db27183d806ba06bac141ec7b7",
+      "afterTextSHA256": "7584ad8d29e8974e16ce271653010034ecad9c78b33b90637cf5ffd60a945dae"
+    },
+    {
+      "chapter": 1,
+      "verse": 14,
+      "beforeTextSHA256": "487f09c670f0c853850f93652aca7446579668764b80fdf31f75f9dcafcc1455",
+      "afterTextSHA256": "6b31ae6fe8403dca7f29d0c4c4e664fcb7739c08b96457cf12c5e09a7611a7f6"
+    },
+    {
+      "chapter": 1,
+      "verse": 27,
+      "beforeTextSHA256": "10ec4e1548223636c3adfd894d4a0ad16f94504664574750f5abffdcfdcb48af",
+      "afterTextSHA256": "1f3b0e2f0927bba32361c9b487ee82ac40beb0c6d0e1635455f22f694b6c9c0b"
+    },
+    {
+      "chapter": 1,
+      "verse": 47,
+      "beforeTextSHA256": "48644c9eb34ced31218e7301dc2636de41253515a7bfb4d67d55e5462966ab40",
+      "afterTextSHA256": "97bb7dcc7c6f89d4f0a04148ebfbd4cf9e0f078b61335143dd0a1e8c31eceb36"
+    }
+  ],
+  "scalarConservation": {
+    "singleU05BCInsertedAtEachExactSecondHebrewLetter": true,
+    "allOldScalarsRetainRelativeOrder": true,
+    "SUS14ExistingQamatsThenNewDagesh": [
+      "U+05B8",
+      "U+05BC"
+    ],
+    "SUS62WholeUnitAndMemQamatsDageshUnchanged": true,
+    "noConsonantPunctuationWitnessGapBlockOrOrderChange": true
+  },
+  "findings": [
+    {
+      "noteId": "sus-1-6-letter-2-dagesh",
+      "chapter": 1,
+      "verse": 6,
+      "anchor": "וַיִתְחַזְּקוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "proposeExactDagesh",
+      "finding": "The exact yod in source6 has an added compact lower-left node below a left concavity/white band, beside the separately continuing right tail. Its contour and position match the pointed first yod in same-font WIS13:10 חיים and approved WIS8:3 חיֵי, and differ from the three plain same-unit6 יהויקים yods and the plain second חיים yod. The added lower-left lobe is diagnostic despite its ink attachment.",
+      "before": "וַיִתְחַזְּקוּ",
+      "after": "וַיִּתְחַזְּקוּ",
+      "retiredNoteIds": [
+        "sus-1-6-letter-2-dagesh"
+      ],
+      "independentApproval": [
+        "root",
+        "wisdom_pass3"
+      ]
+    },
+    {
+      "noteId": "sus-1-14-letter-2-dagesh",
+      "chapter": 1,
+      "verse": 14,
+      "anchor": "ויָסֹבּוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "proposeExactDagesh",
+      "finding": "The exact yod in source14 has an added compact lower-left node below a left concavity/white band, beside the separately continuing right tail. Its contour and position match the pointed first yod in same-font WIS13:10 חיים and approved WIS8:3 חיֵי, and differ from the three plain same-unit6 יהויקים yods and the plain second חיים yod. The added lower-left lobe is diagnostic despite its ink attachment. The target is the first word ויסבו at A2:238[1600,1810,1630,1850]; the older[1430,1788,1485,1883] frame is the following וישובו and is excluded as target proof, though correctly named fresh frames of that word serve as a local pointed comparison.",
+      "before": "ויָסֹבּוּ",
+      "after": "ויָּסֹבּוּ",
+      "retiredNoteIds": [
+        "sus-1-14-letter-2-dagesh"
+      ],
+      "independentApproval": [
+        "root",
+        "wisdom_pass3"
+      ]
+    },
+    {
+      "noteId": "sus-1-27-letter-2-dagesh",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִתְבּוֹשָׁשׁוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "proposeExactDagesh",
+      "finding": "The exact yod in source27 has an added compact lower-left node below a left concavity/white band, beside the separately continuing right tail. Its contour and position match the pointed first yod in same-font WIS13:10 חיים and approved WIS8:3 חיֵי, and differ from the three plain same-unit6 יהויקים yods and the plain second חיים yod. The added lower-left lobe is diagnostic despite its ink attachment.",
+      "before": "ויִתְבּוֹשָׁשׁוּ",
+      "after": "ויִּתְבּוֹשָׁשׁוּ",
+      "retiredNoteIds": [
+        "sus-1-27-letter-2-dagesh"
+      ],
+      "independentApproval": [
+        "root",
+        "wisdom_pass3"
+      ]
+    },
+    {
+      "noteId": "sus-1-47-letter-2-dagesh",
+      "chapter": 1,
+      "verse": 47,
+      "anchor": "ויִפֶן",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "proposeExactDagesh",
+      "finding": "The exact yod in source47 has an added compact lower-left node below a left concavity/white band, beside the separately continuing right tail. Its contour and position match the pointed first yod in same-font WIS13:10 חיים and approved WIS8:3 חיֵי, and differ from the three plain same-unit6 יהויקים yods and the plain second חיים yod. The added lower-left lobe is diagnostic despite its ink attachment.",
+      "before": "ויִפֶן",
+      "after": "ויִּפֶן",
+      "retiredNoteIds": [
+        "sus-1-47-letter-2-dagesh"
+      ],
+      "independentApproval": [
+        "root",
+        "wisdom_pass3"
+      ]
+    },
+    {
+      "noteId": "sus-1-62-letter-2-dagesh",
+      "chapter": 1,
+      "verse": 62,
+      "anchor": "ויִמָּלֵט",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainDisclosure",
+      "finding": "The62 yod has an ordinary head/right tail without a separately diagnostic added low-left lobe. The exact current word includes the independently approved mem qamats+dagesh and is preserved unchanged. Similarity to a bare contour is not used as an absence certificate: a point absorbed into a saturated head is not independently excluded, so retain the existing uncertainty."
+    }
+  ],
+  "sourceLocatorCorrections": [
+    {
+      "noteId": "sus-1-14-letter-2-dagesh",
+      "priorReport": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-reinspection-20261017-pass3.json",
+      "priorTargetBox": [
+        1430,
+        1788,
+        1485,
+        1883
+      ],
+      "priorWordBox": [
+        1260,
+        1780,
+        1550,
+        1940
+      ],
+      "sourcePage": 238,
+      "actualOldWord": "וישובו",
+      "correctTargetWord": "ויסבו",
+      "correctTargetBox": [
+        1600,
+        1810,
+        1630,
+        1850
+      ],
+      "correctWholeTargetBox": [
+        1592,
+        1788,
+        1640,
+        1883
+      ],
+      "correctCompleteWordBox": [
+        1510,
+        1760,
+        1790,
+        1910
+      ],
+      "effect": "Prior box is the following word וישובו, not the unknown-point anchor ויסבו. Earlier reports retained the note and made no source change. This report supersedes the locator without editing any prior pinned report. Fresh correctly named וישובו frames are used solely as a local pointed comparison, never as target proof."
+    }
+  ],
+  "addressVerification": [
+    "All five complete source contexts include the outer printed verse margin, with separate2x margin strips. Physicalrows can contain the end of a preceding unit before the new labelled unit begins.",
+    "6 ויתחזקו follows5 ending כמנהיגי העם on a shared physicalrow and precedes בבית יהויקים; the three bare י glyphs in יהויקים are same-unit controls.",
+    "14 correct first word ויסבו follows preceding unit ending איש מרעה and precedes distinct וישובו. Whole samekh/bet versus shin/vav letterforms establish the distinction independently of vowel expectations.",
+    "27 ויתבוששו follows הזקנים את דבריהם and precedes העבדים; the whole canonical27 unit matches source כז.",
+    "47 ויפן follows preceding46 ending מדמי האשה הזאת on the shared physicalrow marked מז and precedes אליו כל העם; the complete word is distinct from the following48 unit.",
+    "62 וימלט follows the end of preceding61 on the shared physicalrow marked סב. Its full current unit and newly approved mem points remain unchanged."
+  ],
+  "evidenceSummary": {
+    "nativeFrames": 36,
+    "pngCount": 67,
+    "freshPDFPageImages": 7,
+    "allFreshPDFReplaysPassed": true
+  },
+  "evidenceManifest": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/original-PDF-native-replay.json",
+    "sha256": "b512eabc827c61e588b1d344abe96013af1b3027ebbed0ac7199bda5605125ed"
+  },
+  "acceptedArtifact": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/accepted.json",
+    "sha256": "84ca8c082633a0dbcd8aedb4f4a06760d5d348ebe5dc7ac94230f9b9c8a797cb"
+  },
+  "evidence": [
+    {
+      "key": "sus-1-6-letter-2-dagesh-whole-target",
+      "sourcePage": 237,
+      "pixelBox": [
+        1595,
+        2148,
+        1645,
+        2248
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-6-letter-2-dagesh-whole-target-native.png",
+          "sha256": "41a9e66cd892599665ea4f0a2082392e9c8fdd07b9855e8b7af1d12c67b04d53",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-6-letter-2-dagesh-whole-target-15x.png",
+          "sha256": "9224a547c48271f8804519abc426fe3203b8b02f67295f570604d5cc92957c05",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-6-letter-2-dagesh-complete-word",
+      "sourcePage": 237,
+      "pixelBox": [
+        1420,
+        2110,
+        1800,
+        2260
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-6-letter-2-dagesh-complete-word-native.png",
+          "sha256": "7f9d03f19be310669b35d9c34940bd1d38dc1e07dda8499c0da580d0c1eada13",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-6-letter-2-dagesh-complete-word-4x.png",
+          "sha256": "404ae2bd558fcadcfb50a4bf20c5e3818591ad1d701454f036741499795cebb1",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus6-complete-numbered-context",
+      "sourcePage": 237,
+      "pixelBox": [
+        170,
+        1998,
+        2530,
+        2363
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-complete-numbered-context-native.png",
+          "sha256": "4f7d45c4d3edb6ae743643e347945045fe02284bf8f5f3e48719d5d0aa4f4acf",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus6-right-margin-context",
+      "sourcePage": 237,
+      "pixelBox": [
+        1900,
+        1998,
+        2530,
+        2363
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-right-margin-context-native.png",
+          "sha256": "8c2fcc550e62e9cdc49a28b1349b164380827c8a42b03e1072c79259a65e9552",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-right-margin-context-2x.png",
+          "sha256": "c425b2dcda881ebdcca82028af0ed12cdd81a2f387085026dc4feff5bee19357",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus14-ACTUAL-vayasobbu-yod-whole-target",
+      "sourcePage": 238,
+      "pixelBox": [
+        1592,
+        1788,
+        1640,
+        1883
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-ACTUAL-vayasobbu-yod-whole-target-native.png",
+          "sha256": "a5822c94b4ed6f09c332960febae8f14c606dacf2580d4fd54587df686332561",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-ACTUAL-vayasobbu-yod-whole-target-15x.png",
+          "sha256": "648d235d5da727035961c5c9d1f1a31ff2dafd244b8d6bd0c951734bebd077d9",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus14-ACTUAL-vayasobbu-word-locator",
+      "sourcePage": 238,
+      "pixelBox": [
+        1510,
+        1760,
+        1790,
+        1910
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-ACTUAL-vayasobbu-word-locator-native.png",
+          "sha256": "185fc1a418f384e8aa8334f4ad5ff4c5ac45979a11f066b916e65c66854ff85f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-ACTUAL-vayasobbu-word-locator-4x.png",
+          "sha256": "84ea06de93f56c0afa88e943d86b944a983f9466455b54745d91b461993c3ee5",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus14-complete-numbered-context",
+      "sourcePage": 238,
+      "pixelBox": [
+        170,
+        1638,
+        2492,
+        2003
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-complete-numbered-context-native.png",
+          "sha256": "b25335e72500877d581fdbbeebd311c528592c2e6460e642844451485dde0107",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus14-right-margin-context",
+      "sourcePage": 238,
+      "pixelBox": [
+        1900,
+        1638,
+        2492,
+        2003
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-right-margin-context-native.png",
+          "sha256": "e5fa06f9423e670e7991c05ec1cafe375c03f340449de1f72b37f265afa6cb8a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-right-margin-context-2x.png",
+          "sha256": "ca689c503cce49aefea426f9486e19f70b739fe488da53d442fc83a60ea84858",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-27-letter-2-dagesh-whole-target",
+      "sourcePage": 239,
+      "pixelBox": [
+        770,
+        1648,
+        810,
+        1758
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-27-letter-2-dagesh-whole-target-native.png",
+          "sha256": "9192eef20bb5e9c4670b5e6a46b3f07b9acd650ce960bebbe53bd9374224c72a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-27-letter-2-dagesh-whole-target-15x.png",
+          "sha256": "c26f1d4f064c15ad15e1e774797bbaa7524a5298317372384007fc49a4756578",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-27-letter-2-dagesh-complete-word",
+      "sourcePage": 239,
+      "pixelBox": [
+        490,
+        1620,
+        950,
+        1800
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-27-letter-2-dagesh-complete-word-native.png",
+          "sha256": "56ba602a432efef99a041fd2c6096861f68d5cca6123f277cfb62b517e2a1353",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-27-letter-2-dagesh-complete-word-4x.png",
+          "sha256": "9d9fa64b64b117dc417bc42714619cad19087725bfe7199bc8e00b041385779b",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus27-complete-numbered-context",
+      "sourcePage": 239,
+      "pixelBox": [
+        170,
+        1498,
+        2530,
+        1863
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus27-complete-numbered-context-native.png",
+          "sha256": "ab282b4145dcfc905fd242d95cc848391ed219e84e14524e9e9e979a1eb324fc",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus27-right-margin-context",
+      "sourcePage": 239,
+      "pixelBox": [
+        1900,
+        1498,
+        2530,
+        1863
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus27-right-margin-context-native.png",
+          "sha256": "459e103213b4d916d5fe3642427d0f13f9e9cc41175011d611321a2c44f83f4e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus27-right-margin-context-2x.png",
+          "sha256": "abcff1e23b1c117976e9029d0a3a5abd58906463c4710a9b4548f260c564a897",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-47-letter-2-dagesh-whole-target",
+      "sourcePage": 240,
+      "pixelBox": [
+        1195,
+        2738,
+        1255,
+        2828
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-47-letter-2-dagesh-whole-target-native.png",
+          "sha256": "306f6e0acc62d0eedde7a7870f9dff51dfaa19d5ded41e3db84a946150facc1e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-47-letter-2-dagesh-whole-target-15x.png",
+          "sha256": "095bfaa55b4ae22938bc3e8ac205c6ff427dfa0c4f009a6c92ed20b62e973260",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-47-letter-2-dagesh-complete-word",
+      "sourcePage": 240,
+      "pixelBox": [
+        1170,
+        2735,
+        1285,
+        2840
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-47-letter-2-dagesh-complete-word-native.png",
+          "sha256": "14eae354172091a805633306fbbc28e59dbd35b41dd6f51127dc020c92b9f6b5",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-47-letter-2-dagesh-complete-word-4x.png",
+          "sha256": "74232cfc72020129f19859cca1c6ac3443178e529787a1642cd0a132f9ba694c",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus47-complete-numbered-context",
+      "sourcePage": 240,
+      "pixelBox": [
+        170,
+        2588,
+        2503,
+        2953
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus47-complete-numbered-context-native.png",
+          "sha256": "8b75aac277063ca6c52e348233995bb4311331a951d7578b265c209fbf83403c",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus47-right-margin-context",
+      "sourcePage": 240,
+      "pixelBox": [
+        1900,
+        2588,
+        2503,
+        2953
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus47-right-margin-context-native.png",
+          "sha256": "2a60ffc9da1be6a5e7d042e802f6d2fc4512a20eea9ba03c7d9ea5f54aa8ca84",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus47-right-margin-context-2x.png",
+          "sha256": "097b1531b11cc05e507061d98b155dbfdf02c17bcb444639df622e245506ed33",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-62-letter-2-dagesh-whole-target",
+      "sourcePage": 242,
+      "pixelBox": [
+        1480,
+        2198,
+        1515,
+        2298
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-62-letter-2-dagesh-whole-target-native.png",
+          "sha256": "75f051a3ea87fb3ced6f0060063682192f51c09c66972d95445ea322a49accc7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-62-letter-2-dagesh-whole-target-15x.png",
+          "sha256": "f7fea2628815d8dc72afcd96c12f528f9cff7c8479f1a9f264586dd5a17aff3b",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-62-letter-2-dagesh-complete-word",
+      "sourcePage": 242,
+      "pixelBox": [
+        1370,
+        2185,
+        1545,
+        2310
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-62-letter-2-dagesh-complete-word-native.png",
+          "sha256": "d3e68343bd63b38a28664738c703f321094a5ffc640cd090023a532d479a9adf",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus-1-62-letter-2-dagesh-complete-word-4x.png",
+          "sha256": "42de042fc52883edb62a7fc822cbbb22f790576c64d9f83f6e465b8cf2678a39",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus62-complete-numbered-context",
+      "sourcePage": 242,
+      "pixelBox": [
+        170,
+        2048,
+        2496,
+        2413
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus62-complete-numbered-context-native.png",
+          "sha256": "dd0c267f44b6f940e83c151c16dd06b38fd796fd54d03e4dd1054c14235f0595",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus62-right-margin-context",
+      "sourcePage": 242,
+      "pixelBox": [
+        1900,
+        2048,
+        2496,
+        2413
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus62-right-margin-context-native.png",
+          "sha256": "38d101d53015d1a14ae807dc045d78b9918bb43efd8c2d342e2a92facfb8a480",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus62-right-margin-context-2x.png",
+          "sha256": "4e3d6f653c550434d2c5f12878bfcdc07885b0576f3a03773e564b42ccf43829",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus6-yod-tight",
+      "sourcePage": 237,
+      "pixelBox": [
+        1605,
+        2158,
+        1634,
+        2200
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-yod-tight-native.png",
+          "sha256": "90174864f352b4f8ce9a54eb23c17e534066f0b5c3ec338a20debd88a106fb5b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-yod-tight-20x.png",
+          "sha256": "ad1f8387c7fd193a68a25247837fad4682a64d8347e2f0f0f2cf4be6977508ce",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus14-ACTUAL-vayasobbu-yod-target",
+      "sourcePage": 238,
+      "pixelBox": [
+        1600,
+        1810,
+        1630,
+        1850
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-ACTUAL-vayasobbu-yod-target-native.png",
+          "sha256": "f2b6b0fc62d6e88ab6d07d87af01efd68793b929a27b66a361c45e8b647a12b0",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-ACTUAL-vayasobbu-yod-target-20x.png",
+          "sha256": "ba82a357d840e6db14a6e54a3d27446f56d986ebc3b47c870ddc2001e2c23f7a",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus27-yod-tight",
+      "sourcePage": 239,
+      "pixelBox": [
+        775,
+        1670,
+        800,
+        1710
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus27-yod-tight-native.png",
+          "sha256": "cfdd36a9639d2ca2ecd7d29ff0f299f2d5854afc11507f318b8dfce995349d29",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus27-yod-tight-20x.png",
+          "sha256": "4fc4a28bd08357ee851e4690152194048a6be532bda290d4f078f27e89750464",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus47-yod-whole-tight",
+      "sourcePage": 240,
+      "pixelBox": [
+        1225,
+        2764,
+        1250,
+        2805
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus47-yod-whole-tight-native.png",
+          "sha256": "5df5de12fad43b12e6d81b14f29936207bf4f206cafeceb90346b31609b633dc",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus47-yod-whole-tight-20x.png",
+          "sha256": "697e22a3411cf75e7601a5c9be4c0e0665049899c48c82820ff82391ddd607a6",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus62-yod-tight",
+      "sourcePage": 242,
+      "pixelBox": [
+        1490,
+        2234,
+        1515,
+        2275
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus62-yod-tight-native.png",
+          "sha256": "cc3ee40c7913f2d55949a47878f983342717cbc341650c0f294190a64d56c118",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus62-yod-tight-20x.png",
+          "sha256": "5a8ffb6d3348b102b74c4d645349f971086f7aa559d42b68c9132a21a824019f",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis13-10-first-yod-pointed",
+      "sourcePage": 171,
+      "pixelBox": [
+        1422,
+        1508,
+        1449,
+        1553
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis13-10-first-yod-pointed-native.png",
+          "sha256": "3b0282608d1cd6a03b5cdcd4fef9ef314bef8e3b87703d10d19f8b251faaa81e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis13-10-first-yod-pointed-20x.png",
+          "sha256": "927e5168e7d50db8fef2f466a2dcc262d4e4d67259b212188ac75970c84baf18",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis13-10-second-yod-plain",
+      "sourcePage": 171,
+      "pixelBox": [
+        1401,
+        1508,
+        1428,
+        1553
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis13-10-second-yod-plain-native.png",
+          "sha256": "82b1250d54cba18e0e4ce6efe849215ff5125fd6606a60455cf01ff34048a06d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis13-10-second-yod-plain-20x.png",
+          "sha256": "def4894b14b59178e6be54cb629589e43e0c1d535d3ffd77a30f6d1b6a1c78d6",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis13-10-hayyim-paired-word",
+      "sourcePage": 171,
+      "pixelBox": [
+        1340,
+        1465,
+        1550,
+        1580
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis13-10-hayyim-paired-word-native.png",
+          "sha256": "5af5f62e3729ea447ed50695f6862d7f1b0051b9423a1499ac3626904fae2975",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis13-10-hayyim-paired-word-4x.png",
+          "sha256": "6aa2d2ce27c7d4dd999dd999447f8e4c95d928f4efebc2b75d1f70215b9912ac",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis8-3-yod-approved-comparison",
+      "sourcePage": 160,
+      "pixelBox": [
+        891,
+        1440,
+        917,
+        1482
+      ],
+      "sourceImageRGBPixelSHA256": "30889cb5f0bb14e19c2fae502abc399eaeceb1a3f76adb0b69f4d97f5c681e22",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis8-3-yod-approved-comparison-native.png",
+          "sha256": "18ef98995c677c8d11f5f240c2d7f319a7aa5976c287c8ca55ada50e9d14d487",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis8-3-yod-approved-comparison-20x.png",
+          "sha256": "233a4db475271018a308e690202152ffc3cc7a8559d48c6deeaea06014907aa2",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis8-3-hayyei-approved-word",
+      "sourcePage": 160,
+      "pixelBox": [
+        650,
+        1390,
+        970,
+        1535
+      ],
+      "sourceImageRGBPixelSHA256": "30889cb5f0bb14e19c2fae502abc399eaeceb1a3f76adb0b69f4d97f5c681e22",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis8-3-hayyei-approved-word-native.png",
+          "sha256": "fcf9ff5d20fbe945e57e5f997511a9e758193f4976696cdf27d5478a9301d2ff",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/wis8-3-hayyei-approved-word-4x.png",
+          "sha256": "f866d94f1e0803acff5e814d289cca037cd1c95940c479fef1f56456b5bbdb6f",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus14-vayashuvu-pointed-yod-local-control",
+      "sourcePage": 238,
+      "pixelBox": [
+        1435,
+        1810,
+        1460,
+        1852
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-vayashuvu-pointed-yod-local-control-native.png",
+          "sha256": "cafe7b7fe6b6649f95e27d59203c03e4c59443f314e4ca87800da96bb2967e8f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-vayashuvu-pointed-yod-local-control-20x.png",
+          "sha256": "389833cfe698ee7840c3c257b1e17f422af868f3c90d006422e0e0e3f5cc3a01",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus14-vayashuvu-pointed-complete-word",
+      "sourcePage": 238,
+      "pixelBox": [
+        1260,
+        1780,
+        1550,
+        1940
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-vayashuvu-pointed-complete-word-native.png",
+          "sha256": "e87ce3dfdba696f6600926998a99f781f53908fd32ff1e5a702a076217450580",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus14-vayashuvu-pointed-complete-word-4x.png",
+          "sha256": "673ed609defad86b870084a2638ab9d00aecd84fff79c1f5e8436fda00550f75",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus6-plain-yehoyaqim-word",
+      "sourcePage": 237,
+      "pixelBox": [
+        950,
+        2110,
+        1450,
+        2270
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-plain-yehoyaqim-word-native.png",
+          "sha256": "9a47642f9a2c6f4ff8d930b45f137798f2af39ca008f669f5dad554b8edc0321",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-plain-yehoyaqim-word-3x.png",
+          "sha256": "6698c9fbd07a03f62617b58c18e4080d7d4d256c789b1721296855fc53ccac76",
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus6-yehoyaqim-initial-yod-plain",
+      "sourcePage": 237,
+      "pixelBox": [
+        1195,
+        2155,
+        1220,
+        2205
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-yehoyaqim-initial-yod-plain-native.png",
+          "sha256": "c2ff04c9010625bf6ae3aa35629e436c5f9516da3a42302877d0fd098307ed2b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-yehoyaqim-initial-yod-plain-20x.png",
+          "sha256": "eac94de0061aa4d5a69872ca10e8c8980d2b4db5860fff471820052f35dd0993",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus6-yehoyaqim-middle-yod-plain",
+      "sourcePage": 237,
+      "pixelBox": [
+        1120,
+        2155,
+        1145,
+        2205
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-yehoyaqim-middle-yod-plain-native.png",
+          "sha256": "7288afc4f140a1e5b839267c7af7d319691ddd9617d44bee1eb7c262e5590fd5",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-yehoyaqim-middle-yod-plain-20x.png",
+          "sha256": "5f2b5d82e0acaa5b42ca396219c0bc18985e184fcdbac99f74939ea7fa48b3ea",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus6-yehoyaqim-last-yod-plain",
+      "sourcePage": 237,
+      "pixelBox": [
+        1065,
+        2155,
+        1090,
+        2205
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-yehoyaqim-last-yod-plain-native.png",
+          "sha256": "578773c0cdf2e2395bae44ac1459ef41d5cc2a06ea14b3b93010ae1994d0ce2f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SUS-YODS/sus6-yehoyaqim-last-yod-plain-20x.png",
+          "sha256": "ca73cb5f243513edb97f47f4a45d06acc65009f8f693d3eac1bb8127d10e3071",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    }
+  ],
+  "excludedExploratoryFrames": [
+    {
+      "name": "sus-1-14-letter-2-dagesh-whole-target and old complete-word",
+      "reason": "Mislocated next word וישובו; excluded as target evidence. Only freshly renamed local-control frames may be included."
+    },
+    {
+      "name": "sus14-yod-tight",
+      "reason": "Derived from the old mislocated14 box; actual14 target is at1600–1630 x1810–1850."
+    },
+    {
+      "name": "initial2010px-wide context crops",
+      "reason": "Some outer printed verse margins were clipped. Replaced by complete contexts extending to native outer page margin and separate right-margin strips."
+    }
+  ],
+  "priorImmutableReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-reinspection-20261017-pass3.json",
+      "sha256": "8b8be2e80ecc77d6385994ca8108ea3dd72095f9a33495931d1c32b19bdc4bfd"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+      "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SUS-point-comparison-20261017-pass11.json",
+      "sha256": "15e32b3d1add868acadd2338afa3245cfb2fca03d76a6f10e281cd063faf651e"
+    }
+  ],
+  "validation": {
+    "allFiveExactIdsAndCurrentAnchorsMatch582Baseline": true,
+    "allTwelveCanonicalSourceFilesByteUnchangedFrom582Baseline": true,
+    "allDurableNativeAndIntegerNearestImagesReproducedExactly": true,
+    "onlyOriginalA2PDFUsed": true,
+    "noCanonicalCentralDailyPresentationGeneratedMutationByAuthor": true
+  }
+}

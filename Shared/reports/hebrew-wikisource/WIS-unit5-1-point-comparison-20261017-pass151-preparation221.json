@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 221,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation221-WIS-5-1/source-provenance.json",
+    "sha256": "cc70b19603e26845bfea79694faa458b55b6c9e0c026331dc172fd608844b775"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-1-ayin"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-5-1-ayin",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 1,
+      "anchorBefore": "יַעמֹד",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own complete fresh native word inspected as ASCII. Whole target ayin is one connected1008px component [2082,1395,2115,1454] at threshold128. Its lower thick extension carries a right projection into y1454. No independently isolated complete compound-vowel geometry can be certified in that connected extension. Retain ambiguity; no vowel or absence is inferred.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/77/77b4ba86060f9363793348361e708fbae9cb5a3f63acca97ce5dbe12c7957b86.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/77/77b4ba86060f9363793348361e708fbae9cb5a3f63acca97ce5dbe12c7957b86.bin",
+      "inspectedBounds": [
+        2082,
+        1395,
+        2115,
+        1454
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation221-WIS-5-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation221-WIS-5-1/independent-review.json",
+    "sha256": "89d03c9bc96a0af909ca8db1831acc59959bd52f39bee01b5fe9c4d8119b3445"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation221-WIS-5-1/primary-preparation.json",
+    "sha256": "6c8aadc1efd19690c028aa4eeb72c0b3c91e0803cc323413e727f06a732bc734"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation221-WIS-5-1/consensus-preparation.json",
+    "sha256": "606189deaa46c0d59ddc613aff7413c4dd49271e9812269604110ccfe19449b8"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

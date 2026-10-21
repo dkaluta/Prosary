@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 21,
+  "book": "BEL",
+  "status": "Supersedes only the padded page244 context frame; original source decisions unchanged",
+  "supersededReport": {
+    "path": "Shared/reports/hebrew-wikisource/BEL-unit9-point-comparison-20261017-pass21.json",
+    "sha256": "61a48bf6a703e94b6c027ac376ff1578d5f9f09ecf063bede16b8f07bcfe55dd"
+  },
+  "correctionType": "evidenceFrameReplacement",
+  "reason": "Original p244 image width is2543; the original context box reused p243 width2633 and Pillow appended90 black pixels beyond the right edge. The padded strip contains no source pixels and is excluded from source-context proof. Frozen report and old image remain immutable.",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "excludedEvidence": {
+    "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass21-BEL-UNIT9/bel9-p244-numbered-context-native.png",
+    "sha256": "ea443d46f7e3d7d76cdf010e483dbc45eb490b544baa56768e165812e8f76367",
+    "page": 244,
+    "nativeBounds": [
+      0,
+      1710,
+      2633,
+      2220
+    ],
+    "scale": 1,
+    "resampling": "native",
+    "originalPDFPixelReplayPassed": true
+  },
+  "replacementEvidence": {
+    "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass21-BEL-UNIT9-CONTEXT-CORRECTION/bel9-p244-numbered-context-CORRECT-native.png",
+    "sha256": "93ff378ccc4bfd49c011a5a0f9ccaffe10e26ae492b5a96ba30cded29f990968",
+    "page": 244,
+    "nativeBounds": [
+      0,
+      1710,
+      2543,
+      2220
+    ],
+    "scale": 1,
+    "resampling": "native",
+    "originalPDFPixelReplayPassed": true,
+    "fullyInsideOriginalImage": true,
+    "originalSize": [
+      2543,
+      3529
+    ]
+  },
+  "effectiveFrameLedger": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass21-BEL-UNIT9-CONTEXT-CORRECTION/effective-frame-ledger.json",
+    "sha256": "6e3af1f2525ce2afd26164e130856aa6da4275b6cfa2058ef6f4dc948ae79da8"
+  },
+  "boundsAudit": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass21-BEL-UNIT9-CONTEXT-CORRECTION/original-bounds-audit.json",
+    "sha256": "c07b8d6b747d42c6a31f66967d74f501e893ddf85f0a3ce0151909df8a8ad836"
+  },
+  "proof": {
+    "all56OriginalEvidenceBoundsChecked": true,
+    "outOfBoundsOriginalFrames": 1,
+    "other55OriginalFramesFullyInBounds": true,
+    "all56EffectiveFramesFullyInBounds": true,
+    "originalP244Size": [
+      2543,
+      3529
+    ],
+    "replacedBounds": [
+      0,
+      1710,
+      2633,
+      2220
+    ],
+    "correctBounds": [
+      0,
+      1710,
+      2543,
+      2220
+    ],
+    "oldRightmost90PixelsAreBlackPadding": true,
+    "oldLeft2543PixelsExactlyMatchFreshBoundedOriginalCrop": true,
+    "allSourcePixelsAndExactTargetsUnchanged": true,
+    "source9CompleteAcross243And244StillPresent": true,
+    "allSourceDecisionsAndExpectedContentDigestsUnchanged": true,
+    "noCanonicalGateOrGeneratedFileModified": true
+  },
+  "excludedFromSourceContextProof": [
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass21-BEL-UNIT9/bel9-p244-numbered-context-native.png"
+  ],
+  "effectiveEvidenceFileCount": 56,
+  "newPNGCount": 1
+}

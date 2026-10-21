@@ -1,0 +1,2738 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 3,
+  "book": "SIR",
+  "status": "complete focused reinspection with independent correction review",
+  "method": "Root visually reinspected all47 remaining positions in native primary/alternate evidence. Exact-letter nearest-neighbor crops expose small detached dots hidden at word scale. Separate agents independently classify each retired note. No grammar, expected Hebrew, OCR, sharpening, or reconstruction supplies a mark.",
+  "sourceScans": [
+    {
+      "role": "primary",
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "pageCount": 530,
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf"
+    },
+    {
+      "role": "companion",
+      "path": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "spreadCount": 272,
+      "mappingEvidence": "Shared/reports/hebrew-wikisource/SIR-pageNNN-second-pass.json additionalScan records",
+      "extraction": "First native embedded image from each mapped spread, split at its midpoint; recorded side identifies the half."
+    }
+  ],
+  "sourceNotesBefore": 47,
+  "sourceNotesAfter": 37,
+  "reviewedSourceNoteCount": 47,
+  "resolvedSourceNoteCount": 10,
+  "retainedInspectedSourceNoteCount": 37,
+  "retiredSourceNoteIds": [
+    "sir-1-5-2-dagesh",
+    "sir-11-12-ayin-vowel",
+    "sir-15-13-alef-vowel",
+    "sir-15-18-gimel-dagesh",
+    "sir-15-5-first-mem-vowel",
+    "sir-15-5-second-mem-vowel",
+    "sir-15-9-alef-vowel",
+    "sir-23-12-dalet-dagesh",
+    "sir-3-8-sin-dagesh",
+    "sir-6-3-tav-dagesh"
+  ],
+  "canonicalSHA256Before": "12a574a014c7039fcc00509ac4e137a51f2ceb6bf9a5123a3781ff98531d9667",
+  "canonicalSHA256After": "55af853b4955ca1f9bbeea04fe60db0a5bca29b26b4d4b02d50d424dcb6a7f16",
+  "contentDigestBefore": "f6e274e9df33bdc90868dfd5fa2e3e89c318a99ddb29b0990d79106df09e61a3",
+  "contentDigestAfter": "138f39c54b1964699a5c31fd27999e321e385168ef1a5cfdb03e330b95c56f10",
+  "consonantsChanged": false,
+  "punctuationChanged": false,
+  "sourceStructureChanged": false,
+  "sourceChanges": [
+    {
+      "chapter": 1,
+      "verse": 5,
+      "before": "חֻקֵי",
+      "after": "חֻקֵּי",
+      "retiredNoteIds": [
+        "sir-1-5-2-dagesh"
+      ],
+      "finding": "Detached square inside the qof cavity, with continuous white separation from roof, bowl and descending stem; existing two tsere dots remain separate.",
+      "independentReviewer": "additions_pass3"
+    },
+    {
+      "chapter": 3,
+      "verse": 8,
+      "before": "יַשִׂיגוּךָ",
+      "after": "יַשִּׂיגוּךָ",
+      "retiredNoteIds": [
+        "sir-3-8-sin-dagesh"
+      ],
+      "finding": "Tight alternate pixels expose a fully isolated interior square, separate from all three sin arms; the primary word crop supports the same local dot.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 6,
+      "verse": 3,
+      "before": "וְהֶנִיחַתְךָ",
+      "after": "וְהֶנִיחַתְךָ",
+      "retiredNoteIds": [
+        "sir-6-3-tav-dagesh"
+      ],
+      "finding": "Both scans show a wide white cavity below the tav roof and between its legs. No interior dot or uncertain interior ink exists; the heavy left foot is part of the leg, and the below-letter sheva remains. Retire the false-positive tav note only; nun interior note remains.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 11,
+      "verse": 12,
+      "before": "וַיְנַערֵיהוּ",
+      "after": "וַיְנַעֲרֵיהוּ",
+      "retiredNoteIds": [
+        "sir-11-12-ayin-vowel"
+      ],
+      "finding": "The alternate exposes a detached horizontal left bar and two vertically separated right dots below the ayin foot: hataf-patah.",
+      "independentReviewer": "wisdom_pass3"
+    },
+    {
+      "chapter": 15,
+      "verse": 5,
+      "before": "וְרוֹממתְהוּ",
+      "after": "וְרוֹמֲמַתְהוּ",
+      "retiredNoteIds": [
+        "sir-15-5-first-mem-vowel",
+        "sir-15-5-second-mem-vowel"
+      ],
+      "finding": "First mem: detached horizontal left bar plus right vertical pair establishes hataf-patah. Second mem: a single broad horizontal bar below the foot, with no downward stem or additional point, establishes patah. All source consonants remain.",
+      "independentReviewer": "wisdom_pass3"
+    },
+    {
+      "chapter": 15,
+      "verse": 9,
+      "before": "נָאתָה",
+      "after": "נָאֲתָה",
+      "retiredNoteIds": [
+        "sir-15-9-alef-vowel"
+      ],
+      "finding": "Separate horizontal left dash beside two stacked right points establishes alef hataf-patah; primary merged shape is consistent.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 15,
+      "verse": 13,
+      "before": "יְאנֶּנָּה",
+      "after": "יְאַנֶּנָּה",
+      "retiredNoteIds": [
+        "sir-15-13-alef-vowel"
+      ],
+      "finding": "Separate horizontal dash below alef has a flat lower edge and no descending stem: patah.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 15,
+      "verse": 18,
+      "before": "גְבוּרוֹת",
+      "after": "גְּבוּרוֹת",
+      "retiredNoteIds": [
+        "sir-15-18-gimel-dagesh"
+      ],
+      "finding": "Tight native alternate shows an interior square with a continuous white column separating it from the gimel stem and its short spur, and white above and below.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 23,
+      "verse": 12,
+      "before": "מִצַדִיקִים",
+      "after": "מִצַדִּיקִים",
+      "retiredNoteIds": [
+        "sir-23-12-dalet-dagesh"
+      ],
+      "finding": "The small dalet interior square is detached from its roof and right stem. The separate tsadi note stays unresolved and its anchor follows the verified dalet dot.",
+      "independentReviewer": "bel_pass3"
+    }
+  ],
+  "freshTightEvidence": [
+    {
+      "name": "sir-1-5-qof-extra",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-449.png",
+      "sourceImageSHA256": "9d59eff4032b710e9e04dddc9f20f67cb8207e5845dcd0db59f7f2acc34bd263",
+      "scan": "extra",
+      "primaryPDFPage": 449,
+      "pixelBox": [
+        752,
+        670,
+        773,
+        697
+      ],
+      "scale": 15,
+      "transformation": "native crop and nearest-neighbor only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-1-5-qof-extra-native.png",
+          "sha256": "c893e50f1b6f54ae737f1f733f143369e04169d8d6e4fe38fab013c4c2fca17b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-1-5-qof-extra-15x.png",
+          "sha256": "4b624c9909bbcfdca7b2e544d29faebc9f01ca8d9ed01a94a2ca4a59cbedc002",
+          "scale": 15
+        }
+      ]
+    },
+    {
+      "name": "sir-3-8-primary",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-452.png",
+      "sourceImageSHA256": "8a95f7483aea22e6c0fb9d489f35d0cc2d1db88abf2d56ec93ef1a7699b780e4",
+      "pixelBox": [
+        460,
+        730,
+        660,
+        815
+      ],
+      "scale": 4,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-3-8-primary-native.png",
+          "sha256": "51a3e372b02437be070ddd4fabb2a7762735f00dceb2afb5365d87676d5fdb41",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-3-8-primary-4x.png",
+          "sha256": "1af850fd9e27c75c7a0d51a7b83c7ea818daf2d2e7c1dfd24ccb26363d2ea0c4",
+          "scale": 4
+        }
+      ]
+    },
+    {
+      "name": "sir-3-8-sin-extra",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-452.png",
+      "sourceImageSHA256": "a6da01aa189c8fa3ef4f2c679d4147df7fe5e05a927edf7ee519a41b359d39be",
+      "pixelBox": [
+        590,
+        499,
+        616,
+        537
+      ],
+      "scale": 15,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-3-8-sin-extra-native.png",
+          "sha256": "08fe469507bae8c073a97ca1bd397781e9e9a86436d3a3a8bb29b6e897cabe5c",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-3-8-sin-extra-15x.png",
+          "sha256": "94fb5fc012dc890b7be5a81ae7d37431c30451cb883aecf424588752930e0a9b",
+          "scale": 15
+        }
+      ]
+    },
+    {
+      "name": "sir-6-3-primary",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-457.png",
+      "sourceImageSHA256": "1c5fa71782a434be03144c293a01be842df99486fac39a734fa726425885ccfc",
+      "pixelBox": [
+        550,
+        865,
+        740,
+        930
+      ],
+      "scale": 5,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-6-3-primary-native.png",
+          "sha256": "8055e69e4b3510dc402a7a2b4e277c2a6b1ce5f417ae214092af160fe1797a18",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-6-3-primary-5x.png",
+          "sha256": "0be31fe3ea236932d26111e3f793af8b016fdfdd49b91f66bd14347e9fd93ed5",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "sir-6-3-nun-extra",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-457.png",
+      "sourceImageSHA256": "8cb19a967bf76510c44477f137ead05a062caf00a5162d75f8873ecc7baa1a06",
+      "pixelBox": [
+        850,
+        605,
+        874,
+        641
+      ],
+      "scale": 15,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-6-3-nun-extra-native.png",
+          "sha256": "97980408a11b5f937587a0516a978c631ed278b273340e8414c8f9011b423b2d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-6-3-nun-extra-15x.png",
+          "sha256": "802cc2d788ccac7cc7c6ac1597a74852662f85bf68d56d6bba6efadfa6cac9b8",
+          "scale": 15
+        }
+      ]
+    },
+    {
+      "name": "sir-11-12-ayin-primary",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-467.png",
+      "sourceImageSHA256": "62b91ef2a11bcac2b614bbccdc6bfda9f04bc67f7648b9c871715ea9e19d62a1",
+      "scan": "primary",
+      "primaryPDFPage": 467,
+      "pixelBox": [
+        565,
+        645,
+        740,
+        720
+      ],
+      "scale": 5,
+      "transformation": "native crop and nearest-neighbor only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-11-12-ayin-primary-native.png",
+          "sha256": "9bc5a4baad641ce205cb5232950ba192ce0c4e94ecd191000c82e4cce54cec87",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-11-12-ayin-primary-5x.png",
+          "sha256": "35247f07cb730cbaba682eb9e84f7123b11658cfe793250e1677c5ce2aad70c9",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "sir-15-5-primary-fixed",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-473.png",
+      "sourceImageSHA256": "704e71c57c26979b47b1a4af792d115a5a2e6dbf2803116da9901d2d9c1994f5",
+      "pixelBox": [
+        1140,
+        1130,
+        1350,
+        1220
+      ],
+      "scale": 5,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-5-primary-fixed-native.png",
+          "sha256": "f1f3d77579b2e8ed679e4130f6547563ff45d0c0f84f515ba0699cd3a4110344",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-5-primary-fixed-5x.png",
+          "sha256": "5c15f207cfa9c91feb6d6782a260bd7d517ad0079ddcc5dc283377500b0b1cd1",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "sir-15-9-primary",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-473.png",
+      "sourceImageSHA256": "704e71c57c26979b47b1a4af792d115a5a2e6dbf2803116da9901d2d9c1994f5",
+      "scan": "primary",
+      "primaryPDFPage": 473,
+      "pixelBox": [
+        1190,
+        1395,
+        1350,
+        1475
+      ],
+      "scale": 5,
+      "transformation": "native crop and nearest-neighbor only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-9-primary-native.png",
+          "sha256": "3e1dc606f673528064c4c5bf1407e8e6a1d64d6d2a050d9909c1fe4174d13b38",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-9-primary-5x.png",
+          "sha256": "ff327e1a6acf6afd8b1bd13484a045fa9e8a00b8e330eda0b2c5423c9fa478b8",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "sir-15-13-primary",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-473.png",
+      "sourceImageSHA256": "704e71c57c26979b47b1a4af792d115a5a2e6dbf2803116da9901d2d9c1994f5",
+      "scan": "primary",
+      "primaryPDFPage": 473,
+      "pixelBox": [
+        570,
+        1690,
+        740,
+        1780
+      ],
+      "scale": 5,
+      "transformation": "native crop and nearest-neighbor only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-13-primary-native.png",
+          "sha256": "092b43cebcfa364254bdb8cce2a0deac01c9f3cb96091b32c913a146f4684902",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-13-primary-5x.png",
+          "sha256": "83c64567d493cb51d0cdd260c02580c9a4ef8c1501c3552b46f3ae9460799ba6",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "sir-15-18-primary",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-474.png",
+      "sourceImageSHA256": "f59dbd9a9ce978ad1c229b5b24e77853cabc2a28eb3a9b05e8d01a9f447f446b",
+      "scan": "primary",
+      "primaryPDFPage": 474,
+      "pixelBox": [
+        490,
+        700,
+        655,
+        785
+      ],
+      "scale": 5,
+      "transformation": "native crop and nearest-neighbor only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-18-primary-native.png",
+          "sha256": "c1f72b31222be2e75dd1f6bdce76d1078f5814ad00bf13933629f16604881a4c",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-18-primary-5x.png",
+          "sha256": "e1eeb5762079a35954d229960606c1382c450fe76f5eb63af9b945776df8c4e9",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "sir-15-18-gimel-extra",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-474.png",
+      "sourceImageSHA256": "2cc524233394bcad94a1e581da524c122c9b4bf4087f9b8ce3a44fadafc873d3",
+      "pixelBox": [
+        572,
+        475,
+        588,
+        507
+      ],
+      "scale": 15,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-18-gimel-extra-native.png",
+          "sha256": "629b63df572d2a3aa74f01b66dc76c64199db52793321ec9944500b1cc85c3f5",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-15-18-gimel-extra-15x.png",
+          "sha256": "12eb48d196e286e4c37f001665ce2db7e531551dcc0971419bf0886e8b685f6e",
+          "scale": 15
+        }
+      ]
+    },
+    {
+      "name": "sir-23-12-primary",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-483.png",
+      "sourceImageSHA256": "f59246b2e27a6bdbe5f5956df5dbbc121f2edf98922f3425ad7d877bb9788119",
+      "scan": "primary",
+      "primaryPDFPage": 483,
+      "pixelBox": [
+        1160,
+        2060,
+        1350,
+        2140
+      ],
+      "scale": 5,
+      "transformation": "native crop and nearest-neighbor only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-23-12-primary-native.png",
+          "sha256": "0603a76b32b2a6e01e2f9035307f7292d9d35eee2b650b1f54852b73bbe1887b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-23-12-primary-5x.png",
+          "sha256": "ca98cd69ac64232a9b896c2906395c729efb5d43857c0d609805b214d41ac936",
+          "scale": 5
+        }
+      ]
+    },
+    {
+      "name": "sir-26-14-yod-extra",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-488.png",
+      "sourceImageSHA256": "c34219e445a5a53093e07a8d6dc7860b422db8516758b475696de74ef375f7d2",
+      "pixelBox": [
+        507,
+        286,
+        524,
+        325
+      ],
+      "scale": 15,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-26-14-yod-extra-native.png",
+          "sha256": "476b79bc4a900c7079e944aad0cd5c79d59edaabee3270a9f65fa54ac57449cf",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-SIR/sir-26-14-yod-extra-15x.png",
+          "sha256": "bbdd2f07dd73005ef830cf9bf189de8279c5fcfe54937a833f8fd3ee6d513204",
+          "scale": 15
+        }
+      ]
+    }
+  ],
+  "inspections": [
+    {
+      "chapter": 1,
+      "verse": 3,
+      "id": "sir-1-3-1-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "גֹבַהּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "sourcePages": [
+        449
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=449",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 449,
+          "nativeCropBox": [
+            1305,
+            550,
+            1385,
+            600
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/1-3-extra-native.png",
+              "sha256": "3df48f429187906472c8966e3cf56d00498b1fd24f38b9b30c81bd55d869bca7",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/1-3-extra.png",
+              "sha256": "d315b2a14fb91ad0d216c80ca8a3ad96d55dc5286e5d170478b5fe057bf7ef83",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 231,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The gimel interior remains connected with the stem or lower foot; no separable dagesh is certified."
+    },
+    {
+      "chapter": 1,
+      "verse": 5,
+      "id": "sir-1-5-2-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "חֻקֵי",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        449
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=449",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 449,
+          "nativeCropBox": [
+            740,
+            650,
+            805,
+            700
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/1-5-extra-native.png",
+              "sha256": "75c39bd328a8e49a97dff509af7cf0b181df7187a00aa17ad3c82029cc39a3b1",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/1-5-extra.png",
+              "sha256": "1339f13a803242f16362fb98183e8ff04080fcd1ad4aa031cf2d954bf4498a66",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 231,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "חֻקֵי",
+      "afterWord": "חֻקֵּי",
+      "finding": "Detached square inside the qof cavity, with continuous white separation from roof, bowl and descending stem; existing two tsere dots remain separate.",
+      "independentReviewer": "additions_pass3"
+    },
+    {
+      "chapter": 2,
+      "verse": 2,
+      "id": "sir-2-2-vav-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "וחזָק",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        451
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=451",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 451,
+          "nativeCropBox": [
+            1120,
+            455,
+            1220,
+            510
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/2-2-extra-native.png",
+              "sha256": "90f9bad363c1afb1cabd4b1f2af44b7050bb7e49a624f8b4576291106d7f0150",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/2-2-extra.png",
+              "sha256": "0fe8151d430293fcd665294ed51b88a7884b4aa89708d71605f5947e292c8fe4",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 232,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lower clusters under vav and het remain irregular and partly fused; neither vowel is classified."
+    },
+    {
+      "chapter": 2,
+      "verse": 2,
+      "id": "sir-2-2-het-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "וחזָק",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        451
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=451",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 451,
+          "nativeCropBox": [
+            1120,
+            455,
+            1220,
+            510
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/2-2-extra-native.png",
+              "sha256": "90f9bad363c1afb1cabd4b1f2af44b7050bb7e49a624f8b4576291106d7f0150",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/2-2-extra.png",
+              "sha256": "0fe8151d430293fcd665294ed51b88a7884b4aa89708d71605f5947e292c8fe4",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 232,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lower clusters under vav and het remain irregular and partly fused; neither vowel is classified."
+    },
+    {
+      "chapter": 3,
+      "verse": 8,
+      "id": "sir-3-8-sin-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "יַשִׂיגוּךָ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        452
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=452",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 452,
+          "nativeCropBox": [
+            535,
+            490,
+            635,
+            540
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/3-8-extra-native.png",
+              "sha256": "a6f193e2b43e74283e31e3573977641b4605b0b6a6d6ed310f24d239a86e7142",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/3-8-extra.png",
+              "sha256": "3b285dd81fe89dd7a074285b0abb919a5cca042f98461303addec321a762fbe9",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 233,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "יַשִׂיגוּךָ",
+      "afterWord": "יַשִּׂיגוּךָ",
+      "finding": "Tight alternate pixels expose a fully isolated interior square, separate from all three sin arms; the primary word crop supports the same local dot.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 3,
+      "verse": 18,
+      "id": "sir-3-18-ayin-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "מַעט",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        453
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=453",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 453,
+          "nativeCropBox": [
+            1260,
+            170,
+            1330,
+            225
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/3-18-extra-native.png",
+              "sha256": "68a288124304b3ef9259c3dc736adf41c4629c4e2ceb30c72378acc624dee475",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/3-18-extra.png",
+              "sha256": "f511abfd8eb6febb001f811a8960e2369f396e1a62878c0413aaac105b93b6e6",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 233,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The ayin lower cluster remains merged with the foot; a specific vowel is not certified."
+    },
+    {
+      "chapter": 3,
+      "verse": 22,
+      "id": "sir-3-22-he-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "שֶׁהרְשֵׁיתָ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        453
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=453",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 453,
+          "nativeCropBox": [
+            1130,
+            310,
+            1260,
+            365
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/3-22-extra-native.png",
+              "sha256": "abbb499db2f0d05ea13ee5a687d6cf7cca6ddf4f337abd833c0e57cd88429d97",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/3-22-extra.png",
+              "sha256": "4b33de55d60b956661245e05538b0cc53adb3b02a2a49d1a2b4ea3e25b475b0b",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 233,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "Small marks below he are incomplete and crowded; their full arrangement remains uncertain."
+    },
+    {
+      "chapter": 4,
+      "verse": 24,
+      "id": "sir-4-24-dalet-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "נוֹדעַת",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        455
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=455",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 455,
+          "nativeCropBox": [
+            1120,
+            500,
+            1205,
+            555
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/4-24-extra-native.png",
+              "sha256": "a37cb681fef1bbc469826e3515a24917e41ed79bba60c6dada5109bcbfbe2cc4",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/4-24-extra.png",
+              "sha256": "d0ea9bcbca2d31f9bdfa13c9fda997adfaa1e326f8b7ae4fd7d1f8a48ed06866",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 234,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The dalet lower mark remains joined with its foot; no vowel classification is certified."
+    },
+    {
+      "chapter": 6,
+      "verse": 3,
+      "id": "sir-6-3-nun-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "וְהֶנִיחַתְךָ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "sourcePages": [
+        457
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=457",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 457,
+          "nativeCropBox": [
+            775,
+            590,
+            905,
+            645
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/6-3-extra-native.png",
+              "sha256": "6f26291239783980aba2cb985f263cada88eaba19acb25e407155a410b98cf26",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/6-3-extra.png",
+              "sha256": "b92b28c3272533df2bd1183a1d2b7bf921a7251f26116c9003e990dc7845385a",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 235,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The nun and tav interior areas do not provide a dependable separated dot or proof of absence."
+    },
+    {
+      "chapter": 6,
+      "verse": 3,
+      "id": "sir-6-3-tav-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "וְהֶנִיחַתְךָ",
+      "occurrence": 1,
+      "letterIndex": 6,
+      "mark": "dagesh",
+      "sourcePages": [
+        457
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=457",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 457,
+          "nativeCropBox": [
+            775,
+            590,
+            905,
+            645
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/6-3-extra-native.png",
+              "sha256": "6f26291239783980aba2cb985f263cada88eaba19acb25e407155a410b98cf26",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/6-3-extra.png",
+              "sha256": "b92b28c3272533df2bd1183a1d2b7bf921a7251f26116c9003e990dc7845385a",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 235,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "וְהֶנִיחַתְךָ",
+      "afterWord": "וְהֶנִיחַתְךָ",
+      "finding": "Both scans show a wide white cavity below the tav roof and between its legs. No interior dot or uncertain interior ink exists; the heavy left foot is part of the leg, and the below-letter sheva remains. Retire the false-positive tav note only; nun interior note remains.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 6,
+      "verse": 29,
+      "id": "sir-6-29-lamed-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "וְתַבְלתֶהָ",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "vowel",
+      "sourcePages": [
+        459
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=459",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 459,
+          "nativeCropBox": [
+            760,
+            365,
+            885,
+            415
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/6-29-extra-native.png",
+              "sha256": "9870dae52b80562a9b0ad421708f6b2449ad17b2877deae73540c5bc90c19b85",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/6-29-extra.png",
+              "sha256": "60a6d16056866b221c810023bf426734c28f6928c148de801036c70d73efa9dd",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 236,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lamed lower mark remains joined with the descending foot."
+    },
+    {
+      "chapter": 10,
+      "verse": 28,
+      "id": "sir-10-28-yod-dagesh",
+      "anchor": "כַּיוֹצֵא",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        466
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=466",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 466,
+          "nativeCropBox": [
+            420,
+            365,
+            520,
+            415
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/10-28-extra-native.png",
+              "sha256": "2f19b4bb4357cd1524aa4a614e58be598ef4e372ef32694baa7ca2827f7d0e03",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/10-28-extra.png",
+              "sha256": "998aa6861f55f69ecf7e08228315115f32050d6e116aceedc837059e962cca36",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 240,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tiny yod interior is too crowded to distinguish an added dagesh from the letter body."
+    },
+    {
+      "chapter": 11,
+      "verse": 10,
+      "id": "sir-11-10-qof-vowel",
+      "anchor": "עִשְׂקךְ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        467
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=467",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 467,
+          "nativeCropBox": [
+            1000,
+            220,
+            1100,
+            270
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-10-extra-native.png",
+              "sha256": "22222ab9d47cc706206c29517aec43e484f816d29dc3c0cf118dc59f8b222759",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-10-extra.png",
+              "sha256": "31c5ee50d13291f3c7ab0ef3be7a741fcf4dd0431aaa2a7283621bebe1187db8",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 240,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The qof lower marks remain crowded against its descending stroke."
+    },
+    {
+      "chapter": 11,
+      "verse": 12,
+      "id": "sir-11-12-nun-vowel",
+      "anchor": "א[וֹ]נשׁ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        467
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=467",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 467,
+          "nativeCropBox": [
+            515,
+            360,
+            625,
+            415
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-12-enosh-extra-native.png",
+              "sha256": "bc833cdbb44b8d4c945845f9d708c0732ef930500e116b4b81dc82856ff25cbd",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-12-enosh-extra.png",
+              "sha256": "d2c1b1e375c609e87ea26dbbebc4ac35e919b906aafee0f25e4e2d922884c5f3",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 240,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lower target mark remains partly fused; this pass does not certify its full vowel shape."
+    },
+    {
+      "chapter": 11,
+      "verse": 12,
+      "id": "sir-11-12-ayin-vowel",
+      "anchor": "וַיְנַערֵיהוּ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        467
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=467",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 467,
+          "nativeCropBox": [
+            780,
+            410,
+            900,
+            465
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-12-vayana-extra-native.png",
+              "sha256": "d626475ee335b8eea489d92eba927891c669dc1f9404cc14098ef94b21d1bdef",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-12-vayana-extra.png",
+              "sha256": "42a54d5f0a50eb66c6ade3af19820804257560f6fc0e61b72c55c797611a9986",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 240,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "וַיְנַערֵיהוּ",
+      "afterWord": "וַיְנַעֲרֵיהוּ",
+      "finding": "The alternate exposes a detached horizontal left bar and two vertically separated right dots below the ayin foot: hataf-patah.",
+      "independentReviewer": "wisdom_pass3"
+    },
+    {
+      "chapter": 11,
+      "verse": 28,
+      "id": "sir-11-28-shin-dagesh",
+      "anchor": "תְּאַשְׁ[רֵהוּ",
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        468
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=468",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 468,
+          "nativeCropBox": [
+            690,
+            485,
+            850,
+            545
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-28-extra-native.png",
+              "sha256": "e01fd58c95edb06b25cdfc3dcb74df95d187708b3f5403df4f52efe5359279ef",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-28-extra.png",
+              "sha256": "506e076aa089e4124dbaa24cdc1de0ce26eac54ede6705c13cad16755296617b",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 241,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The shin interior remains irregular; no independently separable dagesh is certified."
+    },
+    {
+      "chapter": 11,
+      "verse": 32,
+      "id": "sir-11-32-nun-vowel",
+      "anchor": "מִנּצוֹץ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        468
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=468",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 468,
+          "nativeCropBox": [
+            1050,
+            910,
+            1150,
+            970
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-32-extra-native.png",
+              "sha256": "6d7763cde2f0657ec3391cb7939b0121c0ef3a9f802f756b8d652186d6f9b529",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-32-extra.png",
+              "sha256": "85366b1b1559b21dde5adfc23e25ca73c954276954131f43859793392a0def31",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 241,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The nun interior dagesh is resolved separately, but its lower vowel remains joined or incomplete."
+    },
+    {
+      "chapter": 11,
+      "verse": 34,
+      "id": "sir-11-34-vav-vowel",
+      "anchor": "וינַכֶּרךָ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        468
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=468",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 468,
+          "nativeCropBox": [
+            570,
+            1105,
+            690,
+            1160
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-34-extra-native.png",
+              "sha256": "5ac991395cbefcf460ed33cae9aba1e080d4ec43587b7aeb867fbf07b404827a",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-34-extra.png",
+              "sha256": "d9f1049417697851160092742272be48f3d8d28033a3e4727ced3e3efa3257af",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 241,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lower vav and resh clusters remain unclear; both vowel disclosures are preserved."
+    },
+    {
+      "chapter": 11,
+      "verse": 34,
+      "id": "sir-11-34-resh-vowel",
+      "anchor": "וינַכֶּרךָ",
+      "letterIndex": 5,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        468
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=468",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 468,
+          "nativeCropBox": [
+            570,
+            1105,
+            690,
+            1160
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-34-extra-native.png",
+              "sha256": "5ac991395cbefcf460ed33cae9aba1e080d4ec43587b7aeb867fbf07b404827a",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/11-34-extra.png",
+              "sha256": "d9f1049417697851160092742272be48f3d8d28033a3e4727ced3e3efa3257af",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 241,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lower vav and resh clusters remain unclear; both vowel disclosures are preserved."
+    },
+    {
+      "chapter": 12,
+      "verse": 16,
+      "id": "sir-12-16-first-mem-vowel",
+      "anchor": "מהָמַרוֹת",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        469
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=469",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 469,
+          "nativeCropBox": [
+            490,
+            1000,
+            770,
+            1060
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/12-16-extra-native.png",
+              "sha256": "ef0ab2d29681ad3c406bd4b83d425a3c5efa27f14ca677397bc76bb8f05aea41",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/12-16-extra.png",
+              "sha256": "a897fecb3a53631f523f7db08e6aa29a39a589fd67c9077128ec8ceed9cc82f8",
+              "pixelTransform": "nearest-neighbor 4x"
+            }
+          ],
+          "companionSpread": 241,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The first mem lower stroke cannot be cleanly distinguished from a separate vowel bar."
+    },
+    {
+      "chapter": 13,
+      "verse": 18,
+      "id": "sir-13-18-alef-vowel",
+      "anchor": "מֵאי[ן]",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        471
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=471",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 471,
+          "nativeCropBox": [
+            1270,
+            310,
+            1390,
+            365
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/13-18-extra-native.png",
+              "sha256": "e6715c211f14e8d42a9b40b9ae0b3d4ce87f057050816d445357af03e9ede4ab",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/13-18-extra.png",
+              "sha256": "9eac1a73f6a032483d46c0d768364940f7ec69d604074f9ef201052eb82ef285",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 242,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "A lower alef bar is visible, but this pass does not securely distinguish a complete patah from a damaged qamats."
+    },
+    {
+      "chapter": 15,
+      "verse": 5,
+      "id": "sir-15-5-first-mem-vowel",
+      "anchor": "וְרוֹממתְהוּ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        473
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=473",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 473,
+          "nativeCropBox": [
+            1230,
+            790,
+            1380,
+            850
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-5-extra-native.png",
+              "sha256": "a490ef0d8f184ba97db08d089f2587c0afa9fe89ea241d9114efd182aab56873",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-5-extra.png",
+              "sha256": "8a370101da1aa3a3e9ab703cafda91efcab40cdb29d883f580421c056cb846c3",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 243,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "וְרוֹממתְהוּ",
+      "afterWord": "וְרוֹמֲמַתְהוּ",
+      "finding": "First mem: detached horizontal left bar plus right vertical pair establishes hataf-patah. Second mem: a single broad horizontal bar below the foot, with no downward stem or additional point, establishes patah. All source consonants remain.",
+      "independentReviewer": "wisdom_pass3"
+    },
+    {
+      "chapter": 15,
+      "verse": 5,
+      "id": "sir-15-5-second-mem-vowel",
+      "anchor": "וְרוֹממתְהוּ",
+      "letterIndex": 5,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        473
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=473",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 473,
+          "nativeCropBox": [
+            1230,
+            790,
+            1380,
+            850
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-5-extra-native.png",
+              "sha256": "a490ef0d8f184ba97db08d089f2587c0afa9fe89ea241d9114efd182aab56873",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-5-extra.png",
+              "sha256": "8a370101da1aa3a3e9ab703cafda91efcab40cdb29d883f580421c056cb846c3",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 243,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "וְרוֹממתְהוּ",
+      "afterWord": "וְרוֹמֲמַתְהוּ",
+      "finding": "First mem: detached horizontal left bar plus right vertical pair establishes hataf-patah. Second mem: a single broad horizontal bar below the foot, with no downward stem or additional point, establishes patah. All source consonants remain.",
+      "independentReviewer": "wisdom_pass3"
+    },
+    {
+      "chapter": 15,
+      "verse": 9,
+      "id": "sir-15-9-alef-vowel",
+      "anchor": "נָאתָה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        473
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=473",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 473,
+          "nativeCropBox": [
+            1215,
+            980,
+            1310,
+            1035
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-9-extra-native.png",
+              "sha256": "481a7290b09957ddcda3b93f1364ab9237123d812543623e1fb4cdf3be4a7fe7",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-9-extra.png",
+              "sha256": "030ddffa1a221c8d0b4321df4fec62de6408d0d06da1a58673eeedb268a53c3a",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 243,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "נָאתָה",
+      "afterWord": "נָאֲתָה",
+      "finding": "Separate horizontal left dash beside two stacked right points establishes alef hataf-patah; primary merged shape is consistent.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 15,
+      "verse": 13,
+      "id": "sir-15-13-alef-vowel",
+      "anchor": "יְאנֶּנָּה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        473
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=473",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 473,
+          "nativeCropBox": [
+            750,
+            1210,
+            870,
+            1265
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-13-extra-native.png",
+              "sha256": "6c7d3bde3ba0ab044c81fd0c6881d2ab48420f5ac83f6a3c8cbdae9e8fa3ebe5",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-13-extra.png",
+              "sha256": "432a2ad80da67f798b6e218d117bb82333c108d6f80ad62686dbf05624bf90d9",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 243,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "יְאנֶּנָּה",
+      "afterWord": "יְאַנֶּנָּה",
+      "finding": "Separate horizontal dash below alef has a flat lower edge and no descending stem: patah.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 15,
+      "verse": 18,
+      "id": "sir-15-18-gimel-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "גְבוּרוֹת",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "sourcePages": [
+        474
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=474",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 474,
+          "nativeCropBox": [
+            490,
+            455,
+            595,
+            510
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-18-extra-native.png",
+              "sha256": "29933b6d109a041f14e84a40996197436d09de72ea07e1ff844d4e1d5defd2c3",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/15-18-extra.png",
+              "sha256": "413f7abaf17d30795933e8af3b00a67e32eb05f3249b9146166636438269acc2",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 244,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "גְבוּרוֹת",
+      "afterWord": "גְּבוּרוֹת",
+      "finding": "Tight native alternate shows an interior square with a continuous white column separating it from the gimel stem and its short spur, and white above and below.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 16,
+      "verse": 26,
+      "id": "sir-16-26-nun-dagesh",
+      "anchor": "תַנֵיהֶם]",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        475
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=475",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 475,
+          "nativeCropBox": [
+            710,
+            1190,
+            1000,
+            1270
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/16-26-extra-native.png",
+              "sha256": "b6cd150c765f5c2df9e4cca4cef6eb38fe5db66270a043007aa2b396418110de",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/16-26-extra.png",
+              "sha256": "a1bdf9c4e47e49feba00ed37112d260dbac214de2212f338360c8341377b8fb9",
+              "pixelTransform": "nearest-neighbor 4x"
+            }
+          ],
+          "companionSpread": 244,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The narrow nun interior remains damaged; no separable dagesh or reliable absence is certified."
+    },
+    {
+      "chapter": 23,
+      "verse": 12,
+      "id": "sir-23-12-tsadi-dagesh",
+      "anchor": "מִצַדִיקִים",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        483
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=483",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 483,
+          "nativeCropBox": [
+            1240,
+            1500,
+            1370,
+            1560
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/23-12-extra-native.png",
+              "sha256": "2d18bb7769b9b9555632541ba5e503144642485d1d29baa3cf3c5d5e2c1396f2",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/23-12-extra.png",
+              "sha256": "aee753f6a1c219cc940fbf8dab9109339f386f6ab83724df110e6389781a66bb",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 248,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tsadi and dalet interior marks remain irregular or joined; neither dagesh is certified."
+    },
+    {
+      "chapter": 23,
+      "verse": 12,
+      "id": "sir-23-12-dalet-dagesh",
+      "anchor": "מִצַדִיקִים",
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        483
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=483",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 483,
+          "nativeCropBox": [
+            1240,
+            1500,
+            1370,
+            1560
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/23-12-extra-native.png",
+              "sha256": "2d18bb7769b9b9555632541ba5e503144642485d1d29baa3cf3c5d5e2c1396f2",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/23-12-extra.png",
+              "sha256": "aee753f6a1c219cc940fbf8dab9109339f386f6ab83724df110e6389781a66bb",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 248,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retireSourceNote",
+      "beforeWord": "מִצַדִיקִים",
+      "afterWord": "מִצַדִּיקִים",
+      "finding": "The small dalet interior square is detached from its roof and right stem. The separate tsadi note stays unresolved and its anchor follows the verified dalet dot.",
+      "independentReviewer": "bel_pass3"
+    },
+    {
+      "chapter": 24,
+      "verse": 17,
+      "id": "sir-24-17-nun-dagesh",
+      "anchor": "וְנִצַּנִי",
+      "letterIndex": 4,
+      "mark": "dagesh",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        485
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=485",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 485,
+          "nativeCropBox": [
+            840,
+            835,
+            925,
+            900
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/24-17-extra-native.png",
+              "sha256": "33a2b184db1b58706269e7c75a1dd7152416bae4d1eb9ad193dab0db4fc4c692",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/24-17-extra.png",
+              "sha256": "02baea245a9416dfcc69fb667c034cad66b32c4ab00eb290d2d8439e592eca1f",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 249,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The second nun interior remains narrow and irregular; no dagesh or reliable absence is certified."
+    },
+    {
+      "chapter": 24,
+      "verse": 32,
+      "id": "sir-24-32-resh-vowel",
+      "anchor": "וְאוֹריתִיו",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        485
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=485",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 485,
+          "nativeCropBox": [
+            820,
+            1530,
+            1010,
+            1595
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/24-32-extra-native.png",
+              "sha256": "06a2671970437311fec0ead481b89bdcbea8ddf78061d4ceed5bda1148036525",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/24-32-extra.png",
+              "sha256": "8c8958490c57e64f23d4558d9a2ce2bb33c73b387f93926bdb1378ef7daa9ac1",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 249,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The resh lower region remains crowded with adjacent letters and marks."
+    },
+    {
+      "chapter": 26,
+      "verse": 14,
+      "id": "sir-26-14-yod-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "לִמְיסֶּרֶת",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        488
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=488",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 488,
+          "nativeCropBox": [
+            450,
+            265,
+            570,
+            325
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/26-14-extra-native.png",
+              "sha256": "9b1b5ac6f2fdeb0fde7c8bf085df4de5e1433d48c86d921f8e4d38d67c2ec305",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/26-14-extra.png",
+              "sha256": "530a4d956828de06ffa89da9381eb77b6e1754acc33eaf3aa98748e5dad66cc6",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 251,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "Tight native crop exposes three vertically separated fragments below yod; this does not certify a two-dot sheva. Retain the note."
+    },
+    {
+      "chapter": 29,
+      "verse": 19,
+      "id": "sir-29-19-bet-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "קַבּלֶת",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        491
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=491",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 491,
+          "nativeCropBox": [
+            730,
+            1350,
+            825,
+            1415
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/29-19-extra-native.png",
+              "sha256": "625c26434e2a4fadfb727f81d00b14c8e6066967e55bfd3b1d6710dedca7bbd8",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/29-19-extra.png",
+              "sha256": "0575f654eeaf3a55cd316ee2ed6bdb966e25ab39abafc996894e59b9e7046150",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 252,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet lower mark remains attached to the letter foot."
+    },
+    {
+      "chapter": 30,
+      "verse": 16,
+      "id": "sir-30-16-resh-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "שֵׁר־עֶצֶם",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        492
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=492",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 492,
+          "nativeCropBox": [
+            790,
+            1260,
+            925,
+            1320
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/30-16-extra-native.png",
+              "sha256": "7832ba17f144df0e848a8c47710a47221833dda6778d00096a4021a2b8c66e98",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/30-16-extra.png",
+              "sha256": "62f763f2d808033255449e9d49aaef7237632b20d51c60ef357e4723e5b3c33a",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 253,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The shin tsere is resolved separately; the resh lower region still does not establish a specific vowel."
+    },
+    {
+      "chapter": 30,
+      "verse": 19,
+      "id": "sir-30-19-yod-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "שֶׁ[ישׁ]",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        493
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=493",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 493,
+          "nativeCropBox": [
+            1150,
+            350,
+            1260,
+            410
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/30-19-extra-native.png",
+              "sha256": "0a6c93624c6dc24a1078fac7899f9dae0e357f84d6eb6910536cf348246b2aa8",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/30-19-extra.png",
+              "sha256": "e291e37d015b6aac5beb31f15efacd1aa3d244dfd5664abbe30c42ca9e104446",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 253,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "One apparent tsere component coincides with the bracket lower foot. Two independent vowel dots cannot be certified."
+    },
+    {
+      "chapter": 31,
+      "verse": 6,
+      "id": "sir-31-6-lamed-vowel",
+      "anchor": "וְלא מָצְאוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        494
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=494",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 494,
+          "nativeCropBox": [
+            1040,
+            350,
+            1170,
+            415
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-6-extra-native.png",
+              "sha256": "cd4afc9b65258e6a96221cf4a5c522c1d1c3f290dcf33fc6fde6adbc9586bc00",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-6-extra.png",
+              "sha256": "31ff7e6c416422e8b6b304e82987563e67174a541f82db07d76bc1ed8f5a922f",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 254,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lamed is visibly broken in the companion; its vowel remains unresolved."
+    },
+    {
+      "chapter": 31,
+      "verse": 7,
+      "id": "sir-31-7-yod-vowel",
+      "anchor": "יוקשׁ־בוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        494
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=494",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 494,
+          "nativeCropBox": [
+            425,
+            400,
+            585,
+            465
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-7-extra-native.png",
+              "sha256": "93f397122c95c5bd190baa4d1b969a56ac800ccf70601c37b5041b95d6b288cc",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-7-extra.png",
+              "sha256": "6cc5c234d279dd65f5f2f318eaa120124682d27dcd6299baa97948b8c8e9898d",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 254,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The yod, vav and qof lower clusters remain crowded or fused; no individual vowel is certified."
+    },
+    {
+      "chapter": 31,
+      "verse": 7,
+      "id": "sir-31-7-vav-vowel",
+      "anchor": "יוקשׁ־בוֹ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        494
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=494",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 494,
+          "nativeCropBox": [
+            425,
+            400,
+            585,
+            465
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-7-extra-native.png",
+              "sha256": "93f397122c95c5bd190baa4d1b969a56ac800ccf70601c37b5041b95d6b288cc",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-7-extra.png",
+              "sha256": "6cc5c234d279dd65f5f2f318eaa120124682d27dcd6299baa97948b8c8e9898d",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 254,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The yod, vav and qof lower clusters remain crowded or fused; no individual vowel is certified."
+    },
+    {
+      "chapter": 31,
+      "verse": 7,
+      "id": "sir-31-7-qof-vowel",
+      "anchor": "יוקשׁ־בוֹ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        494
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=494",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 494,
+          "nativeCropBox": [
+            425,
+            400,
+            585,
+            465
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-7-extra-native.png",
+              "sha256": "93f397122c95c5bd190baa4d1b969a56ac800ccf70601c37b5041b95d6b288cc",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-7-extra.png",
+              "sha256": "6cc5c234d279dd65f5f2f318eaa120124682d27dcd6299baa97948b8c8e9898d",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 254,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The yod, vav and qof lower clusters remain crowded or fused; no individual vowel is certified."
+    },
+    {
+      "chapter": 31,
+      "verse": 21,
+      "id": "sir-31-21-vav-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "קִוה",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        495
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=495",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 495,
+          "nativeCropBox": [
+            735,
+            785,
+            850,
+            845
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-21-extra-native.png",
+              "sha256": "310aa37cddc4cac78d31ed77137ba4702d239a3143a3121cc3177ae4a0029f22",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/31-21-extra.png",
+              "sha256": "51bd8007c3b4b8a997a5bca711f2dfcc5d67c9fd02d60386d16b49798a38f0af",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 254,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The second qoph-vav-he form has an irregular vav foot; its separate vowel is not established."
+    },
+    {
+      "chapter": 32,
+      "verse": 4,
+      "id": "sir-32-4-mem-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "מִזְמר",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        496
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=496",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 496,
+          "nativeCropBox": [
+            540,
+            825,
+            635,
+            885
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/32-4-extra-native.png",
+              "sha256": "58a6664402ba606193cdcfcf012cac7670ae23285b0ea40303fc46d267cecdc0",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/32-4-extra.png",
+              "sha256": "7d2d5266114e1fc1eb2830c64c29883494b1e303f63e9c8d827fbe8645f5da3c",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 255,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem lower region remains indistinct; no full vowel shape is certified."
+    },
+    {
+      "chapter": 32,
+      "verse": 12,
+      "id": "sir-32-12-tet-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "[פְּטר]",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        497
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=497",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 497,
+          "nativeCropBox": [
+            1245,
+            535,
+            1370,
+            595
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/32-12-extra-native.png",
+              "sha256": "dfc8c958736b88427660b9cd7375e2de7c1c9958fcd96d11253cdd770eeb5073",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/32-12-extra.png",
+              "sha256": "f762ac3d8da638cf7229fd8b96794d93d8bbac32aa6b7dc4d27175963d807c4a",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 255,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The tet lower mark is broad and irregular, leaving its precise vowel uncertain."
+    },
+    {
+      "chapter": 39,
+      "verse": 14,
+      "id": "sir-39-14-bet-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "בּרכוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        509
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=509",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 509,
+          "nativeCropBox": [
+            845,
+            1275,
+            945,
+            1345
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/39-14-extra-native.png",
+              "sha256": "2efe398d67947cb3c60a852736148649349f8775cf5ada8438a515de7e54405d",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/39-14-extra.png",
+              "sha256": "19115cd537b17679f70041bc56c467850ef6f7a8a7cb7843cc2573b37495b83e",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 261,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet and resh lower marks remain joined with their feet or neighboring clusters."
+    },
+    {
+      "chapter": 39,
+      "verse": 14,
+      "id": "sir-39-14-resh-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "בּרכוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        509
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=509",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 509,
+          "nativeCropBox": [
+            845,
+            1275,
+            945,
+            1345
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/39-14-extra-native.png",
+              "sha256": "2efe398d67947cb3c60a852736148649349f8775cf5ada8438a515de7e54405d",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/39-14-extra.png",
+              "sha256": "19115cd537b17679f70041bc56c467850ef6f7a8a7cb7843cc2573b37495b83e",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 261,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet and resh lower marks remain joined with their feet or neighboring clusters."
+    },
+    {
+      "chapter": 39,
+      "verse": 35,
+      "id": "sir-39-35-qof-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "הַקּ[דוֹשׁ]",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        510
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=510",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 510,
+          "nativeCropBox": [
+            380,
+            1170,
+            485,
+            1240
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/39-35-extra-native.png",
+              "sha256": "b8f1976ed6d1312e66800fa8ff8b941356ba7994c3ef2a97aa8488f6e9559045",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/39-35-extra.png",
+              "sha256": "96e85467676fc4b47ab3e41217441aee69294c8223945f1dc718a8619948a949",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 262,
+          "companionSide": "right"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The qof lower cluster remains joined with its descending stroke and bracket."
+    },
+    {
+      "chapter": 49,
+      "verse": 10,
+      "id": "sir-49-10-yod-dagesh",
+      "anchor": "וַיוֹשַׁ[גְבוּהוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        527
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=527",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 527,
+          "nativeCropBox": [
+            775,
+            285,
+            895,
+            350
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/49-10-extra-native.png",
+              "sha256": "978bd48b094b7c0409b0d2cecbe36c5aa0f271b56fd5ce9760bf258755675555",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/49-10-extra.png",
+              "sha256": "e1835ad9ff38a71ed5f2c6d69938040db773c00f33b0319686782eaa58e85ffb",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 270,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The shin patah is resolved separately; the tiny yod interior still does not establish a dagesh."
+    },
+    {
+      "chapter": 51,
+      "verse": 4,
+      "id": "sir-51-4-resh-vowel",
+      "anchor": "מֵרבּוֹת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "kind": "unreadablePoint",
+      "occurrence": 1,
+      "sourcePages": [
+        529
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=529",
+      "evidence": [
+        {
+          "scan": "extra",
+          "primaryPDFPage": 529,
+          "nativeCropBox": [
+            1225,
+            230,
+            1345,
+            295
+          ],
+          "nativeImageSize": [
+            1436,
+            2024
+          ],
+          "cropCoordinateOrigin": "top-left of cropped companion half-spread",
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/51-4-extra-native.png",
+              "sha256": "372405798dc620c8aa37b48a769b1ac10c8c4406205e9b561148eb34e86fcf33",
+              "pixelTransform": "none"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass2-SIR/51-4-extra.png",
+              "sha256": "bad7a8e0427c00fc4190c5a6ce4b3bdfe382992f01b3cdef6bff836bb0089e05",
+              "pixelTransform": "nearest-neighbor 5x"
+            }
+          ],
+          "companionSpread": 271,
+          "companionSide": "left"
+        }
+      ],
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The resh lower region remains joined with the letter foot."
+    }
+  ],
+  "conservationChecks": {
+    "primaryRows": 1333,
+    "allPrimaryRowHashesValid": true,
+    "contentBlocksByteEquivalent": true,
+    "allSourceLettersAndPunctuationPreserved": true,
+    "acceptedNotesExactlyMatchRows": true
+  }
+}

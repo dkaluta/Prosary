@@ -1,0 +1,749 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 96,
+  "book": "S3Y",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass96-S3Y-1-29/source-provenance.json",
+    "sha256": "14905cd8248ad692933083a81199434609bfa4327e85b1e1ce2a0b23a5c9fd47"
+  },
+  "sourceNotesBefore": 11,
+  "sourceNotesAfter": 9,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-29-word1-letter1-vowel",
+    "s3y-1-29-word1-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "53a540f67daf90d73986d7c1b524a163ab1c524461561ecc3227c1f311863c07",
+  "contentSHA256After": "84c7095304a8da52dad00d2de7dce06c91e75f2232844bcfd81fd7e594461d66",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "s3y-1-29-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 29,
+      "anchorBefore": "ויַעַשׂ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "The long vav shaft ends before a completely detached horizontal bar, 28pixelswide and10high. The same word's already transcribed yod patah [2332,1322,2362,1334], area260, supplies a literal same-font horizontal-bar comparator. No long qamats tail or second vertical dot appears in the target stamp.",
+      "targetCapture": "extension-volumeA-579-zoom4-mid-left.png",
+      "inspectedBounds": [
+        2364,
+        1253,
+        2390,
+        1319
+      ],
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        2372,
+        1324,
+        2400,
+        1334
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass96-S3Y-1-29/consensus-preparation.json"
+    },
+    {
+      "noteId": "s3y-1-29-word1-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 29,
+      "anchorBefore": "ויַעַשׂ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "A completely detached lower-left interior dot sits below the short yod head, with white separation from its right tail. The complete four-consonant word confirms the second physical letter. A same-font detached yod dagesh control and an ordinary plain-yod counter are included from the same Kahana printing.",
+      "targetCapture": "extension-volumeA-579-zoom4-mid-left.png",
+      "inspectedBounds": [
+        2334,
+        1253,
+        2357,
+        1296
+      ],
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "pointBounds": [
+        2336,
+        1278,
+        2344,
+        1291
+      ],
+      "markClassification": "Dagesh",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass96-S3Y-1-29/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 29,
+      "before": "ויַעַשׂ אֶת־תּוֹךְ הַכִּבְשָׁן כְּמוֹ רוּחַ טַל נֹשֶׁבֶת וְלֹא נָגְעָה בָהֶם הָאֵשׁ עַד־מָה וְלֹא הִכְאִיבָה אוֹתָם וְלֹא הֵצִיקָה לָהֶם׃",
+      "after": "וַיַּעַשׂ אֶת־תּוֹךְ הַכִּבְשָׁן כְּמוֹ רוּחַ טַל נֹשֶׁבֶת וְלֹא נָגְעָה בָהֶם הָאֵשׁ עַד־מָה וְלֹא הִכְאִיבָה אוֹתָם וְלֹא הֵצִיקָה לָהֶם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 29,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass96-S3Y-1-29/independent-review.json",
+    "sha256": "2c22686cd7d575fd49d8af9c0ea5751eab5ce871f3f1bf9def3abd620aea8775"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass96-S3Y-1-29/primary-preparation.json",
+    "sha256": "a25505236727d223038c07d2e6d924d5425c8368098446939d03729b3677b9d3"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass96-S3Y-1-29/consensus-preparation.json",
+    "sha256": "281a11bf749d17c700386a7458212868b110c7b2df36347b6c1a900925fc8ef2"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [
+      {
+        "appointment": "daily|Daniel 3:47–51",
+        "chapter": 1,
+        "verse": 29,
+        "before": [
+          {
+            "id": "s3y-1-29-word1-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויַעַשׂ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          },
+          {
+            "id": "s3y-1-29-word1-letter2-dagesh",
+            "kind": "unreadablePoint",
+            "anchor": "ויַעַשׂ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "dagesh",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          }
+        ],
+        "after": []
+      }
+    ],
+    "changedRows": [
+      {
+        "appointment": "daily|Daniel 3:47–51",
+        "chapter": 1,
+        "verse": 29,
+        "before": "ויַעַשׂ אֶת־תּוֹךְ הַכִּבְשָׁן כְּמוֹ רוּחַ טַל נֹשֶׁבֶת וְלֹא נָגְעָה בָהֶם הָאֵשׁ עַד־מָה וְלֹא הִכְאִיבָה אוֹתָם וְלֹא הֵצִיקָה לָהֶם׃",
+        "after": "וַיַּעַשׂ אֶת־תּוֹךְ הַכִּבְשָׁן כְּמוֹ רוּחַ טַל נֹשֶׁבֶת וְלֹא נָגְעָה בָהֶם הָאֵשׁ עַד־מָה וְלֹא הִכְאִיבָה אוֹתָם וְלֹא הֵצִיקָה לָהֶם׃",
+        "sourceNotesBefore": [
+          {
+            "id": "s3y-1-29-word1-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויַעַשׂ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          },
+          {
+            "id": "s3y-1-29-word1-letter2-dagesh",
+            "kind": "unreadablePoint",
+            "anchor": "ויַעַשׂ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "dagesh",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          }
+        ],
+        "sourceNotesAfter": []
+      }
+    ],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Daniel 3:47–51",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [
+      {
+        "kind": "historicalDailyRowCatchup",
+        "appointment": "daily|Daniel 3:47–51",
+        "book": "S3Y",
+        "chapter": 1,
+        "verse": 27,
+        "frozenDailyRow": {
+          "chapter": 1,
+          "verse": 27,
+          "text": "ויֵּצֵא ויִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-27-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֵּצֵא",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-27-word2-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִּשְׂרֹף",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
+        },
+        "frozenCanonicalRow": {
+          "verse": 27,
+          "text": "וַיֵּצֵא ויִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃",
+          "chapter": 1
+        },
+        "after": {
+          "chapter": 1,
+          "verse": 27,
+          "text": "וַיֵּצֵא ויִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃"
+        },
+        "previouslyCertifiedPointInsertions": [
+          {
+            "offset": 1,
+            "mark": "ַ",
+            "codePoint": "U+05B7"
+          }
+        ],
+        "previouslyRetiredIds": [
+          "s3y-1-27-word1-letter1-vowel",
+          "s3y-1-27-word2-letter1-vowel"
+        ],
+        "report": {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-27-point-comparison-20261017-pass82.json",
+          "sha256": "e7fcd472d3cbc06e956ef5f934898fbd268c1438ea9b58e21360ca53812125d7"
+        },
+        "sourceProvenance": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass82-S3Y-1-27/source-provenance.json",
+          "sha256": "cc3f64f4d7c766bff0e1f8cff43584fefe4ea910f8c56bd6147fe81e96a3dc96"
+        },
+        "countedAsCurrentPassMarks": false
+      },
+      {
+        "kind": "historicalDailyRowCatchup",
+        "appointment": "daily|Daniel 3:47–51",
+        "book": "S3Y",
+        "chapter": 1,
+        "verse": 28,
+        "frozenDailyRow": {
+          "chapter": 1,
+          "verse": 28,
+          "text": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-28-word5-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "וחֲבֵרָיו",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            },
+            {
+              "id": "s3y-1-28-word7-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויֶּהֱדֹף",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ]
+        },
+        "frozenCanonicalRow": {
+          "verse": 28,
+          "text": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וַחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃",
+          "chapter": 1
+        },
+        "after": {
+          "chapter": 1,
+          "verse": 28,
+          "text": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וַחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃"
+        },
+        "previouslyCertifiedPointInsertions": [
+          {
+            "offset": 37,
+            "mark": "ַ",
+            "codePoint": "U+05B7"
+          }
+        ],
+        "previouslyRetiredIds": [
+          "s3y-1-28-word5-letter1-vowel",
+          "s3y-1-28-word7-letter1-vowel"
+        ],
+        "report": {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-28-point-comparison-20261017-pass83.json",
+          "sha256": "134423d6fc8811af3aef30f1c79af2c9230297a63479581174e25786c962ba8b"
+        },
+        "sourceProvenance": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass83-S3Y-1-28/source-provenance.json",
+          "sha256": "d77e5acf2c7e4aa2b1147257e5bbf38852e3b84635eb7b72701c6ce2e9096f46"
+        },
+        "countedAsCurrentPassMarks": false
+      },
+      {
+        "kind": "historicalDailyRowCatchup",
+        "appointment": "daily|Daniel 3:47–51",
+        "book": "S3Y",
+        "chapter": 1,
+        "verse": 30,
+        "frozenDailyRow": {
+          "chapter": 1,
+          "verse": 30,
+          "text": "ויַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד ויְהַלְלוּ ויְשַׁבְּחוּ ויְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+          "sourceNotes": [
+            {
+              "id": "s3y-1-30-vayaanu-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַּעֲנוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            },
+            {
+              "id": "s3y-1-30-vayhalelu-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְהַלְלוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            },
+            {
+              "id": "s3y-1-30-vayshabehu-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְשַׁבְּחוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            },
+            {
+              "id": "s3y-1-30-vayromemu-vav-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויְרוֹמְמוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                235
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+            }
+          ]
+        },
+        "frozenCanonicalRow": {
+          "verse": 30,
+          "text": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+          "chapter": 1
+        },
+        "after": {
+          "chapter": 1,
+          "verse": 30,
+          "text": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃"
+        },
+        "previouslyCertifiedPointInsertions": [
+          {
+            "offset": 1,
+            "mark": "ַ",
+            "codePoint": "U+05B7"
+          },
+          {
+            "offset": 35,
+            "mark": "ַ",
+            "codePoint": "U+05B7"
+          },
+          {
+            "offset": 46,
+            "mark": "ַ",
+            "codePoint": "U+05B7"
+          },
+          {
+            "offset": 59,
+            "mark": "ַ",
+            "codePoint": "U+05B7"
+          }
+        ],
+        "previouslyRetiredIds": [
+          "s3y-1-30-vayaanu-vav-vowel",
+          "s3y-1-30-vayhalelu-vav-vowel",
+          "s3y-1-30-vayshabehu-vav-vowel",
+          "s3y-1-30-vayromemu-vav-vowel"
+        ],
+        "report": {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-30-point-comparison-20261017-pass47.json",
+          "sha256": "a3b2d80ce045ef375d3ff0c5639f98b803dedb3851f3dbbef2922984b7addd41"
+        },
+        "sourceProvenance": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/source-provenance.json",
+          "sha256": "d841f3c08d64e41783ada628dab05cb74b5e91ac489c38530a2e0e51fbd158b2"
+        },
+        "countedAsCurrentPassMarks": false
+      },
+      {
+        "kind": "historicalDailyBoundaryCatchup",
+        "appointment": "daily|Daniel 3:47–51",
+        "field": "closingText",
+        "selection": {
+          "chapter": 1,
+          "verse": 30
+        },
+        "frozenSourceScalarSpan": [
+          0,
+          117
+        ],
+        "before": "ויַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד ויְהַלְלוּ ויְשַׁבְּחוּ ויְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+        "after": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+        "report": {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-30-point-comparison-20261017-pass47.json",
+          "sha256": "a3b2d80ce045ef375d3ff0c5639f98b803dedb3851f3dbbef2922984b7addd41"
+        },
+        "sourceProvenance": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/source-provenance.json",
+          "sha256": "d841f3c08d64e41783ada628dab05cb74b5e91ac489c38530a2e0e51fbd158b2"
+        },
+        "countedAsCurrentPassMarks": false
+      }
+    ],
+    "historicalCatchupPointCount": 6,
+    "historicalCatchupRetiredIdCount": 8
+  },
+  "metadataCorrections": [
+    {
+      "kind": "historicalDailyRowCatchup",
+      "appointment": "daily|Daniel 3:47–51",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "frozenDailyRow": {
+        "chapter": 1,
+        "verse": 27,
+        "text": "ויֵּצֵא ויִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃",
+        "sourceNotes": [
+          {
+            "id": "s3y-1-27-word1-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויֵּצֵא",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          },
+          {
+            "id": "s3y-1-27-word2-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויִּשְׂרֹף",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          }
+        ]
+      },
+      "frozenCanonicalRow": {
+        "verse": 27,
+        "text": "וַיֵּצֵא ויִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃",
+        "chapter": 1
+      },
+      "after": {
+        "chapter": 1,
+        "verse": 27,
+        "text": "וַיֵּצֵא ויִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃"
+      },
+      "previouslyCertifiedPointInsertions": [
+        {
+          "offset": 1,
+          "mark": "ַ",
+          "codePoint": "U+05B7"
+        }
+      ],
+      "previouslyRetiredIds": [
+        "s3y-1-27-word1-letter1-vowel",
+        "s3y-1-27-word2-letter1-vowel"
+      ],
+      "report": {
+        "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-27-point-comparison-20261017-pass82.json",
+        "sha256": "e7fcd472d3cbc06e956ef5f934898fbd268c1438ea9b58e21360ca53812125d7"
+      },
+      "sourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass82-S3Y-1-27/source-provenance.json",
+        "sha256": "cc3f64f4d7c766bff0e1f8cff43584fefe4ea910f8c56bd6147fe81e96a3dc96"
+      },
+      "countedAsCurrentPassMarks": false
+    },
+    {
+      "kind": "historicalDailyRowCatchup",
+      "appointment": "daily|Daniel 3:47–51",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "frozenDailyRow": {
+        "chapter": 1,
+        "verse": 28,
+        "text": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃",
+        "sourceNotes": [
+          {
+            "id": "s3y-1-28-word5-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "וחֲבֵרָיו",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          },
+          {
+            "id": "s3y-1-28-word7-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויֶּהֱדֹף",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          }
+        ]
+      },
+      "frozenCanonicalRow": {
+        "verse": 28,
+        "text": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וַחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃",
+        "chapter": 1
+      },
+      "after": {
+        "chapter": 1,
+        "verse": 28,
+        "text": "וּמַלְאַךְ יְיָ יָרַד עִם־עֲזַרְיָה וַחֲבֵרָיו אֶל־הַכִּבְשָׁן ויֶּהֱדֹף אֶת־לַהַב הָאֵשׁ׃"
+      },
+      "previouslyCertifiedPointInsertions": [
+        {
+          "offset": 37,
+          "mark": "ַ",
+          "codePoint": "U+05B7"
+        }
+      ],
+      "previouslyRetiredIds": [
+        "s3y-1-28-word5-letter1-vowel",
+        "s3y-1-28-word7-letter1-vowel"
+      ],
+      "report": {
+        "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-28-point-comparison-20261017-pass83.json",
+        "sha256": "134423d6fc8811af3aef30f1c79af2c9230297a63479581174e25786c962ba8b"
+      },
+      "sourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass83-S3Y-1-28/source-provenance.json",
+        "sha256": "d77e5acf2c7e4aa2b1147257e5bbf38852e3b84635eb7b72701c6ce2e9096f46"
+      },
+      "countedAsCurrentPassMarks": false
+    },
+    {
+      "kind": "historicalDailyRowCatchup",
+      "appointment": "daily|Daniel 3:47–51",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "frozenDailyRow": {
+        "chapter": 1,
+        "verse": 30,
+        "text": "ויַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד ויְהַלְלוּ ויְשַׁבְּחוּ ויְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+        "sourceNotes": [
+          {
+            "id": "s3y-1-30-vayaanu-vav-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויַּעֲנוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              235
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+          },
+          {
+            "id": "s3y-1-30-vayhalelu-vav-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויְהַלְלוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              235
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+          },
+          {
+            "id": "s3y-1-30-vayshabehu-vav-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויְשַׁבְּחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              235
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+          },
+          {
+            "id": "s3y-1-30-vayromemu-vav-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויְרוֹמְמוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              235
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=235"
+          }
+        ]
+      },
+      "frozenCanonicalRow": {
+        "verse": 30,
+        "text": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+        "chapter": 1
+      },
+      "after": {
+        "chapter": 1,
+        "verse": 30,
+        "text": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃"
+      },
+      "previouslyCertifiedPointInsertions": [
+        {
+          "offset": 1,
+          "mark": "ַ",
+          "codePoint": "U+05B7"
+        },
+        {
+          "offset": 35,
+          "mark": "ַ",
+          "codePoint": "U+05B7"
+        },
+        {
+          "offset": 46,
+          "mark": "ַ",
+          "codePoint": "U+05B7"
+        },
+        {
+          "offset": 59,
+          "mark": "ַ",
+          "codePoint": "U+05B7"
+        }
+      ],
+      "previouslyRetiredIds": [
+        "s3y-1-30-vayaanu-vav-vowel",
+        "s3y-1-30-vayhalelu-vav-vowel",
+        "s3y-1-30-vayshabehu-vav-vowel",
+        "s3y-1-30-vayromemu-vav-vowel"
+      ],
+      "report": {
+        "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-30-point-comparison-20261017-pass47.json",
+        "sha256": "a3b2d80ce045ef375d3ff0c5639f98b803dedb3851f3dbbef2922984b7addd41"
+      },
+      "sourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/source-provenance.json",
+        "sha256": "d841f3c08d64e41783ada628dab05cb74b5e91ac489c38530a2e0e51fbd158b2"
+      },
+      "countedAsCurrentPassMarks": false
+    },
+    {
+      "kind": "historicalDailyBoundaryCatchup",
+      "appointment": "daily|Daniel 3:47–51",
+      "field": "closingText",
+      "selection": {
+        "chapter": 1,
+        "verse": 30
+      },
+      "frozenSourceScalarSpan": [
+        0,
+        117
+      ],
+      "before": "ויַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד ויְהַלְלוּ ויְשַׁבְּחוּ ויְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+      "after": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+      "report": {
+        "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-30-point-comparison-20261017-pass47.json",
+        "sha256": "a3b2d80ce045ef375d3ff0c5639f98b803dedb3851f3dbbef2922984b7addd41"
+      },
+      "sourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass47-S3Y-1-30/source-provenance.json",
+        "sha256": "d841f3c08d64e41783ada628dab05cb74b5e91ac489c38530a2e0e51fbd158b2"
+      },
+      "countedAsCurrentPassMarks": false
+    }
+  ],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

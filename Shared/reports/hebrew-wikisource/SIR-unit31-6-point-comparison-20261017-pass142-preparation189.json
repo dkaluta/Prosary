@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 142,
+  "integrationPass": 142,
+  "preparationID": 189,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation189-SIR-31-6/source-provenance.json",
+    "sha256": "cc1657214e067f06a74ea76622e74adf496d7b96926a344b9a96ca0774c53a2f"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-31-6-lamed-vowel"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-31-6-lamed-vowel",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 6,
+      "anchorBefore": "וְלא מָצְאוּ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "ExactownsecondLamedframe is physicallybroken: survivingupper38pxfragment[1300,567,1309,574], then nativefield575..625lacks a complete readableLamedbody/ownpoint. InitialVav andfollowingAlef/completeמצאו independentlylocate ownframe. Missingletterstroke mustnot turn blanklowerfield into certifiedvowelabsence; neither exactlowerpoint nor absence certified. Fulltarget/controlwords andtwoactualrows/endpoints inspected. Retain originalvowelnote, preserve everyoriginalscalar/consonant/anchor, no letterreconstruction/edit authorized.",
+      "targetCapture": "primary-494-native.png",
+      "targetSourceIdentifier": "primary-494-native.png",
+      "inspectedBounds": [
+        1298,
+        560,
+        1323,
+        625
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation189-SIR-31-6/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 31,
+    "verse": 6,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation189-SIR-31-6/independent-review.json",
+    "sha256": "fcd4b4e27c27cb04201f987e5b92b02f9b10c47c842b969d7700081337eb9c9c"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation189-SIR-31-6/primary-preparation.json",
+    "sha256": "cecf6494e9bd018f9373c2e96113ae4582448d1d9f006031cf2f33b98316a2b5"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation189-SIR-31-6/consensus-preparation.json",
+    "sha256": "b36e4da70dc46fe72f465f01a7a105a2463e9cc1db82223258204d40b6f83fc0"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

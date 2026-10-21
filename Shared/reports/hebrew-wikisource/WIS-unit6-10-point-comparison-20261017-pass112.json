@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 112,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-6-10/source-provenance.json",
+    "sha256": "3e181cee2bc03595f9a3ba109f6f04b74648e9e993a046149883e94e52c985f0"
+  },
+  "sourceNotesBefore": 121,
+  "sourceNotesAfter": 119,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-6-10-dalet-biqdusha",
+    "wis-6-10-dalet-yikadeshu"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "05f4633725394156fa251eb2b21b28c2d26c141918b76ed8f7b4b5feb801ccb0",
+  "contentSHA256After": "c848ec68f6037f4409ccf68728e48d0c8f9bd8ff7528aa38b5e546e9b3980a17",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "wis-6-10-dalet-biqdusha",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 10,
+      "anchorBefore": "בִּקְדשָּׁה",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "The complete Dalet ends1686; three white rows1686..1688 separate the lower cluster from its body. The cluster has three successive oblique lobes: top537..546/1689..1699, middle540..550/1704..1713, lower543..555/1719..1728, shifting right as they descend. They contact through narrow necks, not a horizontal bar/stem. Literal SAME-UNIT Het Qubuts in חקי has the same three descending-right nodes[1185,1684,1207,1727], with two upper nodes in one component and the third independently detached. The own target geometry matches the literal three-dot control. Certify U+05BB only if independent peer agrees; no grammatical reasoning.",
+      "targetCapture": "extension-volumeA-501-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeA-501-zoom4-header.png",
+      "inspectedBounds": [
+        498,
+        1612,
+        560,
+        1686
+      ],
+      "markProposed": "qubuts",
+      "codePoint": "U+05BB",
+      "pointBounds": [
+        537,
+        1689,
+        555,
+        1732
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-6-10/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-6-10-dalet-yikadeshu",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 10,
+      "anchorBefore": "יִקָּדשׁוּ",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "Own lower field shows two horizontally adjacent nodes at the same level: left node[137,1689,148,1704] is detached, while the right node is joined to the narrow Dalet stem around154..163/1689..1702. No lower node/stem survives in[130,1705,170,1740] even at192. A literal SAME-UNIT Dalet in ולומדיהם on the exact original raster[1015,772,1050,820] has the corresponding paired horizontal terminal lobes at812..819, also fused to its narrow stem. This is a Tsere two-node footprint, not a flat undivided bar or descending vowel stem. Certify U+05B5 only after independent same-letter/control verification; retain if body/point separation remains insufficient.",
+      "targetCapture": "extension-volumeA-501-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeA-501-zoom4-header.png",
+      "inspectedBounds": [
+        99,
+        1612,
+        163,
+        1702
+      ],
+      "markProposed": "tsere",
+      "codePoint": "U+05B5",
+      "pointBounds": [
+        137,
+        1689,
+        163,
+        1704
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-6-10/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 6,
+      "verse": 10,
+      "before": "כִּי שׁוֹמְרֵי חֻקֵּי קֹדֶשׁ בִּקְדשָּׁה יִקָּדשׁוּ וְלוֹמְדֵיהֶם יִמְצְאוּ מֵלִיץ יֹשֶׁר׃",
+      "after": "כִּי שׁוֹמְרֵי חֻקֵּי קֹדֶשׁ בִּקְדֻשָּׁה יִקָּדֵשׁוּ וְלוֹמְדֵיהֶם יִמְצְאוּ מֵלִיץ יֹשֶׁר׃"
+    }
+  ],
+  "scope": {
+    "chapter": 6,
+    "verse": 10,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-6-10/independent-review.json",
+    "sha256": "859a2809557bc8a4b444679a76f781f54415258490422562e3b191e66c8da024"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-6-10/primary-preparation.json",
+    "sha256": "1d2f719e0e1355c02510b065ecc4af20e7e49cca4ea2e568cb0ad1b0f7eac306"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass112-WIS-6-10/consensus-preparation.json",
+    "sha256": "f957f1da63803478426a0bd206edebbe65a54e97fe1deb063a33e21fe0bbc1f0"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

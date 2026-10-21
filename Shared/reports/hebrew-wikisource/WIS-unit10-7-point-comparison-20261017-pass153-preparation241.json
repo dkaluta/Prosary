@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 153,
+  "integrationPass": 153,
+  "preparationID": 241,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation241-WIS-10-7/source-provenance.json",
+    "sha256": "6247b3744294974f926f1aaa9b992bd1da069f8736207f116998957f46a1f4ad"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-10-7-het"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-10-7-het",
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 7,
+      "anchorBefore": "הַחרַבָה",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own Het561px body[1951,1158,1984,1196] is separate from own183px lowercomponent[1956,1197,1978,1213]. Lowercomponent has broad joined top1198..1202 with unequal lobes and rightheavy descending mass1203..1212. Nativepixels do not independently delimit an exact vowelclass/count: detachment from body alone is insufficient. No blanklowerfieldabsence claimed. Completeactual20groups, fullownword/controlword, own uniqueoccurrence index2, and true prior/final/fullfollowing endpoints independently established. InitialHe107px separatePatah does not supply Hetmark. Preserve unreadablepoint and original scalars.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a8/a8ec2808cc38b406c1f17c9abb0eed466ce5e6e7bb334f5ab726122cf1d6b1f4.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a8/a8ec2808cc38b406c1f17c9abb0eed466ce5e6e7bb334f5ab726122cf1d6b1f4.bin",
+      "inspectedBounds": [
+        1951,
+        1158,
+        1984,
+        1196
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation241-WIS-10-7/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 10,
+    "verse": 7,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation241-WIS-10-7/independent-review.json",
+    "sha256": "b103916c77b4cb30bcf195e13913b22665e8d4ebca4306e3945c66e1dfe2a623"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation241-WIS-10-7/primary-preparation.json",
+    "sha256": "671b1a17faed6085e006d8f8f0a699535c7e4ac5c8482ae42f6410b968cea614"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation241-WIS-10-7/consensus-preparation.json",
+    "sha256": "6496f31489758c9a3aa729703ea44c1ee4d6bb94d493716f2382cca4118d87ae"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

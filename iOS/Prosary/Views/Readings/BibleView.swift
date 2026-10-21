@@ -214,6 +214,7 @@ struct BibleChapterView: View {
   @State private var unavailable = false
   @State private var jumpBlockID: String?
   @State private var pendingJumpBlockID: String?
+  @State private var readingAnchorID: String?
 
   private var number: Int { chapterNumber == 0 ? initialChapter : chapterNumber }
   private var script: Binding<String> {
@@ -223,22 +224,17 @@ struct BibleChapterView: View {
   private var position: BiblePosition { BiblePosition(book: activeBook.id, chapter: number) }
 
   var body: some View {
-    ScrollViewReader { proxy in
+    VStack(spacing: 0) {
+      if edition.readingEdition.supportsAramaicScriptChoice {
+        BibleScriptPicker(script: script).padding(.horizontal, 20).padding(.vertical, 8)
+      }
+      if let chapter {
+        BibleChapterReader(edition: edition, book: activeBook, display: chapter,
+          script: script.wrappedValue, jumpGeneration: jumpGeneration, anchorID: $readingAnchorID)
+      } else {
       ScrollView {
         VStack(alignment: .leading, spacing: 20) {
-          if edition.readingEdition.supportsAramaicScriptChoice { BibleScriptPicker(script: script) }
-          if activeBook.chapters.first(where: { $0.number == number })?.isComplete == false {
-            Text(bibleLabel("partial", "Only part of this chapter is available"))
-              .font(.callout).foregroundStyle(.secondary)
-              .accessibilityIdentifier("bible.partial")
-          }
-          if let chapter {
-            if let introduction = activeBook.introduction(for: number) {
-              ScriptureIntroduction(text: introduction, edition: edition.readingEdition)
-            }
-            BibleSourceBlockList(edition: edition.readingEdition, display: chapter, script: script.wrappedValue,
-              canonicalReference: activeBook.chapters.first { $0.number == number }?.canonicalReference)
-          } else if unavailable {
+          if unavailable {
             Text(bibleLabel("chapterUnavailable", "This chapter is not available offline. Return to Bible to download the edition."))
               .foregroundStyle(.secondary).accessibilityIdentifier("bible.unavailable")
           } else { ProgressView() }
@@ -247,9 +243,9 @@ struct BibleChapterView: View {
         .frame(maxWidth: 720, alignment: .leading).frame(maxWidth: .infinity)
         .padding(20).id("chapter.top")
       }
-      .onChange(of: jumpGeneration) { _, _ in if let block = jumpBlockID { proxy.scrollTo(block, anchor: .top) } }
-      .onChange(of: "\(activeBook.id)|\(number)") { _, _ in proxy.scrollTo("chapter.top", anchor: .top) }
+      }
     }
+    .onChange(of: jumpGeneration) { _, _ in if let block = jumpBlockID { readingAnchorID = block } }
     .navigationTitle(activeBook.displayedName(script: script.wrappedValue))
     .toolbar {
       ToolbarItem(id: "bible.previousChapter", placement: .automatic) {
@@ -264,7 +260,7 @@ struct BibleChapterView: View {
             }
           }
         } label: {
-          Text(bibleChapterLabel(number, book: activeBook, edition: edition.readingEdition, script: script.wrappedValue))
+          Label(bibleChapterLabel(number, book: activeBook, edition: edition.readingEdition, script: script.wrappedValue), systemImage: "book")
         }
         .accessibilityIdentifier("bible.chapterMenu")
       }
@@ -319,6 +315,7 @@ struct BibleChapterView: View {
   }
   private func load() async {
     let requested = position
+    readingAnchorID = pendingJumpBlockID
     chapter = nil; unavailable = false; jumpBlockID = nil
     do {
       let value = try await BibleStore.shared.displayChapter(edition: edition, book: requested.book, number: requested.chapter)
@@ -359,7 +356,7 @@ extension ReadingTextEdition {
   var isBibleRightToLeft: Bool { languageCode == "arc" || UILanguage.isRightToLeft(languageCode) }
 }
 
-private struct ScriptureIntroduction: View {
+struct ScriptureIntroduction: View {
   let text: String
   let edition: ReadingTextEdition
   @ObservedObject private var typography = PrayerTypographyMonitor.shared

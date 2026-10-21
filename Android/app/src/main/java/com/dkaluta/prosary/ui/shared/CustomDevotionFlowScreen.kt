@@ -565,7 +565,8 @@ fun CustomDevotionFlowScreen(
         wideAccessoryWidth = if (showsBeadTrack) beadWideWidth(beadLayout) else 0.dp,
         accessory = if (showsBeadTrack) {
             { isWide, hasRoomForSingleMinorColumn ->
-                BeadProgressView(layout = beadLayout, isWide = isWide, hasRoomForSingleMinorColumn = hasRoomForSingleMinorColumn)
+                BeadProgressView(layout = beadLayout, isWide = isWide, languageCode = languageCode,
+                    bundleId = devotionId, hasRoomForSingleMinorColumn = hasRoomForSingleMinorColumn)
             }
         } else {
             { _, _ -> }

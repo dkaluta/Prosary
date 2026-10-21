@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 172,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Existing authorized offline Psik Chrome captures; no browser or network access. Legacy and saved capture page labels retained; printed pagination is not inferred.",
+  "additionalSourceProvenance": [],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Existing offline page234 native overview/mid-left capture only. Historical context used only as numerical address locator. No PDF raster newly relied upon.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    234
+  ],
+  "savedCaptureViewerPageLabels": [
+    579
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page234/extension-volumeA-579-page-overview.png",
+      "sha256": "577cb16a84399976265bd28fed7dd4da96e85a0d0ab185994b5a824017c84f48",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page234/extension-volumeA-579-zoom4-mid-left.png",
+      "sha256": "39158c89d31ec2afaa03f78ead5b622b745c9cf5a2e7853fdf9b6c4c75b675fa",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation172-S3Y-1-26/source-provenance.json",
+    "sha256": "fcd4ad59e85b8bab6adb1d970a0235d32532d2788dd7c50cfba4622bf2f978c8"
+  }
+}

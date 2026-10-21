@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 133,
+  "integrationPass": 133,
+  "preparationID": 137,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "1MA",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation137-1MA-16-4/source-provenance.json",
+    "sha256": "1a20abcc10d8d92dd77cc21bedc553b555b3423eaf236e3e5963b1d72f053659"
+  },
+  "sourceNotesBefore": 6,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "1ma-16-4-qof-vowel"
+  ],
+  "contentSHA256Before": "3d7b9b0f3a879e333463a77084a9ade6a22f7f3d71ee6ff7dedf023dbd92dc8b",
+  "contentSHA256After": "3d7b9b0f3a879e333463a77084a9ade6a22f7f3d71ee6ff7dedf023dbd92dc8b",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "1ma-16-4-qof-vowel",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 4,
+      "anchorBefore": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Exactly replayed original own Qof and adjacent Nun form one721pixel native component[317,601,353,638] at128. The right Qof body/descender enters a saturated lower mass contiguous with the left neighboring Nun contribution; the low contour has no uniquely isolated horizontal bar, paired nodes or head/stem boundary that independently identifies its vowel. Same-word Dalet lower contour is also joined, while literal upper round nodes remain individually exposed elsewhere in the same physical unit. Current own overview shows a tiny lower stamp but has too few pixels to disambiguate it. No complete higher-resolution source4 word was independently registered; the apparently clearer high-resolution name is source8 and is expressly excluded. Retain the existing note and all existing scalars; no vowel and no absence is certified. Independent peer: Independent own original seven-consonant word crop exactly replays the published own-source pixels. At128 the Qof/Nun union is a single721pixel component[317,601,353,638]; intrinsic descender, adjacent Nun mass and lower stamp connect. Lower horizontal expansion around630..633 remains attached and cannot independently exclude a Qamats stem or a fused alternative. Its neighboring Dalet is similarly joined; literal detached upper round node[250,596,254,600]13px resolves as a separate point and does not certify the queried lower vowel. The true current source4 word followsנגד on426row, between actual3/4 and4/5 boundaries, whereas the clearer high-resolution name followsוינגף and precedesומחנהו in source8. No source8 mark transfers. Retain the unreadable vowel note and all original scalars; neither a new point nor absence is certified.",
+      "targetCapture": "primary-176-native.png",
+      "targetSourceIdentifier": "primary-176-native.png",
+      "inspectedBounds": [
+        331,
+        590,
+        360,
+        650
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation137-1MA-16-4/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 16,
+    "verse": 4,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation137-1MA-16-4/independent-review.json",
+    "sha256": "73c33f3f9b3f0f44182b4e96161e6571241b9af3cd3c6002881fcf4422fa81f7"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation137-1MA-16-4/primary-preparation.json",
+    "sha256": "4fb758e1b40a65fc8a847a053f795cfd37fd8d9a8c36878995d7f69b55da4560"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass133-preparation137-1MA-16-4/consensus-preparation.json",
+    "sha256": "f738e59af20eab21e65468a0a0cb4554e7f6108f63491c8d706a025bef4c7d3d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

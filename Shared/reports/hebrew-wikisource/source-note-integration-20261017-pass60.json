@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-21",
+  "pass": 60,
+  "startingNoteCount": 308,
+  "removedNoteCount": 3,
+  "remainingNoteCount": 305,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 43,
+      "afterNoteCount": 40,
+      "removedNoteIds": [
+        "bel-1-40-247-bayom40-letter1-vowel",
+        "bel-1-40-247-vayavo40-letter1-vowel",
+        "bel-1-40-247-vayar40-letter1-vowel"
+      ],
+      "beforeDigest": "c69868b02b307777bbf6790afc3077f989fef70b443ddeedb65b32c8de4e1ba8",
+      "afterDigest": "1210e1a76e3171b642e118970f02001d24598ce74a87c8d42200a36a1cde3c07",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 40,
+          "before": "וְהַמֶּלֶךְ הָלַךְ בּיּוֹם הַשְּׁבִיעִי לִסְפֹּד לְדָנִיֵּאל ויָּבֹא אֶל־הַבּוֹר ויַּרְא וְהִנֵּה דָנִיֵּאל יוֹשֵׁב׃",
+          "after": "וְהַמֶּלֶךְ הָלַךְ בַּיּוֹם הַשְּׁבִיעִי לִסְפֹּד לְדָנִיֵּאל ויָּבֹא אֶל־הַבּוֹר וַיַּרְא וְהִנֵּה דָנִיֵּאל יוֹשֵׁב׃",
+          "retiredNoteIds": [
+            "bel-1-40-247-bayom40-letter1-vowel",
+            "bel-1-40-247-vayavo40-letter1-vowel",
+            "bel-1-40-247-vayar40-letter1-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-40-point-comparison-20261017-pass60.json",
+          "sha256": "11185964ef5bedae1a1077f520332902f8f1dc259996ac2bf7c17c6da364aa74"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass60.json",
+          "sha256": "4bdd34634488ce20d592e1d047d91e86da3bf1543f390ac6b050e557d4141673"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-40-point-comparison-20261017-pass60.json",
+      "sha256": "11185964ef5bedae1a1077f520332902f8f1dc259996ac2bf7c17c6da364aa74"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass60.json",
+      "sha256": "4bdd34634488ce20d592e1d047d91e86da3bf1543f390ac6b050e557d4141673"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 305,
+      "removedNotes": 3,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-8a4a7599f425a025f11b51a5dcd33451cbc92ebfab3405ca1bca889ba30b9d0a.zip",
+      "archiveSHA256": "b5aa0a646c5729d0cac0837fbfea756cd08c23527af23c24123b33503d962466",
+      "archiveBytes": 3110202
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 345,
+      "remainingNoteCount": 305,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 345,
+      "distinctChangedSourceUnits": 123
+    }
+  }
+}

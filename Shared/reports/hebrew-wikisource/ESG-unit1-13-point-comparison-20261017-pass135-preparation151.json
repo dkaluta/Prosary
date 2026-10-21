@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 135,
+  "integrationPass": 135,
+  "preparationID": 151,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation151-ESG-1-13/source-provenance.json",
+    "sha256": "68e51c930a97e0a8a906b2accb61f9c319fda71233e25377d5489013d22b3da8"
+  },
+  "sourceNotesBefore": 19,
+  "sourceNotesAfter": 18,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-1-13-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "a47c2f0f9a5078ef4f0ff0fb47fbbb99e8c78a7d46539d6f1429c30205513c11",
+  "contentSHA256After": "2805db7a35d6eca1d180ef7188ad341da23b7c7cda2ebb92ccdc497e14acf2e4",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-1-13-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 13,
+      "anchorBefore": "למְזִמּוֹתֵיהֶם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Own initialLamed body ends415, five clear rows precede a singlecompact86px10x12 oval[1778,421,1788,433] at128. Lowerfield435..474 through192 is clear (threshold192 includes only a compact118px12x14 point fringe ending433): no second node, horizontalbar or continuingstem. Literal SAMEWORD thirdZayin has its own singlecompact101px13x10 lowerdot[1658,421,1671,431], separated from wholeZayin by eight clearrows and with clear continuation. Both exact native isolatedsinglelowerdots certify Hiriq U05B4. FourthMem internaldagesh64px is separately preserved and not reassigned. No expectedspelling, normalization or otheroccurrence supplies target.",
+      "targetCapture": "extension-volumeA-561-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-561-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1760,
+        313,
+        1819,
+        416
+      ],
+      "markProposed": "Hiriq",
+      "codePoint": "U+05B4",
+      "pointBounds": [
+        1778,
+        421,
+        1788,
+        433
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation151-ESG-1-13/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 13,
+      "before": "וַיִּשְׁמַע אֶת־מוֹעֲצוֹתֵיהֶם וַיָּבֶן למְזִמּוֹתֵיהֶם וַיֵּדַע כִּי מְבַקְּשִׁים הֵם לִשְׁלֹחַ יָד בַּמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ וַיַּגֵּד לַמֶּלֶךְ עַל־אֵלֶּה׃",
+      "after": "וַיִּשְׁמַע אֶת־מוֹעֲצוֹתֵיהֶם וַיָּבֶן לִמְזִמּוֹתֵיהֶם וַיֵּדַע כִּי מְבַקְּשִׁים הֵם לִשְׁלֹחַ יָד בַּמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ וַיַּגֵּד לַמֶּלֶךְ עַל־אֵלֶּה׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 13,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation151-ESG-1-13/independent-review.json",
+    "sha256": "a71f798dde3a5ca41c6bc18aeab0a4306a67e2e6b92e15dcc58c34551a8c6ed4"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation151-ESG-1-13/primary-preparation.json",
+    "sha256": "d1a5ac85bd05a56c082ac618f98be0cb414adcf9f7bffbac74697c5ea7324d22"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation151-ESG-1-13/consensus-preparation.json",
+    "sha256": "6149a9db01eada877adec78edf4066f59bf258cf962f699d48cecb945cd162fa"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 82,
+  "book": "S3Y",
+  "status": "Two 1:27 source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 82.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass82-S3Y-1-27/source-provenance.json",
+    "sha256": "cc3f64f4d7c766bff0e1f8cff43584fefe4ea910f8c56bd6147fe81e96a3dc96"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 234. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 253,
+  "sourceNotesBefore": 15,
+  "sourceNotesAfter": 13,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-27-word1-letter1-vowel",
+    "s3y-1-27-word2-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "s3y-1-27-word1-letter1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 27,
+      "before": "ויֵּצֵא ויִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃",
+      "after": "וַיֵּצֵא ויִּשְׂרֹף אֵת אֲשֶׁר־מָצָא מִן־הַכַּשְׂדִּים סָבִיב לַכִּבְשָׁן׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 27,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 27 on page רלד / 234 (viewer page 579) in Kahana Volume A, Prayer of Azariah and Song of the Three Children.",
+  "decisions": [
+    {
+      "noteId": "s3y-1-27-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויֵּצֵא",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Beneath the initial Vav of ויֵּצֵא, high-resolution zoom 6 capture reveals a crisp, solid horizontal Patah bar spanning 46 pixels wide and 23 pixels high (rows 259..281) directly below the Vav stem, followed by clean white paper below. Distinct from Sheva; matches positive control Patah. Confirmed printed Patah (U+05B7).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass82-S3Y-1-27/s3y-1-27-vayetze-vav-patah-native.png",
+        "sha256": "fc86f63d44167ebfe39c3f41411ba304c7db41c808cc54b436d6ffec6441ea41"
+      }
+    },
+    {
+      "noteId": "s3y-1-27-word2-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "anchor": "ויִּשְׂרֹף",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Beneath the initial Vav of ויִּשְׂרֹף, 36 consecutive vertical rows (y=249..284) across the entire width of the Vav stem are 100% clean white paper with zero ink (mean brightness 251.7). The consonant is printed unpointed without a vowel mark. Confirmed unpointed consonant for initial Vav.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass82-S3Y-1-27/s3y-1-27-vayisrof-vav-unpointed-native.png",
+        "sha256": "cd802c90871265a2ac84ea4833a56ad1890d5f616c7045eb0f54b7cb892a31b3"
+      }
+    }
+  ]
+}

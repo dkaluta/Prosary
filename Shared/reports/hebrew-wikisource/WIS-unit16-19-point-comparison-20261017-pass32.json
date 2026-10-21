@@ -1,0 +1,1594 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-18",
+  "batchDate": "2026-10-17",
+  "pass": 32,
+  "book": "WIS",
+  "status": "Three source16:19 points proposed from the approved live Psik reader; independent audits pending.",
+  "applicationState": "Proposal only. Canonical source, review gates and generated files not modified.",
+  "primarySource": {
+    "type": "Chrome-extension screenshots of authenticated Psik reader",
+    "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewerGlance/12306",
+    "browserId": "1",
+    "tabId": "701173816",
+    "viewerPage": 523,
+    "internalPage": 538,
+    "printedPage": "תקו",
+    "printedPageArabic": 506,
+    "provenance": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/chrome-provenance.json",
+      "sha256": "133acaa55aeff131700f1c7baba217dc6f2e8c3818c442874526bf428a4c0090"
+    },
+    "captures": [
+      {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-top-original.png",
+        "sha256": "5ce0d5b1625b6fbfae78ed002490a2a34ec095632e09120ae8c6372252aff14d",
+        "acquisitionPath": "/private/tmp/prosary-hebrew-pass32-20261017/extension-volumeA-523-top.png",
+        "sourceSize": [
+          1286,
+          931
+        ],
+        "sourceType": "Chrome-extension screenshot",
+        "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewerGlance/12306",
+        "viewerPage": 523,
+        "internalPage": 538,
+        "printedPage": "תקו",
+        "printedPageArabic": 506,
+        "browserId": "1",
+        "tabId": "701173816"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+        "sha256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+        "acquisitionPath": "/private/tmp/prosary-hebrew-pass32-20261017/extension-volumeA-523-zoom4-left.png",
+        "sourceSize": [
+          1286,
+          931
+        ],
+        "sourceType": "Chrome-extension screenshot",
+        "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewerGlance/12306",
+        "viewerPage": 523,
+        "internalPage": 538,
+        "printedPage": "תקו",
+        "printedPageArabic": 506,
+        "browserId": "1",
+        "tabId": "701173816"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+        "sha256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+        "acquisitionPath": "/private/tmp/prosary-hebrew-pass32-20261017/extension-volumeA-523-zoom4-right.png",
+        "sourceSize": [
+          1286,
+          931
+        ],
+        "sourceType": "Chrome-extension screenshot",
+        "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewerGlance/12306",
+        "viewerPage": 523,
+        "internalPage": 538,
+        "printedPage": "תקו",
+        "printedPageArabic": 506,
+        "browserId": "1",
+        "tabId": "701173816"
+      },
+      {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+        "sha256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+        "acquisitionPath": "/private/tmp/prosary-hebrew-pass32-20261017/extension-volumeA-523-zoom4-upper-right.png",
+        "sourceSize": [
+          1286,
+          931
+        ],
+        "sourceType": "Chrome-extension screenshot",
+        "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewerGlance/12306",
+        "viewerPage": 523,
+        "internalPage": 538,
+        "printedPage": "תקו",
+        "printedPageArabic": 506,
+        "browserId": "1",
+        "tabId": "701173816"
+      }
+    ]
+  },
+  "baselineSource": {
+    "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+    "pdfPage": 178,
+    "relationship": "Earlier scan used only for baseline location and comparison. No same-byte equivalence to Psik is asserted. New decisions rely on approved Chrome screenshot pixels."
+  },
+  "method": "Read the complete numbered unit and entire target and control words from authenticated Psik screenshots acquired through the approved ChatGPT for Chrome connection. Original screenshots retained byte-for-byte; every crop bounds-checked before crop and presented at native or integer NEAREST only. No OCR, grammar, expected spelling, Unicode normalization, enhancement, or other witness supplies any mark. Author replay is not independent.",
+  "baselineGlobalSourceNoteCount": 465,
+  "canonicalSHA256Before": "5af818e6a1e5eb2f9195309e55b60faeee5e32db8ac4947e855e7aac298b4132",
+  "contentSHA256Before": "f44d9c97d35dbb3d7fe9f1dfbd343a1979de640d207720e61dfac910ad72a110",
+  "contentSHA256After": "610738d0edf4a98089c2a6a4df567b4e07d7ad3673fc84f076a67a5d7fdfe14f",
+  "sourceNotesBefore": 184,
+  "sourceNotesAfter": 181,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-16-19-lamed-3-vowel",
+    "wis-16-19-pe-4-vowel",
+    "wis-16-19-qof-4-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 3,
+  "addedCombiningMarks": {
+    "U+05B7": 2,
+    "U+05B8": 1
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 19,
+      "id": "wis-16-19-qof-4-vowel",
+      "oldAnchor": "תִּתְלקּח",
+      "newAnchor": "תִּתְלַקּח",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        14,
+        23
+      ],
+      "physicalSpanAfter": [
+        14,
+        24
+      ]
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 16,
+      "verse": 19,
+      "before": "וְיֵשׁ אֲשֶׁר תִּתְלקּח בְּתוֹךְ־הַמַּיִם וְתֶחֱזַק מִכֹּחַ הָאֵשׁ לְבַעֵר צֶאֱצָאֵי הָאָרֶץ הַחֲנֵפה׃",
+      "after": "וְיֵשׁ אֲשֶׁר תִּתְלַקַּח בְּתוֹךְ־הַמַּיִם וְתֶחֱזַק מִכֹּחַ הָאֵשׁ לְבַעֵר צֶאֱצָאֵי הָאָרֶץ הַחֲנֵפָה׃",
+      "beforeTextSHA256": "89325ff03b369aa1e2d5890a7b9fb21c8997a43b9ab3024ff9e58c538b70041f",
+      "afterTextSHA256": "34cad1c2537c7ebfc6b32811707ecb92114b6ab4a9c5c5ceec65f980f52a3bb1"
+    }
+  ],
+  "scope": {
+    "chapter": 16,
+    "verse": 19,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source16:19 starts ויש immediately after previous unit terminal ירדפם׃ in row יט; continues through לבער at the left end, then concludes צאצאי הארץ החנפה׃ in row כ before ותחת opens source16:20. No printed label, boundary, sourcePages, spacing, punctuation or consonant changes.",
+  "decisions": [
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 19,
+      "before": "תִּתְלקּח",
+      "after": "תִּתְלַקּח",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-16-19-lamed-3-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "תִּתְלקּח",
+      "baselineUnitScalarInsertionOffset": 20,
+      "baselinePhysicalSpan": [
+        14,
+        23
+      ],
+      "targetClusterBefore": [
+        "U+05DC"
+      ],
+      "targetClusterAfter": [
+        "U+05DC",
+        "U+05B7"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 19,
+      "before": "תִּתְלַקּח",
+      "after": "תִּתְלַקַּח",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-16-19-qof-4-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "תִּתְלקּח",
+      "baselineUnitScalarInsertionOffset": 22,
+      "baselinePhysicalSpan": [
+        14,
+        23
+      ],
+      "targetClusterBefore": [
+        "U+05E7",
+        "U+05BC"
+      ],
+      "targetClusterAfter": [
+        "U+05E7",
+        "U+05BC",
+        "U+05B7"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 19,
+      "before": "הַחֲנֵפה",
+      "after": "הַחֲנֵפָה",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-16-19-pe-4-vowel"
+      ],
+      "addedCodePoint": "U+05B8",
+      "baselineAnchor": "הַחֲנֵפה",
+      "baselineUnitScalarInsertionOffset": 100,
+      "baselinePhysicalSpan": [
+        93,
+        101
+      ],
+      "targetClusterBefore": [
+        "U+05E4"
+      ],
+      "targetClusterAfter": [
+        "U+05E4",
+        "U+05B8"
+      ]
+    }
+  ],
+  "inspections": [
+    {
+      "note": {
+        "id": "wis-16-19-lamed-3-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "תִּתְלקּח",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          178
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=178"
+      },
+      "decision": "approvePrintedMark",
+      "finding": "The full lamed ends in a tapered diagonal above a distinct wide horizontal lower mark. The mark has a compact bar contour and no descending stem, lower third point, vertical pair, or paired-lobe boundary. Literal lamed patah in לעשות and לצדיקים has the same horizontal shape. The lamed qamats in למו has a definite downward stem; lamed sheva in לבער has two vertically separated dots; lamed segol in יכלת has an upper pair and lower node; plain lamed in שאול has no added lower shape. These source pixels distinguish the target bar. Propose U+05B7 after baseline lamed at unit scalar offset20, retaining all original scalars and order.",
+      "physicalLocator": {
+        "id": "wis-16-19-lamed-3-vowel",
+        "anchorScalarSpan": [
+          14,
+          23
+        ],
+        "targetScalarIndex": 19,
+        "targetClusterScalarSpan": [
+          19,
+          20
+        ],
+        "targetClusterScalars": [
+          "U+05DC"
+        ]
+      }
+    },
+    {
+      "note": {
+        "id": "wis-16-19-qof-4-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "תִּתְלקּח",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          178
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=178"
+      },
+      "decision": "approvePrintedMark",
+      "finding": "The entire qof shows its retained interior dagesh, diagonal bowl, independent descending leg, and a short level lower bar. White space separates the bar from the diagonal bowl; the bar meets the descending leg at its left end and extends horizontally to the right. It has no downward stem beneath its outer bar. Literal horizontal patah controls in לעשות and לצדיקים establish the bar shape; the qof hiriq in לצדיקים is a small single round dot, the qof segol in וקרח has a lower multi-node extension, and plain qof in ותברק has no added bar. The target's level bar remains distinct from its consonant leg and defeats those competitors. Propose U+05B7 after the existing qof+dagesh cluster at baseline unit scalar offset22. Preserve the existing U+05E7,U+05BC order and append the new vowel rather than normalize it.",
+      "physicalLocator": {
+        "id": "wis-16-19-qof-4-vowel",
+        "anchorScalarSpan": [
+          14,
+          23
+        ],
+        "targetScalarIndex": 20,
+        "targetClusterScalarSpan": [
+          20,
+          22
+        ],
+        "targetClusterScalars": [
+          "U+05E7",
+          "U+05BC"
+        ]
+      }
+    },
+    {
+      "note": {
+        "id": "wis-16-19-pe-4-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "הַחֲנֵפה",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "vowel",
+        "sourcePages": [
+          178
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=178"
+      },
+      "decision": "approvePrintedMark",
+      "finding": "Below the complete pe bowl, the target has a lower transverse arm projecting to the left of a distinct downward stem. That stem descends substantially below the arm and the letter's ordinary lower edge. The same-page pe in רפאם supplies a literal qamats with that head-and-stem construction; the lamed qamats in למו supplies a second clear shape control. Pe segol in נפש instead has an upper paired/triangular cluster and lower node; pe tsere in ירדפם has lateral lower dots; plain pe in נרדפו ends at the bowl with no lower arm-and-stem. The target's complete contour certifies qamats, not a mere thickened pe foot or a dot group. Propose U+05B8 after baseline pe at unit scalar offset100. The earlier coarse PDF pixels did not establish this mark; the approved Psik screenshots are the primary evidence.",
+      "physicalLocator": {
+        "id": "wis-16-19-pe-4-vowel",
+        "anchorScalarSpan": [
+          93,
+          101
+        ],
+        "targetScalarIndex": 99,
+        "targetClusterScalarSpan": [
+          99,
+          100
+        ],
+        "targetClusterScalars": [
+          "U+05E4"
+        ]
+      }
+    }
+  ],
+  "physicalNoteSpans": [
+    {
+      "id": "wis-16-19-lamed-3-vowel",
+      "anchorScalarSpan": [
+        14,
+        23
+      ],
+      "targetScalarIndex": 19,
+      "targetClusterScalarSpan": [
+        19,
+        20
+      ],
+      "targetClusterScalars": [
+        "U+05DC"
+      ]
+    },
+    {
+      "id": "wis-16-19-qof-4-vowel",
+      "anchorScalarSpan": [
+        14,
+        23
+      ],
+      "targetScalarIndex": 20,
+      "targetClusterScalarSpan": [
+        20,
+        22
+      ],
+      "targetClusterScalars": [
+        "U+05E7",
+        "U+05BC"
+      ]
+    },
+    {
+      "id": "wis-16-19-pe-4-vowel",
+      "anchorScalarSpan": [
+        93,
+        101
+      ],
+      "targetScalarIndex": 99,
+      "targetClusterScalarSpan": [
+        99,
+        100
+      ],
+      "targetClusterScalars": [
+        "U+05E4"
+      ]
+    }
+  ],
+  "reviewedUnits": [
+    {
+      "chapter": 16,
+      "verse": 19,
+      "originalText": "וְיֵשׁ אֲשֶׁר תִּתְלקּח בְּתוֹךְ־הַמַּיִם וְתֶחֱזַק מִכֹּחַ הָאֵשׁ לְבַעֵר צֶאֱצָאֵי הָאָרֶץ הַחֲנֵפה׃",
+      "textSHA256": "89325ff03b369aa1e2d5890a7b9fb21c8997a43b9ab3024ff9e58c538b70041f",
+      "sourcePages": [
+        178
+      ],
+      "allNoteIds": [
+        "wis-16-19-lamed-3-vowel",
+        "wis-16-19-qof-4-vowel",
+        "wis-16-19-pe-4-vowel"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/complete-numbered-unit-1x.png",
+      "sha256": "38a98ecd86b8e06149c678098b68be6ad194e66328f0720f9e72f22b140ecb6d",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-top-original.png",
+      "sourceScreenshotSHA256": "5ce0d5b1625b6fbfae78ed002490a2a34ec095632e09120ae8c6372252aff14d",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        215,
+        495,
+        1055,
+        630
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/complete-numbered-unit-2x.png",
+      "sha256": "e66b4915b804d7b15099f3e12245e4ecd130fe79c9dcde8dd9f557a5794c5808",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-top-original.png",
+      "sourceScreenshotSHA256": "5ce0d5b1625b6fbfae78ed002490a2a34ec095632e09120ae8c6372252aff14d",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        215,
+        495,
+        1055,
+        630
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-titlaqach-complete-word-1x.png",
+      "sha256": "e258595763a8c6f116b3b24913fa0be0664886f90bc299de6f27c3dbf1361558",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        405,
+        380,
+        565,
+        450
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-titlaqach-complete-word-5x.png",
+      "sha256": "8facccf33a41292b03b398a45c50e6f66845c1124297ec22c5ef191019b5bd8a",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        405,
+        380,
+        565,
+        450
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-hachanefa-complete-word-1x.png",
+      "sha256": "147af16729ec14b046fcdfddc46d397722bdba03183e997d5ff1bf6a9cfbad5f",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        515,
+        447,
+        655,
+        510
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-hachanefa-complete-word-5x.png",
+      "sha256": "9dc08c433ff2f65074904a997800ce7f454203acb027d0019f40d91807a6fc63",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        515,
+        447,
+        655,
+        510
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-laasot-complete-word-1x.png",
+      "sha256": "75c9c31859a34adf047522bf66e72ac6aec6476421e5cde05a6382c663017a27",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        95,
+        642,
+        265,
+        706
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-laasot-complete-word-5x.png",
+      "sha256": "7694464c8445eb1a1ce3e0d6e63067910371d9f108a95c35b369f36b357f5b27",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        95,
+        642,
+        265,
+        706
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-lamo-complete-word-1x.png",
+      "sha256": "890f894c48649d12004d3b5b9dd39b18f8c8bd5ef3bbac72c2b0e4f5bdbea1c2",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        435,
+        510,
+        530,
+        575
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-lamo-complete-word-5x.png",
+      "sha256": "05d9e1f7595d46ab64ef295fc705fc1ff8a72b713a34cfd3db623ac208e2ba33",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        435,
+        510,
+        530,
+        575
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-levaer-complete-word-1x.png",
+      "sha256": "3fa7524738ce1f04fa38dbc8d1b5d883cfb199a6a7dadfa307646392c3b02933",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+      "sourceScreenshotSHA256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        268,
+        383,
+        395,
+        450
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-levaer-complete-word-5x.png",
+      "sha256": "15e683623be9c75920a54fc43d1fc36526aa98dadeb4798b76dab5745e401324",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+      "sourceScreenshotSHA256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        268,
+        383,
+        395,
+        450
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-yikhlat-complete-word-1x.png",
+      "sha256": "e80cb32c2de3f34c97e519b733c23a13ce5c9c1ca5cddf058d3198331c1fb505",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        790,
+        65,
+        905,
+        127
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-yikhlat-complete-word-5x.png",
+      "sha256": "6a589bc2d76ff9dc7c9ee6eb516cb915a2a975ac50da8e1fb4c4c67da4930363",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        790,
+        65,
+        905,
+        127
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-tsaddiqim-complete-word-1x.png",
+      "sha256": "fa58ec13fdc7a91c963afdab0dce32ea1304eee1ac7bd18d4973ca11b5e14297",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        455,
+        257,
+        635,
+        318
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-tsaddiqim-complete-word-5x.png",
+      "sha256": "091d2b271e2681fad9cfd5a24c46d9715d765ef310fb8ebfb5fa2ebfb9a1f470",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        455,
+        257,
+        635,
+        318
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-qerach-complete-word-1x.png",
+      "sha256": "228e0dc7fecd4d5ef01a75dca171ce1a3066ced002f324032d5b7fb75df96f09",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        791,
+        706,
+        910,
+        767
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-qerach-complete-word-5x.png",
+      "sha256": "8e3bc431da4d0e3cddda5c768829091a15e313601a9151442d746b95aba3e7b6",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        791,
+        706,
+        910,
+        767
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-yirdfem-complete-word-1x.png",
+      "sha256": "41351da01676f1c2c6d03a5e2c0646bdad8908b386123d305274b5248cd7f5b9",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        752,
+        380,
+        908,
+        449
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-yirdfem-complete-word-5x.png",
+      "sha256": "187bec58fc6cbbca554f982ae5dbbfe2183ab467e76f64af410e9ca3fc727822",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        752,
+        380,
+        908,
+        449
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-nirdfu-complete-word-1x.png",
+      "sha256": "d107b71932864622570d3bb64fb646a4c5ebb012fb7f5c0c10268c0b1c60bf3b",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        303,
+        128,
+        432,
+        189
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-nirdfu-complete-word-5x.png",
+      "sha256": "9d22d5e95a7dd29cdf55f51f02450cf4144eccdc3c0073f265b30c59dcfc8988",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        303,
+        128,
+        432,
+        189
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-tivraq-complete-word-1x.png",
+      "sha256": "49587ee59673850e53ad36f58bd943286cd629fa497db4abb93fd756315f3392",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+      "sourceScreenshotSHA256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        510,
+        768,
+        646,
+        827
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-tivraq-complete-word-5x.png",
+      "sha256": "ac003bebd93cd7179fe0d231db617aec40e31bffe7c6827de4403e544e85b68c",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+      "sourceScreenshotSHA256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        510,
+        768,
+        646,
+        827
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-refaem-complete-word-1x.png",
+      "sha256": "c979926a2d90b6dc155d07d4c1f7bbe41a6568ea70248538b9d30afc4953b48f",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        785,
+        307,
+        908,
+        374
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-refaem-complete-word-5x.png",
+      "sha256": "fca4d5c83e1220502cc58e287181874ef07b6ce38285a21e24b27bed40d7c635",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        785,
+        307,
+        908,
+        374
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-nefesh-complete-word-1x.png",
+      "sha256": "4649bb2427f7ecae7b84a981077d6d38f50aac5d18ef436b90a3c78a82972760",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        285,
+        435,
+        381,
+        499
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-nefesh-complete-word-5x.png",
+      "sha256": "8345a3a034a2cebdef7db8f46a258caf4d631fb61fe5e906d7e4ee6271073b64",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        285,
+        435,
+        381,
+        499
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-shaol-complete-word-1x.png",
+      "sha256": "10baa7d3f99f78bfd3557b223637e5f52c6b977bbc1251456ed84d99aec3c0ea",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        594,
+        370,
+        715,
+        435
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-shaol-complete-word-5x.png",
+      "sha256": "517a08165baa0ec3e6661eafed7d3a5b1f3b81549baa1d457ed9fead6b3c6b52",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        594,
+        370,
+        715,
+        435
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-lamed-complete-glyph-1x.png",
+      "sha256": "6d1cc6b88a42f0fa02548e9dd3e92c19726d20d93fa7d9b5e0b783b8c253d5e2",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        470,
+        382,
+        498,
+        439
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-lamed-complete-glyph-10x.png",
+      "sha256": "f01b41e144b2a4483e1933d6ce6e46cdcab71a5bdf4eace194b1aa83638f62e2",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        470,
+        382,
+        498,
+        439
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-qof-complete-glyph-1x.png",
+      "sha256": "c60df7b488956bb8d4a253d175c69e3cc81e3b7c66cba9cf9704fb945549c8f0",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        448,
+        394,
+        475,
+        443
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-qof-complete-glyph-10x.png",
+      "sha256": "00702742918aa1a08fc6ccc7d938ae213304e2464f4341b854499b63940c623d",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        448,
+        394,
+        475,
+        443
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-pe-complete-glyph-1x.png",
+      "sha256": "bc1a33cb46e11ea8f53b7d3dbe2c153d7cd8b8a1741926b5db83762dabdbc68a",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        556,
+        457,
+        581,
+        505
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/target-pe-complete-glyph-10x.png",
+      "sha256": "1d31d1af4edc762e76857443263c744ac9f8856c113b51c84201972223ea7582",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        556,
+        457,
+        581,
+        505
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-laasot-lamed-glyph-1x.png",
+      "sha256": "9dbc42c32ce6ad7d4dcbc2543627af2b4f41eb2e8a17d8ff34f495f0ed40bfe0",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        195,
+        643,
+        228,
+        701
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-laasot-lamed-glyph-10x.png",
+      "sha256": "abfc9992a75541d227f473ac2623104761b2039072dc55ccc5406c119d21d91f",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        195,
+        643,
+        228,
+        701
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-lamo-lamed-glyph-1x.png",
+      "sha256": "d467ed06a3dbd7a5682f861a0946e20faa3f7c8cdf9237a26dd3eebdf282613d",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        486,
+        510,
+        518,
+        575
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-lamo-lamed-glyph-10x.png",
+      "sha256": "18a8d21d92ff9f53348fc06bb48ce9009a81673f179e1a6ee6eeb69ec092475a",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        486,
+        510,
+        518,
+        575
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-levaer-lamed-glyph-1x.png",
+      "sha256": "3ed23b0868dedc80dcb5d92ef26b1c1e14fd4c98ac8822d1a168ac792ae672b7",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+      "sourceScreenshotSHA256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        349,
+        382,
+        380,
+        448
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-levaer-lamed-glyph-10x.png",
+      "sha256": "7db8d20ba59421ee93cf7c5ca2e2c969aab37d35881e8388b38c2e6ffbe2eadc",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+      "sourceScreenshotSHA256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        349,
+        382,
+        380,
+        448
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-yikhlat-lamed-glyph-1x.png",
+      "sha256": "9850c5b758b80a37de65210b001111ac52ed5dbd0a1410b614f2045b9b7266d4",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        831,
+        64,
+        862,
+        128
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-yikhlat-lamed-glyph-10x.png",
+      "sha256": "eaa7eef42c30dd0677c013f25d97dc09001db642d67b3a44755306f350a10520",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        831,
+        64,
+        862,
+        128
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-shaol-lamed-glyph-1x.png",
+      "sha256": "abebfcff29a290a70725ad6243e8203baa524be73bb127be68c1785595925a5a",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        606,
+        372,
+        633,
+        433
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-shaol-lamed-glyph-10x.png",
+      "sha256": "9708ce69f84be6375a340d25062c55b01f01649be619cd3370be86fdd403763d",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        606,
+        372,
+        633,
+        433
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-tsaddiqim-qof-glyph-1x.png",
+      "sha256": "084db7d8adc99cb1b5913c9efeb41ad83f82ed99dbd84172e06fb4f8b2dacc1f",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        511,
+        269,
+        539,
+        315
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-tsaddiqim-qof-glyph-10x.png",
+      "sha256": "17ffab35fb111fafac63727bea44245647a1ab30580c77246ca7fe6704a093a6",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        511,
+        269,
+        539,
+        315
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-tivraq-qof-glyph-1x.png",
+      "sha256": "c12068f2d15ecd9aa21b89adfec2d6e1b9d56c368170a6c5565038448cfef041",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+      "sourceScreenshotSHA256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        522,
+        778,
+        551,
+        824
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-tivraq-qof-glyph-10x.png",
+      "sha256": "433faad5dd4d10a2de98d27ea5580e061a76fdd20b5a1864ced0c3b27d550f8a",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-left-original.png",
+      "sourceScreenshotSHA256": "7591915beeeaca43b90e91bf170738fb8cb698ab1a23506af543d433d165683b",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        522,
+        778,
+        551,
+        824
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-refaem-pe-glyph-1x.png",
+      "sha256": "2444b063c702b30dd4d1b6e52ed7ebc32be8d3aae6b90f94c84346c46e54bfc6",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        842,
+        324,
+        867,
+        369
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-refaem-pe-glyph-10x.png",
+      "sha256": "52204e5a25af5ede5a63b2b76f49a1daaaa28abf362e9128551fcb441da41aca",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        842,
+        324,
+        867,
+        369
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-nefesh-pe-glyph-1x.png",
+      "sha256": "ee4387bc1cdcd2865f2ba0945467775613b97f3735b877b7cf7c29a56249cc75",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        327,
+        447,
+        351,
+        493
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-nefesh-pe-glyph-10x.png",
+      "sha256": "7e82e6d947f4287b5d94bfd8091cfe2711ae0a8a4bd18b31f9df5cbee23f7de5",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-upper-right-original.png",
+      "sourceScreenshotSHA256": "79892a1e65dd7e86ff4207c2d0ae962e3bda7f8bc67cf20c4d11ba695668bc7a",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        327,
+        447,
+        351,
+        493
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-yirdfem-pe-glyph-1x.png",
+      "sha256": "30736f3e228bbbc90bbbb89a1f1a7451deb0c2f074a315ea9bc296a3e8315003",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        807,
+        398,
+        834,
+        440
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-yirdfem-pe-glyph-10x.png",
+      "sha256": "e323108c3c40029943c33d6c68e827553dda8c5b6d60f468334cade6944478f9",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        807,
+        398,
+        834,
+        440
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-nirdfu-pe-glyph-1x.png",
+      "sha256": "a04b9f838aaabf28ec5c5649cc63864ab2e2b11eb5f38b46472756a6d0a670a3",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        332,
+        142,
+        359,
+        188
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/control-nirdfu-pe-glyph-10x.png",
+      "sha256": "a66f6fbd0d66f207ee6d8bcc1f73ef2cc3d96c3a4a01e1803de2761bd4e7c6e6",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/psik523-zoom4-right-original.png",
+      "sourceScreenshotSHA256": "c161c6d3a660accbd93e764a635f649bca0c9d370cb1e6cd2f99948b499db8a7",
+      "originalSize": [
+        1286,
+        931
+      ],
+      "nativeBounds": [
+        332,
+        142,
+        359,
+        188
+      ],
+      "scale": 10,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalScreenshotPixelReplayPassed": true
+    }
+  ],
+  "nativeFrameCount": 29,
+  "evidenceFileCount": 62,
+  "independentReview": {
+    "status": "pending"
+  },
+  "invariants": {
+    "allPriorScalarsAndCombiningOrderPreserved": true,
+    "allConsonantsPunctuationAndSourceBoundariesUnchanged": true,
+    "allRestoredLetterDisclosuresPreserved": true,
+    "onlyCertifiedNotesProposedForRetirement": true,
+    "noFinalSurvivingAnchorChanges": true,
+    "noOccurrenceChanges": true,
+    "allCropsStrictlyWithinSourceBounds": true,
+    "allPublishedCropsReplayedFromOriginalScreenshots": true,
+    "all18BaselinePinsMatchLiveAtPublication": true,
+    "canonicalStillBaselineAtPublication": true
+  },
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/accepted.json",
+    "sha256": "4a1c91735e8bada6b689040969b94c68b0b6cd7a4a4322c70e8876a9c62fb68c"
+  },
+  "frameLedger": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/frame-ledger.json",
+    "sha256": "2fa21dc8767dfa5aab0e5405bbc3e0b2f4cdff7b531b6c516be260a31c5b41db"
+  },
+  "authorPixelReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/author-screenshot-pixel-replay.json",
+    "sha256": "2e5e535b6c11c862e221c108757dfb06c113b52ebb9d385995f59af5bd8b6c72"
+  },
+  "physicalLocations": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass32-WIS-16-19/physical-locations.json",
+    "sha256": "4abce0dbc5ebbbe5c485ce96053653d6daf30ae219911a0fc893c7e9e82e02d6"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 136,
+  "integrationPass": 136,
+  "preparationID": 154,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation154-ESG-1-17/source-provenance.json",
+    "sha256": "f500e0622f84a14bceae03b812cdcf80804f52fa7c269d4b0dc2f3ac7242cb12"
+  },
+  "sourceNotesBefore": 17,
+  "sourceNotesAfter": 16,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-1-17-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "bcd67b02a6e607ee0895d98e7e81e2977c7cc1ca5fe1b60d919ac50c4f96e38b",
+  "contentSHA256After": "aa8d30fe8ae05c2fd37404aa2f791d82a426da2b337edffe8ec7cf41d1139e52",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-1-17-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 17,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "finding": "Own anchorfourthKaf (fifthconsonant in prefixedלמרדכי) has2212pxbody+lowplate[383,1420,442,1505]. Full native array explicitly shows upwardcontact: lowerbody narrows to6..7pxbridge1494..1496, then opens into a29pxwide8pxhigh horizontalplate1497..1504. Plate has broad27..29px upperfourrows and tapersbelow without any descendingstem or secondnode; at192 noink remains below1504 and full1507..1544field iswhite. Literal SAMEUNIT precedingלהרע Resh has a separately exposed252px26x11 horizontalPatah[895,1494,921,1505] with equally clear lowerfield; adjacentHeQamats446px28x31[939,1494,967,1525] visibly retains narrowdescendingstem20rows belowhead. Target is independently a horizontalPatahplate despite upwardbodybleed; unlikeQamatscontrol it has no belowplate stem. Propose U05B7 solely from own stamp geometry; no point is transferred from another name. Independent peer: Independent peer confirms the own fourth anchor Kaf, fifth letter in the complete prefixed למרדכי, with literal neighbors להרע and ולעמו. Its native 2212px union comprises a full Kaf body, main basal stroke through1493, a narrow6–7px UPWARD connecting bridge1494..1496, and an additional29x8 horizontal plate[398,1497,427,1505]. This is not claimed detached: the bridge is above the plate. The plate expands left and right below that bridge, stays27–29px wide through1497..1500, then tapers to its1504 baseline, with no descending stem or second node. All3000 pixels below1504 through1544 are >=199, none below192. In the independently read complete same-unit להרע, Resh ends1488 and has detached252px26x11 Patah[895,1494,921,1505], ending on the identical baseline. Neighboring He has a distinct446px28x31 Qamats[939,1494,967,1525], with sustained8–13px descending stem through1524. The own low horizontal plate is Patah U+05B7 despite upward contact. No other name occurrence or canonical/grammatical vowel supplied this reading.",
+      "targetCapture": "extension-volumeA-562-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeA-562-zoom4-header.png",
+      "inspectedBounds": [
+        383,
+        1420,
+        442,
+        1505
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        398,
+        1497,
+        427,
+        1505
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation154-ESG-1-17/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 17,
+      "before": "וְהָמָן בֶּן־הַמְּדָתָא הָאֲגָגִי נִכְבָּד בְּעֵינֵי הַמֶּלֶךְ וַיְבַקֵּשׁ לְהָרַע לְמָרְדְּכי וּלְעַמּוֹ בִּגְלַל שְׁנֵי סָרִיסֵי הַמֶּלֶךְ [אֲשֶׁר הוּמָתוּ]׃",
+      "after": "וְהָמָן בֶּן־הַמְּדָתָא הָאֲגָגִי נִכְבָּד בְּעֵינֵי הַמֶּלֶךְ וַיְבַקֵּשׁ לְהָרַע לְמָרְדְּכַי וּלְעַמּוֹ בִּגְלַל שְׁנֵי סָרִיסֵי הַמֶּלֶךְ [אֲשֶׁר הוּמָתוּ]׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 17,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation154-ESG-1-17/independent-review.json",
+    "sha256": "ed07577c3be6c373385af49877308a3ba1d41f7c84d81e43bb7634b9ea15eaba"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation154-ESG-1-17/primary-preparation.json",
+    "sha256": "995156623404d9e579a4350d55f829b9da80894dda7f6406e9f8e52513a3170f"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation154-ESG-1-17/consensus-preparation.json",
+    "sha256": "ebe0f1c94227655b76b952edb5786fef6d6329a61a511f38dde755089c5ab824"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

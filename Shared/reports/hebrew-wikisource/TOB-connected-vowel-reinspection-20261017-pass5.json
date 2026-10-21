@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 5,
+  "book": "TOB",
+  "status": "focused connected-vowel comparison completed with no source changes",
+  "reviewedSourceNoteCount": 6,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 6,
+  "sourceNotesBefore": 12,
+  "sourceNotesAfter": 12,
+  "canonicalSHA256Unchanged": "7c722b421ce3ccf5e69bc8cfcb1a2b9a3e0ba03917c2506452a537351840107b",
+  "scope": "Only six initial vav vowel notes are freshly compared; the other six TOB notes are outside this focused pass.",
+  "method": "Native scan crops and nearest-neighbor enlargement only; full-word positions verified against the original companion page and prior source inventory. Existing canonical point choices identify comparison locations, but do not independently prove the missing vowel. A rounded or joined foot is not a diagnostic vowel shape here.",
+  "notes": [
+    {
+      "noteId": "tob-5-1-vav-vowel",
+      "chapter": 5,
+      "verse": 1,
+      "anchor": "ויַּעַן",
+      "evidence": [
+        {
+          "scan": "primary",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-323-native.png",
+          "sourceImageSHA256": "e3c481db64c80b7de2f3f51989948227f876a4e5c725259de226230233721228",
+          "pixelBox": [
+            1195,
+            900,
+            1270,
+            980
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-1-vav-vowel-primary-native.png",
+              "sha256": "ae76c85e95da853c656935f3fc6ce397c935ef29fedcee3fad9b9695af067076"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-1-vav-vowel-primary-8x.png",
+              "sha256": "6e6fcc60fcb2e85075eb62e2ed100e4be5d4ee12e985d9d13a46b63981a0cfba"
+            }
+          ]
+        },
+        {
+          "scan": "extra",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-168-native.png",
+          "sourceImageSHA256": "aa69b3baf82fa96097eb8c8c231782caaf180f15065aa399959b817b7fd38f7f",
+          "pixelBox": [
+            1245,
+            580,
+            1315,
+            645
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-1-vav-vowel-extra-native.png",
+              "sha256": "4fd7ce94a183f226f5aecfbff42711a82f8d0f740796c6f48e1060cd00c221a2"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-1-vav-vowel-extra-8x.png",
+              "sha256": "b15106731454aabec79d0531436dcb417e39201b135e0acd405fc73f9d2ed1c0"
+            }
+          ]
+        }
+      ],
+      "decision": "retain",
+      "finding": "The vowel site runs into the lower vav stroke in both scans. Comparisons expose a foot/bar and a small downward lobe, but the surviving pixels do not distinguish a flat bar from a merged stem-bearing vowel reliably. No expected grammatical reading is supplied."
+    },
+    {
+      "noteId": "tob-5-1-second-vav-vowel",
+      "chapter": 5,
+      "verse": 1,
+      "anchor": "ויֹּאמֶר לוֹ",
+      "evidence": [
+        {
+          "scan": "primary",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-323-native.png",
+          "sourceImageSHA256": "e3c481db64c80b7de2f3f51989948227f876a4e5c725259de226230233721228",
+          "pixelBox": [
+            985,
+            905,
+            1085,
+            985
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-1-second-vav-vowel-primary-native.png",
+              "sha256": "995bb77c3652d7ff1ec681059ed3eb1231ab8b71374b84732722a1649c76045b"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-1-second-vav-vowel-primary-8x.png",
+              "sha256": "b6ae291b5b0d1a2a9d49e686ebb1f2c0d1930e3e672bf07ff35ffff006c613ed"
+            }
+          ]
+        },
+        {
+          "scan": "extra",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-168-native.png",
+          "sourceImageSHA256": "aa69b3baf82fa96097eb8c8c231782caaf180f15065aa399959b817b7fd38f7f",
+          "pixelBox": [
+            1075,
+            580,
+            1165,
+            645
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-1-second-vav-vowel-extra-native.png",
+              "sha256": "0559270119b5961527b0241123f1d78c71bf2ef93c1736cc37577b9bdd996fd9"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-1-second-vav-vowel-extra-8x.png",
+              "sha256": "66ec0a9619c24202853c8b2326fbfd8cf0e660cd7106adb8bd3e17ae582e12d2"
+            }
+          ]
+        }
+      ],
+      "decision": "retain",
+      "finding": "The vowel site runs into the lower vav stroke in both scans. Comparisons expose a foot/bar and a small downward lobe, but the surviving pixels do not distinguish a flat bar from a merged stem-bearing vowel reliably. No expected grammatical reading is supplied."
+    },
+    {
+      "noteId": "tob-5-3-initial-vav-vowel",
+      "chapter": 5,
+      "verse": 3,
+      "anchor": "ויִּתֶּן־לוֹ",
+      "evidence": [
+        {
+          "scan": "primary",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-323-native.png",
+          "sourceImageSHA256": "e3c481db64c80b7de2f3f51989948227f876a4e5c725259de226230233721228",
+          "pixelBox": [
+            530,
+            960,
+            680,
+            1035
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-3-initial-vav-vowel-primary-native.png",
+              "sha256": "dacb6c653707c880c5dc8515dc59ebf75a15059bcc0b8d6b4eb4e4bf3ff49e01"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-3-initial-vav-vowel-primary-8x.png",
+              "sha256": "e841f85873c28177fa0eaebe14813eac5f3cf4ed80bdf771851022debf9e5414"
+            }
+          ]
+        },
+        {
+          "scan": "extra",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-168-native.png",
+          "sourceImageSHA256": "aa69b3baf82fa96097eb8c8c231782caaf180f15065aa399959b817b7fd38f7f",
+          "pixelBox": [
+            705,
+            638,
+            815,
+            695
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-3-initial-vav-vowel-extra-native.png",
+              "sha256": "ca6c4275bc9c60f767d809c652e51243d0079daef958b66e5e18aa777ae0b70e"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-3-initial-vav-vowel-extra-8x.png",
+              "sha256": "61fa63027716cc8aea35d13f6957297784e55cb6ec34b0fda7903530659ab45c"
+            }
+          ]
+        }
+      ],
+      "decision": "retain",
+      "finding": "The vowel site runs into the lower vav stroke in both scans. Comparisons expose a foot/bar and a small downward lobe, but the surviving pixels do not distinguish a flat bar from a merged stem-bearing vowel reliably. No expected grammatical reading is supplied."
+    },
+    {
+      "noteId": "tob-5-12-first-vav-vowel",
+      "chapter": 5,
+      "verse": 12,
+      "anchor": "ויֹּאמֶר לוֹ הֲשֵׁבֶט",
+      "evidence": [
+        {
+          "scan": "primary",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-325-native.png",
+          "sourceImageSHA256": "828234e10a63a8743aef5588497c854439c2c8eb771e1cea1d6eb2e16add9561",
+          "pixelBox": [
+            1150,
+            330,
+            1265,
+            410
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-12-first-vav-vowel-primary-native.png",
+              "sha256": "99ce4e60b62940cee1c5c69c8cdb2fe903c33ce0a3a9ff5302c6061b4e4ded9c"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-12-first-vav-vowel-primary-8x.png",
+              "sha256": "3b1c334d0e5a19c36ef0e394b33862523de9cf04f3986c3fcaa02e19ada764c5"
+            }
+          ]
+        },
+        {
+          "scan": "extra",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-169-native.png",
+          "sourceImageSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+          "pixelBox": [
+            1190,
+            225,
+            1280,
+            280
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-12-first-vav-vowel-extra-native.png",
+              "sha256": "f6a4993542a234eb19303bb143435f222924f3d784a056d4b11554a08ac1a140"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-12-first-vav-vowel-extra-8x.png",
+              "sha256": "41b0c0bc22d9f1ac216ae7717c9afd24370b060322edf2369db2493f18feb1f2"
+            }
+          ]
+        }
+      ],
+      "decision": "retain",
+      "finding": "The vowel site runs into the lower vav stroke in both scans. Comparisons expose a foot/bar and a small downward lobe, but the surviving pixels do not distinguish a flat bar from a merged stem-bearing vowel reliably. No expected grammatical reading is supplied."
+    },
+    {
+      "noteId": "tob-5-17-said-vav-vowel",
+      "chapter": 5,
+      "verse": 17,
+      "anchor": "ויֹּאמֶר לוֹ אָבִיו",
+      "evidence": [
+        {
+          "scan": "primary",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-326-native.png",
+          "sourceImageSHA256": "dd2a8acdb7f0d2dc6c4dc5ca42a6603b7bb98b3c8b0ca4d16ee37dc5cb2bf531",
+          "pixelBox": [
+            430,
+            330,
+            540,
+            410
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-17-said-vav-vowel-primary-native.png",
+              "sha256": "f6a2a25238e14c60b6c464d32ead1aff38bc627f3a08b9987bacf4040928f1ab"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-17-said-vav-vowel-primary-8x.png",
+              "sha256": "5d2c064f6fa9698886d46fd44cae3ff6c16a9bc3a2a6a623f2e266dbbcfb28ab"
+            }
+          ]
+        },
+        {
+          "scan": "extra",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-170-native.png",
+          "sourceImageSHA256": "9765c1e9be1512524b390bf09acb5620ea497e130c4cacd0b1bd901532939f7d",
+          "pixelBox": [
+            1890,
+            180,
+            1985,
+            235
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-17-said-vav-vowel-extra-native.png",
+              "sha256": "89006a157a2da33d32811e3237b375b15ea51472e4c43bf9b67a091d6bb1d031"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-17-said-vav-vowel-extra-8x.png",
+              "sha256": "e9c493c22f2d330a68d656693491f1f03a9786e7af6acb1e8dde301e1261be93"
+            }
+          ]
+        }
+      ],
+      "decision": "retain",
+      "finding": "The vowel site runs into the lower vav stroke in both scans. Comparisons expose a foot/bar and a small downward lobe, but the surviving pixels do not distinguish a flat bar from a merged stem-bearing vowel reliably. No expected grammatical reading is supplied."
+    },
+    {
+      "noteId": "tob-5-21-said-vav-vowel",
+      "chapter": 5,
+      "verse": 21,
+      "anchor": "ויֹּאמֶר לָהּ",
+      "evidence": [
+        {
+          "scan": "primary",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-326-native.png",
+          "sourceImageSHA256": "dd2a8acdb7f0d2dc6c4dc5ca42a6603b7bb98b3c8b0ca4d16ee37dc5cb2bf531",
+          "pixelBox": [
+            1000,
+            705,
+            1110,
+            785
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-21-said-vav-vowel-primary-native.png",
+              "sha256": "e1c50fd4b3bd8ccada5a14d5e836d84949d86f12219bffbfb11de31d6dd5e611"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-21-said-vav-vowel-primary-8x.png",
+              "sha256": "233bda786661d09f06621d0251639c70d1cd3f7b9b9aba3c3c5500808c572e2d"
+            }
+          ]
+        },
+        {
+          "scan": "extra",
+          "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-170-native.png",
+          "sourceImageSHA256": "9765c1e9be1512524b390bf09acb5620ea497e130c4cacd0b1bd901532939f7d",
+          "pixelBox": [
+            2330,
+            460,
+            2425,
+            515
+          ],
+          "scale": 8,
+          "files": [
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-21-said-vav-vowel-extra-native.png",
+              "sha256": "6c9b8fe2465528bf84f42182ab3ccf0dded8f80c8e4841a2b71fad2c99136192"
+            },
+            {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob-5-21-said-vav-vowel-extra-8x.png",
+              "sha256": "0d10e103653482b515cd0d2f4fcdb314024bb421c05722834e01e86ab9590563"
+            }
+          ]
+        }
+      ],
+      "decision": "retain",
+      "finding": "The vowel site runs into the lower vav stroke in both scans. Comparisons expose a foot/bar and a small downward lobe, but the surviving pixels do not distinguish a flat bar from a merged stem-bearing vowel reliably. No expected grammatical reading is supplied."
+    }
+  ],
+  "comparisonEvidence": [
+    {
+      "name": "tob5-11-vavcontrol",
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-169-native.png",
+      "sourceImageSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+      "pixelBox": [
+        1310,
+        175,
+        1410,
+        228
+      ],
+      "scale": 8,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob5-11-vavcontrol-native.png",
+          "sha256": "e673e14c69d9749eb780f802cb641a1a772893d5aee50273bd8e39a869a311db"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob5-11-vavcontrol-8x.png",
+          "sha256": "0db4b7eb1f47f9ea1116e2491fc47bbfa394d2811809257a9b3f3a683b376502"
+        }
+      ]
+    },
+    {
+      "name": "tob5-10-qamatscontrol",
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-169-native.png",
+      "sourceImageSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+      "pixelBox": [
+        1810,
+        493,
+        2110,
+        550
+      ],
+      "scale": 6,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob5-10-qamatscontrol-native.png",
+          "sha256": "dacae0637c3d7ef3f013c15176ddcc3395aca9b4149c66171c999f4f1f8c5568"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob5-10-qamatscontrol-6x.png",
+          "sha256": "01f3137d42421211c9fad67bf7c31408f9c4574221492c3efa172a1d6772f9c2"
+        }
+      ]
+    },
+    {
+      "name": "tob5-12-line",
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-169-native.png",
+      "sourceImageSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+      "pixelBox": [
+        500,
+        170,
+        1400,
+        285
+      ],
+      "scale": 3,
+      "transformation": "crop and nearest-neighbor enlargement only",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob5-12-line-native.png",
+          "sha256": "3e08d8a80d8b84550626f3bf70cb8730d07f5547c623aa8c8749b1c31aa1fe1c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-TOB-CONNECTED/tob5-12-line-3x.png",
+          "sha256": "1407bf018382fbe62a0b93a8b6709022478295cdd8bc1ddf75e347205f1bebaf"
+        }
+      ]
+    }
+  ],
+  "excludedScratchLocator": "tob5-4-patahcontrol was a mislocated scratch crop and is not used or copied as evidence."
+}

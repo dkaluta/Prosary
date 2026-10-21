@@ -32,6 +32,7 @@ enum class MarianAntiphonOption {
         }
 
     fun displayName(context: Context, languageCode: String): String = HebrewDisplayText.unpoint(
+        RosaryRiteLabels.antiphonTitle(name.replaceFirstChar { it.lowercaseChar() }, languageCode) ?:
         when (this) {
             None, Seasonal -> context.getString(displayNameRes)
             SalveRegina -> PrayerTranslations.get(languageCode, PrayerKey.SalveReginaTitle)

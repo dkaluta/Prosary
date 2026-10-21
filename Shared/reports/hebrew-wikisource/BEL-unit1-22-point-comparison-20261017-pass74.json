@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 74,
+  "book": "BEL",
+  "status": "Two 1:22 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 74.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass74-BEL-1-22/source-provenance.json",
+    "sha256": "1a05fbc627aa65ee59b39ba7924b3250082dbb02708ddab4611d6f98e8879e64"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 245. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 269,
+  "sourceNotesBefore": 30,
+  "sourceNotesAfter": 28,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-22-245-vaymitem22-letter1-vowel",
+    "bel-1-22-245-vayiten22-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "bel-1-22-245-vaymitem22-letter1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    },
+    "bel-1-22-245-vayiten22-letter1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 22,
+      "before": "ויְמִיתֵם הַמֶּלֶךְ ויִּתֵּן אֶת־הַבֵּל מַתָּנָה לְדָנִיֵּאל וְאֶת בֵּל וְאֶת־הֵיכָלוֹ נָתָץ׃",
+      "after": "וָיְמִיתֵם הַמֶּלֶךְ וַיִּתֵּן אֶת־הַבֵּל מַתָּנָה לְדָנִיֵּאל וְאֶת בֵּל וְאֶת־הֵיכָלוֹ נָתָץ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 22,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 22 on page רמה / 245 (viewer page 590) in Kahana Volume A, Bel and the Dragon.",
+  "decisions": [
+    {
+      "noteId": "bel-1-22-245-vaymitem22-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 22,
+      "anchor": "ויְמִיתֵם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Initial consonant Vav in וָיְמִיתֵם sits at cols 1521..1495, rows 466..538 of extension-volumeA-590-zoom4-lower-right.png on Line 3. Directly beneath its base at rows 539..552 sits an unambiguous T-shaped Qamats (horizontal roof bar at rows 541..548 with width 27 px at cols 1495..1521, and vertical descending stem at rows 549..552 with width 10 px, height 4 px). Note is retired with Qamats restored to initial Vav -> וָיְמִיתֵם.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass74-BEL-1-22/bel-1-22-vaymitem-native.png",
+        "sha256": "137e927a3951b7d440b010d9202aa430c394163459e6e37e249f2519ea0e1c41"
+      }
+    },
+    {
+      "noteId": "bel-1-22-245-vayiten22-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 22,
+      "anchor": "ויִּתֵּן",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Initial consonant Vav in וַיִּתֵּן sits at cols 1130..1115, rows 468..534 of extension-volumeA-590-zoom4-lower-right.png on Line 3. Directly beneath its stem at rows 540..550, cols 1108..1125 sits a clear horizontal Patah bar (width 17 px, height 11 px, min brightness 0), with sublinear space beneath (rows 551..560) confirmed completely blank pure white paper. Note is retired with Patah restored to initial Vav -> וַיִּתֵּן.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass74-BEL-1-22/bel-1-22-vayiten-native.png",
+        "sha256": "0437876aebed9890876ec683a157bcd045e09efaa29d4e1bf2f8800b0f550220"
+      }
+    }
+  ]
+}

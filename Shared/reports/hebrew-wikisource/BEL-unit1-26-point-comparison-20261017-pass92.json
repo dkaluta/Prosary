@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 92,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass92-BEL-1-26/source-provenance.json",
+    "sha256": "e88f0ec7b3cee49cac8743ba948e3407f80cc5be58fd8240fb3a30870a6dd229"
+  },
+  "sourceNotesBefore": 11,
+  "sourceNotesAfter": 9,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-26-245-vayomer26-letter1-vowel",
+    "bel-1-26-245-vayomer26-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "01faf60fe5688d0ea3d927b586ffd603913b3f4f9f95c84cdeac9c23b929cb6d",
+  "contentSHA256After": "b7ad61c875aed351129aab24f211d463b73c9c9d4dba0bb1d97cfb58064aa4d2",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "bel-1-26-245-vayomer26-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 26,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "The long vav shaft ends at y1254. A detached broad horizontal point begins y1259, 28 pixels wide and13high. Its continuous upper bar has only a very short lower-right edge, not the long central downstroke of qamats. Same-page ויהי23 first vav supplies a literal detached horizontal-bar comparison; same-font dalet qamats supplies the contrasting long tail. Root must independently classify before adding the vowel.",
+      "targetCapture": "extension-volumeA-590-zoom4-lower-left.png",
+      "letterBounds": [
+        1051,
+        1185,
+        1079,
+        1254
+      ],
+      "pointBounds": [
+        1056,
+        1259,
+        1084,
+        1272
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass92-BEL-1-26/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-26-245-vayomer26-letter2-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 26,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "The interior dot is a completely detached native connected component below the yod head and left of its lower shaft, separated from the contour by white pixels. Same-font Daniel11 provides an independently bounded positive dagesh control.",
+      "targetCapture": "extension-volumeA-590-zoom4-lower-left.png",
+      "letterBounds": [
+        1013,
+        1183,
+        1041,
+        1226
+      ],
+      "pointBounds": [
+        1018,
+        1211,
+        1028,
+        1221
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass92-BEL-1-26/independent-pixel-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 26,
+      "before": "וְאַתָּה הַמֶּלֶךְ הַנִּיחָה־לִי וְאַהֲרֹג אֶת־הַתַּנִּין בְּלִי־חֶרֶב וּמַקֵּל ויֹאמֶר הַמֶּלֶךְ הִנֵּה נְתַתִּיו בְיָדְךָ׃",
+      "after": "וְאַתָּה הַמֶּלֶךְ הַנִּיחָה־לִי וְאַהֲרֹג אֶת־הַתַּנִּין בְּלִי־חֶרֶב וּמַקֵּל וַיֹּאמֶר הַמֶּלֶךְ הִנֵּה נְתַתִּיו בְיָדְךָ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 26,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  },
+  "supplementaryReviews": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass92-BEL-1-26/pass92-bel-26-independent-pixel-review.json",
+      "sha256": "9cadac6a452c67eb4f8625073fd825e9b424e04c4ad644376479ee6a896507e7"
+    }
+  ]
+}

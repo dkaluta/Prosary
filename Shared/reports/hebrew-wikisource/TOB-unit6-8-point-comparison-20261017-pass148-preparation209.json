@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 148,
+  "integrationPass": 148,
+  "preparationID": 209,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation209-TOB-6-8/source-provenance.json",
+    "sha256": "41287a171f9d57e1f6ac3ee8f89ddb2eea2b8c86d7df85f4a1cad074e8375c2a"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "tob-6-8-gimel-vowel"
+  ],
+  "contentSHA256Before": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "contentSHA256After": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "tob-6-8-gimel-vowel",
+      "book": "TOB",
+      "chapter": 6,
+      "verse": 8,
+      "anchorBefore": "יִפָּגעוּ",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own exact final-word Gimel is one236px13x31 component [1105,659,1118,690]. Native narrow descending stem at1114..1117 reaches left foot1105..1117 y676..684, then lower lobed solid form y685..689 through uninterrupted connected ink. No independently separable exact vowel or printed absence can be certified from this joined lower terminal. Whole five-letter word, index3, own final sof and complete actual8 separately inspected; earlier יפגע on prior row supplies no mark. Literal detached Holam controls17px and13px establish local dot form only. Retain exact disclosure and every original scalar.",
+      "targetCapture": "primary-327-native.png",
+      "targetSourceIdentifier": "primary-327-native.png",
+      "inspectedBounds": [
+        1105,
+        650,
+        1119,
+        700
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation209-TOB-6-8/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 6,
+    "verse": 8,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation209-TOB-6-8/independent-review.json",
+    "sha256": "bfe74ecb8e99447c73844eef3e545955d377e26866dd033869dd720568962810"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation209-TOB-6-8/primary-preparation.json",
+    "sha256": "3b65433ac65389db35aa16544bcdd6453fac4244d0d5dd9d0b2c89b99e7ff24e"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass148-preparation209-TOB-6-8/consensus-preparation.json",
+    "sha256": "144c4ff720a54b6c58de8a5ae334b9c6889d10344de57276a26b5a4cd923d132"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

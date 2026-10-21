@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 84,
+  "book": "SIR",
+  "status": "Two 31:7 source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 84.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass84-SIR-31-7/source-provenance.json",
+    "sha256": "10b752ec7560f7867b0b0a246e515c02492fd79740282b6fed5fdb255c407e3c"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 494. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 249,
+  "sourceNotesBefore": 23,
+  "sourceNotesAfter": 21,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "sir-31-7-vav-vowel",
+    "sir-31-7-qof-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "sir-31-7-vav-vowel": {
+      "combiningMark": "ְ",
+      "codePoint": "U+05B0",
+      "name": "HEBREW POINT SHEVA"
+    },
+    "sir-31-7-qof-vowel": {
+      "combiningMark": "ֶ",
+      "codePoint": "U+05B6",
+      "name": "HEBREW POINT SEGOL"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 31,
+      "verse": 7,
+      "before": "כִּי תַקָּלָה הוּא לֶאֱוִיל וְכָל־פּוֹתֶה יִוקשׁ־בוֹ׃",
+      "after": "כִּי תַקָּלָה הוּא לֶאֱוִיל וְכָל־פּוֹתֶה יִוְקֶשׁ־בוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 31,
+    "verse": 7,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 7 on page תצד / 494 (viewer page 492) in Kahana Volume B, Wisdom of Ben Sira.",
+  "decisions": [
+    {
+      "noteId": "sir-31-7-vav-vowel",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 7,
+      "anchor": "יִוְקֶשׁ־בוֹ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "sheva",
+      "codePoint": "U+05B0",
+      "markClassification": "Vowel",
+      "finding": "Beneath the stem of the Vav in יִוְקֶשׁ־בוֹ at x=2495..2511, high-resolution zoom 6 capture reveals two distinct, vertically aligned punch dots forming a Sheva: a top dot at y=268..281 (center x=2502.5, y=276) and a bottom dot at y=288..304 (center x=2503, y=297), separated by 6 rows of clean white paper (y=282..287) and followed by clean white paper below. Both dots reach minimum pixel brightness 0 (pure black ink). Distinct from a horizontal Patah bar or a single Hiriq dot; matches positive control Sheva on the same verse line. Confirmed printed Sheva (U+05B0).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass84-SIR-31-7/sir-31-7-vav-sheva-native.png",
+        "sha256": "41e6aca2ace963077cf5d160c59351801ad95a2825ba9a00bd6e7ceda8de3945"
+      }
+    },
+    {
+      "noteId": "sir-31-7-qof-vowel",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 7,
+      "anchor": "יִוְקֶשׁ־בוֹ",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "segol",
+      "codePoint": "U+05B6",
+      "markClassification": "Vowel",
+      "finding": "Beneath the loop and stem of the Qof in יִוְקֶשׁ־בוֹ at x=2380..2415, high-resolution zoom 6 capture reveals an inverted equilateral triangle of three distinct punch dots forming a Segol: top-left dot at x=2380..2396, y=269..281 (center x=2388, y=275), top-right dot at x=2403..2415, y=268..284 (center x=2409, y=276), and bottom-center dot at x=2387..2404, y=288..304 (center x=2395.5, y=296). All dots reach minimum pixel brightness 0 (pure black ink), bordered by clean white paper. Matches positive control Segol on the same verse line. Confirmed printed Segol (U+05B6).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass84-SIR-31-7/sir-31-7-qof-segol-native.png",
+        "sha256": "e952a5a94daef589da51cd99bbe9b852e30416f865bfc4d4eebf795202a13563"
+      }
+    }
+  ]
+}

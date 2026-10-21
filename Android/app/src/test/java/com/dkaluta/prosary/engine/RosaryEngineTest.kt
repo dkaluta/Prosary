@@ -332,7 +332,7 @@ class RosaryEngineTest {
             openingTitles("en"),
         )
         assertEquals(
-            listOf("שלום לך (1 מתוך 3)", "שלום לך (2 מתוך 3)", "שלום לך (3 מתוך 3)"),
+            listOf("שמחי מרים (1 מתוך 3)", "שמחי מרים (2 מתוך 3)", "שמחי מרים (3 מתוך 3)"),
             openingTitles("he"),
         )
     }

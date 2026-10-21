@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 147,
+  "integrationPass": 147,
+  "preparationID": 202,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation202-SUS-1-47/source-provenance.json",
+    "sha256": "2cc79b72318133925c45d073396c02219b661e793b60fb57ec0a023813bfa98c"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sus-1-47-letter-1-vowel"
+  ],
+  "contentSHA256Before": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "contentSHA256After": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sus-1-47-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "anchorBefore": "ויִּפֶן",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "IndependentnativeASCII binds wholeownVav-Yod-Peh-Nun1178..1268 andtargetFIRSTVav1250..1268, index1 occurrence1. OwnVav395px18x48[1250,2771,1268,2819] hasroof,rightstem andbroadconnectedlowerfoot2812..2818 reaching leftwithoutindependentblankseparationfromstem. Exactvowelclass or exactabsence cannotbeseparatedfromthisjoinedfoot. Preserve noteandallcurrentscalars; existingYodmarksunchanged. LiteralownYoddetached52px8x8Hiriq[1232,2811,1240,2819] independentlyread; neighboringfullcontrolwordויאמרו finalVav detached43px7x7interiornode[594,2785,601,2792] independentlyread. NeithercontrolsuppliesownVavpoint.",
+      "targetCapture": "primary-240-native.png",
+      "targetSourceIdentifier": "primary-240-native.png",
+      "inspectedBounds": [
+        1247,
+        2764,
+        1273,
+        2826
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation202-SUS-1-47/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 47,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation202-SUS-1-47/independent-review.json",
+    "sha256": "5581e13e78bfa09de998a4b97c2c673015395c21b64e36a388d4188d9886b39b"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation202-SUS-1-47/primary-preparation.json",
+    "sha256": "7c930b374cb2d615821ff2b9c0179b418479903b70a5663ab04d3f76c50bf06c"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation202-SUS-1-47/consensus-preparation.json",
+    "sha256": "30e0895a5d0e105573fdaaead37a0860322b438c3b2cf5effbc2a9a208e20d27"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}
