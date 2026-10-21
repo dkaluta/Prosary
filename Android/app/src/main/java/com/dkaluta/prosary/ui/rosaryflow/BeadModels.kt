@@ -4,6 +4,8 @@ import android.content.Context
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.models.MysteryGroup
 import com.dkaluta.prosary.models.RosaryStep
+import com.dkaluta.prosary.models.LanguageCatalog
+import com.dkaluta.prosary.models.RosaryRiteLabels
 import java.util.UUID
 
 /** Pure UI-computed presentation state for the bead progress indicator — derived from the
@@ -90,29 +92,43 @@ data class BeadLayout(
     /** A single spoken summary of where the beads currently show progress — the dots themselves
      * carry no individual meaning to accessibility services, so the whole track is exposed as one
      * element with this label instead of dozens of unlabeled circles. */
-    fun accessibilityDescription(context: Context): String {
+    fun accessibilityDescription(context: Context, languageCode: String?, bundleId: String = "rosary"): String =
+        accessibilityDescription(languageCode, bundleId, LanguageCatalog.uiLanguageCode()) { resource, arguments ->
+            context.getString(resource, *arguments.toTypedArray())
+        }
+
+    internal fun accessibilityDescription(
+        languageCode: String?,
+        bundleId: String,
+        interfaceLanguage: String,
+        format: (Int, List<Any>) -> String,
+    ): String {
+        fun text(resource: Int, vararg arguments: Any) = format(resource, arguments.toList())
         if (closingCross?.state == BeadState.Current) {
-            return context.getString(R.string.bead_closing_cross)
+            return text(R.string.bead_closing_cross)
         }
         if (antiphon?.state == BeadState.Current) {
-            return context.getString(R.string.bead_marian_antiphon)
+            return text(R.string.bead_marian_antiphon)
         }
 
         val decadeBeads = groupColumns.flatMap { it.beads }
         val currentDecade = decadeBeads.indexOfFirst { it.state == BeadState.Current }
         if (currentDecade >= 0) {
-            var description = context.getString(R.string.bead_decade_of, currentDecade + 1, decadeBeads.size)
+            var description = text(R.string.bead_decade_of, currentDecade + 1, decadeBeads.size)
             if (showBottomBeads) {
                 val currentHailMary = bottomBeads.indexOfFirst { it.state == BeadState.Current }
                 if (currentHailMary >= 0) {
-                    description += ", " + context.getString(R.string.bead_hail_mary_of, currentHailMary + 1, bottomBeads.size)
+                    val title = RosaryRiteLabels.title("aveMariaTitle", languageCode, interfaceLanguage, bundleId)
+                    description += ", " + if (title != null) {
+                        text(R.string.bead_prayer_of, title, currentHailMary + 1, bottomBeads.size)
+                    } else text(R.string.bead_hail_mary_of, currentHailMary + 1, bottomBeads.size)
                 }
             }
             return description
         }
 
         if (openingCross?.state == BeadState.Current) {
-            return context.getString(R.string.bead_opening_cross)
+            return text(R.string.bead_opening_cross)
         }
 
         // Not on a decade, the opening cross, the antiphon, or the closing cross — one of the
@@ -120,10 +136,10 @@ data class BeadLayout(
         // Crown's/Seven Sorrows' extra closing Hail Marys and closing prayer) if every decade
         // bead already reads completed, otherwise the pre-decade opening prayers.
         if (decadeBeads.isNotEmpty() && decadeBeads.all { it.state == BeadState.Completed }) {
-            return context.getString(R.string.bead_closing_prayers)
+            return text(R.string.bead_closing_prayers)
         }
 
-        return context.getString(R.string.bead_opening_prayers)
+        return text(R.string.bead_opening_prayers)
     }
 
     companion object {

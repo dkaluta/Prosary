@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-21",
+  "pass": 62,
+  "legacyBatchPathDate": "20261017",
+  "browser": {
+    "name": "Chrome",
+    "id": "1",
+    "type": "extension_and_cdp_localhost_9222",
+    "tabId": "61A89F755E6D3DC9B0343D03370493BF",
+    "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+    "title": "Kahana external books volume A in Psik reader"
+  },
+  "authorization": {
+    "userSourceChoice": "Yes—use the open Kahana volumes",
+    "userConnectionInstruction": "Server runs on localhost:9222",
+    "actionTimeApproval": [
+      "continue the pass",
+      "do pass 41",
+      "do 40, then immediately do 42, 43, 44, 45, etc",
+      "restored both pages",
+      "ensure you are using chrome",
+      "could we preemptively capture everything with notes?",
+      "start working on them until exhaustion"
+    ],
+    "scope": "Signed-in Psik library session for Kahana volume A. Viewer page 499 (internal 514, printed 154 / קנד, WIS 5:11) used for Pass 62 top unresolved-vowel unit."
+  },
+  "sourcePolicy": "Displayed Kahana scan approved by user supersedes previous local-PDF-only acquisition choice. Existing original-PDF page locators and all prior scalars remain unchanged. Screenshot is not claimed pixel-identical to original local PDF. No OCR, grammatical reconstruction, sharpening, smoothing or alternate witness used to supply marks. Browser zoom is the ordinary viewer renderer; subsequent inspection crops may only copy pixels and use integer NEAREST.",
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page154/extension-volumeA-499-page-overview.png",
+      "sha256": "751024906d7c15c56eb0cfe23986586028f22e9cb70aec7736d405db158536c6",
+      "viewerPageNumber": 499,
+      "internalPdfPageNumber": 514,
+      "printedPageNumber": 154,
+      "printedPageHebrew": "קנד",
+      "canonicalLegacyPageNumber": 154,
+      "resolution": "2636x1862",
+      "purpose": "full-printed-page-overview"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page154/extension-volumeA-499-zoom6-mid-mid.png",
+      "sha256": "addf6b00d16c1a8137e837f11ebbb67b6afc789d1dc5818f4efea6382a4e7477",
+      "viewerPageNumber": 499,
+      "internalPdfPageNumber": 514,
+      "printedPageNumber": 154,
+      "printedPageHebrew": "קנד",
+      "canonicalLegacyPageNumber": 154,
+      "resolution": "2636x1862",
+      "purpose": "primary-source-screenshot"
+    }
+  ]
+}

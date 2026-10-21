@@ -839,15 +839,15 @@ final class CustomDevotionEngineTests: XCTestCase {
     XCTAssertTrue(variant.contains { $0.body.contains("שָׁלוֹם לָךְ מִרְיָם") }, "their Hail Mary")
 
     // Headings belong to the rite that uses them: the Mission's in the Mission's rite, the
-    // app's own in plain Hebrew.
+    // Vicariate's in the Vicariate's rite.
     let hebrew = steps("rosary", language: "he", customOptions: ["apostlesCreed": "true"])
     XCTAssertEqual(variant.first?.title, "אות הצלב")
     XCTAssertEqual(hebrew.first?.title, "סימן הצלב")
     XCTAssertEqual(hebrew[1].title, "אני מאמין")
     XCTAssertTrue(variant.contains { $0.title.hasPrefix("שלום לך מרים") })
-    XCTAssertTrue(hebrew.contains { $0.title.hasPrefix("שלום לך") })
+    XCTAssertTrue(hebrew.contains { $0.title.hasPrefix("שמחי מרים") })
     XCTAssertTrue(variant.contains { $0.title == "השבח לאב" })
-    XCTAssertTrue(hebrew.contains { $0.title == "שבח לאב" })
+    XCTAssertTrue(hebrew.contains { $0.title == "כבוד לאב" })
 
     // Not sent by the Mission: the Fatima prayer uses the explicitly preferred Vicariate.
     let fatima = { (list: [RosaryStep]) in list.first { $0.title.contains("הו ישוע") }?.body }

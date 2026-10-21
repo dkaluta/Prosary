@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 174,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Existing authorized offline Psik Chrome captures; no browser or network access. Legacy and saved capture page labels retained; printed pagination is not inferred.",
+  "additionalSourceProvenance": [],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Final evidence24artifacts uses exactly3 savednative sources: overview8, header12, upper-left4. A local pinnedPDF singleembedded236 raster was also inspected/replayed during address work; historicalfullrasterSHA was recovered, allRGB and3oldcrops replayexact, but native savedheader resolves separate ownplate. That exploratoryPDF record is explicitly auxiliary, not an evidence-crop source or mark supplier. No network/OCR/rendering.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    236
+  ],
+  "savedCaptureViewerPageLabels": [
+    581
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page236/extension-volumeA-581-page-overview.png",
+      "sha256": "50bf92d2582ebad291242fa5a0de1f07838780e024802b7c8c17132f94936d82",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page236/extension-volumeA-581-zoom4-header.png",
+      "sha256": "59fda54d2c5e788458c299fac82fecab15841bc190b77275a516e325f2383613",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page236/extension-volumeA-581-zoom4-upper-left.png",
+      "sha256": "3b702e1e8b3527c44abe3e42e1fb1fa3744a444657e0fc70539a0a759181fcbc",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation174-S3Y-1-52/source-provenance.json",
+    "sha256": "d69d47916234d35a13b681d8b9aa942cabb23b69dd8c745ef3b2f902c1b61ec5"
+  }
+}

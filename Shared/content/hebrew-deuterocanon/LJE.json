@@ -33,14 +33,13 @@
       116
     ],
     "unresolvedFindings": [],
-    "acceptedSourceNoteIds": [
-      "frenkel-lje-f33-nun-dagesh"
-    ],
+    "acceptedSourceNoteIds": [],
     "notes": [
       "One fused first-nun dagesh in printed section 33 (Brenton verse 30) is omitted with an exact source note; the readable patah is retained.",
       "Brenton supplies verse boundaries only. Frenkel's wording, including tenth generation in verse 3, remains source-faithful.",
       "The 79 printed source sections and all 73 target spans are retained in LJE-frenkel-pointed-crosswalk.json. Source label 35 is לה; the web transcription incorrectly repeats לח.",
-      "Hartom wording, divisions and previous completion approval were not used. The whole twelve-work release gate remains closed."
+      "Hartom wording, divisions and previous completion approval were not used. The whole twelve-work release gate remains closed.",
+      "2026-10-17 pass3: Fresh native decoding of the hash-verified Frenkel1863 DjVu page114, with tight nearest-neighbor enlargement, establishes the detached first-nun dagesh in printed section33 / Brenton verse30. Restore תַּנַחְנָה to תַּנַּחְנָה and retire frenkel-lje-f33-nun-dagesh. Root separately confirmed the white separation from the nun stem and foot and compared the adjacent tav dot before this correction. This supersedes the earlier fused-spur assessment and leaves no source notes in LJE. See Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass3.json. All other words, marks and boundaries are unchanged."
     ]
   },
   "chapters": [
@@ -283,25 +282,11 @@
         },
         {
           "verse": 30,
-          "text": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
+          "text": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַּחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
           "sourcePages": [
             114
           ],
-          "textSHA256": "17534d220f90181893a892e74ef149ff9d8857981d7fe58f048d09b9d524b24c",
-          "sourceNotes": [
-            {
-              "id": "frenkel-lje-f33-nun-dagesh",
-              "kind": "unreadablePoint",
-              "anchor": "תַּנַחְנָה",
-              "occurrence": 1,
-              "letterIndex": 2,
-              "mark": "dagesh",
-              "sourcePages": [
-                114
-              ],
-              "sourceURL": "https://commons.wikimedia.org/wiki/File:Ketuvim_Aharonim_Fraenkel_(Warsaw_1863).djvu?page=114"
-            }
-          ]
+          "textSHA256": "20905071e649aff4f5422426759b545d7ca7a1606216afd571ad0370f62fca53"
         },
         {
           "verse": 31,

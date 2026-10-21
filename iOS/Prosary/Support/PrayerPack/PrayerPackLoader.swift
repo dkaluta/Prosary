@@ -168,11 +168,36 @@ struct CustomDevotionOption: Decodable {
   }
 
   func localizedName(bundleId: String, languageCode: String?) -> String {
+    let language = LanguageCatalog.resolve(languageCode).code
+    if bundleId == "rosary", UILanguage.current == "he",
+       language == "he" || language == "he-x-gamliel" {
+      let namedOptions = [
+        "apostlesCreed": "favoriteEditor.apostlesCreed",
+        "openingPrayers": "favoriteEditor.openingPrayers",
+        "openingFatimaPrayer": "favoriteEditor.openingFatimaPrayer",
+        "fatimaPrayer": "favoriteEditor.fatimaPrayer",
+        "eternalRest": "favoriteEditor.eternalRest",
+        "stMichael": "favoriteEditor.stMichaelPrayer",
+        "finalSignOfCross": "favoriteEditor.finalSignOfCross",
+      ]
+      if let captionKey = namedOptions[key] {
+        return RosaryPrayerLabels.option(captionKey, languageCode: language, fallback: localizedName)
+      }
+    }
     guard key == "apostlesCreed",
           PrayerPackStore.creedPolicy(bundleId: bundleId, languageCode: languageCode)?.apostlesCreed == false else {
       return localizedName
     }
     return UILanguage.text("favoriteEditor.niceneCreed", language: UILanguage.current, fallback: "Nicene Creed")
+  }
+
+  func localizedCaseName(_ optionCase: Case, bundleId: String, languageCode: String?) -> String {
+    let language = LanguageCatalog.resolve(languageCode).code
+    guard bundleId == "rosary", key == "antiphon", UILanguage.current == "he",
+          language == "he" || language == "he-x-gamliel",
+          let antiphon = MarianAntiphonOption(rawValue: optionCase.id),
+          antiphon != .none, antiphon != .seasonal else { return optionCase.localizedName }
+    return antiphon.displayName(languageCode: language)
   }
 
   private enum CodingKeys: String, CodingKey {

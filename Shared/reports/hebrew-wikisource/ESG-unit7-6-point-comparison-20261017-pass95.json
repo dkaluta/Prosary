@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 95,
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass95-ESG-7-6/source-provenance.json",
+    "sha256": "9e87fe16828d3b11a8e9308c37dcc01018d94e376443a10f725571849f243df5"
+  },
+  "sourceNotesBefore": 21,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "esg-7-6-1-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "esg-7-6-2-vowel"
+  ],
+  "contentSHA256Before": "b15307b024a03ab47a5c272edcc6985dc080981c43a223eb5dbd1ec8efb431e2",
+  "contentSHA256After": "aa0c3f6b1f98fa756a177da72f53a2d719f4209d4b503724449bb260e8be1851",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-7-6-1-dagesh",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 6,
+      "anchorBefore": "וַיַצִּילֵנוּ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "The second yod immediately left of initial vav has a completely detached round lower-left interior point. The later fourth-letter plain yod [442,1251,470,1297] has only an ordinary straight tail; the intervening tsadi has its own separate dagesh [488,1282,500,1295]. Preserve every already transcribed point. Address review must confirm the complete word because an earlier tight letter locator appears offset.",
+      "targetCapture": "extension-volumeA-570-zoom4-header.png",
+      "inspectedBounds": [
+        549,
+        1249,
+        573,
+        1295
+      ],
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "pointBounds": [
+        552,
+        1279,
+        562,
+        1289
+      ],
+      "markClassification": "Dagesh",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass95-ESG-7-6/consensus-preparation.json"
+    },
+    {
+      "noteId": "esg-7-6-2-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 6,
+      "anchorBefore": "כמוֹהֶם",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "No complete high-resolution target registration is certified for the bracketed כמוֹהֶם. The correctly located native overview preserves the full word and lower mark zone, but the small/joined Kaf mark cannot be classified securely. No exact vowel or source absence is certified.",
+      "targetCapture": "extension-volumeA-570-page-overview.png",
+      "inspectedBounds": [
+        1070,
+        400,
+        1165,
+        445
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass95-ESG-7-6/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 7,
+      "verse": 6,
+      "before": "וְעַמִּי הֵם בְּנֵי יִשְׂרָאֵל אֲשֶׁר קָרְאוּ לֵאלֹהִים וַיִוָּשֵׁעוּ וַיּוֹשַׁע יְיָ אֶת־עַמּוֹ וַיַצִּילֵנוּ יְיָ מִכָּל־הַצָּרוֹת הָאֵלֶּה וַיַּעַשׂ אֱלֹהִים אֶת־הָאֹתוֹת וְהַמּוֹפְתִים הַגְּדוֹלִים אֲשֶׁר לֹא־הָיָה [כמוֹהֶם] בְּקֶרֶב הָעַמִּים׃",
+      "after": "וְעַמִּי הֵם בְּנֵי יִשְׂרָאֵל אֲשֶׁר קָרְאוּ לֵאלֹהִים וַיִוָּשֵׁעוּ וַיּוֹשַׁע יְיָ אֶת־עַמּוֹ וַיַּצִּילֵנוּ יְיָ מִכָּל־הַצָּרוֹת הָאֵלֶּה וַיַּעַשׂ אֱלֹהִים אֶת־הָאֹתוֹת וְהַמּוֹפְתִים הַגְּדוֹלִים אֲשֶׁר לֹא־הָיָה [כמוֹהֶם] בְּקֶרֶב הָעַמִּים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 7,
+    "verse": 6,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass95-ESG-7-6/independent-review.json",
+    "sha256": "506e3c891767d9f7c9f52d87f1303ff9bc9e751c44e8b7443802306ef748cb5b"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass95-ESG-7-6/primary-preparation.json",
+    "sha256": "2e7ba66f2f0d0fa9c31afaf7be9a19e7a804ffb84117d9be039ecdfab58318bd"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass95-ESG-7-6/consensus-preparation.json",
+    "sha256": "ec59177e475e2f9d0763bd09fbab9aa8ffa02c0679f4c6b9d7f89491f659dcf3"
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

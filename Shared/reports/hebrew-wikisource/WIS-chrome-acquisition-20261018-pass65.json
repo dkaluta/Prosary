@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-21",
+  "pass": 65,
+  "legacyBatchPathDate": "20261017",
+  "browser": {
+    "name": "Chrome",
+    "id": "1",
+    "type": "extension_and_cdp_localhost_9222",
+    "tabId": "61A89F755E6D3DC9B0343D03370493BF",
+    "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+    "title": "Kahana external books volume A in Psik reader"
+  },
+  "authorization": {
+    "userSourceChoice": "Yes—use the open Kahana volumes",
+    "userConnectionInstruction": "Server runs on localhost:9222",
+    "actionTimeApproval": [
+      "continue the pass",
+      "do pass 41",
+      "do 40, then immediately do 42, 43, 44, 45, etc",
+      "restored both pages",
+      "ensure you are using chrome",
+      "could we preemptively capture everything with notes?",
+      "start working on them until exhaustion"
+    ],
+    "scope": "Signed-in Psik library session for Kahana volume A. Viewer page 526 (internal 541, printed 181 / קפא, WIS 18:5) used for Pass 65 top unresolved-vowel unit."
+  },
+  "sourcePolicy": "Displayed Kahana scan approved by user supersedes previous local-PDF-only acquisition choice. Existing original-PDF page locators and all prior scalars remain unchanged. Screenshot is not claimed pixel-identical to original local PDF. No OCR, grammatical reconstruction, sharpening, smoothing or alternate witness used to supply marks. Browser zoom is the ordinary viewer renderer; subsequent inspection crops may only copy pixels and use integer NEAREST.",
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page181/extension-volumeA-526-page-overview.png",
+      "sha256": "db173321a4c1520a06ef455ff71d58f18385a6c2b1f81a085194bec626db22c8",
+      "viewerPageNumber": 526,
+      "internalPdfPageNumber": 541,
+      "printedPageNumber": 181,
+      "printedPageHebrew": "קפא",
+      "canonicalLegacyPageNumber": 181,
+      "resolution": "2636x1862",
+      "purpose": "full-printed-page-overview"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page181/extension-volumeA-526-zoom6-lower-right.png",
+      "sha256": "76e9380e2854799e005ee32c9b2287074b0079318e87b64c77fe1d09961cb9a1",
+      "viewerPageNumber": 526,
+      "internalPdfPageNumber": 541,
+      "printedPageNumber": 181,
+      "printedPageHebrew": "קפא",
+      "canonicalLegacyPageNumber": 181,
+      "resolution": "2636x1862",
+      "purpose": "primary-source-screenshot-right"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page181/extension-volumeA-526-zoom6-lower-mid.png",
+      "sha256": "0b5e909e0bd7e757ce2219f2a63191032c2da95707c83801f547cc463b7b566c",
+      "viewerPageNumber": 526,
+      "internalPdfPageNumber": 541,
+      "printedPageNumber": 181,
+      "printedPageHebrew": "קפא",
+      "canonicalLegacyPageNumber": 181,
+      "resolution": "2636x1862",
+      "purpose": "primary-source-screenshot-mid"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page181/extension-volumeA-526-zoom6-mid-right.png",
+      "sha256": "106424cff99d76721ac43a0c34d4f165655b24585a3756c97e87608769cab728",
+      "viewerPageNumber": 526,
+      "internalPdfPageNumber": 541,
+      "printedPageNumber": 181,
+      "printedPageHebrew": "קפא",
+      "canonicalLegacyPageNumber": 181,
+      "resolution": "2636x1862",
+      "purpose": "control-source-screenshot"
+    }
+  ]
+}

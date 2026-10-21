@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "batchDate": "2026-10-17",
+  "pass": 39,
+  "book": "BEL",
+  "status": "Five source 1:17 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 39 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/source-provenance.json",
+    "sha256": "44a647041657aabbf91542d06a9279b4e86309fddb570a6f6a07c9b3703c9968"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected across the printed page boundary (pages 244-245 / 572-573). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point. Screenshot replay is not PDF embedded-pixel replay.",
+  "baselineGlobalSourceNoteCount": 390,
+  "canonicalSHA256Before": "2d5dcc47fbf18b4f990ea0c8d8600d9347dbbf3f2764c44d1db6cb73bd186c88",
+  "contentSHA256Before": "11bdb2e893a8714006a9011f4f7c8ad0eda3604d632d66af176db28b82bf236b",
+  "contentSHA256After": "870753eef8d548e8e8b27d9c8ba3c0acf7bc8e586b0e7280a3eb07efb6a5300f",
+  "sourceNotesBefore": 82,
+  "sourceNotesAfter": 77,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 5,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-17-244-vayashkem-wide-letter1-vowel",
+    "bel-1-17-244-vayashkem-wide-letter4-vowel",
+    "bel-1-17-244-vayomer17-letter1-vowel",
+    "bel-1-17-245-daniel17-letter3-dagesh",
+    "bel-1-17-245-vayomer17-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 5,
+  "addedCombiningMarks": {
+    "U+05B5": 1,
+    "U+05B7": 3,
+    "U+05BC": 1
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 17,
+      "before": "ויַּשְׁכּם הַמֶּלֶךְ מִמָּחֳרָת וְדָנִיֵּאל עִמּוֹ׃ ויֹּאמֶר הַאִם שְׁלֵמִים הַחוֹתָמוֹת דָּנִיֵאל ויֹּאמֶר שְׁלֵמִים הַמֶּלֶךְ׃",
+      "after": "וַיַּשְׁכֵּם הַמֶּלֶךְ מִמָּחֳרָת וְדָנִיֵּאל עִמּוֹ׃ וַיֹּאמֶר הַאִם שְׁלֵמִים הַחוֹתָמוֹת דָּנִיֵּאל וַיֹּאמֶר שְׁלֵמִים הַמֶּלֶךְ׃",
+      "beforeTextSHA256": "efc826635b5e52faad2d36c8e870b29d3f311b6e01e6b0274ba241e3b8fd532b",
+      "afterTextSHA256": "b474342b1c79f3f7491293b94f465376f8001ee87d2d89f71f0ee69f39d9366c"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 17,
+    "allFiveUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label יז on page תקעג / 573 (viewer page 590, internal page 605) identifies the continuation of the lower text unit that began on the final line of page תקעב / 572 (viewer page 589, internal page 604) with וַיַּשְׁכֵּם הַמֶּלֶךְ. Canonical verse 17 and sourcePages [244, 245] are preserved.",
+  "decisions": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 17,
+      "before": "ויַּשְׁכּם",
+      "after": "וַיַּשְׁכֵּם",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "bel-1-17-244-vayashkem-wide-letter1-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "ויַּשְׁכּם",
+      "baselineUnitScalarInsertionOffset": 1,
+      "baselinePhysicalSpan": [
+        0,
+        10
+      ],
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B7"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 17,
+      "before": "ויַּשְׁכּם",
+      "after": "וַיַּשְׁכֵּם",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "bel-1-17-244-vayashkem-wide-letter4-vowel"
+      ],
+      "addedCodePoint": "U+05B5",
+      "baselineAnchor": "ויַּשְׁכּם",
+      "baselineUnitScalarInsertionOffset": 9,
+      "baselinePhysicalSpan": [
+        0,
+        10
+      ],
+      "targetClusterBefore": [
+        "U+05DB",
+        "U+05BC"
+      ],
+      "targetClusterAfter": [
+        "U+05DB",
+        "U+05BC",
+        "U+05B5"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 17,
+      "before": "ויֹּאמֶר",
+      "after": "וַיֹּאמֶר",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "bel-1-17-244-vayomer17-letter1-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "ויֹּאמֶר",
+      "baselineUnitScalarInsertionOffset": 53,
+      "baselinePhysicalSpan": [
+        52,
+        60
+      ],
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B7"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 17,
+      "before": "דָּנִיֵאל",
+      "after": "דָּנִיֵּאל",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "bel-1-17-245-daniel17-letter3-dagesh"
+      ],
+      "addedCodePoint": "U+05BC",
+      "baselineAnchor": "דָּנִיֵאל",
+      "baselineUnitScalarInsertionOffset": 95,
+      "baselinePhysicalSpan": [
+        89,
+        98
+      ],
+      "targetClusterBefore": [
+        "U+05D9",
+        "U+05B5"
+      ],
+      "targetClusterAfter": [
+        "U+05D9",
+        "U+05BC",
+        "U+05B5"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 17,
+      "before": "ויֹּאמֶר",
+      "after": "וַיֹּאמֶר",
+      "occurrence": 2,
+      "retiredNoteIds": [
+        "bel-1-17-245-vayomer17-letter1-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "ויֹּאמֶר",
+      "baselineUnitScalarInsertionOffset": 100,
+      "baselinePhysicalSpan": [
+        99,
+        107
+      ],
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B7"
+      ]
+    }
+  ],
+  "points": [
+    {
+      "noteId": "bel-1-17-244-vayashkem-wide-letter1-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial vav of וַיַּשְׁכֵּם, a clear horizontal stroke forming a patah is distinctly visible beneath the stem, contrasting with the two vertical dots of sheva in וְדָנִיֵּאל.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-vav-target-word-zoom6.png",
+          "sha256": "1ba52ab8a42312c5eeff0c0a1f23228084523d4961c9777d7f9da494330c458d",
+          "dimensions": "450x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-vav-target-word-zoom6-x4.png",
+            "sha256": "a218db6b370d7fa597f3d2fb3f5d86b4d5197575cdaf4e480d9f1eeb2a54f8bd",
+            "dimensions": "1800x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-vav-whole-glyph-zoom6.png",
+          "sha256": "e3922f8f700f26b6359ee969fbf15bfb335d704c462bfbdac77d4ee229e40cca",
+          "dimensions": "110x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "e063a95810cb0147500220437893e7585a19f7660db483c1d0d7b3dd7580e592",
+            "dimensions": "440x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-line patah under he in הַמֶּלֶךְ on line 17",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-vav-positive-control-zoom6.png",
+          "sha256": "6f41630fbfb39086080bc8d1bc6a07217c68f81dac13365eff40a18fc7c97f5b",
+          "dimensions": "140x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-vav-positive-control-zoom6-x4.png",
+            "sha256": "7f8eafe4b2439d07922ce458a526273582757ce119d8803c8a053ea030f1a5ec",
+            "dimensions": "560x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-line sheva under vav in וְדָנִיֵּאל on line 17",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-vav-competing-control-zoom6.png",
+          "sha256": "b2c815e1d90ba36df44be62a3dccfde25bcb1dc8ed3b72d26b575c0a48a9890e",
+          "dimensions": "150x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-vav-competing-control-zoom6-x4.png",
+            "sha256": "4a770c62c31dbe56ed6226daf9725afc1dfa83e1486dba421effc56ce9a17426",
+            "dimensions": "600x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "bel-1-17-244-vayashkem-wide-letter4-vowel",
+      "reading": "tsere",
+      "scalar": "U+05B5",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the kaf with dagesh in וַיַּשְׁכֵּם, two horizontal dots placed side-by-side forming a tsere are distinctly visible beneath the base.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-kaf-target-word-zoom6.png",
+          "sha256": "1ba52ab8a42312c5eeff0c0a1f23228084523d4961c9777d7f9da494330c458d",
+          "dimensions": "450x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-kaf-target-word-zoom6-x4.png",
+            "sha256": "a218db6b370d7fa597f3d2fb3f5d86b4d5197575cdaf4e480d9f1eeb2a54f8bd",
+            "dimensions": "1800x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-kaf-whole-glyph-zoom6.png",
+          "sha256": "b942f193f07ad93cc8a388558c810620497f052b243bcacc6ae9b005f95dabc9",
+          "dimensions": "120x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-kaf-whole-glyph-zoom6-x4.png",
+            "sha256": "a9ee746f853482405ec2ac72b602d7953308672cce3e22c95f854d547b3dfea8",
+            "dimensions": "480x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-line tsere under lamed in שְׁלֵמִים on line 17",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-kaf-positive-control-zoom6.png",
+          "sha256": "0611a2ab81395ca3d8c2a6c32f030ebb1da79c5978f4976ef4a8929faa48615a",
+          "dimensions": "140x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-kaf-positive-control-zoom6-x4.png",
+            "sha256": "3e8564ba9625a598c102450d1ae7ce3014722326bc3631b5506e614d4ccf4393",
+            "dimensions": "560x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-line segol under mem in הַמֶּלֶךְ on line 17",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-kaf-competing-control-zoom6.png",
+          "sha256": "e5142f08fbfa4b1c89f2a25a9af10e46542c0da8bfe4f9d412330233124eaa3c",
+          "dimensions": "120x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayashkem-kaf-competing-control-zoom6-x4.png",
+            "sha256": "077036fd21ad24ddfaf3c15e9a71728223b357088ef9a12a3b8f4533bffa11bb",
+            "dimensions": "480x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "bel-1-17-244-vayomer17-letter1-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial vav of the first וַיֹּאמֶר, a distinct horizontal stroke forming a patah is clearly visible beneath the stem.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer1-vav-target-word-zoom6.png",
+          "sha256": "a238c67f8966417e2e38077c02d5c76026e53413c749de6aad1fae8075a17369",
+          "dimensions": "440x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer1-vav-target-word-zoom6-x4.png",
+            "sha256": "3a1027df0e70949f1be58dc837e0c2d19e7c6cfa1990782cf349d8efbe8d856e",
+            "dimensions": "1760x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer1-vav-whole-glyph-zoom6.png",
+          "sha256": "1ab170b965d16b434906e66b076db5445192c1436aa92cfd362783633ecdee02",
+          "dimensions": "90x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer1-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "3fc3f1f1796a134bf29e43a0d71a24e10f05c652b13b15b3486f551f953380ee",
+            "dimensions": "360x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-line patah under he in הַאִם on line 17",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer1-vav-positive-control-zoom6.png",
+          "sha256": "513bdb5d9a17dcc2959fe509111cdf3855f21fba3311a67416599a2ff95da2f5",
+          "dimensions": "240x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer1-vav-positive-control-zoom6-x4.png",
+            "sha256": "9c5fad3b0339ecccc5cabeb04553087988f5d6c6684f7abd020bf37f9cedf0ae",
+            "dimensions": "960x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-line sheva under shin in שְׁלֵמִים on line 17",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer1-vav-competing-control-zoom6.png",
+          "sha256": "22fd05642b6dd81ba7fafab2dbc34aacf4d41f8793f029cabec85914958db0a4",
+          "dimensions": "140x170",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer1-vav-competing-control-zoom6-x4.png",
+            "sha256": "a260b8ab687014b31af59989dd49f8612f54365660e080d4a2dcff8ea605e452",
+            "dimensions": "560x680",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "bel-1-17-245-daniel17-letter3-dagesh",
+      "reading": "dagesh",
+      "scalar": "U+05BC",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Inside the yod with tsere of דָּנִיֵּאל, a distinct central punctum / dagesh dot is clearly visible in the interior cavity of the letter.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-daniel-yod-target-word-zoom6.png",
+          "sha256": "2ef7db1e2d2e0b4fb0b65025a2ebe97fd122cce02991d0f328322cb8f0f5ab3e",
+          "dimensions": "320x160",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-daniel-yod-target-word-zoom6-x4.png",
+            "sha256": "29d38ba75e2c470dd3f0fe19947929219bc804d598d3682eff6b8a3304c58c05",
+            "dimensions": "1280x640",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-daniel-yod-whole-glyph-zoom6.png",
+          "sha256": "9e5307ad7921080beec877bc1d2eb6411f996e6cff5d86649531e6b01593b19c",
+          "dimensions": "100x160",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-daniel-yod-whole-glyph-zoom6-x4.png",
+            "sha256": "5e73468c77076b1a25c05c4ecc52e5a050397a6fee91a9521439cc4558825329",
+            "dimensions": "400x640",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-word dagesh inside dalet of דָּנִיֵּאל on line 1",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-daniel-yod-positive-control-zoom6.png",
+          "sha256": "12720a413e03ab5746e31924dc5ffe4c63ddd73f402048178d0e526bbdfad373",
+          "dimensions": "120x160",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-daniel-yod-positive-control-zoom6-x4.png",
+            "sha256": "9cd782aa9c8bd8c1057cf3d540e54741dc3f2742629861d26d1520ce01673276",
+            "dimensions": "480x640",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-line unaugmented yod in verse numeral יז on line 1",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-daniel-yod-competing-control-zoom6.png",
+          "sha256": "281a070a2cf44066aea2782e262dd3419d6387d7782c13ffe907c2c22f7aba7d",
+          "dimensions": "120x160",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-daniel-yod-competing-control-zoom6-x4.png",
+            "sha256": "8af63bb3b6ce0b2ac7ee41ec28bd767fce6706a5a4830e77f8a383bd77434cfa",
+            "dimensions": "480x640",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "bel-1-17-245-vayomer17-letter1-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial vav of the second וַיֹּאמֶר, a distinct horizontal stroke forming a patah is clearly visible beneath the stem.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer2-vav-target-word-zoom6.png",
+          "sha256": "f8d2fbb1ddbf2053c07ab8612040851246aaaeb4b67561d672f340f189878bdb",
+          "dimensions": "520x160",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer2-vav-target-word-zoom6-x4.png",
+            "sha256": "5efc22cb403cd767f025967d3e94d97707c35ccffd31bd4703933c4e83588e50",
+            "dimensions": "2080x640",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer2-vav-whole-glyph-zoom6.png",
+          "sha256": "e89cbd6943bbf99c65103968087e550018b89ca854eb83722639bba80212021d",
+          "dimensions": "120x160",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer2-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "c6c50a8326090bfc91ae5de30130e5adbbaff7b77668d3e4f8e65c584136fe3a",
+            "dimensions": "480x640",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-line patah under he in הַמֶּלֶךְ on line 1",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer2-vav-positive-control-zoom6.png",
+          "sha256": "9c29bbd2d46bc1f4747bd820f15e6ab12f239d7b9c2743a29379dd621e98be24",
+          "dimensions": "150x160",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer2-vav-positive-control-zoom6-x4.png",
+            "sha256": "2ecb0ba07773b961284ca63f9ba650377ab9e9fa946865964fbf087bc02834ee",
+            "dimensions": "600x640",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-line sheva under shin in שְׁלֵמִים on line 1",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer2-vav-competing-control-zoom6.png",
+          "sha256": "abad8edae0e463884736df0b29d47df3b4493dd2f6f4f7358eabf411eedab330",
+          "dimensions": "140x160",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass39-BEL-1-17/bel-1-17-vayomer2-vav-competing-control-zoom6-x4.png",
+            "sha256": "5c81c4b9e62e54c3cf576deb304b93d69a27aa919519f1c342fece3035d42a04",
+            "dimensions": "560x640",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 116,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass116-WIS-10-14/source-provenance.json",
+    "sha256": "af59365d945d815dca3b4345866fb095ec90cad421a4643ad0b32a89d440cc11"
+  },
+  "sourceNotesBefore": 118,
+  "sourceNotesAfter": 117,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-10-14-tet"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-10-14-shin"
+  ],
+  "contentSHA256Before": "3f01e90d0afec399365b7afc4f98e23ab2ec0695ff1b220ef47b2de48d5b52f1",
+  "contentSHA256After": "f3a3d14eab36fcc6359aae55ed9bbf93817ab51caa4a322914d1ff19e7ef5c45",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-10-14-tet",
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 14,
+      "anchorBefore": "תִטּשׁהוּ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": null,
+      "targetCapture": "extension-volumeA-510-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-510-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1578,
+        838,
+        1645,
+        912
+      ],
+      "markProposed": "Sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": null,
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass116-WIS-10-14/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-10-14-shin",
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 14,
+      "anchorBefore": "תִטּשׁהוּ",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": null,
+      "targetCapture": "extension-volumeA-510-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-510-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1491,
+        841,
+        1571,
+        912
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass116-WIS-10-14/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 10,
+      "verse": 14,
+      "before": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
+      "after": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטְּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 10,
+    "verse": 14,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-10-14-shin",
+      "before": "תִטּשׁהוּ",
+      "after": "תִטְּשׁהוּ"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass116-WIS-10-14/independent-review.json",
+    "sha256": "8eb9bca9b78dbf406a9dcf96f2f5594db015b99df4d211d011f3ed19c0fb5163"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass116-WIS-10-14/primary-preparation.json",
+    "sha256": "33e61ad884be3dc55d418aa36acdf4d92594c4608b284da7cc8db7a90060093e"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass116-WIS-10-14/consensus-preparation.json",
+    "sha256": "3784789c208a1df302597f401b17c2ccb9e9c4716b42d28b8a46303562475083"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "field": "closingText",
+        "sourceBook": "WIS",
+        "selection": {
+          "chapter": 10,
+          "verse": 14
+        },
+        "frozenSourceScalarSpan": [
+          0,
+          165
+        ],
+        "before": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
+        "after": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטְּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
+        "approvedInsertionsWithinSpan": [
+          {
+            "offset": 48,
+            "mark": "ְ",
+            "codePoint": "U+05B0"
+          }
+        ]
+      }
+    ],
+    "dailyRowNoteUpdates": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "chapter": 10,
+        "verse": 14,
+        "before": [
+          {
+            "id": "wis-10-14-tet",
+            "kind": "unreadablePoint",
+            "anchor": "תִטּשׁהוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              165
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165"
+          },
+          {
+            "id": "wis-10-14-shin",
+            "kind": "unreadablePoint",
+            "anchor": "תִטּשׁהוּ",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              165
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165"
+          }
+        ],
+        "after": [
+          {
+            "id": "wis-10-14-shin",
+            "kind": "unreadablePoint",
+            "anchor": "תִטְּשׁהוּ",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              165
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165"
+          }
+        ]
+      }
+    ],
+    "changedRows": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "chapter": 10,
+        "verse": 14,
+        "before": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
+        "after": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטְּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
+        "sourceNotesBefore": [
+          {
+            "id": "wis-10-14-tet",
+            "kind": "unreadablePoint",
+            "anchor": "תִטּשׁהוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              165
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165"
+          },
+          {
+            "id": "wis-10-14-shin",
+            "kind": "unreadablePoint",
+            "anchor": "תִטּשׁהוּ",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              165
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165"
+          }
+        ],
+        "sourceNotesAfter": [
+          {
+            "id": "wis-10-14-shin",
+            "kind": "unreadablePoint",
+            "anchor": "תִטְּשׁהוּ",
+            "occurrence": 1,
+            "letterIndex": 3,
+            "mark": "vowel",
+            "sourcePages": [
+              165
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165"
+          }
+        ]
+      }
+    ],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

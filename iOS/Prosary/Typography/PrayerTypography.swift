@@ -152,18 +152,13 @@ enum PrayerTypography {
   static func font(languageCode: String?, isScripture: Bool, text: String? = nil,
                    script: Script? = nil, typefaces: Typefaces = .current, pointSize: CGFloat? = nil) -> Font {
     let resolved = script ?? resolvedScript(text: text, languageCode: languageCode)
+    if isScripture {
+      let face = scriptureFace(script: resolved, typefaces: typefaces, pointSize: pointSize)
+      return .custom(face.name, size: face.size, relativeTo: .body)
+    }
 
     switch resolved {
     case .hebrew:
-      if isScripture {
-        let name = switch typefaces.hebrewScripture {
-        case TypefaceValue.stamAshkenaz: FontRegistration.PostScriptName.stamAshkenaz
-        case TypefaceValue.stamSefarad: FontRegistration.PostScriptName.stamSefarad
-        case TypefaceValue.rashi: FontRegistration.PostScriptName.notoRashiHebrew
-        default: FontRegistration.PostScriptName.shofar
-        }
-        return .custom(name, size: (pointSize ?? 16) * scale, relativeTo: .body)
-      }
       let prayerTypeface = typefaces.hebrewPrayer
       if prayerTypeface == TypefaceValue.sansSerif {
         // Semantic system text scales with Dynamic Type too. Body views use prayerFont
@@ -177,9 +172,7 @@ enum PrayerTypography {
       return .custom(name, size: (pointSize ?? 21) * scale, relativeTo: .body)
 
     case .arabic:
-      return isScripture
-        ? .custom(FontRegistration.PostScriptName.scheherazadeNew, size: 16 * scale, relativeTo: .body)
-        : .custom(FontRegistration.PostScriptName.amiri, size: (pointSize ?? 18) * scale, relativeTo: .body)
+      return .custom(FontRegistration.PostScriptName.amiri, size: (pointSize ?? 18) * scale, relativeTo: .body)
 
     case .syriac:
       // Custom Aramaic bodies and Syriac transliterations share the chosen Syriac face.
@@ -193,9 +186,34 @@ enum PrayerTypography {
     case .latin, .cyrillic, .greek:
       let choice = resolved == .cyrillic ? typefaces.cyrillicPrayer
         : resolved == .latin ? typefaces.latinPrayer : TypefaceValue.default
-      return isScripture
-        ? .custom(FontRegistration.PostScriptName.cardo, size: 19 * scale, relativeTo: .body)
-        : .system(.body, design: choice == TypefaceValue.sansSerif ? .default : .serif)
+      return .system(.body, design: choice == TypefaceValue.sansSerif ? .default : .serif)
+    }
+  }
+
+  /// SwiftUI and native justified text share the same face and base size. Both apply
+  /// body-relative Dynamic Type scaling at their own rendering boundary.
+  static func scriptureFace(script: Script, typefaces: Typefaces = .current,
+                            pointSize: CGFloat? = nil) -> (name: String, size: CGFloat) {
+    switch script {
+    case .hebrew:
+      let name = switch typefaces.hebrewScripture {
+      case TypefaceValue.stamAshkenaz: FontRegistration.PostScriptName.stamAshkenaz
+      case TypefaceValue.stamSefarad: FontRegistration.PostScriptName.stamSefarad
+      case TypefaceValue.rashi: FontRegistration.PostScriptName.notoRashiHebrew
+      default: FontRegistration.PostScriptName.shofar
+      }
+      return (name, (pointSize ?? 16) * scale)
+    case .arabic:
+      return (FontRegistration.PostScriptName.scheherazadeNew, 16 * scale)
+    case .syriac:
+      let name = switch typefaces.syriac {
+      case TypefaceValue.western: FontRegistration.PostScriptName.notoSansSyriacWestern
+      case TypefaceValue.eastern: FontRegistration.PostScriptName.notoSansSyriacEastern
+      default: FontRegistration.PostScriptName.notoSansSyriac
+      }
+      return (name, (pointSize ?? 19) * scale)
+    case .latin, .cyrillic, .greek:
+      return (FontRegistration.PostScriptName.cardo, 19 * scale)
     }
   }
 

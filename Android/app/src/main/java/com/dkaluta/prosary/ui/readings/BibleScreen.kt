@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
@@ -55,6 +54,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -179,6 +179,9 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
     var selectedChapter by rememberSaveable { mutableStateOf<Int?>(null) }
     var scriptOverride by rememberSaveable { mutableStateOf<String?>(null) }
     var picker by rememberSaveable { mutableStateOf<String?>(null) }
+    var readingAnchor by rememberSaveable { mutableStateOf("notice") }
+    var verseJump by remember { mutableStateOf<String?>(null) }
+    var jumpSerial by remember { mutableIntStateOf(0) }
     val script = scriptOverride ?: AppSettings.aramaicDefaultScript
     val readingEdition = remember(edition) { edition.readingEdition() }
     val position = BibleNavigation.resolve(edition, selectedBook, selectedChapter)
@@ -196,6 +199,9 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
         selectedBook = next.book
         selectedChapter = next.chapter
         picker = null
+        readingAnchor = "notice"
+        verseJump = null
+        jumpSerial++
         scope.launch { scroll.scrollToItem(0) }
     }
     val previous = BibleNavigation.neighbor(edition, position, -1)
@@ -226,77 +232,47 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
             !chapterState.loaded -> CircularProgressIndicator(Modifier.padding(16.dp))
             chapter == null -> Text(stringResource(R.string.bible_chapter_error), Modifier.padding(16.dp))
             else -> {
-                val visibleScript = PrayerTypography.scriptOf(chapter.items.firstNotNullOfOrNull {
-                    it.primary?.displayedText(readingEdition, script) ?: it.block.text
-                }.orEmpty())
+                // Printed headings and colophons may use another language. Page order follows
+                // the Scripture actually shown, including the selected paired script.
+                val visibleScript = PrayerTypography.scriptOf((chapter.items.firstNotNullOfOrNull {
+                    it.primary?.displayedText(readingEdition, script)
+                } ?: chapter.items.firstNotNullOfOrNull {
+                    it.block.text.takeIf { _ -> it.block.kind in listOf("passage", "witness") }
+                }).orEmpty())
                 val direction = if (visibleScript in listOf(PrayerTypography.Script.Hebrew, PrayerTypography.Script.Arabic,
                         PrayerTypography.Script.Syriac)) LayoutDirection.Rtl else LayoutDirection.Ltr
-                SelectionContainer {
-                    LazyColumn(state = scroll, modifier = Modifier.fillMaxSize().testTag("bibleVerses"),
-                        contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        item(key = "notice") {
-                            if (!info.isComplete) Surface(color = MaterialTheme.colorScheme.secondaryContainer,
-                                shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth().testTag("biblePartialChapter")) {
-                                Text(stringResource(R.string.bible_partial_chapter), Modifier.padding(12.dp), style = MaterialTheme.typography.bodyMedium)
-                            }
+                val rowKeys = listOf("notice", "heading") + chapter.items.map { "block.${it.id}" } + "source"
+                val rowContent: @Composable (Int) -> Unit = { index ->
+                    when (index) {
+                        0 -> if (!info.isComplete) Surface(color = MaterialTheme.colorScheme.secondaryContainer,
+                            shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth().testTag("biblePartialChapter")) {
+                            Text(stringResource(R.string.bible_partial_chapter), Modifier.padding(12.dp), style = MaterialTheme.typography.bodyMedium)
                         }
-                        item(key = "heading") {
-                            CompositionLocalProvider(LocalLayoutDirection provides direction) {
-                                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                                    if (info.number == book.chapters.first().number) book.introduction?.let { introduction ->
-                                        Text(introduction, style = PrayerTypography.styleForText(introduction, isScripture = true),
-                                            modifier = Modifier.fillMaxWidth().testTag("bibleIntroduction"))
-                                    }
-                                    DisableSelection { Text(info.canonicalReference ?: ReadingChapterHeading.label(context, info.number, edition.languageCode, script),
-                                        style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold,
-                                        fontStyle = FontStyle.Normal, modifier = Modifier.fillMaxWidth().testTag("bibleChapterHeading")) }
+                        1 -> CompositionLocalProvider(LocalLayoutDirection provides direction) {
+                            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                                if (info.number == book.chapters.first().number) book.introduction?.let { introduction ->
+                                    Text(introduction, style = PrayerTypography.styleForText(introduction, isScripture = true),
+                                        textAlign = if (LocalBibleBookMode.current) TextAlign.Justify else TextAlign.Unspecified,
+                                        modifier = Modifier.fillMaxWidth().testTag("bibleIntroduction"))
                                 }
+                                DisableSelection { Text(info.canonicalReference ?: ReadingChapterHeading.label(context, info.number, edition.languageCode, script),
+                                    style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold,
+                                    fontStyle = FontStyle.Normal, modifier = Modifier.fillMaxWidth().testTag("bibleChapterHeading")) }
                             }
                         }
-                        items(chapter.items, key = { "block.${it.id}" }) { item ->
-                            CompositionLocalProvider(LocalLayoutDirection provides direction) {
-                                Column(Modifier.testTag("bibleBlock.${item.id}")) {
-                                    val verse = item.primary
-                                    val text = verse?.displayedText(readingEdition, script) ?: item.block.text.orEmpty()
-                                    when (item.block.kind) {
-                                        "heading" -> DisableSelection {
-                                            Text(text, style = PrayerTypography.styleForText(text, isScripture = true),
-                                                fontWeight = FontWeight.Bold, modifier = Modifier.fillMaxWidth())
-                                        }
-                                        "colophon" -> DisableSelection {
-                                            Text(text, style = MaterialTheme.typography.bodySmall,
-                                                color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.fillMaxWidth())
-                                        }
-                                        else -> {
-                                            val sourceLabel = verse?.let { unit ->
-                                                if (unit.chapter == info.number) unit.verseLabel
-                                                else BibleNavigation.sourceLabel(unit, info.number) { ReadingChapterHeading.number(it, edition.languageCode, script) }
-                                            } ?: item.block.printedLabel
-                                            val usesPrintedLabels = verse != null && info.canonicalReference != null
-                                            val display = if (sourceLabel == null || usesPrintedLabels) text else "\u2068$sourceLabel\u2069  $text"
-                                            Text(display, style = PrayerTypography.styleForText(text, isScripture = true),
-                                                modifier = Modifier.fillMaxWidth().then(if (verse != null) Modifier.testTag("bibleVerse.${verse.verse}") else Modifier))
-                                            if (verse != null) (item.block.printedLabel ?: sourceLabel.takeIf { usesPrintedLabels })?.let { printed ->
-                                                DisableSelection { CompositionLocalProvider(LocalLayoutDirection provides interfaceDirection) {
-                                                    Text(stringResource(R.string.bible_printed_label, "\u2068$printed\u2069"),
-                                                        style = MaterialTheme.typography.labelMedium,
-                                                        modifier = Modifier.testTag("biblePrintedLabel.${item.id}"))
-                                                } }
-                                            }
-                                        }
-                                    }
-                                    ScriptureSourceNotes(item.sourceNotes)
-                                }
-                            }
-                        }
-                        item(key = "source") {
-                            DisableSelection { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                                if (!book.attribution.isNullOrBlank()) BibleSourceCredit(book.attribution, book.sourceURL)
-                                BibleSourceCredit(edition.attribution, edition.sourceURL)
-                            } }
-                        }
+                        rowKeys.lastIndex -> DisableSelection { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            if (!book.attribution.isNullOrBlank()) BibleSourceCredit(book.attribution, book.sourceURL)
+                            BibleSourceCredit(edition.attribution, edition.sourceURL)
+                        } }
+                        else -> BibleSourceBlock(chapter.items[index - 2], readingEdition, script, info, edition,
+                            direction, interfaceDirection)
                     }
                 }
+                val measurements = biblePageMeasurements(chapter, book, info, edition, script)
+                BibleAdaptiveChapterReader(rowKeys, measurements, scroll, direction, readingAnchor,
+                    onAnchorChange = { readingAnchor = it }, jumpSerial = jumpSerial, jumpBlock = verseJump,
+                    rowContent = rowContent)
+
             }
         }
     }
@@ -314,8 +290,59 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
                     it.primary?.let { unit -> number in unit.verse..unit.lastVerse }
                 } == true } ?: -1
             } else chapter.items.indexOfFirst { it.id == choice }
-            if (index >= 0) scope.launch { scroll.scrollToItem(index + 2) }
+            if (index >= 0) {
+                readingAnchor = "block.${requireNotNull(chapter).items[index].id}"
+                verseJump = readingAnchor
+                jumpSerial++
+            }
         })
+    }
+}
+
+@Composable
+private fun BibleSourceBlock(item: com.dkaluta.prosary.content.bible.BibleDisplayItem,
+    readingEdition: com.dkaluta.prosary.content.today.ReadingEdition, script: String,
+    info: com.dkaluta.prosary.content.bible.BibleChapterInfo, edition: BibleEdition,
+    direction: LayoutDirection, interfaceDirection: LayoutDirection) {
+    CompositionLocalProvider(LocalLayoutDirection provides direction) {
+        Column(Modifier.testTag("bibleBlock.${item.id}")) {
+            val verse = item.primary
+            val text = verse?.displayedText(readingEdition, script) ?: item.block.text.orEmpty()
+            when (item.block.kind) {
+                "heading" -> DisableSelection {
+                    Text(text, style = PrayerTypography.styleForText(text, isScripture = true),
+                        fontWeight = FontWeight.Bold, modifier = Modifier.fillMaxWidth())
+                }
+                "colophon" -> DisableSelection {
+                    Text(text, style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.fillMaxWidth())
+                }
+                else -> {
+                    val sourceLabel = verse?.let { unit ->
+                        if (unit.chapter == info.number) unit.verseLabel
+                        else BibleNavigation.sourceLabel(unit, info.number) { ReadingChapterHeading.number(it, edition.languageCode, script) }
+                    } ?: item.block.printedLabel
+                    val usesPrintedLabels = verse != null && info.canonicalReference != null
+                    val display = if (sourceLabel == null || usesPrintedLabels) text else "\u2068$sourceLabel\u2069  $text"
+                    val bodyModifier = Modifier.fillMaxWidth().then(if (verse != null) Modifier.testTag("bibleVerse.${verse.verse}") else Modifier)
+                    if (LocalBibleBookMode.current) {
+                        Text(BibleBookTypography.body(text, sourceLabel.takeUnless { usesPrintedLabels }),
+                            style = PrayerTypography.styleForText(text, isScripture = true),
+                            textAlign = TextAlign.Justify, modifier = bodyModifier)
+                    } else {
+                        Text(display, style = PrayerTypography.styleForText(text, isScripture = true), modifier = bodyModifier)
+                    }
+                    if (verse != null) (item.block.printedLabel ?: sourceLabel.takeIf { usesPrintedLabels })?.let { printed ->
+                        DisableSelection { CompositionLocalProvider(LocalLayoutDirection provides interfaceDirection) {
+                            Text(stringResource(R.string.bible_printed_label, "\u2068$printed\u2069"),
+                                style = MaterialTheme.typography.labelMedium,
+                                modifier = Modifier.testTag("biblePrintedLabel.${item.id}"))
+                        } }
+                    }
+                }
+            }
+            ScriptureSourceNotes(item.sourceNotes)
+        }
     }
 }
 

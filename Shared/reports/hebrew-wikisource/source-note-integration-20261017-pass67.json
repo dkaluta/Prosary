@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-21",
+  "pass": 67,
+  "startingNoteCount": 287,
+  "removedNoteCount": 2,
+  "remainingNoteCount": 285,
+  "books": [
+    {
+      "book": "WIS",
+      "beforeNoteCount": 129,
+      "afterNoteCount": 127,
+      "removedNoteIds": [
+        "wis-6-2-alef-vowel",
+        "wis-6-2-zayin-vowel"
+      ],
+      "beforeDigest": "30f941cb0d489c19b64c55b1b41b7ebaff7ed15ab9bcd59ee9d6ea3a6d9a8ab1",
+      "afterDigest": "88c91d3d3450883590e947e906ca62b6fb4982799a5bfa6d6f8ecf46b824a4d5",
+      "sourceChanges": [
+        {
+          "book": "WIS",
+          "chapter": 6,
+          "verse": 2,
+          "before": "הַאזינוּ הָרוֹדִים בָּעָם הַמִּתְנַשְּׂאִים עַל־הֲמוֹן לְאֻמִּים׃",
+          "after": "הַאזְינוּ הָרוֹדִים בָּעָם הַמִּתְנַשְּׂאִים עַל־הֲמוֹן לְאֻמִּים׃"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass67.json",
+          "sha256": "e68dee36b246638fa8878eba64874e2f8695e991c5d7a746e79249e551b9d717"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass67.json",
+          "sha256": "c925ee6d1328b50a590a5b94b7f1de8135825130dd695ccf85eac4163397ed6e"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 2,
+  "retainedAnchorUpdateDetails": [
+    {
+      "noteId": "wis-6-2-alef-restored",
+      "beforeAnchor": "הַאזינוּ",
+      "afterAnchor": "הַאזְינוּ"
+    },
+    {
+      "noteId": "wis-6-2-yod-restored",
+      "beforeAnchor": "הַאזינוּ",
+      "afterAnchor": "הַאזְינוּ"
+    }
+  ],
+  "dailyWholeBookPinsUpdated": 0,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass67.json",
+      "sha256": "e68dee36b246638fa8878eba64874e2f8695e991c5d7a746e79249e551b9d717"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass67.json",
+      "sha256": "c925ee6d1328b50a590a5b94b7f1de8135825130dd695ccf85eac4163397ed6e"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 285,
+      "removedNotes": 2,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-ff55b651207aa4ace759da7ce2d4d305a9d61e58df46cafc45d73e0accaa7d60.zip",
+      "archiveSHA256": "f942d9d5e2b7bacec00c8e1fc92a904585208adeb54d1b9b8cb28a565d329837",
+      "archiveBytes": 3109864
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 365,
+      "remainingNoteCount": 285,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 352,
+      "distinctChangedSourceUnits": 126
+    }
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "date": "2026-10-17",
+  "pass": 2,
+  "scope": "Another source-note review, preserving the previous eight corrections and Catholic browsing/presentation order. Exact allowed deltas asserted against a snapshot of the completed first pass. Daily Sirach51:13–17 receives the independently verified point correction in source51:11; every appointment boundary and selection remains unchanged. Every Catholic sequence/boundary unit remains identical; the complete-book pins refresh with new evidence.",
+  "startingNoteCount": 699,
+  "remainingNoteCount": 677,
+  "removedNoteCount": 22,
+  "books": [
+    {
+      "book": "WIS",
+      "beforeNoteCount": 210,
+      "afterNoteCount": 208,
+      "removedNoteIds": [
+        "wis-1-7-male-mem",
+        "wis-4-4-letter-3-vowel"
+      ],
+      "beforeDigest": "72abf55b8fefd0c01956c9bbf18a8a15ecd5a4f76578007b4e3d8a6c4efcfe64",
+      "afterDigest": "103cf72b6840482c610f9484d35b2434fc4a6897741e6a3cb2d65bbf86c26cb5",
+      "dailyPinsUpdated": 9,
+      "dailyAppointmentsWithCorrectedSourcePoint": [],
+      "sourceChanges": [
+        {
+          "chapter": 1,
+          "verse": 7,
+          "before": "מלֵא",
+          "after": "מָלֵא",
+          "retiredNote": "wis-1-7-male-mem"
+        },
+        {
+          "chapter": 4,
+          "verse": 4,
+          "before": "יְסֹערוּ",
+          "after": "יְסֹעָרוּ",
+          "retiredNote": "wis-4-4-letter-3-vowel"
+        }
+      ],
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+        "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+      }
+    },
+    {
+      "book": "SIR",
+      "beforeNoteCount": 66,
+      "afterNoteCount": 47,
+      "removedNoteIds": [
+        "sir-1-25-1-dagesh",
+        "sir-11-32-nun-dagesh",
+        "sir-14-16-vav-vowel",
+        "sir-15-10-mem-dagesh",
+        "sir-17-13-gimel-dagesh",
+        "sir-17-8-gimel-dagesh",
+        "sir-18-10-gimel-dagesh",
+        "sir-18-4-gimel-dagesh",
+        "sir-22-18-ayin-vowel",
+        "sir-23-6-mem-vowel",
+        "sir-29-3-kaf-dagesh",
+        "sir-30-16-shin-vowel",
+        "sir-30-18-tsadi-dagesh",
+        "sir-36-8-ayin-vowel",
+        "sir-37-12-alef-vowel",
+        "sir-37-31-ayin-vowel",
+        "sir-47-23-mem-vowel",
+        "sir-49-10-shin-vowel",
+        "sir-51-11-alef-vowel"
+      ],
+      "beforeDigest": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "afterDigest": "f6e274e9df33bdc90868dfd5fa2e3e89c318a99ddb29b0990d79106df09e61a3",
+      "dailyPinsUpdated": 12,
+      "dailyAppointmentsWithCorrectedSourcePoint": [
+        "daily|Sirach 51:13–17"
+      ],
+      "sourceChanges": [
+        {
+          "chapter": 1,
+          "verse": 25,
+          "before": "בְאֹצְרוֹת",
+          "after": "בְּאֹצְרוֹת",
+          "retiredNote": "sir-1-25-1-dagesh"
+        },
+        {
+          "chapter": 11,
+          "verse": 32,
+          "before": "מִנצוֹץ",
+          "after": "מִנּצוֹץ",
+          "retiredNote": "sir-11-32-nun-dagesh"
+        },
+        {
+          "chapter": 14,
+          "verse": 16,
+          "before": "ופַנֵּק",
+          "after": "וּפַנֵּק",
+          "retiredNote": "sir-14-16-vav-vowel"
+        },
+        {
+          "chapter": 15,
+          "verse": 10,
+          "before": "יְלַמְדֶנָּה",
+          "after": "יְלַמְּדֶנָּה",
+          "retiredNote": "sir-15-10-mem-dagesh"
+        },
+        {
+          "chapter": 17,
+          "verse": 8,
+          "before": "גֹדֶל",
+          "after": "גֹּדֶל",
+          "retiredNote": "sir-17-8-gimel-dagesh"
+        },
+        {
+          "chapter": 17,
+          "verse": 13,
+          "before": "גֹדֶל",
+          "after": "גֹּדֶל",
+          "retiredNote": "sir-17-13-gimel-dagesh"
+        },
+        {
+          "chapter": 18,
+          "verse": 4,
+          "before": "גְדֻלּוֹתָיו",
+          "after": "גְּדֻלּוֹתָיו",
+          "retiredNote": "sir-18-4-gimel-dagesh"
+        },
+        {
+          "chapter": 18,
+          "verse": 10,
+          "before": "מִגִירִים",
+          "after": "מִגִּירִים",
+          "retiredNote": "sir-18-10-gimel-dagesh"
+        },
+        {
+          "chapter": 22,
+          "verse": 18,
+          "before": "יַעמֹדוּ",
+          "after": "יַעֲמֹדוּ",
+          "retiredNote": "sir-22-18-ayin-vowel"
+        },
+        {
+          "chapter": 29,
+          "verse": 3,
+          "before": "צָרְכֶךָ",
+          "after": "צָרְכֶּךָ",
+          "retiredNote": "sir-29-3-kaf-dagesh"
+        },
+        {
+          "chapter": 30,
+          "verse": 16,
+          "before": "שׁר־עֶצֶם",
+          "after": "שֵׁר־עֶצֶם",
+          "retiredNote": "sir-30-16-shin-vowel"
+        },
+        {
+          "chapter": 30,
+          "verse": 18,
+          "before": "מֻצֶגֶת",
+          "after": "מֻצֶּגֶת",
+          "retiredNote": "sir-30-18-tsadi-dagesh"
+        },
+        {
+          "chapter": 36,
+          "verse": 8,
+          "before": "הָעיר",
+          "after": "הָעֵיר",
+          "retiredNote": "sir-36-8-ayin-vowel"
+        },
+        {
+          "chapter": 37,
+          "verse": 12,
+          "before": "אם־אִישׁ",
+          "after": "אִם־אִישׁ",
+          "retiredNote": "sir-37-12-alef-vowel"
+        },
+        {
+          "chapter": 37,
+          "verse": 31,
+          "before": "וְעעוּ",
+          "after": "וְעִעוּ",
+          "retiredNote": "sir-37-31-ayin-vowel"
+        },
+        {
+          "chapter": 47,
+          "verse": 23,
+          "before": "מו[שְׁיר]שׁ",
+          "after": "מַו[שְׁיר]שׁ",
+          "retiredNote": "sir-47-23-mem-vowel"
+        },
+        {
+          "chapter": 49,
+          "verse": 10,
+          "before": "וַיוֹשׁ[גְבוּהוּ",
+          "after": "וַיוֹשַׁ[גְבוּהוּ",
+          "retiredNote": "sir-49-10-shin-vowel"
+        },
+        {
+          "chapter": 51,
+          "verse": 11,
+          "before": "וְאזְכֶּרְךָ",
+          "after": "וְאֶזְכֶּרְךָ",
+          "retiredNote": "sir-51-11-alef-vowel"
+        },
+        {
+          "chapter": 23,
+          "verse": 6,
+          "before": "חֲמרֶת",
+          "after": "חֲמְרֶת",
+          "retiredNote": "sir-23-6-mem-vowel"
+        }
+      ],
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+        "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+      }
+    },
+    {
+      "book": "ESG",
+      "beforeNoteCount": 51,
+      "afterNoteCount": 50,
+      "removedNoteIds": [
+        "esg-4-17-1-vowel"
+      ],
+      "beforeDigest": "4bf7a5688d64abc064f226c2efbd3b21c58d83b95c49796ff4f5ab19a479f169",
+      "afterDigest": "bb16a68bb84f582a8e41666d60263e29977dfe9c4b0cca4e8c3b604daedfacd9",
+      "dailyPinsUpdated": 1,
+      "dailyAppointmentsWithCorrectedSourcePoint": [],
+      "sourceChanges": [
+        {
+          "chapter": 4,
+          "verse": 17,
+          "before": "[כִּי־ותָעב]",
+          "after": "כִּי־[תָעב]",
+          "retiredNote": "esg-4-17-1-vowel"
+        }
+      ],
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/S3Y-SUS-ESG-note-reinspection-20261017-pass2.json",
+        "sha256": "c19efd3da1c73d3f19f998c33d06ba1be0da4fb21bb498209edba6f3266fdd6f"
+      }
+    }
+  ],
+  "unchangedBooks": [
+    "TOB",
+    "JDT",
+    "BAR",
+    "1MA",
+    "2MA",
+    "LJE",
+    "S3Y",
+    "SUS",
+    "BEL"
+  ],
+  "reviewedNoteCount": 211,
+  "retainedInspectedNoteCount": 189,
+  "reinspectionReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+      "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e",
+      "notesInspected": 57
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+      "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856",
+      "notesInspected": 66
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-SUS-ESG-note-reinspection-20261017-pass2.json",
+      "sha256": "c19efd3da1c73d3f19f998c33d06ba1be0da4fb21bb498209edba6f3266fdd6f",
+      "notesInspected": 60
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass2.json",
+      "sha256": "c055afceba4f91442c86fba8ecebe23b25b7fb3cd978ceb661fb6e63be2a005a",
+      "notesInspected": 28
+    }
+  ],
+  "verification": {
+    "remainingNotes": 677,
+    "notesByBook": {
+      "TOB": 14,
+      "JDT": 0,
+      "WIS": 208,
+      "SIR": 47,
+      "BAR": 0,
+      "1MA": 25,
+      "2MA": 18,
+      "LJE": 1,
+      "ESG": 50,
+      "S3Y": 65,
+      "SUS": 25,
+      "BEL": 224
+    },
+    "changedArchiveChapters": 18,
+    "preservedArchiveMembers": 1318,
+    "unchangedOtherEditions": 9,
+    "unchangedBookAndChapterPresentationOrder": true,
+    "correctedDailyRows": 1,
+    "matchingNativeDataCopies": 3,
+    "verifiedReferencedEvidenceFiles": 366,
+    "newArchive": "Shared/dist/bibles/masoretic-delitzsch-c2c08ed70ae2a8e3789a7880e6b04c7889ff6c653093f8f92261956d91b0c23b.zip",
+    "archiveSHA256": "a9a9af2b43ec7d4aeae586bdd2311bc6fe74b7456ca4eae9d45d03022ed527d6",
+    "sharedTests": {
+      "passed": 114,
+      "suites": {
+        "bibleLibrary": 21,
+        "hebrewDeuterocanon": 22,
+        "scriptureSourceNotes": 13,
+        "sourceStructure": 12,
+        "hebrewDailyReadings": 14,
+        "readingTexts": 32
+      }
+    },
+    "androidTests": {
+      "tests": 576,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "appleTests": {
+      "passed": 56,
+      "bibleSourceAndStoreTests": 19,
+      "dailyReadingAndSourceNoteTests": 37,
+      "platform": "macOS",
+      "failed": 0,
+      "skipped": 0
+    },
+    "windowsRuntimeTests": "Not run: Windows host required. Matching bundled-reading test updated and reviewed.",
+    "secondGenerationByteStable": true,
+    "bibleAndDailyNativeCopiesChecked": true,
+    "readingMappingAudit": "passed",
+    "testExpectationUpdate": "All three native bundled-reading tests now require the source-verified alef segol in Sirach51:11 and absence of the retired note; source51:9–12 order and the partial-source notice remain unchanged.",
+    "initialAndroidRun": "575 passed, one obsolete source-note assertion failed; after updating that assertion and its Apple/Windows counterparts, all576 Android tests passed.",
+    "committed": false,
+    "pushed": false
+  }
+}

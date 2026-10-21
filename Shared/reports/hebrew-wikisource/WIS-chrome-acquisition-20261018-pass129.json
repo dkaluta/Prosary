@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 129,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-offline-originals/source-provenance.json",
+      "sha256": "26a847a0bba25e04ce23f162f47009885d4e7eccc7947645baa1c76daf98cba0"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Existing saved offline Chrome4x captures and exact historically hash-pinned embedded primary Kahana A2 raster. No browser or network acquisition.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    184
+  ],
+  "savedCaptureViewerPageLabels": [
+    529
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-offline-originals/native-184.png",
+      "sha256": "c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8",
+      "resolution": [
+        2561,
+        3541
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-offline-originals/source-provenance.json",
+        "sha256": "26a847a0bba25e04ce23f162f47009885d4e7eccc7947645baa1c76daf98cba0"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "מנחם שטיין",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "חכמת שלמה, תרגום מנחם שטיין, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page184/extension-volumeA-529-page-overview.png",
+      "sha256": "e6a237a54a44053fae68867a29398dcb92b74180258a1f24afa6dfee9cda5473",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page184/extension-volumeA-529-zoom4-upper-right.png",
+      "sha256": "6f09da259ee899d032000458e874fc4d67aedfa9046b99f36e7f1804ced16ce5",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page184/extension-volumeA-529-zoom4-upper-left.png",
+      "sha256": "e863c7d713ff059285fb9875d276ecf87b963030b48738b52bddb4e31fb63bfc",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass129-WIS-19-9/source-provenance.json",
+    "sha256": "503c46c8e49c3569d519b913e8b4566c7971c7ffc4cc8da9c25ccf3ab914e8aa"
+  }
+}

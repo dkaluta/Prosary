@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 147,
+  "integrationPass": 147,
+  "preparationID": 207,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation207-TOB-5-12/source-provenance.json",
+    "sha256": "df5e01afc96be530949f362c675ad800a82ea6b8eb970f4783eb1237331040d3"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "tob-5-12-first-vav-vowel"
+  ],
+  "contentSHA256Before": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "contentSHA256After": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "tob-5-12-first-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 12,
+      "anchorBefore": "ויֹּאמֶר לוֹ הֲשֵׁבֶט",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Exact FIRSTויאמר owninitialVav240px13x34[1247,353,1260,387] narrowstem1253..1257 descendsintoleft-expandedsolidterminal1250..1260 at381..386 throughuninterruptednativeconnection380..382. No independentlyseparableexactvowel or printedabsence fromjoinedfoot. Fullfiveletterword+threewordanchor ownויאמרלו השבט boundbeforeSECONDויאמרלו טובי andnext13word; no wordsubstitution. LiteralHolamnodes controls26px/22px supplynomark. Preserve exactdisclosure/everyoriginalscalar.",
+      "targetCapture": "primary-325-native.png",
+      "targetSourceIdentifier": "primary-325-native.png",
+      "inspectedBounds": [
+        1245,
+        345,
+        1265,
+        400
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation207-TOB-5-12/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 12,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation207-TOB-5-12/independent-review.json",
+    "sha256": "3732d468acf4ecaf697daef2c1860f92fe0f8e2f2f8e8ed2c923e5f988d4f010"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation207-TOB-5-12/primary-preparation.json",
+    "sha256": "129200a12550dbc8878effd73594711a2b3d9b88d2649da69779251ac1f56c4a"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation207-TOB-5-12/consensus-preparation.json",
+    "sha256": "81d7347353620efe72704105a6b9137a40ac2c28ff0bf9325ea5374677d293dc"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

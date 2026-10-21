@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 53,
+  "book": "S3Y",
+  "status": "Five 1:1 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 53.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass53-S3Y-1-1/source-provenance.json",
+    "sha256": "4fa7012bd1f29923349455ff02c4e3adbda8fa231a873d3d5e59aa9a7eb100bf"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 331,
+  "sourceNotesBefore": 24,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 5,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-1-word12-letter1-dagesh",
+    "s3y-1-1-word14-letter2-dagesh",
+    "s3y-1-1-word14-letter3-vowel",
+    "s3y-1-1-word15-letter1-vowel",
+    "s3y-1-1-word17-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "s3y-1-1-word15-letter1-vowel": "U+05B7"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 1,
+      "before": "וְיַעַן אֲשֶׁר הָיְתָה מִצְוַת הַמֶּלֶךְ חֲזָקָה הֻסַּק הַכִּבְשָׁן שִׁבְעָתַיִם מֵאֲשֶׁר לְפָנִי־זֶה ובְאָסְרָם הָאֲנָשִׁים הַמְקמִים ויְבִיאוּם אֶל־הַכִּבְשָׁן ויַּשְׁלִיכוּם אֶל־תּוֹכוֹ׃",
+      "after": "וְיַעַן אֲשֶׁר הָיְתָה מִצְוַת הַמֶּלֶךְ חֲזָקָה הֻסַּק הַכִּבְשָׁן שִׁבְעָתַיִם מֵאֲשֶׁר לְפָנִי־זֶה ובְאָסְרָם הָאֲנָשִׁים הַמְקמִים וַיְבִיאוּם אֶל־הַכִּבְשָׁן ויַּשְׁלִיכוּם אֶל־תּוֹכוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 1,
+    "allFiveUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 1 on page רלג / 233 (viewer page 578, internal page 593) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "s3y-1-1-word12-letter1-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "ובְאָסְרָם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ובְאָסְרָם consists of a bare vertical stem without internal Dagesh or Shuruq point, and white paper extends for 48 consecutive rows underneath. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass53-S3Y-1-1/s3y-1-1-vav-obasram-target-native.png",
+        "sha256": "1be1fd44dd1f54c8e3b44766c2c5e196ac29d644045018082eaf293c99d9001f"
+      }
+    },
+    {
+      "noteId": "s3y-1-1-word14-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "הַמְקמִים",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "The internal cavity of Mem in הַמְקמִים contains zero ink (no Dagesh); beneath the base sits a two-dot Sheva. Confirmed unpointed consonant regarding Dagesh (bare Mem with Sheva: מְ).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass53-S3Y-1-1/s3y-1-1-mem-dagesh-hamqmim-target-native.png",
+        "sha256": "b3e66b3ac8de59cf845014ea46e688dd35d5733ba27f95b17372a2430524f7ee"
+      }
+    },
+    {
+      "noteId": "s3y-1-1-word14-letter3-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "הַמְקמִים",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Beneath the descending leg and base of Qof in הַמְקמִים, the paper is completely blank for 14 vertical rows; no Holam dot is present above. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass53-S3Y-1-1/s3y-1-1-qof-vowel-hamqmim-target-native.png",
+        "sha256": "1f4243cff2bd91b3753d1f70fa5ac1c615a777447cc7272b0f8fb3e3c9a4cc8b"
+      }
+    },
+    {
+      "noteId": "s3y-1-1-word15-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "ויְבִיאוּם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Beneath the initial Vav of וַיְבִיאוּם sits a distinct horizontal bar of ink (width 11 px, height 12 px, min=0) with clean surrounding margins. Matches control Patah bar. Certified printed Patah (U+05B7).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass53-S3Y-1-1/s3y-1-1-vav-vayavium-target-native.png",
+        "sha256": "cc54b8254d5e0286a2f42e482408a56eda11189fd107db391b93e45bc6eb346d"
+      }
+    },
+    {
+      "noteId": "s3y-1-1-word17-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "ויַּשְׁלִיכוּם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Under the initial Vav of ויַּשְׁלִיכוּם, 55 consecutive rows are pure white paper (values 255); the vowel mark and Dagesh are on the following Yod (יַּ). Confirmed unpointed consonant for initial Vav.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass53-S3Y-1-1/s3y-1-1-vav-vayashlikhum-target-native.png",
+        "sha256": "0f80d64f63431708f9648fe10608e6edf361d1b34e8f4b92e65110b5955e20af"
+      }
+    }
+  ]
+}

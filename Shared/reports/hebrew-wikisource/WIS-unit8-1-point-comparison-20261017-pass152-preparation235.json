@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 152,
+  "integrationPass": 152,
+  "preparationID": 235,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation235-WIS-8-1/source-provenance.json",
+    "sha256": "1e50a7f91582ad69deb7e202028580409c10f391af0447ed5a3d7864b852512f"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-8-1-first-kaf"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-8-1-first-kaf",
+      "book": "WIS",
+      "chapter": 8,
+      "verse": 1,
+      "anchorBefore": "וּתְכלְכֵּל",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own FIRSTKaf748px[1090,1163,1122,1209] lowerfoot1191..1202 continuously joins broad solid lowerblock1203..1208. Exact source native literalASCII does not independently separate a unique vowel form or exact count from the foot. Blank rowsbelow1208 do not certifyabsence. Retain original vowel disclosure, every scalar and existing secondKafDagesh/vowel. No mark borrowed from secondKaf, other controls or expected spelling.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a8/a8b9b800f36900486bae4d2ce056759a76f23ae787ebef227295ce5cc9fa5190.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a8/a8b9b800f36900486bae4d2ce056759a76f23ae787ebef227295ce5cc9fa5190.bin",
+      "inspectedBounds": [
+        1087,
+        1158,
+        1124,
+        1225
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation235-WIS-8-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 8,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation235-WIS-8-1/independent-review.json",
+    "sha256": "0d2d1a13774905d40e5f2ac06f59ae2076553b9185740dc90463de01adb5118a"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation235-WIS-8-1/primary-preparation.json",
+    "sha256": "4d8f3af4c92f2d38848ac930c35d359260b3c277f92e67642b983244ebbdcdb8"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation235-WIS-8-1/consensus-preparation.json",
+    "sha256": "23ba9843e8f0e6958933467ee7d68ef4862cd991d6a5ee322d2915832dc7923d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

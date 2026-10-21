@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 140,
+  "integrationPass": 140,
+  "preparationID": 177,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation177-SIR-3-18/source-provenance.json",
+    "sha256": "4c1d2022c2528e301652fa108d6b9342732591eedbaf0c0ec2c2d502f46f5720"
+  },
+  "sourceNotesBefore": 21,
+  "sourceNotesAfter": 21,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-3-18-ayin-vowel"
+  ],
+  "contentSHA256Before": "2fe6fdb434aa7724f97567defa24a45c63edc3fbbf7310c864d803f316cb1739",
+  "contentSHA256After": "2fe6fdb434aa7724f97567defa24a45c63edc3fbbf7310c864d803f316cb1739",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-3-18-ayin-vowel",
+      "book": "SIR",
+      "chapter": 3,
+      "verse": 18,
+      "anchorBefore": "מַעט",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own complete Mem-Ayin-Tet secondAyin has single connected2632px body[1145,897,1204,992] atthreshold128. Native ASCII directly shows low joined diagonal/horizontal mass through959..981 with short irregular basal spikes to991, no detached point whose own exactUnicode class is certified. Pinned embedded native source independently preserves confluent407pxAyinstamp[1281,323,1301,356]. No exact absence asserted. Complete samewordMem lowergeometry and sameunit נפשך controls retain their own connected outlines; neither canonical marks nor class assumptions supply target mark. Retain exact disclosure.",
+      "targetCapture": "extension-volumeB-457-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeB-457-zoom4-header.png",
+      "inspectedBounds": [
+        1140,
+        890,
+        1210,
+        1020
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation177-SIR-3-18/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 3,
+    "verse": 18,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation177-SIR-3-18/independent-review.json",
+    "sha256": "7eadfa65abba13ac9a5bf7be9c52353415bcea39a3e986e9e54639d05bec3e30"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation177-SIR-3-18/primary-preparation.json",
+    "sha256": "952cadea7238a583dbe08381bb3a7075af84c2e6fee6536dc66b4a59d01c7cd3"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass140-preparation177-SIR-3-18/consensus-preparation.json",
+    "sha256": "608f9ea9eae63464088fa581a1a5758a16b13a2bc51afff8926ec821524abf7f"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

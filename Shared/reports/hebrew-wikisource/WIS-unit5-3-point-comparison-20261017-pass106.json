@@ -1,0 +1,374 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 106,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass106-WIS-5-3/source-provenance.json",
+    "sha256": "9d89c26eca0107e35cf93fdeff66d2559ec1273e56989090ecaacd9a19ef881b"
+  },
+  "sourceNotesBefore": 127,
+  "sourceNotesAfter": 126,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-5-3-yod"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-3-vav"
+  ],
+  "contentSHA256Before": "88c91d3d3450883590e947e906ca62b6fb4982799a5bfa6d6f8ecf46b824a4d5",
+  "contentSHA256After": "25eb299c51a55326e6354553cdb1180365ae8ec2e123058f2d3117f38420ca7e",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-5-3-vav",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "ויאָנְחוּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Full initial Vav remains continuously ink-connected into the lower vowel band through426. Same-unit ordinary Vav of הוא ends near575 against the next-row baseline, while target extends about32px beyond its row baseline; no independent point boundaries or two separate nodes establish a unique vowel. Do not infer a point from sequence or grammar. Retain disclosure.",
+      "targetCapture": "extension-volumeA-498-zoom4-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-498-zoom4-mid-right.png",
+      "inspectedBounds": [
+        1225,
+        321,
+        1256,
+        426
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass106-WIS-5-3/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-5-3-yod",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 3,
+      "anchorBefore": "ויאָנְחוּ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "The second physical consonant Yod ends366. A detached flat horizontal bar occupies[1190,390,1220,405],30x15px, and remains one horizontal component at64/128/192. The complete field[1182,406,1224,435] contains zero ink below192: no Qamats descending stem and no lower Sheva node. Literal same-letter Yod Patah in source5:1 יַעמד has its own detached31x12px bar[1584,1484,1615,1496] and clean lower field. The target same-word Alef Qamats has an explicit lower stem to433, and Nun Sheva occupies a tall vertical band, unlike the target bar. No existing mark is replaced or reordered.",
+      "targetCapture": "extension-volumeA-498-zoom4-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-498-zoom4-mid-right.png",
+      "inspectedBounds": [
+        1192,
+        321,
+        1218,
+        366
+      ],
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        1190,
+        390,
+        1220,
+        405
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass106-WIS-5-3/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 3,
+      "before": "הֵם יִנָּחֲמוּ ויאָנְחוּ מִקּוֹצֶר רוּחַ וְיֹאמְרוּ בְּלִבָּם זֶה הוּא הָאִישׁ אֲשֶׁר הָיָה לָנוּ לְפָנִים לִשְׂחוֹק לְמָשָׁל וּלְקֶלֶס׃",
+      "after": "הֵם יִנָּחֲמוּ ויַאָנְחוּ מִקּוֹצֶר רוּחַ וְיֹאמְרוּ בְּלִבָּם זֶה הוּא הָאִישׁ אֲשֶׁר הָיָה לָנוּ לְפָנִים לִשְׂחוֹק לְמָשָׁל וּלְקֶלֶס׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 3,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-5-3-vav",
+      "before": "ויאָנְחוּ",
+      "after": "ויַאָנְחוּ"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass106-WIS-5-3/independent-review.json",
+    "sha256": "645a628f1702da180d3ec56d57e39e7b29ef7f7e7c31359444bead541e4a4d98"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass106-WIS-5-3/primary-preparation.json",
+    "sha256": "515b6add97c391b7b228098624b8d39cb805a8574a21ce3e4c2c33481fe33b02"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass106-WIS-5-3/consensus-preparation.json",
+    "sha256": "6ba9906f7a361c0dec4de47b3e73f54110a6e34556dc33afe53684f22ccd6fba"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "chapter": 5,
+        "verse": 3,
+        "before": [
+          {
+            "id": "wis-5-3-vav",
+            "kind": "unreadablePoint",
+            "anchor": "ויאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          },
+          {
+            "id": "wis-5-3-yod",
+            "kind": "unreadablePoint",
+            "anchor": "ויאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ],
+        "after": [
+          {
+            "id": "wis-5-3-vav",
+            "kind": "unreadablePoint",
+            "anchor": "ויַאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ]
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "chapter": 5,
+        "verse": 3,
+        "before": [
+          {
+            "id": "wis-5-3-vav",
+            "kind": "unreadablePoint",
+            "anchor": "ויאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          },
+          {
+            "id": "wis-5-3-yod",
+            "kind": "unreadablePoint",
+            "anchor": "ויאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ],
+        "after": [
+          {
+            "id": "wis-5-3-vav",
+            "kind": "unreadablePoint",
+            "anchor": "ויַאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ]
+      }
+    ],
+    "changedRows": [
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "chapter": 5,
+        "verse": 3,
+        "before": "הֵם יִנָּחֲמוּ ויאָנְחוּ מִקּוֹצֶר רוּחַ וְיֹאמְרוּ בְּלִבָּם זֶה הוּא הָאִישׁ אֲשֶׁר הָיָה לָנוּ לְפָנִים לִשְׂחוֹק לְמָשָׁל וּלְקֶלֶס׃",
+        "after": "הֵם יִנָּחֲמוּ ויַאָנְחוּ מִקּוֹצֶר רוּחַ וְיֹאמְרוּ בְּלִבָּם זֶה הוּא הָאִישׁ אֲשֶׁר הָיָה לָנוּ לְפָנִים לִשְׂחוֹק לְמָשָׁל וּלְקֶלֶס׃",
+        "sourceNotesBefore": [
+          {
+            "id": "wis-5-3-vav",
+            "kind": "unreadablePoint",
+            "anchor": "ויאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          },
+          {
+            "id": "wis-5-3-yod",
+            "kind": "unreadablePoint",
+            "anchor": "ויאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ],
+        "sourceNotesAfter": [
+          {
+            "id": "wis-5-3-vav",
+            "kind": "unreadablePoint",
+            "anchor": "ויַאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ]
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "chapter": 5,
+        "verse": 3,
+        "before": "הֵם יִנָּחֲמוּ ויאָנְחוּ מִקּוֹצֶר רוּחַ וְיֹאמְרוּ בְּלִבָּם זֶה הוּא הָאִישׁ אֲשֶׁר הָיָה לָנוּ לְפָנִים לִשְׂחוֹק לְמָשָׁל וּלְקֶלֶס׃",
+        "after": "הֵם יִנָּחֲמוּ ויַאָנְחוּ מִקּוֹצֶר רוּחַ וְיֹאמְרוּ בְּלִבָּם זֶה הוּא הָאִישׁ אֲשֶׁר הָיָה לָנוּ לְפָנִים לִשְׂחוֹק לְמָשָׁל וּלְקֶלֶס׃",
+        "sourceNotesBefore": [
+          {
+            "id": "wis-5-3-vav",
+            "kind": "unreadablePoint",
+            "anchor": "ויאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          },
+          {
+            "id": "wis-5-3-yod",
+            "kind": "unreadablePoint",
+            "anchor": "ויאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ],
+        "sourceNotesAfter": [
+          {
+            "id": "wis-5-3-vav",
+            "kind": "unreadablePoint",
+            "anchor": "ויַאָנְחוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              153
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=153"
+          }
+        ]
+      }
+    ],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

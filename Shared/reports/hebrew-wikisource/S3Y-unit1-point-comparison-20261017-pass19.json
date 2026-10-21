@@ -1,0 +1,1762 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 19,
+  "book": "S3Y",
+  "status": "One literal first-vav sheva approved; five remaining single-unit1 sites retained",
+  "applicationState": "pendingRootIntegration; no canonical source, gate, daily, Catholic presentation or generated file modified",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "method": "Continue the first priority cycle through remaining annotated units. All six unit1 positions were re-addressed against complete source words and the full numbered unit including its shared final row. Full original glyphs, exact lower lobes, literal same-font vav under-sheva, detached class controls, ordinary shuruq-vav terminal and mem/qof competitors challenge the source anatomy. Native extraction and integer nearest-neighbor enlargement only. No grammar, expected spelling, OCR, sharpening, reconstructed gray pixels, translation or independent-witness claim supplies points. Every exported image replays against fresh original PDF pixels.",
+  "baselineGlobalSourceNoteCount": 515,
+  "canonicalSHA256Before": "cee97525d70e2ef5b240c709b09174a703f382d22c95bc220cc7a36af5bf260b",
+  "contentSHA256Before": "c6ee6e8dce1088d8c038189338a88bff01cf0175caf507d27f9a954fbbd7575d",
+  "contentSHA256After": "51afc9aa13f6592cfd59e64825cb04cc636d9e7327faaa821d941fe8ce75e300",
+  "sourceNotesBefore": 50,
+  "sourceNotesAfter": 49,
+  "reviewedSourceNoteCount": 6,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 5,
+  "retiredSourceNoteIds": [
+    "s3y-1-1-word1-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "s3y-1-1-word12-letter1-dagesh",
+    "s3y-1-1-word14-letter2-dagesh",
+    "s3y-1-1-word14-letter3-vowel",
+    "s3y-1-1-word15-letter1-vowel",
+    "s3y-1-1-word17-letter1-vowel"
+  ],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "U+05B0 SHEVA": 1
+  },
+  "retainedNoteAnchorUpdates": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 1,
+      "originalText": "ויַעַן אֲשֶׁר הָיְתָה מִצְוַת הַמֶּלֶךְ חֲזָקָה הֻסַּק הַכִּבְשָׁן שִׁבְעָתַיִם מֵאֲשֶׁר לְפָנִי־זֶה ובְאָסְרָם הָאֲנָשִׁים הַמְקמִים ויְבִיאוּם אֶל־הַכִּבְשָׁן ויַּשְׁלִיכוּם אֶל־תּוֹכוֹ׃",
+      "correctedText": "וְיַעַן אֲשֶׁר הָיְתָה מִצְוַת הַמֶּלֶךְ חֲזָקָה הֻסַּק הַכִּבְשָׁן שִׁבְעָתַיִם מֵאֲשֶׁר לְפָנִי־זֶה ובְאָסְרָם הָאֲנָשִׁים הַמְקמִים ויְבִיאוּם אֶל־הַכִּבְשָׁן ויַּשְׁלִיכוּם אֶל־תּוֹכוֹ׃",
+      "textSHA256Before": "098a91a7744cab06242199d83a5cffd6deef5d2ba168e4271ed7077d2284f94c",
+      "textSHA256After": "9265f7309391694af78132ec993afc52032e2ab5c9f02584a6b81819e3a4f3f2",
+      "combiningMarksAdded": 1,
+      "retiredNoteIds": [
+        "s3y-1-1-word1-letter1-vowel"
+      ],
+      "selectedByDailyAppointment": false
+    }
+  ],
+  "dailySelectionEffects": {
+    "allTwentyCompleteDailyPassagesUnchangedByThisPacket": true,
+    "rootOwnsWholeBookDigestGateRefresh": true
+  },
+  "scope": {
+    "priority": "First cycle through still-unreviewed annotated units; ambiguity revisit follows completion of the first cycle",
+    "chapter": 1,
+    "verse": 1,
+    "allSixUnitDisclosuresReviewed": true,
+    "allReviewedChaptersContainAnnotationsAtBaseline": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed א begins ויען; the unit spans three physical rows. Its last וישליכום...אל־תוכו precedes printed2 ותשרף on their shared third row. This shared-row layout does not move source or Catholic units. All letters, existing points and scalar order, punctuation, spaces, gaps, witnesses and content-block boundaries remain unchanged.",
+  "excludedExploratoryFrames": [
+    {
+      "names": [
+        "s3y1-vav-first-whole-*"
+      ],
+      "reason": "Initial guessed first-vav bounds2070,750,2130,890 were mislocated; replaced by actual1938,775,1978,895 and exact lower lobes."
+    },
+    {
+      "names": [
+        "s3y1-vav-vayevium-whole-*"
+      ],
+      "reason": "Initial880,840,940,980 frame clipped the actual initial-vav head; replaced by complete860,860,905,995."
+    },
+    {
+      "names": [
+        "literal-plain-vav-midshaft-*"
+      ],
+      "reason": "Plain described only its midshaft, while the lower mark is literal sheva. Replaced by descriptive literal-vav-SHEVA-full-control and complete-control-word names; no under-vowel absence claim."
+    },
+    {
+      "names": [
+        "s3y1-hameqimim-qof-COMPLETE-target",
+        "s3y1-qof-lower-group-exact",
+        "s3y1-qof-vowel-whole"
+      ],
+      "reason": "Earlier tight qof frames did not reliably include the complete left anatomy. The expanded995,870,1070,980 region plus full source word is authoritative for conservative retention; no vowel is supplied from a clipped frame."
+    }
+  ],
+  "independentReview": {
+    "root": "Final ACCEPT only B0 after corrected whole15x, full word, numbered1/shared2 context, literal וְדניאל whole/lower/word, detached mem-sheva, qamats/patah and ordinary shuruq-vav foot/row. Two comparable lower nodes survive beyond the ordinary foot; no expected grammar. Five other sites remain author-retained.",
+    "BELPeer": "Independent ACCEPT B0 only after CORRECT complete15x/20x, word, numbered1/2 context and complete literal controls. Under-sheva naming explicitly separates plain midshaft from lower sheva. Peer decision covers the one proposed correction, not all six author inspections.",
+    "additionsPeer": "Independent ACCEPT B0 only after corrected whole15x/lower24x, complete target/control words, numbered context, detached mem-sheva, qamats and ordinary footer controls. Two lower rounded levels with waists differ from unequal qamats head/stem/button. Peer decision covers the proposal only."
+  },
+  "decisions": [
+    {
+      "chapter": 1,
+      "verse": 1,
+      "retiredNote": {
+        "id": "s3y-1-1-word1-letter1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "ויַעַן",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          233
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233"
+      },
+      "oldAnchor": "ויַעַן",
+      "newAnchor": "וְיַעַן",
+      "addedCodePoint": "U+05B0",
+      "addedMark": "sheva",
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B0"
+      ],
+      "decision": "resolvePrintedShevaAndRetireSourceNote",
+      "finding": "Below the ordinary upper vav terminal are two additional comparably rounded vertical levels separated by narrowing waists. Literal וְדניאל repeats these under-sheva lobes; its midshaft is plain only, not its lower vowel. Detached mem-sheva corroborates the two-node class. Qamats has an unequal broad shoulder, narrow long stem and button; patah is a shallow bar. The ordinary shuruq-vav lower terminal ends after one foot. The source therefore certifies B0 despite the unusual literal reading; no expected grammar supplies it.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-CORRECT-complete-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-CORRECT-complete-target-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-first-CORRECT-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-first-CORRECT-whole-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-lower-lobes-exact-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-lower-lobes-exact-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayaan-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayaan-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-complete-numbered-context-native.png"
+      ],
+      "originalText": "ויַעַן אֲשֶׁר הָיְתָה מִצְוַת הַמֶּלֶךְ חֲזָקָה הֻסַּק הַכִּבְשָׁן שִׁבְעָתַיִם מֵאֲשֶׁר לְפָנִי־זֶה ובְאָסְרָם הָאֲנָשִׁים הַמְקמִים ויְבִיאוּם אֶל־הַכִּבְשָׁן ויַּשְׁלִיכוּם אֶל־תּוֹכוֹ׃",
+      "correctedText": "וְיַעַן אֲשֶׁר הָיְתָה מִצְוַת הַמֶּלֶךְ חֲזָקָה הֻסַּק הַכִּבְשָׁן שִׁבְעָתַיִם מֵאֲשֶׁר לְפָנִי־זֶה ובְאָסְרָם הָאֲנָשִׁים הַמְקמִים ויְבִיאוּם אֶל־הַכִּבְשָׁן ויַּשְׁלִיכוּם אֶל־תּוֹכוֹ׃",
+      "textSHA256Before": "098a91a7744cab06242199d83a5cffd6deef5d2ba168e4271ed7077d2284f94c",
+      "textSHA256After": "9265f7309391694af78132ec993afc52032e2ab5c9f02584a6b81819e3a4f3f2"
+    }
+  ],
+  "inspections": [
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "id": "s3y-1-1-word1-letter1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַעַן",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        233
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233",
+      "decision": "resolvePrintedShevaAndRetireSourceNote",
+      "finding": "Below the ordinary upper vav terminal are two additional comparably rounded vertical levels separated by narrowing waists. Literal וְדניאל repeats these under-sheva lobes; its midshaft is plain only, not its lower vowel. Detached mem-sheva corroborates the two-node class. Qamats has an unequal broad shoulder, narrow long stem and button; patah is a shallow bar. The ordinary shuruq-vav lower terminal ends after one foot. The source therefore certifies B0 despite the unusual literal reading; no expected grammar supplies it.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-CORRECT-complete-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-CORRECT-complete-target-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-first-CORRECT-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-first-CORRECT-whole-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-lower-lobes-exact-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-lower-lobes-exact-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayaan-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayaan-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "id": "s3y-1-1-word12-letter1-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "ובְאָסְרָם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "sourcePages": [
+        233
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The complete initial vav has heavy continuous head/shaft anatomy and no uniquely separable added midshaft node. A merged point cannot be excluded from saturated ordinary ink, and white space alone does not prove absence. Retain the dagesh disclosure.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-uveosram-vav-COMPLETE-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-uveosram-vav-COMPLETE-target-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-interior-exact-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-interior-exact-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-uveosram-complete-word-locator-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-uveosram-complete-word-locator-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "id": "s3y-1-1-word14-letter2-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "הַמְקמִים",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        233
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The first mem cavity meets a heavy rising lower stroke. Literal detached mem point and plain mem comparisons do not uniquely separate a possible merged point from that ordinary stroke. Retain; no absence claim from the open cavity.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-first-mem-COMPLETE-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-first-mem-COMPLETE-target-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-mem-interior-exact-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-mem-interior-exact-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "id": "s3y-1-1-word14-letter3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "הַמְקמִים",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        233
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The complete source-word region and expanded target frame retain heavy coalesced lower letter/point ink. No independently bounded vowel contour uniquely matches a literal bar, pair or stem class. Neighboring strokes and the ordinary letter terminal cannot be reliably partitioned from an added sign, so retain without supplying an expected vowel.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-qof-EXPANDED-complete-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-qof-EXPANDED-complete-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "id": "s3y-1-1-word15-letter1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויְבִיאוּם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        233
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The correctly centered full initial vav ends in a broad shallow solid footer joined to the shaft. The merged plateau does not uniquely distinguish a vowel bar from ordinary heavy terminal ink or another fused point arrangement. Retain without expected conjunction grammar.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayevium-vav-COMPLETE-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayevium-vav-COMPLETE-target-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-vayevium-COMPLETE-whole-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-vayevium-COMPLETE-whole-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayevium-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayevium-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "id": "s3y-1-1-word17-letter1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַּשְׁלִיכוּם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        233
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=233",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The complete initial vav has a broad heavy lower plateau. Its flat lower edge alone does not distinguish a vowel class from a heavy terminal or fused competing arrangement. Retain without a claim of point absence.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayashlikhum-vav-COMPLETE-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayashlikhum-vav-COMPLETE-target-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayashlikhum-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayashlikhum-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-complete-numbered-context-native.png"
+      ]
+    }
+  ],
+  "sourceImages": [
+    {
+      "page": 171,
+      "embeddedImageName": "im171.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2507,
+        3503
+      ],
+      "nativePixelSHA256": "f0f361f7de0404bc6b694d0530ffe3785c8a44bdacdd363c0de216449a03b7ae",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 233,
+      "embeddedImageName": "im233.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2625,
+        3493
+      ],
+      "nativePixelSHA256": "1e9f77b2a6185d49f6b02f99efc8b63ae2b4d42fc4ed6268cd0948da4af37061",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 234,
+      "embeddedImageName": "im234.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2526,
+        3518
+      ],
+      "nativePixelSHA256": "3fee9fe6465789488a8e41ed2b1df27b71a08292d9349ba116aa9e6bc60b2d08",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 242,
+      "embeddedImageName": "im242.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2496,
+        3497
+      ],
+      "nativePixelSHA256": "2081d0ccb1190c210ef2050961fa4c7ac321cda026bc206ccdf99179423848ac",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 244,
+      "embeddedImageName": "im244.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2543,
+        3529
+      ],
+      "nativePixelSHA256": "86496ec97d6fdd410f454202f152d18140dcd9b0c1e8695580b411fd98c2160e",
+      "freshlyExtractedOriginalPixels": true
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayaan-complete-word-native.png",
+      "sha256": "13b16dea925c8ba6097ca5371cf02aeefbc55aad379de10778d5b7aa57c9b5e4",
+      "page": 233,
+      "nativeBounds": [
+        1855,
+        745,
+        2145,
+        895
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayaan-complete-word-4x.png",
+      "sha256": "b8ecde42522247a151da04c37adabe42b1a678e15f65416c670ecbd0ae99885e",
+      "page": 233,
+      "nativeBounds": [
+        1855,
+        745,
+        2145,
+        895
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-uveosram-complete-word-locator-native.png",
+      "sha256": "98a25cd447ef577f0d1671ed296db07fccfc6c7d0ce8ed6ad005b671a3478ed2",
+      "page": 233,
+      "nativeBounds": [
+        1380,
+        835,
+        1680,
+        990
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-uveosram-complete-word-locator-4x.png",
+      "sha256": "2ee5659754203748728f35615d0fde8dbab9924935a9826da55493b69dd2df82",
+      "page": 233,
+      "nativeBounds": [
+        1380,
+        835,
+        1680,
+        990
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-complete-word-native.png",
+      "sha256": "cef77d853dcfb96d502b271b89a9fa67972ae1b7f5a97bd358b0b9c4e7e94d94",
+      "page": 233,
+      "nativeBounds": [
+        910,
+        825,
+        1210,
+        995
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-complete-word-4x.png",
+      "sha256": "cb67250bb8b2f4ad19628c8cdf61e30ba7638b8c1e84157844df29bc4ecac98f",
+      "page": 233,
+      "nativeBounds": [
+        910,
+        825,
+        1210,
+        995
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayevium-complete-word-native.png",
+      "sha256": "4f415abbef30c24fda17b85117d3e597bc12124784b4e652ac014360d0e86e38",
+      "page": 233,
+      "nativeBounds": [
+        640,
+        840,
+        950,
+        995
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayevium-complete-word-4x.png",
+      "sha256": "8749be60ef6e492b52af19f7d23f2e37143a5f88face0971af2ba7015179b2d7",
+      "page": 233,
+      "nativeBounds": [
+        640,
+        840,
+        950,
+        995
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayashlikhum-complete-word-native.png",
+      "sha256": "58692ff863d122163400a3cf206ebef1c634c8816ffcf13325b2fc7fa44202b9",
+      "page": 233,
+      "nativeBounds": [
+        1845,
+        940,
+        2145,
+        1090
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayashlikhum-complete-word-4x.png",
+      "sha256": "4bc0a6d0cd58ce741a33569ef4714b20bd4cdfad8a7ad52db2653368b2fae2ef",
+      "page": 233,
+      "nativeBounds": [
+        1845,
+        940,
+        2145,
+        1090
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-first-CORRECT-whole-native.png",
+      "sha256": "4d8873637d02fefdc4516a772d30a62881a654499aa1da130e29d09d020bf53f",
+      "page": 233,
+      "nativeBounds": [
+        1938,
+        775,
+        1978,
+        895
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-first-CORRECT-whole-15x.png",
+      "sha256": "eec28422d20947e2b7323e50a990072c743d4382c2cf3811343ef1e1399c3206",
+      "page": 233,
+      "nativeBounds": [
+        1938,
+        775,
+        1978,
+        895
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-interior-whole-native.png",
+      "sha256": "200e437be34eda4233092ebe062cf2a382af66c828edba8793a7d87a4eabbada",
+      "page": 233,
+      "nativeBounds": [
+        1590,
+        840,
+        1665,
+        980
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-interior-whole-15x.png",
+      "sha256": "e222e42cef11f87298eae93a50a497ff104b387812ec4689d66c39d0aa93a258",
+      "page": 233,
+      "nativeBounds": [
+        1590,
+        840,
+        1665,
+        980
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-mem-interior-whole-native.png",
+      "sha256": "fa646bd14cc4095516fbb55c90d0b40b048d8a44c5055e87aecb940847e32296",
+      "page": 233,
+      "nativeBounds": [
+        1040,
+        840,
+        1125,
+        980
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-mem-interior-whole-15x.png",
+      "sha256": "8662187275d4ec83964c0710e2f93151e3e962ba7e3e15ec55fdcb8fdc4050db",
+      "page": 233,
+      "nativeBounds": [
+        1040,
+        840,
+        1125,
+        980
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-vayevium-COMPLETE-whole-native.png",
+      "sha256": "ecc95ecb5f9796ab5a011f8011cae8cbec1ec61800b115b27d9a5295db52216f",
+      "page": 233,
+      "nativeBounds": [
+        860,
+        860,
+        905,
+        995
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-vayevium-COMPLETE-whole-15x.png",
+      "sha256": "e9194dab1b25063f216118c6be4215d001af9fc8ddb6f997a8d388e599ec74c7",
+      "page": 233,
+      "nativeBounds": [
+        860,
+        860,
+        905,
+        995
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-vayashlikhum-whole-native.png",
+      "sha256": "2f881692d01a0d1dfbe01738a9d8a8baed7c5e862e155738cd2048220b306d3e",
+      "page": 233,
+      "nativeBounds": [
+        2070,
+        940,
+        2130,
+        1080
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-vayashlikhum-whole-15x.png",
+      "sha256": "e60872eb79d488700a6179d1236ab8fddcf3db8fb425d2848e9c9b3c306c9c21",
+      "page": 233,
+      "nativeBounds": [
+        2070,
+        940,
+        2130,
+        1080
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-complete-numbered-context-native.png",
+      "sha256": "25efc9e4dab552690428e7eab4cbef05b2bb52c7eacfa637c2fddeb8d5832cd5",
+      "page": 233,
+      "nativeBounds": [
+        200,
+        720,
+        2280,
+        1150
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-interior-exact-native.png",
+      "sha256": "1a8d6eed7dcf2533299297b4a71c383862c2b3c840d5aa5bff9cba75004187b4",
+      "page": 233,
+      "nativeBounds": [
+        1614,
+        880,
+        1647,
+        941
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vav-interior-exact-20x.png",
+      "sha256": "7cdb0da560aed14b8d80728c801b689fac126edc621511d13aa2f843d048783f",
+      "page": 233,
+      "nativeBounds": [
+        1614,
+        880,
+        1647,
+        941
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-mem-interior-exact-native.png",
+      "sha256": "cd835dbcae298e51766cd4b79c7e50b77a55d9aaf8c4b6005dbb0d5f0cc42dcd",
+      "page": 233,
+      "nativeBounds": [
+        1063,
+        878,
+        1104,
+        940
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-mem-interior-exact-20x.png",
+      "sha256": "ffcdea6b781b3d60d79efef2bc3b8d311ab7ded65ea45b711af3082cced9c996",
+      "page": 233,
+      "nativeBounds": [
+        1063,
+        878,
+        1104,
+        940
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-native.png",
+      "sha256": "fbf2f53bd9e37a0e35ae1c25c0ac025b79683e9bcf7d723c4876cb4afc14852e",
+      "page": 244,
+      "nativeBounds": [
+        1927,
+        2795,
+        1963,
+        2860
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-control-20x.png",
+      "sha256": "4f7b61fea0129346a7d8b3748ec124097908d98302dd395fe517a1b16106387c",
+      "page": 244,
+      "nativeBounds": [
+        1927,
+        2795,
+        1963,
+        2860
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-native.png",
+      "sha256": "c748d7d3ba95d9cfeddd79b3f6c7c362b2a7f067f85281a0f0d2b8a9b0ae5836",
+      "page": 244,
+      "nativeBounds": [
+        730,
+        2785,
+        756,
+        2875
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-full-control-20x.png",
+      "sha256": "914527ac8d2899a99d8fc3562dc6d9084fc44639c069e9e5139d70a635148573",
+      "page": 244,
+      "nativeBounds": [
+        730,
+        2785,
+        756,
+        2875
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-native.png",
+      "sha256": "ab5fc1efe8f6ed1a57e42938f2bb7af956977ad78795a43f957407508d88fe63",
+      "page": 244,
+      "nativeBounds": [
+        550,
+        2760,
+        790,
+        2890
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-SHEVA-complete-control-word-4x.png",
+      "sha256": "88e0c452c888730ee52f7d81be4d56865c53846feb7666ef2ad3895b845a5b24",
+      "page": 244,
+      "nativeBounds": [
+        550,
+        2760,
+        790,
+        2890
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-native.png",
+      "sha256": "54d123c0e92da4412432f9ee5b1be866bdaa996aa8d06f1474b86731f705a19d",
+      "page": 234,
+      "nativeBounds": [
+        1975,
+        910,
+        2048,
+        1025
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-full-control-15x.png",
+      "sha256": "56e7d66a75994c80975b6c83435bc00c39ec03cb39046e08e8a1d300e1e582d2",
+      "page": 234,
+      "nativeBounds": [
+        1975,
+        910,
+        2048,
+        1025
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-native.png",
+      "sha256": "b4559be3b6e88e8d9e7d81cabe13b9e8510dae972c13022d47fb6b417f8d48bf",
+      "page": 234,
+      "nativeBounds": [
+        1810,
+        880,
+        2085,
+        1040
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-qamats-control-word-4x.png",
+      "sha256": "ac8dae84d94071091fa6484bec2b67b371126d23330868a3c8a9f72d34432c15",
+      "page": 234,
+      "nativeBounds": [
+        1810,
+        880,
+        2085,
+        1040
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-native.png",
+      "sha256": "0eeb3420cd70d4189aea8932c6fdb972c4e7d0fda9bbf9ada02859b5ac3f7485",
+      "page": 234,
+      "nativeBounds": [
+        345,
+        725,
+        440,
+        840
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-full-control-15x.png",
+      "sha256": "8c4ab2353407711656b187758c91da8ecfe741d3292d774d0fbe444d52409baf",
+      "page": 234,
+      "nativeBounds": [
+        345,
+        725,
+        440,
+        840
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-native.png",
+      "sha256": "8651e5bb2da1cb51251a3820653672f6e0f457316a15d083c591faeeaafa9bc3",
+      "page": 234,
+      "nativeBounds": [
+        260,
+        695,
+        495,
+        855
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-qof-patah-control-word-4x.png",
+      "sha256": "33422473f88239be5939f05dac15cd75c9db4862420da8c4f0a0c57e71766da5",
+      "page": 234,
+      "nativeBounds": [
+        260,
+        695,
+        495,
+        855
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-native.png",
+      "sha256": "9465790f424223d0407a09271e17f1fd695511d91c8fc04e813daeb06f8baf09",
+      "page": 244,
+      "nativeBounds": [
+        1810,
+        2770,
+        2070,
+        2875
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-vav-shuruq-complete-word-4x.png",
+      "sha256": "c59aad05e2b765fe1df1ac349fc2e6d05710b0b1bd26b13f6910ddace009653e",
+      "page": 244,
+      "nativeBounds": [
+        1810,
+        2770,
+        2070,
+        2875
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-native.png",
+      "sha256": "539aed5a9a417f783c37a7fdbef68ae50a056fc2e7bc9c8116987b0861b5609f",
+      "page": 242,
+      "nativeBounds": [
+        1365,
+        2330,
+        1408,
+        2395
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-20x.png",
+      "sha256": "0826d7c061955779edfc359f06da2a80f87f0f8bb3da7f620d8aca53fb3d9291",
+      "page": 242,
+      "nativeBounds": [
+        1365,
+        2330,
+        1408,
+        2395
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-native.png",
+      "sha256": "8252a0901301d4643b669dbd84abf9473d91720de6403e2e6dbdb7ad00c4ac00",
+      "page": 242,
+      "nativeBounds": [
+        1290,
+        2295,
+        1490,
+        2405
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-detached-mem-dagesh-control-word-4x.png",
+      "sha256": "01a73fdc3dc81e989754a9e50b19f5c77e2d07c1d5c8fe16638c50d723dfd048",
+      "page": 242,
+      "nativeBounds": [
+        1290,
+        2295,
+        1490,
+        2405
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-native.png",
+      "sha256": "cb5791b5df31ba4572e0cd39713cf7914852cbe84cd044325f9904914ade38a8",
+      "page": 242,
+      "nativeBounds": [
+        1938,
+        2415,
+        1984,
+        2490
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-20x.png",
+      "sha256": "abbf5f3fd9aa03736ca067cc38fa1870faa73be15654ef7f08f7db55a5d06cc0",
+      "page": 242,
+      "nativeBounds": [
+        1938,
+        2415,
+        1984,
+        2490
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-native.png",
+      "sha256": "f374125cd87b1542dfc51bf7fbb4db7248ecf7b2e537e01b608290fa5b5d11dc",
+      "page": 242,
+      "nativeBounds": [
+        1900,
+        2390,
+        2160,
+        2510
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-plain-mem-control-word-4x.png",
+      "sha256": "bd741a43655e2a604ef8fd77d7c1900f891dc033fb129837d4805c0a62918146",
+      "page": 242,
+      "nativeBounds": [
+        1900,
+        2390,
+        2160,
+        2510
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-native.png",
+      "sha256": "3821fffd0f4cf681d13af84a769b8b2297f17832309de36bd6780a145ed32d1f",
+      "page": 171,
+      "nativeBounds": [
+        428,
+        1504,
+        470,
+        1574
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-patah-class-control-15x.png",
+      "sha256": "58b49fff987229602200bd1b5415ad7ec0d67e150dba18f75dd0596bc3a5d2eb",
+      "page": 171,
+      "nativeBounds": [
+        428,
+        1504,
+        470,
+        1574
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-native.png",
+      "sha256": "5e3ec0a0838bfe874e406804a46af2b170242672f6b402ceadea08807137ef6f",
+      "page": 171,
+      "nativeBounds": [
+        748,
+        1405,
+        802,
+        1490
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-mem-sheva-class-control-15x.png",
+      "sha256": "91c5ef3b37da5164b217b4e7c12bef7513e32a7c3b1f765b678421661f7046e2",
+      "page": 171,
+      "nativeBounds": [
+        748,
+        1405,
+        802,
+        1490
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-native.png",
+      "sha256": "f42225d14f6f33a84108c8557311335da5ea8f9660b04634483cf54c08556d74",
+      "page": 171,
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lamed-qamats-class-control-15x.png",
+      "sha256": "6596e0d053aa228a9cb155fe37385e0d02e9389658c9187fd1a9cc7e6071aba8",
+      "page": 171,
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-native.png",
+      "sha256": "d3c3e23e507e061a1f55857fc37eec0bedd456a7525b2152c8e956104be0d127",
+      "page": 171,
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-umlalim-control-word-4x.png",
+      "sha256": "73acd2c65238d10ed67888ed8c44a4e178c634d1f99749caa489a2f08841832c",
+      "page": 171,
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-native.png",
+      "sha256": "8740febf2c86cc25158451adb5dc30a16c69b807259812515eb534170df97835",
+      "page": 171,
+      "nativeBounds": [
+        320,
+        1490,
+        520,
+        1600
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-lemaasei-control-word-4x.png",
+      "sha256": "de396c3bfae10d239c79404aa7134cc189346ad043e4f2b6bf0a6e94b07b3a19",
+      "page": 171,
+      "nativeBounds": [
+        320,
+        1490,
+        520,
+        1600
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-lower-lobes-exact-native.png",
+      "sha256": "d7961c86daf54f8f28e37963c4f4f2bba5b7766c6cfa5dda27a94d411d7c3eb9",
+      "page": 233,
+      "nativeBounds": [
+        1950,
+        832,
+        1972,
+        872
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-lower-lobes-exact-24x.png",
+      "sha256": "acf990a860255d7d85e0a7621e65b22be5968eabb2c9931b149394094664d487",
+      "page": 233,
+      "nativeBounds": [
+        1950,
+        832,
+        1972,
+        872
+      ],
+      "scale": 24,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-native.png",
+      "sha256": "d2d9e4d0c1a64e6e80f29adefd659950f86d82adcaac511cd8b70c9c87bd0c76",
+      "page": 244,
+      "nativeBounds": [
+        738,
+        2837,
+        759,
+        2877
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-vav-sheva-lower-lobes-control-24x.png",
+      "sha256": "19636bda1a9b098deade4b6642be75fa6d22779d6ba693caec6134d52e70a202",
+      "page": 244,
+      "nativeBounds": [
+        738,
+        2837,
+        759,
+        2877
+      ],
+      "scale": 24,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+      "sha256": "7a62244fa7aa2ef133fcde9fd419cd93ea3ebb15d1c5e9554b4bbe6d335269ff",
+      "page": 233,
+      "nativeBounds": [
+        1870,
+        1365,
+        1900,
+        1445
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+      "sha256": "8a8328f7ff8431e27533a58f141e0387d32da2d9be029d2b1476d5c7d2c51efb",
+      "page": 233,
+      "nativeBounds": [
+        1870,
+        1365,
+        1900,
+        1445
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-native.png",
+      "sha256": "8467b5e535c78a3b8f62db7c330eff8657462071e05c7362046653a10ffbd12e",
+      "page": 233,
+      "nativeBounds": [
+        1150,
+        1340,
+        1950,
+        1450
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/literal-shuruq-vav-ordinary-control-row-3x.png",
+      "sha256": "24c371b31bbd0288d681b32c84917841a94ab0f386532d52e1e060196bbb8774",
+      "page": 233,
+      "nativeBounds": [
+        1150,
+        1340,
+        1950,
+        1450
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-CORRECT-complete-target-native.png",
+      "sha256": "4d8873637d02fefdc4516a772d30a62881a654499aa1da130e29d09d020bf53f",
+      "page": 233,
+      "nativeBounds": [
+        1938,
+        775,
+        1978,
+        895
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-first-vav-CORRECT-complete-target-20x.png",
+      "sha256": "500b467fd4157af64f65f6760d0934c19c5c3532e526381a5fa40b2b4604f6f8",
+      "page": 233,
+      "nativeBounds": [
+        1938,
+        775,
+        1978,
+        895
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-uveosram-vav-COMPLETE-target-native.png",
+      "sha256": "a00c1eea286e448d9886cb13fcd5da925e1439b7b004da611e4029dc2cab4df7",
+      "page": 233,
+      "nativeBounds": [
+        1605,
+        875,
+        1650,
+        960
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-uveosram-vav-COMPLETE-target-20x.png",
+      "sha256": "e1b773dd754faffd930d8c7cc2a6880f50621f14d82d8fe669c2d6ae5c6ddf11",
+      "page": 233,
+      "nativeBounds": [
+        1605,
+        875,
+        1650,
+        960
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-first-mem-COMPLETE-target-native.png",
+      "sha256": "b78be1203faebc8698f8fcfa472f6885162e554f907679a071bdcd7728adcf97",
+      "page": 233,
+      "nativeBounds": [
+        1060,
+        875,
+        1108,
+        965
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-first-mem-COMPLETE-target-20x.png",
+      "sha256": "115ad671d4e9cec832deb8528a11fce23ed5fb6bb9727cba8a0c30e381dbf7f0",
+      "page": 233,
+      "nativeBounds": [
+        1060,
+        875,
+        1108,
+        965
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayevium-vav-COMPLETE-target-native.png",
+      "sha256": "ecc95ecb5f9796ab5a011f8011cae8cbec1ec61800b115b27d9a5295db52216f",
+      "page": 233,
+      "nativeBounds": [
+        860,
+        860,
+        905,
+        995
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayevium-vav-COMPLETE-target-20x.png",
+      "sha256": "f2dcbec1b8e1b26c896a06735741d6b9246029416bc0b4c405c40aa2d9eb085c",
+      "page": 233,
+      "nativeBounds": [
+        860,
+        860,
+        905,
+        995
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayashlikhum-vav-COMPLETE-target-native.png",
+      "sha256": "2f881692d01a0d1dfbe01738a9d8a8baed7c5e862e155738cd2048220b306d3e",
+      "page": 233,
+      "nativeBounds": [
+        2070,
+        940,
+        2130,
+        1080
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-vayashlikhum-vav-COMPLETE-target-20x.png",
+      "sha256": "8563b0d2f745f485c676dbf89b808f9a3b9b2356dd216185e2d89b52a84ec19b",
+      "page": 233,
+      "nativeBounds": [
+        2070,
+        940,
+        2130,
+        1080
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-qof-EXPANDED-complete-target-native.png",
+      "sha256": "62a97a26bf1d803026fac6164de4f1217da9ed503ca21480c0b0a7e951baa236",
+      "page": 233,
+      "nativeBounds": [
+        995,
+        870,
+        1070,
+        980
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass19-S3Y-UNIT1/s3y1-hameqimim-qof-EXPANDED-complete-target-15x.png",
+      "sha256": "eff11e2e110bfe16df6584f2405db18534d0baea0f9c9ac8f2438926045897a1",
+      "page": 233,
+      "nativeBounds": [
+        995,
+        870,
+        1070,
+        980
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true
+    }
+  ],
+  "nativeFrameCount": 40,
+  "evidenceFileCount": 79,
+  "freshOriginalPageCount": 5,
+  "invariants": {
+    "oneExactB0AddedAfterExistingInitialVav": true,
+    "oldYodAndAyinVowelsAndAbsentYodDageshPreserved": true,
+    "allOtherExistingScalarOrderPreserved": true,
+    "allConsonantsAndSourceUnitBoundariesUnchanged": true,
+    "allRetainedNotesExactlyUnchanged": true,
+    "allExportedPNGsFreshlyReplayed": true,
+    "canonicalStillBaselineAtPublication": true,
+    "priorPinnedReportsUnchanged": true
+  }
+}

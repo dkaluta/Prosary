@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 136,
+  "integrationPass": 136,
+  "preparationID": 153,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-ESG-offline-originals/source-provenance.json",
+      "sha256": "b844f8f75e3843700823634691ef22f89515c41ef266cea54b9ed87f05d27a9b"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-ESG-offline-originals/historical-ownword-source-provenance.json",
+      "sha256": "2d61b98d858691765d4d20e656bb85bd37e205069612a3cd642fb6b859ea5594"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Entirely offline. Complete actual unit read from current saved overview. Original pinned local A2 PDF single embedded page217 image freshly extracted directly with pypdf, no page rendering; all five historical own153 crops exactRGB replayed. Target/controls independently read from freshly extracted originalnative pixels. No OCR, image viewer, enhancement, grammar or alternate witness.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    217
+  ],
+  "savedCaptureViewerPageLabels": [
+    562
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page217/extension-volumeA-562-page-overview.png",
+      "sha256": "3205b91e61f2aef628d87460e82f89e07ed99795f8dcfaf2a0fb23444aafbc38",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-ESG-offline-originals/A2-217-original-embedded-native.png",
+      "sha256": "e1a41d65a5edd950df1eed62b96e0f663921b334f828cba5d786225ccb11deb7",
+      "resolution": [
+        2615,
+        3485
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-ESG-offline-originals/source-provenance.json",
+        "sha256": "b844f8f75e3843700823634691ef22f89515c41ef266cea54b9ed87f05d27a9b"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/תוספות_למגלת_אסתר",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "מנחם שטיין",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/תוספות_למגלת_אסתר",
+        "attribution": "תוספות למגלת אסתר, תרגום מנחם שטיין, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/תוספות_למגלת_אסתר",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-kaf-vowel-retentions-20261017-pass12.json",
+          "sha256": "74980452858636278939b0914a96e6bc1ac829e4988fdcdad55686c8b5b51517"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-ESG-KAF/esg1-16-name-kaf-word-native.png",
+      "sha256": "e4d7e93a4d37084cda40459819525d92e4acaac803fb98c0084d876c21dad09f",
+      "resolution": [
+        270,
+        141
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-ESG-offline-originals/historical-ownword-source-provenance.json",
+        "sha256": "2d61b98d858691765d4d20e656bb85bd37e205069612a3cd642fb6b859ea5594"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/תוספות_למגלת_אסתר",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "מנחם שטיין",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/תוספות_למגלת_אסתר",
+        "attribution": "תוספות למגלת אסתר, תרגום מנחם שטיין, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/תוספות_למגלת_אסתר",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-kaf-vowel-retentions-20261017-pass12.json",
+          "sha256": "74980452858636278939b0914a96e6bc1ac829e4988fdcdad55686c8b5b51517"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation153-ESG-1-16/source-provenance.json",
+    "sha256": "60a9065683c7fc4fdfa228a9110ddf894feab857bf66d614b6124cc29a7b7a23"
+  }
+}

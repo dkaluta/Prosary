@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 72,
+  "book": "BEL",
+  "status": "Two 1:1 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 72.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass72-BEL-1-1/source-provenance.json",
+    "sha256": "e0f7ee9958b6c05ba71167a766a891275c886cdacbf59f44638395b0c697949a"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 242. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 273,
+  "sourceNotesBefore": 34,
+  "sourceNotesAfter": 32,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-1-242-vayeasef-letter1-vowel",
+    "bel-1-1-242-vayirash-full-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "bel-1-1-242-vayeasef-letter1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    },
+    "bel-1-1-242-vayirash-full-letter1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 1,
+      "before": "ויֵּאָסֶּף הַמֶּלֶךְ אַשְׁטוֹאַגֶס אֶל־אֲבוֹתָיו׃ ויִּירַשׁ כּוֹרֶשׁ הַפָּרְסִי אֶת־מַמְלַכְתוֹ׃",
+      "after": "וָיֵּאָסֶּף הַמֶּלֶךְ אַשְׁטוֹאַגֶס אֶל־אֲבוֹתָיו׃ וָיִּירַשׁ כּוֹרֶשׁ הַפָּרְסִי אֶת־מַמְלַכְתוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 1 on page רמב / 242 (viewer page 587) in Kahana Volume A, Bel and the Dragon.",
+  "decisions": [
+    {
+      "noteId": "bel-1-1-242-vayeasef-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "ויֵּאָסֶּף",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Initial consonant Vav in וָיֵּאָסֶּף sits at cols 1726..1704, rows 636..675 of extension-volumeA-587-zoom4-upper-right.png on Line 6. Directly beneath its base at rows 678..699 sits an unambiguous T-shaped Qamats (horizontal roof bar at rows 678..684 with width 23 px, and vertical descending stem at rows 685..699 with width 12 px, height 15 px). Note is retired with Qamats restored to initial Vav -> וָיֵּאָסֶּף.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass72-BEL-1-1/bel-1-1-vayeasef-native.png",
+        "sha256": "ca1669c35f2e2fa9b0d70e856dc76d7497ba0934b107b687c9bb605411b3fef9"
+      }
+    },
+    {
+      "noteId": "bel-1-1-242-vayirash-full-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 1,
+      "anchor": "ויִּירַשׁ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Initial consonant Vav in וָיִּירַשׁ sits at cols 900..875, rows 638..692 of extension-volumeA-587-zoom4-upper-right.png on Line 6. Directly beneath its base at rows 702..728 sits a prominent T-shaped Qamats (horizontal bar at rows 702..708 with width 26 px, and vertical descending stem at rows 712..728 with width 12 px, height 17 px). Note is retired with Qamats restored to initial Vav -> וָיִּירַשׁ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass72-BEL-1-1/bel-1-1-vayirash-native.png",
+        "sha256": "bbab282b581e09791fc5ec8c60a2bd172490d22774b41c6799f101de0f79efcf"
+      }
+    }
+  ]
+}

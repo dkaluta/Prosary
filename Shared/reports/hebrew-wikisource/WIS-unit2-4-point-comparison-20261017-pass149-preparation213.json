@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 149,
+  "integrationPass": 149,
+  "preparationID": 213,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation213-WIS-2-4/source-provenance.json",
+    "sha256": "8a8958bba555236ca6d65e639cb840697219fa7129a10ce065a82190c9ef7278"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-2-4-mechumato-het"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-2-4-mechumato-het",
+      "book": "WIS",
+      "chapter": 2,
+      "verse": 4,
+      "anchorBefore": "מֵחמָתוֹ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Ownindex2Het747pxsinglecomponent[1117,1031,1150,1086] roofconnectsleftandrightstems. Leftstemends1068(exclusive1069); rightstemcontinues1069..1072 intoexpandedwideleftlowerbar1072..1075, thennarrowsdown1077..1085. Joinedwholecomponentdoesnotindependentlycertifyexactvowelorabsence. WholewordfinalVavhasseparate29pxHolamabove, literalonly, notsupplier. Completeactual4threephysicalrowsandprior/ownsofs/next5firstword checked. Preservealloriginalscalarsanddisclosure.",
+      "targetCapture": "primary-147-native.png",
+      "targetSourceIdentifier": "primary-147-native.png",
+      "inspectedBounds": [
+        1114,
+        1025,
+        1153,
+        1095
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation213-WIS-2-4/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 2,
+    "verse": 4,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation213-WIS-2-4/independent-review.json",
+    "sha256": "f76d739cf4440f60035df67d3367f3bc4135c6c80a756251cff9da4f640caadc"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation213-WIS-2-4/primary-preparation.json",
+    "sha256": "6ef343cc13cf9f69a1f01c894ca7061ff4ef34e4b98b23ec1b3803d4324d88cd"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation213-WIS-2-4/consensus-preparation.json",
+    "sha256": "953bc17f80fed7454a35e0bfbb5a12b7f0504bcffbbfe4cabd3dd56aa4c0fe9f"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

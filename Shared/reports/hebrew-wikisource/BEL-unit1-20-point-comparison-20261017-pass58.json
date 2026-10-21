@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 58,
+  "book": "BEL",
+  "status": "Three 1:20 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 58.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass58-BEL-1-20/source-provenance.json",
+    "sha256": "9883bb7a036e9fbfbd721b856a4dbb0032dd5ca937d3d90f0b1b453a3c97164b"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 245. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 314,
+  "sourceNotesBefore": 49,
+  "sourceNotesAfter": 46,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-20-245-vayitzhak20-letter1-vowel",
+    "bel-1-20-245-vayahazek20-letter1-vowel",
+    "bel-1-20-245-vayomer20-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "bel-1-20-245-vayitzhak20-letter1-vowel": "ַ",
+    "bel-1-20-245-vayahazek20-letter1-vowel": "ַ"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "before": "ויִּצְחַק דָּנִיֵּאל ויַּחְזֵק בַּמֶּלֶךְ לְבִלְתִּי־בֹא הַבָּיְתָה ויֹּאמַר רְאֵה־נָא אֶת־הַקַּרְקַע וְהַכֶּר־נָא לְמִי הָעֲקֵבוֹת הָאֵלֶּה׃",
+      "after": "וַיִּצְחַק דָּנִיֵּאל וַיַּחְזֵק בַּמֶּלֶךְ לְבִלְתִּי־בֹא הַבָּיְתָה ויֹּאמַר רְאֵה־נָא אֶת־הַקַּרְקַע וְהַכֶּר־נָא לְמִי הָעֲקֵבוֹת הָאֵלֶּה׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 20,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 20 on page רמה / 245 (viewer page 590) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "bel-1-20-245-vayitzhak20-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויִּצְחַק",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "ַ",
+      "markClassification": "Vowel",
+      "finding": "Initial Vav of ויִּצְחַק carries an unmistakable stamped horizontal Patah bar (rows 405..417, cols 1500..1524, 24 pixels wide, min=0) matching positive Patah controls. Point restored as printed Patah (U+05B7). Anchor updated to וַיִּצְחַק.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass58-BEL-1-20/bel-1-20-vav-vayitzhak-target-native.png",
+        "sha256": "7171b0a3c155c747d2aaafb251b72563a1a2824a836073cc5630631c99589117"
+      }
+    },
+    {
+      "noteId": "bel-1-20-245-vayahazek20-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויַּחְזֵק",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "ַ",
+      "markClassification": "Vowel",
+      "finding": "Initial Vav of ויַּחְזֵק carries a stamped horizontal Patah bar (rows 406..414, cols 1172..1178, min=0). Point restored as printed Patah (U+05B7). Anchor updated to וַיַּחְזֵק.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass58-BEL-1-20/bel-1-20-vav-vayahazek-target-native.png",
+        "sha256": "29f4a42cce271a1e31f04eddde218a669b3fe6b821d63ae208f91574b91c23c9"
+      }
+    },
+    {
+      "noteId": "bel-1-20-245-vayomer20-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 20,
+      "anchor": "ויֹּאמַר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויֹּאמַר consists of a bare vertical stem ending cleanly at row 384 with 35 vertical rows of 100% pure white paper (all pixel values = 255 across rows 390..424, cols 668..684) beneath it. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass58-BEL-1-20/bel-1-20-vav-vayomar-target-native.png",
+        "sha256": "48ec454bd6c9ca4e8ab4583010cffe21081f6017199e3ac3a46b7e9eec3534a3"
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 137,
+  "integrationPass": 137,
+  "preparationID": 160,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Existing authorized offline Psik Chrome captures; no browser or network access. Legacy and saved capture page labels retained; printed pagination is not inferred.",
+  "additionalSourceProvenance": [],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Only existing offline page223 native overview/upper-right/upper-left captures. Historical ESG6:13 context crop used only as numerical address locator; no historical PDF crop used for any reading or evidence artifact. No network/rendering/OCR.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    223
+  ],
+  "savedCaptureViewerPageLabels": [
+    568
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page223/extension-volumeA-568-page-overview.png",
+      "sha256": "126fd32e16dd1a964159ba0910427adea101773f8c62bfc2691b335237bb3e8b",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page223/extension-volumeA-568-zoom4-upper-right.png",
+      "sha256": "3d3cd80e147d5c76e42034b657de0e23590e5d4d0e2121d18dcc432e104f6785",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page223/extension-volumeA-568-zoom4-upper-left.png",
+      "sha256": "fe8ee1c86696983001ae3f5acf8b7a2b8ea5462865a8b4f333009240d3db073f",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation160-ESG-6-13/source-provenance.json",
+    "sha256": "e181192c58da05e167a60e924654ec677f3491b0dffb43c25c7931fe5a1feefb"
+  }
+}

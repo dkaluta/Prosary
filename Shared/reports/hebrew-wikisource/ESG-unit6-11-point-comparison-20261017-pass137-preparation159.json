@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 137,
+  "integrationPass": 137,
+  "preparationID": 159,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation159-ESG-6-11/source-provenance.json",
+    "sha256": "60ed8064ccb0888bd5ffebf648f3b05c8efe46f0017e0da1e9db6432733228d1"
+  },
+  "sourceNotesBefore": 13,
+  "sourceNotesAfter": 12,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-6-11-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "cfd6f7456ef76ed2bfb5f80f521907d4dbcebb655a737382f00319ff13bb606d",
+  "contentSHA256After": "13743f1b7bad00c2fa7d16cbea7b5c887b394f2de82b37922c5915a5c86cfd8f",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-6-11-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 11,
+      "anchorBefore": "להָנוֹת",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Own first Lamed body ends1317 at128, followed two detached lateral compact nodes146px15x16 and96px10x15, common lower1336 baseline, no third node or stem and53 clear rows1337..1389 at192. Complete same-unit לכסא has closed Samekh[1351,1610,1410,1681] with separate paired84px10x11 and100px13x11 nodes[1366,1686,1376,1697]/[1379,1686,1392,1697], same upper and lower baselines, no third node. Their own physical two-dot topology certifies literal Tsere, independently of canonical vowels. Own Lamed has same lateral pair class; broader left node does not create a third or connected stroke. Complete own He instead has430px30x28 head/stem Qamats[1428,1328,1458,1356]. Restore only own Tsere U05B5, subject to independent challenge. Independent peer: Independent peer confirms full own להנות on371row, firstLamed tall head and hooked lower body ending1317, then two detached lateral compact146/96px nodes[1489,1320,1504,1336]/[1510,1321,1520,1336]. Their bottoms agree1335, gap6px separates them, no third node and53clear lower rows minimum244. Literal complete לכסא closes source11 on457row; its thirdSamekh is closed rounded body ending1680 above two detached84/100px lateral nodes[1366,1686,1376,1697]/[1379,1686,1392,1697], equal upper/lower baselines. Own secondHe430px Qamats has broad head1328..1335 then sustained narrow stem through1355. These directly certified native classes support Tsere U05B5 for own firstLamed. No canonical vowel, grammar or borrowed source supplied a node.",
+      "targetCapture": "extension-volumeA-568-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeA-568-zoom4-header.png",
+      "inspectedBounds": [
+        1481,
+        1213,
+        1543,
+        1318
+      ],
+      "markProposed": "Tsere",
+      "codePoint": "U+05B5",
+      "pointBounds": [
+        1489,
+        1320,
+        1520,
+        1336
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation159-ESG-6-11/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 6,
+      "verse": 11,
+      "before": "וְהוּא הִרְבָּה להָנוֹת מֵאַהֲבַת הַבְּרִיּוֹת אֲשֶׁר אֲנַחְנוּ הוֹגִים לְכָל־עַם וָעַם עַד כִּי־קָרָאנוּ לוֹ אָבִינוּ וְכָל־הָאֲנָשִׁים הִשְׁתַּחֲווּ לוֹ בַּאֲשֶׁר הוּא בְּמָקוֹם שֵׁנִי לְכִסֵּא הַמֶּלֶךְ׃",
+      "after": "וְהוּא הִרְבָּה לֵהָנוֹת מֵאַהֲבַת הַבְּרִיּוֹת אֲשֶׁר אֲנַחְנוּ הוֹגִים לְכָל־עַם וָעַם עַד כִּי־קָרָאנוּ לוֹ אָבִינוּ וְכָל־הָאֲנָשִׁים הִשְׁתַּחֲווּ לוֹ בַּאֲשֶׁר הוּא בְּמָקוֹם שֵׁנִי לְכִסֵּא הַמֶּלֶךְ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 6,
+    "verse": 11,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation159-ESG-6-11/independent-review.json",
+    "sha256": "bf8028d1e36c6650f3d08cdaf1970ab2daf3abfca29d904c35edea4825793c8f"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation159-ESG-6-11/primary-preparation.json",
+    "sha256": "8974ab4af190b9d65af7710fa42e349350b5ed8eedbdef8ee9ee62dee3dec2a3"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation159-ESG-6-11/consensus-preparation.json",
+    "sha256": "6f1062e6b9b3a7502fcc5282795f08f55a371d5eb05dae253528f0c119ad191a"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

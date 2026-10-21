@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 89,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass89-BEL-1-10/source-provenance.json",
+    "sha256": "081ae3df3d889b32ea331bde7eeeada4c029fa953a002dbff6a2289f9b12fa48"
+  },
+  "sourceNotesBefore": 15,
+  "sourceNotesAfter": 13,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-10-244-daniel10b-letter3-dagesh",
+    "bel-1-10-244-vayomer10-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "1ba44c2dd714b25db59ed3e2252642c2e55d0e44905291a392c7010be45f0f20",
+  "contentSHA256After": "488c9bfcd1e53eb7628b1aa706badce68900733d22d0e18c8f6c5e019c90ff6e",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "bel-1-10-244-vayomer10-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 10,
+      "anchorBefore": "ויֹּאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "The vav has a detached broad horizontal mark, 28 pixels wide and ten high, with no long lower stem. The same-row Daniel10a dalet qamats has a substantial central descending stem; that geometry is absent here. Preserve the already transcribed yod dagesh and all other points.",
+      "targetCapture": "extension-volumeA-589-zoom4-mid-left.png",
+      "letterBounds": [
+        1819,
+        1331,
+        1847,
+        1404
+      ],
+      "pointBounds": [
+        1824,
+        1409,
+        1852,
+        1419
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass89-BEL-1-10/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-10-244-daniel10b-letter3-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 10,
+      "anchorBefore": "דָּנִיֵאל",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "Root and a second independent assistant replayed raw native pixels: after the head narrows to the right tail at y1358..1359, an additional round low-left lobe appears x1345..1354 at y1360..1369, with clean white separation beside the continuing right tail at y1368..1369. Three ordinary local yods have single curved tails without this branch; the first Daniel on the same row has a detached dagesh in the analogous position. This diagnostic extra lobe certifies a fused printed dagesh, without supplying a point from grammar or the repeated name. The preparing assistant recommended retention; its original finding is retained separately.",
+      "targetCapture": "extension-volumeA-589-zoom4-mid-left.png",
+      "letterBounds": [
+        1343,
+        1330,
+        1369,
+        1378
+      ],
+      "pointBounds": [
+        1344,
+        1360,
+        1359,
+        1370
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass89-BEL-1-10/independent-pixel-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 10,
+      "before": "וְאִם תִּרְאוּ כִּי הַבֵּל אוֹכֵל זֶה יָמוּת דָּנִיֵּאל עַל־אֲשֶׁר דִּבֶּר סָרָה עַל־בֵּל ויֹּאמֶר דָּנִיֵאל לַמֶּלֶךְ כִּדְבָרְךָ כֵּן יְהִי׃",
+      "after": "וְאִם תִּרְאוּ כִּי הַבֵּל אוֹכֵל זֶה יָמוּת דָּנִיֵּאל עַל־אֲשֶׁר דִּבֶּר סָרָה עַל־בֵּל וַיֹּאמֶר דָּנִיֵּאל לַמֶּלֶךְ כִּדְבָרְךָ כֵּן יְהִי׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 10,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  },
+  "supplementaryReviews": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass89-BEL-1-10/pass89-bel-10b-independent-pixel-review.json",
+      "sha256": "e457b996f175d426c117eda55e5ee2134149f27d31802505e95f24b11c054602"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass89-BEL-1-10/pass89-BEL-1-10-pixel-preparation.json",
+      "sha256": "a60ff93b95f1cb424a62db72c6a51fd6f18bef9db4d12558d03c8665418aa5da"
+    }
+  ]
+}

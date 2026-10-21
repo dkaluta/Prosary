@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 73,
+  "book": "BEL",
+  "status": "Two 1:5 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 73.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass73-BEL-1-5/source-provenance.json",
+    "sha256": "2701379cb796a8b8651557fb9646396b55cd08a95abef5cc7775dbc90c153a72"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 243. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 271,
+  "sourceNotesBefore": 32,
+  "sourceNotesAfter": 30,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-5-243-vayavo-letter1-vowel",
+    "bel-1-5-243-vayomer5-fixed-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "bel-1-5-243-vayavo-letter1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    },
+    "bel-1-5-243-vayomer5-fixed-letter1-vowel": {
+      "combiningMark": "ָ",
+      "codePoint": "U+05B8",
+      "name": "HEBREW POINT QAMATS"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 5,
+      "before": "וְגַם הַמֶּלֶךְ עָבַד אוֹתוֹ ויָּבֹא בְּכָל־יוֹם וָיוֹם לְהִשְׁתַּחֲווֹת לוֹ וְדָנִיֵּאל מִשְׁתַּחֲוֶה לֵאלֹהָיו ויֹּאמֶר לוֹ הַמֶּלֶךְ מַדּוּעַ אֵינְךָ מִשְׁתַּחֲוֶה לְבֵל׃",
+      "after": "וְגַם הַמֶּלֶךְ עָבַד אוֹתוֹ וָיָּבֹא בְּכָל־יוֹם וָיוֹם לְהִשְׁתַּחֲווֹת לוֹ וְדָנִיֵּאל מִשְׁתַּחֲוֶה לֵאלֹהָיו וָיֹּאמֶר לוֹ הַמֶּלֶךְ מַדּוּעַ אֵינְךָ מִשְׁתַּחֲוֶה לְבֵל׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 5,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 5 on page רמג / 243 (viewer page 588) in Kahana Volume A, Bel and the Dragon.",
+  "decisions": [
+    {
+      "noteId": "bel-1-5-243-vayavo-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 5,
+      "anchor": "ויָּבֹא",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Initial consonant Vav in וָיָּבֹא sits at cols 1109..1084, rows 1201..1237 of extension-volumeA-588-zoom4-upper-right.png on Line 12. Directly beneath its base at rows 1245..1275, cols 1109..1084 sits an unambiguous T-shaped Qamats (horizontal roof bar at rows 1245..1260 with width 26 px, and vertical descending stem at rows 1261..1275 with width 14 px, height 15 px). Note is retired with Qamats restored to initial Vav -> וָיָּבֹא.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass73-BEL-1-5/bel-1-5-vayavo-native.png",
+        "sha256": "c7f4863583b4cb71d177270ffd31f66ff863504a4c76b335c42596a46621a5ae"
+      }
+    },
+    {
+      "noteId": "bel-1-5-243-vayomer5-fixed-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 5,
+      "anchor": "ויֹּאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Initial consonant Vav in וָיֹּאמֶר sits at cols 1081..1055, rows 1370..1420 of extension-volumeA-588-zoom4-upper-right.png on Line 14. Directly beneath its base at rows 1426..1448 sits a prominent T-shaped Qamats (horizontal roof bar at rows 1426..1434 with width 26 px, and vertical descending stem at rows 1436..1448 with width 14 px, height 12 px). Note is retired with Qamats restored to initial Vav -> וָיֹּאמֶר.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass73-BEL-1-5/bel-1-5-vayomer-native.png",
+        "sha256": "d32618c5f8edfdaf16c53985b234f8efeef673f3e7bd15af5df87edbd170bfb3"
+      }
+    }
+  ]
+}

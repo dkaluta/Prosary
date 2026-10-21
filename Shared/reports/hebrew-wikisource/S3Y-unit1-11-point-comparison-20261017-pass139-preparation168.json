@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 168,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "S3Y",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation168-S3Y-1-11/source-provenance.json",
+    "sha256": "ad26e2fbcd0704a622b56fa10d4d36dad2cbda7f6c0a5c8053eeceb1855c8a4b"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "s3y-1-11-word1-letter1-vowel"
+  ],
+  "contentSHA256Before": "d1f129724960a1e9139f38dc28c73537e07d34c628737fdae0e47fd74c73494b",
+  "contentSHA256After": "d1f129724960a1e9139f38dc28c73537e07d34c628737fdae0e47fd74c73494b",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "s3y-1-11-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 11,
+      "anchorBefore": "ותִּתֵּן",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Own initial Vav is one445px21x46 connectedcomponent[1502,2116,1523,2162]. Narrow6..7px shaft through2153 widens into16px horizontal basalplate2155..2161. Plate is directly joined upward; no detached independent mark or lower node. Bilevel raster supplies no finer grayscale terminal detail. This additional basalink cannot distinguish exact surviving point from merged foot/worn terminal without stronger own glyph evidence; absence likewise uncertified. Keep disclosure unchanged. Literal second/thirdTav own interior49px8x8/41px7x8 compact dagesh dots remain separately visible and do not classify Vav foot. Higher savednative4x confirms ownshaft joinedUPWARD to broad28px plate938..949, clearbelow950. Its exact class remains unassigned: complete samewordthirdTav lower269px stamp[253,938,281,950] has TWO upperlobes at938..939 separated8px then merges940..949, so it cannot independently certify a literalPatah comparator; no canonicalvowel labels it. SecondTav has177px compactlowernode[329,938,345,953], distinct inshape. Ownshortplate may be a point but contact/damage prevents exactclass/absence certification. Retainafterincludingstrongeravailablecapture. Independent peer: Independent peer confirms complete own Vav-Tav-Tav-finalNun source11opening after predecessor10actualsof1415. Native PDF Vav is connected445px21x46 body/basalstamp. Higher saved native4x confirms Vav1128px[373,863,406,950] has narrowshaft above broad basalplate938..949 and clear below; upward contact remains. Peer challenged initial PDF-only retention by locating highercapture at .9736 fullcontext address registration. Literal thirdTav belowstamp269px28x12 has two separated upperlobes938..939 joining broad horizontal ink940..949; cannot securely classify it as Patah or another mark from own topology. That initial candidate literalPatah classification was withdrawn. No secure sameunit literal class resolves whether own connectedplate is point/body merger. Exact own vowel or exact absence remains uncertified. Retain all scalars/disclosure. Interior second/thirdTav Dagesh75/69px highercapture and49/41px PDF independently visible, not classifiers of Vavlowerstamp.",
+      "targetCapture": "A2-233-original-embedded-native.png",
+      "targetSourceIdentifier": "A2-233-original-embedded-native.png",
+      "inspectedBounds": [
+        1502,
+        2116,
+        1523,
+        2162
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation168-S3Y-1-11/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 11,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation168-S3Y-1-11/independent-review.json",
+    "sha256": "897ab7ac77dffc675a2cd514f4e8e6a21d9ebb77bbc61eb45120375f6d6571ff"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation168-S3Y-1-11/primary-preparation.json",
+    "sha256": "dba864883f483ad3ce376467a04187d9ef14951062e506b42716a3a2d65be40e"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation168-S3Y-1-11/consensus-preparation.json",
+    "sha256": "a30a9795bf7995b622c51b02094646342ffa78d5a99e2db3c65137db9fc2f2ef"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 94,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass94-BEL-1-38/source-provenance.json",
+    "sha256": "43aadd941afecd8a014ed1f28c40d3ac1b628cc8e9eb0598e615b103edda579b"
+  },
+  "sourceNotesBefore": 8,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-38-247-daniel38a-letter3-dagesh",
+    "bel-1-38-247-vayomer38-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "2f5a6389ab0da252456a251142ce8992bfa389c970cd0f286309d5bb4de1c1e8",
+  "contentSHA256After": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "bel-1-38-247-vayomer38-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 38,
+      "anchorBefore": "ויֹּאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "The complete initial Vav shaft ends at row1605. A separate broad horizontal mark is printed at rows1611..1621, with five wholly blank intervening rows1606..1610 in its local glyph band. Point width28px and height11px. It matches the same-page source37 initial-Vav Patah control [1755,1429,1785,1442], and lacks the long descending stem of the same-unit Daniel Dalet Qamats [1497,1793,1527,1824]. Certify Patah U+05B7.",
+      "targetCapture": "extension-volumeA-592-zoom4-upper-left.png",
+      "letterBounds": [
+        1041,
+        1534,
+        1069,
+        1606
+      ],
+      "pointBounds": [
+        1049,
+        1611,
+        1077,
+        1622
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass94-BEL-1-38/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-38-247-daniel38a-letter3-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 38,
+      "anchorBefore": "דָּנִיֵאל",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "Third-letter Yod in the sole Daniel of source38 has a distinct compact detached dot below its left crook alongside the continuing right tail. Body599pixels and dot82pixels are separate at threshold128. Tsere remains separately below at rows1788..1799. Same-page source37 first Daniel has the analogous detached Dagesh [1384,1565,1394,1573]; ordinary Yod in preceding האלהים [1302,1537,1325,1581] has a single tail without the extra dot. Certify U+05BC after existing Tsere, preserving all other scalars.",
+      "targetCapture": "extension-volumeA-592-zoom4-upper-right.png",
+      "letterBounds": [
+        1384,
+        1716,
+        1410,
+        1757
+      ],
+      "pointBounds": [
+        1387,
+        1744,
+        1399,
+        1755
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass94-BEL-1-38/independent-pixel-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 38,
+      "before": "ויֹּאמֶר דָּנִיֵאל זָכֹר זְכַרְתַּנִי אֱלֹהִים וְלֹא תַעֲזֹב אֶת־אוֹהֲבֶיךָ׃",
+      "after": "וַיֹּאמֶר דָּנִיֵּאל זָכֹר זְכַרְתַּנִי אֱלֹהִים וְלֹא תַעֲזֹב אֶת־אוֹהֲבֶיךָ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 38,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  }
+}

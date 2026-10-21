@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 171,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "S3Y",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation171-S3Y-1-22/source-provenance.json",
+    "sha256": "44ebfe2bff96b037d9ec0fe55c818ba2d4be86efef386312b29eaaece8111027"
+  },
+  "sourceNotesBefore": 6,
+  "sourceNotesAfter": 5,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-22-word7-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "9088fb929b283553f74a30e71a4e7fd050b6b7f6bba40d9e7e5d50f6d49db727",
+  "contentSHA256After": "7924fb72061dc448f1dd4289e576282fa929aee31186d59fe0ea9edc9a55d02d",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "s3y-1-22-word7-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 22,
+      "anchorBefore": "ויִסּוֹגוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Own complete Vav body ends1152 at128. Eight blankrows1153..1160 precede detached64px10x7 uppercompactnode[1602,1161,1612,1168]; eight blankrows1168..1175 precede detached84px12x10 lowercompactnode[1602,1176,1614,1186]. Their leftedges align1602 and centers near1607; no lateral third node or connectingstem. Both remain separate at64/128/192, lowerfield1187..1219 clear. Sameword Yod has singlecompact61px10x10 Hiriq[1558,1158,1568,1168], contrasting one lowernode; complete Samekh contains compact62px11x7 interiorDagesh[1509,1115,1520,1122]. Own two-node vertical topology supplies Sheva U05B0. Internaldivinename/sof beforetarget excluded. No canonicalvowel/grammar/anotherword supplies class. Independent peer: Independent peer confirms complete sixconsonant Vav-Yod-Samekh-Vav-Gimel-Vav ownויסוגו after actualinternalsof1096, not internaldivinename. OwninitialVav ends1152. Two separate compact64px10x7[1602,1161,1612,1168]/84px12x10[1602,1176,1614,1186] nodes alignvertically atleft1602; eightblankrows dividebody/uppernode andupper/lowernodes. No lateral thirdnode or joiningstem; clearbelow1185. SamewordYod has one61px10x10 compactlowernode[1558,1158,1568,1168], Samekh62px11x7 interiordot[1509,1115,1520,1122]. Own twonodevertical configurationcertifiesShevaU05B0. Entirecanonical22endVerse23 physicalunit spansLEFT676row after21חסדךsof1583, includes22והצילנו through internaldivinename+sof1096 AND23ויסוגו, finishesRIGHT719throughישבר+sof961 before24. PreserveendVerse23,internaltext,andallmetadata; no canonicalvowel/grammar classifiespoints.",
+      "targetCapture": "extension-volumeA-579-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-579-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1586,
+        1086,
+        1612,
+        1153
+      ],
+      "markProposed": "Sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        1602,
+        1161,
+        1614,
+        1186
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation171-S3Y-1-22/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 22,
+      "before": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ ויִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+      "after": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ וְיִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 22,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation171-S3Y-1-22/independent-review.json",
+    "sha256": "a4a4c3b5bca1f22235ed73e84fa33f5b2d608622e9878bb363b4d40c490eadb6"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation171-S3Y-1-22/primary-preparation.json",
+    "sha256": "6a37972fe2b3f2a752fa1a0400d45b3bd78159fd5429c031ebe7e476a1561643"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation171-S3Y-1-22/consensus-preparation.json",
+    "sha256": "8abab68cc9fea1c7a5b6ab825e92f22e82ae6024eca50d43f76cfe35eaf3f5ff"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "chapter": 1,
+        "verse": 22,
+        "before": [
+          {
+            "id": "s3y-1-22-word7-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויִסּוֹגוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          }
+        ],
+        "after": []
+      }
+    ],
+    "changedRows": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "chapter": 1,
+        "verse": 22,
+        "before": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ ויִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+        "after": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ וְיִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+        "sourceNotesBefore": [
+          {
+            "id": "s3y-1-22-word7-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ויִסּוֹגוּ",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          }
+        ],
+        "sourceNotesAfter": []
+      }
+    ],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Daniel 3:47–51",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

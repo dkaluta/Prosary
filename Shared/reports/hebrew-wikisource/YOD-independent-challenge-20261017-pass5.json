@@ -1,0 +1,1190 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 5,
+  "reviewer": "Independent wisdom reviewer",
+  "status": "Six point additions independently accepted; two other exact yod notes remain unresolved",
+  "scope": "Independent visual challenge of the proposed yod interior dots using exact target, full-word and same-font positive/plain controls. This overlaps the source ledger; it is eight repeatedly inspected IDs, not eight new source positions or an independent whole-book comparison.",
+  "sourceLedger": {
+    "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+    "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+  },
+  "method": "Inspect target shapes and contrasting source glyphs before applying any textual expectation. A continuous white band below a yod head and a separate compact low-left body can distinguish an added point despite a narrow lateral bridge to the continuing right stem. Plain long-tailed, irregular and damaged heads serve as counter-comparators. Two accepted dots are fully detached; four retain narrow bridges. Original embedded-image crops and integer nearest-neighbor enlargements only. No OCR reading, grammar, sharpening, synthetic pixels or renderer-created gray levels certify a mark.",
+  "challengedExactSourceNoteCount": 8,
+  "acceptedPointAdditions": 6,
+  "acceptedBridgedPointCount": 4,
+  "acceptedDetachedPointCount": 2,
+  "retainedUnresolvedNotes": 2,
+  "canonicalEditsPerformed": false,
+  "decisions": [
+    {
+      "book": "1MA",
+      "chapter": 4,
+      "verse": 18,
+      "retiredNoteId": "1ma-4-18-yod-dagesh",
+      "before": "קוֹמְמִיוֹת",
+      "after": "קוֹמְמִיּוֹת",
+      "addedMark": "U+05BC",
+      "existingSourceUnitTextSHA256": "8d55c8f936c3944b8667a6e7619c669eadcef0c545ec802b0dbdc5881d27f3fa",
+      "existingSourceUnitPages": [
+        117
+      ],
+      "noteSourcePages": [
+        117
+      ],
+      "targetLetterIndex": 5,
+      "geometry": "bridged",
+      "decision": "independentlyAcceptPrintedDagesh",
+      "finding": "The compact lower-left lobe lies below a white band under the yod head and projects from its continuing right stem through a narrow bridge. It matches the position/shape of clear source dageshes; the same-page plain yods, including long tails and damaged heads, lack that added lobe.",
+      "sourceAddressVerification": "PrimaryB117; companion60 left. Complete page117 half, the target whole word and primary row identify קוֹמְמִיוֹת in the existing source unit.",
+      "targetEvidence": {
+        "sourceImage": "extra-spread-60-native.png",
+        "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+        "nativeBounds": [
+          915,
+          263,
+          940,
+          300
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-18-target-extra-native.png",
+            "sha256": "03f3e44ab89e77c47c4e1e8d165359164878cab8939ccb33bd08846881f05b4e",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-18-target-extra-20x.png",
+            "sha256": "287d54910dbd4913c2df53b8c35d48f5f80a49b78870d3c7c59227fdf87b0fc2",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      "wholeWordEvidence": {
+        "sourceImage": "extra-spread-60-native.png",
+        "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+        "nativeBounds": [
+          860,
+          245,
+          1030,
+          310
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-18-target-word-extra-native.png",
+            "sha256": "630bb92bf1c74e4231829db8b75a435ad29a4c30deb9b1d6f1dd7603580b05b5",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-18-target-word-extra-6x.png",
+            "sha256": "32d1aae15ca5887b327265855c1c1df75397646fe50aac172d03865cf7e3baa4",
+            "scale": 6,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 5,
+      "verse": 34,
+      "retiredNoteId": "1ma-5-34-yod-dagesh",
+      "before": "בַּיוֹם",
+      "after": "בַּיּוֹם",
+      "addedMark": "U+05BC",
+      "existingSourceUnitTextSHA256": "48c85a8beb8d62fb13d774725e89bab7dc3a4ce5321b224d3c2e9b26b3acb412",
+      "existingSourceUnitPages": [
+        124
+      ],
+      "noteSourcePages": [
+        124
+      ],
+      "targetLetterIndex": 2,
+      "geometry": "bridged",
+      "decision": "independentlyAcceptPrintedDagesh",
+      "finding": "A small compact low-left lobe is separated from the yod head by clear white pixels and connects laterally to the continuing shaft. Its position and rounded/rectangular body match the same-font clear dagesh controls, while plain yod heads and stem terminals do not have that mid-stem lobe.",
+      "sourceAddressVerification": "PrimaryB124; companion64 right. The complete spread and corrected whole-word frame locate בַּיוֹם on the second physical row marked לה, within the already reconciled source לד–לה text carried by canonical5:34. No new numbering or boundary inference is introduced.",
+      "targetEvidence": {
+        "sourceImage": "extra-spread-64-native.png",
+        "sourceImageSHA256": "e16446075140a751da7e180e19a0ea9a96aff31102ca7cc02b95bae368649b11",
+        "nativeBounds": [
+          2402,
+          216,
+          2422,
+          245
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-target-extra-native.png",
+            "sha256": "14689a028572e331ee702f53edda5aa6fdecf035598d2c0003fb5742f2280eee",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-target-extra-20x.png",
+            "sha256": "bc1c241e57ccec58228f42573264e61b8384cffc4a6e58e1c30cd82a81e00407",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      "wholeWordEvidence": {
+        "sourceImage": "extra-spread-64-native.png",
+        "sourceImageSHA256": "e16446075140a751da7e180e19a0ea9a96aff31102ca7cc02b95bae368649b11",
+        "nativeBounds": [
+          2340,
+          200,
+          2480,
+          255
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-target-word-extra-fixed-native.png",
+            "sha256": "64dd585f0ec63de74c8f68b2eac9938436b4f411171636b53ac79fc3d2c10d01",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-target-word-extra-fixed-6x.png",
+            "sha256": "2b10a1f9b696ad4e7a82a646c651352f0ce1109ba85eedb6b0fc6b9348dcac23",
+            "scale": 6,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 6,
+      "verse": 10,
+      "retiredNoteId": "1ma-6-10-yod-dagesh",
+      "before": "מִיָגוֹן",
+      "after": "מִיָּגוֹן",
+      "addedMark": "U+05BC",
+      "existingSourceUnitTextSHA256": "ee34a2bc8ed8f24705d34f9f3ba396c7d0983bfbb8c569113b717f77a2669001",
+      "existingSourceUnitPages": [
+        127,
+        128
+      ],
+      "noteSourcePages": [
+        128
+      ],
+      "targetLetterIndex": 2,
+      "geometry": "detached",
+      "decision": "independentlyAcceptPrintedDagesh",
+      "finding": "A compact low-left dot is fully detached from the yod head and right stem by white pixels. The same-word qamats is lower and remains separate; same-font bare-yod controls distinguish the interior dot from the ordinary head.",
+      "sourceAddressVerification": "PrimaryB128, with the source unit beginning on127; companion66 right. Complete spread66 and the target phrase identify מִיָגוֹן in the continued source unit. The qamats and neighboring vav holam are retained.",
+      "targetEvidence": {
+        "sourceImage": "extra-spread-66-native.png",
+        "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+        "nativeBounds": [
+          1935,
+          166,
+          1950,
+          193
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-10-target-extra-native.png",
+            "sha256": "027185fb60f11292ad5d553f958b61279782dbe2ff7ee84c015f6f164c973483",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-10-target-extra-20x.png",
+            "sha256": "f354ad8715694ed5559213c7de918e802f3c4892df44edb227745637d6b2659c",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      "wholeWordEvidence": {
+        "sourceImage": "extra-spread-66-native.png",
+        "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+        "nativeBounds": [
+          1850,
+          140,
+          2070,
+          210
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-10-word-extra-native.png",
+            "sha256": "d564e25275585c5754d5fad4f500fb6ac3847ae066f65f89d9cca7cffc1105da",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-10-word-extra-6x.png",
+            "sha256": "5a7b87b08e9149e290a05b746d6b7b6aa6ec4654158d1b8d5350dc44c2dd58a9",
+            "scale": 6,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    },
+    {
+      "book": "1MA",
+      "chapter": 6,
+      "verse": 26,
+      "retiredNoteId": "1ma-6-26-yod-dagesh",
+      "before": "הַיוֹם",
+      "after": "הַיּוֹם",
+      "addedMark": "U+05BC",
+      "existingSourceUnitTextSHA256": "0425cfe560573f597e4dc1a643a846e825bdc9d941c4d5124d677f507199ceda",
+      "existingSourceUnitPages": [
+        129
+      ],
+      "noteSourcePages": [
+        129
+      ],
+      "targetLetterIndex": 2,
+      "geometry": "bridged",
+      "decision": "independentlyAcceptPrintedDagesh",
+      "finding": "A compact lobe below the head and left of the continuing right stem has its own body and a narrow joining neck. Same-page חוֹנִים supplies a plain yod without that extra lobe; nearby clear dagesh controls supply the matching low-left point geometry.",
+      "sourceAddressVerification": "PrimaryB129; companion66 left. Complete spread66, the full body and target word locate הַיוֹם in the clause beginning וְהַיוֹם הֵם חוֹנִים, inside the existing canonical6:26 unit.",
+      "targetEvidence": {
+        "sourceImage": "extra-spread-66-native.png",
+        "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+        "nativeBounds": [
+          1173,
+          269,
+          1198,
+          307
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-26-target-extra-native.png",
+            "sha256": "0e5cd9fe2ab44618393cbba560fd2318a004fae9fcb7198756e073d0b3a13a56",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-26-target-extra-20x.png",
+            "sha256": "21d3f793110be32be85b337eb1619d777ad90d63499b5b551a93c8793ad351d7",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      "wholeWordEvidence": {
+        "sourceImage": "extra-spread-66-native.png",
+        "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+        "nativeBounds": [
+          1150,
+          255,
+          1290,
+          315
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-26-target-word-extra-native.png",
+            "sha256": "4bfe6a9a89d69f642f1bde86eecd01b9974ae692825403d0ef000b6ffd0ee942",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-26-target-word-extra-6x.png",
+            "sha256": "af588ae2568ee431b5833bd2bd746401c0d75461a53b5c5099bda173fcf5f3fb",
+            "scale": 6,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    },
+    {
+      "book": "2MA",
+      "chapter": 2,
+      "verse": 28,
+      "retiredNoteId": "2ma-2-28-yod-2-dagesh",
+      "before": "דִיוּקֵי",
+      "after": "דִיּוּקֵי",
+      "addedMark": "U+05BC",
+      "existingSourceUnitTextSHA256": "2eeccdcfe81758115f86f4538a6c43def6c20568b838c5f1ffdaf7b302c104f8",
+      "existingSourceUnitPages": [
+        186
+      ],
+      "noteSourcePages": [
+        186
+      ],
+      "targetLetterIndex": 2,
+      "geometry": "bridged",
+      "decision": "independentlyAcceptPrintedDagesh",
+      "finding": "A compact lower-left lobe stands below a white band under the head, with only a narrow bridge to the right stem. The same-word final yod lacks this lobe, and the same-page2:24 detached yod dagesh has the matching point position/size. The written vav shuruq remains a separate letter/mark.",
+      "sourceAddressVerification": "PrimaryB186; companion95. The complete2:22–29 page body and whole word locate דִיוּקֵי on the row marked כח. Its second letter is the target; final yod is only a plain comparator.",
+      "targetEvidence": {
+        "sourceImage": "extra-spread-95-native.png",
+        "sourceImageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+        "nativeBounds": [
+          2031,
+          702,
+          2050,
+          733
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma2-28-target-extra-native.png",
+            "sha256": "04966d3de8ea401ca27403d6378c23893ed32aed5876b0b4704e1c4a9438803a",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma2-28-target-extra-20x.png",
+            "sha256": "141b84110f7e7bf903f9ad6aa109a8b6bdcb2e555c19afb722601f86c8b11f24",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      "wholeWordEvidence": {
+        "sourceImage": "extra-spread-95-native.png",
+        "sourceImageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+        "nativeBounds": [
+          1950,
+          690,
+          2100,
+          745
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma2-28-target-word-extra-native.png",
+            "sha256": "624a94106ceacb8317bf6c58cbbb5c53c8247b72aff854c6adb811713c3e9ae5",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma2-28-target-word-extra-6x.png",
+            "sha256": "ef38062b899c90ded6ca490c99967b4b8cb5871fc5929c55e20778d2f4af0458",
+            "scale": 6,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 10,
+      "verse": 28,
+      "retiredNoteId": "sir-10-28-yod-dagesh",
+      "before": "כַּיוֹצֵא",
+      "after": "כַּיּוֹצֵא",
+      "addedMark": "U+05BC",
+      "existingSourceUnitTextSHA256": "30d741b62b5baec72b51ed826bd206487bc246de4b7ae94a1987539ea3683dd8",
+      "existingSourceUnitPages": [
+        466
+      ],
+      "noteSourcePages": [
+        466
+      ],
+      "targetLetterIndex": 2,
+      "geometry": "detached",
+      "decision": "independentlyAcceptPrintedDagesh",
+      "finding": "A compact interior square lies fully detached below-left of the yod head, with white separation from the right stem. The full word excludes reassignment to adjacent kaf/vav marks. Plain same-font yods lack it and clear source dageshes occupy the same region.",
+      "sourceAddressVerification": "PrimaryB466; the actual companion half recorded in the source ledger. Complete Sirach10 body and target whole word identify כַּיוֹצֵא in the clause marked כח; the target is the second letter.",
+      "targetEvidence": {
+        "sourceImage": "extra-466-half-native.png",
+        "sourceImageSHA256": "5bf51f6a53aa9fd2bc86bc4e78089711302556cc0201ec859494aedc84b09574",
+        "nativeBounds": [
+          476,
+          374,
+          494,
+          402
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir10-28-target-extra-native.png",
+            "sha256": "e49d10025f4f549b4949e5765b434e920329cd2126825eba78174fd0ab965d62",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir10-28-target-extra-20x.png",
+            "sha256": "0086256ce3f83de843b26a6a0f7c091049c6f2884cff6508caf87687b109f573",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      "wholeWordEvidence": {
+        "sourceImage": "extra-466-half-native.png",
+        "sourceImageSHA256": "5bf51f6a53aa9fd2bc86bc4e78089711302556cc0201ec859494aedc84b09574",
+        "nativeBounds": [
+          410,
+          360,
+          545,
+          418
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir10-28-target-word-extra-native.png",
+            "sha256": "80cb1b46b5d82e65f8cc372d1bd35de8e8d286e183e109b9dc54c5ecd8a34c5f",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir10-28-target-word-extra-6x.png",
+            "sha256": "0ecf0dab20c399a0ec29fe870464914c2dcefd750398c201c59ff788c6f2e9cd",
+            "scale": 6,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    }
+  ],
+  "retentions": [
+    {
+      "book": "2MA",
+      "chapter": 8,
+      "verse": 4,
+      "id": "2ma-8-4-yod-2-dagesh",
+      "anchor": "הַיְלָדִים",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The yod shaft is fractured and offset, and no separate low-left point body comparable to the six accepted targets is exposed. A small fragment on the shaft axis is not uniquely a dagesh. The damage also prevents certifying intentional absence; retain the disclosure.",
+      "targetEvidence": {
+        "sourceImage": "extra-spread-104-native.png",
+        "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+        "nativeBounds": [
+          1880,
+          616,
+          1900,
+          648
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma8-4-target-extra-native.png",
+            "sha256": "fa75840b697e2b3a24eac6a98b69bc7bc0bbcde3cb9fd055963ba039b0ba1d1a",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma8-4-target-extra-20x.png",
+            "sha256": "640bd3d53fc7cd65d4454e74e612fadad3df99fbace1b02fc89e8cdc355352f3",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      "wholeWordEvidence": {
+        "sourceImage": "extra-spread-104-native.png",
+        "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+        "nativeBounds": [
+          1795,
+          600,
+          1940,
+          655
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma8-4-target-word-extra-native.png",
+            "sha256": "94e6d51971742924eee2bd75f80346ad6bba06fa713eff941382567b0d218d70",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma8-4-target-word-extra-6x.png",
+            "sha256": "3b550c42381eb99bca1e80e0dac46bb76bf252bc8757f69b56d7f3f9393089ad",
+            "scale": 6,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    },
+    {
+      "book": "SIR",
+      "chapter": 49,
+      "verse": 10,
+      "id": "sir-49-10-yod-dagesh",
+      "anchor": "וַיוֹשַׁ[גְבוּהוּ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "No distinct low-left dot lobe is exposed beneath the broad head. Ordinary and pointed controls distinguish clear examples, but do not uniquely determine whether an interior point merged into this head or was absent. No added point or false-positive retirement is certified.",
+      "targetEvidence": {
+        "sourceImage": "extra-527-half-native.png",
+        "sourceImageSHA256": "4da217d131bfea622417914182cd5970e9a3ac16801e15254f57dd5d8e876a10",
+        "nativeBounds": [
+          863,
+          300,
+          880,
+          331
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir49-10-target-extra-native.png",
+            "sha256": "9812b2ba857286bd330906b4c4959b14beb07458457dbbd0c66a74046cbb26a7",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir49-10-target-extra-20x.png",
+            "sha256": "0aec08ca64e34ffa9382b86a4fc9b87aa30dbb1f94babe2c6cf6b1b77e76bf84",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      "wholeWordEvidence": {
+        "sourceImage": "extra-527-half-native.png",
+        "sourceImageSHA256": "4da217d131bfea622417914182cd5970e9a3ac16801e15254f57dd5d8e876a10",
+        "nativeBounds": [
+          775,
+          285,
+          895,
+          350
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir49-10-target-word-extra-native.png",
+            "sha256": "aaf246c7e3035dcb38a82d56b187d84d34e7ba1ee1437c5040e239e4f04df17b",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir49-10-target-word-extra-6x.png",
+            "sha256": "d7778fffd5adf7767473026c88159de6d045dcb8df56333ae5da9aeb53165048",
+            "scale": 6,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    }
+  ],
+  "controls": {
+    "knownDagesh": [
+      {
+        "key": "1ma4-17-dag-control-extra",
+        "sourceImage": "extra-spread-60-native.png",
+        "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+        "nativeBounds": [
+          1165,
+          171,
+          1180,
+          204
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-17-dag-control-extra-native.png",
+            "sha256": "c080c7d46ed1bc0ac1302937d17a81e8cbc24f61b46767e98c5c26d3945f65cc",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-17-dag-control-extra-20x.png",
+            "sha256": "f22af2761f4e3e9a720fcd55aa6595805f9d439dbcdd3d7ed7baca4ac7e1d806",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma4-25-dag-control-extra",
+        "sourceImage": "extra-spread-60-native.png",
+        "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+        "nativeBounds": [
+          1368,
+          596,
+          1383,
+          621
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-25-dag-control-extra-native.png",
+            "sha256": "38ba8a16b4fe07649d7c3cdfe6c8e12491639984453af1c46fe224ff3d4b1735",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-25-dag-control-extra-20x.png",
+            "sha256": "986a1b8bddca9f84ec57d9ceebf8611f590c2fb8ef4469a5ff589e4ac80adb52",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma5-34-dag-vayiplu-extra",
+        "sourceImage": "extra-spread-64-native.png",
+        "sourceImageSHA256": "e16446075140a751da7e180e19a0ea9a96aff31102ca7cc02b95bae368649b11",
+        "nativeBounds": [
+          2563,
+          215,
+          2578,
+          243
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-dag-vayiplu-extra-native.png",
+            "sha256": "2f6b0e2c0e392f3abc0c1783495179c5aaef28818e3b38ddac0f5dd57ce0dcef",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-dag-vayiplu-extra-20x.png",
+            "sha256": "969195f8502edd2d141b58669b07ce7df3785f7c17b67a6bd97f947220e09593",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma5-34-dag-vayeda-extra",
+        "sourceImage": "extra-spread-64-native.png",
+        "sourceImageSHA256": "e16446075140a751da7e180e19a0ea9a96aff31102ca7cc02b95bae368649b11",
+        "nativeBounds": [
+          2567,
+          166,
+          2584,
+          195
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-dag-vayeda-extra-native.png",
+            "sha256": "9502c622835e35ed22f77c23a73e81da25e5da80d0b60b27c068a759d870adbd",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-dag-vayeda-extra-20x.png",
+            "sha256": "9ecd3bf7eb8244d6dda5e952b0c8e119c3fb65ad07006d73f3d679f4dc8cb68d",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma6-28-dag-vayiktsof-extra",
+        "sourceImage": "extra-spread-66-native.png",
+        "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+        "nativeBounds": [
+          1330,
+          410,
+          1345,
+          440
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-28-dag-vayiktsof-extra-native.png",
+            "sha256": "17e413fda7fbddb0bad809549e8c3a04cd9e84c565a00c628676b36b9363d215",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-28-dag-vayiktsof-extra-20x.png",
+            "sha256": "771c2e14b336d89a13b17003df9ac45260398151abc0b9bdc3bf2939b15b556d",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma6-29-dag-hayam-extra",
+        "sourceImage": "extra-spread-66-native.png",
+        "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+        "nativeBounds": [
+          830,
+          460,
+          844,
+          485
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-29-dag-hayam-extra-native.png",
+            "sha256": "2a69cbf689f28481cdd962367a2c21014a1492f8894b8d41d59661ac192c1afa",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-29-dag-hayam-extra-20x.png",
+            "sha256": "8a20788a492042acd722e03ad7e6420cafb1a3cc5f826eb5e58d828d4fe81924",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "2ma2-24-dag-historia-extra",
+        "sourceImage": "extra-spread-95-native.png",
+        "sourceImageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+        "nativeBounds": [
+          1696,
+          425,
+          1711,
+          453
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma2-24-dag-historia-extra-native.png",
+            "sha256": "c81ca477132d32efdfd6533b72d964d7049a8955662457815db9f403e746f54b",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma2-24-dag-historia-extra-20x.png",
+            "sha256": "83a1be162fc25f00efce576f836b8132d15f2a5005ce1b6a29760dca17cf6791",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "sir11-13-dag-vayitmehu-extra",
+        "sourceImage": "extra-467-half-native.png",
+        "sourceImageSHA256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+        "nativeBounds": [
+          865,
+          466,
+          879,
+          495
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir11-13-dag-vayitmehu-extra-native.png",
+            "sha256": "9015c2810da5b3bbdb66873060166debb2c47972fae1cc78c0daf54805434376",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir11-13-dag-vayitmehu-extra-20x.png",
+            "sha256": "65aa11a439bacb91571e046733fdd8472b5755e97c8c8b6c4e240a67179b0aad",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    ],
+    "plainYod": [
+      {
+        "key": "1ma4-17-bare-ki-extra",
+        "sourceImage": "extra-spread-60-native.png",
+        "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+        "nativeBounds": [
+          731,
+          176,
+          742,
+          202
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-17-bare-ki-extra-native.png",
+            "sha256": "705669575670fac7e9d53e96241c8a6ed8a83744cf82532cbaae2260448fc5f3",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-17-bare-ki-extra-20x.png",
+            "sha256": "196c6e8af27cef0a099011da0e5e987e9916f52b57b7ed9229fa6d4da2713e12",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma4-18-bare-bifnei-extra",
+        "sourceImage": "extra-spread-60-native.png",
+        "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+        "nativeBounds": [
+          751,
+          220,
+          766,
+          248
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-18-bare-bifnei-extra-native.png",
+            "sha256": "78b7503181ff4d9ea75d0ce6da3ddc2bb80f4d46046af4c12bd4ae1e35cb69be",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-18-bare-bifnei-extra-20x.png",
+            "sha256": "9a08ac64476f2804af15f1fd98c458d259daa9cc71ac58396ee3f08b6f75aa23",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma4-19-bare-control-extra",
+        "sourceImage": "extra-spread-60-native.png",
+        "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+        "nativeBounds": [
+          786,
+          270,
+          802,
+          299
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-19-bare-control-extra-native.png",
+            "sha256": "67f7a3274e446ad7b393d6f0440df00b3749501d2f4f93f7616d9a3a2e134feb",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma4-19-bare-control-extra-20x.png",
+            "sha256": "20e90382abe9ea827482ec19ac45c2ddebbd59a2c89d231fcdb6cf983a3a6de4",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma5-34-bare-alfei-extra",
+        "sourceImage": "extra-spread-64-native.png",
+        "sourceImageSHA256": "e16446075140a751da7e180e19a0ea9a96aff31102ca7cc02b95bae368649b11",
+        "nativeBounds": [
+          2093,
+          217,
+          2110,
+          244
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-bare-alfei-extra-native.png",
+            "sha256": "09a17e3ed620cd6beaec990f1c4e6ac32baf4cb91ec37850873ff5d5fdd34e6d",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma5-34-bare-alfei-extra-20x.png",
+            "sha256": "da695bdd75326bf3936f5f3e39a01b5db06bb69f7f3a06115b38a8a9b1e60fc7",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma6-26-bare-honim-extra",
+        "sourceImage": "extra-spread-66-native.png",
+        "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+        "nativeBounds": [
+          1240,
+          267,
+          1257,
+          297
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-26-bare-honim-extra-native.png",
+            "sha256": "1ae73eedc0e597124df9b0cdc7a9d54fa6e2aca0ea741c4887f90d882cb7dde6",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-26-bare-honim-extra-20x.png",
+            "sha256": "b99cd3bceeacb431b268a2791c2463371c7e1492024d37c537a884b949972d9f",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "1ma6-10-bare-alay-extra",
+        "sourceImage": "extra-spread-66-native.png",
+        "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+        "nativeBounds": [
+          1982,
+          166,
+          1998,
+          193
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-10-bare-alay-extra-native.png",
+            "sha256": "b86b0b803b6761b43023460366f7eadfa5e7a96bd4d9bfc329b746d0bf62fa4f",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/1ma6-10-bare-alay-extra-20x.png",
+            "sha256": "16b1018c2943b23a6a255eaa90ef54863449007f0bd30dc89b5df0686bc97f02",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "2ma2-28-bare-finalyod-extra",
+        "sourceImage": "extra-spread-95-native.png",
+        "sourceImageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+        "nativeBounds": [
+          1998,
+          704,
+          2013,
+          730
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma2-28-bare-finalyod-extra-native.png",
+            "sha256": "bb58e9ed32f7adde0052dd949e01ca9e15f86bc0af215b970cefc9bfba62f787",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/2ma2-28-bare-finalyod-extra-20x.png",
+            "sha256": "35b1547a1d880164747d03901f93b81788da074f730b23ddc31cd82dc3943422",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      },
+      {
+        "key": "sir10-27-bare-veyoter-extra",
+        "sourceImage": "extra-466-half-native.png",
+        "sourceImageSHA256": "5bf51f6a53aa9fd2bc86bc4e78089711302556cc0201ec859494aedc84b09574",
+        "nativeBounds": [
+          989,
+          329,
+          1010,
+          357
+        ],
+        "files": [
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir10-27-bare-veyoter-extra-native.png",
+            "sha256": "6377d16925d70329c57fffff4a6d810230244c3f3efb44c45948c26464b6c2d7",
+            "scale": 1,
+            "pixelReplay": true
+          },
+          {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass5-YOD-COMPARISON/sir10-27-bare-veyoter-extra-20x.png",
+            "sha256": "00114c291c9ef45aa0aa9c48e5d3701223cf2498355825b3d821bdcfc0c88f19",
+            "scale": 20,
+            "pixelReplay": true
+          }
+        ],
+        "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding, redrawing or reconstruction."
+      }
+    ]
+  },
+  "sourceImageProofs": [
+    {
+      "sourcePDF": "companion",
+      "pdfPageOneBased": 240,
+      "correspondingPrimaryPage": 466,
+      "extraction": {
+        "kind": "embeddedImageHalf",
+        "embeddedImageIndex": 0,
+        "side": "right",
+        "halfBoundsInEmbeddedImage": [
+          1436,
+          0,
+          2872,
+          2024
+        ],
+        "mappingReport": "Shared/reports/hebrew-wikisource/SIR-page466-second-pass.json"
+      },
+      "imageSHA256": "5bf51f6a53aa9fd2bc86bc4e78089711302556cc0201ec859494aedc84b09574",
+      "size": [
+        1436,
+        2024
+      ],
+      "freshOriginalPixelReplay": true,
+      "verifiedScratchPath": "/private/tmp/prosary-yod-comparison-pass5-20261017/extra-466-half-native.png",
+      "durablePixelProof": "Selected native crops and exact source-PDF/page/half mapping are pinned in the source ledger and this report."
+    },
+    {
+      "sourcePDF": "companion",
+      "pdfPageOneBased": 240,
+      "correspondingPrimaryPage": 467,
+      "extraction": {
+        "kind": "embeddedImageHalf",
+        "embeddedImageIndex": 0,
+        "side": "left",
+        "halfBoundsInEmbeddedImage": [
+          0,
+          0,
+          1436,
+          2024
+        ],
+        "mappingReport": "Shared/reports/hebrew-wikisource/SIR-page467-second-pass.json"
+      },
+      "imageSHA256": "ac99cd3f708c560dd1512bbeaa2649f277070087a6725ac6502954579c5079ea",
+      "size": [
+        1436,
+        2024
+      ],
+      "freshOriginalPixelReplay": true,
+      "verifiedScratchPath": "/private/tmp/prosary-yod-comparison-pass5-20261017/extra-467-half-native.png",
+      "durablePixelProof": "Selected native crops and exact source-PDF/page/half mapping are pinned in the source ledger and this report."
+    },
+    {
+      "sourcePDF": "companion",
+      "pdfPageOneBased": 270,
+      "correspondingPrimaryPage": 527,
+      "extraction": {
+        "kind": "embeddedImageHalf",
+        "embeddedImageIndex": 0,
+        "side": "left",
+        "halfBoundsInEmbeddedImage": [
+          0,
+          0,
+          1436,
+          2024
+        ],
+        "mappingReport": "Shared/reports/hebrew-wikisource/SIR-page527-second-pass.json"
+      },
+      "imageSHA256": "4da217d131bfea622417914182cd5970e9a3ac16801e15254f57dd5d8e876a10",
+      "size": [
+        1436,
+        2024
+      ],
+      "freshOriginalPixelReplay": true,
+      "verifiedScratchPath": "/private/tmp/prosary-yod-comparison-pass5-20261017/extra-527-half-native.png",
+      "durablePixelProof": "Selected native crops and exact source-PDF/page/half mapping are pinned in the source ledger and this report."
+    },
+    {
+      "sourcePDF": "companion",
+      "pdfPageOneBased": 104,
+      "correspondingPrimaryPage": null,
+      "extraction": {
+        "kind": "wholeEmbeddedImage",
+        "embeddedImageIndex": 0,
+        "physicalPrimaryPages": {
+          "right": 204,
+          "left": 205
+        }
+      },
+      "imageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+      "size": [
+        2872,
+        2024
+      ],
+      "freshOriginalPixelReplay": true,
+      "verifiedScratchPath": "/private/tmp/prosary-yod-comparison-pass5-20261017/extra-spread-104-native.png",
+      "durablePixelProof": "Selected native crops and exact source-PDF/page/half mapping are pinned in the source ledger and this report."
+    },
+    {
+      "sourcePDF": "companion",
+      "pdfPageOneBased": 60,
+      "correspondingPrimaryPage": null,
+      "extraction": {
+        "kind": "wholeEmbeddedImage",
+        "embeddedImageIndex": 0,
+        "physicalPrimaryPages": {
+          "right": 116,
+          "left": 117
+        }
+      },
+      "imageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+      "size": [
+        2872,
+        2024
+      ],
+      "freshOriginalPixelReplay": true,
+      "verifiedScratchPath": "/private/tmp/prosary-yod-comparison-pass5-20261017/extra-spread-60-native.png",
+      "durablePixelProof": "Selected native crops and exact source-PDF/page/half mapping are pinned in the source ledger and this report."
+    },
+    {
+      "sourcePDF": "companion",
+      "pdfPageOneBased": 64,
+      "correspondingPrimaryPage": null,
+      "extraction": {
+        "kind": "wholeEmbeddedImage",
+        "embeddedImageIndex": 0,
+        "physicalPrimaryPages": {
+          "right": 124,
+          "left": 125
+        }
+      },
+      "imageSHA256": "e16446075140a751da7e180e19a0ea9a96aff31102ca7cc02b95bae368649b11",
+      "size": [
+        2872,
+        2024
+      ],
+      "freshOriginalPixelReplay": true,
+      "verifiedScratchPath": "/private/tmp/prosary-yod-comparison-pass5-20261017/extra-spread-64-native.png",
+      "durablePixelProof": "Selected native crops and exact source-PDF/page/half mapping are pinned in the source ledger and this report."
+    },
+    {
+      "sourcePDF": "companion",
+      "pdfPageOneBased": 66,
+      "correspondingPrimaryPage": null,
+      "extraction": {
+        "kind": "wholeEmbeddedImage",
+        "embeddedImageIndex": 0,
+        "physicalPrimaryPages": {
+          "right": 128,
+          "left": 129
+        }
+      },
+      "imageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+      "size": [
+        2872,
+        2024
+      ],
+      "freshOriginalPixelReplay": true,
+      "verifiedScratchPath": "/private/tmp/prosary-yod-comparison-pass5-20261017/extra-spread-66-native.png",
+      "durablePixelProof": "Selected native crops and exact source-PDF/page/half mapping are pinned in the source ledger and this report."
+    },
+    {
+      "sourcePDF": "companion",
+      "pdfPageOneBased": 95,
+      "correspondingPrimaryPage": null,
+      "extraction": {
+        "kind": "wholeEmbeddedImage",
+        "embeddedImageIndex": 0,
+        "physicalPrimaryPages": {
+          "right": 186,
+          "left": 187
+        }
+      },
+      "imageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+      "size": [
+        2872,
+        2024
+      ],
+      "freshOriginalPixelReplay": true,
+      "verifiedScratchPath": "/private/tmp/prosary-yod-comparison-pass5-20261017/extra-spread-95-native.png",
+      "durablePixelProof": "Selected native crops and exact source-PDF/page/half mapping are pinned in the source ledger and this report."
+    }
+  ],
+  "selectedEvidenceFileCount": 64,
+  "validation": {
+    "allTargetAndControlHashesVerified": true,
+    "allSourceImageHashesVerified": true,
+    "sixExactOriginalAnchorsFoundOnceInPinnedPass5SourceUnits": true,
+    "eachAddedScalarIsDageshAtExistingYodLetter": true,
+    "allExistingConsonantsPointsBracketsAndBoundariesPreserved": true,
+    "noCanonicalOrManifestEdits": true
+  },
+  "sourceLayerAudit": {
+    "path": "Shared/reports/hebrew-wikisource/Kahana-PDF-image-layer-audit-20261017-pass5.json",
+    "sha256": "d9475c42fca4e6075d22648abdb67a5858185bd2bf893987e8e14182acffaadb"
+  },
+  "limits": [
+    "The narrow bridge alone is neither proof nor disproof of a printed point; full lobe geometry and contrasting controls establish these six decisions.",
+    "The two retained notes are not claims that their original print omitted dagesh.",
+    "This challenge does not authorize any other letter, word, vowel, boundary or numbering change."
+  ]
+}

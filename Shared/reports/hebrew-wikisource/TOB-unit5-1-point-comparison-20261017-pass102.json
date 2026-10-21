@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 102,
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass102-TOB-5-1/source-provenance.json",
+    "sha256": "764dffbb9e1583b9a9c8b90a95052746f8cd6f711e41fa68b6c89425c74ea833"
+  },
+  "sourceNotesBefore": 12,
+  "sourceNotesAfter": 11,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "tob-5-1-second-vav-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "tob-5-1-vav-vowel"
+  ],
+  "contentSHA256Before": "dcb13771b06749cd4188576d9e2eb7aead10c500346e3dcae5b5d87d5401c342",
+  "contentSHA256After": "006777d8b0f31d90f1d884efdd1065baa6e132de9f7165ea1773485809152d57",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "tob-5-1-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 1,
+      "anchorBefore": "ויַּעַן",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The initial vav thin shaft joins a new broad left foot in the vowel band. The same-row ordinary holam-Vav in טוביה ends by y962, so the target does contain additional low ink. Its foot remains saturated and asymmetrical with small lower lobes. A literal same-letter short Qamats in short5:10 וָיְבָרְכוּ also joins its vav shaft to a broad shallow bar with only a short surviving lower tab. That physical counter prevents uniquely separating Patah from a fused short-stem Qamats in the first target. Retain its disclosure; no vowel inferred from morphology.",
+      "targetCapture": "extension-volumeB-327-zoom4-upper-right.png",
+      "inspectedBounds": [
+        956,
+        892,
+        989,
+        979
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass102-TOB-5-1/consensus-preparation.json"
+    },
+    {
+      "noteId": "tob-5-1-second-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 1,
+      "anchorBefore": "ויֹּאמֶר לוֹ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "The second vav ends at y962 before a completely detached rounded horizontal bar [372,967,400,979],28pixelswide and12high. Complete white separation preserves the full point contour: no second vertical node or descending stem survives below the bar. Same-row already transcribed Patah under the first word's yod is a detached horizontal comparator. The short Qamats counter has a discernible lower stem/tab and shaft fusion; this detached flat stamp supports Patah from its own physical contour. The literal same-letter Patah in short5:3 second וַיֹּאמֶר [1240,1327,1268,1340], area265, has the same detached28x13 flat stamp, directly matching this target28x12 without the Qamats lower tab.",
+      "targetCapture": "extension-volumeB-327-zoom4-upper-right.png",
+      "inspectedBounds": [
+        367,
+        892,
+        395,
+        962
+      ],
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        372,
+        967,
+        400,
+        979
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass102-TOB-5-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 1,
+      "before": "ויַּעַן טוֹבִיָּה ויֹּאמֶר לוֹ אָבִי כָּל־אֲשֶׁר צִוִּיתַנִי אֶעֱשֶׂה׃",
+      "after": "ויַּעַן טוֹבִיָּה וַיֹּאמֶר לוֹ אָבִי כָּל־אֲשֶׁר צִוִּיתַנִי אֶעֱשֶׂה׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass102-TOB-5-1/independent-review.json",
+    "sha256": "fc0d76d6dd39a81c0c51bd8001a8d13e8aece8996a4654ff8109a1d3c52a0611"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass102-TOB-5-1/primary-preparation.json",
+    "sha256": "edaa56255e3d40e41b7ddcecabf980bcc591c9783f9325ff4e2ad5f1b0e1ecb8"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass102-TOB-5-1/consensus-preparation.json",
+    "sha256": "c82e62f1c8f1794812836ced01e069ccb399a2632b8cbfd966cf1760c389577c"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

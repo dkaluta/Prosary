@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 28,
+  "book": "WIS",
+  "chapter": 18,
+  "verse": 3,
+  "status": "Explicit one-clause control-label correction; all source decisions unchanged",
+  "supersedesOnly": {
+    "originalReport": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+    "originalReportSHA256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f",
+    "fieldJSONPointer": "/inspections/1/finding",
+    "noteId": "wis-18-3-word3-tav-2-vowel",
+    "beforeClause": "the literal tsere in el on page171",
+    "afterClause": "the literal lamed tsere in לֵב (lev) on page171",
+    "beforeFieldValue": "A detached broad mark below the second consonant has a flat bottom and two shallow upper crests. Same-word het patah is also a heavy continuous bar, while the literal tsere in el on page171 has two horizontally adjacent nodes joined through its middle. The target upper notch is too shallow to exclude either a deformed patah or filled tsere. Retain the vowel omission.",
+    "afterFieldValue": "A detached broad mark below the second consonant has a flat bottom and two shallow upper crests. Same-word het patah is also a heavy continuous bar, while the literal lamed tsere in לֵב (lev) on page171 has two horizontally adjacent nodes joined through its middle. The target upper notch is too shallow to exclude either a deformed patah or filled tsere. Retain the vowel omission."
+  },
+  "reason": "Independent peer review identified the complete word on original A2 page171 as לֵב (lev), with the literal tsere beneath lamed. The earlier English label el was wrong. Author visually confirmed the unchanged whole-word native/5x evidence. The two-node contour comparison remains the same.",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourcePDFPage": 171,
+  "unchangedEvidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-3/literal-tsere-word-native.png",
+      "sha256": "a40e9445c75980485ca4a7e1933b866608752e4756cc626486d0bf06419e7287",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1350,
+        340,
+        1460,
+        495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-3/literal-tsere-word-5x.png",
+      "sha256": "57188ad122fe31468d38ea5f397087cdb30b3c3ea42ded2645cf4a8d96105ae8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1350,
+        340,
+        1460,
+        495
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-3/literal-tsere-complete-native.png",
+      "sha256": "b3de2982216ff58d808aad9a5fb7717341a575778a69727d396a83161ce7837d",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-3/literal-tsere-complete-18x.png",
+      "sha256": "7b25a2f1b4db0e82005fc2651672327deb5c93fa398e2b6cb8e91c28cfe1b5d8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "scale": 18,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    }
+  ],
+  "unchangedPacket": {
+    "path": "/private/tmp/prosary-hebrew-pass28-20261017/wis18-3-accepted.json",
+    "sha256": "cc8b8a6b0d4b8bc1a5428dfe14f8b93be5f4479bba3750117dc0f65311d34b7d"
+  },
+  "unchangedStandaloneContentSHA256Before": "790f69aaf283da83ddf9888114b25a4d4da9a29cf2c3e0455ca223e680209cdc",
+  "unchangedStandaloneContentSHA256After": "e09821e671a606212de1e103e2eb7f4676392eb1e1ac56ee79d7e84fbdf0f96b",
+  "invariants": {
+    "originalReportUnmodified": true,
+    "allPNGBytesUnmodified": true,
+    "packetUnmodified": true,
+    "allFourSourceNoteDecisionsUnchanged": true,
+    "proposedHeU05B2Unchanged": true,
+    "allThreeRetentionsUnchanged": true,
+    "noCanonicalGateOrGeneratedEdit": true
+  }
+}

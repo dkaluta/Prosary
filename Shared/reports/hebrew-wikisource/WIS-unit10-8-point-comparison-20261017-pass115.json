@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 115,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass115-WIS-10-8/source-provenance.json",
+    "sha256": "7c015b8f9dbfe74dae7521f3efc1b8fdaf04d27d52a84b0fcf16e71f764bd703"
+  },
+  "sourceNotesBefore": 119,
+  "sourceNotesAfter": 118,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-10-8-ayin"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-10-8-zayin"
+  ],
+  "contentSHA256Before": "c848ec68f6037f4409ccf68728e48d0c8f9bd8ff7528aa38b5e546e9b3980a17",
+  "contentSHA256After": "3f01e90d0afec399365b7afc4f98e23ab2ec0695ff1b220ef47b2de48d5b52f1",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-10-8-ayin",
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 8,
+      "anchorBefore": "בְּעזבָם",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "Own native cluster remains separate from the Ayin foot at64/128/192. At128 it has a single26px broad upper horizontal head1496..1504 narrowing progressively to a straight7px vertical stem1515..1523. At192 the head expands to27px1495..1504 and then narrows to a straight9px stem1515..1524; there is no separate side pair or lower rounded expansion. The literal same-word second Bet Qamats has the corresponding broad horizontal head1298..1324/1491..1500 and descending narrow stem to1524. Initial Bet Sheva instead has two rounded expansions with a narrow waist. Target own one-head/long-straight-stem geometry positively matches the literal Qamats, and is not supplied from spelling or grammar. Primary independently replays and agrees with peer challenge: propose only U+05B8; preserve every existing scalar.",
+      "targetCapture": "extension-volumeA-509-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-509-zoom4-upper-right.png",
+      "inspectedBounds": [
+        1384,
+        1412,
+        1446,
+        1496
+      ],
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "pointBounds": [
+        1402,
+        1496,
+        1428,
+        1524
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass115-WIS-10-8/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-10-8-zayin",
+      "book": "WIS",
+      "chapter": 10,
+      "verse": 8,
+      "anchorBefore": "בְּעזבָם",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "The narrow Zayin shaft remains continuous through1492 and broadens around1496 into a thick lower band extending to1523. At native128 the complete lower cluster is continuous and does not show a uniquely separated pair of round nodes; its lower narrow counters also occur in the literal neighboring Bet bar/stem contour. Initial Bet Sheva supplies a two-lobe comparison at1493..1519, but the target letter/body junction is less discrete. Retain uncertainty unless an independent reviewer establishes a discriminating literal same-letter contour.",
+      "targetCapture": "extension-volumeA-509-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-509-zoom4-upper-right.png",
+      "inspectedBounds": [
+        1351,
+        1412,
+        1376,
+        1524
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass115-WIS-10-8/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 10,
+      "verse": 8,
+      "before": "בְּעזבָם אֶת דֶּרֶךְ הַחָכְמָה לֹא בִּלְבַד לָקוּ מֵחֹסֶר דַּעַת אֶת־הַטּוֹב אוּלָם הִשְׁאִירוּ גַּם מַזְכֶּרֶת סִכְלוּתָם לַחַיִּים בַּל־תִּסָּתֵר סִבַּת כִּשְׁלוֹנָם׃",
+      "after": "בְּעָזבָם אֶת דֶּרֶךְ הַחָכְמָה לֹא בִּלְבַד לָקוּ מֵחֹסֶר דַּעַת אֶת־הַטּוֹב אוּלָם הִשְׁאִירוּ גַּם מַזְכֶּרֶת סִכְלוּתָם לַחַיִּים בַּל־תִּסָּתֵר סִבַּת כִּשְׁלוֹנָם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 10,
+    "verse": 8,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-10-8-zayin",
+      "before": "בְּעזבָם",
+      "after": "בְּעָזבָם"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass115-WIS-10-8/independent-review.json",
+    "sha256": "563c6c43c82168b452b49c355a4516a7d5f97c03565c342b5f76ac2c26ca033a"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass115-WIS-10-8/primary-preparation.json",
+    "sha256": "ccb2b172a6dd96bb17d4a8c0c147fd546c041994ba0ced21ffb497fc7d46d6ce"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass115-WIS-10-8/consensus-preparation.json",
+    "sha256": "338cc27a6c221f3fa61b63a073650ccaee19352ee4904ba27c4b94f2475baa55"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

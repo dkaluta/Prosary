@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "purpose": "Pass12 focused comparison of the remaining Sirach26:14 yod-vowel disclosure.",
+  "baselineRemainingNotes": 582,
+  "baselineSirachNotes": 25,
+  "reviewedPositionCount": 1,
+  "approvedLiteralVowelProposalCount": 1,
+  "retainedPositionCount": 0,
+  "expectedSirachNotesAfterApprovedProposals": 24,
+  "canonicalApplicationState": "Source-only frozen report; no canonical edits. Root integrates separately.",
+  "sourcePolicy": "Fresh original embedded companion pixels, native crops and integer nearest-neighbor enlargements; no OCR, filtering, reconstruction, normalization or supplied grammatical reading. Only the annotated chapter is a target; SIR3 controls establish literal same-font vowel geometry.",
+  "canonicalFilesBeforeSHA256": {
+    "Shared/content/hebrew-deuterocanon/SIR.json": "19f88928949b47e3b7e671bc099fcc2699c95f6edc7d33d07eaf661ee9e4f0ba"
+  },
+  "sourceBookBeforeDigest": "4920c84e81e61e4ae695c8843e70a0cb3a40a2a0f6eb9c5a8a0562c524048503",
+  "sourceBookAfterProposedDigest": "df59c58b7903d7a5eecd8609f38c1a5d4e2093d107473069586793a212cb398a",
+  "decisions": [
+    {
+      "book": "SIR",
+      "chapter": 26,
+      "verse": 14,
+      "before": "לִמְיסֶּרֶת",
+      "after": "לִמְיֻסֶּרֶת",
+      "retiredNoteIds": [
+        "sir-26-14-yod-vowel"
+      ],
+      "finding": "Three comparable fully detached stamps descend slightly right beneath the complete yod, clear of its normal tail and the following line. They match the literal three-stamp qubbuts in SIR3:22 he and SIR3:21 kaf freshly extracted from the same companion. The complete mem in this same26:14 word has only two vertically stacked sheva nodes, providing the competing class. The whole word and complete printed14 row identify the exact site. Only U+05BB is supplied; no grammatical or canonical spelling inference is used.",
+      "noteID": "sir-26-14-yod-vowel",
+      "noteBefore": {
+        "id": "sir-26-14-yod-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "לִמְיסֶּרֶת",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          488
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/2/25/Apocrypha_Kahana_B.pdf#page=488"
+      },
+      "decision": "approvedLiteralVowelAndNoteRetirementProposal",
+      "insertedUnicodeScalar": "U+05BB",
+      "unitTextBefore": "מַתַּת יְיָ אִשָּׁה מַחֲרִישָׁה וְאֵין מְחִיר לִמְיסֶּרֶת נֶפֶשׁ׃",
+      "unitTextBeforeSHA256": "5ad8d8aac1f5c3c1ed7cc5eb5571958c34c0d1c9bfb4060bddbf9982ba9ff1cd",
+      "unitTextAfterProposed": "מַתַּת יְיָ אִשָּׁה מַחֲרִישָׁה וְאֵין מְחִיר לִמְיֻסֶּרֶת נֶפֶשׁ׃",
+      "unitTextAfterProposedSHA256": "9b44a21bac686a9347acd8a57aed26da0fd7aa62baee78f0aacbc7d7610a0989",
+      "retainedNoteIDsRequiringAnchorRefresh": [],
+      "independentApproval": {
+        "root": true,
+        "wisdom_pass3": true,
+        "bel_pass3": true,
+        "basis": "All three reviewers inspected complete original yod, word, numbered context and literal positive/competing controls."
+      }
+    }
+  ],
+  "frames": [
+    {
+      "name": "sir26-14-yod-whole",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 251,
+      "nativeBounds": [
+        1938,
+        280,
+        1973,
+        328
+      ],
+      "scale": 20,
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-yod-whole-native.png",
+          "sha256": "ad5899c77cf0326984d1fb159237dcf3f72af29d823997eadfe5aacbe534570f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-yod-whole-20x.png",
+          "sha256": "c6092f6d5348a12d921c9c5940d8611ce4c91b204a801a95df7cf316ff932f2c"
+        }
+      ]
+    },
+    {
+      "name": "sir26-14-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 251,
+      "nativeBounds": [
+        1878,
+        260,
+        2020,
+        330
+      ],
+      "scale": 6,
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-word-native.png",
+          "sha256": "02d4319cf7737064beeb819188eb0ec705de94c493b992507bc814da612b8faa"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-word-6x.png",
+          "sha256": "1db2d2d9cb70f79d15e2a8ea250ddf9a770b88f405d7f00c71959ab31534797b"
+        }
+      ]
+    },
+    {
+      "name": "sir26-14-context",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 251,
+      "nativeBounds": [
+        1450,
+        150,
+        2820,
+        550
+      ],
+      "scale": 1,
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-context-native.png",
+          "sha256": "e57facd46991711e6dc5faee4dd2b9bfe8f4a8656e648c14241743929a0a9c5e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-context-1x.png",
+          "sha256": "e57facd46991711e6dc5faee4dd2b9bfe8f4a8656e648c14241743929a0a9c5e"
+        }
+      ]
+    },
+    {
+      "name": "sir3-22-he-qubbuts-positive",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 233,
+      "nativeBounds": [
+        1204,
+        326,
+        1230,
+        366
+      ],
+      "scale": 20,
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir3-22-he-qubbuts-positive-native.png",
+          "sha256": "3e8be0514e8cd14916e598a0377637548981f7f2c5e5ea5d51c1a1c89de33b1c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir3-22-he-qubbuts-positive-20x.png",
+          "sha256": "6991733814aaf5c234999bc2e9e14d58672aedd35ca274b2fac9472b1c20af92"
+        }
+      ]
+    },
+    {
+      "name": "sir3-21-kaf-qubbuts-positive",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 233,
+      "nativeBounds": [
+        816,
+        282,
+        842,
+        324
+      ],
+      "scale": 20,
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir3-21-kaf-qubbuts-positive-native.png",
+          "sha256": "8465ddea1eebd92f55285aecf2b09c174a65083aa11c5400c649c068ad820c9f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir3-21-kaf-qubbuts-positive-20x.png",
+          "sha256": "a48cef1297daaa1344b7ee70e7af30ef8f0043196a98588bfa9b57c824985514"
+        }
+      ]
+    },
+    {
+      "name": "sir26-14-mem-sheva-counter",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 251,
+      "nativeBounds": [
+        1960,
+        307,
+        1971,
+        323
+      ],
+      "scale": 25,
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-mem-sheva-counter-native.png",
+          "sha256": "73dc5c7a526ea5671a9e86886e3ffc0422818a443e03a10b6551f6c387201601"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-mem-sheva-counter-25x.png",
+          "sha256": "d0da9cc966edbc384a9583315e928cd5f944f8d40b2c390933da0259a3cafde6"
+        }
+      ]
+    },
+    {
+      "name": "sir26-14-mem-whole-sheva-counter",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 251,
+      "nativeBounds": [
+        1948,
+        280,
+        1996,
+        328
+      ],
+      "scale": 20,
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-mem-whole-sheva-counter-native.png",
+          "sha256": "12d18198bdad84ccaa6ab6812e8bcdb924edf2822a7e4a19024d3991012ef6c3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/sir26-14-mem-whole-sheva-counter-20x.png",
+          "sha256": "1050d8d0f450cac840e27eb7ff78c592e82910936dcc0e2118f548739a3de4f9"
+        }
+      ]
+    }
+  ],
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass12-SIR-COMPOUND/accepted.json",
+    "sha256": "3278441b12704d42864d8d9d215a20ae696f60283b25aca7d7026ad9683314ed"
+  },
+  "priorReviewClarification": "Pass3 rejected two-dot sheva because three fragments remained; that does not exclude the now-certified three-dot qubbuts. B488 preliminary qubbuts was explicitly omitted pending comparison and is not proof. Earlier exploratory complete-mem frame startingx1958 clipped the mem and is excluded; the frozen complete-mem counter startsx1948.",
+  "liveViewportCorroboration": {
+    "source": "Authenticated PSIK university-access Chrome volumeB reader",
+    "physicalReaderPageObserved": 492,
+    "passage": "Printed Sirach26:14, complete second half ואין מחיר למיסרת נפש",
+    "observation": "The live photographic page shows the same three descending nodes below the exact yod. Context/navigation corroboration only; decisive replayable evidence is original companion pixels. No new export or print.",
+    "mappingCaution": "Do not assume a uniform offset from the original primary PDF to the PSIK physical page; this observed target is physical492."
+  },
+  "unchangedContracts": [
+    "Every consonant and existing Unicode scalar order",
+    "Whole unit, witness, gaps and printed numbering",
+    "All26 Catholic unit pins; only the whole-SIR digest must refresh on application",
+    "Every daily selected unit; SIR26:14 is not selected",
+    "All five restored-letter disclosures"
+  ]
+}

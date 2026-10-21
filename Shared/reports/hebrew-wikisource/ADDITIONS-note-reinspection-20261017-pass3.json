@@ -1,0 +1,3036 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 3,
+  "books": [
+    "S3Y",
+    "ESG",
+    "SUS",
+    "LJE"
+  ],
+  "status": "Source-pixel note reinspection complete; one independently verified first-nun dagesh restored",
+  "notesInspected": 85,
+  "freshOutsidePreviousFocusedPasses": 60,
+  "reinspectedPreviouslyFocusedPositions": 25,
+  "notesInspectedByBook": {
+    "S3Y": 33,
+    "ESG": 26,
+    "SUS": 25,
+    "LJE": 1
+  },
+  "resolved": 1,
+  "retained": 84,
+  "canonicalChanged": [
+    "LJE"
+  ],
+  "scope": "Every60 remaining position in these books outside the20261003 and20261017-pass2 focused reports:33 S3Y,26 ESG and1 LJE. In addition, all25 remaining SUS positions were freshly rechecked in their original Theodotion lower-body context. Whole-unit source labels, source blocks and witness assignments are preserved. This is a focused note pass, not a new whole-book collation.",
+  "method": "Original embedded Kahana A2 raster pixels located with full-page and full-row contexts, then unchanged native crops and3x/4x/5x nearest-neighbor enlargements. Frenkel source was freshly downloaded from the cited original Wikimedia DjVu URL, hash-verified and decoded at native1389x2221 resolution, followed by native/5x/10x nearest-neighbor crops. No sharpening, contrast transformation, OCR, AI vocalization, grammar completion or alternative translator supplied a reading. Threshold-free component positions below describe already-bilevel black pixels and merely verify the visible white separation; visual independent root approval is recorded. Different Mordechai occurrences and the Septuagint/Theodotion recensions are not substituted for one another.",
+  "sourceScans": [
+    {
+      "source": "KahanaA2",
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf"
+    },
+    {
+      "source": "Frenkel1863",
+      "downloadURL": "https://upload.wikimedia.org/wikipedia/commons/d/db/Ketuvim_Aharonim_Fraenkel_%28Warsaw_1863%29.djvu",
+      "sha256": "e67bcdad0d6d8e528f79bf8e5ed403c13c1cd220a19cc75038728a0572136345",
+      "nativePage": 114,
+      "nativeResolution": [
+        1389,
+        2221
+      ],
+      "decoder": "ddjvu -format=ppm -page=114 -scale=300; source page metadata1389x2221 at300dpi, therefore original dimensions retained; PNG conversion preserves decoded pixels"
+    }
+  ],
+  "resolutions": [
+    {
+      "book": "LJE",
+      "chapter": 1,
+      "verse": 30,
+      "printedSourceOrdinal": 33,
+      "removedNoteId": "frenkel-lje-f33-nun-dagesh",
+      "before": "תַּנַחְנָה",
+      "after": "תַּנַּחְנָה",
+      "beforeVerseText": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
+      "afterVerseText": "הַעֲצַבֵּי כֶסֶף וְזָהָב וָעֵץ בְּשֵׁם אֱלֹהִים יִקָּרֵאוּ אִם נָשִׁים תַּנַּחְנָה כָל־מַאֲכָל לִפְנֵיהֶם׃",
+      "beforeTextSHA256": "17534d220f90181893a892e74ef149ff9d8857981d7fe58f048d09b9d524b24c",
+      "afterTextSHA256": "20905071e649aff4f5422426759b545d7ca7a1606216afd571ad0370f62fca53",
+      "sourceVisibleMark": "nun dagesh U+05BC",
+      "consonantsUnchanged": true,
+      "pointsPreserved": "All prior marks retained; exactly one dagesh added.",
+      "nativeComponents": {
+        "connectivity": 8,
+        "nunBody": {
+          "pixelCount": 260,
+          "pixelBox": [
+            1197,
+            1559,
+            1214,
+            1592
+          ]
+        },
+        "nunDot": {
+          "pixelCount": 24,
+          "pixelBox": [
+            1204,
+            1574,
+            1209,
+            1580
+          ]
+        },
+        "adjacentTavDot": {
+          "pixelCount": 32,
+          "pixelBox": [
+            1229,
+            1574,
+            1235,
+            1580
+          ]
+        }
+      },
+      "independentReviewer": "root: independently viewed exact nun, full word and adjacent tav comparator before approving this literal correction,2026-10-17",
+      "evidenceKey": "LJE-f33-nun",
+      "additionalEvidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/LJE-f33-full-word-native.png",
+          "sha256": "34798eeec76e6eafca2a5d5c36bd429009e78abe5a720c56cb2da75482016ae8",
+          "sourceImageSHA256": "fb291b5915202c92082301b2abcc652af13b06a2eddd4f45a4495aeca3a185d3",
+          "sourceImage": "Frenkel114-native.png",
+          "pixelBox": [
+            1020,
+            1545,
+            1290,
+            1620
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/LJE-f33-full-word-5x.png",
+          "sha256": "e967d9d6093a95372fddfa89b2779cad535383f9d776820f33a116c9ef403293",
+          "sourceImageSHA256": "fb291b5915202c92082301b2abcc652af13b06a2eddd4f45a4495aeca3a185d3",
+          "sourceImage": "Frenkel114-native.png",
+          "pixelBox": [
+            1020,
+            1545,
+            1290,
+            1620
+          ],
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/LJE-f33-source-sections32-34-native.png",
+          "sha256": "ec40d5b4d80e50e292eec40aaaeb773d75f337fb4039370d347f7e1fd1556152",
+          "sourceImageSHA256": "fb291b5915202c92082301b2abcc652af13b06a2eddd4f45a4495aeca3a185d3",
+          "sourceImage": "Frenkel114-native.png",
+          "pixelBox": [
+            45,
+            1465,
+            1270,
+            1710
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/Frenkel114-complete-native.png",
+          "sha256": "fb291b5915202c92082301b2abcc652af13b06a2eddd4f45a4495aeca3a185d3",
+          "sourceImageSHA256": "fb291b5915202c92082301b2abcc652af13b06a2eddd4f45a4495aeca3a185d3",
+          "sourceImage": "Frenkel114-native.png",
+          "pixelBox": null,
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "LJESourceNotesBefore": 1,
+      "LJESourceNotesAfter": 0,
+      "contentSHA256Before": "d2bb4d07c7885ca9a0f5c07710e01f617faf960161494cfdd622c2b140635f14",
+      "contentSHA256After": "4c2f83f2f964625ca8c211eeed6c2953b810ad466f8799041e760d286662583f"
+    }
+  ],
+  "findings": [
+    {
+      "noteId": "s3y-1-1-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "ויַעַן",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-1a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-1-word12-letter1-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "ובְאָסְרָם",
+      "letterIndexBefore": 1,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-1b",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-1-word15-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "ויְבִיאוּם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-1b",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-1-word17-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "ויַשְׁלִיכוּם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-1-word17-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "ויַשְׁלִיכוּם",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-2-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 2,
+      "blockId": null,
+      "anchorBefore": "ותִּשְׂרֹף",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-2-word10-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 2,
+      "blockId": null,
+      "anchorBefore": "ותֹּאכְלֵם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-3-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "anchorBefore": "ויִתְפַּלְלוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-3",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-3-word1-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "anchorBefore": "ויִתְפַּלְלוּ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-3",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-3-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "anchorBefore": "ויְהַלְלוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-3",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-4-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויָקָם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-4a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-4-word1-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויָקָם",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-4a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-4-word3-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויִתְפַּלֵּל",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-4a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-4-word3-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויִתְפַּלֵּל",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-4a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-4-word4-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויִפְתַּח",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-4a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-4-word4-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויִפְתַּח",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-4a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-4-word6-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויוֹדֶה",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-4a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-4-word6-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויוֹדֶה",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-4a",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-4-word15-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויֹאמְרוּ׃",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y-4-vayomru",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-4-word15-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "ויֹאמְרוּ׃",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y-4-vayomru",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-11-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "anchorBefore": "ותִּתֵּן",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 233,
+      "wordEvidenceKey": "s3y233-11",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-22-word7-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "anchorBefore": "ויִסּוֹגוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 234,
+      "wordEvidenceKey": "s3y-22-row-exact",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-tail-word4-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויְהִי",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail1",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-tail-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויָקָם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail1",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-tail-word5-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויָקָם",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail1",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-tail-word6-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויַרְא",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail1",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-tail-word6-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויַרְא",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail1",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-tail-word7-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויִתְמַהּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-tail-word7-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויִתְמַהּ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "s3y-1-tail-word8-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויְמַהֵר",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-tail-word9-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "s3y-1-tail-word9-letter2-dagesh",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 236,
+      "wordEvidenceKey": "s3y236-tail2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "esg-1-1-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 215,
+      "wordEvidenceKey": "esg215-rows1-2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-1-1-2-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "למְלֹךְ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 215,
+      "wordEvidenceKey": "esg215-rows1-2",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The lamed lower cluster is continuous with its curved descending foot; neither an exact independent vowel class nor clear absence is established."
+    },
+    {
+      "noteId": "esg-1-11-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 216,
+      "wordEvidenceKey": "esg216-rows1-3",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-1-12-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 12,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 216,
+      "wordEvidenceKey": "esg216-rows4-7",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-1-13-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 13,
+      "blockId": null,
+      "anchorBefore": "למְזִמּוֹתֵיהֶם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 216,
+      "wordEvidenceKey": "esg216-rows4-7",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The lamed lower cluster is continuous with its curved descending foot; neither an exact independent vowel class nor clear absence is established."
+    },
+    {
+      "noteId": "esg-1-14-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "anchorBefore": "ויוֹדוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 216,
+      "wordEvidenceKey": "esg216-rows4-7",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "esg-1-14-2-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "anchorBefore": "ויוּבְלוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 216,
+      "wordEvidenceKey": "esg216-rows4-7",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "esg-1-15-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 15,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg217-rows1-4",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-1-16-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 16,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg217-rows1-4",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-1-17-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 217,
+      "wordEvidenceKey": "esg217-rows1-4",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-3-1-1-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 218,
+      "wordEvidenceKey": "esg218-mordrow",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-6-5-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 5,
+      "blockId": null,
+      "anchorBefore": "להְיוֹת",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 222,
+      "wordEvidenceKey": "esg222-lihyotrow",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The lamed lower cluster is continuous with its curved descending foot; neither an exact independent vowel class nor clear absence is established."
+    },
+    {
+      "noteId": "esg-6-11-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 11,
+      "blockId": null,
+      "anchorBefore": "להָנוֹת",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 223,
+      "wordEvidenceKey": "esg223-lehanotrow",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The lamed lower cluster is continuous with its curved descending foot; neither an exact independent vowel class nor clear absence is established."
+    },
+    {
+      "noteId": "esg-6-13-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 13,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 223,
+      "wordEvidenceKey": "esg223-mordrow",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-6-23-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 23,
+      "blockId": null,
+      "anchorBefore": "וְזִכרוֹן",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 224,
+      "wordEvidenceKey": "esg224-vezikhronrow",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "esg-7-1-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 1,
+      "blockId": null,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 224,
+      "wordEvidenceKey": "esg224-sevenrows",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "This individual Mordechai occurrence has dense lower kaf material continuous with its curved foot. The exact vowel class remains unreadable. Other occurrences of the name were checked separately and were not used to supply its point."
+    },
+    {
+      "noteId": "esg-7-2-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 2,
+      "blockId": null,
+      "anchorBefore": "אזְכֹּר",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 224,
+      "wordEvidenceKey": "esg224-sevenrows",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "esg-7-3-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 3,
+      "blockId": null,
+      "anchorBefore": "וַיַמְלִיכהָ",
+      "letterIndexBefore": 6,
+      "mark": "vowel",
+      "sourcePage": 224,
+      "wordEvidenceKey": "esg224-sevenrows",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "esg-7-6-1-dagesh",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 6,
+      "blockId": null,
+      "anchorBefore": "וַיַצִּילֵנוּ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-sixrow",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "esg-7-6-2-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 6,
+      "blockId": null,
+      "anchorBefore": "כמוֹהֶם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-sixrow",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "esg-7-9-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 9,
+      "blockId": null,
+      "anchorBefore": "וַיַצדֵּק",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-ninerow",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "esg-colophon-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchorBefore": "בירוּשָׁלִָם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-colophon",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "esg-colophon-2-dagesh",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchorBefore": "בירוּשָׁלִָם",
+      "letterIndexBefore": 1,
+      "mark": "dagesh",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-colophon",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "esg-colophon-3-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchorBefore": "ליסִימָכוֹס",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-colophon",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The lamed lower cluster is continuous with its curved descending foot; neither an exact independent vowel class nor clear absence is established."
+    },
+    {
+      "noteId": "esg-colophon-4-shuruq",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchorBefore": "וקלֵיאוֹפַטְרָה",
+      "letterIndexBefore": 1,
+      "mark": "shuruq",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-colophon",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav and its left-side material remain a solid joined cluster; no separate shuruq dot or reliably clean absence can be certified."
+    },
+    {
+      "noteId": "esg-colophon-5-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchorBefore": "וקלֵיאוֹפַטְרָה",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-colophon",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "esg-colophon-6-dagesh",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchorBefore": "וקלֵיאוֹפַטְרָה",
+      "letterIndexBefore": 7,
+      "mark": "dagesh",
+      "sourcePage": 225,
+      "wordEvidenceKey": "esg225-colophon",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "frenkel-lje-f33-nun-dagesh",
+      "book": "LJE",
+      "chapter": 1,
+      "verse": 30,
+      "blockId": null,
+      "anchorBefore": "תַּנַחְנָה",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 114,
+      "wordEvidenceKey": "LJE-f33-nun",
+      "outsidePreviousFocusedPasses": true,
+      "disposition": "restoredSourceVisibleDagesh",
+      "finding": "The first nun contains a detached 24-pixel dark dot at native box [1204,1574,1209,1580], with a complete white channel to its stem and foot. The adjacent tav dot is a distinct 32-pixel component. Tight native and 10x nearest-neighbor views establish the dot; the earlier wider-view fused-spur assessment is superseded. Root independently approved the exact source glyph before canonical editing."
+    },
+    {
+      "noteId": "sus-1-4-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchorBefore": "מִכּלָּם",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 237,
+      "wordEvidenceKey": "sus-4-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-5-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 5,
+      "blockId": null,
+      "anchorBefore": "כּמַנְהִיגֵי",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 237,
+      "wordEvidenceKey": "sus-5-kemanhige-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-6-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 6,
+      "blockId": null,
+      "anchorBefore": "וַיִתְחַזְּקוּ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 237,
+      "wordEvidenceKey": "sus-6-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "sus-1-9-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 9,
+      "blockId": null,
+      "anchorBefore": "ונַּהַפְכוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "wordEvidenceKey": "sus-9-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "sus-1-14-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "anchorBefore": "ויָסֹבּוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "wordEvidenceKey": "sus-14-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "sus-1-14-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "anchorBefore": "ויָסֹבּוּ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 238,
+      "wordEvidenceKey": "sus-14-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "sus-1-17-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "anchorBefore": "ותַמְרוּקִים",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "wordEvidenceKey": "sus-17-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "sus-1-18-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "blockId": null,
+      "anchorBefore": "בּיַרְכתַיִם",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "wordEvidenceKey": "sus-18-beyarkatayim-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-18-letter-4-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "blockId": null,
+      "anchorBefore": "בּיַרְכתַיִם",
+      "letterIndexBefore": 4,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "wordEvidenceKey": "sus-18-beyarkatayim-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-18-tsadi-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "blockId": null,
+      "anchorBefore": "צוּוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 238,
+      "wordEvidenceKey": "sus-18-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-22-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "wordEvidenceKey": "sus-22-eesena-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-22-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "wordEvidenceKey": "sus-22-eesena-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-23-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "blockId": null,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "wordEvidenceKey": "sus-23-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-23-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "blockId": null,
+      "anchorBefore": "אעֱשׂנָּה",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "wordEvidenceKey": "sus-23-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-27-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "anchorBefore": "ויִתְבּוֹשָׁשׁוּ",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 239,
+      "wordEvidenceKey": "sus-27-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "sus-1-27-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "anchorBefore": "ויִתְבּוֹשָׁשׁוּ",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 239,
+      "wordEvidenceKey": "sus-27-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "sus-1-38-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "blockId": null,
+      "anchorBefore": "בְּפנּת",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-38-befinnat-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-38-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "blockId": null,
+      "anchorBefore": "בְּפנּת",
+      "letterIndexBefore": 3,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-38-befinnat-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-40-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 40,
+      "blockId": null,
+      "anchorBefore": "ונִּשְׁאַל",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-40-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "sus-1-47-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "blockId": null,
+      "anchorBefore": "ויִפֶן",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-47-vayifen-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "sus-1-47-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "blockId": null,
+      "anchorBefore": "ויִפֶן",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-47-vayifen-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "sus-1-48-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 48,
+      "blockId": null,
+      "anchorBefore": "הַאמְנָם",
+      "letterIndexBefore": 2,
+      "mark": "vowel",
+      "sourcePage": 240,
+      "wordEvidenceKey": "sus-48-haumnam-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried lower point region remains dense, incomplete, or continuous with the letter foot; its exact vowel class cannot be certified. Readable neighboring marks remain unchanged."
+    },
+    {
+      "noteId": "sus-1-62-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "blockId": null,
+      "anchorBefore": "ויִמָלֵט",
+      "letterIndexBefore": 1,
+      "mark": "vowel",
+      "sourcePage": 242,
+      "wordEvidenceKey": "sus-62-vayimalet-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The initial vav lower material remains joined to the stem or thick foot. Its vowel cannot be identified independently and the region is not reliably blank."
+    },
+    {
+      "noteId": "sus-1-62-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "blockId": null,
+      "anchorBefore": "ויִמָלֵט",
+      "letterIndexBefore": 2,
+      "mark": "dagesh",
+      "sourcePage": 242,
+      "wordEvidenceKey": "sus-62-vayimalet-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    },
+    {
+      "noteId": "sus-1-62-letter-3-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "blockId": null,
+      "anchorBefore": "ויִמָלֵט",
+      "letterIndexBefore": 3,
+      "mark": "dagesh",
+      "sourcePage": 242,
+      "wordEvidenceKey": "sus-62-vayimalet-repeat",
+      "outsidePreviousFocusedPasses": false,
+      "disposition": "retainDisclosure",
+      "finding": "The queried narrow glyph or its interior remains filled or joined to adjacent letter strokes; no detached dot or reliably clear empty dot location can be certified. Nearby distinct dots are retained and do not supply this one."
+    }
+  ],
+  "wordEvidence": [
+    {
+      "key": "LJE-f33-nun",
+      "sourcePage": 114,
+      "source": "Frenkel1863",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/LJE-f33-nun-native.png",
+          "sha256": "42ea9abb4532f557ea71337297fb33ba7c63a755407c4d5ca994277714104f1a",
+          "sourceImageSHA256": "fb291b5915202c92082301b2abcc652af13b06a2eddd4f45a4495aeca3a185d3",
+          "sourceImage": "Frenkel114-native.png",
+          "pixelBox": [
+            1170,
+            1545,
+            1260,
+            1620
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/LJE-f33-nun-10x.png",
+          "sha256": "ae96cbc63c93ff02e8300e45bb6d636e175af3cf34e869eaf99c60f2d7bf4e77",
+          "sourceImageSHA256": "fb291b5915202c92082301b2abcc652af13b06a2eddd4f45a4495aeca3a185d3",
+          "sourceImage": "Frenkel114-native.png",
+          "pixelBox": [
+            1170,
+            1545,
+            1260,
+            1620
+          ],
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg215-rows1-2",
+      "sourcePage": 215,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg215-rows1-2-native.png",
+          "sha256": "c7bc596bbe67a41e001aea3b5c79584f4b64fd47c8312b059765c482f6ca4dae",
+          "sourceImageSHA256": "1f5b863954bf59288d98f980dc2e0d6e8f4f07c36e9507d4f12aacdf840d0f36",
+          "sourceImage": "A2-215-native.png",
+          "pixelBox": [
+            250,
+            540,
+            2160,
+            740
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg215-rows1-2-3x.png",
+          "sha256": "7dc840ce24e932c1b12dfa7545148c35e7a42e3bb030f30294b33e6cba894629",
+          "sourceImageSHA256": "1f5b863954bf59288d98f980dc2e0d6e8f4f07c36e9507d4f12aacdf840d0f36",
+          "sourceImage": "A2-215-native.png",
+          "pixelBox": [
+            250,
+            540,
+            2160,
+            740
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg216-rows1-3",
+      "sourcePage": 216,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg216-rows1-3-native.png",
+          "sha256": "f7881b9c13b4ff40434233bff8cfd53bfbb1998079b4bf0e5de67c6da1918baf",
+          "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+          "sourceImage": "A2-216-native.png",
+          "pixelBox": [
+            250,
+            425,
+            2070,
+            630
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg216-rows1-3-3x.png",
+          "sha256": "72d343587462f9fdfdc62f7c06a01b89a72128c2659188d89b3d950f5d37c736",
+          "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+          "sourceImage": "A2-216-native.png",
+          "pixelBox": [
+            250,
+            425,
+            2070,
+            630
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg216-rows4-7",
+      "sourcePage": 216,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg216-rows4-7-native.png",
+          "sha256": "027a71b607a4347cd283b4615c0ea594f2180c9e145e237e60a1e81cd22fbedb",
+          "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+          "sourceImage": "A2-216-native.png",
+          "pixelBox": [
+            250,
+            720,
+            2070,
+            1120
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg216-rows4-7-3x.png",
+          "sha256": "b1187b9347d5887394abede321da4fdc142b889fed8635c35d587be70967fc6f",
+          "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+          "sourceImage": "A2-216-native.png",
+          "pixelBox": [
+            250,
+            720,
+            2070,
+            1120
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg217-rows1-4",
+      "sourcePage": 217,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg217-rows1-4-native.png",
+          "sha256": "81339e58ade9d79952d16c11534796da641d50af031179d43285725cf5dc5e96",
+          "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+          "sourceImage": "A2-217-native.png",
+          "pixelBox": [
+            350,
+            265,
+            2160,
+            675
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg217-rows1-4-3x.png",
+          "sha256": "7cd803f4893ffa0c8d5014549493c39d1dae859f2f13c59f64ce5064b29ab2e9",
+          "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+          "sourceImage": "A2-217-native.png",
+          "pixelBox": [
+            350,
+            265,
+            2160,
+            675
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg218-mordrow",
+      "sourcePage": 218,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg218-mordrow-native.png",
+          "sha256": "a05e2c26f60eb77d0b2680fdcb81b8ca62a4be72a224dc8ebcc3992454727c33",
+          "sourceImageSHA256": "d50c765356f4479ff87f27ce7c4901a11acfa164cb65ec99fe1e82fa41db6371",
+          "sourceImage": "A2-218-native.png",
+          "pixelBox": [
+            200,
+            1490,
+            2100,
+            1620
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg218-mordrow-3x.png",
+          "sha256": "0fa53e1732c91727421c17cfee70fe20db14bbd4b8c260d5c85b6f7ca9c0e2be",
+          "sourceImageSHA256": "d50c765356f4479ff87f27ce7c4901a11acfa164cb65ec99fe1e82fa41db6371",
+          "sourceImage": "A2-218-native.png",
+          "pixelBox": [
+            200,
+            1490,
+            2100,
+            1620
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg222-lihyotrow",
+      "sourcePage": 222,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg222-lihyotrow-native.png",
+          "sha256": "bd0fe2bda3c866211e55d300dbe8f94b139ca8d85decc7a2757b606011bef545",
+          "sourceImageSHA256": "8bd3f135cedd36c1b65e297b11352a3aaee2fab0b81eb4aa2c33f643b0229c2c",
+          "sourceImage": "A2-222-native.png",
+          "pixelBox": [
+            240,
+            1150,
+            2050,
+            1250
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg222-lihyotrow-3x.png",
+          "sha256": "39473627498f912fd94076e1bac08070da6b6109c6dd51168e79b410ece424e7",
+          "sourceImageSHA256": "8bd3f135cedd36c1b65e297b11352a3aaee2fab0b81eb4aa2c33f643b0229c2c",
+          "sourceImage": "A2-222-native.png",
+          "pixelBox": [
+            240,
+            1150,
+            2050,
+            1250
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg223-lehanotrow",
+      "sourcePage": 223,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg223-lehanotrow-native.png",
+          "sha256": "0edde875e4d7f6a76cda30e711e35f97afe40a8d640b842b4b7cf6ce9be7f052",
+          "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+          "sourceImage": "A2-223-native.png",
+          "pixelBox": [
+            270,
+            470,
+            2130,
+            590
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg223-lehanotrow-3x.png",
+          "sha256": "72eefe9607854ef9c86ad5990104e9797c7c59474ab8bcd577feaf331c8d86d6",
+          "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+          "sourceImage": "A2-223-native.png",
+          "pixelBox": [
+            270,
+            470,
+            2130,
+            590
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg223-mordrow",
+      "sourcePage": 223,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg223-mordrow-native.png",
+          "sha256": "70e27c3396d9771caaad5f65661999042926306551d86c1edb8a7daa84898b36",
+          "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+          "sourceImage": "A2-223-native.png",
+          "pixelBox": [
+            270,
+            845,
+            2130,
+            960
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg223-mordrow-3x.png",
+          "sha256": "6225505dfbfd208de500bc4f025edee9bc105f45ae47f232377c764bd80132a1",
+          "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+          "sourceImage": "A2-223-native.png",
+          "pixelBox": [
+            270,
+            845,
+            2130,
+            960
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg224-sevenrows",
+      "sourcePage": 224,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg224-sevenrows-native.png",
+          "sha256": "cab9a69470821900c7cf5c9fb67142da265a267d0429ed6d811916166390783a",
+          "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+          "sourceImage": "A2-224-native.png",
+          "pixelBox": [
+            250,
+            1585,
+            2110,
+            2010
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg224-sevenrows-3x.png",
+          "sha256": "e363adca6942929fe65338fd23e0bad2bc86b180ea3676ff286a8a1a20be10f0",
+          "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+          "sourceImage": "A2-224-native.png",
+          "pixelBox": [
+            250,
+            1585,
+            2110,
+            2010
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg224-vezikhronrow",
+      "sourcePage": 224,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg224-vezikhronrow-native.png",
+          "sha256": "68b5ab2ecf50f61eeafd17f4f64097af11d5c5a21c47efafc7d43d65d6a63adf",
+          "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+          "sourceImage": "A2-224-native.png",
+          "pixelBox": [
+            250,
+            1155,
+            2110,
+            1275
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg224-vezikhronrow-3x.png",
+          "sha256": "2dd7c3740649b2492f6c7de24563ea3c4574dc085110624e4d9617966faa61cf",
+          "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+          "sourceImage": "A2-224-native.png",
+          "pixelBox": [
+            250,
+            1155,
+            2110,
+            1275
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg225-colophon",
+      "sourcePage": 225,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg225-colophon-native.png",
+          "sha256": "a9f25c22cb00625684e85889b141b97d6abc96f078dadcd8750787656a110974",
+          "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+          "sourceImage": "A2-225-native.png",
+          "pixelBox": [
+            260,
+            1245,
+            2140,
+            1550
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg225-colophon-3x.png",
+          "sha256": "b1104256e0752e38efb628140af2280dc7fdf69e5405d11c5c07e742cc6f1357",
+          "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+          "sourceImage": "A2-225-native.png",
+          "pixelBox": [
+            260,
+            1245,
+            2140,
+            1550
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg225-ninerow",
+      "sourcePage": 225,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg225-ninerow-native.png",
+          "sha256": "4af64f3d3e2319149ca698e9dc8ee6872dde0cff8e2d8aa4719bda52926d4b89",
+          "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+          "sourceImage": "A2-225-native.png",
+          "pixelBox": [
+            260,
+            845,
+            2140,
+            955
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg225-ninerow-3x.png",
+          "sha256": "1ad1384a8d1ce55d61154421f1304c5c8dc4cf1a48d27bf70e363847388e7304",
+          "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+          "sourceImage": "A2-225-native.png",
+          "pixelBox": [
+            260,
+            845,
+            2140,
+            955
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "esg225-sixrow",
+      "sourcePage": 225,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg225-sixrow-native.png",
+          "sha256": "53be23c50d5ad160140056cf2ffd5eab5d4a03d6fb69a7b7a23199c68ce4bc2e",
+          "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+          "sourceImage": "A2-225-native.png",
+          "pixelBox": [
+            260,
+            475,
+            2140,
+            685
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/esg225-sixrow-3x.png",
+          "sha256": "2e6d9d379c1f7cc616c6c5aaa2f591ccadf3d2bb69b4166fd52e52cd6f1f593f",
+          "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+          "sourceImage": "A2-225-native.png",
+          "pixelBox": [
+            260,
+            475,
+            2140,
+            685
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-22-row-exact",
+      "sourcePage": 234,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y-22-row-exact-native.png",
+          "sha256": "620c55ea7a83c85ba04c123d4e34555e29202f1adcec800e731b0c7060171aee",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "sourceImage": "A2-234-native.png",
+          "pixelBox": [
+            230,
+            1165,
+            2110,
+            1305
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y-22-row-exact-3x.png",
+          "sha256": "ad8d51c2c86037dd02b70071d0738b64f1a3d59a5f92d04803603069b1d40c4b",
+          "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+          "sourceImage": "A2-234-native.png",
+          "pixelBox": [
+            230,
+            1165,
+            2110,
+            1305
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y-4-vayomru",
+      "sourcePage": 233,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y-4-vayomru-native.png",
+          "sha256": "3859e6bd59bec1307f3920988f40704f4236bdf235f3cd5e92878c4f469dfa87",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            1870,
+            1430,
+            2115,
+            1525
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y-4-vayomru-3x.png",
+          "sha256": "64025c3fcac5a81637eb7b7baa35fb56c6bf3337a4e582c09b0c1e425aa73eb0",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            1870,
+            1430,
+            2115,
+            1525
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y233-11",
+      "sourcePage": 233,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-11-native.png",
+          "sha256": "c12a9de8a33580881c777c88ea04e3194651eb2d93231e1e91016edf08cdb0ed",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            2095,
+            2120,
+            2200
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-11-3x.png",
+          "sha256": "e88e08cc245c9676382b165652c4863ca2b6241b936ad56865b733a8a4fa358e",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            2095,
+            2120,
+            2200
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y233-1a",
+      "sourcePage": 233,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-1a-native.png",
+          "sha256": "e72947ea5e09359473d518b199679577de31a0d11e81587e5cca33d97333a72d",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            770,
+            2120,
+            865
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-1a-3x.png",
+          "sha256": "a7a371497097d85b583d23f28c7f358e4130cba89d21dc599cf9c3b99a929d04",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            770,
+            2120,
+            865
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y233-1b",
+      "sourcePage": 233,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-1b-native.png",
+          "sha256": "99c8f68e12822f84c3cc86edf5da0bde854db81c25b6616f6ddd5e061e5af812",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            865,
+            2120,
+            965
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-1b-3x.png",
+          "sha256": "65ed02d51e91e1c63e6c8f75e59c21f952ef17ebe0bdac72330fbbe8589b213a",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            865,
+            2120,
+            965
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y233-2",
+      "sourcePage": 233,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-2-native.png",
+          "sha256": "b2d7cf451fbebc0adecb202e4e770b1a1e4eeef7d863c04fa3f7bbde9fb097df",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            965,
+            2120,
+            1150
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-2-3x.png",
+          "sha256": "4288492de8fb3153da6204d3dda347460cd0c323a11e4fcc830b8539ad53e0b5",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            965,
+            2120,
+            1150
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y233-3",
+      "sourcePage": 233,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-3-native.png",
+          "sha256": "0c1072bc3eb46ee6d451ad9cea19e6c05b20805066984be3c82f36c2c80e00c5",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            1150,
+            2120,
+            1248
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-3-3x.png",
+          "sha256": "e913a35d77bcfdc9e962e0948438d6382b6dc3d018ac4b5afc49645dc4577c87",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            1150,
+            2120,
+            1248
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y233-4a",
+      "sourcePage": 233,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-4a-native.png",
+          "sha256": "86744f9f2c2ae511e5f6be0b603da65b0b85c2bb94886089bcd798864954fdd5",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            1248,
+            2120,
+            1345
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y233-4a-3x.png",
+          "sha256": "453e08e7b46d930ca33db6b3c7156e4f6fb73c7a9c654df02e622f4dc94cfe70",
+          "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+          "sourceImage": "A2-233-native.png",
+          "pixelBox": [
+            350,
+            1248,
+            2120,
+            1345
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y236-tail1",
+      "sourcePage": 236,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y236-tail1-native.png",
+          "sha256": "3d0cf877c860edcc9d42139c02add893ae1403b5be5cc2d6d1c42fe50c246718",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "sourceImage": "A2-236-native.png",
+          "pixelBox": [
+            230,
+            2570,
+            1870,
+            2675
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y236-tail1-3x.png",
+          "sha256": "ac60be67205ac1957b9059c6abf35a3dcd571e2a9161b5f663f33a49506ac053",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "sourceImage": "A2-236-native.png",
+          "pixelBox": [
+            230,
+            2570,
+            1870,
+            2675
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "s3y236-tail2",
+      "sourcePage": 236,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y236-tail2-native.png",
+          "sha256": "aedd12c9b4135a3ce0d77623a81df9eb85b07ee91743bdbcf0c7c51deeffa449",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "sourceImage": "A2-236-native.png",
+          "pixelBox": [
+            230,
+            2670,
+            1870,
+            2775
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/s3y236-tail2-3x.png",
+          "sha256": "930a27f8cee272409e8ae549844d34642c51dfbd2fd520feb71d15ba2964bb80",
+          "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+          "sourceImage": "A2-236-native.png",
+          "pixelBox": [
+            230,
+            2670,
+            1870,
+            2775
+          ],
+          "scale": 3,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-14-repeat",
+      "sourcePage": 238,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-14-repeat-native.png",
+          "sha256": "403691e5cacd90a7a782c8b2a6ab304a8ccdd1b7c6859bf856b1e6dc1fcdf9a6",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            1260,
+            1780,
+            1550,
+            1940
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-14-repeat-4x.png",
+          "sha256": "b2e89ec8ce0e198668e0e5ce2aa748f9e646bd544019e9fd12be579b4d6e396a",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            1260,
+            1780,
+            1550,
+            1940
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-17-repeat",
+      "sourcePage": 238,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-17-repeat-native.png",
+          "sha256": "8204786d63549f0cf2adccff539f63c11ba396eaf76cd77336fcf994fbaf5722",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            940,
+            2220,
+            1350,
+            2380
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-17-repeat-4x.png",
+          "sha256": "033fb1285e5d07ae5a846fbc3b47f98316d5d80a4cb8ef1d5e3614b6793fdd38",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            940,
+            2220,
+            1350,
+            2380
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-18-beyarkatayim-repeat",
+      "sourcePage": 238,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-18-beyarkatayim-repeat-native.png",
+          "sha256": "15a9f76b24b9014f7adb6a9691023a09601c127c99d635fb9c069536073e67ed",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            1210,
+            2410,
+            1660,
+            2570
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-18-beyarkatayim-repeat-4x.png",
+          "sha256": "465389662310c63a5821dc78bbecbd17e295ffda6394d93a0a35a424d0153ad4",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            1210,
+            2410,
+            1660,
+            2570
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-18-repeat",
+      "sourcePage": 238,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-18-repeat-native.png",
+          "sha256": "e508d3ffeec68a44a037ac26c3a384982ec80c53b8a7b51ca7a9ddde87d7dab8",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            640,
+            2410,
+            830,
+            2570
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-18-repeat-4x.png",
+          "sha256": "be9fdd53f49317be292f8656cdaac2a0ba343bdba3e58ebb486bcaee85520c44",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            640,
+            2410,
+            830,
+            2570
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-22-eesena-repeat",
+      "sourcePage": 239,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-22-eesena-repeat-native.png",
+          "sha256": "7b6841ba86b06b5eda552393d0cbc4f9e7a4adf57efa36263e8d3c0f601419e9",
+          "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+          "sourceImage": "A2-239-native.png",
+          "pixelBox": [
+            1850,
+            1260,
+            2080,
+            1390
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-22-eesena-repeat-4x.png",
+          "sha256": "e10f6ac396cd1bfef56fe6f790e2267da32d16196e2c3ce9ee70c72ae5cd7f9c",
+          "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+          "sourceImage": "A2-239-native.png",
+          "pixelBox": [
+            1850,
+            1260,
+            2080,
+            1390
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-23-repeat",
+      "sourcePage": 239,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-23-repeat-native.png",
+          "sha256": "41ec932ace3b84591c5c08b72d7df29b9c5b962c18affbbb7166c2083dbde125",
+          "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+          "sourceImage": "A2-239-native.png",
+          "pixelBox": [
+            1840,
+            1260,
+            2110,
+            1410
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-23-repeat-4x.png",
+          "sha256": "85f2766b4f9a698e8484bf13cfe534338e6ec6aee2d5c42c165beea1ddcbb5ec",
+          "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+          "sourceImage": "A2-239-native.png",
+          "pixelBox": [
+            1840,
+            1260,
+            2110,
+            1410
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-27-repeat",
+      "sourcePage": 239,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-27-repeat-native.png",
+          "sha256": "da944e63a069c01473a8d91d30b1750d0a0e6e3541e04a6c34f0d5cf270ce76a",
+          "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+          "sourceImage": "A2-239-native.png",
+          "pixelBox": [
+            490,
+            1620,
+            950,
+            1800
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-27-repeat-4x.png",
+          "sha256": "c35414c820ad64a164847400217c1606015a15f1c27cca3fa7ec542d39a66a63",
+          "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+          "sourceImage": "A2-239-native.png",
+          "pixelBox": [
+            490,
+            1620,
+            950,
+            1800
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-38-befinnat-repeat",
+      "sourcePage": 240,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-38-befinnat-repeat-native.png",
+          "sha256": "ac64528d556c2f2de0c265b032314f3794c089698451625eb09125f5a32c7ad2",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "sourceImage": "A2-240-native.png",
+          "pixelBox": [
+            1160,
+            1870,
+            1340,
+            2000
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-38-befinnat-repeat-4x.png",
+          "sha256": "304bd5b849d840f30e5a4daf9758c9066cfe1c37b8f90350c227d2b51ef8d62c",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "sourceImage": "A2-240-native.png",
+          "pixelBox": [
+            1160,
+            1870,
+            1340,
+            2000
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-4-repeat",
+      "sourcePage": 237,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-4-repeat-native.png",
+          "sha256": "d0fefa8657cc85f76a85bd9341654d59d6e14b419b280f4ebf09519835c2ce1c",
+          "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+          "sourceImage": "A2-237-native.png",
+          "pixelBox": [
+            320,
+            1810,
+            550,
+            1970
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-4-repeat-4x.png",
+          "sha256": "8441dae1e9611860da22f7b3ed9cf789ff4f0efade607a970fc389d95c0fba80",
+          "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+          "sourceImage": "A2-237-native.png",
+          "pixelBox": [
+            320,
+            1810,
+            550,
+            1970
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-40-repeat",
+      "sourcePage": 240,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-40-repeat-native.png",
+          "sha256": "d17d574d703b49b95e2e706e625a95dfd087d49d59fc7e4d1d452a7d974811bf",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "sourceImage": "A2-240-native.png",
+          "pixelBox": [
+            990,
+            2050,
+            1310,
+            2170
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-40-repeat-4x.png",
+          "sha256": "bdebf67f418ab43b5529a331994355f979249c81b347b391c89247907422cc77",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "sourceImage": "A2-240-native.png",
+          "pixelBox": [
+            990,
+            2050,
+            1310,
+            2170
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-47-vayifen-repeat",
+      "sourcePage": 240,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-47-vayifen-repeat-native.png",
+          "sha256": "c8072c2b11c76100c5f4ccb77cbefec015741df02d00e6b5a116743c4fcc012a",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "sourceImage": "A2-240-native.png",
+          "pixelBox": [
+            1170,
+            2735,
+            1285,
+            2840
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-47-vayifen-repeat-4x.png",
+          "sha256": "4e261f97eed3a2df960a867fc310296616f58f2e9dcaf6e32d721f84e4a5fb43",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "sourceImage": "A2-240-native.png",
+          "pixelBox": [
+            1170,
+            2735,
+            1285,
+            2840
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-48-haumnam-repeat",
+      "sourcePage": 240,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-48-haumnam-repeat-native.png",
+          "sha256": "bd6d78abda36565bc1f68549285379174bf694e84ff25c9b86e0636dfaf183d2",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "sourceImage": "A2-240-native.png",
+          "pixelBox": [
+            780,
+            2820,
+            980,
+            2940
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-48-haumnam-repeat-4x.png",
+          "sha256": "85e56841d58aac74baf206fb82d74b3fb8165f09673a64a707338df1109582f2",
+          "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+          "sourceImage": "A2-240-native.png",
+          "pixelBox": [
+            780,
+            2820,
+            980,
+            2940
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-5-kemanhige-repeat",
+      "sourcePage": 237,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-5-kemanhige-repeat-native.png",
+          "sha256": "f17d7d155cee8202b25908139db86e0360db334c0c0cd280f3667610d8530bcf",
+          "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+          "sourceImage": "A2-237-native.png",
+          "pixelBox": [
+            1875,
+            2155,
+            2110,
+            2240
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-5-kemanhige-repeat-4x.png",
+          "sha256": "6993e9ad66d1c746c9466aec1c38946ae0527e7076957c3d93b33f9773d14ccc",
+          "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+          "sourceImage": "A2-237-native.png",
+          "pixelBox": [
+            1875,
+            2155,
+            2110,
+            2240
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-6-repeat",
+      "sourcePage": 237,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-6-repeat-native.png",
+          "sha256": "21f859ac34b1109841bc237250ae521b9bda79ecfa1a23a43e16a726a66f6121",
+          "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+          "sourceImage": "A2-237-native.png",
+          "pixelBox": [
+            1420,
+            2110,
+            1800,
+            2260
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-6-repeat-4x.png",
+          "sha256": "4a874c0612bcc3a3f864e1232aad9353b1d6483273d3ddb470fef5f5fa8965ea",
+          "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+          "sourceImage": "A2-237-native.png",
+          "pixelBox": [
+            1420,
+            2110,
+            1800,
+            2260
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-62-vayimalet-repeat",
+      "sourcePage": 242,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-62-vayimalet-repeat-native.png",
+          "sha256": "bb557c04cb015a354a6d2ec88d7806a101ba2223324f16a9aa79d2e1c4ca277b",
+          "sourceImageSHA256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+          "sourceImage": "A2-242-native.png",
+          "pixelBox": [
+            1370,
+            2185,
+            1545,
+            2310
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-62-vayimalet-repeat-4x.png",
+          "sha256": "2bc5812e934eae4905e6728b3df6d689bdb39423670ef5e6883198f6342f47da",
+          "sourceImageSHA256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+          "sourceImage": "A2-242-native.png",
+          "pixelBox": [
+            1370,
+            2185,
+            1545,
+            2310
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sus-9-repeat",
+      "sourcePage": 238,
+      "source": "KahanaA2",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-9-repeat-native.png",
+          "sha256": "489706265f2864a7b43a472baff65f46e31ab418758b9ef018f74c27235390bd",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            1740,
+            1270,
+            2060,
+            1410
+          ],
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/sus-9-repeat-4x.png",
+          "sha256": "8518b3cbed82135d6b00f2ab651f25b95cfa20fb1a5762f8d1fc4e3d017f0ae6",
+          "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+          "sourceImage": "A2-238-native.png",
+          "pixelBox": [
+            1740,
+            1270,
+            2060,
+            1410
+          ],
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    }
+  ],
+  "sourcePageContexts": [
+    {
+      "sourcePage": 215,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-215-complete-native.png",
+        "sha256": "1f5b863954bf59288d98f980dc2e0d6e8f4f07c36e9507d4f12aacdf840d0f36",
+        "sourceImageSHA256": "1f5b863954bf59288d98f980dc2e0d6e8f4f07c36e9507d4f12aacdf840d0f36",
+        "sourceImage": "A2-215-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 216,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-216-complete-native.png",
+        "sha256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+        "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+        "sourceImage": "A2-216-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 217,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-217-complete-native.png",
+        "sha256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+        "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+        "sourceImage": "A2-217-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 218,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-218-complete-native.png",
+        "sha256": "d50c765356f4479ff87f27ce7c4901a11acfa164cb65ec99fe1e82fa41db6371",
+        "sourceImageSHA256": "d50c765356f4479ff87f27ce7c4901a11acfa164cb65ec99fe1e82fa41db6371",
+        "sourceImage": "A2-218-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 222,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-222-complete-native.png",
+        "sha256": "8bd3f135cedd36c1b65e297b11352a3aaee2fab0b81eb4aa2c33f643b0229c2c",
+        "sourceImageSHA256": "8bd3f135cedd36c1b65e297b11352a3aaee2fab0b81eb4aa2c33f643b0229c2c",
+        "sourceImage": "A2-222-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 223,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-223-complete-native.png",
+        "sha256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+        "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+        "sourceImage": "A2-223-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 224,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-224-complete-native.png",
+        "sha256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+        "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+        "sourceImage": "A2-224-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 225,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-225-complete-native.png",
+        "sha256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+        "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+        "sourceImage": "A2-225-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 233,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-233-complete-native.png",
+        "sha256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+        "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+        "sourceImage": "A2-233-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 234,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-234-complete-native.png",
+        "sha256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+        "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+        "sourceImage": "A2-234-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 236,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-236-complete-native.png",
+        "sha256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+        "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+        "sourceImage": "A2-236-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 237,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-237-complete-native.png",
+        "sha256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+        "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+        "sourceImage": "A2-237-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 238,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-238-complete-native.png",
+        "sha256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+        "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+        "sourceImage": "A2-238-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 239,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-239-complete-native.png",
+        "sha256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+        "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+        "sourceImage": "A2-239-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 240,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-240-complete-native.png",
+        "sha256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+        "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+        "sourceImage": "A2-240-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    },
+    {
+      "sourcePage": 242,
+      "evidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-ADDITIONS/A2-242-complete-native.png",
+        "sha256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+        "sourceImageSHA256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+        "sourceImage": "A2-242-native.png",
+        "pixelBox": null,
+        "scale": 1,
+        "resampling": "none"
+      }
+    }
+  ],
+  "validation": {
+    "exactApprovedCanonicalDeltaVerifiedAgainstPass3Snapshot": true,
+    "allFourBookConsonantsPreserved": true,
+    "allSourceBoundariesAndWitnessAssignmentsPreserved": true,
+    "allSUS25SourceLocationsVerifiedInTheodotionBody": true,
+    "ESGS3YSUSCanonicalBytesUnchanged": true,
+    "previousPinnedReportsUntouched": true,
+    "centralReviewDailyCrosswalkAndGeneratedIntegration": "Owned by root after this evidence report; not modified by this agent."
+  }
+}

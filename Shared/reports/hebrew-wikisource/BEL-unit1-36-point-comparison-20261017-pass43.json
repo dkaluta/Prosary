@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 43,
+  "book": "BEL",
+  "status": "Four source 1:36 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 43 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass43-BEL-1-36/source-provenance.json",
+    "sha256": "3da83e44a0d135d9d1093ce51227f75677e0ccd8e7973fcc409f196877281d2d"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 247 / תקעה (viewer page 592, internal 607). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 372,
+  "sourceNotesBefore": 69,
+  "sourceNotesAfter": 65,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-36-247-vayahazek36-letter1-vowel",
+    "bel-1-36-247-vayohez36-letter1-vowel",
+    "bel-1-36-247-vayisaehu36-letter1-vowel",
+    "bel-1-36-247-vayatsigehu36-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 4,
+  "addedCombiningMarks": {
+    "U+05B7": 4
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 36,
+      "before": "ויַּחֲזֵק מַלְאַךְ יְיָ בְּקָדְקֳדוֹ ויֹּאחֶז בְּצִיצִת רֹאשׁוֹ ויִּשָּׂאֵהוּ בִסְעָרָה ויַּצִּיגֵהוּ עַל־אַדְמַת בָּבֶל מִמַּעַל לַבּוֹר׃",
+      "after": "וַיַּחֲזֵק מַלְאַךְ יְיָ בְּקָדְקֳדוֹ וַיֹּאחֶז בְּצִיצִת רֹאשׁוֹ וַיִּשָּׂאֵהוּ בִסְעָרָה וַיַּצִּיגֵהוּ עַל־אַדְמַת בָּבֶל מִמַּעַל לַבּוֹר׃",
+      "beforeTextSHA256": "352a3773201e52e6c8df8a92a4c00b0b528818922ac5b8375e9584fafac13656",
+      "afterTextSHA256": "7a536ebcebae9e0b1f9588588471b20ea5a53df061b9b30c47a042116b5cf418"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 36,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label לו on page תקעה / 247 (viewer page 592, internal page 607) identifies the unit covering verse 36 (Theodotion line 7). Canonical verse 36 and sourcePages [247] are preserved.",
+  "decisions": [
+    {
+      "noteId": "bel-1-36-247-vayahazek36-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויַּחֲזֵק",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial vav foot sits a sharp horizontal bar (width 18 px, height 5-6 px) with clean white space separating it from the letter base and adjacent yod. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass43-BEL-1-36/bel-1-36-247-vayahazek36-letter1-vowel-target-native.png",
+        "sha256": "eb40909cd2cad58ae17ec0f80bcec56a8aea8e10661b21d73c361194711c08a7"
+      }
+    },
+    {
+      "noteId": "bel-1-36-247-vayohez36-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויֹּאחֶז",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial vav foot sits a clean horizontal bar (width 16 px, height 5-6 px) with distinct ink separation from the vav stroke. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass43-BEL-1-36/bel-1-36-247-vayohez36-letter1-vowel-target-native.png",
+        "sha256": "37d7aa311db5351f73060d02025c3ffa5cb7306c36eef13d7df8c6c072f6cbe8"
+      }
+    },
+    {
+      "noteId": "bel-1-36-247-vayisaehu36-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויִּשָּׂאֵהוּ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial vav foot sits a crisp horizontal bar (width 16 px, height 5-6 px) clearly matching the standard stamped patah punch across the line. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass43-BEL-1-36/bel-1-36-247-vayisaehu36-letter1-vowel-target-native.png",
+        "sha256": "55f7bc5a794be1b60eecd5d6004ee9747a0fcdd610c92b87e63341a49845755b"
+      }
+    },
+    {
+      "noteId": "bel-1-36-247-vayatsigehu36-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 36,
+      "anchor": "ויַּצִּיגֵהוּ",
+      "letterIndex": 1,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under initial vav foot sits a sharp horizontal bar (width 17 px, height 5-6 px) with clean white space surrounding it. Confirmed as stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass43-BEL-1-36/bel-1-36-247-vayatsigehu36-letter1-vowel-target-native.png",
+        "sha256": "b24c084e73d98c3d6c5ffcff1626e10c6bdffd207a7b4d97b5e0b177ee04ab04"
+      }
+    }
+  ]
+}

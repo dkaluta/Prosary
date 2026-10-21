@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 226,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation226-WIS-6-3/source-provenance.json",
+    "sha256": "b7333140795263927b0680b9a157a1a8980b759afb30f805ac80b1f2c1ee84b4"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-6-3-zayin"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-6-3-zayin",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 3,
+      "anchorBefore": "מְזמּוֹתֵיכֶם",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Fresh own native ASCII shows Zayin359px[946,1538,961,1587]: broad top head1538..1554; narrow stem1555..1577; attached irregular lower node1578..1586. Node remains continuously joined and does not independently establish an exact vowel head or mark count. Blank lower surroundings cannot prove absence. No vowel supplied.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b9/b96ea0a805aae38b87eebd87baf6f4ae7f091d339cf73c1259c494d29e1e1c57.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b9/b96ea0a805aae38b87eebd87baf6f4ae7f091d339cf73c1259c494d29e1e1c57.bin",
+      "inspectedBounds": [
+        943,
+        1525,
+        965,
+        1608
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation226-WIS-6-3/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 6,
+    "verse": 3,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation226-WIS-6-3/independent-review.json",
+    "sha256": "80a51664d18a3e7a232521d2497ae25a2c03d6df43752f38918a4973d0ab1433"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation226-WIS-6-3/primary-preparation.json",
+    "sha256": "d6f9c7dd95225f177bcf125297e766edf66aad2a85f98cc4dead7e21130ecc8a"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation226-WIS-6-3/consensus-preparation.json",
+    "sha256": "3b57f1b6bfbd4218fdf1daa53f6832e286afc9ee32157d0c6aedf29edac29fb9"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

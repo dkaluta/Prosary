@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-21",
+  "pass": 51,
+  "startingNoteCount": 340,
+  "removedNoteCount": 4,
+  "remainingNoteCount": 336,
+  "books": [
+    {
+      "book": "WIS",
+      "beforeNoteCount": 148,
+      "afterNoteCount": 144,
+      "removedNoteIds": [
+        "wis-19-18-word13-tsadi-1-vowel",
+        "wis-19-18-word13-lamed-2-vowel",
+        "wis-19-18-word13-lamed-4-vowel",
+        "wis-19-18-word14-kaf-1-vowel"
+      ],
+      "beforeDigest": "5df894bcd53319a83da1c9ca6b6566ffc9d25a6bcbf4fbe99ac3e88a0f46049d",
+      "afterDigest": "e24cf45182a6f10d935d38787f8aeab76ca83f9bf63206747d4a5853d9fa7cb9",
+      "sourceChanges": [
+        {
+          "book": "WIS",
+          "chapter": 19,
+          "verse": 18,
+          "before": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+          "after": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כַּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צְלִילֵי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+          "retiredNoteIds": [
+            "wis-19-18-word13-tsadi-1-vowel",
+            "wis-19-18-word13-lamed-2-vowel",
+            "wis-19-18-word13-lamed-4-vowel",
+            "wis-19-18-word14-kaf-1-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit19-18-point-comparison-20261017-pass51.json",
+          "sha256": "ecea6fb4eec06ad2677b1b2d3fa44fea12383004a9b9e2188d575ded7efee07e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass51.json",
+          "sha256": "67341913f2fc69d7c59bc2c308642a45d09333c7a2d12048fffd3c9f750649bc"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-unit19-18-point-comparison-20261017-pass51.json",
+      "sha256": "ecea6fb4eec06ad2677b1b2d3fa44fea12383004a9b9e2188d575ded7efee07e"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass51.json",
+      "sha256": "67341913f2fc69d7c59bc2c308642a45d09333c7a2d12048fffd3c9f750649bc"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 336,
+      "removedNotes": 4,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-49c54be78d8657b9e5ff326ac051f0c7e94bb15014033f2dab2192d32c1d5ce4.zip",
+      "archiveSHA256": "d8b6fbf70e419da06a41959d44661b867afde119ef104dec6ebe402f47adde5f",
+      "archiveBytes": 3110639
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 314,
+      "remainingNoteCount": 336,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 314,
+      "distinctChangedSourceUnits": 121
+    }
+  }
+}

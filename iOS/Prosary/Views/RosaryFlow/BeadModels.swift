@@ -76,8 +76,11 @@ struct BeadLayout {
   /// Progress through the current decade's 10 Hail Marys.
   var bottomBeads: [BeadInfo] = []
   var showBottomBeads: Bool = false
+  var languageCode: String?
+  var bundleId = "rosary"
 
-  static func build(steps: [RosaryStep], currentIndex: Int, hasClosingCross: Bool) -> BeadLayout {
+  static func build(steps: [RosaryStep], currentIndex: Int, hasClosingCross: Bool,
+                    languageCode: String? = nil, bundleId: String = "rosary") -> BeadLayout {
     guard steps.indices.contains(currentIndex) else { return BeadLayout() }
     let step = steps[currentIndex]
 
@@ -168,7 +171,7 @@ struct BeadLayout {
       return BeadLayout(
         topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
         antiphon: antiphonBead, closingCross: closingCrossBead,
-        bottomBeads: [], showBottomBeads: false)
+        bottomBeads: [], showBottomBeads: false, languageCode: languageCode, bundleId: bundleId)
     }
 
     let decadeStepIndices = steps.indices.filter {
@@ -178,7 +181,7 @@ struct BeadLayout {
       return BeadLayout(
         topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
         antiphon: antiphonBead, closingCross: closingCrossBead,
-        bottomBeads: [], showBottomBeads: false)
+        bottomBeads: [], showBottomBeads: false, languageCode: languageCode, bundleId: bundleId)
     }
 
     // Hail-Marys-per-decade isn't always 10 (Seven Sorrows uses 7) — derive it from the
@@ -203,7 +206,7 @@ struct BeadLayout {
     return BeadLayout(
       topRows: rows, openingCross: crossBead, groupColumns: groupColumns,
       antiphon: antiphonBead, closingCross: closingCrossBead,
-      bottomBeads: bottom, showBottomBeads: true)
+      bottomBeads: bottom, showBottomBeads: true, languageCode: languageCode, bundleId: bundleId)
   }
 
   /// A single spoken summary of where the beads currently show progress — the dots themselves
@@ -221,7 +224,8 @@ struct BeadLayout {
     if let currentDecade = decadeBeads.firstIndex(where: { $0.state == .current }) {
       var description = String(localized: "beadTrack.decade", defaultValue: "Decade \(currentDecade + 1) of \(decadeBeads.count)", bundle: UILanguage.bundle, locale: UILanguage.locale)
       if showBottomBeads, let currentHailMary = bottomBeads.firstIndex(where: { $0.state == .current }) {
-        description += ", " + String(localized: "beadTrack.hailMary", defaultValue: "Hail Mary \(currentHailMary + 1) of \(bottomBeads.count)", bundle: UILanguage.bundle, locale: UILanguage.locale)
+        description += ", " + RosaryPrayerLabels.hailMaryProgress(
+          currentHailMary + 1, total: bottomBeads.count, languageCode: languageCode, bundleId: bundleId)
       }
       return description
     }

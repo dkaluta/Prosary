@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 144,
+  "integrationPass": 144,
+  "preparationID": 193,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation193-SIR-39-35/source-provenance.json",
+    "sha256": "dac1c655edd5ab725e2c40f6928995e6c345181bf7305193af94fb34b0b6e659"
+  },
+  "sourceNotesBefore": 19,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-39-35-qof-vowel"
+  ],
+  "contentSHA256Before": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "contentSHA256After": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-39-35-qof-vowel",
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 35,
+      "anchorBefore": "הַקּ[דוֹשׁ]",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Fresh native companion right-half spread262: full own secondQof frame436..450y1196..1217, detached interior7pxnode[441,1206,444,1209] and descender29px[435,1207,438,1225]. Lower24pxcomponent[439,1218,445,1226] has an irregular upper bridge and descending tail; native rows1218..1225 do not independently establish an exact vowel or exactabsence. Adjacent leftbracket[427,1196,433,1217] and Qof descender separately bounded. No inference from neighboring He19pxhorizontalPatah or current canonical pointing. Retain exact own vowel disclosure and all originalscalars/brackets.",
+      "targetCapture": "companion-spread262-right-native.png",
+      "targetSourceIdentifier": "companion-spread262-right-native.png",
+      "inspectedBounds": [
+        433,
+        1194,
+        452,
+        1229
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation193-SIR-39-35/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 39,
+    "verse": 35,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation193-SIR-39-35/independent-review.json",
+    "sha256": "4383ef37069e49e75dd8e4fc879f4da9377e03036837cea07b8381fe682dc69f"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation193-SIR-39-35/primary-preparation.json",
+    "sha256": "68829543c48e19aa5fc6ac0b240bf16265f16292779c2f73cb5863d207c3f9e6"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass144-preparation193-SIR-39-35/consensus-preparation.json",
+    "sha256": "bf841282783008016ed1886832d3aa03963d8d3be3e516c05d77a723f1637f4f"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-17",
+  "scope": "Independent root acceptance of eight source-note removals; exact allowed canonical delta asserted against starting content. Daily selections and all their full rows are unchanged; existing reviews repinned with correction evidence.",
+  "books": [
+    {
+      "book": "WIS",
+      "beforeNoteCount": 212,
+      "afterNoteCount": 210,
+      "removedNoteIds": [
+        "wis-14-1-ayin-5-vowel",
+        "wis-18-3-word3-tav-4-vowel"
+      ],
+      "beforeDigest": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "afterDigest": "72abf55b8fefd0c01956c9bbf18a8a15ecd5a4f76578007b4e3d8a6c4efcfe64",
+      "dailyPinsUpdated": 9
+    },
+    {
+      "book": "1MA",
+      "beforeNoteCount": 28,
+      "afterNoteCount": 25,
+      "removedNoteIds": [
+        "1ma-10-37-ayin-vowel",
+        "1ma-5-26-qoph-dagesh",
+        "1ma-5-36-qoph-dagesh"
+      ],
+      "beforeDigest": "2f8f59e375019a3a710ebcd3c24d8b61469e8dd7d1f35c50f2aa4dcf36230e57",
+      "afterDigest": "c100b9140cf324ecaca6ce7bbef4cedc1bc357e49ece18bbcae21888fcda631b",
+      "dailyPinsUpdated": 0
+    },
+    {
+      "book": "TOB",
+      "beforeNoteCount": 17,
+      "afterNoteCount": 14,
+      "removedNoteIds": [
+        "tob-5-15-dalet-vowel",
+        "tob-5-3-dalet-vowel",
+        "tob-5-7-het-vowel"
+      ],
+      "beforeDigest": "e309bc3f06ad184197fb84d180a178f215355a13082208e621fd1add6f986f5d",
+      "afterDigest": "0ea0eb41fdd0d7dcba0e1a441b67949f7c1840825565957441f194138c108bc0",
+      "dailyPinsUpdated": 1
+    }
+  ],
+  "additionalScanProvenance": {
+    "volume": "B",
+    "sourceURL": "https://upload.wikimedia.org/wikisource/he/a/a8/Apocrypha_Kahana_B_extra_scan.pdf",
+    "filePageURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B_extra_scan.pdf",
+    "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+    "usedBy": [
+      "1MA-note-reinspection-20261017.json",
+      "2MA-note-reinspection-20261017.json",
+      "TOB-note-reinspection-20261017.json"
+    ]
+  },
+  "verification": {
+    "sourceBookCount": 12,
+    "sourceNotesBefore": 707,
+    "sourceNotesAfter": 699,
+    "pinnedEvidenceFilesVerified": 97,
+    "dailyReadingArtifacts": "Byte-identical; all 19 reviewed Hebrew appointments and the full reading-mapping audit pass.",
+    "bibleGeneration": "Second complete generation is byte-identical; all three native catalog copies match Shared.",
+    "newHebrewArchive": "Shared/dist/bibles/masoretic-delitzsch-f395a2ec34bf69354a99dc810f8ccfb5368c084117e33a1498a919e6a696efa2.zip",
+    "newHebrewArchiveSHA256": "ef508f175908ee7b74c7c63821cc83ade3198fd98d4405ccbd79cdd4df346d36",
+    "previousHebrewArchiveUnchanged": "Shared/dist/bibles/masoretic-delitzsch-db1037732aba7e497c58dc94125d260e7b4471d81d149f65da956880669922e4.zip",
+    "independentArchiveComparison": "Exactly 16 chapter payloads plus the manifest change; 1,320 other ZIP entries remain byte-identical. The only chapter changes are the approved eight source-note resolutions and nine Sirach sequence changes plus the 11:34 display return. All retained notes and full source units are conserved.",
+    "otherBibleEditionsUnchanged": 9,
+    "pythonTests": {
+      "test-bible-library.py": 21,
+      "test-hebrew-deuterocanon.py": 22,
+      "test-scripture-source-notes.py": 13,
+      "test-bible-source-structure.py": 12,
+      "test-hebrew-daily-readings.py": 14,
+      "test-reading-texts.py": 32
+    },
+    "android": "576 unit tests passed; none skipped.",
+    "apple": "19 focused BibleStoreTests and BibleSourceStructureTests passed on macOS; none skipped.",
+    "windows": "Catalog parity and shared archive validation passed; Windows runtime tests were not run on this macOS host.",
+    "status": "Local validation complete; not committed, pushed or released."
+  }
+}

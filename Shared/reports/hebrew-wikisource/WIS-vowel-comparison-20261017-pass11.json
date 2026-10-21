@@ -1,0 +1,1878 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 11,
+  "book": "WIS",
+  "status": "Three original-pixel lower vowels approved after independent comparison; five selected notes retained",
+  "applicationState": "pendingRootIntegration; this report modifies no canonical source, approval gate, daily, Catholic presentation or generated file",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "method": "Bounded source-only study of eight remaining annotated WIS lower-vowel sites. Native embedded original A2 pixels and integer nearest-neighbor enlargements only. Complete words and fresh numbered original rows verify addresses. Literal same-letter controls, a detached three-node qubbuts positive, detached vertical sheva, and genuine local bare final-letter counters distinguish added diagonal chains from ordinary feet; same-page detached lamed-patah competes with literal tsere/sheva/qamats. Joined ink is accepted only where the complete surviving contour uniquely identifies the mark. No grammar, OCR, translation, enhancement or presumed absence supplies a point. Computational replay verifies pixel provenance and source conservation, not vowel readings. Prior reports remain immutable; source-row wording is clarified and a mistaken scratch bare label is expressly excluded below.",
+  "baselineGlobalSourceNoteCount": 589,
+  "canonicalSHA256Before": "8ffe738ba8e75d74f2c67faab643c42e89a80c44d5fa42a0cc354d816b403ffb",
+  "contentSHA256Before": "b6c53baae2bc6e6e3f30236f73e4c6e87b8749b50ba7a4f60fd2ffb052588ca4",
+  "contentSHA256After": "08f18a3e08a6583a79a6bfd01999b2dd14453db65f3bf116efd70e2a2d317dc3",
+  "contentAfterHashMeaning": "Expected content digest after only the three exact approved point insertions and note retirements; root supplies integration review history and gate metadata.",
+  "sourceNotesBefore": 195,
+  "sourceNotesAfter": 192,
+  "reviewedSourceNoteCount": 8,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 5,
+  "retiredSourceNoteIds": [
+    "wis-5-22-lamed",
+    "wis-15-8-lamed-1-vowel",
+    "wis-19-6-word5-qof-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-16-6-lamed-1-vowel",
+    "wis-18-14-word10-lamed-3-vowel",
+    "wis-18-25-word15-lamed-1-vowel",
+    "wis-5-14-pe-tiddefenu",
+    "wis-7-2-pe"
+  ],
+  "combiningMarksAdded": 3,
+  "addedCombiningMarks": {
+    "U+05B7 PATAH": 1,
+    "U+05BB QUBBUTS": 2
+  },
+  "falsePositiveNotesRetired": 0,
+  "retainedNoteAnchorUpdates": [],
+  "excludedAuthorizedRestoredLetterNoteCount": 4,
+  "scope": {
+    "maximumSelectedPositions": 8,
+    "selectedPositions": 8,
+    "reviewedChapters": [
+      5,
+      7,
+      15,
+      16,
+      18,
+      19
+    ],
+    "allReviewedChaptersContainAnnotationsAtBaseline": true,
+    "tinyNecessaryControlWordsOnly": true,
+    "notAWholeBookRecollation": true,
+    "previousPass9AndPass10SelectedTargetsNotRepeated": true
+  },
+  "independentReview": {
+    "root": "Final acceptance of both exact qubbuts followed target/fullword, same-letter positive, detached class anchor, two-node counter, genuine local bare foot and fresh numbered-context review. Separately accepted5:22 patah after full target24x, full word, same-page literal patah and competing contours. Explicitly retained18:14. The live PSIK browser was corroborative only and is not represented as an independent scan witness.",
+    "SIRPeer": "Independently accepted both qubbuts and reaffirmed after genuine local bare lamed/qof plus complete words and numbered contexts; explicitly superseded the initial misnamed umlalim bare-control description. Independently accepted5:22 patah after complete glyph, lower24x, literal patah/tsere/sheva/qamats and printed22 context. No peer source edit."
+  },
+  "sourceRowLabelClarification": {
+    "priorReport": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+    "priorReportSHA256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007",
+    "supersedes": "The prior method phrase printed6/8 mapping to Catholic19:5/19:7 was ambiguous. It described physical rows bearing the next unit label and must not be read as a source-versus-Catholic verse-number offset.",
+    "correctedStatement": "Source and Catholic19:5,19:6,19:7,19:8 numbering matches. Adjacent units share physical rows; a margin label marks the later new unit on that row. The row labeled6 ends19:5 and starts19:6; the row labeled8 ends19:7 and starts19:8.",
+    "verifiedRows": [
+      {
+        "marginLabel": "ה /5",
+        "rowContent": "End19:4 followed by start19:5 ולמען יעבור עמך"
+      },
+      {
+        "marginLabel": "ו /6",
+        "rowContent": "End19:5 מיתה משֻנה followed by start19:6 כי כל היצורים למיניהם; target לפקדותיך is on the19:6 continuation"
+      },
+      {
+        "marginLabel": "ז /7",
+        "rowContent": "Start19:7 הן נראה"
+      },
+      {
+        "marginLabel": "ח /8",
+        "rowContent": "End19:7 מכֻסה דשא followed by start19:8 בו עברו"
+      }
+    ],
+    "evidence": [
+      "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-to8-numbered-mixed-row-context-native.png"
+    ],
+    "editorialEffect": "Clarifies source-row descriptions only; no canonical verse number, unit boundary, ordering or prior approved point changes.",
+    "historicalReportBytesPreserved": true
+  },
+  "excludedScratchFrames": [
+    {
+      "scratchPrefix": "/private/tmp/prosary-wis-20261017/pass11/wis13-10-secondlamed-bare-control",
+      "reason": "The second lamed has a visible detached hiriq; the initial bare label is wrong. This scratch frame is not exported and supplies no bare-foot proof."
+    },
+    {
+      "scratchPrefix": "/private/tmp/prosary-wis-20261017/pass11/wis13-10-umlalim-bare-lamed-word",
+      "reason": "Same incorrect bare label. The correctly named wholeword is exported only for other literal point controls, with the hiriq explicitly acknowledged."
+    }
+  ],
+  "decisions": [
+    {
+      "chapter": 5,
+      "verse": 22,
+      "retiredNote": {
+        "id": "wis-5-22-lamed",
+        "kind": "unreadablePoint",
+        "anchor": "יָשְׁלךְ",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          155
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=155"
+      },
+      "oldAnchor": "יָשְׁלךְ",
+      "newAnchor": "יָשְׁלַךְ",
+      "originalText": "וּכְאַבְנֵי קֶלַע יָשְׁלךְ עֲלֵיהֶם בָּרָד פּוֹרֵץ בְּזַעַם וּמֵי הַיָּם יִזְעֲפוּ עֲלֵימוֹ וּנְהָרוֹת יִשְׁטְפוּם בְּשֶׁטֶף קֶצֶף׃",
+      "correctedText": "וּכְאַבְנֵי קֶלַע יָשְׁלַךְ עֲלֵיהֶם בָּרָד פּוֹרֵץ בְּזַעַם וּמֵי הַיָּם יִזְעֲפוּ עֲלֵימוֹ וּנְהָרוֹת יִשְׁטְפוּם בְּשֶׁטֶף קֶצֶף׃",
+      "addedCodePoint": "U+05B7",
+      "addedMark": "patah",
+      "targetClusterBefore": [
+        "U+05DC"
+      ],
+      "targetClusterAfter": [
+        "U+05DC",
+        "U+05B7"
+      ],
+      "scalarPolicy": "Append only the approved point to the existing exact cluster; preserve every prior scalar and its order.",
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "The complete lamed foot is followed by a broad shallow continuous plateau with a flat lower edge apart from a one-pixel right end lug, connected to the foot through a narrow left neck. The literal same-page detached lamed-patah in5:21 has the same contour. The13:1 lamed-tsere has aligned upper/lower waists and two rounded tips, the13:10 sheva has two vertical nodes, and the13:10 qamats has a substantial descending central stem. Those competing features are absent here. Certify patah from the surviving contour alone.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-22-lamed-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-22-lamed-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-lower-shape-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-lower-shape-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-numbered-source-context-native.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 8,
+      "retiredNote": {
+        "id": "wis-15-8-lamed-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "לקָּח",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          175
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175"
+      },
+      "oldAnchor": "לקָּח",
+      "newAnchor": "לֻקָּח",
+      "originalText": "וְגַם יוֹגֵעַ לָרִיק לְקָרֵץ אֱלִיל הֶבֶל מִן־הַחֹמֶר הַזֶּה וְהוּא נוֹלַד מִקָּרוֹב מִן־הָאֲדָמָה וְאַחֲרֵי זְמַן מִצְעָר יָשׁוּב אֵלֶיהָ אֲשֶׁר מִמֶּנָּה לקָּח כִּי יַשּׁוּ מִמֶּנּוּ פִּקְּדוֹן נַפְשׁוֹ׃",
+      "correctedText": "וְגַם יוֹגֵעַ לָרִיק לְקָרֵץ אֱלִיל הֶבֶל מִן־הַחֹמֶר הַזֶּה וְהוּא נוֹלַד מִקָּרוֹב מִן־הָאֲדָמָה וְאַחֲרֵי זְמַן מִצְעָר יָשׁוּב אֵלֶיהָ אֲשֶׁר מִמֶּנָּה לֻקָּח כִּי יַשּׁוּ מִמֶּנּוּ פִּקְּדוֹן נַפְשׁוֹ׃",
+      "addedCodePoint": "U+05BB",
+      "addedMark": "qubbuts",
+      "targetClusterBefore": [
+        "U+05DC"
+      ],
+      "targetClusterAfter": [
+        "U+05DC",
+        "U+05BB"
+      ],
+      "scalarPolicy": "Append only the approved point to the existing exact cluster; preserve every prior scalar and its order.",
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "Below the already complete ordinary lamed terminal, three added rounded nodes descend toward the right through narrowed waists. The same-letter4:11 qubbuts repeats the three levels; a genuinely detached13:10 alef-qubbuts establishes the point class, whereas the detached mem-sheva has only two vertical nodes. The true same-page final lamed in15:8 elil ends after its ordinary terminal and has no such chain. Certify qubbuts without using the expected word reading.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-lamed-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-lamed-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-15-8-lamed-1-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-15-8-lamed-1-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-lamed-qubbuts-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-lamed-qubbuts-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-luqqach-lamed-qubbuts-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-luqqach-lamed-qubbuts-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-BARE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-BARE-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-bare-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-bare-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-numbered-source-context-native.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 6,
+      "retiredNote": {
+        "id": "wis-19-6-word5-qof-3-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "לִפְקדּוֹתֶיךָ",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "vowel",
+        "sourcePages": [
+          184
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+      },
+      "oldAnchor": "לִפְקדּוֹתֶיךָ",
+      "newAnchor": "לִפְקֻדּוֹתֶיךָ",
+      "originalText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשּׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "correctedText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקֻדּוֹתֶיךָ בַּעֲבוּר יִשּׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "addedCodePoint": "U+05BB",
+      "addedMark": "qubbuts",
+      "targetClusterBefore": [
+        "U+05E7"
+      ],
+      "targetClusterAfter": [
+        "U+05E7",
+        "U+05BB"
+      ],
+      "scalarPolicy": "Append only the approved point to the existing exact cluster; preserve every prior scalar and its order.",
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "The ordinary qof terminal is complete above three additional rounded lobes stepping down-right through narrowed waists. The same-letter3:13 qubbuts repeats those levels, the detached13:10 alef-qubbuts establishes the three-node class, and the mem-sheva counter has only two vertical nodes. The true same-page final qof in19:4 betsedeq ends after its ordinary terminal and lacks the chain. Certify qubbuts. The numbered context verifies19:6 on its continuation row, without a verse-number offset.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-6-qof-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-6-qof-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-19-6-word5-qof-3-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-19-6-word5-qof-3-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-BARE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-BARE-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-bare-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-bare-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-to8-numbered-mixed-row-context-native.png"
+      ]
+    }
+  ],
+  "inspections": [
+    {
+      "chapter": 5,
+      "verse": 22,
+      "id": "wis-5-22-lamed",
+      "anchor": "יָשְׁלךְ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        155
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=155",
+      "targetLetter": "ל",
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "The complete lamed foot is followed by a broad shallow continuous plateau with a flat lower edge apart from a one-pixel right end lug, connected to the foot through a narrow left neck. The literal same-page detached lamed-patah in5:21 has the same contour. The13:1 lamed-tsere has aligned upper/lower waists and two rounded tips, the13:10 sheva has two vertical nodes, and the13:10 qamats has a substantial descending central stem. Those competing features are absent here. Certify patah from the surviving contour alone.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-22-lamed-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-22-lamed-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-lower-shape-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-lower-shape-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-numbered-source-context-native.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 8,
+      "id": "wis-15-8-lamed-1-vowel",
+      "anchor": "לקָּח",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        175
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175",
+      "targetLetter": "ל",
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "Below the already complete ordinary lamed terminal, three added rounded nodes descend toward the right through narrowed waists. The same-letter4:11 qubbuts repeats the three levels; a genuinely detached13:10 alef-qubbuts establishes the point class, whereas the detached mem-sheva has only two vertical nodes. The true same-page final lamed in15:8 elil ends after its ordinary terminal and has no such chain. Certify qubbuts without using the expected word reading.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-lamed-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-lamed-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-15-8-lamed-1-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-15-8-lamed-1-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-lamed-qubbuts-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-lamed-qubbuts-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-luqqach-lamed-qubbuts-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-luqqach-lamed-qubbuts-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-BARE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-BARE-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-bare-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-bare-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-numbered-source-context-native.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 6,
+      "id": "wis-16-6-lamed-1-vowel",
+      "anchor": "למִּצְעָר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        177
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=177",
+      "targetLetter": "ל",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "A low broad bar is fused into the letter foot. Its remaining contour cannot uniquely distinguish an irregular patah bar from a filled pair or short merged central stem. Retain the complete disclosure.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis16-6-lamed-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis16-6-lamed-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-16-6-lamed-1-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-16-6-lamed-1-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 18,
+      "verse": 14,
+      "id": "wis-18-14-word10-lamed-3-vowel",
+      "anchor": "הָשְׁלךְ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        182
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=182",
+      "targetLetter": "ל",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lower mark has two upper swellings and an isolated low right notch, but the upper/lower waists are not aligned as a clear pair and the lower body remains mostly flat. An irregular patah bar and a fused tsere remain plausible even after the literal same-letter patah, tsere, sheva and qamats comparisons. Retain; no expected vocalization supplies the missing class.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-14-lamed-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-14-lamed-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-18-14-word10-lamed-3-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-18-14-word10-lamed-3-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-14-lamed-lower-shape-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-14-lamed-lower-shape-24x.png"
+      ]
+    },
+    {
+      "chapter": 18,
+      "verse": 25,
+      "id": "wis-18-25-word15-lamed-1-vowel",
+      "anchor": "לבדָּהּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        183
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=183",
+      "targetLetter": "ל",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The foot continues into a long lower blob without a sufficiently distinct independent point pattern. A natural foot plus a lower point and a merged pair remain indistinguishable. Retain this lamed disclosure and the separate unresolved bet note in the same word.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-25-lamed-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-25-lamed-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-18-25-word15-lamed-1-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-18-25-word15-lamed-1-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-24x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 5,
+      "verse": 14,
+      "id": "wis-5-14-pe-tiddefenu",
+      "anchor": "תִּדּפנּוּ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        154
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=154",
+      "targetLetter": "פ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "A saturated lower head and stem survive, but they do not uniquely distinguish a collapsed triangle from a bar/stem or joined dots. No separate diagnostic contour establishes one vowel. Retain this pe disclosure and the separate dalet note in the same word.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-14-pe-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-14-pe-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-14-dalet-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-14-dalet-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 2,
+      "id": "wis-7-2-pe",
+      "anchor": "הָקְפּאתִי",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        157
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=157",
+      "targetLetter": "פ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The lower block and small low tips are substantially merged into the pe foot. A bar, short stem or several merged points cannot be uniquely recovered from the contour. Retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis7-2-pe-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis7-2-pe-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-7-2-pe-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-7-2-pe-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 6,
+      "id": "wis-19-6-word5-qof-3-vowel",
+      "anchor": "לִפְקדּוֹתֶיךָ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        184
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184",
+      "targetLetter": "ק",
+      "decision": "resolvePrintedVowelAndRetireSourceNote",
+      "finding": "The ordinary qof terminal is complete above three additional rounded lobes stepping down-right through narrowed waists. The same-letter3:13 qubbuts repeats those levels, the detached13:10 alef-qubbuts establishes the three-node class, and the mem-sheva counter has only two vertical nodes. The true same-page final qof in19:4 betsedeq ends after its ordinary terminal and lacks the chain. Certify qubbuts. The numbered context verifies19:6 on its continuation row, without a verse-number offset.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-6-qof-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-6-qof-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-19-6-word5-qof-3-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-19-6-word5-qof-3-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-BARE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-BARE-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-bare-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-bare-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-to8-numbered-mixed-row-context-native.png"
+      ]
+    }
+  ],
+  "sourceImages": [
+    {
+      "page": 151,
+      "embeddedImageName": "im151.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2523,
+        3515
+      ],
+      "nativePixelSHA256": "fb67dfb16216ca8e25241661731d3deccdf671aa298e51e938e6e862f2a3aac7",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 152,
+      "embeddedImageName": "im152.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2481,
+        3485
+      ],
+      "nativePixelSHA256": "7ea1041709e1aae419266eb81612a9d79071bb371db0e8ff3b33a20713eb2e74",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 154,
+      "embeddedImageName": "im154.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2480,
+        3485
+      ],
+      "nativePixelSHA256": "fc6264415def2161ec154c055cafcf90417b85fbedc7eea459c1da5165bde998",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 155,
+      "embeddedImageName": "im155.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2529,
+        3519
+      ],
+      "nativePixelSHA256": "d0a359a2f2a6cf25277e541e8dccb4dd6b8e0b22069eb0f1764802eef48909bc",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 157,
+      "embeddedImageName": "im157.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2628,
+        3588
+      ],
+      "nativePixelSHA256": "cc19e36bf9ffd612f0b6cb1ecbe9b6b7c4f69334ba110fb284525caabd0a573a",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 171,
+      "embeddedImageName": "im171.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2507,
+        3503
+      ],
+      "nativePixelSHA256": "f0f361f7de0404bc6b694d0530ffe3785c8a44bdacdd363c0de216449a03b7ae",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 175,
+      "embeddedImageName": "im175.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2534,
+        3523
+      ],
+      "nativePixelSHA256": "9f3938dac597840ba4d4e20aa48646d862411354c52a60b6654dbfd69c094755",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 177,
+      "embeddedImageName": "im177.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2560,
+        3541
+      ],
+      "nativePixelSHA256": "fdeaa4083c5e05fed6905ff70c28fabaadbed04a3565fc1863813c36d292a27f",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 182,
+      "embeddedImageName": "im182.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2570,
+        3547
+      ],
+      "nativePixelSHA256": "2a8e997d8ee6be859903822e8e63f4f866ae7edcd5655da9ed7f328ef6092608",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 183,
+      "embeddedImageName": "im183.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2534,
+        3522
+      ],
+      "nativePixelSHA256": "e3a134aba36242b7dedb96fd0cf6c87b5885e174bfb34fb0641a54e66f631f76",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 184,
+      "embeddedImageName": "im184.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2561,
+        3541
+      ],
+      "nativePixelSHA256": "ce771c4bd1d3cc0ced5783d9857ecb4d5c6a944c98bd227823fd822a04a56e53",
+      "freshlyExtractedOriginalPixels": true
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-target-native.png",
+      "sha256": "59af6063751a7088855d5b4a2a64a6867a8070238a3cceb708d67b52acaad56f",
+      "page": 155,
+      "nativeBounds": [
+        1348,
+        865,
+        1398,
+        966
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-target-12x.png",
+      "sha256": "c13345ea51aa4d2dfda558e91d2b90ff8c9817c9fe615da43ab1e92387daedbc",
+      "page": 155,
+      "nativeBounds": [
+        1348,
+        865,
+        1398,
+        966
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-22-lamed-word-native.png",
+      "sha256": "0a4f3a630047c3a0a050db47f12284b6782a5b4a11842ed28877b929062c423b",
+      "page": 155,
+      "nativeBounds": [
+        1220,
+        870,
+        1460,
+        1000
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-22-lamed-word-4x.png",
+      "sha256": "e9f1dfe745f912abd963e7a318e7ce0a87da5ae649b2566faf784e4bd0d23fe9",
+      "page": 155,
+      "nativeBounds": [
+        1220,
+        870,
+        1460,
+        1000
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-lamed-target-native.png",
+      "sha256": "00fc580d5a53691608b7a839b7190c08ae14ad10052920b676493e34e04492c2",
+      "page": 175,
+      "nativeBounds": [
+        295,
+        1790,
+        345,
+        1900
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-lamed-target-12x.png",
+      "sha256": "832fedb5ab43de7aea9b9372327053fbd3928015baf3bcf6fbd34194468b52ca",
+      "page": 175,
+      "nativeBounds": [
+        295,
+        1790,
+        345,
+        1900
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-15-8-lamed-1-vowel-word-native.png",
+      "sha256": "39b06883281e4a87c9db17df74217de9b5a4f9d24628ababd0b6f591c6a52eae",
+      "page": 175,
+      "nativeBounds": [
+        175,
+        1800,
+        530,
+        1915
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-15-8-lamed-1-vowel-word-4x.png",
+      "sha256": "a5750ae2ad7cbe88e6ba77fae275a4b3c2770f0d1f00887307d7fc34a4614b45",
+      "page": 175,
+      "nativeBounds": [
+        175,
+        1800,
+        530,
+        1915
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis16-6-lamed-target-native.png",
+      "sha256": "de15e506af14b4284d1d24bef1e7060de0462dc5d3c2ae22291f2eddc7298665",
+      "page": 177,
+      "nativeBounds": [
+        373,
+        875,
+        422,
+        970
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis16-6-lamed-target-12x.png",
+      "sha256": "b8e84cc41f5829abff89861fa2b0065f04f0fb85b5d3935d973303c5389b4e58",
+      "page": 177,
+      "nativeBounds": [
+        373,
+        875,
+        422,
+        970
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-16-6-lamed-1-vowel-word-native.png",
+      "sha256": "309c973422deae86f07033fd7a36b1d6937d080805cc0aa9e7bb56d0ada8f798",
+      "page": 177,
+      "nativeBounds": [
+        215,
+        880,
+        445,
+        1000
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-16-6-lamed-1-vowel-word-4x.png",
+      "sha256": "733cc85cecddfdac5816f38db87f91917b071476af39c3f4f6287119ddf5db5f",
+      "page": 177,
+      "nativeBounds": [
+        215,
+        880,
+        445,
+        1000
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-14-lamed-target-native.png",
+      "sha256": "d13629db5f43f11a12a853b5a9a7b61a344ee612ffc7b4e3b35f7ae39973c527",
+      "page": 182,
+      "nativeBounds": [
+        1377,
+        1385,
+        1426,
+        1485
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-14-lamed-target-12x.png",
+      "sha256": "483404bff4157934291fa44e7ed1ecb73c0e1106132d246a801a8eacdeb1b139",
+      "page": 182,
+      "nativeBounds": [
+        1377,
+        1385,
+        1426,
+        1485
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-18-14-word10-lamed-3-vowel-word-native.png",
+      "sha256": "5b8209ff1646a8c654700179ace82cf185c34b672a9aaf400b94fefabfad915d",
+      "page": 182,
+      "nativeBounds": [
+        1300,
+        1390,
+        1535,
+        1510
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-18-14-word10-lamed-3-vowel-word-4x.png",
+      "sha256": "33525c717ffd4b4e9dc12d21bea3cffa56af37f4f6c9793f50b28519daf8235a",
+      "page": 182,
+      "nativeBounds": [
+        1300,
+        1390,
+        1535,
+        1510
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-25-lamed-target-native.png",
+      "sha256": "4f04f12b5de031580e01db1fc806c6a399e2b5bf28a4ba91eec26a62c11dedcd",
+      "page": 183,
+      "nativeBounds": [
+        1577,
+        1708,
+        1628,
+        1815
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-25-lamed-target-12x.png",
+      "sha256": "43febecd43fb590d4812c6b16ef6706357a11e14eeec704d40c667e7a205fa9c",
+      "page": 183,
+      "nativeBounds": [
+        1577,
+        1708,
+        1628,
+        1815
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-18-25-word15-lamed-1-vowel-word-native.png",
+      "sha256": "415e5de93a9899fc3c7395cd9f5a9be66dd71301bcb690b8dc2b3ae7ee6f5279",
+      "page": 183,
+      "nativeBounds": [
+        1450,
+        1705,
+        1660,
+        1830
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-18-25-word15-lamed-1-vowel-word-4x.png",
+      "sha256": "3e3d43db39d1eb5066b9c0cb9860221a54dedef978e41b580c8e498dec6bde9b",
+      "page": 183,
+      "nativeBounds": [
+        1450,
+        1705,
+        1660,
+        1830
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-14-pe-target-native.png",
+      "sha256": "aead7f0cb98ee25d6091fe6e93167d1ad4df87ddc2f2dd4a4d85b559990dbbf5",
+      "page": 154,
+      "nativeBounds": [
+        710,
+        1615,
+        763,
+        1695
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-14-pe-target-12x.png",
+      "sha256": "14047c0e4c28599e7959292cdcbf5146da4f7207e7792744374cc09c5af89d5d",
+      "page": 154,
+      "nativeBounds": [
+        710,
+        1615,
+        763,
+        1695
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-14-dalet-word-native.png",
+      "sha256": "c7cb970a09c1d9b9b5cab46213ded1867a0b7c4bdfabdc0c45c2e2e60b4e2fd0",
+      "page": 154,
+      "nativeBounds": [
+        615,
+        1570,
+        900,
+        1715
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-5-14-dalet-word-4x.png",
+      "sha256": "8d73d46ceb2570fae3f70698c71852ccfc03df41314714f6bd89ce16010f676c",
+      "page": 154,
+      "nativeBounds": [
+        615,
+        1570,
+        900,
+        1715
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis7-2-pe-target-native.png",
+      "sha256": "ae5053b42d94957d9eb1be281102d81b8ae0fd1fc5baa5be2cf3145e22a70e18",
+      "page": 157,
+      "nativeBounds": [
+        1598,
+        1312,
+        1649,
+        1397
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis7-2-pe-target-12x.png",
+      "sha256": "bb064ae92a0584c332bbfcd4259bc64b85405a243d171fc78fc35b98d4b5bfab",
+      "page": 157,
+      "nativeBounds": [
+        1598,
+        1312,
+        1649,
+        1397
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-7-2-pe-word-native.png",
+      "sha256": "6c59e6c54d4f26ed7fea367457e5d48aecbcc8512acb54b1e43c53010d25d30a",
+      "page": 157,
+      "nativeBounds": [
+        1330,
+        1290,
+        1850,
+        1405
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-7-2-pe-word-4x.png",
+      "sha256": "fc879bfb3a459b3946a029b8f8740617841bf5692ff2ee94161c17618bcd6a27",
+      "page": 157,
+      "nativeBounds": [
+        1330,
+        1290,
+        1850,
+        1405
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-6-qof-target-native.png",
+      "sha256": "22b788914bd81acba651e252927761b0378df59d36967ba40bc55a87818a545f",
+      "page": 184,
+      "nativeBounds": [
+        1328,
+        1040,
+        1382,
+        1130
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-6-qof-target-12x.png",
+      "sha256": "9f47f5efe7a7009af7857858d74adc79617e7e2e5863a39c2ccfa304d353dbaa",
+      "page": 184,
+      "nativeBounds": [
+        1328,
+        1040,
+        1382,
+        1130
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "annotated exact-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-19-6-word5-qof-3-vowel-word-native.png",
+      "sha256": "8983d33e1fd0ea05dab287f2043393c187462a73547c36f8855b21711299bf6f",
+      "page": 184,
+      "nativeBounds": [
+        1190,
+        1010,
+        1460,
+        1145
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis-19-6-word5-qof-3-vowel-word-4x.png",
+      "sha256": "fcbb7f5c69d9b9d5650cc2d619739a154bef1c3822f6ac15130dfb1f07a12381",
+      "page": 184,
+      "nativeBounds": [
+        1190,
+        1010,
+        1460,
+        1145
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-native.png",
+      "sha256": "b3de2982216ff58d808aad9a5fb7717341a575778a69727d396a83161ce7837d",
+      "page": 171,
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lamed-tsere-detached-positive-12x.png",
+      "sha256": "8853b619ed30176aaf0250f5870f3a3138919d41d194f687b13f9f05469fdddc",
+      "page": 171,
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-native.png",
+      "sha256": "ad992bad5270cc15903177f6e6b43fb4d95c7ba7f4bf9a30556430710511b616",
+      "page": 171,
+      "nativeBounds": [
+        1340,
+        365,
+        1450,
+        470
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-1-lev-lamed-tsere-word-4x.png",
+      "sha256": "1c86a73a973aa81e53e42da5e6b87e90c3260212a1a6954e0b69d82b3df85905",
+      "page": 171,
+      "nativeBounds": [
+        1340,
+        365,
+        1450,
+        470
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-native.png",
+      "sha256": "abb0e8c9f34447cb04082d0acc3c0107aae695c0b64722a4447e13949d176941",
+      "page": 171,
+      "nativeBounds": [
+        460,
+        1485,
+        510,
+        1590
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-sheva-control-12x.png",
+      "sha256": "1ba4222702276ed69e7357853f8eed2a50e736b6b5342365b81fc8f1455fc9c7",
+      "page": 171,
+      "nativeBounds": [
+        460,
+        1485,
+        510,
+        1590
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-native.png",
+      "sha256": "b20a28bab5a8d6946559eeff551b829a445998aa1519581e5041c21dc56f6c62",
+      "page": 171,
+      "nativeBounds": [
+        315,
+        1485,
+        535,
+        1595
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lemaasei-lamed-sheva-word-4x.png",
+      "sha256": "273af927454570e220a2f4dace2c99eaa1c3ebc030a38c0f3da1519b84fe226d",
+      "page": 171,
+      "nativeBounds": [
+        315,
+        1485,
+        535,
+        1595
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-lamed-qubbuts-control-native.png",
+      "sha256": "19f1c5d02036103a37a9a9ed2941169372f71045b033c3cf9827c7d013caad6b",
+      "page": 152,
+      "nativeBounds": [
+        2154,
+        1428,
+        2200,
+        1528
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-lamed-qubbuts-control-12x.png",
+      "sha256": "03a6af6f1254e7a5285504d76684c995c40b3ac0a9528c76c758a0349f782bfc",
+      "page": 152,
+      "nativeBounds": [
+        2154,
+        1428,
+        2200,
+        1528
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-luqqach-lamed-qubbuts-word-native.png",
+      "sha256": "beb79ac96404f74e4ac18ef80ce9ab03f625e91868c67940135ef8d41e694355",
+      "page": 152,
+      "nativeBounds": [
+        2050,
+        1420,
+        2235,
+        1550
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis4-11-luqqach-lamed-qubbuts-word-4x.png",
+      "sha256": "2d935e2413da8ccb6f40fdfa35490ea3058f0ac699dab852fddfdc4495821c1f",
+      "page": 152,
+      "nativeBounds": [
+        2050,
+        1420,
+        2235,
+        1550
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-native.png",
+      "sha256": "c299db26359022a20ecfa710e4104e8694928dcd85d553c8d6a1623f04e35e92",
+      "page": 151,
+      "nativeBounds": [
+        1215,
+        565,
+        1263,
+        650
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-12x.png",
+      "sha256": "7aee305b5cb8847c19088a83299df443b351dd30362501d35944913b3411d5f8",
+      "page": 151,
+      "nativeBounds": [
+        1215,
+        565,
+        1263,
+        650
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-word-native.png",
+      "sha256": "c9a097fa6e830ccc49a58558f0502510117322ddb6458ddbc97423a3f9ceba41",
+      "page": 151,
+      "nativeBounds": [
+        1130,
+        550,
+        1340,
+        650
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis3-13-qof-qubbuts-control-word-4x.png",
+      "sha256": "88d9d65dcef7a8b0a08840b0701c1db2ab17c63488979b2cbe67cf386981b104",
+      "page": 151,
+      "nativeBounds": [
+        1130,
+        550,
+        1340,
+        650
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-native.png",
+      "sha256": "73f3c9f6fedcd01be503cb47d362f93d4fccfd799b28436d3d56607368931d5b",
+      "page": 171,
+      "nativeBounds": [
+        790,
+        1408,
+        836,
+        1488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-alef-qubbuts-detached-positive-12x.png",
+      "sha256": "a3772d3b4d75d03c0d4bb2ff6630329eeb083b1002ba260df0a5473fb53c005c",
+      "page": 171,
+      "nativeBounds": [
+        790,
+        1408,
+        836,
+        1488
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-native.png",
+      "sha256": "5e3ec0a0838bfe874e406804a46af2b170242672f6b402ceadea08807137ef6f",
+      "page": 171,
+      "nativeBounds": [
+        748,
+        1405,
+        802,
+        1490
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-mem-sheva-detached-counter-12x.png",
+      "sha256": "230fb699d5b43c0dfa86581f36f9e76d217883893cf06b1a740b0c9f57dd4a78",
+      "page": 171,
+      "nativeBounds": [
+        748,
+        1405,
+        802,
+        1490
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-BARE-native.png",
+      "sha256": "b749cbdf334eb18fb5fe777254dfcb9f8613528f8243f836d88f0ddc984c04d5",
+      "page": 175,
+      "nativeBounds": [
+        1045,
+        1695,
+        1090,
+        1790
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-BARE-12x.png",
+      "sha256": "94212ede075cb7985764215e5010222dab6b67ebc80d0b15b780ac3ba2510876",
+      "page": 175,
+      "nativeBounds": [
+        1045,
+        1695,
+        1090,
+        1790
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-bare-word-native.png",
+      "sha256": "f6c0ce2a4c91360a80689f27e3d025387c1256f765ae238c02b92601d5c94ea3",
+      "page": 175,
+      "nativeBounds": [
+        1020,
+        1685,
+        1190,
+        1800
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-elil-final-lamed-bare-word-4x.png",
+      "sha256": "ca4a3979a828b3a47335e1d9d08951f25b9966336980422e2253eeccc72d7feb",
+      "page": 175,
+      "nativeBounds": [
+        1020,
+        1685,
+        1190,
+        1800
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-BARE-native.png",
+      "sha256": "fbb1d0b8958d85466e38a1b50a84a0d35f529a789e10d9de6fd1dbd471146736",
+      "page": 184,
+      "nativeBounds": [
+        1590,
+        750,
+        1637,
+        845
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-BARE-12x.png",
+      "sha256": "30522caf795eebc95aa86ebbc1e62c7e1ace851f180e7619d8495a824d3e1359",
+      "page": 184,
+      "nativeBounds": [
+        1590,
+        750,
+        1637,
+        845
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-bare-word-native.png",
+      "sha256": "b99d61289f0436e4305cb92f57f222a18cb5a1cc232330bf0fa1152fe46b401b",
+      "page": 184,
+      "nativeBounds": [
+        1560,
+        730,
+        1750,
+        870
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-betsedeq-final-qof-bare-word-4x.png",
+      "sha256": "2a1d3414d6a4c64f387b74a6f681979e4e49e7a81b2d21997de7052571f16515",
+      "page": 184,
+      "nativeBounds": [
+        1560,
+        730,
+        1750,
+        870
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-native.png",
+      "sha256": "0b157fc6efc4754ec369ad16223fb3171a7cb5a6d8783455c50f4732e38acd0c",
+      "page": 155,
+      "nativeBounds": [
+        540,
+        748,
+        590,
+        855
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-control-12x.png",
+      "sha256": "161b9de35a7f07e17fdc6dc65190ce5ea7d725ceb85bb51c461b9e2d87395b74",
+      "page": 155,
+      "nativeBounds": [
+        540,
+        748,
+        590,
+        855
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-native.png",
+      "sha256": "400c25431e67c99f83ba4178510221754b64f133ef24d1ad219d606d9de2f241",
+      "page": 155,
+      "nativeBounds": [
+        400,
+        745,
+        610,
+        865
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lammattara-lamed-patah-word-4x.png",
+      "sha256": "8703776044827ee7cb42d12f53fcc675dfec8c721718835a1f847e7a4a0c00a8",
+      "page": 155,
+      "nativeBounds": [
+        400,
+        745,
+        610,
+        865
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-lower-shape-native.png",
+      "sha256": "9c37379710c9960c3a10e83df4f7c83d9ff611a5d67b8a4eb09c37cbb18da675",
+      "page": 155,
+      "nativeBounds": [
+        1360,
+        934,
+        1388,
+        950
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-lamed-lower-shape-24x.png",
+      "sha256": "3a4e7bbe14324cb6078fa553e9cb86f8fb7704f84cf7929852f6d0cd9884ba1a",
+      "page": 155,
+      "nativeBounds": [
+        1360,
+        934,
+        1388,
+        950
+      ],
+      "scale": 24,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-14-lamed-lower-shape-native.png",
+      "sha256": "0e1eee77e413e698107c534e64ed7ceea1ea2e6d3bb91a378c12dd656db79db8",
+      "page": 182,
+      "nativeBounds": [
+        1388,
+        1450,
+        1412,
+        1467
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis18-14-lamed-lower-shape-24x.png",
+      "sha256": "c9299899b8576c99ea0e88b1c9c41a3c11a2fbbe6db111f748cc1236102f3cbc",
+      "page": 182,
+      "nativeBounds": [
+        1388,
+        1450,
+        1412,
+        1467
+      ],
+      "scale": 24,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-native.png",
+      "sha256": "95d342fa010f3a738d9768dbf732174afb14f2534813e55a9a716a718ca93c32",
+      "page": 155,
+      "nativeBounds": [
+        550,
+        823,
+        580,
+        843
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-21-lamed-patah-lower-shape-24x.png",
+      "sha256": "99c0361760a6cd58a17934c29cd37a135daf78cfc2cc95d26917aa45e5af3d72",
+      "page": 155,
+      "nativeBounds": [
+        550,
+        823,
+        580,
+        843
+      ],
+      "scale": 24,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal point/ordinary-foot comparison or target contour detail",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis15-8-numbered-source-context-native.png",
+      "sha256": "b0b33a6705b888da4e2115e24ead3ced17660a193ec4b8bd8905ae742c0e00be",
+      "page": 175,
+      "nativeBounds": [
+        175,
+        1670,
+        2110,
+        1915
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "numbered original source context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis19-4-to8-numbered-mixed-row-context-native.png",
+      "sha256": "d34e3796d32d58c6561afa97c2fa00f91b8ad8dc4ffb5ea430ca0a66c1b6f523",
+      "page": 184,
+      "nativeBounds": [
+        200,
+        650,
+        2240,
+        1440
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "numbered original source context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis5-22-numbered-source-context-native.png",
+      "sha256": "46fde34166a59e16b6812d9fcf1119e12e9e51655635a6ab7e3188e08870c35b",
+      "page": 155,
+      "nativeBounds": [
+        200,
+        820,
+        2410,
+        1075
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "numbered original source context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-native.png",
+      "sha256": "f42225d14f6f33a84108c8557311335da5ea8f9660b04634483cf54c08556d74",
+      "page": 171,
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font literal competing qamats",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-12x.png",
+      "sha256": "a7bdde68bce79879e30ecfbc65b8b8e64528b95e87f8edd3d9b1e1343fc01cf1",
+      "page": 171,
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "same-font literal competing qamats",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+      "sha256": "d3c3e23e507e061a1f55857fc37eec0bedd456a7525b2152c8e956104be0d127",
+      "page": 171,
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete word for detached alef-qubbuts, mem-sheva and first-lamed-qamats; second lamed has hiriq and is not bare",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+      "sha256": "73acd2c65238d10ed67888ed8c44a4e178c634d1f99749caa489a2f08841832c",
+      "page": 171,
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete word for detached alef-qubbuts, mem-sheva and first-lamed-qamats; second lamed has hiriq and is not bare",
+      "originalPDFPixelReplayPassed": true
+    }
+  ],
+  "evidenceFileCount": 77,
+  "nativeFrameCount": 40,
+  "freshOriginalPageCount": 11,
+  "invariants": {
+    "exactOneCombiningMarkAddedPerChangedUnit": true,
+    "onlyU05B7AndU05BBAdded": true,
+    "existingCombiningScalarOrderPreserved": true,
+    "lettersBracketsPunctuationSpacingUnchanged": true,
+    "verseEndVerseSourcePagesAndBoundariesUnchanged": true,
+    "allFourRestoredLetterNotesUnchanged": true,
+    "allRetainedNotesAndAnchorsExactlyUnchanged": true,
+    "allUnchangedUnitsExactlyEquivalent": true,
+    "allSelectedEvidenceReplayedAgainstFreshOriginalPDF": true,
+    "canonicalStillBaselineAtPublication": true,
+    "priorPinnedReportsUnchanged": true
+  },
+  "priorReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+      "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+      "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+      "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-vowel-retentions-20261017-pass10.json",
+      "sha256": "1da74ae9e4c34e1e953c811f7b7ac3dfde39bd947d2c33bbc2da242c1bd12da6"
+    }
+  ]
+}

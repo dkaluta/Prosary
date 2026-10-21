@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "pass": 28,
+  "book": "WIS",
+  "chapter": 18,
+  "verse": 5,
+  "supersedesOnly": "Original report control-marpe-resh-sheva frame nativeBounds lower edge and its two files for visual complete-glyph comparison",
+  "originalReport": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+  "originalReportSHA256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b",
+  "reason": "Post-publication author QA noticed the resh sheva glyph frame reached black on the last pixel row. The complete-word frame already included the full glyph. This supplemental glyph frame extends the bottom to y1185 and replaces the old narrow glyph frame in visual comparison. Original evidence/report remain immutable; packet and source decision are unchanged.",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourcePDFPage": 181,
+  "nativeBounds": [
+    1113,
+    1115,
+    1150,
+    1185
+  ],
+  "originalSize": [
+    2543,
+    3529
+  ],
+  "files": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-resh-sheva-FULL-native.png",
+      "sha256": "985ea8602de3b7fbc0702854509503bc0f14b4a09aa3e9bf317427bfee44bfd1",
+      "scale": 1,
+      "resampling": "native"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-resh-sheva-FULL-15x.png",
+      "sha256": "198d46534a9f27c25e7fda85d2b716ba5e1cef89b58e726a534f4b7448465b60",
+      "scale": 15,
+      "resampling": "nearest-neighbor"
+    }
+  ],
+  "sourceDecisionUnchanged": true,
+  "packetSHA256": "f3f10b84373d95c87f54247adf4c91a7f98c2c151bccbf1e561bc14dfb9dc155",
+  "fullyInsideOriginalImage": true
+}

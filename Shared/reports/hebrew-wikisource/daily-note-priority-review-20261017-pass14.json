@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 14,
+  "status": "All44 daily-reading annotation positions reviewed; three certified single-point proposals staged for root integration,41 ambiguous marks remain disclosed.",
+  "policy": "Daily reading units receive the first bounded comparison. Continue with remaining complete source units in descending note count, preserving all ambiguous disclosures and all five restored-letter notes.",
+  "priorityQueue": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-priority-20261017-after-pass13.json",
+    "sha256": "05f010303dc556db32081f2c9cb02df0423fe89c7bcc4a95b7918b21660010d7"
+  },
+  "baselineSourceNotes": 553,
+  "dailySourceUnitsReviewed": 23,
+  "dailySourceNotesReviewed": 44,
+  "certifiedSourceNotes": [
+    "s3y-1-19-word10-letter1-vowel",
+    "s3y-1-30-vayaanu-yod-dagesh",
+    "wis-6-16-bet"
+  ],
+  "retainedDailySourceNoteIds": [
+    "esg-3-1-1-vowel",
+    "esg-3-10-1-vowel",
+    "esg-3-10-2-vowel",
+    "esg-3-10-3-dagesh",
+    "s3y-1-16-word5-letter1-vowel",
+    "s3y-1-19-word5-letter2-vowel",
+    "s3y-1-22-word7-letter1-vowel",
+    "s3y-1-26-word1-letter1-vowel",
+    "s3y-1-27-word1-letter1-vowel",
+    "s3y-1-27-word2-letter1-vowel",
+    "s3y-1-28-word5-letter1-vowel",
+    "s3y-1-28-word7-letter1-vowel",
+    "s3y-1-29-word1-letter1-vowel",
+    "s3y-1-29-word1-letter2-dagesh",
+    "s3y-1-30-vayaanu-vav-vowel",
+    "s3y-1-30-vayhalelu-vav-vowel",
+    "s3y-1-30-vayromemu-vav-vowel",
+    "s3y-1-30-vayshabehu-vav-vowel",
+    "s3y-1-4-word1-letter1-vowel",
+    "s3y-1-4-word15-letter1-vowel",
+    "s3y-1-4-word15-letter2-dagesh",
+    "s3y-1-4-word3-letter1-vowel",
+    "s3y-1-4-word4-letter1-vowel",
+    "s3y-1-4-word6-letter1-vowel",
+    "s3y-1-4-word6-letter2-dagesh",
+    "wis-10-14-shin",
+    "wis-10-14-tet",
+    "wis-10-20-first-kaf",
+    "wis-10-20-vav",
+    "wis-4-10-letter-3-vowel",
+    "wis-5-1-ayin",
+    "wis-5-15-bet",
+    "wis-5-2-mem",
+    "wis-5-3-vav",
+    "wis-5-3-yod",
+    "wis-5-5-alef",
+    "wis-5-5-first-kaf",
+    "wis-5-8-gimel",
+    "wis-5-8-initial-vav",
+    "wis-7-14-tav-atek",
+    "wis-7-9-mem"
+  ],
+  "nextSourceUnitsByDescendingNoteCount": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 15,
+      "blockId": null,
+      "sourceNoteCount": 17,
+      "sourcePages": [
+        244
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "sourceNoteCount": 14,
+      "sourcePages": [
+        246
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "sourceNoteCount": 10,
+      "sourcePages": [
+        236
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-daily-note-comparison-20261017-pass14.json",
+      "sha256": "5366baf5216d68bea3b657b7edae965ebeb5cb3d3e2d89420b423f30866155ee",
+      "reviewedSourceNotes": 12,
+      "certifiedPoints": 1,
+      "retainedDisclosures": 11
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/DAILY-ESG-S3Y-point-comparison-20261017-pass14.json",
+      "sha256": "656b565bba83201baf956f4acfc1cac77ea17bdf7645b6cc52c3aae03a9e6611",
+      "reviewedSourceNotes": 15,
+      "certifiedPoints": 1,
+      "retainedDisclosures": 14
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+      "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e",
+      "reviewedSourceNotes": 17,
+      "certifiedPoints": 1,
+      "retainedDisclosures": 16
+    }
+  ]
+}

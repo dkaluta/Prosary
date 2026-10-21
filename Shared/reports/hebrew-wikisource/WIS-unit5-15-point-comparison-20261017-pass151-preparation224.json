@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 224,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation224-WIS-5-15/source-provenance.json",
+    "sha256": "645ca6c2c7a9adbf05ebcfdbde577450517c2041c7e082674691c0e4b23a954a"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-15-bet"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-5-15-bet",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 15,
+      "anchorBefore": "וּביָי",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Fresh native wholeword/ownBet literalASCII and component analysis. Bet880px[2148,1903,2182,1951] has top/verythinrightwall then broad attached base y1932..1943 and thick downwards central lowerfield y1944..1950. No detached exactvowel shape or defensible exactabsence can be independently read. AdjacentYod167pxQamats belongs index3, never supplies Bet. Retain originalscalars and disclosure.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/7b/7b93bf6703f0738fc416271c5d39a7dd7354640e70d0e7f1aa97942cc1131133.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/7b/7b93bf6703f0738fc416271c5d39a7dd7354640e70d0e7f1aa97942cc1131133.bin",
+      "inspectedBounds": [
+        2145,
+        1895,
+        2185,
+        1968
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation224-WIS-5-15/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 15,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation224-WIS-5-15/independent-review.json",
+    "sha256": "1345310748010eb7baf6ea0da5ccc9db2a32505b99e9749d5970a071922c5199"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation224-WIS-5-15/primary-preparation.json",
+    "sha256": "73b09a856bcbbd9754232a664b935611e17f386ee1666cc35396364df7caf607"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation224-WIS-5-15/consensus-preparation.json",
+    "sha256": "b9b3cca27ecc612d4bfcb6d44c829c8cb96ed5fc8aff026db07e20973f043ea3"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

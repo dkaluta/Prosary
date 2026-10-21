@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 52,
+  "book": "ESG",
+  "status": "Five colophon source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 52.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass52-ESG-COLOPHON/source-provenance.json",
+    "sha256": "5a3da915c7881a59f998706202feef565631b04761bf57e72450b1e4f52acba9"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 336,
+  "sourceNotesBefore": 36,
+  "sourceNotesAfter": 31,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 5,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-colophon-1-vowel",
+    "esg-colophon-3-vowel",
+    "esg-colophon-4-shuruq",
+    "esg-colophon-5-vowel",
+    "esg-colophon-6-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "esg-colophon-1-vowel": "U+05B4"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "before": "בַּשָּׁנָה הָרְבִיעִית לְמַלְכוּת תַּלְמַי וקלֵיאוֹפַטְרָה הֵבִיא דוֹסִתְּאוֹס אֲשֶׁר הִתְיַחֵשׂ לְכֹהֵן וּלְלֵוִי וְתַלְמַי בְּנוֹ אֶת־אִגֶּרֶת הַפּוּרִים הַזֹּאת וְהֵם הֵגִידוּ עָלֶיהָ כִּי הִיא [אֱמֶת] וְכִי תִּרְגֵּם אוֹתָהּ ליסִימָכוֹס בֶּן־תַּלְמַי מִן־הַיּוֹשְׁבִים בּירוּשָׁלִָם׃",
+      "after": "בַּשָּׁנָה הָרְבִיעִית לְמַלְכוּת תַּלְמַי וקלֵיאוֹפַטְרָה הֵבִיא דוֹסִתְּאוֹס אֲשֶׁר הִתְיַחֵשׂ לְכֹהֵן וּלְלֵוִי וְתַלְמַי בְּנוֹ אֶת־אִגֶּרֶת הַפּוּרִים הַזֹּאת וְהֵם הֵגִידוּ עָלֶיהָ כִּי הִיא [אֱמֶת] וְכִי תִּרְגֵּם אוֹתָהּ ליסִימָכוֹס בֶּן־תַּלְמַי מִן־הַיּוֹשְׁבִים בִּירוּשָׁלִָם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 7,
+    "blockId": "esg-translation-colophon",
+    "allFiveUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source colophon on page רכה / 225 (viewer page 570, internal page 585) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "esg-colophon-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "blockId": "esg-translation-colophon",
+      "anchor": "בּירוּשָׁלִָם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "hiriq",
+      "codePoint": "U+05B4",
+      "markClassification": "Vowel",
+      "finding": "Beneath the base of Bet in בִּירוּשָׁלִָם sits a sharp, isolated circular ink node at rows 41..46 (width 6 px, ink density > 65%) with clear surrounding margins. Matches control Hiriq dot under Dalet in וְתַלְמַי בְּנוֹ. Certified printed Hiriq (U+05B4).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass52-ESG-COLOPHON/esg-colophon-bet-hiriq-target-native.png",
+        "sha256": "4e56f7a2f08042b33ead05a08c4524551f93e3338fbb77e6ab8f2713863a1569"
+      }
+    },
+    {
+      "noteId": "esg-colophon-3-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "blockId": "esg-translation-colophon",
+      "anchor": "ליסִימָכוֹס",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Under the horizontal base and stem of Lamed in ליסִימָכוֹס, there is an uninterrupted band of clean uninked paper extending 16 rows downward. No vowel mark was engraved or printed. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass52-ESG-COLOPHON/esg-colophon-lamed-lisimakhos-target-native.png",
+        "sha256": "73d9153fb31996db74e539396cb48dae9078819ba84602231083e40973d2e34d"
+      }
+    },
+    {
+      "noteId": "esg-colophon-4-shuruq",
+      "book": "ESG",
+      "chapter": 7,
+      "blockId": "esg-translation-colophon",
+      "anchor": "וקלֵיאוֹפַטְרָה",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav in וקלֵיאוֹפַטְרָה is a narrow vertical stem without interior Dagesh or Shuruq point, and white paper flanking both sides. Confirmed unpointed conjunctive Vav.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass52-ESG-COLOPHON/esg-colophon-vav-cleopatra-target-native.png",
+        "sha256": "3576e2b1809772aa075c8219c2af3a706d65ea77024c4ca6d14827a2b10746f3"
+      }
+    },
+    {
+      "noteId": "esg-colophon-5-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "blockId": "esg-translation-colophon",
+      "anchor": "וקלֵיאוֹפַטְרָה",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Under the right horizontal base and left vertical descending stroke of Qof in וקלֵיאוֹפַטְרָה, the paper is completely blank for 15 vertical pixels. No vowel was printed. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass52-ESG-COLOPHON/esg-colophon-qof-cleopatra-target-native.png",
+        "sha256": "b527e82a92303867c3b802d98c54b2654b2d2b5b7fa08acf9c62dd57f2e7c71f"
+      }
+    },
+    {
+      "noteId": "esg-colophon-6-dagesh",
+      "book": "ESG",
+      "chapter": 7,
+      "blockId": "esg-translation-colophon",
+      "anchor": "וקלֵיאוֹפַטְרָה",
+      "letterIndex": 7,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "The internal cavity of Pe (letter 7 of וקלֵיאוֹפַטְרָה) is pure white paper with no Dagesh point; a distinct horizontal Patah bar is visible beneath the letter. Confirmed unpointed consonant regarding Dagesh (bare Pe with Patah פַ).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass52-ESG-COLOPHON/esg-colophon-pe-cleopatra-target-native.png",
+        "sha256": "a36da75608a6cfef8799ece6b1f6bd0cc0d8dd558c7818a258b682d7c21af2b5"
+      }
+    }
+  ]
+}

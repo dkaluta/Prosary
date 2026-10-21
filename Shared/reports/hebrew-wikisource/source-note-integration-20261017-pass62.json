@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-21",
+  "pass": 62,
+  "startingNoteCount": 302,
+  "removedNoteCount": 3,
+  "remainingNoteCount": 299,
+  "books": [
+    {
+      "book": "WIS",
+      "beforeNoteCount": 144,
+      "afterNoteCount": 141,
+      "removedNoteIds": [
+        "wis-5-11-vav",
+        "wis-5-11-pe",
+        "wis-5-11-bet"
+      ],
+      "beforeDigest": "e24cf45182a6f10d935d38787f8aeab76ca83f9bf63206747d4a5853d9fa7cb9",
+      "afterDigest": "c73d3a0fb7be860f3ad31cb9b3a13c6c8079319150187a923e1e9b23e2db7318",
+      "sourceChanges": [
+        {
+          "chapter": 5,
+          "verse": 11,
+          "before": "אוֹ כְעוֹף הַפּוֹרֵחַ בַּשָּׁמַיִם וְלֹא יִמָּצֵא כָּל־זֵכֶר לִמְעוּפוֹ רַק מַשַּׁק הַכְּנָפַיִם יַצְלֹף אֶת־הָרוּחַ הַקַּל ויפלְּגֵהוּ בּהֲמֻלָּה עֲצוּמָה וְיֶחֱצֵהוּ בִּתְנוּפַת אֶבְרָתוֹ הִנֵּה עָבַר־בּוֹ וְכָל־אוֹת לֹא־נִשְׁאֲרָה [אַחֲרָיו׃",
+          "after": "אוֹ כְעוֹף הַפּוֹרֵחַ בַּשָּׁמַיִם וְלֹא יִמָּצֵא כָּל־זֵכֶר לִמְעוּפוֹ רַק מַשַּׁק הַכְּנָפַיִם יַצְלֹף אֶת־הָרוּחַ הַקַּל וְיפלְּגֵהוּ בּהֲמֻלָּה עֲצוּמָה וְיֶחֱצֵהוּ בִּתְנוּפַת אֶבְרָתוֹ הִנֵּה עָבַר־בּוֹ וְכָל־אוֹת לֹא־נִשְׁאֲרָה [אַחֲרָיו׃"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass62.json",
+          "sha256": "89804c7c5251716d00f59149c970327811709ec2d2a5e467d848c2c10aae5f18"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass62.json",
+          "sha256": "9142af81bfa9da4f3adf015c341bca5dcd94482c60b528b2c2613b3cb704c3da"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass62.json",
+      "sha256": "89804c7c5251716d00f59149c970327811709ec2d2a5e467d848c2c10aae5f18"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass62.json",
+      "sha256": "9142af81bfa9da4f3adf015c341bca5dcd94482c60b528b2c2613b3cb704c3da"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 299,
+      "removedNotes": 3,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-0f1a4065ead6bbd441ebf9886f8d2063c2e855d62b5448bdc1c5f6ee09bd5aba.zip",
+      "archiveSHA256": "502f6a069758da27af130c9731ca95ccd376c24ced0467c39680afd5c6479d28",
+      "archiveBytes": 3110119
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 351,
+      "remainingNoteCount": 299,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 348,
+      "distinctChangedSourceUnits": 123
+    }
+  }
+}

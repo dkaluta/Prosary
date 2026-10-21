@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 134,
+  "integrationPass": 134,
+  "preparationID": 144,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "2MA",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation144-2MA-11-4/source-provenance.json",
+    "sha256": "6a88b98ea3c11ac0d67d027d8f9c38def788d345ba0f225b4195471006e2706d"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "2ma-11-4-bet-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "2f31c3b0bf55af042b8a2ad3c11ed5f984684d948eb242bce83b19949b0cd863",
+  "contentSHA256After": "727ae06afba0f50ed7d20b333a0604344ab1d7227f1f61270e1f437e8d215f64",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "2ma-11-4-bet-3-vowel",
+      "book": "2MA",
+      "chapter": 11,
+      "verse": 4,
+      "anchorBefore": "מֵרִבבוֹת",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "Own complete thirdBet ends300; eight clear rows separate the lower compound. Exact native components at128: detached left horizontal191px25x9 bar[2236,309,2261,318], detached rightupper107px10x13 node[2267,309,2277,322], rightlower93px12x10 node[2265,327,2277,337] with separate tiny4px terminal[2272,337,2274,339]. Leftbar and rightupper are horizontally separate by6columns; rightlower is vertically separate. No left lower node or stem belowbar; fullfield340..354 is clear through192. Literal nextunit5 samepage Het independently shows matching horizontalleftbar plus two right vertically stacked nodes. This certifies HatafPatah U05B2, without supplying reading from canonical text or expected spelling. Independent peer: Independent complete own word identifies Mem-Resh-Bet-Bet-Vav-Tav; queriedindex3 is the rightmostBet, immediatelyLEFT of Resh, with a full top/rightwall/bottomfoot body[2231,230,2290,301]. Eight blank rows301..308 separate body from a left horizontal25x9bar191pixels[2236,309,2261,318] and upper-right10x13node107pixels[2267,309,2277,322]; six empty columns2261..2266 separate the upper components. Lower-right node93pixels[2265,327,2277,337] with tiny4pixel terminal is separate by five blank rows322..326. At64 and192 the three main members remain separately exposed. There is no lower-left third node or downward stem under the leftbar; fullwidth lower340..354 is clear through192. Thus the literal compound is HatafPatah U+05B2. Independent exact nextunit5 complete וחמשים identifies its Het with two full legs and an independently visible left25x10bar203pixels plus two right95/139pixel stackednodes, confirming the same exact class without canonical-vowel labels. Adjacent ownResh compact126pixel13x13lowerdot belongs toResh and is excluded from target. Only the ownBet U+05B2 insertion is approved; existing scalars unchanged.",
+      "targetCapture": "extension-volumeB-219-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeB-219-zoom4-upper-left.png",
+      "inspectedBounds": [
+        2231,
+        230,
+        2290,
+        301
+      ],
+      "markProposed": "HatafPatah",
+      "codePoint": "U+05B2",
+      "pointBounds": [
+        2236,
+        309,
+        2277,
+        339
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation144-2MA-11-4/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 11,
+      "verse": 4,
+      "before": "וְהוּא לֹא חָשַׁב דָּבָר עַל־כֹּחַ אֱלֹהִים כִּי מִשְׁעָן הָיָה מֵרִבבוֹת אִישׁ רַגְלִי וּמֵאַלְפֵי הַפָּרָשִׁים וּמִשְּׁמוֹנִים הַפִּילִים׃",
+      "after": "וְהוּא לֹא חָשַׁב דָּבָר עַל־כֹּחַ אֱלֹהִים כִּי מִשְׁעָן הָיָה מֵרִבֲבוֹת אִישׁ רַגְלִי וּמֵאַלְפֵי הַפָּרָשִׁים וּמִשְּׁמוֹנִים הַפִּילִים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 11,
+    "verse": 4,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation144-2MA-11-4/independent-review.json",
+    "sha256": "d0883e9cf89d935cdb3720c5ab78ad355aef83431903c2fe500c2e8661468f37"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation144-2MA-11-4/primary-preparation.json",
+    "sha256": "c5d57c38f7a2156f81cdf80f9e98ca842d2d033c0613e0aa5dbdbec7762e0ab4"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation144-2MA-11-4/consensus-preparation.json",
+    "sha256": "8a99e55ff4d747bb4eaa3bed76dbe4774d873e11cb28dd66c136f91b49cc6f23"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|2 Maccabees 12:43–46",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|2 Maccabees 1:23–27",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

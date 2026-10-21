@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 143,
+  "integrationPass": 143,
+  "preparationID": 192,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation192-SIR-39-14/source-provenance.json",
+    "sha256": "fab21620330b97efdc851fccc1bf41c67c9f351175b345a111a557b2718e4942"
+  },
+  "sourceNotesBefore": 19,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-39-14-bet-vowel"
+  ],
+  "contentSHA256Before": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "contentSHA256After": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-39-14-bet-vowel",
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 14,
+      "anchorBefore": "בּרְכוּ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Exact firstBet inowncompleteברכו forms single523px24x40body[704,1771,728,1811]. NativeASCII shows rightstem flowsintobroadbase1790..1802 and narrowsinto downwardstub1803..1810, with no independentlydetachedlowerpoint. Exactvowelclass or exactabsence cannotbe certified fromthisjoinedterminal. Own interiorDagesh18px5x4[712,1784,717,1788] independentlydistinct fromroof/rightstem/base; it supplies no lowerpoint. Followingwholewordletters andfullactual3rows/endpoints inspected. Retain exactsource note, originalReshvowel/scalarorder unchanged.",
+      "targetCapture": "primary-509-native.png",
+      "targetSourceIdentifier": "primary-509-native.png",
+      "inspectedBounds": [
+        701,
+        1765,
+        733,
+        1818
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation192-SIR-39-14/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 39,
+    "verse": 14,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation192-SIR-39-14/independent-review.json",
+    "sha256": "2a3cbdf6ba93b6601a5ca2049dee17ec6f30edc1fef7d47dced613c9fe8bd127"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation192-SIR-39-14/primary-preparation.json",
+    "sha256": "ac24cad8688918d05b6929514f29be739c104522228123208abf2778fa1ac3af"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation192-SIR-39-14/consensus-preparation.json",
+    "sha256": "c472c7f9ba47c613256f11343a4158de0ac1c84af69c1298fe900a60ce914880"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 100,
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass100-SUS-1-38/source-provenance.json",
+    "sha256": "242ef81184c94643376b38f5c8e9d8aba796425b92d8bc7db9aca7756be6fe0b"
+  },
+  "sourceNotesBefore": 11,
+  "sourceNotesAfter": 9,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "sus-1-38-letter-2-vowel",
+    "sus-1-38-letter-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "cecf654e7fbf4b106ca5c2faa02ee97d4e6f315dd54552b5a6f238d824dffa66",
+  "contentSHA256After": "5ce4fa39ac83e26147b015f17c089a3de4173a66fa699bd14cb35322b0f8e968",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "sus-1-38-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "anchorBefore": "בְּפנּת",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "A single completely detached round point lies beneath the second physical pe, white-separated from its baseline and from the adjacent nun bar. It has neither a horizontal extension nor a second vertical node. Its round isolated footprint matches the literal alef Hiriq in the following same-unit ראינו, while the nearby same-unit pe Patah in הפרדס is a distinct horizontal bar.",
+      "targetCapture": "extension-volumeA-585-zoom6-mid-mid.png",
+      "inspectedBounds": [
+        1118,
+        1507,
+        1202,
+        1615
+      ],
+      "markProposed": "hiriq",
+      "codePoint": "U+05B4",
+      "pointBounds": [
+        1156,
+        1619,
+        1175,
+        1638
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass100-SUS-1-38/consensus-preparation.json"
+    },
+    {
+      "noteId": "sus-1-38-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "anchorBefore": "בְּפנּת",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "Beneath the third physical nun is a completely detached horizontal bar,43pixelswide and15high, with no vertical descending stem or second point. The existing interior nun Dagesh at [1072,1554,1087,1569] remains separate and unchanged. The bar matches literal same-row Patah controls under pe and he of הפרדס; the word's existing initial bet Sheva has a clearly taller two-level stamp [1252,1623,1271,1661] and does not match this flat bar.",
+      "targetCapture": "extension-volumeA-585-zoom6-mid-mid.png",
+      "inspectedBounds": [
+        1060,
+        1507,
+        1106,
+        1611
+      ],
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        1056,
+        1623,
+        1099,
+        1638
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass100-SUS-1-38/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 38,
+      "before": "וַאֲנַחְנוּ בְּפנּת הַפַּרְדֵּס רָאִינוּ אֶת־הַנְּבָלָה וַנָּרָץ אֲלֵיהֶם׃",
+      "after": "וַאֲנַחְנוּ בְּפִנַּת הַפַּרְדֵּס רָאִינוּ אֶת־הַנְּבָלָה וַנָּרָץ אֲלֵיהֶם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 38,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass100-SUS-1-38/independent-review.json",
+    "sha256": "a789efb2e9a1a92a584784d6ccadee3178e312d7725b5ab450e44031d9fdf13a"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass100-SUS-1-38/primary-preparation.json",
+    "sha256": "41beea14af25984241fd5a4d897e72ab78334b81f3d93caa8f7475a6b981b070"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass100-SUS-1-38/consensus-preparation.json",
+    "sha256": "bc8669085153d69e01665cdff5996e66fe6a173729585070ed2da3cd11efe724"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

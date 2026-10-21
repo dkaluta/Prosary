@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 54,
+  "book": "BEL",
+  "status": "Three 1:8 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 54.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass54-BEL-1-8/source-provenance.json",
+    "sha256": "c2c7dc5d6e2e66c8c8cc5f901bcabccbd8ac5a95c9f415533483409b975e33fa"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 326,
+  "sourceNotesBefore": 61,
+  "sourceNotesAfter": 58,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-8-243-vayitzhak-letter1-vowel",
+    "bel-1-8-243-vayomer8-letter1-vowel",
+    "bel-1-8-243-vayomer8-letter4-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "bel-1-8-243-vayomer8-letter4-vowel": "U+05B6"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 8,
+      "before": "ויִּצְחַק דָּנִיֵּאל ויֹּאמר אַל־תַּשֵּׁל אֶת־נַפְשְׁךָ הַמֶּלֶךְ כִּי הוּא מִפְּנִימָה חֶרֶשׂ וּמִחוּץ נְחֹשֶׁת וְלֹא אָכַל מֵעוֹדוֹ׃",
+      "after": "ויִּצְחַק דָּנִיֵּאל ויֹּאמֶר אַל־תַּשֵּׁל אֶת־נַפְשְׁךָ הַמֶּלֶךְ כִּי הוּא מִפְּנִימָה חֶרֶשׂ וּמִחוּץ נְחֹשֶׁת וְלֹא אָכַל מֵעוֹדוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 8,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 8 on page רמג / 243 (viewer page 588, internal page 603) in Kahana Volume A.",
+  "decisions": [
+    {
+      "noteId": "bel-1-8-243-vayitzhak-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 8,
+      "anchor": "ויִּצְחַק",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויִּצְחַק consists of a printed vertical stem with 58 vertical rows of pure white paper (all pixels = 255) underneath. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass54-BEL-1-8/bel-1-8-vav-vayitzhak-target-native.png",
+        "sha256": "e402a511eacb540648306d57483fb5a30e61786cb4787b8b67467b527022f221"
+      }
+    },
+    {
+      "noteId": "bel-1-8-243-vayomer8-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 8,
+      "anchor": "ויֹּאמר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ויֹּאמר consists of a bare vertical stem with 36 vertical rows of pure white paper underneath. Confirmed unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass54-BEL-1-8/bel-1-8-vav-vayomer-target-native.png",
+        "sha256": "a9d24a844fe24b9a763d4181ea0b797abc8e0da95099e7f0d86205c5aa04669c"
+      }
+    },
+    {
+      "noteId": "bel-1-8-243-vayomer8-letter4-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 8,
+      "anchor": "ויֹּאמר",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "markProposed": "Segol",
+      "codePoint": "U+05B6",
+      "markClassification": "VowelMark",
+      "finding": "Underneath Mem of ויֹּאמר sits a clearly printed three-dot Segol forming a downward equilateral triangle (two upper dots at y=1088..1091, one lower central dot at y=1093..1095). Confirmed printed Segol (U+05B6).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass54-BEL-1-8/bel-1-8-mem-vayomer-target-native.png",
+        "sha256": "f0c9c2b2bfe5b4c339fa53aab3221db765bd3950df1f3294286afd3f3ff58af5"
+      }
+    }
+  ]
+}

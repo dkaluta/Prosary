@@ -13,6 +13,37 @@ import XCTest
 
 @MainActor
 final class PrayerPackLoaderTests: XCTestCase {
+  func testSpokenBeadProgressUsesTheCustomPackHeadingAndItsOnlyAuthoredHebrewTradition() throws {
+    let savedDirectory = PrayerPackStore.installedPacksDirectory
+    let directory = FileManager.default.temporaryDirectory.appendingPathComponent("bead-heading-\(UUID())")
+    defer {
+      PrayerPackStore.installedPacksDirectory = savedDirectory
+      try? FileManager.default.removeItem(at: directory)
+    }
+    try PrayerPackStore.preservingSharedTextForTesting {
+      PrayerPackStore.installedPacksDirectory = directory
+      let id = "repo.bead-heading.\(UUID().uuidString)"
+      func json(_ value: Any) throws -> Data { try JSONSerialization.data(withJSONObject: value) }
+      let manifest: [String: Any] = ["schemaVersion": 1, "id": id, "kind": id,
+        "displayName": "Bead heading fixture", "languages": ["he", "he-x-gamliel"], "hasCatalog": false, "images": []]
+      let hebrew: [String: Any] = [
+        "prayers": ["fixtureBody": "Vicariate fixture body", "aveMariaTitle": "Pack-specific Vicariate heading"],
+        "$prayerTraditionByKey": ["fixtureBody": "vicariate", "aveMariaTitle": "vicariate"], "mysteries": [:],
+      ]
+      try PrayerPackStore.installPack(from: Self.storedZip([
+        ("manifest.json", try json(manifest)), ("content/he.json", try json(hebrew)),
+        ("content/he-x-gamliel.json", try json(["prayers": ["unused": "Unused Mission body"], "mysteries": [:]])),
+        ("devotion.json", Data(#"{"type":"steps","steps":[{"title":"Fixture","bodyKey":"fixtureBody"}]}"#.utf8)),
+      ]))
+      defer { PrayerPackStore.removeInstalledPack(id: id) }
+      XCTAssertEqual(PrayerPackStore.effectiveLanguage(for: id, chosen: "he-x-gamliel"), "he")
+      let caption = RosaryPrayerLabels.hailMaryProgress(3, total: 10, languageCode: "he-x-gamliel",
+                                                       interfaceLanguage: "he", bundleId: id)
+      XCTAssertEqual(caption.replacingOccurrences(of: "\u{2068}", with: "").replacingOccurrences(of: "\u{2069}", with: ""),
+                     "Pack-specific Vicariate heading 3 מתוך 10")
+    }
+  }
+
   func testDayPickerLocalizesPeriodAndKeepsOlderBundlesReadable() throws {
     let originalInterface = InterfaceLanguageStore.shared.selection
     defer { InterfaceLanguageStore.shared.selection = originalInterface }

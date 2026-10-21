@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 135,
+  "integrationPass": 135,
+  "preparationID": 146,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "BEL",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation146-BEL-1-13/source-provenance.json",
+    "sha256": "f818dbdf717bec7c9226d5af8acc97b7f57444766c784d7c9e388eb514636921"
+  },
+  "sourceNotesBefore": 6,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "bel-1-13-244-daniel13-letter3-dagesh"
+  ],
+  "contentSHA256Before": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
+  "contentSHA256After": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "bel-1-13-244-daniel13-letter3-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 13,
+      "anchorBefore": "דָּנִיֵאל",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own thirdYod is one1586px native6x component[2010,1127,2049,1195] at128. A lowleft lobe starts1172 and attaches across1176..1179 to the rightstem; it narrows and ends1187 while stem continues1194. Native4x reproduces one702pxbody[1343,789,1369,834] with same lowleft lobe819..828 attached822..823. This joined lobe may include a worn/ink-joined point but cannot be separated confidently from own body contribution; neither exact dagesh nor absence is certified. Existing lower mark518px[2010,1238,2049,1257] is far below body and is not relabelled as queried dagesh. Literal sameword firstDalet has a separately exposed147px15x11 internaldot[2164,1184,2179,1195] and a detached1193px42x50 Qamats; neither transfers a point to Yod. Retain exact note and every originalscalar.",
+      "targetCapture": "extension-volumeA-589-zoom6-lower-left.png",
+      "targetSourceIdentifier": "extension-volumeA-589-zoom6-lower-left.png",
+      "inspectedBounds": [
+        2010,
+        1127,
+        2049,
+        1195
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation146-BEL-1-13/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 13,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation146-BEL-1-13/independent-review.json",
+    "sha256": "bc74b95c69e9969e8c5ce272a7e0272b6b949309a042d03c122d910198368614"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation146-BEL-1-13/primary-preparation.json",
+    "sha256": "d7d09e5807ca735f2dc763fdfce0141d20f56d2108b623a1e06666806144f7a0"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-preparation146-BEL-1-13/consensus-preparation.json",
+    "sha256": "1c55f53c31f3261078e5538355ae2fdd063c6ecceba1f03f9383b08c1d499018"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

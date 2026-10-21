@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 152,
+  "integrationPass": 152,
+  "preparationID": 233,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation233-WIS-7-9/source-provenance.json",
+    "sha256": "92d507b0cc8c6ee189f3b9695c2e38ae6b8d018ca8d9c1bf9759023127099cd7"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-7-9-mem"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-7-9-mem",
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 9,
+      "anchorBefore": "כְּדֹמן",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own fresh complete nativeword and fullMem/lowerfield literalASCII. Mem is one954px connected component[888,873,922,929]. Its lower bowl continues through narrow contacts into a broad irregular diamondlike mass at y914..928; exact independent vowel heads/count are not uniquely separable from foot. No absence inference from blank lower rows. Retain original unpointedMem, complete originaltext/scalars and disclosure unchanged. Controls establish their own marks only.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f7/f75544ae05ee5e3cb0e649ffc15b10588603e6615cf38c1d6d181241e1eb8036.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f7/f75544ae05ee5e3cb0e649ffc15b10588603e6615cf38c1d6d181241e1eb8036.bin",
+      "inspectedBounds": [
+        885,
+        868,
+        925,
+        940
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation233-WIS-7-9/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 7,
+    "verse": 9,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation233-WIS-7-9/independent-review.json",
+    "sha256": "152d4f2bbc4293f2405a8e465741bd992112fdcd4fa2c10f50717acc9062de1c"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation233-WIS-7-9/primary-preparation.json",
+    "sha256": "86a488335307dc0070444260d0d6871fcc4131976c39f637cc51cf1401079b7d"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation233-WIS-7-9/consensus-preparation.json",
+    "sha256": "1daba08957cf14383c2a58c50e6bc086ec30ec7600d679c2b56a95a6aa7712f9"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

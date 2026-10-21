@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 143,
+  "integrationPass": 143,
+  "preparationID": 190,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation190-SIR-31-21/source-provenance.json",
+    "sha256": "cb9333036e845a53963fdfba6da4de171ebcaedfddb0269111edde78d7a36245"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "sir-31-21-vav-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "sir-31-21-vav-vowel",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 21,
+      "anchorBefore": "קִוה",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "OwnLEFTsecondQofVavHe immediatelybeforeוינוח, afterdistinctRIGHTfirstקוה. OwnVav698px26x69body[2174,132,2200,201] ends200; sixblankrows201..206 beforeTWOindependenthorizontallyseparatednodes92px13x10[2182,207,2195,217]and74px10x10[2198,207,2208,217], threeclearcolumns2195..2197between, sameverticalbounds207..217, no thirdnode/lowerstem through259. This is ownliteralTsereU05B5. Firstקוה Vav aboveHolam129px13x13[2425,112,2438,125] andfirstQof detachedQamats431px28x33[2477,212,2505,245]; followingcompleteוינוח initialVav belowSheva106px14x12[2014,207,2028,219]and105px13x10[2016,225,2029,235] stackedverticallywith6blankrows219..224. Literalcontrols distinguishaxes/classesbutdonotsupplyownpoint. Preserveeveryotherpoint; separateownQofmismatchretaineddeferred.",
+      "targetCapture": "extension-volumeB-499-zoom4-mid-left.png",
+      "targetSourceIdentifier": "extension-volumeB-499-zoom4-mid-left.png",
+      "inspectedBounds": [
+        2174,
+        132,
+        2200,
+        201
+      ],
+      "markProposed": "Tsere",
+      "codePoint": "U+05B5",
+      "pointBounds": [
+        2182,
+        207,
+        2208,
+        217
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation190-SIR-31-21/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 31,
+      "verse": 21,
+      "before": "וְגַם אִם־נֶאֱנַסְתָּה בְּמַטְעַמִּים קָוֹה קִוה וְיָנוּחַ לָךְ׃",
+      "after": "וְגַם אִם־נֶאֱנַסְתָּה בְּמַטְעַמִּים קָוֹה קִוֵה וְיָנוּחַ לָךְ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 31,
+    "verse": 21,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation190-SIR-31-21/independent-review.json",
+    "sha256": "a5be8a385d0791487f9b0950f9f1af986525329f131eebdff11448ef01f5e81b"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation190-SIR-31-21/primary-preparation.json",
+    "sha256": "6ea3088075b6445671a7e48643365667e7d780282b3fa3b2fb7de7e3000d32df"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation190-SIR-31-21/consensus-preparation.json",
+    "sha256": "8e602adcbd59a55a18ab32d8c22fc2e78078b468a0f61d18f78975e38f6fa280"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Sirach 27:30; 28:1–7",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Sirach 39:6–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Sirach 45:1–6",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Sirach 51:13–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

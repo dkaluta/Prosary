@@ -1,0 +1,1540 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 11,
+  "book": "SUS",
+  "status": "Three source-certified point omissions independently approved; five selected sites retained; no canonical changes by report author",
+  "applicationState": "pendingRootIntegration",
+  "scope": {
+    "reviewedSourceNoteCount": 8,
+    "reviewedChapters": [
+      1
+    ],
+    "vowelSites": 7,
+    "dageshSites": 1,
+    "annotationCountsInAllTargetAndControlChapters": {
+      "SUS:1": 25,
+      "WIS:5": 25,
+      "WIS:6": 18,
+      "WIS:13": 9,
+      "WIS:14": 7
+    },
+    "onlyAlreadyAnnotatedChapters": true,
+    "notWholeBookRecollation": true
+  },
+  "baselineDirectory": "/private/tmp/prosary-hebrew-pass11-20261017/baseline",
+  "baselineGlobalNoteCount": 589,
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/SUS.json",
+  "canonicalInputSHA256": "cd052dc2dd090026c900b6fc3f1c178e09957c7e7e3f67f21cfd2ae7e7dcf64c",
+  "canonicalOutputSHA256": "cd052dc2dd090026c900b6fc3f1c178e09957c7e7e3f67f21cfd2ae7e7dcf64c",
+  "canonicalChanged": false,
+  "sourceNotesBefore": 25,
+  "expectedPacketOnlySourceNotesAfter": 22,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 5,
+  "sourceContentSHA256Before": "0989a562bb344ac75b6b469f5867d1c1c050b822e3847e36a8e4762e8fefbb03",
+  "expectedPacketOnlySourceContentSHA256After": "b550cb627cac4c19be76cdd598fe6532f8a4bcfbbca0af80743a0b17fde1aff3",
+  "method": "Fresh full-glyph/word/numbered-context inspection and original embedded PDF pixel replay, using same-font literal pointed/plain/competing controls and integer nearest-neighbor views only. Three-step rounded lobes with waists classify qubbuts; the mem interior node is compared with a genuinely detached same-page positive and an empty ordinary cavity. A narrow bridge is neither automatic acceptance nor automatic rejection: complete surviving contour must distinguish the competing class. Existing canonical marks identify comparison words but never supply the missing point. No OCR, grammar, expected spelling, translation, image enhancement or new-witness claim.",
+  "accepted": [
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 4,
+      "before": "מִכּלָּם",
+      "after": "מִכֻּלָּם",
+      "retiredNoteIds": [
+        "sus-1-4-letter-2-vowel"
+      ],
+      "finding": "Three rounded descending-right lobes with narrow waists continue below the complete ordinary kaf foot. The exact same-font kaf qubbuts in WIS6:7 repeats the three-step chain; same-font kaf qamats instead has a broad shoulder and one lower central button. Detached alef qubbuts fixes the three-node class independently of the joined kaf control. Existing dagesh and all other scalar positions are preserved."
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 48,
+      "before": "הַאמְנָם",
+      "after": "הַאֻמְנָם",
+      "retiredNoteIds": [
+        "sus-1-48-letter-2-vowel"
+      ],
+      "finding": "Below the ordinary alef lower-left foot is a chain of three rounded stamps descending rightward with two narrow waists. It repeats the literal same-font alef qubbuts in WIS13:10. Same-page SUS43 alef qamats has a broad horizontal shoulder and single thin central stem/lower button, unlike the three sidewise lobes of the target. No expected Hebrew reading supplies the point."
+    },
+    {
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "before": "ויִמָלֵט",
+      "after": "ויִמָּלֵט",
+      "retiredNoteIds": [
+        "sus-1-62-letter-3-dagesh"
+      ],
+      "finding": "A compact rounded node lies inside the completed mem cavity, matching the size and central position of the genuinely detached samepage63 המה mem dagesh. It is connected to the head and lower body by two much thinner vertical necks; the ordinary outer letter contour is separately complete. The samepage63 נמצא plain mem lacks this interior node. The matching added node, rather than bridge connectivity or an absence claim, certifies dagesh. Preserve the existing mem qamats before the new U05BC and all other marks."
+    }
+  ],
+  "retiredSourceNoteIds": [
+    "sus-1-4-letter-2-vowel",
+    "sus-1-48-letter-2-vowel",
+    "sus-1-62-letter-3-dagesh"
+  ],
+  "retainedSourceNoteIds": [
+    "sus-1-18-letter-4-vowel",
+    "sus-1-22-letter-3-vowel",
+    "sus-1-23-letter-3-vowel",
+    "sus-1-38-letter-2-vowel",
+    "sus-1-38-letter-3-vowel"
+  ],
+  "allRemainingSourceNoteIdsAfterPacket": [
+    "sus-1-14-letter-1-vowel",
+    "sus-1-14-letter-2-dagesh",
+    "sus-1-17-letter-1-vowel",
+    "sus-1-18-letter-1-vowel",
+    "sus-1-18-letter-4-vowel",
+    "sus-1-18-tsadi-vowel",
+    "sus-1-22-letter-1-vowel",
+    "sus-1-22-letter-3-vowel",
+    "sus-1-23-letter-1-vowel",
+    "sus-1-23-letter-3-vowel",
+    "sus-1-27-letter-1-vowel",
+    "sus-1-27-letter-2-dagesh",
+    "sus-1-38-letter-2-vowel",
+    "sus-1-38-letter-3-vowel",
+    "sus-1-40-letter-1-vowel",
+    "sus-1-47-letter-1-vowel",
+    "sus-1-47-letter-2-dagesh",
+    "sus-1-5-letter-1-vowel",
+    "sus-1-6-letter-2-dagesh",
+    "sus-1-62-letter-1-vowel",
+    "sus-1-62-letter-2-dagesh",
+    "sus-1-9-letter-1-vowel"
+  ],
+  "retainedAnchorUpdates": [
+    {
+      "noteId": "sus-1-62-letter-1-vowel",
+      "before": "ויִמָלֵט",
+      "after": "ויִמָּלֵט"
+    },
+    {
+      "noteId": "sus-1-62-letter-2-dagesh",
+      "before": "ויִמָלֵט",
+      "after": "ויִמָּלֵט"
+    }
+  ],
+  "unitTextHashChangesAfterPacket": [
+    {
+      "chapter": 1,
+      "verse": 4,
+      "beforeTextSHA256": "264f95a4302667b545113513c30511ea93270727230560aae6395d838437b119",
+      "afterTextSHA256": "44db9841496525031e637f81508ebe65d62942118e8b59202a6f3be21542fcca"
+    },
+    {
+      "chapter": 1,
+      "verse": 48,
+      "beforeTextSHA256": "cd84b61f5e255dd4f5301df0fb6b6af5320cc4078e3d39ed93c9362ade514df7",
+      "afterTextSHA256": "938c7383607cd4a0c4299e1755a013637490e191128e17dd052a8c04d6ac2a29"
+    },
+    {
+      "chapter": 1,
+      "verse": 62,
+      "beforeTextSHA256": "70f2fd5420ff7a27710a3582c99f54b87ee069638ec552b265607565d2beddfc",
+      "afterTextSHA256": "5775c542313b2a8b43b4468d66c424e035c7a5c8a2e773c5222757d90db2c402"
+    }
+  ],
+  "scalarConservation": {
+    "singlePointInsertedPerResolvedNote": true,
+    "allOldScalarsInOriginalRelativeOrder": true,
+    "SUS4ExistingKafDageshThenNewQubbuts": [
+      "U+05BC",
+      "U+05BB"
+    ],
+    "SUS62ExistingMemQamatsThenNewDagesh": [
+      "U+05B8",
+      "U+05BC"
+    ],
+    "noConsonantOrPunctuationOrBracketWitnessGapOrderChange": true
+  },
+  "findings": [
+    {
+      "noteId": "sus-1-4-letter-2-vowel",
+      "chapter": 1,
+      "verse": 4,
+      "anchor": "מִכּלָּם",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "proposeExactPoint",
+      "finding": "Three rounded descending-right lobes with narrow waists continue below the complete ordinary kaf foot. The exact same-font kaf qubbuts in WIS6:7 repeats the three-step chain; same-font kaf qamats instead has a broad shoulder and one lower central button. Detached alef qubbuts fixes the three-node class independently of the joined kaf control. Existing dagesh and all other scalar positions are preserved.",
+      "before": "מִכּלָּם",
+      "after": "מִכֻּלָּם",
+      "retiredNoteIds": [
+        "sus-1-4-letter-2-vowel"
+      ],
+      "independentApproval": [
+        "root",
+        "wisdom_pass3"
+      ]
+    },
+    {
+      "noteId": "sus-1-18-letter-4-vowel",
+      "chapter": 1,
+      "verse": 18,
+      "anchor": "בּיַרְכתַיִם",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainDisclosure",
+      "finding": "The full kaf lower curve and upper point region are one saturated bulb, followed by one small lower button. Same-font kaf qamats shows how an upper bar can merge into the foot, while local hiriq/sheva word comparators show other short lower extensions. The surviving single button does not uniquely recover the complete point class; retain."
+    },
+    {
+      "noteId": "sus-1-22-letter-3-vowel",
+      "chapter": 1,
+      "verse": 22,
+      "anchor": "אעֱשׂנָּה",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainDisclosure",
+      "finding": "The sin ordinary base and lower point region form a dense wedge with only one clear low terminal. A same-verse existing אעשה comparator is itself partly joined and is not assumed to prove segol from its canonical label. The diagnostic divisions of a complete triangular point group or shoulder/stem are lost in this target; retain."
+    },
+    {
+      "noteId": "sus-1-23-letter-3-vowel",
+      "chapter": 1,
+      "verse": 23,
+      "anchor": "אעֱשׂנָּה",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainDisclosure",
+      "finding": "The correctly located second אעשנה has a similar saturated lower wedge and single low terminal. Numbered mixed-row context establishes the distinct23 word after ועתה טוב לי. Font-class and same-letter comparisons do not recover the missing point divisions; retain."
+    },
+    {
+      "noteId": "sus-1-38-letter-2-vowel",
+      "chapter": 1,
+      "verse": 38,
+      "anchor": "בְּפנּת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainDisclosure",
+      "finding": "One low rounded component lies below a thick pe foot, but the foot/upper-point region is too saturated to exclude an absorbed upper bar or extra node. The same-font פתאם pe comparison also has a short lower extension and does not independently restore missing target divisions. A single lower component alone cannot identify the whole vowel; retain."
+    },
+    {
+      "noteId": "sus-1-38-letter-3-vowel",
+      "chapter": 1,
+      "verse": 38,
+      "anchor": "בְּפנּת",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainDisclosure",
+      "finding": "The nun has an attached shallow lower plateau with upper notches and a filled lower waist. Local ואנחנו nun patah and a literal detached same-font tsere pair demonstrate competing flat-bar and filled-pair contours. Neither class is uniquely discriminated in the target; retain."
+    },
+    {
+      "noteId": "sus-1-48-letter-2-vowel",
+      "chapter": 1,
+      "verse": 48,
+      "anchor": "הַאמְנָם",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "proposeExactPoint",
+      "finding": "Below the ordinary alef lower-left foot is a chain of three rounded stamps descending rightward with two narrow waists. It repeats the literal same-font alef qubbuts in WIS13:10. Same-page SUS43 alef qamats has a broad horizontal shoulder and single thin central stem/lower button, unlike the three sidewise lobes of the target. No expected Hebrew reading supplies the point.",
+      "before": "הַאמְנָם",
+      "after": "הַאֻמְנָם",
+      "retiredNoteIds": [
+        "sus-1-48-letter-2-vowel"
+      ],
+      "independentApproval": [
+        "root",
+        "wisdom_pass3"
+      ]
+    },
+    {
+      "noteId": "sus-1-62-letter-3-dagesh",
+      "chapter": 1,
+      "verse": 62,
+      "anchor": "ויִמָלֵט",
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "decision": "proposeExactPoint",
+      "finding": "A compact rounded node lies inside the completed mem cavity, matching the size and central position of the genuinely detached samepage63 המה mem dagesh. It is connected to the head and lower body by two much thinner vertical necks; the ordinary outer letter contour is separately complete. The samepage63 נמצא plain mem lacks this interior node. The matching added node, rather than bridge connectivity or an absence claim, certifies dagesh. Preserve the existing mem qamats before the new U05BC and all other marks.",
+      "before": "ויִמָלֵט",
+      "after": "ויִמָּלֵט",
+      "retiredNoteIds": [
+        "sus-1-62-letter-3-dagesh"
+      ],
+      "independentApproval": [
+        "root",
+        "wisdom_pass3"
+      ]
+    }
+  ],
+  "addressVerification": [
+    "SUS4 wholeword מכלם is at the left end of the continuation of source ד, after נכבד; exact canonical4 unit matches.",
+    "SUS22 and23 are separate words on a mixed physicalrow:22 אעשנה precedes לא אמלט מידיכם;23 begins after the colon with ועתה טוב לי and contains the left-hand אעשנה. The margin כג identifies the later new unit, not all earlier text on that row.",
+    "SUS38 בפנת follows ואנחנו on the continuation of source לח, after the preceding37 ends with עמה; both target glyphs are in the same complete word.",
+    "SUS48 source מח begins after47 ends אשר דברת on a shared physicalrow; האמנם follows ויעמד בתוכם ויאמר on the continuation and matches Catholic48.",
+    "SUS62 וימלט follows the preceding unit ending וימיתו אותם on the shared physicalrow marked סב; full unit וימלט דם נקי ביום ההוא matches Catholic62. Samepage63 contains both המה and נמצא as positive and plain mem controls. נמצא falls on a physicalrow marked סד but before the later new64 unit beginning ודניאל."
+  ],
+  "additionalContextObservation": {
+    "reviewer": "root",
+    "description": "Live authenticated PSIK A viewer label582/physical597 lower Theodotion SUS4 wholeword corroborated the original word/recension and kaf three-node shape. This is a context observation only; no new image export and no claim of independent new witness or new source pixels.",
+    "certificationSourceRemains": "Original Kahana A2 PDF"
+  },
+  "evidenceSummary": {
+    "nativeFrames": 48,
+    "pngCount": 88,
+    "freshPDFPageImages": 9,
+    "allFreshPDFReplaysPassed": true
+  },
+  "evidenceManifest": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/original-PDF-native-replay.json",
+    "sha256": "26bc706f4bb9aa5a5c11b95099a4c0abaece34a809f9a400eb34b77719278868"
+  },
+  "acceptedArtifact": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/accepted.json",
+    "sha256": "5f42c9a94c0cf4e1ec67bd9b96b8db23d9036b5ec5a9e4f1a03bb93535ef1f17"
+  },
+  "evidence": [
+    {
+      "key": "sus-1-4-letter-2-vowel-whole-target",
+      "sourcePage": 237,
+      "pixelBox": [
+        446,
+        1840,
+        505,
+        1961
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-4-letter-2-vowel-whole-target-native.png",
+          "sha256": "affca8ac37d49f46704cc23a8f4f5411c6dc4a8d39cdfeba8ab708216879a3c6",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-4-letter-2-vowel-whole-target-12x.png",
+          "sha256": "9736fa30cd292c5c16a36146754b143d12f1497ede85fd9fa63de3015ecfe6da",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-18-letter-4-vowel-whole-target",
+      "sourcePage": 238,
+      "pixelBox": [
+        1378,
+        2425,
+        1436,
+        2546
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-18-letter-4-vowel-whole-target-native.png",
+          "sha256": "dee9def35293d8beb91503d0c6f7579924193f8036a1ed7907520e67b59d733e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-18-letter-4-vowel-whole-target-12x.png",
+          "sha256": "717f72d89450f8fecf8c61d007a7326d5b8d0554c2a7f2d2902529dad83190f4",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-22-letter-3-vowel-whole-target",
+      "sourcePage": 239,
+      "pixelBox": [
+        1932,
+        1261,
+        1999,
+        1382
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-22-letter-3-vowel-whole-target-native.png",
+          "sha256": "8fbf2021c28936f4e8e71d3004af6307e30ffbed794b96f4bbada44bc382a236",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-22-letter-3-vowel-whole-target-12x.png",
+          "sha256": "ee929dd751cffadd4da2d0ad0b7a6a2b050ad57145446fb165a7451059ba0cdc",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-23-letter-3-vowel-whole-target",
+      "sourcePage": 239,
+      "pixelBox": [
+        544,
+        1225,
+        618,
+        1366
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-23-letter-3-vowel-whole-target-native.png",
+          "sha256": "371b43841b0ada70d0aabbd3c6d8acd1abd229656862ffd7405032247223acfe",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-23-letter-3-vowel-whole-target-12x.png",
+          "sha256": "4bbf5464b5fae11324d0bfa07872e5ce51f67cf2f496472f0cf28604bcea0e31",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-38-letter-2-vowel-whole-target",
+      "sourcePage": 240,
+      "pixelBox": [
+        1224,
+        1874,
+        1281,
+        1995
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-38-letter-2-vowel-whole-target-native.png",
+          "sha256": "5b498d3c4865225b21410bf43f42cf73e629ee116e33c166cb30f330561ecfd3",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-38-letter-2-vowel-whole-target-12x.png",
+          "sha256": "fb8d500c5e0881653014bd63d03a00de5fde347b9b607e82a60a8b1ccf961ac1",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-38-letter-3-vowel-whole-target",
+      "sourcePage": 240,
+      "pixelBox": [
+        1204,
+        1874,
+        1247,
+        1995
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-38-letter-3-vowel-whole-target-native.png",
+          "sha256": "97530b3f43211184e186ee0ef919f03b85baae46ab96c4631105991898c73412",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-38-letter-3-vowel-whole-target-12x.png",
+          "sha256": "4c505e0b208e371b782b8fe135066a27be0659c75fa19b180b8263be645caf60",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus-1-48-letter-2-vowel-whole-target",
+      "sourcePage": 240,
+      "pixelBox": [
+        877,
+        2823,
+        937,
+        2944
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-48-letter-2-vowel-whole-target-native.png",
+          "sha256": "cc5e342d59072973b93671a764a14b139ae2618dcaddea75dbda97c7fb17423f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus-1-48-letter-2-vowel-whole-target-12x.png",
+          "sha256": "74bfa76b6a0e97860d17bfa2c49d8688785e28def96b36c3ee3c6b5614fa34ed",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus62-mem-whole-target",
+      "sourcePage": 242,
+      "pixelBox": [
+        1432,
+        2178,
+        1495,
+        2305
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus62-mem-whole-target-native.png",
+          "sha256": "bcda5ece7bc9f699be6fdf5eb59689842fd192539c9741442a6cbc22466cedc5",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus62-mem-whole-target-12x.png",
+          "sha256": "6d00e6b2b30e06b668d495f15a8d9c5b850365b0efb32451eaa0c6fddce9a704",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus62-mem-cavity-expanded-complete",
+      "sourcePage": 242,
+      "pixelBox": [
+        1430,
+        2225,
+        1500,
+        2300
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus62-mem-cavity-expanded-complete-native.png",
+          "sha256": "f2710405cf765a337bf83dd1fdc31b66fb35bee0a35fa934f057a2232c5302c7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus62-mem-cavity-expanded-complete-15x.png",
+          "sha256": "83b7a6e41d77f5929481fab6aee368c5d254fde25f2dac8d94dabbe7e64ebab5",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus62-complete-word",
+      "sourcePage": 242,
+      "pixelBox": [
+        1370,
+        2178,
+        1550,
+        2310
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus62-complete-word-native.png",
+          "sha256": "58c9d28bb835fba5564e0610ca119e83a0dc26e7a76a07310c2791875681d4db",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus62-complete-word-4x.png",
+          "sha256": "0805bfb982fa399257c9c145175665ff38351741503c28c967c2aa46931ec69a",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "SUS-1-4-word-076-complete-word",
+      "sourcePage": 237,
+      "pixelBox": [
+        320,
+        1810,
+        550,
+        1970
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-4-word-076-complete-word-native.png",
+          "sha256": "dc20959d4386dc2320329177fcffb5e0636fade0d9a15a8baea8355a7f6b5514",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-4-word-076-complete-word-4x.png",
+          "sha256": "228f853dfbb4063c2471c4201f9633499f281dff91d6c571f3865f88b8e355b1",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "SUS-1-18-word-081-complete-word",
+      "sourcePage": 238,
+      "pixelBox": [
+        1210,
+        2410,
+        1660,
+        2570
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-18-word-081-complete-word-native.png",
+          "sha256": "491142c4d7f6c17cbf4a77f897f23ec14dd5412914e64c83ba9a696d0d6da49e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-18-word-081-complete-word-4x.png",
+          "sha256": "27eafc2e8b978655774287c2cec48c4033f0d5b5e1fe0fbfef580fc6f9895e87",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "SUS-1-22-word-083-complete-word",
+      "sourcePage": 239,
+      "pixelBox": [
+        1850,
+        1260,
+        2080,
+        1390
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-22-word-083-complete-word-native.png",
+          "sha256": "2bc674eadb07fd8d8d6a069ed605e3d5c6fe066a640ac862756a53ac16b7982a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-22-word-083-complete-word-4x.png",
+          "sha256": "6544ed46308b8f6ac1a6cfff31ac12534a928c2c73bf7a0a37ef95c46bf0089d",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "SUS-1-23-word-084-complete-word",
+      "sourcePage": 239,
+      "pixelBox": [
+        480,
+        1270,
+        700,
+        1380
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-23-word-084-complete-word-native.png",
+          "sha256": "e0eda8a9c545d25b1b41401c1179dced7b5ed62aa8bf6cea4d08e39bdc937128",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-23-word-084-complete-word-4x.png",
+          "sha256": "d504770577388d82a59e8a73910e00bd7e05a55fd282b01bc54f3c90406e3e6a",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "SUS-1-38-word-086-complete-word",
+      "sourcePage": 240,
+      "pixelBox": [
+        1160,
+        1870,
+        1340,
+        2000
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-38-word-086-complete-word-native.png",
+          "sha256": "ec1b169fa3ace4db28d01f3067136b8ffca4b35966f9c446c40db9a6b0f58a0a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-38-word-086-complete-word-4x.png",
+          "sha256": "b65a0c12fe0261bceb64e7049195b4cc642296529839e7431a05b7d8049f7c12",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "SUS-1-48-word-089-complete-word",
+      "sourcePage": 240,
+      "pixelBox": [
+        780,
+        2820,
+        980,
+        2940
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-48-word-089-complete-word-native.png",
+          "sha256": "3905f09f013a823778f7fbc011832da4d34b487fdc47549f55bf6dcecbc1cada",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/SUS-1-48-word-089-complete-word-4x.png",
+          "sha256": "f030eab8a1146e3d131a26ac8489bd1b007dc10575e6ef8feaf953488d262717",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus4-numbered-row",
+      "sourcePage": 237,
+      "pixelBox": [
+        180,
+        1730,
+        2260,
+        2080
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus4-numbered-row-native.png",
+          "sha256": "1e63e70906ffd0011c225555c8e0f8ede0bd3c7d442f230593f9f291466ca6d2",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus18-numbered-row",
+      "sourcePage": 238,
+      "pixelBox": [
+        180,
+        2300,
+        2260,
+        2680
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus18-numbered-row-native.png",
+          "sha256": "6b64ff1436232c6e1bef9a0a13eaafe1a1ab30cc4e8e8bc56b8b3afe34ca2d5f",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus22-23-numbered-row",
+      "sourcePage": 239,
+      "pixelBox": [
+        180,
+        1200,
+        2260,
+        1510
+      ],
+      "sourceImageRGBPixelSHA256": "ba23a115a80b1fa1aea4df365b75cf56cf566b5bee6a4c0bf724cafff30e7419",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus22-23-numbered-row-native.png",
+          "sha256": "79c6d0c23d7df19786b7d13aef52eb4318a00dea7b0f8c85d54aedbbf0e91098",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus38-numbered-row",
+      "sourcePage": 240,
+      "pixelBox": [
+        180,
+        1770,
+        2260,
+        2100
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus38-numbered-row-native.png",
+          "sha256": "8a2d2d78e7872c07b3e988b08ab982a9acff226ff9965bd9dcfec663970e436f",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus48-numbered-row",
+      "sourcePage": 240,
+      "pixelBox": [
+        180,
+        2720,
+        2260,
+        3040
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus48-numbered-row-native.png",
+          "sha256": "873fe0867c912526d82b45138c139b798bab5c8a6a102113b3303caf93fb0970",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus62-numbered-row",
+      "sourcePage": 242,
+      "pixelBox": [
+        180,
+        2080,
+        2260,
+        2430
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus62-numbered-row-native.png",
+          "sha256": "8d4b7c18dae80074cd010767c90edf9fffb08b6e31d2cf29b29ced5daefbab41",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus62-63-mem-pointed-plain-context",
+      "sourcePage": 242,
+      "pixelBox": [
+        190,
+        2200,
+        2200,
+        2620
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus62-63-mem-pointed-plain-context-native.png",
+          "sha256": "9f6c6029cdaa47e9fc356c8875542854f821472d65213769500fe3c26b7df1d8",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus4-kaf-qubbuts-point-only",
+      "sourcePage": 237,
+      "pixelBox": [
+        461,
+        1917,
+        487,
+        1956
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus4-kaf-qubbuts-point-only-native.png",
+          "sha256": "308f2874a184aace407aca6e4106b9f02660d66b7af77e9b73c4b0a6b3b9b40b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus4-kaf-qubbuts-point-only-20x.png",
+          "sha256": "79b5261f9756c3c466302d24057498f6345c17463443a62d394a1e5ea7c40860",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus48-alef-qubbuts-point-only",
+      "sourcePage": 240,
+      "pixelBox": [
+        889,
+        2898,
+        918,
+        2938
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus48-alef-qubbuts-point-only-native.png",
+          "sha256": "e8f4cfa8601e9d7460917f4522ca9d64b4ec42123e14f4dec4e4811e0de95923",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus48-alef-qubbuts-point-only-20x.png",
+          "sha256": "68c2d04d0bf58e00f0e69683ad3a2240fa5f7be29d9b88f6132cb42ca31197f9",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus38-nun-lower-only",
+      "sourcePage": 240,
+      "pixelBox": [
+        1211,
+        1949,
+        1237,
+        1991
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus38-nun-lower-only-native.png",
+          "sha256": "11f876a2a8482e4275409b7b60bb430d5ccc24ce90d35ea2cce7ee4b06f37f24",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus38-nun-lower-only-20x.png",
+          "sha256": "b1d2b0289c23b13c8fe4b79285602106bdf3df958e3c0b96308476ed9506af9f",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus38-fullpoint-window",
+      "sourcePage": 240,
+      "pixelBox": [
+        1170,
+        1900,
+        1340,
+        1995
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus38-fullpoint-window-native.png",
+          "sha256": "d9231067f411b92f8473b4833267685e9f8a2b99b9f437921c643904301782e7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus38-fullpoint-window-8x.png",
+          "sha256": "0ef6d1ffb53b166784b00f075799f336a444feab71a61e68c79a7ee07638e316",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis6-7-kaf-qubbuts-positive",
+      "sourcePage": 156,
+      "pixelBox": [
+        1067,
+        493,
+        1125,
+        562
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis6-7-kaf-qubbuts-positive-native.png",
+          "sha256": "e5c57453250ee380ef3ba171dbef64f70a7b6e1f2fa09b3e0b3cdf79fdea9e05",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis6-7-kaf-qubbuts-positive-12x.png",
+          "sha256": "d3afd34421c961902b72c620a0330b905fc2233567311c13db09b35d445e24c7",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis6-7-lekhullam-positive-word",
+      "sourcePage": 156,
+      "pixelBox": [
+        980,
+        450,
+        1190,
+        565
+      ],
+      "sourceImageRGBPixelSHA256": "f59180693fe58f82399b2687cec31774965630b972d78d86f61f814d0f90041b",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis6-7-lekhullam-positive-word-native.png",
+          "sha256": "0666f17ac59686f505482a5d37382e6a8b86f9ddb4a1904bca183374a5e619b7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis6-7-lekhullam-positive-word-4x.png",
+          "sha256": "ae52db8009488f0161d265b8f79ca3f8d4c96f049c38061c57ac3b45ce41ae4c",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis5-10-kaf-qamats-counter",
+      "sourcePage": 154,
+      "pixelBox": [
+        1492,
+        778,
+        1538,
+        850
+      ],
+      "sourceImageRGBPixelSHA256": "6099d228c37bf3d57240a73f314b6749b38aeaaa86308c6c55991f0c6d19a47c",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis5-10-kaf-qamats-counter-native.png",
+          "sha256": "f23e71ad7f1f81d9f28ee8790b21187fe157e745862ab22bbfd111705506b5ee",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis5-10-kaf-qamats-counter-12x.png",
+          "sha256": "2205638f9a974f1e2193bcdf000d293b965cb6843b7ee3bd8afbd97bec2afa9e",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis5-10-kaoniya-counter-word",
+      "sourcePage": 154,
+      "pixelBox": [
+        1390,
+        740,
+        1570,
+        850
+      ],
+      "sourceImageRGBPixelSHA256": "6099d228c37bf3d57240a73f314b6749b38aeaaa86308c6c55991f0c6d19a47c",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis5-10-kaoniya-counter-word-native.png",
+          "sha256": "fbb014a44b3a1fa1d12e073e611bda5eab01f087c76f566a0464fc2ac725fcc3",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis5-10-kaoniya-counter-word-4x.png",
+          "sha256": "00210a4e39bb10790a56af23101f8b2714ddaf87c3a6ac4b337c8b43f9584d47",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis13-10-alef-qubbuts-positive",
+      "sourcePage": 171,
+      "pixelBox": [
+        790,
+        1408,
+        836,
+        1488
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis13-10-alef-qubbuts-positive-native.png",
+          "sha256": "73f3c9f6fedcd01be503cb47d362f93d4fccfd799b28436d3d56607368931d5b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis13-10-alef-qubbuts-positive-12x.png",
+          "sha256": "a3772d3b4d75d03c0d4bb2ff6630329eeb083b1002ba260df0a5473fb53c005c",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis13-10-umlalim-positive-word",
+      "sourcePage": 171,
+      "pixelBox": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis13-10-umlalim-positive-word-native.png",
+          "sha256": "d3c3e23e507e061a1f55857fc37eec0bedd456a7525b2152c8e956104be0d127",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis13-10-umlalim-positive-word-4x.png",
+          "sha256": "73acd2c65238d10ed67888ed8c44a4e178c634d1f99749caa489a2f08841832c",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus43-anokhi-alef-qamats-word",
+      "sourcePage": 240,
+      "pixelBox": [
+        1140,
+        2440,
+        1345,
+        2560
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus43-anokhi-alef-qamats-word-native.png",
+          "sha256": "9bee324937ddec4811e0f8ece3f1870bbeb061b7c2305e1657c72bb9ab9ddd73",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus43-anokhi-alef-qamats-word-4x.png",
+          "sha256": "a6cd984bbe996c9ce2cd26c6fca36cfdf3d7f9fe1a5ecb0a506dfacf81742994",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus43-anokhi-alef-qamats-tight",
+      "sourcePage": 240,
+      "pixelBox": [
+        1235,
+        2480,
+        1285,
+        2555
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus43-anokhi-alef-qamats-tight-native.png",
+          "sha256": "b23a7dbd6a1d4508e04fa2b475e56de389938a36e730b0b174d9d637d9f7ec5b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus43-anokhi-alef-qamats-tight-12x.png",
+          "sha256": "7468e387043f94a31154b314c393e93e458fa9577481f27b874b083cfb2a88d6",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus63-hemma-pointed-mem-word-locator",
+      "sourcePage": 242,
+      "pixelBox": [
+        1290,
+        2295,
+        1490,
+        2405
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus63-hemma-pointed-mem-word-locator-native.png",
+          "sha256": "8252a0901301d4643b669dbd84abf9473d91720de6403e2e6dbdb7ad00c4ac00",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus63-hemma-pointed-mem-word-locator-4x.png",
+          "sha256": "01a73fdc3dc81e989754a9e50b19f5c77e2d07c1d5c8fe16638c50d723dfd048",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus63-hemma-mem-detached-dagesh-tight",
+      "sourcePage": 242,
+      "pixelBox": [
+        1365,
+        2330,
+        1408,
+        2395
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus63-hemma-mem-detached-dagesh-tight-native.png",
+          "sha256": "539aed5a9a417f783c37a7fdbef68ae50a056fc2e7bc9c8116987b0861b5609f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus63-hemma-mem-detached-dagesh-tight-15x.png",
+          "sha256": "4a94d9d7a146656352a889e2dee4e63f3dafc1e41754dab6fe56e2494e552fc5",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus63-nimtsa-plain-mem-word-locator",
+      "sourcePage": 242,
+      "pixelBox": [
+        1900,
+        2390,
+        2160,
+        2510
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus63-nimtsa-plain-mem-word-locator-native.png",
+          "sha256": "f374125cd87b1542dfc51bf7fbb4db7248ecf7b2e537e01b608290fa5b5d11dc",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus63-nimtsa-plain-mem-word-locator-4x.png",
+          "sha256": "bd741a43655e2a604ef8fd77d7c1900f891dc033fb129837d4805c0a62918146",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus63-nimtsa-mem-plain-tight",
+      "sourcePage": 242,
+      "pixelBox": [
+        1938,
+        2415,
+        1984,
+        2490
+      ],
+      "sourceImageRGBPixelSHA256": "0af7396ef269319d2acc30f98c743a142f48fe859c75512bf8adeebccd91dc81",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus63-nimtsa-mem-plain-tight-native.png",
+          "sha256": "cb5791b5df31ba4572e0cd39713cf7914852cbe84cd044325f9904914ade38a8",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus63-nimtsa-mem-plain-tight-15x.png",
+          "sha256": "5885e5cb5dbff6e165ba8ada1ec5280cfe996122a8ffa2c5822b96f0485d917e",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus4-ki-kaf-hiriq-locator",
+      "sourcePage": 237,
+      "pixelBox": [
+        920,
+        1830,
+        1150,
+        1970
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus4-ki-kaf-hiriq-locator-native.png",
+          "sha256": "6e4d2abc0b392be741147a17123495c4d2622d8498ea7951ae92f30fe4e5ecbb",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus4-ki-kaf-hiriq-locator-4x.png",
+          "sha256": "f8a25940015f3d330f329d31688660d9ba72a2b3456c3e532956852e662922f9",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus4-nikhbad-kaf-sheva-locator",
+      "sourcePage": 237,
+      "pixelBox": [
+        540,
+        1830,
+        800,
+        1970
+      ],
+      "sourceImageRGBPixelSHA256": "dfbc255978db144c45e76452968540e7ae8d118bf8dca7d2005f9339cc8fafef",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus4-nikhbad-kaf-sheva-locator-native.png",
+          "sha256": "29b893a7a106bb6c09342d94e591ab8b23309bd2b945f8f13a04b0fb085cc676",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus4-nikhbad-kaf-sheva-locator-4x.png",
+          "sha256": "96764fa5dd5483a5cba654780fec53c33979047c6ab0aedfd92573425749cedc",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus38-anakhnu-nun-patah-word-correct",
+      "sourcePage": 240,
+      "pixelBox": [
+        1340,
+        1880,
+        1535,
+        2000
+      ],
+      "sourceImageRGBPixelSHA256": "604e5bbd9428119c2b7ded34f5cd3d2755432b4680d67d72d0dc311f869bc297",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus38-anakhnu-nun-patah-word-correct-native.png",
+          "sha256": "d81697fccce771fdf251a60ec8e47f6144a126f6468af83b402cfd113e0a96fb",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus38-anakhnu-nun-patah-word-correct-4x.png",
+          "sha256": "99e374fece6731e909252ac0442c7ca0524ea108b2759b4d97507545c85ae813",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis14-15-pe-hiriq-counter-tight",
+      "sourcePage": 173,
+      "pixelBox": [
+        1902,
+        1170,
+        1948,
+        1235
+      ],
+      "sourceImageRGBPixelSHA256": "25424e794eb94ea811a73fc119ada2212ab91589c4f6c284eeedf82793e02b25",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis14-15-pe-hiriq-counter-tight-native.png",
+          "sha256": "2c7f1364da4ddc00c429f72b1e662cafc2dc8af3de5ad223e277617be7d676d7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis14-15-pe-hiriq-counter-tight-12x.png",
+          "sha256": "b23e772f4089052e3c8dd39fc248713c6dae57e93fb4b53b6b8c4e243af6c553",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis14-15-pitom-counter-word",
+      "sourcePage": 173,
+      "pixelBox": [
+        1760,
+        1120,
+        1970,
+        1240
+      ],
+      "sourceImageRGBPixelSHA256": "25424e794eb94ea811a73fc119ada2212ab91589c4f6c284eeedf82793e02b25",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis14-15-pitom-counter-word-native.png",
+          "sha256": "99c0c6f7d5428c2d238b6ed43b5b73031bd1dc93f4b802032427f25708320909",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis14-15-pitom-counter-word-4x.png",
+          "sha256": "3ac00886fd26c0215b80879ca24d7a7f85bac0c0837cadc00fca7fbe40fd32ab",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis13-1-lamed-tsere-class-counter",
+      "sourcePage": 171,
+      "pixelBox": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis13-1-lamed-tsere-class-counter-native.png",
+          "sha256": "b3de2982216ff58d808aad9a5fb7717341a575778a69727d396a83161ce7837d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis13-1-lamed-tsere-class-counter-12x.png",
+          "sha256": "8853b619ed30176aaf0250f5870f3a3138919d41d194f687b13f9f05469fdddc",
+          "scale": 12,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "wis13-1-lev-tsere-class-word",
+      "sourcePage": 171,
+      "pixelBox": [
+        1360,
+        350,
+        1465,
+        485
+      ],
+      "sourceImageRGBPixelSHA256": "a001dcd98383e858a7dae48e525fd88831756709dd2bd1933bf680ee44356c29",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis13-1-lev-tsere-class-word-native.png",
+          "sha256": "85a3fc95929f78e424c25074779c2949c9cf43fd96243dba5bad1ad7a1b3a96a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/wis13-1-lev-tsere-class-word-4x.png",
+          "sha256": "7038c5a852bb4e689ba182914ca16f5eef704ce3eeac1dcedeff61025eda27a1",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus22-eeseh-sin-segol-word-locator",
+      "sourcePage": 238,
+      "pixelBox": [
+        1090,
+        2910,
+        1350,
+        3050
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus22-eeseh-sin-segol-word-locator-native.png",
+          "sha256": "73843530fadc813baaf8305c84016fef83b9269f3e3ad516f648fc433a373e94",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus22-eeseh-sin-segol-word-locator-4x.png",
+          "sha256": "7e333e6ae4b7cb8cd13fa11a020ce4e7bdf95d2553665c9ae28e0ad4bd4abfbd",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sus22-segol-preceding-part-context",
+      "sourcePage": 238,
+      "pixelBox": [
+        190,
+        2760,
+        2200,
+        3060
+      ],
+      "sourceImageRGBPixelSHA256": "311f245afcfa927d0116eff32c30b064bcfebaba194679ac4a8079cf9e958705",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass11-SUS-POINTS/sus22-segol-preceding-part-context-native.png",
+          "sha256": "5eda6a7f6628bba1b66f681e0828d2a3e52bfd2087bda4eea972ee4d6331fcb0",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    }
+  ],
+  "excludedExploratoryFrames": [
+    {
+      "name": "sus38-anakhnu-nun-patah-word-locator",
+      "reason": "Wrong nearby word; replaced by source240[1340,1880,1535,2000] containing actual ואנחנו."
+    },
+    {
+      "name": "sus62-mem-cavity-tight",
+      "reason": "Initial right edge clipped mem outer body; replaced by expanded complete [1430,2225,1500,2300]."
+    },
+    {
+      "name": "sus32-kaf-qubbuts-locator",
+      "reason": "Initial lower-page search reached commentary below source body; not point evidence."
+    },
+    {
+      "name": "sus28-makhshavot-shin-qamats-word-locator",
+      "reason": "Left word continuation clipped; no final positive-control claim from this scratch locator."
+    }
+  ],
+  "comparatorCaution": "The local existing sin-segol and pe-hiriq labels are word locators only. Their partly fused forms are not assumed to certify those classes from canonical text and do not resolve the five retained sites. Genuine literal qubbuts, samepage alef qamats, detached tsere and mem interior-dot controls drive the accepted decisions.",
+  "priorImmutableReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+      "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-upper-vowel-reinspection-20261017-pass4.json",
+      "sha256": "708680ec471354f183f2b17bd9a2dba0c7d43a062e14f0606ef646cc0d9532a3"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-reinspection-20261017-pass3.json",
+      "sha256": "8b8be2e80ecc77d6385994ca8108ea3dd72095f9a33495931d1c32b19bdc4bfd"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-comparison-20261017-pass10.json",
+      "sha256": "b56448dd803a3e59456954e9cb4dd8372dcc47702d7b86159e9458d139489074"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-compound-independent-comparison-20261017-pass10.json",
+      "sha256": "bbfd175d5397e1f087ec6dd3e1cca5b3ea69ffb32aac672e9525e60db6254ac4"
+    }
+  ],
+  "validation": {
+    "allTwelveCanonicalSourceFilesByteUnchangedFrom589Baseline": true,
+    "targetBookByteUnchangedFromBaseline": true,
+    "allEightExactIdsPresentOnce": true,
+    "noCanonicalCentralDailyPresentationGeneratedMutationByAuthor": true,
+    "sourcePDFSHA256Verified": true,
+    "allDurableNativeAndIntegerNearestImagesReproducedExactly": true
+  }
+}

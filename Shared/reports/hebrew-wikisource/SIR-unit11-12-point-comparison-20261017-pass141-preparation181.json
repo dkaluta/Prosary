@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 141,
+  "integrationPass": 141,
+  "preparationID": 181,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation181-SIR-11-12/source-provenance.json",
+    "sha256": "5aebc4e3b49119fa00cad8e346f98d8847ad84cd2b495100d6fa4b32c6f0d995"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-11-12-nun-vowel"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-11-12-nun-vowel",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 12,
+      "anchorBefore": "א[וֹ]נשׁ",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "OwnNun3 has one257px12x37 connectedcomponent[283,601,295,638]. Narrowrightstem broadensleftintofoot619..627, then lumpycontinuedlowerstub628..637 tapersto3pxlastrow; no independent pointboundary or isolateddot/plate/node. Clearfieldbelow638doesnotcertifyabsence, cannot choosePatah/Qamats/otherpoint from connectedshape. Samecompleteprintedא[ו]נש finalShin has12px4x3 detachedupperrightdot[275,596,279,599]; bracketedVav hasseparate12px4x3 aboveHolam[312,595,316,598]. Theseindependentlyvisiblecompactnodes challengebutdonotsupply Nunvowel. Retain originaldisclosure/allscalars/brackets.",
+      "targetCapture": "primary-467-native.png",
+      "targetSourceIdentifier": "primary-467-native.png",
+      "inspectedBounds": [
+        283,
+        601,
+        295,
+        638
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation181-SIR-11-12/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 11,
+    "verse": 12,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation181-SIR-11-12/independent-review.json",
+    "sha256": "a729b69fea64cae53fcab86da5749c22b594cb02d51cc92bc32c44d0ea7e5b5f"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation181-SIR-11-12/primary-preparation.json",
+    "sha256": "94dd97be29542afe654e73c998cb8cf4aae174206698935b571efb5bc4c8c372"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation181-SIR-11-12/consensus-preparation.json",
+    "sha256": "f458efbe619876519d6b8f33f98910a4b6c4f992ac3c9a227420778b146c2699"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

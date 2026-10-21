@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 46,
+  "book": "ESG",
+  "status": "Four source 5:3 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 46 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass46-ESG-5-3/source-provenance.json",
+    "sha256": "95556dc4c4f0dbad37495a3619ea92be16fc43d8c6a386f017506019277a8177"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 221 / רכא (viewer page 566, internal 581). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 360,
+  "sourceNotesBefore": 40,
+  "sourceNotesAfter": 36,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-5-3-1-vowel",
+    "esg-5-3-3-vowel",
+    "esg-5-3-4-vowel",
+    "esg-5-3-5-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 3,
+  "addedCombiningMarks": {
+    "U+05B0": 1,
+    "U+05B7": 1,
+    "U+05B8": 1
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 3,
+      "before": "עַל־הָאַחַת נִשְׁעֲנָה כמְשׁענּה וְהַשֵּׁנִית הָלְכָה אַחֲרֶיהָ וַתִּשָּׂא אֶת־סֶרַח שִׂמְלָתָהּ׃",
+      "after": "עַל־הָאַחַת נִשְׁעֲנָה כְּמְשַׁעָנָּה וְהַשֵּׁנִית הָלְכָה אַחֲרֶיהָ וַתִּשָּׂא אֶת־סֶרַח שִׂמְלָתָהּ׃",
+      "beforeTextSHA256": "3509c2102e6ca87d3eaaa1faad295bfb698ecc933c8beb452cde100c4adef281",
+      "afterTextSHA256": "3e2bdf5c4d5d7109e110f053d287255d4434df1ef17cfe5bf9fdd3e4dd90109f"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 3,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label ג on page רכא / 221 (viewer page 566, internal page 581) identifies the unit covering verse 3 (Theodotion line beginning נשענה). Canonical verse 3 and sourcePages [221] are preserved.",
+  "decisions": [
+    {
+      "noteId": "esg-5-3-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchor": "כמְשׁענּה",
+      "letterIndex": 1,
+      "decision": "proposePrintedShevaAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B0",
+      "markClassification": "Sheva",
+      "finding": "Under initial kaf foot sits two strictly vertically aligned circular punch dots: upper dot at y=958..965 (center y=961, x=1202, size 14x8px), a 7px white separation gap at y=966..972, and lower dot at y=973..981 (center y=977, x=1202, size 15x9px). Confirmed stamped Sheva U+05B0.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass46-ESG-5-3/esg-5-3-1-vowel-target-native.png",
+        "sha256": "15902f1a3a7e5f7f6a93efefe522ff89ae5b28ca70ca9031e84c4ba42dc013f3"
+      }
+    },
+    {
+      "noteId": "esg-5-3-3-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchor": "כמְשׁענּה",
+      "letterIndex": 3,
+      "decision": "proposePrintedPatahAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Under letter 3 (shin) sits a clean, solid, continuous horizontal rectangular bar (width 25px, height 11px at x=1125..1150, y=955..966) with pristine white space separating it from the letter base and adjacent vowel dots. Confirmed stamped Patah U+05B7.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass46-ESG-5-3/esg-5-3-3-vowel-target-native.png",
+        "sha256": "035eea5bb122f65a6975715de8c90438b05712de6cbdb4a0d106d13d516e8410"
+      }
+    },
+    {
+      "noteId": "esg-5-3-4-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchor": "כמְשׁענּה",
+      "letterIndex": 4,
+      "decision": "proposePrintedQamatsAndRetireSourceNote",
+      "markProposed": "vowel",
+      "codePoint": "U+05B8",
+      "markClassification": "Qamats",
+      "finding": "Under letter 4 (ayin) sits a solid horizontal bar (width 25px at x=1075..1100, y=958..966) with a central descending vertical stem (height 8px at x=1088..1094, y=966..968). Confirmed stamped Qamats U+05B8.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass46-ESG-5-3/esg-5-3-4-vowel-target-native.png",
+        "sha256": "06c5982b242ffc37be5d9b590a351ddd7066aa4b52f2b7ef1b61473b88f09e66"
+      }
+    },
+    {
+      "noteId": "esg-5-3-5-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "anchor": "כמְשׁענּה",
+      "letterIndex": 5,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Letter 5 (nun with dagesh) terminates at y=950. The region below across x=1050..1075, y=955..980 is clean white paper with 0 ink pixels. No vowel mark exists under nun in the printed edition; confirmed unpointed.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass46-ESG-5-3/esg-5-3-5-vowel-target-native.png",
+        "sha256": "b2b57bd7f402054573b93287ec71428f555aa12c9644b02c3dc016c44257761e"
+      }
+    }
+  ]
+}

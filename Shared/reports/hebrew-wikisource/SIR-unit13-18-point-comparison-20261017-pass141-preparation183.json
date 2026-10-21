@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 141,
+  "integrationPass": 141,
+  "preparationID": 183,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation183-SIR-13-18/source-provenance.json",
+    "sha256": "28df7a71f7b5175b316a1c9412955c054f2c09d989581719bf1972b30a877de0"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-13-18-alef-vowel"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-13-18-alef-vowel",
+      "book": "SIR",
+      "chapter": 13,
+      "verse": 18,
+      "anchorBefore": "מֵאי[ן]",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Exact FIRST bracketword ownsecondAlef has joined434px body[1288,532,1309,564]. Its low horizontal/diagonal mass559..563 remains connected to own descendingstroke rather than separated exactvowel. No detachedbar or exactabsence certified. OwnadjacentMem basalstamp likewise joinsletter, and laterhemistich same-looking word is separatelyscoped geometriccontrol only. It does not supply targetmark. Preserve original bracket/Yod/Nun scalars and exact disclosure; no consonant or bracket editing authorized.",
+      "targetCapture": "primary-471-native.png",
+      "targetSourceIdentifier": "primary-471-native.png",
+      "inspectedBounds": [
+        1285,
+        525,
+        1312,
+        575
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation183-SIR-13-18/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 13,
+    "verse": 18,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation183-SIR-13-18/independent-review.json",
+    "sha256": "e080989ec957a7583889dd7f4c46d6cd6d6f608d3e4f38cbea94d036748376b6"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation183-SIR-13-18/primary-preparation.json",
+    "sha256": "2abe759e7a506be8e0705edabc6f2f0a7ba047d5451293edfc12c0234ed28adb"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation183-SIR-13-18/consensus-preparation.json",
+    "sha256": "7439d72260d08fc44041af5d616c249a891325f096fdb5bfc09652d98460ab15"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

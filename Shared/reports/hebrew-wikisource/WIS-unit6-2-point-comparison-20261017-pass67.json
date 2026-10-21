@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 67,
+  "book": "WIS",
+  "status": "Two 6:2 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired. Two restoredLetter disclosures retained per policy with anchor updated.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 67.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass67-WIS-6-2/source-provenance.json",
+    "sha256": "57aa9f12d95c9aa4cd7826d847651bd5f17416a59c8eed93a35e370c7a929f2f"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 155. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 287,
+  "sourceNotesBefore": 129,
+  "sourceNotesAfter": 127,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 2,
+  "retiredSourceNoteIds": [
+    "wis-6-2-alef-vowel",
+    "wis-6-2-zayin-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-6-2-alef-restored",
+    "wis-6-2-yod-restored"
+  ],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "wis-6-2-zayin-vowel": {
+      "combiningMark": "ְ",
+      "codePoint": "U+05B0",
+      "name": "HEBREW POINT SHEVA"
+    }
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-6-2-alef-restored",
+      "beforeAnchor": "הַאזינוּ",
+      "afterAnchor": "הַאזְינוּ"
+    },
+    {
+      "noteId": "wis-6-2-yod-restored",
+      "beforeAnchor": "הַאזינוּ",
+      "afterAnchor": "הַאזְינוּ"
+    }
+  ],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 6,
+      "verse": 2,
+      "before": "הַאזינוּ הָרוֹדִים בָּעָם הַמִּתְנַשְּׂאִים עַל־הֲמוֹן לְאֻמִּים׃",
+      "after": "הַאזְינוּ הָרוֹדִים בָּעָם הַמִּתְנַשְּׂאִים עַל־הֲמוֹן לְאֻמִּים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 6,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 2 on page קנה / 155 (viewer page 500) in Kahana Volume A, Wisdom of Solomon.",
+  "decisions": [
+    {
+      "noteId": "wis-6-2-alef-vowel",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 2,
+      "anchor": "הַאזינוּ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "none",
+      "markClassification": "unpointedConsonant",
+      "finding": "Second consonant Aleph exhibits a fully printed consonant body terminating cleanly at row 543 of extension-volumeA-500-zoom6-mid-right.png. Offline pixel inspection of the entire sublinear band beneath Aleph across cols 1115..1220, rows 544..570 reveals zero ink pixels (100% unprinted white paper). Aleph is an unpointed quiescent consonant without any sublinear vowel mark. Unreadable point disclosure is resolved as unpointed consonant and retired.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass67-WIS-6-2/wis-6-2-alef-vowel-native.png",
+        "sha256": "2b3bfb0c0293aeea248094e6b6033494c780095acb8d6006d18ec8afe0553b74"
+      }
+    },
+    {
+      "noteId": "wis-6-2-zayin-vowel",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 2,
+      "anchor": "הַאזינוּ",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "sheva",
+      "codePoint": "U+05B0",
+      "markClassification": "Sheva",
+      "finding": "Third consonant Zayin terminates at row 501. Directly beneath its stem, at rows 540..566, cols 972..995 of extension-volumeA-500-zoom6-mid-right.png, sits a clear sublinear mark of height 27 px and width 24 px (456 ink pixels) featuring an upper dot mass (rows 544..554), a central pinch/waist, and a lower dot mass (rows 559..565). This height and morphology exactly match the Sheva controls on this line (e.g. Tav Sheva at rows 547..562). Stamped mark is a standard printed Sheva (U+05B0). Note is retired and Sheva is restored to form זְ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass67-WIS-6-2/wis-6-2-zayin-vowel-native.png",
+        "sha256": "f1d4afacb1aebc653e4d67993cbf21a0a33e7f04d06a9b805ea46f259ac70802"
+      }
+    },
+    {
+      "noteId": "wis-6-2-alef-restored",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 2,
+      "anchor": "הַאזְינוּ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "markClassification": "restoredLetter",
+      "finding": "Protected restored-letter disclosure preserved without modification per explicit policy. Anchor updated to reflect vocalization of Zayin with Sheva (הַאזְינוּ).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass67-WIS-6-2/wis-6-2-alef-vowel-native.png",
+        "sha256": "2b3bfb0c0293aeea248094e6b6033494c780095acb8d6006d18ec8afe0553b74"
+      }
+    },
+    {
+      "noteId": "wis-6-2-yod-restored",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 2,
+      "anchor": "הַאזְינוּ",
+      "letterIndex": 4,
+      "decision": "retainNote",
+      "markClassification": "restoredLetter",
+      "finding": "Protected restored-letter disclosure preserved without modification per explicit policy. Printed text exhibits defective spelling (הַאזְנוּ); editorial restoration of Yod is retained with anchor updated to הַאזְינוּ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass67-WIS-6-2/word-האזנו-native.png",
+        "sha256": "b0571d99becdb11f6d7497450e80b6b9eb4e417a3459851423fd8cff3dbccb17"
+      }
+    }
+  ]
+}

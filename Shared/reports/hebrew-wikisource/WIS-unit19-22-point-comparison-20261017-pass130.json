@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 130,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 2 retained.",
+  "applicationState": "All disclosures retained; canonical book/review metadata unchanged. Tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass130-WIS-19-22/source-provenance.json",
+    "sha256": "cb815b416671e1c2e7132145454c4af15ce8d1c6036a58f2248997eb5f0d38cc"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 2,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-19-22-word15-ayin-6-vowel",
+    "wis-19-22-word15-mem-1-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-19-22-word15-mem-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 22,
+      "anchorBefore": "מהוֹשִׁיעם",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": null,
+      "targetCapture": "native-186.png",
+      "targetSourceIdentifier": "native-186.png",
+      "inspectedBounds": [
+        437,
+        640,
+        485,
+        730
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass130-WIS-19-22/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-19-22-word15-ayin-6-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 22,
+      "anchorBefore": "מהוֹשִׁיעם",
+      "letterIndex": 6,
+      "decision": "retainNote",
+      "finding": null,
+      "targetCapture": "native-186.png",
+      "targetSourceIdentifier": "native-186.png",
+      "inspectedBounds": [
+        278,
+        638,
+        318,
+        738
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass130-WIS-19-22/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 19,
+    "verse": 22,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass130-WIS-19-22/independent-review.json",
+    "sha256": "3e4ae69c0bf697c21401c5799feb06ab8fe121856cca82b5eb42fabbc733836b"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass130-WIS-19-22/primary-preparation.json",
+    "sha256": "2e59da5b3cdae46ffe666ff3b257ed53201477e181b8b0ce3d660d0cbf222cdb"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass130-WIS-19-22/consensus-preparation.json",
+    "sha256": "3e7fc8493f137bf6a7a99a43f962a311f7f29852465438901783ec74b85a87c7"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

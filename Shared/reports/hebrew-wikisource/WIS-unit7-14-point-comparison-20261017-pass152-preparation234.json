@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 152,
+  "integrationPass": 152,
+  "preparationID": 234,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation234-WIS-7-14/source-provenance.json",
+    "sha256": "bd1807d3151f50cc51967f3d655a017ff87060a1dbd38fd5d08e5d62edad28c2"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-7-14-tav-atek"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-7-14-tav-atek",
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 14,
+      "anchorBefore": "עָתק",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own middle Tav has a dense connected left lower foot and a rounded lower-right mass touching it through a narrow run. Native8-connectivity yields one830px component extending1537..1585; no independently separable certified vowel or absence is established. Full own word, full control word and actual inline boundaries are present. Blank lower rows do not establish absence. Preserve original scalar text and disclosure unchanged.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f7/f75544ae05ee5e3cb0e649ffc15b10588603e6615cf38c1d6d181241e1eb8036.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f7/f75544ae05ee5e3cb0e649ffc15b10588603e6615cf38c1d6d181241e1eb8036.bin",
+      "inspectedBounds": [
+        1837,
+        1537,
+        1873,
+        1585
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation234-WIS-7-14/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 7,
+    "verse": 14,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation234-WIS-7-14/independent-review.json",
+    "sha256": "a136c9118abea91dd3a291e006ab7acf3e55c159e7b5620880202e8b9f8dd133"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation234-WIS-7-14/primary-preparation.json",
+    "sha256": "a8116006bdd0514a957c1865d27665a0eab2ea7eb8c20a6aeb0f7cc31fb1f354"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation234-WIS-7-14/consensus-preparation.json",
+    "sha256": "8fe203b8c114fe5f238a1cd62d49ae435827e98f3af73025132feb672f10c335"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

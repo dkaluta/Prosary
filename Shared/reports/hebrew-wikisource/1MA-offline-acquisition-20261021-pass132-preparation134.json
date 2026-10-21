@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 132,
+  "integrationPass": 132,
+  "preparationID": 134,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-1MA-offline-originals/source-provenance.json",
+      "sha256": "2b78b58eadcb09af760dfedc5cc330ea502539f94972021b4f73b74367f544e8",
+      "historicalReportAndPDFHashesVerified": true,
+      "originalBytesEqualPinnedHistoricalLocalSource": true,
+      "oldFindingsNotInherited": true
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Existing authorized offline Chrome4x capture for true own/controls; exact historically hash-pinned primary KahanaB native raster for registration/context. No new network/browser acquisition.",
+  "sourceDocument": "Kahana Volume B",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    175
+  ],
+  "savedCaptureViewerPageLabels": [
+    177
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page175/extension-volumeB-177-page-overview.png",
+      "sha256": "579d4dc7e85569bb3507901985aa15a69fdab26269b140b24bd49af93b762333",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page175/extension-volumeB-177-zoom4-upper-left.png",
+      "sha256": "bfdf904ef4cf32eb6f08add2f607d6887c98d6b6c49433f3e5984891b0f585bd",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page175/extension-volumeB-177-zoom4-mid-left.png",
+      "sha256": "ddc7bb35dbcb6a4c8a2e7962802c699307e526e666ddbb8ce5e9bc19634bbbe8",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-1MA-offline-originals/primary-175-native.png",
+      "sha256": "3d5cd3e2ff29236f3082e68bbe2e38c77b96498e0379488fbe6f2e850ea2330b",
+      "resolution": [
+        1650,
+        2550
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-1MA-offline-originals/source-provenance.json",
+        "sha256": "2b78b58eadcb09af760dfedc5cc330ea502539f94972021b4f73b74367f544e8",
+        "historicalReportAndPDFHashesVerified": true,
+        "originalBytesEqualPinnedHistoricalLocalSource": true,
+        "oldFindingsNotInherited": true
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "אברהם כהנא",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/ספר_המקבים_א_-_כל_הספר",
+        "attribution": "ספר המקבים א — תרגום אברהם כהנא, הספרים החיצונים, כרך ב."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation134-1MA-15-37/source-provenance.json",
+    "sha256": "215df08a6695f8ef7ac6d5db66da1ae6aaf7c1bb5fc3d4baf28d5556cca09339"
+  }
+}

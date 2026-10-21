@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 155,
+  "integrationPass": 155,
+  "preparationID": 264,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass155-preparation264-WIS-16-20/source-provenance.json",
+    "sha256": "c47f2868334ace5c690c5ec23c7738bdd80d2cfcc50354152b8fb441621a07e6"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-16-20-kaf-3-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-16-20-kaf-3-vowel",
+      "book": "WIS",
+      "chapter": 16,
+      "verse": 20,
+      "anchorBefore": "הֶאֱכלְתָּ",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own fresh independent pypdf single native embedded image extraction; exact native Pillow/NumPy/SciPy arrays and literal ASCII; actual complete unit, full target and own control words, own occurrence-index and actual inline word-sof boundaries. Old exact RGB replay locates only. No viewer, OCR, rendering, enhancement, grammar, normalization, expected spelling or borrowed mark.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/2a/2aeb3d6fdae01484b67b96a2f0b1afce4605fde391cc3f27996c15cfec52a224.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/2a/2aeb3d6fdae01484b67b96a2f0b1afce4605fde391cc3f27996c15cfec52a224.bin",
+      "inspectedBounds": [
+        1043,
+        1354,
+        1074,
+        1400
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass155-preparation264-WIS-16-20/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 16,
+    "verse": 20,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass155-preparation264-WIS-16-20/independent-review.json",
+    "sha256": "9b9c6c32d27c38b093a656d7526854851a2f8072df1fa31251f5b1589dc46ad3"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass155-preparation264-WIS-16-20/primary-preparation.json",
+    "sha256": "8680b8aabf535e7dc67bbab7db3d9f11de6ba9e7d51daac0ea744cb55f813a7f"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass155-preparation264-WIS-16-20/consensus-preparation.json",
+    "sha256": "22ef13b1d6fce976cb67e9d11bc559ff4c08291d173970c97081ea7b46f8e39c"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

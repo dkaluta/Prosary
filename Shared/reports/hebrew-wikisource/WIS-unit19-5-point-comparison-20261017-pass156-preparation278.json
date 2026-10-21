@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 156,
+  "integrationPass": 156,
+  "preparationID": 278,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation278-WIS-19-5/source-provenance.json",
+    "sha256": "de90c4bfe58a48332483eb762a5510dcaa980d6c59301cdaf83ae80a7169b258"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-19-5-word4-nun-3-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-19-5-word4-nun-3-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 5,
+      "anchorBefore": "מְשֻׁנּה",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own independent pypdf extraction of exactly one embedded image from SHA-pinned offline PDF; native Pillow/NumPy/SciPy arrays and literal ASCII exact native crops only. Historical exact RGB fullword crop of adjacent old Shin note locates addresses only; no Nun-specific old crop existed. No viewer, OCR, rendering, enhancement, smoothing, expected spelling, grammar, normalization or borrowed marks. Own physical unit, fullwords, controls, occurrence, letter index and actual inline sof boundaries established independently.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c6/c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c6/c615b1c4e96445daaa8f1ab6b1cdb2f0ce333fa29fb4920e69ed4ee5df6fd0d8.bin",
+      "inspectedBounds": [
+        1081,
+        950,
+        1106,
+        1030
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation278-WIS-19-5/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 19,
+    "verse": 5,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation278-WIS-19-5/independent-review.json",
+    "sha256": "03fd27685f1191452cb81900ac485a7846b671484bd3c3c52969be6c815b2abc"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation278-WIS-19-5/primary-preparation.json",
+    "sha256": "56182e312d9a2b3aea6e2500a5fdcc9a40636129b408e57baa28ccac5d5f52de"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass156-preparation278-WIS-19-5/consensus-preparation.json",
+    "sha256": "2f62b4440001f15844ab8b8de5fca16a8f98ff4d272e005c97b0bc760d417599"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

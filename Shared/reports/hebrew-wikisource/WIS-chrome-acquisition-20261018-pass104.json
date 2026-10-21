@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 104,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Existing authorized offline Psik Chrome captures; no browser or network access. Legacy and saved capture page labels retained; printed pagination is not inferred.",
+  "additionalSourceProvenance": [],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-WIS/wis-1-2-nirah-alef-word-native.png",
+      "sha256": "b3cc0bcca6cdda24d5ec8d4d8f68120aea54b21a9121f9581bcc069a4326b8fa",
+      "role": "Independently replayed existing full-word original pixels; unresolved lower Alef cluster. No borrowed disposition."
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-WIS/wis-1-2-kichashu-het-word-native.png",
+      "sha256": "f990bbf5a2d9cd940c3abc0655efbae7fb812e388a81054d89d70d8a1015ce91",
+      "role": "Independently replayed existing complete word and surrounding context; no classifiable lower Het sign. No borrowed disposition."
+    }
+  ],
+  "sourceAcquisitionDetail": "Existing offline preemptive VolumeA145/viewer490 captures. Historical Pass4 word crops were independently inspected only as supplemental original-pixel context; no historical reading is inherited.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    145
+  ],
+  "savedCaptureViewerPageLabels": [
+    490
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page145/extension-volumeA-490-page-overview.png",
+      "sha256": "f96813b08c035e7db1220e830c40462f3115dcbfedfe3f78764983f697e2b77c",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page145/extension-volumeA-490-zoom4-header.png",
+      "sha256": "35c8a3bb2cf5c178b8817225001aeeef2a4394c817472052cc9ab9b9aaf49e8a",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass104-WIS-1-2/source-provenance.json",
+    "sha256": "606db19d20f54a2bc936c36e270928f7b6081ab7cf1cb3732ed04db729a6dea0"
+  }
+}

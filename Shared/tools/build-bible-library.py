@@ -22,6 +22,7 @@ from pathlib import Path
 import zipfile
 
 from hebrew_deuterocanon import load_books as load_hebrew_supplement
+from hebrew_bible_presentation import aligned_book
 from scripture_source_notes import validate_source_notes
 from bible_source_structure import ABSENT, published_blocks, validate_structure
 
@@ -35,6 +36,22 @@ DOWNLOAD_ROOT = "https://raw.githubusercontent.com/dkaluta/Prosary/main/Shared/d
 MAX_ARCHIVE = 32 * 1024 * 1024
 MAX_UNPACKED = 128 * 1024 * 1024
 MAX_CHAPTER = 2 * 1024 * 1024
+
+# Hebrew browsing sequence: Tanakh, deuterocanon, New Testament. The Tanakh order
+# follows tanach.us's Torah / Prophets / Writings navigation, not the eBible import
+# index's Christian order. The separate deuterocanon section follows the relative
+# Catholic order in the USCCB table of contents. See BIBLE-VIEWER.markdown.
+# Book placement never splices additions into their parent or changes source units.
+HEBREW_BOOK_ORDER = tuple((
+    # Torah, Prophets, Writings; retain the source's split book IDs.
+    "GEN EXO LEV NUM DEU JOS JDG 1SA 2SA 1KI 2KI ISA JER EZK "
+    "HOS JOL AMO OBA JON MIC NAM HAB ZEP HAG ZEC MAL "
+    "PSA PRO JOB SNG RUT LAM ECC EST DAN EZR NEH 1CH 2CH "
+    # Catholic relative sequence, including the independently numbered additions.
+    "TOB JDT ESG 1MA 2MA WIS SIR BAR LJE S3Y SUS BEL "
+    "MAT MRK LUK JHN ACT ROM 1CO 2CO GAL EPH PHP COL 1TH 2TH 1TI 2TI TIT PHM "
+    "HEB JAS 1PE 2PE 1JN 2JN 3JN JUD REV"
+).split())
 
 # Catholic placement of Kahana's independently numbered additions. These strings
 # identify whole works/sections, not an equivalence between individual verse labels.
@@ -167,8 +184,11 @@ def make_archive(edition, chapters, names, presentations=None, canonical_referen
         validate_structure(payloads, routes=names[book].get("addressRoutes", ABSENT),
                            archive_version=version,
                            paired=any(key in edition for key in ("textScript", "transliteratedTextScript")), label=book)
-    builder = reading_builder()
-    order = builder.CODES[:39] + builder.CODES[66:] + ["LJE", "ESG", "S3Y", "SUS", "BEL"] + builder.CODES[39:66]
+    if edition["id"] == "masoretic-delitzsch":
+        order = HEBREW_BOOK_ORDER
+    else:
+        builder = reading_builder()
+        order = builder.CODES[:39] + builder.CODES[66:] + ["LJE", "ESG", "S3Y", "SUS", "BEL"] + builder.CODES[39:66]
     book_rows = [{"id": book, **names[book], "chapters": books[book]}
                  for book in order if book in books]
     if len(book_rows) != len(books) or not files:
@@ -218,6 +238,7 @@ def build(*, require_hebrew_supplement=False, fetch=False):
         canonical_references = {}
         if edition["id"] == "masoretic-delitzsch":
             for book in supplement:
+                book = aligned_book(book)
                 if book["book"] in names:
                     raise ValueError("A Hebrew supplement cannot replace an existing Bible book")
                 metadata = {"name": book["title"], "attribution": book["attribution"],

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 153,
+  "integrationPass": 153,
+  "preparationID": 245,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation245-WIS-11-21/source-provenance.json",
+    "sha256": "fbb92e8ab039528fe127798992b82e89a07efb258032abb67e1a70d6b1f2af8a"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-11-21-ayin"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-11-21-ayin",
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 21,
+      "anchorBefore": "עזְּךָ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Strict offline independent pypdf single embedded native image extraction; own Pillow/NumPy/SciPy native arrays and literal ASCII. Exact native crops and integer NEAREST only. Old exactRGB replay locates only; no OCR/image-viewer/rendering/enhancement/smoothing/grammar/normalization or borrowed marks.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f8/f86bdc9bcc253f93b7a43cf3115cfc8882ce64983221a866eb18506908e7d0db.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f8/f86bdc9bcc253f93b7a43cf3115cfc8882ce64983221a866eb18506908e7d0db.bin",
+      "inspectedBounds": [
+        1120,
+        1755,
+        1159,
+        1830
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation245-WIS-11-21/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 11,
+    "verse": 21,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation245-WIS-11-21/independent-review.json",
+    "sha256": "8ee3f9938a12ade0f5202f2dd10e3e919679d0c4eb10b94c7d43559e69c6fddf"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation245-WIS-11-21/primary-preparation.json",
+    "sha256": "1c96013699e5a3c2df802f9b5a7daf5651223cbab5f40a348059ea26ed8f5b7f"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass153-preparation245-WIS-11-21/consensus-preparation.json",
+    "sha256": "d67eca99751ba5d97e783053c2888f3192eb47e0a0dfaa74026047c35c29948d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

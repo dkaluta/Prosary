@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 118,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-11-6/source-provenance.json",
+    "sha256": "1f699adee88b868ad54718aac803132dc5acb27bebc1388cc9ac733c28358e4c"
+  },
+  "sourceNotesBefore": 117,
+  "sourceNotesAfter": 116,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-11-6-kaf"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-11-6-zayin"
+  ],
+  "contentSHA256Before": "f3a3d14eab36fcc6359aae55ed9bbf93817ab51caa4a322914d1ff19e7ef5c45",
+  "contentSHA256After": "bec71cabfd5330a10df361d742b8cefc9eee965ef71a418a2bb42ceb08158bb9",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "wis-11-6-kaf",
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 6,
+      "anchorBefore": "יַכזיב",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "Complete target Kaf ends1122. Two detached rounded nodes align vertically below it: upper[967,1125,977,1135] area81 and lower[967,1140,979,1150] area95, with five fully blank rows1135..1139. Same-unit literal Bet Sheva in נבהלו has upper[990,1130,1000,1140] and lower[990,1145,1000,1156], each area82, the same15px vertical separation and corresponding small round nodes. Own target and control both have no connecting bar or descending stem between the two nodes. Certify U+05B0 only after independent exact word/address and native contour verification.",
+      "targetCapture": "extension-volumeA-511-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-511-zoom4-upper-left.png",
+      "inspectedBounds": [
+        944,
+        1048,
+        1002,
+        1122
+      ],
+      "markProposed": "sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        967,
+        1125,
+        979,
+        1150
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-11-6/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-11-6-zayin",
+      "book": "WIS",
+      "chapter": 11,
+      "verse": 6,
+      "anchorBefore": "יַכזיב",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own Zayin shaft remains continuous from its body into a lower narrowing at1120..1126 and a rounded widening1128..1139. There is no detached lower mark. This terminal widening alone does not uniquely discriminate an added Hiriq from a broad/irregular letter foot; it cannot be supplied from spelling. Preserve the disclosure, including the clear next short Yod and every existing scalar.",
+      "targetCapture": "extension-volumeA-511-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-511-zoom4-upper-left.png",
+      "inspectedBounds": [
+        908,
+        1051,
+        933,
+        1140
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-11-6/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 11,
+      "verse": 6,
+      "before": "[צָרֵיהֶם] נִבְהָלוּ בִּ[רְאוֹתָם] דָּם נִבְאַשׁ תַּחַת שֶׁטֶף מֵי־נָהָר לֹא־יַכזיב לְהוֹכִיחָם עַל־פְּקֻדַּת רֶצַח יְלָדִים׃",
+      "after": "[צָרֵיהֶם] נִבְהָלוּ בִּ[רְאוֹתָם] דָּם נִבְאַשׁ תַּחַת שֶׁטֶף מֵי־נָהָר לֹא־יַכְזיב לְהוֹכִיחָם עַל־פְּקֻדַּת רֶצַח יְלָדִים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 11,
+    "verse": 6,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "noteId": "wis-11-6-zayin",
+      "before": "יַכזיב",
+      "after": "יַכְזיב"
+    }
+  ],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-11-6/independent-review.json",
+    "sha256": "b4669c464eaf880a244ff817650f395699914bbf16f46f7fddf7c681a356d380"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-11-6/primary-preparation.json",
+    "sha256": "fb514625e934a08dad41ee0007a353f79ec7899d18caec6723fbfaa4dad636cf"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass118-WIS-11-6/consensus-preparation.json",
+    "sha256": "dae8053e7703f9283759f8da4bf37fc7cfb847716b55ddbebda989b8e7cb5fbc"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 121,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass121-WIS-13-1/source-provenance.json",
+    "sha256": "b958898fd9ea9071a688dae92bbec16964d4c42d5f633fa91d36bcea9d6798a0"
+  },
+  "sourceNotesBefore": 114,
+  "sourceNotesAfter": 113,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "wis-13-1-pe-1-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-13-1-kaf-2-vowel"
+  ],
+  "contentSHA256Before": "146838e6df90e60d3fc174c6130823ecaa510fbf674e8b059b151835ec803b98",
+  "contentSHA256After": "6ccc4ee99098370f3d6f7de58ff0059689599b5a92bb01ff3b03ff534801c6cd",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-13-1-kaf-2-vowel",
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 1,
+      "anchorBefore": "אָכן",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "The target Kaf broad basal ink reaches1104, with narrow joined lower extensions and a horizontal terminal plate around1115..1131. The left lower expansion is joined through a narrow waist to the body-side stem. Own6x raw contour does not uniquely discriminate a vowel from the compound body-foot region. Both4x/6x complete words included; preserve exact vowel disclosure unless literal same-letter comparison positively discriminates it.",
+      "targetCapture": "extension-volumeA-515-zoom6-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-515-zoom6-mid-right.png",
+      "inspectedBounds": [
+        382,
+        997,
+        470,
+        1131
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass121-WIS-13-1/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-13-1-pe-1-dagesh",
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 1,
+      "anchorBefore": "פְעֻלּוֹתָיו",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "The complete own6x Pe preserves its inward natural left tongue, right bowl and lower foot, with a broad clear cavity between tongue and right wall. Its interior500pixel window[2475,1275,2500,1295] is fully white at64/128/192. Exact original Pe[618,398,649,454] has the matching tongue with white central cavity; native[635,413,642,420] has0ink at128. Literal SAME-UNIT Pe+Dagesh in preceding עלפי original[709,396,740,443] has the same inward tongue plus an independently detached round dot[726,413,733,419] area37 with white separation. Side-by-side complete same-letter bodies locate that detached-dot field; target corresponding full field is white rather than an attached extra dot. Propose noDagesh only after independent full cavity/body/control challenge agrees; preserve every current vowel and consonant. No grammar or expected pointing supports this absence proposal.",
+      "targetCapture": "extension-volumeA-516-zoom6-top-left.png",
+      "targetSourceIdentifier": "extension-volumeA-516-zoom6-top-left.png",
+      "inspectedBounds": [
+        2429,
+        1225,
+        2517,
+        1383
+      ],
+      "markProposed": "noDagesh",
+      "codePoint": null,
+      "pointBounds": null,
+      "markClassification": "DageshAbsence",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass121-WIS-13-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 13,
+      "verse": 1,
+      "before": "אָכן הֶבֶל כָּל־בְּנֵי אָדָם מִתְּכוּנַת נַפְשָׁם אֲשֶׁר אֵין בָּהֶם דַּעַת אֱלֹהִים גַּם נִבְצַר מֵהֶם לְהַכִּיר אֶת־הַיֵּשׁ עַל־פִּי טוֹבוֹתָיו הַנִּרְאוֹת בָּעַיִן וְלֹא יָשִׂימוּ לֵב לָדַעַת אֶת הָאָמָּן עַל־פִּי פְעֻלּוֹתָיו׃",
+      "after": "אָכן הֶבֶל כָּל־בְּנֵי אָדָם מִתְּכוּנַת נַפְשָׁם אֲשֶׁר אֵין בָּהֶם דַּעַת אֱלֹהִים גַּם נִבְצַר מֵהֶם לְהַכִּיר אֶת־הַיֵּשׁ עַל־פִּי טוֹבוֹתָיו הַנִּרְאוֹת בָּעַיִן וְלֹא יָשִׂימוּ לֵב לָדַעַת אֶת הָאָמָּן עַל־פִּי פְעֻלּוֹתָיו׃"
+    }
+  ],
+  "scope": {
+    "chapter": 13,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass121-WIS-13-1/independent-review.json",
+    "sha256": "252d2fdd7c6457f8e9e97a90ba69b28ca642e726c94c32b2c97aaf63005d514f"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass121-WIS-13-1/primary-preparation.json",
+    "sha256": "264393797c0a1729acc691aa63918d68b1b50af6c4f7eb56f4882cb656496b2c"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass121-WIS-13-1/consensus-preparation.json",
+    "sha256": "e1bc6ce0df559ceee289fe39ec13bfa29f24d2473986288fe71e608a3dc8da5f"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Wisdom 10:10–14",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 10:17–20",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–8",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 3:1–9",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 4:7–15",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 5:1–5",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 6:12–16",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Wisdom 7:7–14",
+        "payloadAppointmentAbsentAndPreserved": true,
+        "oldAndNewResolverSelectionsAndBoundariesValidated": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

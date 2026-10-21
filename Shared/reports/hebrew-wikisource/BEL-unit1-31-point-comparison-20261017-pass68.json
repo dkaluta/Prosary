@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 68,
+  "book": "BEL",
+  "status": "Three 1:31 unreadablePoint source points certified from authorized Psik scan; all three points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 68.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass68-BEL-1-31/source-provenance.json",
+    "sha256": "7bcd67ceaf4eee806f61fd7826b30dd69ee2a8f736af871e8d2b2c229abb0365"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 246. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 285,
+  "sourceNotesBefore": 40,
+  "sourceNotesAfter": 37,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-31-246-vayashlikhu31-letter1-vowel",
+    "bel-1-31-246-vayehi31-letter1-vowel",
+    "bel-1-31-246-daniel-letter3-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "bel-1-31-246-vayashlikhu31-letter1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 31,
+      "before": "ויַּשְׁלִיכוּ אוֹתוֹ אֶל־בּוֹר הָאֲרָיוֹת ויְהִי שָׁם שֵׁשֶׁת יָמִים׃ וּבַבּוֹר הָיוּ שִׁבְעָה אֲרָיוֹת וּבְכָל־יוֹם נָתְנוּ לִפְנֵיהֶם שְׁתֵּי גְוִיוֹת־אָדָם וּשְׁנֵי כְבָשִׂים וְאָז לֹא נָתַן לָהֶם מְאוּמָה לְמַעַן אֲשֶׁר יֹאכְלוּ אֶת־דָּנִיֵאל׃",
+      "after": "וַיַּשְׁלִיכוּ אוֹתוֹ אֶל־בּוֹר הָאֲרָיוֹת ויְהִי שָׁם שֵׁשֶׁת יָמִים׃ וּבַבּוֹר הָיוּ שִׁבְעָה אֲרָיוֹת וּבְכָל־יוֹם נָתְנוּ לִפְנֵיהֶם שְׁתֵּי גְוִיוֹת־אָדָם וּשְׁנֵי כְבָשִׂים וְאָז לֹא נָתַן לָהֶם מְאוּמָה לְמַעַן אֲשֶׁר יֹאכְלוּ אֶת־דָּנִיֵאל׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 31,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 31 on page רמו / 246 (viewer page 591) in Kahana Volume A, Bel and the Dragon.",
+  "decisions": [
+    {
+      "noteId": "bel-1-31-246-vayashlikhu31-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 31,
+      "anchor": "ויַּשְׁלִיכוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "First consonant initial Vav of וַיַּשְׁלִיכוּ sits at rows 1080..1151, cols 1500..1535 of extension-volumeA-591-zoom4-upper-right.png. Directly beneath the base of Vav at rows 1153..1165 sits a clear horizontal bar (width 25 px, height 14 px, dense ink pixels) forming an unmistakable Patah (ַ, U+05B7). Note is retired and Patah restored to Vav.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass68-BEL-1-31/bel-1-31-vayashlikhu-native.png",
+        "sha256": "20c40c70ee14cd218b32c6bf06059b905bdd74c39b318247d1e825107d0da661"
+      }
+    },
+    {
+      "noteId": "bel-1-31-246-vayehi31-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 31,
+      "anchor": "ויְהִי",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "none",
+      "markClassification": "unpointedConsonant",
+      "finding": "First consonant initial Vav of ויְהִי sits at rows 1079..1149, cols 780..815 of extension-volumeA-591-zoom4-upper-right.png. Offline inspection of the sublinear band across cols 780..815, rows 1150..1180 reveals zero ink pixels (100% pure white paper). Second consonant Yod bears a clear Sheva beneath it at rows 1150..1156. The initial Vav is an unpointed consonant (none) in the printed text, leaving ויְהִי correctly spelled with bare Vav. Note is retired as unpointed consonant.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass68-BEL-1-31/bel-1-31-vayehi-native.png",
+        "sha256": "a803030e863a2aaf2cd2e1ee8d9dfbd36d25cad3916831e5570bfab3d2ea302d"
+      }
+    },
+    {
+      "noteId": "bel-1-31-246-daniel-letter3-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 31,
+      "anchor": "דָּנִיֵאל",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "none",
+      "markClassification": "unpointedConsonant",
+      "finding": "Third consonant Yod of דָּנִיֵאל sits at cols 923..933, rows 1620..1642 of extension-volumeA-591-zoom4-upper-left.png on Line 11. Yod consists of a compact hook suspended from the roofline. Offline pixel inspection of the Yod body and surrounding cavity across cols 918..936, rows 1618..1650 reveals zero internal or crook ink; cols 919..926 are 100% unprinted white paper. Sublinear Tzere (ֵ) is stamped underneath at rows 1695..1706. No Dagesh dot is present in Yod in Kahana printed text. Note is retired with mark confirmed absent.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass68-BEL-1-31/bel-1-31-daniel-native.png",
+        "sha256": "434f9f4a3d0b5dc7b005abcc432591a0683592a35cb083d8e5c238afe20ca062"
+      }
+    }
+  ]
+}

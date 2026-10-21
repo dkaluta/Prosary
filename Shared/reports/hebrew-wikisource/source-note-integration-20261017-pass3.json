@@ -1,0 +1,525 @@
+{
+  "date": "2026-10-17",
+  "pass": 3,
+  "scope": "Sustained original-pixel reinspection after the completed 677-note second pass. Exact source-certified point additions and false-positive note retirements only; independently rejected ambiguous proposals stay disclosed. Tanakh/deuterocanon/New-Testament order and every reviewed Catholic chapter/verse sequence remain intact.",
+  "startingNoteCount": 677,
+  "remainingNoteCount": 650,
+  "removedNoteCount": 27,
+  "books": [
+    {
+      "book": "SIR",
+      "beforeNoteCount": 47,
+      "afterNoteCount": 37,
+      "removedNoteIds": [
+        "sir-1-5-2-dagesh",
+        "sir-11-12-ayin-vowel",
+        "sir-15-13-alef-vowel",
+        "sir-15-18-gimel-dagesh",
+        "sir-15-5-first-mem-vowel",
+        "sir-15-5-second-mem-vowel",
+        "sir-15-9-alef-vowel",
+        "sir-23-12-dalet-dagesh",
+        "sir-3-8-sin-dagesh",
+        "sir-6-3-tav-dagesh"
+      ],
+      "beforeDigest": "f6e274e9df33bdc90868dfd5fa2e3e89c318a99ddb29b0990d79106df09e61a3",
+      "afterDigest": "138f39c54b1964699a5c31fd27999e321e385168ef1a5cfdb03e330b95c56f10",
+      "dailyPinsUpdated": 12,
+      "allSelectedDailyRowsUnchanged": true,
+      "sourceChanges": [
+        {
+          "chapter": 1,
+          "verse": 5,
+          "before": "חֻקֵי",
+          "after": "חֻקֵּי",
+          "retiredNoteIds": [
+            "sir-1-5-2-dagesh"
+          ]
+        },
+        {
+          "chapter": 3,
+          "verse": 8,
+          "before": "יַשִׂיגוּךָ",
+          "after": "יַשִּׂיגוּךָ",
+          "retiredNoteIds": [
+            "sir-3-8-sin-dagesh"
+          ]
+        },
+        {
+          "chapter": 6,
+          "verse": 3,
+          "before": "וְהֶנִיחַתְךָ",
+          "after": "וְהֶנִיחַתְךָ",
+          "retiredNoteIds": [
+            "sir-6-3-tav-dagesh"
+          ]
+        },
+        {
+          "chapter": 11,
+          "verse": 12,
+          "before": "וַיְנַערֵיהוּ",
+          "after": "וַיְנַעֲרֵיהוּ",
+          "retiredNoteIds": [
+            "sir-11-12-ayin-vowel"
+          ]
+        },
+        {
+          "chapter": 15,
+          "verse": 5,
+          "before": "וְרוֹממתְהוּ",
+          "after": "וְרוֹמֲמַתְהוּ",
+          "retiredNoteIds": [
+            "sir-15-5-first-mem-vowel",
+            "sir-15-5-second-mem-vowel"
+          ]
+        },
+        {
+          "chapter": 15,
+          "verse": 9,
+          "before": "נָאתָה",
+          "after": "נָאֲתָה",
+          "retiredNoteIds": [
+            "sir-15-9-alef-vowel"
+          ]
+        },
+        {
+          "chapter": 15,
+          "verse": 13,
+          "before": "יְאנֶּנָּה",
+          "after": "יְאַנֶּנָּה",
+          "retiredNoteIds": [
+            "sir-15-13-alef-vowel"
+          ]
+        },
+        {
+          "chapter": 15,
+          "verse": 18,
+          "before": "גְבוּרוֹת",
+          "after": "גְּבוּרוֹת",
+          "retiredNoteIds": [
+            "sir-15-18-gimel-dagesh"
+          ]
+        },
+        {
+          "chapter": 23,
+          "verse": 12,
+          "before": "מִצַדִיקִים",
+          "after": "מִצַדִּיקִים",
+          "retiredNoteIds": [
+            "sir-23-12-dalet-dagesh"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        }
+      ]
+    },
+    {
+      "book": "WIS",
+      "beforeNoteCount": 208,
+      "afterNoteCount": 206,
+      "removedNoteIds": [
+        "wis-12-9-resh",
+        "wis-13-11-yod-2-vowel"
+      ],
+      "beforeDigest": "103cf72b6840482c610f9484d35b2434fc4a6897741e6a3cb2d65bbf86c26cb5",
+      "afterDigest": "6ee71f2a305d6caa75b43edfe61f43134ad12fc6cead8c5aea790b5e47aabf06",
+      "dailyPinsUpdated": 9,
+      "allSelectedDailyRowsUnchanged": true,
+      "sourceChanges": [
+        {
+          "chapter": 12,
+          "verse": 9,
+          "before": "נִמְרץ",
+          "after": "נִמְרָץ",
+          "retiredNoteIds": [
+            "wis-12-9-resh"
+          ]
+        },
+        {
+          "chapter": 13,
+          "verse": 11,
+          "before": "ויפצּל",
+          "after": "ויפצּל",
+          "retiredNoteIds": [
+            "wis-13-11-yod-2-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        }
+      ]
+    },
+    {
+      "book": "TOB",
+      "beforeNoteCount": 14,
+      "afterNoteCount": 12,
+      "removedNoteIds": [
+        "tob-5-18-said-vav-vowel",
+        "tob-5-5-dalet-vowel"
+      ],
+      "beforeDigest": "0ea0eb41fdd0d7dcba0e1a441b67949f7c1840825565957441f194138c108bc0",
+      "afterDigest": "dcb13771b06749cd4188576d9e2eb7aead10c500346e3dcae5b5d87d5401c342",
+      "dailyPinsUpdated": 1,
+      "allSelectedDailyRowsUnchanged": true,
+      "sourceChanges": [
+        {
+          "chapter": 5,
+          "verse": 5,
+          "before": "בְּמָדי",
+          "after": "בְּמָדָי",
+          "retiredNoteIds": [
+            "tob-5-5-dalet-vowel"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 18,
+          "before": "ותֹּאמֶר",
+          "after": "וַתֹּאמֶר",
+          "retiredNoteIds": [
+            "tob-5-18-said-vav-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017-pass3.json",
+          "sha256": "01d93083ca96971df5bef9995a5caa5c0850ecc73fab909986f7ea8b625be959"
+        }
+      ]
+    },
+    {
+      "book": "LJE",
+      "beforeNoteCount": 1,
+      "afterNoteCount": 0,
+      "removedNoteIds": [
+        "frenkel-lje-f33-nun-dagesh"
+      ],
+      "beforeDigest": "d2bb4d07c7885ca9a0f5c07710e01f617faf960161494cfdd622c2b140635f14",
+      "afterDigest": "4c2f83f2f964625ca8c211eeed6c2953b810ad466f8799041e760d286662583f",
+      "dailyPinsUpdated": 0,
+      "allSelectedDailyRowsUnchanged": true,
+      "sourceChanges": [
+        {
+          "chapter": 1,
+          "verse": 30,
+          "before": "תַּנַחְנָה",
+          "after": "תַּנַּחְנָה",
+          "retiredNoteIds": [
+            "frenkel-lje-f33-nun-dagesh"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass3.json",
+          "sha256": "8af0dd5b77f341158e1b2c15c73459cb7ddccabb9c82cf1e810c425f169bf540"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/LJE-frenkel-pointed-crosswalk.json",
+          "sha256": "e5682e9d448edacf9d2011b8044f1e9ddbd9345debe6f03818be8cb261241ab1"
+        }
+      ]
+    },
+    {
+      "book": "1MA",
+      "beforeNoteCount": 25,
+      "afterNoteCount": 17,
+      "removedNoteIds": [
+        "1ma-12-25-het-vowel",
+        "1ma-13-41-42-shin-dagesh",
+        "1ma-13-51-yod-dagesh",
+        "1ma-14-43-shin-dagesh",
+        "1ma-4-10-yod-dagesh",
+        "1ma-5-26-samekh-vowel",
+        "1ma-5-4-bet-dagesh",
+        "1ma-6-11-bet-dagesh"
+      ],
+      "beforeDigest": "c100b9140cf324ecaca6ce7bbef4cedc1bc357e49ece18bbcae21888fcda631b",
+      "afterDigest": "05e8897fbeb509871c5ab01c6020613a42af57b431fdfe126dd5baa4af68b5ab",
+      "dailyPinsUpdated": 0,
+      "allSelectedDailyRowsUnchanged": true,
+      "sourceChanges": [
+        {
+          "chapter": 4,
+          "verse": 10,
+          "before": "הַיוֹם",
+          "after": "הַיּוֹם",
+          "retiredNoteIds": [
+            "1ma-4-10-yod-dagesh"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 4,
+          "before": "בְעוֹן",
+          "after": "בְעוֹן",
+          "retiredNoteIds": [
+            "1ma-5-4-bet-dagesh"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 26,
+          "before": "כִספָן",
+          "after": "כִסְפָן",
+          "retiredNoteIds": [
+            "1ma-5-26-samekh-vowel"
+          ]
+        },
+        {
+          "chapter": 6,
+          "verse": 11,
+          "before": "בְתָקְפִּי",
+          "after": "בְתָקְפִּי",
+          "retiredNoteIds": [
+            "1ma-6-11-bet-dagesh"
+          ]
+        },
+        {
+          "chapter": 12,
+          "verse": 25,
+          "before": "חמָת",
+          "after": "חֲמָת",
+          "retiredNoteIds": [
+            "1ma-12-25-het-vowel"
+          ]
+        },
+        {
+          "chapter": 13,
+          "verse": 41,
+          "before": "וּבַשְׁטָרוֹת",
+          "after": "וּבַשְׁטָרוֹת",
+          "retiredNoteIds": [
+            "1ma-13-41-42-shin-dagesh"
+          ]
+        },
+        {
+          "chapter": 13,
+          "verse": 51,
+          "before": "מִיִשְׂרָאֵל",
+          "after": "מִיִּשְׂרָאֵל",
+          "retiredNoteIds": [
+            "1ma-13-51-yod-dagesh"
+          ]
+        },
+        {
+          "chapter": 14,
+          "verse": 43,
+          "before": "הַשְׁטָרוֹת",
+          "after": "הַשְׁטָרוֹת",
+          "retiredNoteIds": [
+            "1ma-14-43-shin-dagesh"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        }
+      ]
+    },
+    {
+      "book": "2MA",
+      "beforeNoteCount": 18,
+      "afterNoteCount": 14,
+      "removedNoteIds": [
+        "2ma-1-16-vav-1-vowel-second-word",
+        "2ma-15-10-dalet-5-vowel",
+        "2ma-5-16-tav-2-vowel",
+        "2ma-6-13-shin-2-dagesh"
+      ],
+      "beforeDigest": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+      "afterDigest": "62846afbd2fc06d63961c8a46130a6863952e880a1a7dde18d00e92c628edba8",
+      "dailyPinsUpdated": 2,
+      "allSelectedDailyRowsUnchanged": true,
+      "sourceChanges": [
+        {
+          "chapter": 1,
+          "verse": 16,
+          "before": "ופִצְפְּצוּהוּ",
+          "after": "וּפִצְפְּצוּהוּ",
+          "retiredNoteIds": [
+            "2ma-1-16-vav-1-vowel-second-word"
+          ]
+        },
+        {
+          "chapter": 5,
+          "verse": 16,
+          "before": "נִתּן",
+          "after": "נִתַּן",
+          "retiredNoteIds": [
+            "2ma-5-16-tav-2-vowel"
+          ]
+        },
+        {
+          "chapter": 6,
+          "verse": 13,
+          "before": "הִשָׁאֵר",
+          "after": "הִשָּׁאֵר",
+          "retiredNoteIds": [
+            "2ma-6-13-shin-2-dagesh"
+          ]
+        },
+        {
+          "chapter": 15,
+          "verse": 10,
+          "before": "וַיְעוֹדדֵם",
+          "after": "וַיְעוֹדֲדֵם",
+          "retiredNoteIds": [
+            "2ma-15-10-dalet-5-vowel"
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        }
+      ]
+    }
+  ],
+  "allDailySelectedRowsUnchanged": true,
+  "allCatholicOrderAndBoundaryUnitsUnchanged": true,
+  "ljeCrosswalk": "All 79 printed sections and 73 Brenton targets reconstruct exactly after the one-scalar nun-dagesh update to source33/target30; no word boundary or numbering changes.",
+  "unchangedBooks": [
+    "JDT",
+    "BAR",
+    "ESG",
+    "S3Y",
+    "SUS",
+    "BEL"
+  ],
+  "sourceReview": {
+    "inspectedNotePositions": 461,
+    "totalInspections": 482,
+    "primaryReviewPositions": 447,
+    "focusedDageshInspections": 35,
+    "focusedDageshOverlapWithPrimaryReview": 21,
+    "focusedDageshAdditionalPositions": 14,
+    "resolvedNotes": 27,
+    "reviewedAndRetainedNotes": 434,
+    "method": "Direct inspection of original scan pixels and nearest-neighbor crops. Each accepted change was independently checked before integration; tentative proposals contradicted by same-page exemplars remain disclosed."
+  },
+  "passReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-reinspection-20261017-pass3.json",
+      "sha256": "8b8be2e80ecc77d6385994ca8108ea3dd72095f9a33495931d1c32b19bdc4bfd"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass3.json",
+      "sha256": "8af0dd5b77f341158e1b2c15c73459cb7ddccabb9c82cf1e810c425f169bf540"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass3.json",
+      "sha256": "f2682f527fe30678501379aa691015a074840a2946a37a54c4153b91c0831a9d"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+      "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+      "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017-pass3.json",
+      "sha256": "01d93083ca96971df5bef9995a5caa5c0850ecc73fab909986f7ea8b625be959"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+      "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+    }
+  ],
+  "deliveryVerification": {
+    "remainingNotes": 650,
+    "notesByBook": {
+      "TOB": 12,
+      "JDT": 0,
+      "WIS": 206,
+      "SIR": 37,
+      "BAR": 0,
+      "1MA": 17,
+      "2MA": 14,
+      "LJE": 0,
+      "ESG": 50,
+      "S3Y": 65,
+      "SUS": 25,
+      "BEL": 224
+    },
+    "changedArchiveChapters": 20,
+    "preservedArchiveMembers": 1316,
+    "unchangedOtherEditions": 9,
+    "unchangedBookAndChapterPresentationOrder": true,
+    "unchangedDailyReadingsPayload": true,
+    "matchingNativeDataCopies": 3,
+    "verifiedReferencedEvidenceFiles": 940,
+    "newArchive": "Shared/dist/bibles/masoretic-delitzsch-4dd277bd2fdeb5105448af128eac78e292e091075ed3bf5c912d00eb3f8afb2f.zip",
+    "archiveSHA256": "38c7480fc12443304435bb0351845a01be39125eb3f6d931b8b7ca4bc052a89d",
+    "archiveBytes": 3117375
+  },
+  "validation": {
+    "sharedTests": {
+      "passed": 114,
+      "failed": 0,
+      "suites": {
+        "test-bible-library.py": 21,
+        "test-hebrew-deuterocanon.py": 22,
+        "test-scripture-source-notes.py": 13,
+        "test-bible-source-structure.py": 12,
+        "test-hebrew-daily-readings.py": 14,
+        "test-reading-texts.py": 32
+      }
+    },
+    "readingMappingsAudit": "passed",
+    "bibleGenerationSecondPass": "byte-stable; --check --sync --require-hebrew-supplement passed",
+    "readingsGeneration": "byte-stable; --check --sync passed",
+    "androidTests": {
+      "passed": 576,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 71,
+      "forcedRerun": true
+    },
+    "appleTests": {
+      "passed": 56,
+      "failed": 0,
+      "skipped": 0,
+      "platform": "macOS",
+      "suites": [
+        "BibleSourceStructureTests",
+        "BibleStoreTests",
+        "ReadingTextStoreTests",
+        "ScriptureSourceNoteTests"
+      ],
+      "resultBundle": "/private/tmp/prosary-hebrew-validation/Logs/Test/Test-Prosary-2026.10.17_13-03-02-+0300.xcresult"
+    },
+    "windowsTests": "Not run: WinUI test runtime requires Windows. Canonical data and Windows data copies match byte-for-byte.",
+    "scopedDiffWhitespaceCheck": "passed",
+    "committed": false,
+    "pushed": false
+  },
+  "independentAudit": {
+    "status": "passed",
+    "newEvidenceFilesReferencedAndHashVerified": 844,
+    "sourceFileAndRasterHashReferencesVerified": 402,
+    "uniqueSourceFilesVerified": 145,
+    "changedBooksReplayedExactly": 6,
+    "otherBooksByteUnchanged": 6,
+    "combiningMarksAdded": 21,
+    "textRowsChanged": 20,
+    "falsePositiveNotesRetiredWithoutTextChanges": 6,
+    "unchangedDailyAppointmentSelections": 24,
+    "ljeCrosswalkAndNestedEvidencePins": "passed",
+    "sirachCatholicProjectionAndPins": "passed",
+    "historicalSourceResolverLimit": "Two unchanged historical LJE input basenames have no local scratch resolver path. Both predate this pass; all new evidence files and live pins verify."
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-20",
+  "batchDate": "2026-10-17",
+  "pass": 48,
+  "book": "WIS",
+  "status": "Four source 7:15 points certified from authorized Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 48 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass48-WIS-7-15/source-provenance.json",
+    "sha256": "30af3bce622bd81dc01bb6702bfab01ff18195d21396fa681ace8cf01f8af087"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 158 / קנח (viewer page 503, internal 518). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 352,
+  "sourceNotesBefore": 160,
+  "sourceNotesAfter": 156,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-7-15-kaf-kahagut",
+    "wis-7-15-kaf-kiyaut",
+    "wis-7-15-first-nun",
+    "wis-7-15-second-nun"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 7,
+      "verse": 15,
+      "before": "וְלִי יִתֵּן יְיָ לְדַבֵּר כּהָגוּת לִבִּי וּלְהָבִין כּיָאוּת אֶת אֲשֶׁר חַנּנּי בוֹ כִּי הוּא גַם מַנְהִיג הַחָכְמָה וְגַם מַדְרִיךְ הַחֲכָמִים׃",
+      "after": "וְלִי יִתֵּן יְיָ לְדַבֵּר כּהָגוּת לִבִּי וּלְהָבִין כּיָאוּת אֶת אֲשֶׁר חַנּנּי בוֹ כִּי הוּא גַם מַנְהִיג הַחָכְמָה וְגַם מַדְרִיךְ הַחֲכָמִים׃",
+      "beforeTextSHA256": "645f0669a0abb9afa072356d206ee5e0e9033b198dc25f5e84d9e5e56038ed57",
+      "afterTextSHA256": "645f0669a0abb9afa072356d206ee5e0e9033b198dc25f5e84d9e5e56038ed57"
+    }
+  ],
+  "scope": {
+    "chapter": 7,
+    "verse": 15,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label טו on page קנח / 158 (viewer page 503, internal page 518) identifies the unit covering verse 15. Canonical verse 15 and sourcePages [158] are preserved.",
+  "decisions": [
+    {
+      "noteId": "wis-7-15-kaf-kahagut",
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 15,
+      "anchor": "כּהָגוּת",
+      "letterIndex": 1,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Kaf carries a printed center Dagesh; the region below the letter base across y=509..519 (x=1160..1205) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass48-WIS-7-15/wis-7-15-kaf-kahagut-target-native.png",
+        "sha256": "d305d080e1f0ebf723e7ab2aad3562fabc5e5cb5e33444bb3e62fa16eba90b54"
+      }
+    },
+    {
+      "noteId": "wis-7-15-kaf-kiyaut",
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 15,
+      "anchor": "כּיָאוּת",
+      "letterIndex": 1,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Kaf carries a printed center Dagesh; the region below the letter base across y=509..519 (x=665..710) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass48-WIS-7-15/wis-7-15-kaf-kiyaut-target-native.png",
+        "sha256": "4ae5148e3e6f4c0b61ef18d7888639ec3b4181d0ae5c59ac234ffb8d5acb8aa4"
+      }
+    },
+    {
+      "noteId": "wis-7-15-first-nun",
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 15,
+      "anchor": "חַנּנּי",
+      "letterIndex": 2,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "First Nun carries a printed center Dagesh; the region below the letter base across y=509..524 (x=390..430) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass48-WIS-7-15/wis-7-15-first-nun-target-native.png",
+        "sha256": "be57db1f754525275fda567959acc3f868014721e74fb8631e271c2ff19380cc"
+      }
+    },
+    {
+      "noteId": "wis-7-15-second-nun",
+      "book": "WIS",
+      "chapter": 7,
+      "verse": 15,
+      "anchor": "חַנּנּי",
+      "letterIndex": 3,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Second Nun carries a printed center Dagesh; the region below the letter base across y=509..524 (x=350..390) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass48-WIS-7-15/wis-7-15-second-nun-target-native.png",
+        "sha256": "1e84787d81498b2d4fe57d4f8042f031dd88816eba2e5589fd39a536f993131f"
+      }
+    }
+  ]
+}

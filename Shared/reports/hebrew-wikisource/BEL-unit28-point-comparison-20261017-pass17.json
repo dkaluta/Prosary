@@ -1,0 +1,1196 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 17,
+  "book": "BEL",
+  "status": "All seven current source28 positions reviewed; two literal yod dageshes certified and five disclosures retained",
+  "applicationState": "pendingRootIntegration; source-only author report",
+  "baselineDirectory": "/private/tmp/prosary-hebrew-pass17-20261017/baseline",
+  "baselineGlobalNoteCount": 527,
+  "reviewedSourceNoteCount": 7,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 5,
+  "scope": {
+    "selectedPositionCount": 7,
+    "resolvedPositionCount": 2,
+    "retainedPositionCount": 5,
+    "reviewedUnit": 28,
+    "reviewedChapters": [
+      1
+    ],
+    "allTargetAndNecessaryControlChaptersAnnotated": true,
+    "allRemainingUnitNotesReviewed": true,
+    "lowerTheodotionBodyOnly": true,
+    "notAWholeBookCollation": true
+  },
+  "cyclePolicy": "Current first review of the remaining annotated-unit queue. Retain ambiguous points and defer reopening retained units until the whole first cycle finishes. A second cycle then keeps daily-reading priority and descends by retained-note count. Literal class controls are comparisons, not reopened annotation decisions.",
+  "method": "Fresh original A2 complete glyphs, complete words and exact numbered source28 establish address. Two yods have a real left-head contraction followed by a compact added low-left node beside the continuing narrower ordinary right tail. A same-unit pointed yod and both genuinely plain yods of ויהי distinguish that branch without requiring a pinhole. The four initial-vav lower masses and kaf foot remain opaque; literal same-font kaf patah/tsere/qamats/segol comparisons do not uniquely eliminate competing filled classes. Only original native pixels and integer nearest-neighbor enlargements supply geometry; no expected reading, grammar, OCR, translation, alternative recension, enhancement, reconstructed raster or independent-new-witness claim supplies points. Root, wisdom and BEL peer independently accepted both exact BC additions.",
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/BEL.json",
+  "canonicalInputSHA256": "a0b3d0ba4152e2d74372079fe56e40988889069099f020a7693a2410d367fd23",
+  "canonicalChanged": false,
+  "beforeBookNoteCount": 165,
+  "expectedBookNoteCountAfterThisPacket": 163,
+  "beforeUnitNoteCount": 7,
+  "expectedUnitNoteCountAfterThisPacket": 5,
+  "beforeSourceContentSHA256": "08e19ceee30500417db04258c9e18ce81c704268eec0faab264b47897709e315",
+  "expectedSourceContentSHA256AfterThisPacket": "fc0560c7f9244b80617e0987aa6f7494bb74fa8966b97f965f633a959a9ab339",
+  "accepted": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "before": "ויִרְגְּזוּ",
+      "after": "ויִּרְגְּזוּ",
+      "retiredNoteIds": [
+        "bel-1-28-246-vayirgezu-letter2-dagesh"
+      ],
+      "addedCodePoint": "U+05BC",
+      "finding": "Below a real left-head recession the complete yod has a compact added low-left branch beside its continuing narrower right tail. The same-unit pointed ויאמרו yod repeats that contour, whereas both clearly plain medial/final yods of the same-unit ויהי retain narrow ordinary tails without that extra branch. A filled node does not require a pinhole when its full added contour is diagnostic."
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "before": "ויִלּוֹנוּ",
+      "after": "ויִּלּוֹנוּ",
+      "retiredNoteIds": [
+        "bel-1-28-246-vayilunu28-letter2-dagesh"
+      ],
+      "addedCodePoint": "U+05BC",
+      "finding": "Below a real left-head recession the complete yod has a compact added low-left branch beside its continuing narrower right tail. The same-unit pointed ויאמרו yod repeats that contour, whereas both clearly plain medial/final yods of the same-unit ויהי retain narrow ordinary tails without that extra branch. A filled node does not require a pinhole when its full added contour is diagnostic."
+    }
+  ],
+  "retiredSourceNoteIds": [
+    "bel-1-28-246-vayilunu28-letter2-dagesh",
+    "bel-1-28-246-vayirgezu-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "bel-1-28-246-kaasher-letter1-vowel",
+    "bel-1-28-246-vayehi28-letter1-vowel",
+    "bel-1-28-246-vayilunu28-letter1-vowel",
+    "bel-1-28-246-vayirgezu-letter1-vowel",
+    "bel-1-28-246-vayomru28-letter1-vowel"
+  ],
+  "retainedNoteAnchorUpdates": [
+    {
+      "id": "bel-1-28-246-vayirgezu-letter1-vowel",
+      "oldAnchor": "ויִרְגְּזוּ",
+      "newAnchor": "ויִּרְגְּזוּ"
+    },
+    {
+      "id": "bel-1-28-246-vayilunu28-letter1-vowel",
+      "oldAnchor": "ויִלּוֹנוּ",
+      "newAnchor": "ויִּלּוֹנוּ"
+    }
+  ],
+  "findings": [
+    {
+      "id": "bel-1-28-246-vayehi28-letter1-vowel",
+      "anchor": "ויְהִי",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "index": 1,
+      "decision": "retainDisclosure",
+      "finding": "The full initial vav including its upper zone preserves no independent new holam or diagnostic lower vowel shape. A broad lower mass remains continuous with the shaft/ordinary terminal. Preserve the exact omitted vowel because absorbed point, natural foot and competing filled arrangements remain unseparated; retain all following-letter marks."
+    },
+    {
+      "id": "bel-1-28-246-vayirgezu-letter1-vowel",
+      "anchor": "ויִרְגְּזוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "index": 2,
+      "decision": "retainDisclosure",
+      "finding": "The full initial vav including its upper zone preserves no independent new holam or diagnostic lower vowel shape. A broad lower mass remains continuous with the shaft/ordinary terminal. Preserve the exact omitted vowel because absorbed point, natural foot and competing filled arrangements remain unseparated; retain all following-letter marks."
+    },
+    {
+      "id": "bel-1-28-246-vayirgezu-letter2-dagesh",
+      "anchor": "ויִרְגְּזוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        246
+      ],
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "index": 3,
+      "decision": "certifyOneU05BC",
+      "before": "ויִרְגְּזוּ",
+      "after": "ויִּרְגְּזוּ",
+      "retiredNoteIds": [
+        "bel-1-28-246-vayirgezu-letter2-dagesh"
+      ],
+      "finding": "Below a real left-head recession the complete yod has a compact added low-left branch beside its continuing narrower right tail. The same-unit pointed ויאמרו yod repeats that contour, whereas both clearly plain medial/final yods of the same-unit ויהי retain narrow ordinary tails without that extra branch. A filled node does not require a pinhole when its full added contour is diagnostic.",
+      "independentApproval": [
+        "root",
+        "wisdom_pass3",
+        "bel_pass3"
+      ]
+    },
+    {
+      "id": "bel-1-28-246-vayilunu28-letter1-vowel",
+      "anchor": "ויִלּוֹנוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "index": 4,
+      "decision": "retainDisclosure",
+      "finding": "The full initial vav including its upper zone preserves no independent new holam or diagnostic lower vowel shape. A broad lower mass remains continuous with the shaft/ordinary terminal. Preserve the exact omitted vowel because absorbed point, natural foot and competing filled arrangements remain unseparated; retain all following-letter marks."
+    },
+    {
+      "id": "bel-1-28-246-vayilunu28-letter2-dagesh",
+      "anchor": "ויִלּוֹנוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        246
+      ],
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "index": 5,
+      "decision": "certifyOneU05BC",
+      "before": "ויִלּוֹנוּ",
+      "after": "ויִּלּוֹנוּ",
+      "retiredNoteIds": [
+        "bel-1-28-246-vayilunu28-letter2-dagesh"
+      ],
+      "finding": "Below a real left-head recession the complete yod has a compact added low-left branch beside its continuing narrower right tail. The same-unit pointed ויאמרו yod repeats that contour, whereas both clearly plain medial/final yods of the same-unit ויהי retain narrow ordinary tails without that extra branch. A filled node does not require a pinhole when its full added contour is diagnostic.",
+      "independentApproval": [
+        "root",
+        "wisdom_pass3",
+        "bel_pass3"
+      ]
+    },
+    {
+      "id": "bel-1-28-246-vayomru28-letter1-vowel",
+      "anchor": "ויֹּאמֵרוּ",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "index": 6,
+      "decision": "retainDisclosure",
+      "finding": "The full initial vav including its upper zone preserves no independent new holam or diagnostic lower vowel shape. A broad lower mass remains continuous with the shaft/ordinary terminal. Preserve the exact omitted vowel because absorbed point, natural foot and competing filled arrangements remain unseparated; retain all following-letter marks."
+    },
+    {
+      "id": "bel-1-28-246-kaasher-letter1-vowel",
+      "anchor": "כאֲשֶׁר",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "index": 7,
+      "decision": "retainDisclosure",
+      "finding": "The complete kaf lower mass is fully coalesced with its ordinary foot. Only a shallow one-native-pixel basal notch survives; no independent complete point boundary distinguishes a ragged bar from filled horizontal/triangular lobes. The literal kaf tsere has a clearer paired contour/window, qamats a longer separate narrow stem, segol multiple short lobes, while the literal patah example merges into a broad shallow foot. Competing filled classes are not uniquely excluded. Preserve the exact omission without an expected vowel or absence claim."
+    }
+  ],
+  "changedUnit": {
+    "chapter": 1,
+    "verse": 28,
+    "originalText": "ויְהִי כאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל ויִרְגְּזוּ מְאֹד ויִלּוֹנוּ עַל־הַמֶּלֶךְ ויֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+    "correctedText": "ויְהִי כאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל ויִּרְגְּזוּ מְאֹד ויִּלּוֹנוּ עַל־הַמֶּלֶךְ ויֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+    "beforeTextSHA256": "ad524a0fc70b38cf2cf2a559bf5a7afc6a41ba4e228fd44ca0c6ed364f88de06",
+    "afterTextSHA256": "c164cd569b1869b2c34878cc94d421ed3ec22bf369451fc1a2a6820ef105b501",
+    "insertedBCCount": 2
+  },
+  "addressVerification": [
+    "Printed/stored28 begins ויהי after source27 ends ראו את יראתכם׃ on the shared physical row bearing כח. All seven current targets occur in this exact lower-Theodotion unit.",
+    "Source28 continues across the following physical row and ends ואת הכהנים זבח׃ before source29 begins ויבאו on the shared row bearing כט. Both boundaries and the entire intervening unit are archived; no split, combination, relabelling or order change is introduced.",
+    "The first target וירגזו follows אנשי בבל on the first source28 row; the second target וילונו begins the following continuation row. Same-unit ויאמרו supplies the pointed-yod contour and same-unit ויהי supplies both plain-yod controls.",
+    "Root additionally confirmed the same shared28/29 boundaries in the live PSIK A reader label591/physical606 viewport. This is context corroboration only; no independent scan witness is claimed and the replayable original A2 pixels remain the point-class basis."
+  ],
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "frames": [
+    {
+      "key": "target01-vav-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1458,
+        1895,
+        1495,
+        2010
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target01-vav-COMPLETE-native.png",
+          "sha256": "cbfb30bd5589247b931902a2d4244baf91e1e12dc8b0279d010cde4ee57c6e10",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target01-vav-COMPLETE-15x.png",
+          "sha256": "f4fff1db0c0a7831eec8fa4e8c25e10637bb3c6e263ca10e4604440f768fef2d",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "target02-vav-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        557,
+        1905,
+        589,
+        2020
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target02-vav-COMPLETE-native.png",
+          "sha256": "f46ff1b7b64d53650919bba5022b03f984b6127685ce65ad0a978ad7f8edb989",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target02-vav-COMPLETE-15x.png",
+          "sha256": "5a3cf8b380f57488eda3380a6ce1539fce18b908ab048cb80a04083a064a8a78",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "target03-yod-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        536,
+        1920,
+        563,
+        2010
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target03-yod-COMPLETE-native.png",
+          "sha256": "5d65bbccdfc6d5e594cd400f36c2a00a9bb4813a3133cd041fd3cb002a73166f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target03-yod-COMPLETE-15x.png",
+          "sha256": "dabfe194002c7a9dfa069e35b59db8d063d91ded8534f8ffbe76a5881ac9dc00",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "target04-vav-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1990,
+        1990,
+        2024,
+        2120
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target04-vav-COMPLETE-native.png",
+          "sha256": "77c7abc82a4edfef0fd686cf9b72e65a556cf53e12e1f59216e5e6c2ba287050",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target04-vav-COMPLETE-15x.png",
+          "sha256": "20b9845f41c7485c8e1265c4812e483211b1eccc4c6fb27f45247e1be9c9f174",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "target05-yod-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1968,
+        1990,
+        1996,
+        2095
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target05-yod-COMPLETE-native.png",
+          "sha256": "ae4036a1631574284cb3a71df7a8e56013a579dae0aaa4fc4593aafb8d571ff1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target05-yod-COMPLETE-15x.png",
+          "sha256": "2c6fa373ea53e9c4c9e2045ff7aafdcdbc7d5ef0d9f2c1a76233ad7720aedb2e",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "target06-vav-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1490,
+        1990,
+        1524,
+        2120
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target06-vav-COMPLETE-native.png",
+          "sha256": "6c07008368cf978be9490168e8bc3bdbaee8aac1abea111f3feb4e95be9bd2fd",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target06-vav-COMPLETE-15x.png",
+          "sha256": "75524c77fc231a8bbe3ccdb63ff79358886764718819f659cdc882e30e2024b1",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "target07-kaf-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1290,
+        1915,
+        1330,
+        2015
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target07-kaf-COMPLETE-native.png",
+          "sha256": "aefeeb855954b9df1c486bb7bbc1d514969a985836ad70b21c0d58a6281337bd",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target07-kaf-COMPLETE-15x.png",
+          "sha256": "431025595e92a6b37187750e75bc52887f4a3186ff86c1ddd26fbbd8df758b9a",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "target07-kaf-lower-shape",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1293,
+        1965,
+        1322,
+        2002
+      ],
+      "scale": 24,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target07-kaf-lower-shape-native.png",
+          "sha256": "7abc6624d45353d0982f385d9dfc52eb571a200de39b47c6e8bbb52f12ee5d13",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/target07-kaf-lower-shape-24x.png",
+          "sha256": "248395746a9441bf9baab556600720af878cb3cb1e036c4c5cb02c76cab3a891",
+          "scale": 24,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "word-vayehi-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1380,
+        1880,
+        1520,
+        2010
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-vayehi-COMPLETE-native.png",
+          "sha256": "1df264e0a8fd7f1a1bdadcf247f7a72277834b8bdb4baa90ac7f80917a028ad9",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-vayehi-COMPLETE-5x.png",
+          "sha256": "6d72bff9195ba05521a5e30b0409808b1455d5e62fb6cbb3e411ee690cbf4bf3",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "word-vayirgezu-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        365,
+        1890,
+        615,
+        2030
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-vayirgezu-COMPLETE-native.png",
+          "sha256": "46c25f7199bf152348161cef505c4b052a20953e0ff6e1509c95de9aefea2f2c",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-vayirgezu-COMPLETE-5x.png",
+          "sha256": "a24838063bb9f51b191f3ad86fc8110ef3dd60b9a8d1b5cdef1e5495e92f47a2",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "word-vayilunu-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1800,
+        1980,
+        2060,
+        2120
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-vayilunu-COMPLETE-native.png",
+          "sha256": "5504005c7b7cfcd8a9814996d1ab444b1f652740f7b0f56a3cb6ba7a6220bf8b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-vayilunu-COMPLETE-5x.png",
+          "sha256": "a17c294ea8cda98d2b8a2890d4588bfd95c9edafacc39d46ab6f252607797614",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "word-vayomru-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1290,
+        1980,
+        1550,
+        2120
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-vayomru-COMPLETE-native.png",
+          "sha256": "fd18564a5eb4a6da6ff0eb3c7e7e3438dfd26d9502832c9cd8b6aa2e0be634c9",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-vayomru-COMPLETE-5x.png",
+          "sha256": "7e54997d058585b42d18c150fd33881420102c21a57f41d267363f2555042b9d",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "word-kaasher-COMPLETE",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1100,
+        1885,
+        1355,
+        2030
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-kaasher-COMPLETE-native.png",
+          "sha256": "638f4444c8982c6fd36ffbf8f48dad3478625549bd7a596adcdb9ad3dba1ed37",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/word-kaasher-COMPLETE-5x.png",
+          "sha256": "2aa56e105e3a9eba9df9aa074021d80ebbaad760c24643fc6ddc19d5dccfb2af",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sameunit-vayomru-yod-POINTED",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1470,
+        2000,
+        1495,
+        2100
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/sameunit-vayomru-yod-POINTED-native.png",
+          "sha256": "2dc2f34a080b453acd93c73727a9ac23bd13f73c10d017f1be046940b03c798b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/sameunit-vayomru-yod-POINTED-15x.png",
+          "sha256": "e3a80d693a1c83327399581a485ddb93eee7c0e464d26c23f17e51e46fb3eeef",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sameunit-vayehi-medial-yod-PLAIN",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1441,
+        1910,
+        1463,
+        2000
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/sameunit-vayehi-medial-yod-PLAIN-native.png",
+          "sha256": "e65f5320c2e883be5afeb30309aae31d65aaeb55db70a6b4bbce6f6b5d38fbd1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/sameunit-vayehi-medial-yod-PLAIN-15x.png",
+          "sha256": "5c130ee4b1c94db913005a19d36d253919d958c408b6c1f42c57e96cc86d5f10",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sameunit-vayehi-final-yod-PLAIN",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        1384,
+        1910,
+        1408,
+        2000
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/sameunit-vayehi-final-yod-PLAIN-native.png",
+          "sha256": "bc7fb983412691d52dc8286767e42abd0711cfca4e520a6697c27a0101a19c52",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/sameunit-vayehi-final-yod-PLAIN-15x.png",
+          "sha256": "d9f349232c1c3edd7d7adf6de18469d19a4a666306cad0658137a6672dec0c1f",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "unit28-complete-numbered-context",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        220,
+        1840,
+        2210,
+        2240
+      ],
+      "scale": 1,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/unit28-complete-numbered-context-native.png",
+          "sha256": "0965fbd70feb9260f4645f8c6f7771b212d1f22e50290247b5c36da261649d0d",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "unit28-numbered-shared-start-row",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        220,
+        1900,
+        2210,
+        2010
+      ],
+      "scale": 2,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/unit28-numbered-shared-start-row-native.png",
+          "sha256": "6e6e5e6154e7d7dcd6ad77b87ebd16294c489a5ae549b15c3f110d60bcd8b5b9",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/unit28-numbered-shared-start-row-2x.png",
+          "sha256": "f0b3ff677d640bb333195f87784b59354e7f2dbc336db600b1a90dabefa7cdfd",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "unit28-numbered-shared-end-row",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 246,
+      "sourcePage": 246,
+      "nativeBounds": [
+        220,
+        2095,
+        2210,
+        2220
+      ],
+      "scale": 2,
+      "sourceImageRGBPixelSHA256": "cfe8b17787ee508a1a3dfda4d04b72aa3da09666a7732a27e695237eb0de5cb3",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/unit28-numbered-shared-end-row-native.png",
+          "sha256": "9396a1a97a59d924edc94e39b943cde52c5132d4df68cc582e3f36a54c8b0439",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/unit28-numbered-shared-end-row-2x.png",
+          "sha256": "19ff56ad642d082e8f3516c7828a75fbeba90e7a8ec0e5805133485094572ee1",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "control-okhel7-kaf-tsere",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 243,
+      "sourcePage": 243,
+      "nativeBounds": [
+        545,
+        1900,
+        590,
+        1990
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "27fbc9fb98ecf435b88ba75eaa8af3ca993d24b3d67ae1132cf1508366b80aa6",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-okhel7-kaf-tsere-native.png",
+          "sha256": "636eedde12bf7b695176e9237a33c4c5a1856f7527d2b949f5e6d3d1e45674ee",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-okhel7-kaf-tsere-15x.png",
+          "sha256": "79bcff90989f0ec5ddda1bf789f8d14e1a6ece9b1c6632227b14740cadc03d21",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "control-okhel7-kaf-tsere-word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 243,
+      "sourcePage": 243,
+      "nativeBounds": [
+        500,
+        1850,
+        720,
+        1990
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "27fbc9fb98ecf435b88ba75eaa8af3ca993d24b3d67ae1132cf1508366b80aa6",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-okhel7-kaf-tsere-word-native.png",
+          "sha256": "8db63fdc292c1ed1483035e0c5c0523923a097f40b05c59820ae6ddaa172234f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-okhel7-kaf-tsere-word-5x.png",
+          "sha256": "aeec1120ddee99301398be87cadebf4955400f81f73649ba3771f77690d6dd52",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "control-haker20-kaf-segol",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 245,
+      "sourcePage": 245,
+      "nativeBounds": [
+        1060,
+        1960,
+        1115,
+        2060
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "2822bfb2436f0f025160c92560586d772f6d4d663de42e840b4333b4929cef2b",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-haker20-kaf-segol-native.png",
+          "sha256": "daefd5017c33232e15968bebcd7007d37ff188729fadff0ff26469076b4efd0c",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-haker20-kaf-segol-15x.png",
+          "sha256": "029efcbc3fe3c49597d5093a735ea5e3e126ac44b0d0125716441008e3b1ea59",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "control-haker20-kaf-segol-word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 245,
+      "sourcePage": 245,
+      "nativeBounds": [
+        1000,
+        1960,
+        1220,
+        2060
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "2822bfb2436f0f025160c92560586d772f6d4d663de42e840b4333b4929cef2b",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-haker20-kaf-segol-word-native.png",
+          "sha256": "bd3fb4cb034187dcbd65f6084350ab276b17e880712dec107df786b39c9afc35",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-haker20-kaf-segol-word-5x.png",
+          "sha256": "38631ac01a29bb59721152711057c7e0e3a75631e8f513e16eacf1e26055a00c",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "control-akhal8-kaf-patah-word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 243,
+      "sourcePage": 243,
+      "nativeBounds": [
+        875,
+        2020,
+        1040,
+        2160
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "27fbc9fb98ecf435b88ba75eaa8af3ca993d24b3d67ae1132cf1508366b80aa6",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-akhal8-kaf-patah-word-native.png",
+          "sha256": "77151a35c0cf771e721086e50b3c982da09a4d17335be3ab14da9958214fc91d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-akhal8-kaf-patah-word-5x.png",
+          "sha256": "c32fd49e761ffe805ee083f02d2f2d31b2685d570b4b3353572b8a64b4ab03e8",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "control-mikkol3-kaf-qamats",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 243,
+      "sourcePage": 243,
+      "nativeBounds": [
+        645,
+        1190,
+        710,
+        1330
+      ],
+      "scale": 15,
+      "sourceImageRGBPixelSHA256": "27fbc9fb98ecf435b88ba75eaa8af3ca993d24b3d67ae1132cf1508366b80aa6",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-mikkol3-kaf-qamats-native.png",
+          "sha256": "3ef9502e977e4f878a37c1959f1af514b63c90a56caa462a47f62bde5c1698ec",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-mikkol3-kaf-qamats-15x.png",
+          "sha256": "1edf0cb343714126f5eab4c8b7eef85fd98bbe6c275c0597fd6bfcda505cc16f",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "control-mikkol3-kaf-qamats-word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFPage": 243,
+      "sourcePage": 243,
+      "nativeBounds": [
+        580,
+        1200,
+        745,
+        1320
+      ],
+      "scale": 5,
+      "sourceImageRGBPixelSHA256": "27fbc9fb98ecf435b88ba75eaa8af3ca993d24b3d67ae1132cf1508366b80aa6",
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-mikkol3-kaf-qamats-word-native.png",
+          "sha256": "2b8f73843cfb8d05f5672d24111ded91b03d9affa558babb2b9767da34ea85c1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/control-mikkol3-kaf-qamats-word-5x.png",
+          "sha256": "2db13bdd625833400edbbfe64e8886348026fb1bf176caaedca5a2edce4d20cb",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    }
+  ],
+  "evidenceSummary": {
+    "nativeFrames": 26,
+    "pngCount": 51,
+    "freshOriginalPDFPageImages": 3,
+    "allFreshOriginalPDFPixelReplaysPassed": true
+  },
+  "evidenceManifest": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/original-PDF-native-replay.json",
+    "sha256": "df0b6d1376c08f341040ce619a9674445154bf8d9f84503a9b9540fb1549b27e"
+  },
+  "acceptedArtifact": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass17-BEL-UNIT28/accepted.json",
+    "sha256": "12434cb05e1baac91920092952782dbe87b095b8f210f5f7b9215879c972323e"
+  },
+  "allSourceNoteIdsAfterPacket": [
+    "bel-1-1-242-vayeasef-letter1-vowel",
+    "bel-1-1-242-vayeasef-letter2-dagesh",
+    "bel-1-1-242-vayirash-full-letter1-vowel",
+    "bel-1-1-242-vayirash-full-letter2-dagesh",
+    "bel-1-10-244-daniel10a-letter3-dagesh",
+    "bel-1-10-244-daniel10b-letter3-dagesh",
+    "bel-1-10-244-vayomer10-letter1-vowel",
+    "bel-1-10-244-vayomer10-letter2-dagesh",
+    "bel-1-11-244-daniel11-letter4-dagesh",
+    "bel-1-11-244-vayelekh11-letter1-vowel",
+    "bel-1-11-244-vayelekh11-letter2-dagesh",
+    "bel-1-12-244-vayomru12-letter1-vowel",
+    "bel-1-12-244-vayomru12-letter2-dagesh",
+    "bel-1-12-244-vayomru12-letter6-dagesh",
+    "bel-1-13-244-daniel13-letter3-dagesh",
+    "bel-1-14-244-vayehi14-letter1-vowel",
+    "bel-1-15-244-vayahtemu15-letter1-vowel",
+    "bel-1-15-244-vayasem15-letter1-vowel",
+    "bel-1-15-244-vayaviu15-letter1-vowel",
+    "bel-1-15-244-vayehi15-letter1-vowel",
+    "bel-1-15-244-vayelkhu15-letter1-vowel",
+    "bel-1-15-244-vayetseu15-letter1-vowel",
+    "bel-1-15-244-vayisgeru15-letter1-vowel",
+    "bel-1-15-244-vayizreu15-letter1-vowel",
+    "bel-1-16-244-vayavou16-letter1-vowel",
+    "bel-1-16-244-vayishtu16-letter1-vowel",
+    "bel-1-16-244-vayokhelu16-letter1-vowel",
+    "bel-1-17-244-vayashkem-wide-letter1-vowel",
+    "bel-1-17-244-vayashkem-wide-letter4-vowel",
+    "bel-1-17-244-vayomer17-letter1-vowel",
+    "bel-1-17-245-daniel17-letter3-dagesh",
+    "bel-1-17-245-vayomer17-letter1-vowel",
+    "bel-1-19-245-vayabet19-letter1-vowel",
+    "bel-1-19-245-vayehi19-letter1-vowel",
+    "bel-1-19-245-vayikra19-letter1-vowel",
+    "bel-1-19-245-vayikra19-letter2-dagesh",
+    "bel-1-20-245-daniel20-letter3-dagesh",
+    "bel-1-20-245-vayahazek20-letter1-vowel",
+    "bel-1-20-245-vayahazek20-letter2-dagesh",
+    "bel-1-20-245-vayitzhak20-letter1-vowel",
+    "bel-1-20-245-vayitzhak20-letter2-dagesh",
+    "bel-1-20-245-vayomer20-letter1-vowel",
+    "bel-1-21-245-vayarehu-wide-letter1-vowel",
+    "bel-1-21-245-vayeesof-wide-letter1-vowel",
+    "bel-1-21-245-vayeesof-wide-letter2-dagesh",
+    "bel-1-21-245-vayiktzof21-letter1-vowel",
+    "bel-1-21-245-vayomer21-letter1-vowel",
+    "bel-1-21-245-vayomer21-letter2-dagesh",
+    "bel-1-22-245-daniel22-letter4-dagesh",
+    "bel-1-22-245-vayiten22-letter1-vowel",
+    "bel-1-22-245-vayiten22-letter2-dagesh",
+    "bel-1-22-245-vaymitem22-letter1-vowel",
+    "bel-1-23-245-daniel23-letter4-dagesh",
+    "bel-1-23-245-vayaavduhu23-letter1-vowel",
+    "bel-1-23-245-vayaavduhu23-letter2-dagesh",
+    "bel-1-23-245-vayehi23-letter1-vowel",
+    "bel-1-23-245-vayomer23-letter1-vowel",
+    "bel-1-25-245-daniel25-letter3-dagesh",
+    "bel-1-25-245-vayomer25-letter1-vowel",
+    "bel-1-25-245-vayomer25-letter2-dagesh",
+    "bel-1-26-245-vayomer26-letter1-vowel",
+    "bel-1-26-245-vayomer26-letter2-dagesh",
+    "bel-1-27-246-daniel-letter3-dagesh",
+    "bel-1-27-246-vayaas27-letter1-vowel",
+    "bel-1-27-246-vayibaka-letter1-vowel",
+    "bel-1-27-246-vayikah-letter1-vowel",
+    "bel-1-27-246-vayiten27-letter1-vowel",
+    "bel-1-27-246-vayokhal-letter1-vowel",
+    "bel-1-27-246-vayokhal-letter2-dagesh",
+    "bel-1-27-246-vayokhal-letter4-vowel",
+    "bel-1-27-246-vayomer27-letter1-vowel",
+    "bel-1-27-246-vayomer27-letter2-dagesh",
+    "bel-1-27-246-vayvashelm-letter1-vowel",
+    "bel-1-27-246-vayvashelm-letter3-vowel",
+    "bel-1-28-246-kaasher-letter1-vowel",
+    "bel-1-28-246-vayehi28-letter1-vowel",
+    "bel-1-28-246-vayilunu28-letter1-vowel",
+    "bel-1-28-246-vayirgezu-letter1-vowel",
+    "bel-1-28-246-vayomru28-letter1-vowel",
+    "bel-1-29-246-daniel-letter3-dagesh",
+    "bel-1-29-246-vayavou29-letter1-vowel",
+    "bel-1-29-246-vayavou29-letter2-dagesh",
+    "bel-1-29-246-vayomru29-letter1-vowel",
+    "bel-1-29-246-vayomru29-letter2-dagesh",
+    "bel-1-3-243-vayehi-first-letter1-vowel",
+    "bel-1-3-243-vayehi-second-letter1-vowel",
+    "bel-1-3-243-vayotziu-letter1-vowel",
+    "bel-1-3-243-vayotziu-letter2-dagesh",
+    "bel-1-3-243-venikhbad-letter1-vowel",
+    "bel-1-30-246-daniel-letter3-dagesh",
+    "bel-1-30-246-vayar30-letter1-vowel",
+    "bel-1-30-246-vayar30-letter2-dagesh",
+    "bel-1-30-246-vayiten30-letter1-vowel",
+    "bel-1-30-246-vayiten30-letter2-dagesh",
+    "bel-1-31-246-daniel-letter3-dagesh",
+    "bel-1-31-246-vayashlikhu31-letter1-vowel",
+    "bel-1-31-246-vayashlikhu31-letter2-dagesh",
+    "bel-1-31-246-vayehi31-letter1-vowel",
+    "bel-1-33-246-laset-letter2-vowel",
+    "bel-1-33-246-vayabel33-letter1-vowel",
+    "bel-1-33-246-vayabel33-letter2-dagesh",
+    "bel-1-33-246-vayetse-letter3-vowel",
+    "bel-1-33-246-vayetse33-letter1-vowel",
+    "bel-1-33-246-vayetse33-letter2-dagesh",
+    "bel-1-34-246-daniel-letter3-dagesh",
+    "bel-1-34-246-vayomer34-letter1-vowel",
+    "bel-1-34-246-vayomer34-letter2-dagesh",
+    "bel-1-35-246-vayomer35-letter1-vowel",
+    "bel-1-35-246-vayomer35-letter2-dagesh",
+    "bel-1-35-246-veeneni-letter5-dagesh",
+    "bel-1-36-247-vayahazek36-letter1-vowel",
+    "bel-1-36-247-vayahazek36-letter2-dagesh",
+    "bel-1-36-247-vayatsigehu36-letter1-vowel",
+    "bel-1-36-247-vayisaehu36-letter1-vowel",
+    "bel-1-36-247-vayisaehu36-letter2-dagesh",
+    "bel-1-36-247-vayohez36-letter1-vowel",
+    "bel-1-37-247-daniel37a-letter3-dagesh",
+    "bel-1-37-247-daniel37b-letter3-dagesh",
+    "bel-1-37-247-vayikra37-letter1-vowel",
+    "bel-1-37-247-vayomer37-letter1-vowel",
+    "bel-1-37-247-vayomer37-letter2-dagesh",
+    "bel-1-38-247-daniel38a-letter3-dagesh",
+    "bel-1-38-247-vayomer38-letter1-vowel",
+    "bel-1-39-247-daniel39a-letter3-dagesh",
+    "bel-1-39-247-vayakam39-letter1-vowel",
+    "bel-1-39-247-vayakam39-letter2-dagesh",
+    "bel-1-39-247-vayokhal39-letter1-vowel",
+    "bel-1-40-247-bayom40-letter1-vowel",
+    "bel-1-40-247-bayom40-letter2-dagesh",
+    "bel-1-40-247-daniel40b-letter3-dagesh",
+    "bel-1-40-247-vayar40-letter1-vowel",
+    "bel-1-40-247-vayavo40-letter1-vowel",
+    "bel-1-41-247-daniel41a-letter3-dagesh",
+    "bel-1-41-247-milvadekha41-letter3-vowel",
+    "bel-1-41-247-milvadekha41-letter4-vowel",
+    "bel-1-41-247-vayikra41-letter1-vowel",
+    "bel-1-41-247-vayikra41-letter2-dagesh",
+    "bel-1-41-247-vayomer41-letter1-vowel",
+    "bel-1-41-247-veein41-letter1-vowel",
+    "bel-1-42-247-kherega42-letter2-vowel",
+    "bel-1-42-247-vayaalehu42-letter1-vowel",
+    "bel-1-42-247-vayashlekh42-letter1-vowel",
+    "bel-1-42-247-vayitarfu42-letter1-vowel",
+    "bel-1-42-247-vayitarfu42-letter2-dagesh",
+    "bel-1-5-243-daniel5-letter4-dagesh",
+    "bel-1-5-243-vayavo-letter1-vowel",
+    "bel-1-5-243-vayavo-letter2-dagesh",
+    "bel-1-5-243-vayomer5-fixed-letter1-vowel",
+    "bel-1-5-243-vayomer5-fixed-letter2-dagesh",
+    "bel-1-6-243-vayomer6-letter1-vowel",
+    "bel-1-6-243-vayomer6-letter2-dagesh",
+    "bel-1-7-243-vayomer7-letter1-vowel",
+    "bel-1-7-243-vayomer7-letter2-dagesh",
+    "bel-1-8-243-vayitzhak-letter1-vowel",
+    "bel-1-8-243-vayitzhak-letter2-dagesh",
+    "bel-1-8-243-vayomer8-letter1-vowel",
+    "bel-1-8-243-vayomer8-letter2-dagesh",
+    "bel-1-8-243-vayomer8-letter4-vowel",
+    "bel-1-9-243-vayiktzof-letter1-vowel",
+    "bel-1-9-243-vayiktzof-letter2-dagesh",
+    "bel-1-9-244-vayikra9-letter1-vowel",
+    "bel-1-9-244-vayikra9-letter2-dagesh",
+    "bel-1-9-244-vayomer9-letter1-vowel"
+  ],
+  "priorImmutableReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-yod-dagesh-comparison-20261017-pass13.json",
+      "sha256": "008cff4074120c8820109e04700c5127fe5bd9f3f60df0273d60a902028ef50c"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit17-point-comparison-20261017-pass16.json",
+      "sha256": "dda9c9bb48fc7a16c787545dd35c1f3bf6d189702191da698cd5d686debe4eb8"
+    }
+  ],
+  "excludedExploratoryFrames": [
+    {
+      "names": [
+        "all initial target and word frames"
+      ],
+      "reason": "Old locator estimates were superseded by complete glyphs and expanded whole words. The initial כאשר word locator clipped the right edge of its kaf; only the expanded complete word is archived."
+    }
+  ],
+  "validation": {
+    "allSevenBaselineNotesMatch": true,
+    "allTwelveCanonicalBooksByteUnchangedFrom527Baseline": true,
+    "allArchivedPixelsReplayExactly": true,
+    "allExistingScalarsAndTheirRelativeOrderPreserved": true,
+    "onlyTwoU05BCInsertions": true,
+    "allLettersPunctuationBracketsWitnessesGapsBlocksAndUnitOrderPreserved": true,
+    "allFiveRestoredLetterNoticesUnchanged": true,
+    "all20DailyPassagesUnchanged": true,
+    "catholicPresentationUnchanged": true,
+    "noCanonicalGateDailyPresentationOrGeneratedWritesByAuthor": true
+  }
+}

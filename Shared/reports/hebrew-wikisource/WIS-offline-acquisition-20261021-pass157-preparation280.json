@@ -1,0 +1,1307 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 157,
+  "integrationPass": 157,
+  "preparationID": 280,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters; original PDF, source credit, URL and historical extraction/report provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b5/b51466643483bd1a007d97bc92176e7f669ad1c58f7e2711abbac0285538c814.bin",
+      "sha256": "b51466643483bd1a007d97bc92176e7f669ad1c58f7e2711abbac0285538c814"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": {
+    "originalSourceInspectionScope": "Offline read-only temporary source work; unmodified historical scope preserved.",
+    "laterIntegrationAuthorization": {
+      "path": "/private/tmp/prosary-readonly274plus-root-20261022-01/current-human-integration-authorization.markdown",
+      "sha256": "5bd2748b5b8ca74bb278a15f095b80dcdf985f11fccdfa84b57df3ea5805fd0d"
+    },
+    "sourceRepresentations": "Exact original native encoding and, only where mode-specific replay requires it, separately pinned losslessRGB projections. No rendering, resampling except authoredintegerNEAREST, or source classification."
+  },
+  "sourceDocument": "Kahana Volume A2",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    185
+  ],
+  "savedCaptureViewerPageLabels": [],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ca/cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82.bin",
+      "sha256": "cab15a9f54339b67562d12aa99a258814837385ba25ebb95836c0e8aeb8acf82",
+      "resolution": [
+        2464,
+        3473
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b5/b51466643483bd1a007d97bc92176e7f669ad1c58f7e2711abbac0285538c814.bin",
+        "sha256": "b51466643483bd1a007d97bc92176e7f669ad1c58f7e2711abbac0285538c814"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Developer/Personal/Prosary/Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/d5/d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5.bin",
+        "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "originalLogicalPath": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+        "byteIdenticalDurableCopy": true
+      },
+      "sourceCredit": {
+        "translator": "מנחם שטיין",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+        "attribution": "חכמת שלמה, תרגום מנחם שטיין, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c8/c81be6dfe91a5c92ac36c2b878417b9908d45858d3f926f34de8ad4f21fa5185.bin",
+          "sha256": "c81be6dfe91a5c92ac36c2b878417b9908d45858d3f926f34de8ad4f21fa5185",
+          "role": "primary",
+          "preparationID": 220,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary220-offline-20261021/primary220.json",
+            "sha256": "c81be6dfe91a5c92ac36c2b878417b9908d45858d3f926f34de8ad4f21fa5185"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/94/947f58ff67bd73fc64aad7d1f567eba3b715c1273207404152aff9613ec2dc17.bin",
+          "sha256": "947f58ff67bd73fc64aad7d1f567eba3b715c1273207404152aff9613ec2dc17",
+          "role": "peer",
+          "preparationID": 220,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly220-peer-20261021-01/peer220.json",
+            "sha256": "947f58ff67bd73fc64aad7d1f567eba3b715c1273207404152aff9613ec2dc17"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/6c/6c8aadc1efd19690c028aa4eeb72c0b3c91e0803cc323413e727f06a732bc734.bin",
+          "sha256": "6c8aadc1efd19690c028aa4eeb72c0b3c91e0803cc323413e727f06a732bc734",
+          "role": "primary",
+          "preparationID": 221,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary221-20261021/primary-packet.json",
+            "sha256": "6c8aadc1efd19690c028aa4eeb72c0b3c91e0803cc323413e727f06a732bc734"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/89/89d03c9bc96a0af909ca8db1831acc59959bd52f39bee01b5fe9c4d8119b3445.bin",
+          "sha256": "89d03c9bc96a0af909ca8db1831acc59959bd52f39bee01b5fe9c4d8119b3445",
+          "role": "peer",
+          "preparationID": 221,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly221-peer-20261021-01/peer221.json",
+            "sha256": "89d03c9bc96a0af909ca8db1831acc59959bd52f39bee01b5fe9c4d8119b3445"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/cd/cd6edd9d60b2d22bc57c4601530cc6188feef18e33dd5dc2ec36732619eff854.bin",
+          "sha256": "cd6edd9d60b2d22bc57c4601530cc6188feef18e33dd5dc2ec36732619eff854",
+          "role": "primary",
+          "preparationID": 222,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly222-20261021-01/primary222-v3.json",
+            "sha256": "cd6edd9d60b2d22bc57c4601530cc6188feef18e33dd5dc2ec36732619eff854"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/d8/d8b9b94caa6b22e22d92071cdb6d475bb848be9bf49be95f343541fa08fcc3e5.bin",
+          "sha256": "d8b9b94caa6b22e22d92071cdb6d475bb848be9bf49be95f343541fa08fcc3e5",
+          "role": "peer",
+          "preparationID": 222,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer222-offline-20261021/peer222.json",
+            "sha256": "d8b9b94caa6b22e22d92071cdb6d475bb848be9bf49be95f343541fa08fcc3e5"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/34/3419af90c4b08cc0927e06b2ee39396081cd86b724cbeea78428f934e0e6d721.bin",
+          "sha256": "3419af90c4b08cc0927e06b2ee39396081cd86b724cbeea78428f934e0e6d721",
+          "role": "primary",
+          "preparationID": 223,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary223-20261021/primary-packet.json",
+            "sha256": "3419af90c4b08cc0927e06b2ee39396081cd86b724cbeea78428f934e0e6d721"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ce/ce1325492a11550b45fd46f376da7b9d8ae6bee0b3428f54421c1278fe48a21d.bin",
+          "sha256": "ce1325492a11550b45fd46f376da7b9d8ae6bee0b3428f54421c1278fe48a21d",
+          "role": "peer",
+          "preparationID": 223,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly223-peer-20261021-01/peer223.json",
+            "sha256": "ce1325492a11550b45fd46f376da7b9d8ae6bee0b3428f54421c1278fe48a21d"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/73/73b09a856bcbbd9754232a664b935611e17f386ee1666cc35396364df7caf607.bin",
+          "sha256": "73b09a856bcbbd9754232a664b935611e17f386ee1666cc35396364df7caf607",
+          "role": "primary",
+          "preparationID": 224,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary224-offline-20261021/primary224.json",
+            "sha256": "73b09a856bcbbd9754232a664b935611e17f386ee1666cc35396364df7caf607"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/13/1345310748010eb7baf6ea0da5ccc9db2a32505b99e9749d5970a071922c5199.bin",
+          "sha256": "1345310748010eb7baf6ea0da5ccc9db2a32505b99e9749d5970a071922c5199",
+          "role": "peer",
+          "preparationID": 224,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer224-independent-20261021/peer224.json",
+            "sha256": "1345310748010eb7baf6ea0da5ccc9db2a32505b99e9749d5970a071922c5199"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c5/c5e7269bb66dfdbb291a51133e91948467171721dc25003004e4ed154363f8a7.bin",
+          "sha256": "c5e7269bb66dfdbb291a51133e91948467171721dc25003004e4ed154363f8a7",
+          "role": "primary",
+          "preparationID": 225,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly225-20261021-01/primary225-v3.json",
+            "sha256": "c5e7269bb66dfdbb291a51133e91948467171721dc25003004e4ed154363f8a7"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/6f/6ffc014c9b88adf06d080cb2090bea2d8ddd97b64dfdfab734c36ed7712701e1.bin",
+          "sha256": "6ffc014c9b88adf06d080cb2090bea2d8ddd97b64dfdfab734c36ed7712701e1",
+          "role": "peer",
+          "preparationID": 225,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer225-offline-20261021/peer225.json",
+            "sha256": "6ffc014c9b88adf06d080cb2090bea2d8ddd97b64dfdfab734c36ed7712701e1"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/d6/d6f9c7dd95225f177bcf125297e766edf66aad2a85f98cc4dead7e21130ecc8a.bin",
+          "sha256": "d6f9c7dd95225f177bcf125297e766edf66aad2a85f98cc4dead7e21130ecc8a",
+          "role": "primary",
+          "preparationID": 226,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary226-final-20261021/primary226-v3.json",
+            "sha256": "d6f9c7dd95225f177bcf125297e766edf66aad2a85f98cc4dead7e21130ecc8a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/80/80a51664d18a3e7a232521d2497ae25a2c03d6df43752f38918a4973d0ab1433.bin",
+          "sha256": "80a51664d18a3e7a232521d2497ae25a2c03d6df43752f38918a4973d0ab1433",
+          "role": "peer",
+          "preparationID": 226,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly226-peer-20261021-01/peer226.json",
+            "sha256": "80a51664d18a3e7a232521d2497ae25a2c03d6df43752f38918a4973d0ab1433"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/39/39c71dbd38fd6f8ecb5f9887b3f15f319655fb34076bb74a7f858901de686552.bin",
+          "sha256": "39c71dbd38fd6f8ecb5f9887b3f15f319655fb34076bb74a7f858901de686552",
+          "role": "primary",
+          "preparationID": 227,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary227-offline-20261021/primary227.json",
+            "sha256": "39c71dbd38fd6f8ecb5f9887b3f15f319655fb34076bb74a7f858901de686552"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/25/25be1327274fa901021f121fc50de01841f681ab14619c928fb73d27d655fdd8.bin",
+          "sha256": "25be1327274fa901021f121fc50de01841f681ab14619c928fb73d27d655fdd8",
+          "role": "peer",
+          "preparationID": 227,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer227-by-primary226-20261021/peer227.json",
+            "sha256": "25be1327274fa901021f121fc50de01841f681ab14619c928fb73d27d655fdd8"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/02/02ca95563c663e7597c3f22b26c916cc7a5ed7a79daedda54226e53fbacb43a1.bin",
+          "sha256": "02ca95563c663e7597c3f22b26c916cc7a5ed7a79daedda54226e53fbacb43a1",
+          "role": "primary",
+          "preparationID": 228,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly228-primary-20261021-01/primary228-v2.json",
+            "sha256": "02ca95563c663e7597c3f22b26c916cc7a5ed7a79daedda54226e53fbacb43a1"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/93/93a1714b14b0771fd2726d0a1aff9b7c99ab1618b45f0535a74edf51274f6bcc.bin",
+          "sha256": "93a1714b14b0771fd2726d0a1aff9b7c99ab1618b45f0535a74edf51274f6bcc",
+          "role": "peer",
+          "preparationID": 228,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer228-offline-20261021/peer228.json",
+            "sha256": "93a1714b14b0771fd2726d0a1aff9b7c99ab1618b45f0535a74edf51274f6bcc"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/77/77ad9d26b1b5fab15fb11ad90967b5be306d2b3dae53b0b940b4f9a4be2062e2.bin",
+          "sha256": "77ad9d26b1b5fab15fb11ad90967b5be306d2b3dae53b0b940b4f9a4be2062e2",
+          "role": "primary",
+          "preparationID": 229,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary229-offline-20261021/primary229.json",
+            "sha256": "77ad9d26b1b5fab15fb11ad90967b5be306d2b3dae53b0b940b4f9a4be2062e2"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/2f/2f246f3c456ae82e58fa3c73c17f839a5881416b2a88e441eb2fe5c880c38099.bin",
+          "sha256": "2f246f3c456ae82e58fa3c73c17f839a5881416b2a88e441eb2fe5c880c38099",
+          "role": "peer",
+          "preparationID": 229,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly229-peer-20261021-01/peer229.json",
+            "sha256": "2f246f3c456ae82e58fa3c73c17f839a5881416b2a88e441eb2fe5c880c38099"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b2/b249305dbb1a7cca46be458f0fee878051207c8175f5fdd40835fd5907f6d3f2.bin",
+          "sha256": "b249305dbb1a7cca46be458f0fee878051207c8175f5fdd40835fd5907f6d3f2",
+          "role": "primary",
+          "preparationID": 230,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary230-offline-20261021/primary230.json",
+            "sha256": "b249305dbb1a7cca46be458f0fee878051207c8175f5fdd40835fd5907f6d3f2"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/68/6809e449895d2c9623737f04fb4fc22e329569b85ea45ca0b48d997f650bfd1f.bin",
+          "sha256": "6809e449895d2c9623737f04fb4fc22e329569b85ea45ca0b48d997f650bfd1f",
+          "role": "peer",
+          "preparationID": 230,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer230-offline-20261021/peer230.json",
+            "sha256": "6809e449895d2c9623737f04fb4fc22e329569b85ea45ca0b48d997f650bfd1f"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/bd/bd1ba975c27d2848d8ded3f8220ff7ae398371891bcc82bde69c7fc0bc692b7a.bin",
+          "sha256": "bd1ba975c27d2848d8ded3f8220ff7ae398371891bcc82bde69c7fc0bc692b7a",
+          "role": "primary",
+          "preparationID": 231,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly231-primary-20261021-01/primary231.json",
+            "sha256": "bd1ba975c27d2848d8ded3f8220ff7ae398371891bcc82bde69c7fc0bc692b7a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/cf/cfe328a77389151822ae2f8df33b199acc4ebc59ffb05dd47b737a8d2b047cb3.bin",
+          "sha256": "cfe328a77389151822ae2f8df33b199acc4ebc59ffb05dd47b737a8d2b047cb3",
+          "role": "peer",
+          "preparationID": 231,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer231-by-primary226-20261021/peer231.json",
+            "sha256": "cfe328a77389151822ae2f8df33b199acc4ebc59ffb05dd47b737a8d2b047cb3"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ca/ca93489969ac6a2d5ce06502f3878a792d5aaa8a6b53d0b8c8e1e31ef31bef78.bin",
+          "sha256": "ca93489969ac6a2d5ce06502f3878a792d5aaa8a6b53d0b8c8e1e31ef31bef78",
+          "role": "primary",
+          "preparationID": 232,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary232-offline-20261021/primary232.json",
+            "sha256": "ca93489969ac6a2d5ce06502f3878a792d5aaa8a6b53d0b8c8e1e31ef31bef78"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/34/3444eebce2b3b044347019584908db585c5a5f50b0a2c7d8b0c5e04e241dee0e.bin",
+          "sha256": "3444eebce2b3b044347019584908db585c5a5f50b0a2c7d8b0c5e04e241dee0e",
+          "role": "peer",
+          "preparationID": 232,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly232-peer234-20261021-01/peer232.json",
+            "sha256": "3444eebce2b3b044347019584908db585c5a5f50b0a2c7d8b0c5e04e241dee0e"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/86/86a488335307dc0070444260d0d6871fcc4131976c39f637cc51cf1401079b7d.bin",
+          "sha256": "86a488335307dc0070444260d0d6871fcc4131976c39f637cc51cf1401079b7d",
+          "role": "primary",
+          "preparationID": 233,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary233-offline-20261021/primary233-v2.json",
+            "sha256": "86a488335307dc0070444260d0d6871fcc4131976c39f637cc51cf1401079b7d"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/15/152d4f2bbc4293f2405a8e465741bd992112fdcd4fa2c10f50717acc9062de1c.bin",
+          "sha256": "152d4f2bbc4293f2405a8e465741bd992112fdcd4fa2c10f50717acc9062de1c",
+          "role": "peer",
+          "preparationID": 233,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer233-by-primary232-20261021/peer233.json",
+            "sha256": "152d4f2bbc4293f2405a8e465741bd992112fdcd4fa2c10f50717acc9062de1c"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a8/a8116006bdd0514a957c1865d27665a0eab2ea7eb8c20a6aeb0f7cc31fb1f354.bin",
+          "sha256": "a8116006bdd0514a957c1865d27665a0eab2ea7eb8c20a6aeb0f7cc31fb1f354",
+          "role": "primary",
+          "preparationID": 234,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly234-primary-20261021-01/primary234-v2.json",
+            "sha256": "a8116006bdd0514a957c1865d27665a0eab2ea7eb8c20a6aeb0f7cc31fb1f354"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a1/a136c9118abea91dd3a291e006ab7acf3e55c159e7b5620880202e8b9f8dd133.bin",
+          "sha256": "a136c9118abea91dd3a291e006ab7acf3e55c159e7b5620880202e8b9f8dd133",
+          "role": "peer",
+          "preparationID": 234,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer234-source233-offline-20261021/peer234-v2.json",
+            "sha256": "a136c9118abea91dd3a291e006ab7acf3e55c159e7b5620880202e8b9f8dd133"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/4d/4d8f3af4c92f2d38848ac930c35d359260b3c277f92e67642b983244ebbdcdb8.bin",
+          "sha256": "4d8f3af4c92f2d38848ac930c35d359260b3c277f92e67642b983244ebbdcdb8",
+          "role": "primary",
+          "preparationID": 235,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary235-offline-20261021/primary235.json",
+            "sha256": "4d8f3af4c92f2d38848ac930c35d359260b3c277f92e67642b983244ebbdcdb8"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/0d/0d2d1a13774905d40e5f2ac06f59ae2076553b9185740dc90463de01adb5118a.bin",
+          "sha256": "0d2d1a13774905d40e5f2ac06f59ae2076553b9185740dc90463de01adb5118a",
+          "role": "peer",
+          "preparationID": 235,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly235-peer237-20261021-01/peer235.json",
+            "sha256": "0d2d1a13774905d40e5f2ac06f59ae2076553b9185740dc90463de01adb5118a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/df/df90cc482a268087b523bb640e1827fe1e784d69e8e13b2610e94cf611ef785c.bin",
+          "sha256": "df90cc482a268087b523bb640e1827fe1e784d69e8e13b2610e94cf611ef785c",
+          "role": "primary",
+          "preparationID": 236,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/primary236-offline-20261021/primary236.json",
+            "sha256": "df90cc482a268087b523bb640e1827fe1e784d69e8e13b2610e94cf611ef785c"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/46/4641377c77ee95d2926c1c1d13574babdb4cfe0f41e473851d5cfa3a379dc1cc.bin",
+          "sha256": "4641377c77ee95d2926c1c1d13574babdb4cfe0f41e473851d5cfa3a379dc1cc",
+          "role": "peer",
+          "preparationID": 236,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer236-by-primary232-20261021/peer236.json",
+            "sha256": "4641377c77ee95d2926c1c1d13574babdb4cfe0f41e473851d5cfa3a379dc1cc"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/99/9912fb56ec582b9552fabc121cbb5329205eb19c4972407fd933adba39ee7ca2.bin",
+          "sha256": "9912fb56ec582b9552fabc121cbb5329205eb19c4972407fd933adba39ee7ca2",
+          "role": "primary",
+          "preparationID": 237,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly237-primary-20261021-01/primary237.json",
+            "sha256": "9912fb56ec582b9552fabc121cbb5329205eb19c4972407fd933adba39ee7ca2"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/31/31e28d957fbc64cc4cb06af83205953c4a2f06191c8e8aa38c3bb99f66ec9723.bin",
+          "sha256": "31e28d957fbc64cc4cb06af83205953c4a2f06191c8e8aa38c3bb99f66ec9723",
+          "role": "peer",
+          "preparationID": 237,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/peer237-source233-offline-20261021/peer237.json",
+            "sha256": "31e28d957fbc64cc4cb06af83205953c4a2f06191c8e8aa38c3bb99f66ec9723"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/6c/6c1e7d656339d3f028569cf89d8cac146d4c4315d159d154a01863348ca57919.bin",
+          "sha256": "6c1e7d656339d3f028569cf89d8cac146d4c4315d159d154a01863348ca57919",
+          "role": "primary",
+          "preparationID": 238,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly238-primary-20261021-01/primary238.json",
+            "sha256": "6c1e7d656339d3f028569cf89d8cac146d4c4315d159d154a01863348ca57919"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/19/1917fa5e75bf66cb1f80492e753ac35624283da8374a6a4f5e8a67b82f7fa31a.bin",
+          "sha256": "1917fa5e75bf66cb1f80492e753ac35624283da8374a6a4f5e8a67b82f7fa31a",
+          "role": "peer",
+          "preparationID": 238,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly238-peer-sourceb-20261021-01/peer238.json",
+            "sha256": "1917fa5e75bf66cb1f80492e753ac35624283da8374a6a4f5e8a67b82f7fa31a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/66/66196a18fb9375f83dbb5b9822f3fb456faf5b36bea4577cb8d8ea2b5d61b515.bin",
+          "sha256": "66196a18fb9375f83dbb5b9822f3fb456faf5b36bea4577cb8d8ea2b5d61b515",
+          "role": "primary",
+          "preparationID": 239,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly239-primary-20261021-01/primary239.json",
+            "sha256": "66196a18fb9375f83dbb5b9822f3fb456faf5b36bea4577cb8d8ea2b5d61b515"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/38/38d8e6e20af6d7f4bfb935b864c641caf0d5b2f1afd521018f687c780f8e70c1.bin",
+          "sha256": "38d8e6e20af6d7f4bfb935b864c641caf0d5b2f1afd521018f687c780f8e70c1",
+          "role": "peer",
+          "preparationID": 239,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly239-peer-c-20261021-01/peer239.json",
+            "sha256": "38d8e6e20af6d7f4bfb935b864c641caf0d5b2f1afd521018f687c780f8e70c1"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/0b/0bd9db6710315332cfd91970406dd52c36da8ac7c73fe04275303a7306b74d5b.bin",
+          "sha256": "0bd9db6710315332cfd91970406dd52c36da8ac7c73fe04275303a7306b74d5b",
+          "role": "primary",
+          "preparationID": 240,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly240-primary-20261021-01/primary240.json",
+            "sha256": "0bd9db6710315332cfd91970406dd52c36da8ac7c73fe04275303a7306b74d5b"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/4d/4def7389e8caa0964eb5619f08bbaf025a53ecc3bf0c0c5949cdd26f4f033946.bin",
+          "sha256": "4def7389e8caa0964eb5619f08bbaf025a53ecc3bf0c0c5949cdd26f4f033946",
+          "role": "peer",
+          "preparationID": 240,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly240-peerA-20261021-01/peer240-v2.json",
+            "sha256": "4def7389e8caa0964eb5619f08bbaf025a53ecc3bf0c0c5949cdd26f4f033946"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/67/671b1a17faed6085e006d8f8f0a699535c7e4ac5c8482ae42f6410b968cea614.bin",
+          "sha256": "671b1a17faed6085e006d8f8f0a699535c7e4ac5c8482ae42f6410b968cea614",
+          "role": "primary",
+          "preparationID": 241,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly241-primary-20261021-01/primary241.json",
+            "sha256": "671b1a17faed6085e006d8f8f0a699535c7e4ac5c8482ae42f6410b968cea614"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b1/b103916c77b4cb30bcf195e13913b22665e8d4ebca4306e3945c66e1dfe2a623.bin",
+          "sha256": "b103916c77b4cb30bcf195e13913b22665e8d4ebca4306e3945c66e1dfe2a623",
+          "role": "peer",
+          "preparationID": 241,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly241-peer-sourceb-20261021-01/peer241.json",
+            "sha256": "b103916c77b4cb30bcf195e13913b22665e8d4ebca4306e3945c66e1dfe2a623"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c6/c6b303bd28591756e6d1bb0c09f11a799de71c58edf49b635b1ae6b7dfc435cb.bin",
+          "sha256": "c6b303bd28591756e6d1bb0c09f11a799de71c58edf49b635b1ae6b7dfc435cb",
+          "role": "primary",
+          "preparationID": 242,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly242-primary-sourceb-20261021-01/primary242.json",
+            "sha256": "c6b303bd28591756e6d1bb0c09f11a799de71c58edf49b635b1ae6b7dfc435cb"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/07/078d3f00c27cb91f10fb229728c148150d083cfbd7b62dcc20f8515caed2d602.bin",
+          "sha256": "078d3f00c27cb91f10fb229728c148150d083cfbd7b62dcc20f8515caed2d602",
+          "role": "peer",
+          "preparationID": 242,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly242-peer-c-20261021-01/peer242.json",
+            "sha256": "078d3f00c27cb91f10fb229728c148150d083cfbd7b62dcc20f8515caed2d602"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/23/23c4dcc9ab7d3a1b7c993555f8c4ceb9680c8e2e61d533d44d9c22fcb2c0f758.bin",
+          "sha256": "23c4dcc9ab7d3a1b7c993555f8c4ceb9680c8e2e61d533d44d9c22fcb2c0f758",
+          "role": "primary",
+          "preparationID": 243,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly243-primary-20261021-01/primary243.json",
+            "sha256": "23c4dcc9ab7d3a1b7c993555f8c4ceb9680c8e2e61d533d44d9c22fcb2c0f758"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/9a/9a0d01d8493b4615fde1a34d7299d25c8b4967b544b02f19d967dc2fc53463f1.bin",
+          "sha256": "9a0d01d8493b4615fde1a34d7299d25c8b4967b544b02f19d967dc2fc53463f1",
+          "role": "peer",
+          "preparationID": 243,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly243-peerA-20261021-01/peer243.json",
+            "sha256": "9a0d01d8493b4615fde1a34d7299d25c8b4967b544b02f19d967dc2fc53463f1"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/52/52ff31c5d3152d382527f9d7b6783683731dde48a999bb3ebfb7ddf89ed5a283.bin",
+          "sha256": "52ff31c5d3152d382527f9d7b6783683731dde48a999bb3ebfb7ddf89ed5a283",
+          "role": "primary",
+          "preparationID": 244,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-ro244-primary-20261021-01/primary244-final-v3.json",
+            "sha256": "52ff31c5d3152d382527f9d7b6783683731dde48a999bb3ebfb7ddf89ed5a283"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f6/f6b4c286daf61dda1666117a24fb0333c78f14643548fb50f8e66d0d30f6e3a9.bin",
+          "sha256": "f6b4c286daf61dda1666117a24fb0333c78f14643548fb50f8e66d0d30f6e3a9",
+          "role": "peer",
+          "preparationID": 244,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly244-peer246-20261021-01/peer244-v2.json",
+            "sha256": "f6b4c286daf61dda1666117a24fb0333c78f14643548fb50f8e66d0d30f6e3a9"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/1c/1c96013699e5a3c2df802f9b5a7daf5651223cbab5f40a348059ea26ed8f5b7f.bin",
+          "sha256": "1c96013699e5a3c2df802f9b5a7daf5651223cbab5f40a348059ea26ed8f5b7f",
+          "role": "primary",
+          "preparationID": 245,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly245-primary-20261021-01/primary245.json",
+            "sha256": "1c96013699e5a3c2df802f9b5a7daf5651223cbab5f40a348059ea26ed8f5b7f"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/8e/8ee3f9938a12ade0f5202f2dd10e3e919679d0c4eb10b94c7d43559e69c6fddf.bin",
+          "sha256": "8ee3f9938a12ade0f5202f2dd10e3e919679d0c4eb10b94c7d43559e69c6fddf",
+          "role": "peer",
+          "preparationID": 245,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-ro245-peer-20261021-01/peer245-final.json",
+            "sha256": "8ee3f9938a12ade0f5202f2dd10e3e919679d0c4eb10b94c7d43559e69c6fddf"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/d6/d6c1785266df666a60f8ed09d0b07b83168a7472d926b2801f63016393529360.bin",
+          "sha256": "d6c1785266df666a60f8ed09d0b07b83168a7472d926b2801f63016393529360",
+          "role": "primary",
+          "preparationID": 246,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly246-primary-20261021-01/primary246-v3.json",
+            "sha256": "d6c1785266df666a60f8ed09d0b07b83168a7472d926b2801f63016393529360"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/09/09e91dbabfda2b3aa7723dc3ffd77fbe10555c5facc5321ac48d5515b6965c35.bin",
+          "sha256": "09e91dbabfda2b3aa7723dc3ffd77fbe10555c5facc5321ac48d5515b6965c35",
+          "role": "peer",
+          "preparationID": 246,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly246-peer-source245-20261021-01/peer246.json",
+            "sha256": "09e91dbabfda2b3aa7723dc3ffd77fbe10555c5facc5321ac48d5515b6965c35"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/99/99de114a0dd03fe47577d4310547e1bc68be655607d3835d677eab054d60afd1.bin",
+          "sha256": "99de114a0dd03fe47577d4310547e1bc68be655607d3835d677eab054d60afd1",
+          "role": "primary",
+          "preparationID": 247,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-ro247-primary-20261021-01/primary247-final.json",
+            "sha256": "99de114a0dd03fe47577d4310547e1bc68be655607d3835d677eab054d60afd1"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/36/364ea28f2d9509baf2092cec4b19ad9a55c729f02d608ddfadefb7eccc6c3394.bin",
+          "sha256": "364ea28f2d9509baf2092cec4b19ad9a55c729f02d608ddfadefb7eccc6c3394",
+          "role": "peer",
+          "preparationID": 247,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly247-peer246-20261021-01/peer247.json",
+            "sha256": "364ea28f2d9509baf2092cec4b19ad9a55c729f02d608ddfadefb7eccc6c3394"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/94/94066e08b4014a0f9c32388178c3854c28aea575a22cd8b5e62a2327bab6de3a.bin",
+          "sha256": "94066e08b4014a0f9c32388178c3854c28aea575a22cd8b5e62a2327bab6de3a",
+          "role": "primary",
+          "preparationID": 248,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly248-primary-20261021-01/primary248.json",
+            "sha256": "94066e08b4014a0f9c32388178c3854c28aea575a22cd8b5e62a2327bab6de3a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/8a/8a0664b0a093910d6069c5f59932796eccfbccbd0e16dda0556ec72c6890a06b.bin",
+          "sha256": "8a0664b0a093910d6069c5f59932796eccfbccbd0e16dda0556ec72c6890a06b",
+          "role": "peer",
+          "preparationID": 248,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-ro248-peer-20261021-01/peer248-final.json",
+            "sha256": "8a0664b0a093910d6069c5f59932796eccfbccbd0e16dda0556ec72c6890a06b"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/54/5492ffde84be0d6ea451f5c70009951da8929537bd942c2071475aa5e30ac970.bin",
+          "sha256": "5492ffde84be0d6ea451f5c70009951da8929537bd942c2071475aa5e30ac970",
+          "role": "primary",
+          "preparationID": 249,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly249-primary-20261021-01/primary249.json",
+            "sha256": "5492ffde84be0d6ea451f5c70009951da8929537bd942c2071475aa5e30ac970"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/29/29b5c489ae55d6883df5c6095727281df6c8fabda6f758720e16e540f844adcd.bin",
+          "sha256": "29b5c489ae55d6883df5c6095727281df6c8fabda6f758720e16e540f844adcd",
+          "role": "peer",
+          "preparationID": 249,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly249-peer-source245-20261021-01/peer249.json",
+            "sha256": "29b5c489ae55d6883df5c6095727281df6c8fabda6f758720e16e540f844adcd"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/55/55c69e7292a335e7a7ce8c265f4034cf5e232a7c8aea38c5513c8142bdfe60ba.bin",
+          "sha256": "55c69e7292a335e7a7ce8c265f4034cf5e232a7c8aea38c5513c8142bdfe60ba",
+          "role": "primary",
+          "preparationID": 250,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly250-primary-sourceA-20261021-01/primary250.json",
+            "sha256": "55c69e7292a335e7a7ce8c265f4034cf5e232a7c8aea38c5513c8142bdfe60ba"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/71/71922b3bb06b66dfb8881b420925e83805c125254091175205a8927eba781dfc.bin",
+          "sha256": "71922b3bb06b66dfb8881b420925e83805c125254091175205a8927eba781dfc",
+          "role": "peer",
+          "preparationID": 250,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly250-peer-sourceC-20261021-01/peer250.json",
+            "sha256": "71922b3bb06b66dfb8881b420925e83805c125254091175205a8927eba781dfc"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/25/258deedbf824523e6ab7b8e223772aa5dab4750d627c03eb8751d7f6a2fee0e4.bin",
+          "sha256": "258deedbf824523e6ab7b8e223772aa5dab4750d627c03eb8751d7f6a2fee0e4",
+          "role": "primary",
+          "preparationID": 251,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly251-primary-20261021-01/primary251.json",
+            "sha256": "258deedbf824523e6ab7b8e223772aa5dab4750d627c03eb8751d7f6a2fee0e4"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/46/465fc02126c402586ee9dcd3441d4267d85e7fb5bc3092e0e92fedb76ab6e600.bin",
+          "sha256": "465fc02126c402586ee9dcd3441d4267d85e7fb5bc3092e0e92fedb76ab6e600",
+          "role": "peer",
+          "preparationID": 251,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly251-peer-sourceA-20261021-01/peer251.json",
+            "sha256": "465fc02126c402586ee9dcd3441d4267d85e7fb5bc3092e0e92fedb76ab6e600"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/1c/1c6447dcf543217433ed8c19be48e5a763639a45cfc3eb032eb21168ff081f7f.bin",
+          "sha256": "1c6447dcf543217433ed8c19be48e5a763639a45cfc3eb032eb21168ff081f7f",
+          "role": "primary",
+          "preparationID": 252,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly252-primary-20261021-01/primary252.json",
+            "sha256": "1c6447dcf543217433ed8c19be48e5a763639a45cfc3eb032eb21168ff081f7f"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c1/c1baeef6c2c0a5c7718382bebd5c2ebdc521d44ce706175ad535130e889579b2.bin",
+          "sha256": "c1baeef6c2c0a5c7718382bebd5c2ebdc521d44ce706175ad535130e889579b2",
+          "role": "peer",
+          "preparationID": 252,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly252-peer-source-b-20261021-01/peer252.json",
+            "sha256": "c1baeef6c2c0a5c7718382bebd5c2ebdc521d44ce706175ad535130e889579b2"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/09/097ddb85737af6521c09951587b39b89d6010397551a727a3d589973dacd1e19.bin",
+          "sha256": "097ddb85737af6521c09951587b39b89d6010397551a727a3d589973dacd1e19",
+          "role": "primary",
+          "preparationID": 253,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly253-primary-correction-20261021-01/primary253-v2.json",
+            "sha256": "097ddb85737af6521c09951587b39b89d6010397551a727a3d589973dacd1e19"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/08/08dd64c10d83f01f3d36ae701cd9d14bb3a3ca7441a453ae73522628ab20c518.bin",
+          "sha256": "08dd64c10d83f01f3d36ae701cd9d14bb3a3ca7441a453ae73522628ab20c518",
+          "role": "peer",
+          "preparationID": 253,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly253-peer-sourceA-20261021-01/peer253.json",
+            "sha256": "08dd64c10d83f01f3d36ae701cd9d14bb3a3ca7441a453ae73522628ab20c518"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/42/429faf52a52df0aa110b2784ad93a5e6f25031596c738272b34481850f9cfa05.bin",
+          "sha256": "429faf52a52df0aa110b2784ad93a5e6f25031596c738272b34481850f9cfa05",
+          "role": "primary",
+          "preparationID": 254,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly254-primary-sourceA-20261021-01/primary254.json",
+            "sha256": "429faf52a52df0aa110b2784ad93a5e6f25031596c738272b34481850f9cfa05"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/bb/bbc1692d0123fbf8a6a414cde73cde43f15ef352000760bf7696f9a659b38c25.bin",
+          "sha256": "bbc1692d0123fbf8a6a414cde73cde43f15ef352000760bf7696f9a659b38c25",
+          "role": "peer",
+          "preparationID": 254,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly254-peer-source-b-20261021-01/peer254.json",
+            "sha256": "bbc1692d0123fbf8a6a414cde73cde43f15ef352000760bf7696f9a659b38c25"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/41/414581a269d8f5ddef76d320782835c4b0848d8d2063d44116dfd4765e3a128a.bin",
+          "sha256": "414581a269d8f5ddef76d320782835c4b0848d8d2063d44116dfd4765e3a128a",
+          "role": "primary",
+          "preparationID": 255,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly255-primary-20261021-01/primary255.json",
+            "sha256": "414581a269d8f5ddef76d320782835c4b0848d8d2063d44116dfd4765e3a128a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/0f/0f34176b55348d197c9322f259b7078a6adfeadb7ca447acbd11b184b9ae140b.bin",
+          "sha256": "0f34176b55348d197c9322f259b7078a6adfeadb7ca447acbd11b184b9ae140b",
+          "role": "peer",
+          "preparationID": 255,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly255-peer-sourceC-20261021-01/peer255.json",
+            "sha256": "0f34176b55348d197c9322f259b7078a6adfeadb7ca447acbd11b184b9ae140b"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/78/7815d666395f083ebccdbbdd09c6cacc81d473baa7662bdc3e56d5be9fc1de11.bin",
+          "sha256": "7815d666395f083ebccdbbdd09c6cacc81d473baa7662bdc3e56d5be9fc1de11",
+          "role": "primary",
+          "preparationID": 256,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly256-primary-20261021-01/primary256.json",
+            "sha256": "7815d666395f083ebccdbbdd09c6cacc81d473baa7662bdc3e56d5be9fc1de11"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/bb/bb333cf5e646e83fd004ef71196908d2d62905a9110146133a23ec0c672b563c.bin",
+          "sha256": "bb333cf5e646e83fd004ef71196908d2d62905a9110146133a23ec0c672b563c",
+          "role": "peer",
+          "preparationID": 256,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly256-peer-20261021-01/peer256.json",
+            "sha256": "bb333cf5e646e83fd004ef71196908d2d62905a9110146133a23ec0c672b563c"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/0f/0fd39ec48bec56f755d702ae5de871ce072b5a06d538ff967650477e2ce1265d.bin",
+          "sha256": "0fd39ec48bec56f755d702ae5de871ce072b5a06d538ff967650477e2ce1265d",
+          "role": "primary",
+          "preparationID": 257,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly257-primary-20261021-01/primary257.json",
+            "sha256": "0fd39ec48bec56f755d702ae5de871ce072b5a06d538ff967650477e2ce1265d"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/d9/d9360c67f827cf29a02affe65ba3b0a0096476a9f7b431b3991dfb123f172a69.bin",
+          "sha256": "d9360c67f827cf29a02affe65ba3b0a0096476a9f7b431b3991dfb123f172a69",
+          "role": "peer",
+          "preparationID": 257,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly257-peer-source256-20261021-01/peer257.json",
+            "sha256": "d9360c67f827cf29a02affe65ba3b0a0096476a9f7b431b3991dfb123f172a69"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/52/526311cb8c4c17bb7ba1a95d94aef0f23d93e5c9eece71a630dff5a22291525f.bin",
+          "sha256": "526311cb8c4c17bb7ba1a95d94aef0f23d93e5c9eece71a630dff5a22291525f",
+          "role": "primary",
+          "preparationID": 258,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly258-primary-20261021-01/primary258.json",
+            "sha256": "526311cb8c4c17bb7ba1a95d94aef0f23d93e5c9eece71a630dff5a22291525f"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/67/677b9a5ea1040b6bd5e7da6886586bf937de8eebdbb8fb11f2ea67993ec21e0f.bin",
+          "sha256": "677b9a5ea1040b6bd5e7da6886586bf937de8eebdbb8fb11f2ea67993ec21e0f",
+          "role": "peer",
+          "preparationID": 258,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly258-peer-source257-20261021-01/peer258.json",
+            "sha256": "677b9a5ea1040b6bd5e7da6886586bf937de8eebdbb8fb11f2ea67993ec21e0f"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/3e/3e9b1b63ad0d42c5a28ef405f65b58001c8de75abff0260008c4f8c10741aae8.bin",
+          "sha256": "3e9b1b63ad0d42c5a28ef405f65b58001c8de75abff0260008c4f8c10741aae8",
+          "role": "primary",
+          "preparationID": 259,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly259-primary-20261021-01/primary259.json",
+            "sha256": "3e9b1b63ad0d42c5a28ef405f65b58001c8de75abff0260008c4f8c10741aae8"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/c8/c8c145f2bb637cc5232fba9bbb695d82811baed740f1b83159e3c7ae6e3846db.bin",
+          "sha256": "c8c145f2bb637cc5232fba9bbb695d82811baed740f1b83159e3c7ae6e3846db",
+          "role": "peer",
+          "preparationID": 259,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly259-peer-source257-20261021-01/peer259.json",
+            "sha256": "c8c145f2bb637cc5232fba9bbb695d82811baed740f1b83159e3c7ae6e3846db"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/02/02706dbeef93ba05bdc38e1338f7a4e08197b761da588b276ebb43e70ec6bc4a.bin",
+          "sha256": "02706dbeef93ba05bdc38e1338f7a4e08197b761da588b276ebb43e70ec6bc4a",
+          "role": "primary",
+          "preparationID": 260,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly260-primary-20261021-01/primary260.json",
+            "sha256": "02706dbeef93ba05bdc38e1338f7a4e08197b761da588b276ebb43e70ec6bc4a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/07/075334e4ad8c99a70add246fff1187f9015e1f0735859058d82bb881f0b0d738.bin",
+          "sha256": "075334e4ad8c99a70add246fff1187f9015e1f0735859058d82bb881f0b0d738",
+          "role": "peer",
+          "preparationID": 260,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly260-peer-20261021-01/peer260.json",
+            "sha256": "075334e4ad8c99a70add246fff1187f9015e1f0735859058d82bb881f0b0d738"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/45/45f58a3256e5a95dbe5d005407ccebe3862ca580effbd28902dbc062641d3a5c.bin",
+          "sha256": "45f58a3256e5a95dbe5d005407ccebe3862ca580effbd28902dbc062641d3a5c",
+          "role": "primary",
+          "preparationID": 261,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly261-primary-20261021-01/primary261.json",
+            "sha256": "45f58a3256e5a95dbe5d005407ccebe3862ca580effbd28902dbc062641d3a5c"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/95/95cfc850ba79cb23545bb4bf45700c678e01025f4c3d707e8fa7a8682e4828bb.bin",
+          "sha256": "95cfc850ba79cb23545bb4bf45700c678e01025f4c3d707e8fa7a8682e4828bb",
+          "role": "peer",
+          "preparationID": 261,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly261-peer-source256-20261021-01/peer261.json",
+            "sha256": "95cfc850ba79cb23545bb4bf45700c678e01025f4c3d707e8fa7a8682e4828bb"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/46/462e0faa247bd7c971ed8aa85d70ebc59538297688e041951d7ca2d3916e080a.bin",
+          "sha256": "462e0faa247bd7c971ed8aa85d70ebc59538297688e041951d7ca2d3916e080a",
+          "role": "primary",
+          "preparationID": 262,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly262-primary-20261021-01/primary262.json",
+            "sha256": "462e0faa247bd7c971ed8aa85d70ebc59538297688e041951d7ca2d3916e080a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f3/f3371036978affd0d6668e68f81b228436fc689e8103d6113dbaa4176edcb70a.bin",
+          "sha256": "f3371036978affd0d6668e68f81b228436fc689e8103d6113dbaa4176edcb70a",
+          "role": "peer",
+          "preparationID": 262,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly262-peer-20261021-01/peer262.json",
+            "sha256": "f3371036978affd0d6668e68f81b228436fc689e8103d6113dbaa4176edcb70a"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/8d/8db56add87b905c823268145d1b44e85d5aad1f1d353d9d1e0c2bd5ad5f4dc56.bin",
+          "sha256": "8db56add87b905c823268145d1b44e85d5aad1f1d353d9d1e0c2bd5ad5f4dc56",
+          "role": "primary",
+          "preparationID": 263,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly263-primary-20261021-01/primary263.json",
+            "sha256": "8db56add87b905c823268145d1b44e85d5aad1f1d353d9d1e0c2bd5ad5f4dc56"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/01/0192925ecc9f033f4435ec7d2fd3756e22eeea185de526da44108e869cffe1dd.bin",
+          "sha256": "0192925ecc9f033f4435ec7d2fd3756e22eeea185de526da44108e869cffe1dd",
+          "role": "peer",
+          "preparationID": 263,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly263-peer-20261021-01/peer263.json",
+            "sha256": "0192925ecc9f033f4435ec7d2fd3756e22eeea185de526da44108e869cffe1dd"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/86/8680b8aabf535e7dc67bbab7db3d9f11de6ba9e7d51daac0ea744cb55f813a7f.bin",
+          "sha256": "8680b8aabf535e7dc67bbab7db3d9f11de6ba9e7d51daac0ea744cb55f813a7f",
+          "role": "primary",
+          "preparationID": 264,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly264-primary-20261021-01/primary264.json",
+            "sha256": "8680b8aabf535e7dc67bbab7db3d9f11de6ba9e7d51daac0ea744cb55f813a7f"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/9b/9b9c6c32d27c38b093a656d7526854851a2f8072df1fa31251f5b1589dc46ad3.bin",
+          "sha256": "9b9c6c32d27c38b093a656d7526854851a2f8072df1fa31251f5b1589dc46ad3",
+          "role": "peer",
+          "preparationID": 264,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly264-peer-source262-20261021-01/peer264-v2.json",
+            "sha256": "9b9c6c32d27c38b093a656d7526854851a2f8072df1fa31251f5b1589dc46ad3"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a5/a5149996c786fe50086755088629d6ea99a2b155bfd52d0044dc32b7d1f05d83.bin",
+          "sha256": "a5149996c786fe50086755088629d6ea99a2b155bfd52d0044dc32b7d1f05d83",
+          "role": "primary",
+          "preparationID": 265,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly265-primary-20261021-01/primary265-v2.json",
+            "sha256": "a5149996c786fe50086755088629d6ea99a2b155bfd52d0044dc32b7d1f05d83"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/fe/fec0a0f814a514f9a702caffea06b17c16fcc0d7f2bc8b0fba74c067b03fb1a6.bin",
+          "sha256": "fec0a0f814a514f9a702caffea06b17c16fcc0d7f2bc8b0fba74c067b03fb1a6",
+          "role": "peer",
+          "preparationID": 265,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly265-peer-20261021-01/peer265.json",
+            "sha256": "fec0a0f814a514f9a702caffea06b17c16fcc0d7f2bc8b0fba74c067b03fb1a6"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/4a/4a460b7137203ee0433acd90baf38f44fcec4db8aac9bb8aa03fc17a1108850e.bin",
+          "sha256": "4a460b7137203ee0433acd90baf38f44fcec4db8aac9bb8aa03fc17a1108850e",
+          "role": "primary",
+          "preparationID": 266,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly266-primary-20261021-01/primary266-v2.json",
+            "sha256": "4a460b7137203ee0433acd90baf38f44fcec4db8aac9bb8aa03fc17a1108850e"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/22/22ebfbba700bdc773610d8169991492c56f78217dbf12aeb399a4d51078013a3.bin",
+          "sha256": "22ebfbba700bdc773610d8169991492c56f78217dbf12aeb399a4d51078013a3",
+          "role": "peer",
+          "preparationID": 266,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly266-peer-20261021-01/peer266.json",
+            "sha256": "22ebfbba700bdc773610d8169991492c56f78217dbf12aeb399a4d51078013a3"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/06/06fd907816adc994c1e61b3b61dc58054b50c284d547829e0b2aabb94877f307.bin",
+          "sha256": "06fd907816adc994c1e61b3b61dc58054b50c284d547829e0b2aabb94877f307",
+          "role": "primary",
+          "preparationID": 267,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly267-primary-20261021-01/primary267.json",
+            "sha256": "06fd907816adc994c1e61b3b61dc58054b50c284d547829e0b2aabb94877f307"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/78/78bb3909830d5b11cab28cd87405a7e86579f1f67c22b502135d4a3cf3d79a40.bin",
+          "sha256": "78bb3909830d5b11cab28cd87405a7e86579f1f67c22b502135d4a3cf3d79a40",
+          "role": "peer",
+          "preparationID": 267,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly267-peer-source262-20261021-01/peer267.json",
+            "sha256": "78bb3909830d5b11cab28cd87405a7e86579f1f67c22b502135d4a3cf3d79a40"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f2/f2167fc1d574f22102024d322be72aa56736639bfb66ab7dca15aa0d701acf83.bin",
+          "sha256": "f2167fc1d574f22102024d322be72aa56736639bfb66ab7dca15aa0d701acf83",
+          "role": "primary",
+          "preparationID": 268,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly268-primary-20261021-01/primary268-v2.json",
+            "sha256": "f2167fc1d574f22102024d322be72aa56736639bfb66ab7dca15aa0d701acf83"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/78/785068c54fe22fe93ca7211ac4dc224daddf06b878592ace5feb7c8e3ebc3286.bin",
+          "sha256": "785068c54fe22fe93ca7211ac4dc224daddf06b878592ace5feb7c8e3ebc3286",
+          "role": "peer",
+          "preparationID": 268,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly268-peer-20261021-01/peer268-v3.json",
+            "sha256": "785068c54fe22fe93ca7211ac4dc224daddf06b878592ace5feb7c8e3ebc3286"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/bb/bba3bbe7f40b955f8760c786ff575d55106fc5777bfe1bf4e9d36a2a4b08f5c6.bin",
+          "sha256": "bba3bbe7f40b955f8760c786ff575d55106fc5777bfe1bf4e9d36a2a4b08f5c6",
+          "role": "primary",
+          "preparationID": 269,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly269-primary-20261021-01/primary269.json",
+            "sha256": "bba3bbe7f40b955f8760c786ff575d55106fc5777bfe1bf4e9d36a2a4b08f5c6"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a5/a511c4f0c8468f505b36a8b55a6dc833f98c3936a23ea1ac5a0f5bb894215c0c.bin",
+          "sha256": "a511c4f0c8468f505b36a8b55a6dc833f98c3936a23ea1ac5a0f5bb894215c0c",
+          "role": "peer",
+          "preparationID": 269,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly269-peer-20261021-01/peer269.json",
+            "sha256": "a511c4f0c8468f505b36a8b55a6dc833f98c3936a23ea1ac5a0f5bb894215c0c"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/44/44ac80b74be82b8d976855c5c0cc95262a2da5354320a00e5c88b30c2585f2e0.bin",
+          "sha256": "44ac80b74be82b8d976855c5c0cc95262a2da5354320a00e5c88b30c2585f2e0",
+          "role": "primary",
+          "preparationID": 270,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly270-primary-20261021-01/primary270.json",
+            "sha256": "44ac80b74be82b8d976855c5c0cc95262a2da5354320a00e5c88b30c2585f2e0"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/5b/5b3b9ced5362696f0f1092b5bfa8c81ed68cf78dedd9a1245d0ef1a2dca1e3d4.bin",
+          "sha256": "5b3b9ced5362696f0f1092b5bfa8c81ed68cf78dedd9a1245d0ef1a2dca1e3d4",
+          "role": "peer",
+          "preparationID": 270,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly270-peer-20261021-01/peer270.json",
+            "sha256": "5b3b9ced5362696f0f1092b5bfa8c81ed68cf78dedd9a1245d0ef1a2dca1e3d4"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b7/b773a3b12128af4da9f09664f7c658d05bcd1c6f2913de0b0ebae9681b7d4b68.bin",
+          "sha256": "b773a3b12128af4da9f09664f7c658d05bcd1c6f2913de0b0ebae9681b7d4b68",
+          "role": "primary",
+          "preparationID": 271,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly271-primary-20261021-01/primary271-v2.json",
+            "sha256": "b773a3b12128af4da9f09664f7c658d05bcd1c6f2913de0b0ebae9681b7d4b68"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/73/73f01780906b8e3fc22dad7ab0d21ac0cc21995da70623c309a62ad18a5977a6.bin",
+          "sha256": "73f01780906b8e3fc22dad7ab0d21ac0cc21995da70623c309a62ad18a5977a6",
+          "role": "peer",
+          "preparationID": 271,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly271-peer-20261021-01/peer271.json",
+            "sha256": "73f01780906b8e3fc22dad7ab0d21ac0cc21995da70623c309a62ad18a5977a6"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a1/a1e4e732b4e984b168b7fcb3894426d6669ea4fe94e773c9d44ef527bc14b186.bin",
+          "sha256": "a1e4e732b4e984b168b7fcb3894426d6669ea4fe94e773c9d44ef527bc14b186",
+          "role": "primary",
+          "preparationID": 272,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly272-primary-20261021-01/primary272.json",
+            "sha256": "a1e4e732b4e984b168b7fcb3894426d6669ea4fe94e773c9d44ef527bc14b186"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ed/edca7b4b0adb29b132ab6a76999516c353ec4ef2b50fd1bd9e951d8f6b811a79.bin",
+          "sha256": "edca7b4b0adb29b132ab6a76999516c353ec4ef2b50fd1bd9e951d8f6b811a79",
+          "role": "peer",
+          "preparationID": 272,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly272-peer-20261021-01/peer272.json",
+            "sha256": "edca7b4b0adb29b132ab6a76999516c353ec4ef2b50fd1bd9e951d8f6b811a79"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/fd/fdcce5272cba30639cd9a90fe2fbeff04cb35fdd316d545024e330221175ca1e.bin",
+          "sha256": "fdcce5272cba30639cd9a90fe2fbeff04cb35fdd316d545024e330221175ca1e",
+          "role": "primary",
+          "preparationID": 273,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly273-primary-20261021-01/primary273-v2.json",
+            "sha256": "fdcce5272cba30639cd9a90fe2fbeff04cb35fdd316d545024e330221175ca1e"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/91/910d5cd2c5b25cd5033958649179ff6db5e8e672ac5960ff5bbcfb21611e9369.bin",
+          "sha256": "910d5cd2c5b25cd5033958649179ff6db5e8e672ac5960ff5bbcfb21611e9369",
+          "role": "peer",
+          "preparationID": 273,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly273-peer-20261021-01/peer273.json",
+            "sha256": "910d5cd2c5b25cd5033958649179ff6db5e8e672ac5960ff5bbcfb21611e9369"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/15/151520c84e8a5facc604b17e38e861da47a1986d7e6076a68bfb4356e6aa4cc4.bin",
+          "sha256": "151520c84e8a5facc604b17e38e861da47a1986d7e6076a68bfb4356e6aa4cc4",
+          "role": "primary",
+          "preparationID": 274,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly274-primary-20261022-01/primary274-v2.json",
+            "sha256": "151520c84e8a5facc604b17e38e861da47a1986d7e6076a68bfb4356e6aa4cc4"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/bf/bfdbe998f08ef8791c0588bc61cda75dd65fb7bb8e025d34439cd4c3c4dc3fe3.bin",
+          "sha256": "bfdbe998f08ef8791c0588bc61cda75dd65fb7bb8e025d34439cd4c3c4dc3fe3",
+          "role": "peer",
+          "preparationID": 274,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly274-peer-20261022-01/peer274.json",
+            "sha256": "bfdbe998f08ef8791c0588bc61cda75dd65fb7bb8e025d34439cd4c3c4dc3fe3"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/17/176607df38e4a75aeeb4a532505be5df873e905c2eb842c0e9c41ea1974732d1.bin",
+          "sha256": "176607df38e4a75aeeb4a532505be5df873e905c2eb842c0e9c41ea1974732d1",
+          "role": "primary",
+          "preparationID": 275,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly275-primary-20261022-01/primary275.json",
+            "sha256": "176607df38e4a75aeeb4a532505be5df873e905c2eb842c0e9c41ea1974732d1"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/61/61886a7e40fe7d776999eeaa5eba040e2779f1698126365689da6e53f0327a9e.bin",
+          "sha256": "61886a7e40fe7d776999eeaa5eba040e2779f1698126365689da6e53f0327a9e",
+          "role": "peer",
+          "preparationID": 275,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly275-peer-20261022-01/peer275-final.json",
+            "sha256": "61886a7e40fe7d776999eeaa5eba040e2779f1698126365689da6e53f0327a9e"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/16/1666afdf4d34dc8006b672573ddeaf981d733245cdc3590246b96445d24aa141.bin",
+          "sha256": "1666afdf4d34dc8006b672573ddeaf981d733245cdc3590246b96445d24aa141",
+          "role": "primary",
+          "preparationID": 276,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly276-primary-20261022-01/primary276.json",
+            "sha256": "1666afdf4d34dc8006b672573ddeaf981d733245cdc3590246b96445d24aa141"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b8/b832540cd811ce137059a47eb7d1cc6fe9937b8ee78a083069c5c07c19ff5029.bin",
+          "sha256": "b832540cd811ce137059a47eb7d1cc6fe9937b8ee78a083069c5c07c19ff5029",
+          "role": "peer",
+          "preparationID": 276,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly276-peer-20261022-01/peer276-final.json",
+            "sha256": "b832540cd811ce137059a47eb7d1cc6fe9937b8ee78a083069c5c07c19ff5029"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/ce/ceb821c6f5d2ce03a2d869cb19d68986bd28e2408f91879516fa25a815a26d1c.bin",
+          "sha256": "ceb821c6f5d2ce03a2d869cb19d68986bd28e2408f91879516fa25a815a26d1c",
+          "role": "primary",
+          "preparationID": 277,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly277-primary-20261022-01/primary277-v2.json",
+            "sha256": "ceb821c6f5d2ce03a2d869cb19d68986bd28e2408f91879516fa25a815a26d1c"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/6d/6de5b222823f8cbced4510fcc9ebb60a55a0fb3d4d4d3f5072fb27f9a3e113a6.bin",
+          "sha256": "6de5b222823f8cbced4510fcc9ebb60a55a0fb3d4d4d3f5072fb27f9a3e113a6",
+          "role": "peer",
+          "preparationID": 277,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly277-peer-20261022-01/peer277-final.json",
+            "sha256": "6de5b222823f8cbced4510fcc9ebb60a55a0fb3d4d4d3f5072fb27f9a3e113a6"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/56/56182e312d9a2b3aea6e2500a5fdcc9a40636129b408e57baa28ccac5d5f52de.bin",
+          "sha256": "56182e312d9a2b3aea6e2500a5fdcc9a40636129b408e57baa28ccac5d5f52de",
+          "role": "primary",
+          "preparationID": 278,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly278-primary-20261022-01/primary278-v2.json",
+            "sha256": "56182e312d9a2b3aea6e2500a5fdcc9a40636129b408e57baa28ccac5d5f52de"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/03/03fd27685f1191452cb81900ac485a7846b671484bd3c3c52969be6c815b2abc.bin",
+          "sha256": "03fd27685f1191452cb81900ac485a7846b671484bd3c3c52969be6c815b2abc",
+          "role": "peer",
+          "preparationID": 278,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly278-peer-20261022-01/peer278.json",
+            "sha256": "03fd27685f1191452cb81900ac485a7846b671484bd3c3c52969be6c815b2abc"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/5f/5f1ba46c5425846b447622a001acca62c0b030524a53812002ffd6235af702c5.bin",
+          "sha256": "5f1ba46c5425846b447622a001acca62c0b030524a53812002ffd6235af702c5",
+          "role": "primary",
+          "preparationID": 279,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly279-primary-20261022-01/primary279.json",
+            "sha256": "5f1ba46c5425846b447622a001acca62c0b030524a53812002ffd6235af702c5"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a5/a51c64c1286071b107b4161db39dd379e811b03517f092db33b8fd4011450e0c.bin",
+          "sha256": "a51c64c1286071b107b4161db39dd379e811b03517f092db33b8fd4011450e0c",
+          "role": "peer",
+          "preparationID": 279,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly279-peer-20261022-01/peer279-final.json",
+            "sha256": "a51c64c1286071b107b4161db39dd379e811b03517f092db33b8fd4011450e0c"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b5/b500daedb9a49ceb6f4c41c6c2e1ef85cfaccc34ee75769114f37b767a36f4ea.bin",
+          "sha256": "b500daedb9a49ceb6f4c41c6c2e1ef85cfaccc34ee75769114f37b767a36f4ea",
+          "role": "primary",
+          "preparationID": 280,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly280-primary-20261022-01/primary280.json",
+            "sha256": "b500daedb9a49ceb6f4c41c6c2e1ef85cfaccc34ee75769114f37b767a36f4ea"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/f8/f8755b77b571b6f805725c5f684778532d1841100dde9a259f56771ea9f5caa4.bin",
+          "sha256": "f8755b77b571b6f805725c5f684778532d1841100dde9a259f56771ea9f5caa4",
+          "role": "peer",
+          "preparationID": 280,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly280-peer-20261022-01/peer280.json",
+            "sha256": "f8755b77b571b6f805725c5f684778532d1841100dde9a259f56771ea9f5caa4"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/69/691754b4eddd970b42f3ed2666b2f0ba52a0e5a13e84650581600808273f1b43.bin",
+          "sha256": "691754b4eddd970b42f3ed2666b2f0ba52a0e5a13e84650581600808273f1b43",
+          "role": "primary",
+          "preparationID": 281,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly281-primary-20261022-01/primary281.json",
+            "sha256": "691754b4eddd970b42f3ed2666b2f0ba52a0e5a13e84650581600808273f1b43"
+          }
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/2f/2f6036c82d82187394ed3acac7be55ca1002f3bf85fedd88481a7a6e43211081.bin",
+          "sha256": "2f6036c82d82187394ed3acac7be55ca1002f3bf85fedd88481a7a6e43211081",
+          "role": "peer",
+          "preparationID": 281,
+          "originalLogicalIdentity": {
+            "path": "/private/tmp/prosary-readonly281-peer-20261022-01/peer281-final.json",
+            "sha256": "2f6036c82d82187394ed3acac7be55ca1002f3bf85fedd88481a7a6e43211081"
+          }
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass157-preparation280-WIS-19-13/source-provenance.json",
+    "sha256": "597f53029d65907f2fc05b9f8db2cf6ce1d6b303576f9a26d0507189b8a12311"
+  }
+}

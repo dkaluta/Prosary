@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 10,
+  "book": "TOB",
+  "status": "independent bounded point comparison complete; uncertainty retained; no source changes",
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "canonicalSHA256Unchanged": "7c722b421ce3ccf5e69bc8cfcb1a2b9a3e0ba03917c2506452a537351840107b",
+  "sourceNotesBefore": 12,
+  "sourceNotesAfter": 12,
+  "scope": "Only TOB2:3 is adjudicated. Comparisons come only from already annotated chapters1/2. No new chapter or book scope. Existing1:17 mem is an unresolved comparison, never treated as a literal positive merely because it has a canonical point.",
+  "method": "Direct original PDF image extraction; complete glyph/word and numbered row verification; same-font literal qubbuts, segol and qamats controls; integer nearest-neighbor enlargement only. No grammar, expected spelling, OCR or reconstructed pixels.",
+  "notes": [
+    {
+      "noteId": "tob-2-3-mem-vowel",
+      "chapter": 2,
+      "verse": 3,
+      "anchor": "משְׁלָךְ",
+      "decision": "retain",
+      "finding": "Target has a detached connected broad shoulder with two raised tips, a narrow downward link and a lower button. A qamats reading resembles the literal nearby1:17 lamed qamats; a fused descending qubbuts or other saturated three-node group remains possible. The literal1:18 bet qubbuts has three separate descending dots, and1:18 hamelekh mem segol has three separate triangular dots. Neither control recovers missing white divisions in the target. The1:17 mem itself has a saturated bar-and-stem and supplies no independent qubbuts proof.",
+      "proposedText": null,
+      "retiredNoteIds": [],
+      "addressVerification": "Companion165 right = primary316. The target lies on source printedverse ד, after the printed ג row. Complete source word משלך follows נחנק and precedes בשוק; Catholic2:3 is וַיָּבֹא וַיֹּאמַר אָבִי אֶחָד מֵאַחֵינוּ נֶחֱנַק משְׁלָךְ בַּשּׁוּק׃. This exact source continuation and word, rather than identity of printed verse numbers, establishes the Catholic2:3 address. Companion164 left = primary315 contains1:17/18 word controls.",
+      "printedSourceVerse": 4
+    }
+  ],
+  "sources": [
+    {
+      "scan": "extra",
+      "pdf": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "pdfSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "pdfPage": 164,
+      "imageIndex": 0,
+      "nativeSize": [
+        2872,
+        2024
+      ],
+      "rgbPixelSHA256": "564aee10b6912b83d215e221cadc0d2812e3fbe209a834b4a50b976ace167016"
+    },
+    {
+      "scan": "extra",
+      "pdf": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "pdfSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "pdfPage": 165,
+      "imageIndex": 0,
+      "nativeSize": [
+        2872,
+        2024
+      ],
+      "rgbPixelSHA256": "51bbd28b3d9707418eef098a503176939a8e0a47d7256bf583bf6c2162200d40"
+    },
+    {
+      "scan": "primary",
+      "pdf": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "pdfSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "pdfPage": 315,
+      "imageIndex": 0,
+      "nativeSize": [
+        1650,
+        2550
+      ],
+      "rgbPixelSHA256": "74e43d72d76f442199d3cd66c5df8e5afa6705842cbeba6ee0ebd5aecfb5c24d"
+    }
+  ],
+  "evidence": [
+    {
+      "name": "tob1-17-umushlakh-word",
+      "pixelBox": [
+        940,
+        180,
+        1090,
+        265
+      ],
+      "scale": 6,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 164,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-17-umushlakh-word-native.png",
+          "sha256": "a6099c1f2b07ef0a0810033b7e19da11704c64fb52cb0fceecc3d8ddb93e8839"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-17-umushlakh-word-6x.png",
+          "sha256": "3f9c0eefde576db8a7bf2b482c3ef08ea83f0045dd3d3fc27c03d5268681c578"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob1-17-mem-complete-control",
+      "pixelBox": [
+        1014,
+        210,
+        1057,
+        263
+      ],
+      "scale": 20,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 164,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-17-mem-complete-control-native.png",
+          "sha256": "8ef038a4a14a47cbab3e5b3d0216f33fbecb5cb746f7e52f15457bed41130cbf"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-17-mem-complete-control-20x.png",
+          "sha256": "3d8b30c33b0a5eeabfe5c9d9e141f7b7d2b14c080f03ee61c10d4c4026f49f06"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob2-3-mem-target",
+      "pixelBox": [
+        2110,
+        472,
+        2145,
+        525
+      ],
+      "scale": 20,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob2-3-mem-target-native.png",
+          "sha256": "58035a4271e04939329ae775f3acfbf86597855a5b3254f376fbfcd33f4a2984"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob2-3-mem-target-20x.png",
+          "sha256": "cda55f8f76155c50a679b3f8b2ce5d4510fb962583792ec895a2c52481e47344"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob2-3-complete-word",
+      "pixelBox": [
+        2000,
+        472,
+        2155,
+        525
+      ],
+      "scale": 6,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 165,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob2-3-complete-word-native.png",
+          "sha256": "a66b1341a0e6910d4066abce5ff30317a45709472f1a2f1581ade0e442eb3a50"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob2-3-complete-word-6x.png",
+          "sha256": "b54bd46698cc5acdafe4272ff37315d8ea07993d0fd23a8c6222d1139e43c66f"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob1-18-bukshu-locator",
+      "pixelBox": [
+        650,
+        300,
+        950,
+        370
+      ],
+      "scale": 5,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 164,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-18-bukshu-locator-native.png",
+          "sha256": "fe9f09161943b3d47e8747c44bb28e220ab0a35a170cc12ecb656761b781dcd6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-18-bukshu-locator-5x.png",
+          "sha256": "534159e024fc54a01ff6d4c59951403d886b15e6d8b5faf194d1a27b286698f3"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob1-18-hamelekh-locator",
+      "pixelBox": [
+        1070,
+        245,
+        1190,
+        310
+      ],
+      "scale": 6,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 164,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-18-hamelekh-locator-native.png",
+          "sha256": "71529bbc4886a17fd01cf60294df1ef80bc396ed99105221cdfdbfc8b0d11098"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-18-hamelekh-locator-6x.png",
+          "sha256": "c842ea12f8ff5f9361d60ac1cd104bd1a5d66ecbb77cf08db47616012540560c"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob1-17-lamed-qamats-control",
+      "pixelBox": [
+        979,
+        200,
+        1006,
+        263
+      ],
+      "scale": 20,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 164,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-17-lamed-qamats-control-native.png",
+          "sha256": "a7bc91516678541a8255331cf4c805613fa98bd2f041cd5f686f3f5134deed4c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-17-lamed-qamats-control-20x.png",
+          "sha256": "e91f08efd5e61a354ee8e2b79abe3c40119485f1147d82e45799c5f226fb68f1"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob1-18-bet-qubbuts-complete",
+      "pixelBox": [
+        777,
+        320,
+        803,
+        363
+      ],
+      "scale": 20,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 164,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-18-bet-qubbuts-complete-native.png",
+          "sha256": "aa19fb57a07e2477ba33f4b1fc19a5e038f200775c8a67e6a7b21c317e459777"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-18-bet-qubbuts-complete-20x.png",
+          "sha256": "4cd5afc4ff5f62cd24c31bc61e562d90b3eed3361f4e20acc2ec4c591d201950"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob1-18-mem-segol-complete",
+      "pixelBox": [
+        1131,
+        258,
+        1158,
+        310
+      ],
+      "scale": 20,
+      "freshPDFReplay": true,
+      "scan": "extra",
+      "page": 164,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-18-mem-segol-complete-native.png",
+          "sha256": "e9030462d55c1aa2ea5bcd63d6bebcdb111ed9645b8ae50b3eec537704ac3ee5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob1-18-mem-segol-complete-20x.png",
+          "sha256": "64fdd4ede765859ad1be48992f95f6aeecb88f6c82f94b5f170a56f491182e0a"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "tob2-3-numbered-context",
+      "scan": "extra",
+      "page": 165,
+      "pixelBox": [
+        1450,
+        130,
+        2872,
+        820
+      ],
+      "scale": 1,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/tob2-3-numbered-context-native.png",
+          "sha256": "6a45875723212ff478cddf280ed9b416663fff8eda862bb8d364f0427b1eed75"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    },
+    {
+      "name": "primary315-top-body",
+      "scan": "primary",
+      "page": 315,
+      "pixelBox": [
+        100,
+        100,
+        1620,
+        650
+      ],
+      "scale": 1,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-TOB-COMPOUND-INDEPENDENT/primary315-top-body-native.png",
+          "sha256": "3e9f2d87b2a5f415964c620223e72f01456fd65e2d6938bcdd0723f26c1485e8"
+        }
+      ],
+      "nativePDFPixelReplay": true
+    }
+  ],
+  "excludedExploratoryEvidence": [
+    {
+      "name": "tob1-17-mem-control",
+      "pixelBox": [
+        1007,
+        192,
+        1044,
+        255
+      ],
+      "reason": "Initial narrow frame clipped the right side of mem. Replaced by complete-control [1014,210,1057,263]."
+    },
+    {
+      "name": "root wrong-side1:17 exploratory locators",
+      "reason": "Companion165 and164 right exploratory locators do not locate the actual1:17 word. Only corrected164-left complete word and context used."
+    }
+  ],
+  "preservation": "Canonical TOB file byte-identical to599-note Pass10 baseline. No note/letter/point/punctuation/block/order changes. Source policy unchanged."
+}

@@ -1,0 +1,1872 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 7,
+  "book": "WIS",
+  "status": "Five exact dagesh additions approved after same-font comparison and independent review; two pe notes retained",
+  "applicationState": "pendingRootIntegration; no live canonical, approval, daily, presentation or generated file modified by this report",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "method": "Fresh exact-letter comparison of all seven remaining WIS dagesh annotations, within chapters that still contain annotations. Original A2 embedded source pixels only; native crops and integer nearest-neighbor enlargement. Complete target words establish address; same-font ordinary letters distinguish normal arms, tongues, heads and tails from compact added-point lobes. Detached gimel and shin point controls provide independent point geometry; yod is adjudicated from its complete lower-node contour and repeated first/second-yod contrasts, not an assumption that every printed point must remain a separate pixel component. All selected crops are mechanically replayed from fresh original PDF extraction; algorithms certify provenance, not readings. No OCR, grammatical inference, sharpening, smoothing, image generation, new witness or translation supplies a point. Two saturated pe tongues remain unresolved because apparent white cavity cannot exclude a merged point. Prior reports remain historical.",
+  "baselineGlobalSourceNoteCount": 629,
+  "canonicalSHA256Before": "4900430cbf2ee497b3aeddde85bd5478faa11a4aba6667024b69d71914b82f48",
+  "contentSHA256Before": "cbcc373536d0a4769af2695574680a174502dab9eab147b79c507b00161ad1a2",
+  "contentSHA256After": "41f9599c8980dd1166976714cdb916d5fe2e11efd5b0220f364841bce4344a49",
+  "contentAfterHashMeaning": "Expected WIS source-content digest after the five approved exact-letter changes and note retirements; root supplies review-history/central approval metadata during integration.",
+  "sourceNotesBefore": 203,
+  "sourceNotesAfter": 198,
+  "reviewedSourceNoteCount": 7,
+  "resolvedSourceNoteCount": 5,
+  "retainedInspectedSourceNoteCount": 2,
+  "unreviewedVowelNoteCount": 192,
+  "excludedAuthorizedRestoredLetterNoteCount": 4,
+  "retiredSourceNoteIds": [
+    "wis-8-3-first-yod-dagesh",
+    "wis-8-20-gimel-dagesh",
+    "wis-15-8-shin-2-dagesh",
+    "wis-18-1-word2-shin-4-dagesh",
+    "wis-19-6-word6-shin-2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-13-1-pe-1-dagesh",
+    "wis-14-11-pe-1-dagesh"
+  ],
+  "combiningMarksAdded": 5,
+  "addedCombiningMarks": {
+    "U+05BC DAGESH OR MAPIQ": 5
+  },
+  "falsePositiveNotesRetired": 0,
+  "restoredConsonantsChanged": false,
+  "retainedNoteAnchorUpdates": [
+    {
+      "id": "wis-18-1-word2-vav-1-vowel",
+      "oldAnchor": "ויְאשְׁרוּם",
+      "newAnchor": "ויְאשְּׁרוּם"
+    },
+    {
+      "id": "wis-18-1-word2-alef-3-vowel",
+      "oldAnchor": "ויְאשְׁרוּם",
+      "newAnchor": "ויְאשְּׁרוּם"
+    },
+    {
+      "id": "wis-19-6-word6-shin-2-vowel",
+      "oldAnchor": "יִשׁמְרוּ",
+      "newAnchor": "יִשּׁמְרוּ"
+    }
+  ],
+  "scope": {
+    "reviewedChapters": [
+      8,
+      13,
+      14,
+      15,
+      18,
+      19
+    ],
+    "allReviewedChaptersContainAnnotationsAtBaseline": true,
+    "notAWholeBookRecollation": true,
+    "newlyDiscoveredPositions": 0
+  },
+  "independentReview": {
+    "root": "Separately viewed and explicitly approved the exact yod, gimel and three shin additions, accepted both pe retentions and required preservation of all existing scalar order. Final five/two decision delivered before publication.",
+    "BELPeer": "Independently accepted all five added-node/point findings after target and pointed/plain source comparisons, including the detached13:2 shin point; independently retained both pe notes because thick tongues may contain a coalesced point.",
+    "MAAdditionsPeer": "Raised a conservative initial concern that13:10 yod positive was also bridged and requested a detached control; independently challenged pe geometry and recommended retention. Root and BEL final yod judgment relies on full morphology plus multiple paired plain letters, without claiming a detached yod control."
+  },
+  "decisions": [
+    {
+      "chapter": 8,
+      "verse": 3,
+      "retiredNote": {
+        "id": "wis-8-3-first-yod-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "חַיֵי",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          160
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=160"
+      },
+      "originalText": "אֶת־רוּם יַחשָׂהּ תַּרְאֶה בִּחְיוֹתָהּ חַיֵי שֻׁתָּפוּת עִם־יְיָ וַאֲדוֹן הַכֹּל אֲהֵבָהּ׃",
+      "correctedText": "אֶת־רוּם יַחשָׂהּ תַּרְאֶה בִּחְיוֹתָהּ חַיֵּי שֻׁתָּפוּת עִם־יְיָ וַאֲדוֹן הַכֹּל אֲהֵבָהּ׃",
+      "oldAnchor": "חַיֵי",
+      "newAnchor": "חַיֵּי",
+      "addedCodePoint": "U+05BC",
+      "addedMark": "dagesh",
+      "scalarPolicy": "Append U+05BC to the existing target letter cluster; preserve every existing combining scalar and its order.",
+      "targetClusterBefore": [
+        "U+05D9",
+        "U+05B5"
+      ],
+      "targetClusterAfter": [
+        "U+05D9",
+        "U+05B5",
+        "U+05BC"
+      ],
+      "finding": "The first yod contains a compact low-left node below its normal head, with a tiny white pinhole between the node, head and right tail. The same-word final yod and13:10 second yod have only the ordinary head plus narrow right tail. The13:10 first yod repeats the added node and pinhole; the thinner2:15 first yod shows a near-detached round lower-left node while its second yod is plain. The complete added-node contour, paired plain letters and repeated same-font forms support dagesh despite the narrow ink bridges. No canonical spelling or grammatical expectation certifies the point, and no fully detached yod control is claimed.",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-yod-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-yod-dagesh-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-first-yod-dagesh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-first-yod-dagesh-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-first-yod-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-first-yod-point-comparison-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-second-yod-plain-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-second-yod-plain-comparison-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-3-final-yod-plain-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-3-final-yod-plain-fixed-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-hayyim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-hayyim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis2-15-behayyav-control-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis2-15-behayyav-control-context-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis4-9-hayyei-control-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis4-9-hayyei-control-context-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis7-6-hahayyim-control-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis7-6-hahayyim-control-context-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-8-hayyamim-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-8-hayyamim-word-fixed-6x.png"
+      ]
+    },
+    {
+      "chapter": 8,
+      "verse": 20,
+      "retiredNote": {
+        "id": "wis-8-20-gimel-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "גוּף",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "dagesh",
+        "sourcePages": [
+          162
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=162"
+      },
+      "originalText": "יוֹתֵר נָכוֹן בִּהְיוֹתִי טוֹב בָּאתִי לְתוֹךְ גוּף טָהוֹר׃ בְּדַעְתִּי כִּי לֹא אֶקְנֶה אוֹתָהּ בְּלִי עֶזְרַת אֱלֹהִים וּבִינָתִי עָמְדָה לִי לָדַעַת אֶת מְקוֹר הַחֶסֶד הַזֶּה דָּרַשְׁתִּי אֶת־יְיָ וָאֶתְפַּלְּלָה לְפָנָיו בְּכָל־לְבָבִי וָאֹמַר׃",
+      "correctedText": "יוֹתֵר נָכוֹן בִּהְיוֹתִי טוֹב בָּאתִי לְתוֹךְ גּוּף טָהוֹר׃ בְּדַעְתִּי כִּי לֹא אֶקְנֶה אוֹתָהּ בְּלִי עֶזְרַת אֱלֹהִים וּבִינָתִי עָמְדָה לִי לָדַעַת אֶת מְקוֹר הַחֶסֶד הַזֶּה דָּרַשְׁתִּי אֶת־יְיָ וָאֶתְפַּלְּלָה לְפָנָיו בְּכָל־לְבָבִי וָאֹמַר׃",
+      "oldAnchor": "גוּף",
+      "newAnchor": "גּוּף",
+      "addedCodePoint": "U+05BC",
+      "addedMark": "dagesh",
+      "scalarPolicy": "Append U+05BC to the existing target letter cluster; preserve every existing combining scalar and its order.",
+      "targetClusterBefore": [
+        "U+05D2"
+      ],
+      "targetClusterAfter": [
+        "U+05D2",
+        "U+05BC"
+      ],
+      "finding": "The gimel has a compact rounded mid-left lobe below the head and above the normal lower foot, with a small inner white gap. A genuinely detached point in13:8 gam occupies the corresponding mid-stem position. The ordinary gimel in9:16 nassig has a narrow shaft between head and foot and lacks that lobe. The lobe is added-point geometry rather than the normal foot, supporting dagesh despite local ink bridges.",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-gimel-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-gimel-point-comparison-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-gimel-plain-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-gimel-plain-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 8,
+      "retiredNote": {
+        "id": "wis-15-8-shin-2-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "יַשׁוּ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          175
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175"
+      },
+      "originalText": "וְגַם יוֹגֵעַ לָרִיק לְקָרֵץ אֱלִיל הֶבֶל מִן־הַחֹמֶר הַזֶּה וְהוּא נוֹלַד מִקָּרוֹב מִן־הָאֲדָמָה וְאַחֲרֵי זְמַן מִצְעָר יָשׁוּב אֵלֶיהָ אֲשֶׁר מִמֶּנָּה לקָּח כִּי יַשׁוּ מִמֶּנּוּ פִּקְּדוֹן נַפְשׁוֹ׃",
+      "correctedText": "וְגַם יוֹגֵעַ לָרִיק לְקָרֵץ אֱלִיל הֶבֶל מִן־הַחֹמֶר הַזֶּה וְהוּא נוֹלַד מִקָּרוֹב מִן־הָאֲדָמָה וְאַחֲרֵי זְמַן מִצְעָר יָשׁוּב אֵלֶיהָ אֲשֶׁר מִמֶּנָּה לקָּח כִּי יַשּׁוּ מִמֶּנּוּ פִּקְּדוֹן נַפְשׁוֹ׃",
+      "oldAnchor": "יַשׁוּ",
+      "newAnchor": "יַשּׁוּ",
+      "addedCodePoint": "U+05BC",
+      "addedMark": "dagesh",
+      "scalarPolicy": "Append U+05BC to the existing target letter cluster; preserve every existing combining scalar and its order.",
+      "targetClusterBefore": [
+        "U+05E9",
+        "U+05C1"
+      ],
+      "targetClusterAfter": [
+        "U+05E9",
+        "U+05C1",
+        "U+05BC"
+      ],
+      "finding": "The middle diagonal of the shin has an additional rounded right-facing terminal bulb extending into the right cavity. Plain same-page15:7 shin arms in charash and lalush remain thin and smooth with open right cavities. The genuinely detached29-pixel shin point in13:2 has the corresponding lower-right position, and9:16 shows a matching compact point linked by a tiny bridge. The full bulb contour supports a coalesced dagesh rather than an ordinary middle arm.",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-dagesh-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-2-dagesh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-2-dagesh-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-5x.png"
+      ]
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "retiredNote": {
+        "id": "wis-18-1-word2-shin-4-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "ויְאשְׁרוּם",
+        "occurrence": 1,
+        "letterIndex": 4,
+        "mark": "dagesh",
+        "sourcePages": [
+          181
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181"
+      },
+      "originalText": "ולחסידיךָ הָיָה אוֹר גָּדוֹל מְאֹד וְהֵם [הַמִּצְרִים] שָׁמְעוּ אֶת־קוֹלָם וּדְמוּתָם לֹא־רָאוּ ויְאשְׁרוּם אֲשֶׁר לֹא־יִסְבְּלוּ כְּמוֹהֶם גַּם אֵלֶּה׃",
+      "correctedText": "ולחסידיךָ הָיָה אוֹר גָּדוֹל מְאֹד וְהֵם [הַמִּצְרִים] שָׁמְעוּ אֶת־קוֹלָם וּדְמוּתָם לֹא־רָאוּ ויְאשְּׁרוּם אֲשֶׁר לֹא־יִסְבְּלוּ כְּמוֹהֶם גַּם אֵלֶּה׃",
+      "oldAnchor": "ויְאשְׁרוּם",
+      "newAnchor": "ויְאשְּׁרוּם",
+      "addedCodePoint": "U+05BC",
+      "addedMark": "dagesh",
+      "scalarPolicy": "Append U+05BC to the existing target letter cluster; preserve every existing combining scalar and its order.",
+      "targetClusterBefore": [
+        "U+05E9",
+        "U+05C1",
+        "U+05B0"
+      ],
+      "targetClusterAfter": [
+        "U+05E9",
+        "U+05C1",
+        "U+05B0",
+        "U+05BC"
+      ],
+      "finding": "The shin has a conspicuous rounded lower-right bulb beyond its middle diagonal, partly coalesced with the arm. Its added projection matches the lower-right position of the genuinely detached13:2 shin point and the near-detached9:16 comparison, while ordinary15:7 shin arms have smooth narrow diagonals. The full letter and word context establish that the bulb belongs to this shin; dagesh is supported despite joined ink.",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-shin-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-shin-dagesh-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-word2-vav-1-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-word2-vav-1-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-5x.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 6,
+      "retiredNote": {
+        "id": "wis-19-6-word6-shin-2-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "יִשׁמְרוּ",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          184
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184"
+      },
+      "originalText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "correctedText": "כִּי כָּל־הַיְצוּרִים לְמִינֵיהֶם נֶהֶפְכוּ מֵחָדָשׁ לְשָׁרֵת לִפְקדּוֹתֶיךָ בַּעֲבוּר יִשּׁמְרוּ בָנֶיךָ מִכָּל פֶּגַע׃",
+      "oldAnchor": "יִשׁמְרוּ",
+      "newAnchor": "יִשּׁמְרוּ",
+      "addedCodePoint": "U+05BC",
+      "addedMark": "dagesh",
+      "scalarPolicy": "Append U+05BC to the existing target letter cluster; preserve every existing combining scalar and its order.",
+      "targetClusterBefore": [
+        "U+05E9",
+        "U+05C1"
+      ],
+      "targetClusterAfter": [
+        "U+05E9",
+        "U+05C1",
+        "U+05BC"
+      ],
+      "finding": "The shin has a compact rounded rightward extension below the middle head, with a small white notch above it. This material bulb projects into the otherwise open right cavity, unlike the thin ordinary15:7 middle diagonals. Its position and contour match the detached13:2 point and near-detached9:16 comparison, supporting a coalesced dagesh at this exact shin.",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-shin-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-shin-dagesh-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-word6-shin-2-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-word6-shin-2-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-5x.png"
+      ]
+    }
+  ],
+  "inspections": [
+    {
+      "chapter": 8,
+      "verse": 3,
+      "id": "wis-8-3-first-yod-dagesh",
+      "anchor": "חַיֵי",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        160
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=160",
+      "targetLetter": "י",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The first yod contains a compact low-left node below its normal head, with a tiny white pinhole between the node, head and right tail. The same-word final yod and13:10 second yod have only the ordinary head plus narrow right tail. The13:10 first yod repeats the added node and pinhole; the thinner2:15 first yod shows a near-detached round lower-left node while its second yod is plain. The complete added-node contour, paired plain letters and repeated same-font forms support dagesh despite the narrow ink bridges. No canonical spelling or grammatical expectation certifies the point, and no fully detached yod control is claimed.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-yod-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-yod-dagesh-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-first-yod-dagesh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-first-yod-dagesh-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-first-yod-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-first-yod-point-comparison-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-second-yod-plain-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-second-yod-plain-comparison-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-3-final-yod-plain-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-3-final-yod-plain-fixed-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-hayyim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-hayyim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis2-15-behayyav-control-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis2-15-behayyav-control-context-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis4-9-hayyei-control-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis4-9-hayyei-control-context-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis7-6-hahayyim-control-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis7-6-hahayyim-control-context-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-8-hayyamim-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-8-hayyamim-word-fixed-6x.png"
+      ]
+    },
+    {
+      "chapter": 8,
+      "verse": 20,
+      "id": "wis-8-20-gimel-dagesh",
+      "anchor": "גוּף",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "sourcePages": [
+        162
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=162",
+      "targetLetter": "ג",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The gimel has a compact rounded mid-left lobe below the head and above the normal lower foot, with a small inner white gap. A genuinely detached point in13:8 gam occupies the corresponding mid-stem position. The ordinary gimel in9:16 nassig has a narrow shaft between head and foot and lacks that lobe. The lobe is added-point geometry rather than the normal foot, supporting dagesh despite local ink bridges.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-gimel-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-gimel-point-comparison-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-gimel-plain-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-gimel-plain-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png"
+      ]
+    },
+    {
+      "chapter": 13,
+      "verse": 1,
+      "id": "wis-13-1-pe-1-dagesh",
+      "anchor": "פְעֻלּוֹתָיו",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "sourcePages": [
+        171
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=171",
+      "targetLetter": "פ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe has a substantial white right cavity, but its unusually broad inner tongue may include a coalesced point. The pointed pe controls show where a separate point can occur, yet their narrower ordinary tongues do not rule out this target point having merged into the bulky tongue. Neither presence nor absence is uniquely established; retain the note and all text.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-13-1-pe-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-13-1-pe-dagesh-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-13-1-pe-1-dagesh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-13-1-pe-1-dagesh-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-samepage-pe-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-samepage-pe-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-pe-plain-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-pe-plain-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-pe-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-pe-point-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-control-word-5x.png"
+      ]
+    },
+    {
+      "chapter": 14,
+      "verse": 11,
+      "id": "wis-14-11-pe-1-dagesh",
+      "anchor": "פְקדָּה",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "sourcePages": [
+        173
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=173",
+      "targetLetter": "פ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The pe right cavity is white and resembles the ordinary pe in same-page lenafshot, but the target tongue and its deep junction with the lower body are thick enough to absorb a point. The distinct points in same-page pitom and printed mifal do not prove a point must remain separate in this saturated target. White cavity alone cannot certify absence; retain the note and all text.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-14-11-pe-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-14-11-pe-dagesh-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-14-11-pe-1-dagesh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-14-11-pe-1-dagesh-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-pe-plain-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-pe-plain-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-pe-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-pe-point-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-mifal-pe-point-comparison-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-mifal-pe-point-comparison-fixed-15x.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 8,
+      "id": "wis-15-8-shin-2-dagesh",
+      "anchor": "יַשׁוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        175
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175",
+      "targetLetter": "ש",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The middle diagonal of the shin has an additional rounded right-facing terminal bulb extending into the right cavity. Plain same-page15:7 shin arms in charash and lalush remain thin and smooth with open right cavities. The genuinely detached29-pixel shin point in13:2 has the corresponding lower-right position, and9:16 shows a matching compact point linked by a tiny bridge. The full bulb contour supports a coalesced dagesh rather than an ordinary middle arm.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-dagesh-tight-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-2-dagesh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-2-dagesh-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-5x.png"
+      ]
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "id": "wis-18-1-word2-shin-4-dagesh",
+      "anchor": "ויְאשְׁרוּם",
+      "occurrence": 1,
+      "letterIndex": 4,
+      "mark": "dagesh",
+      "sourcePages": [
+        181
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181",
+      "targetLetter": "ש",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The shin has a conspicuous rounded lower-right bulb beyond its middle diagonal, partly coalesced with the arm. Its added projection matches the lower-right position of the genuinely detached13:2 shin point and the near-detached9:16 comparison, while ordinary15:7 shin arms have smooth narrow diagonals. The full letter and word context establish that the bulb belongs to this shin; dagesh is supported despite joined ink.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-shin-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-shin-dagesh-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-word2-vav-1-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-word2-vav-1-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-5x.png"
+      ]
+    },
+    {
+      "chapter": 19,
+      "verse": 6,
+      "id": "wis-19-6-word6-shin-2-dagesh",
+      "anchor": "יִשׁמְרוּ",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        184
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=184",
+      "targetLetter": "ש",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The shin has a compact rounded rightward extension below the middle head, with a small white notch above it. This material bulb projects into the otherwise open right cavity, unlike the thin ordinary15:7 middle diagonals. Its position and contour match the detached13:2 point and near-detached9:16 comparison, supporting a coalesced dagesh at this exact shin.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-shin-dagesh-tight-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-shin-dagesh-tight-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-word6-shin-2-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-word6-shin-2-vowel-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-5x.png"
+      ]
+    }
+  ],
+  "sourceImages": [
+    {
+      "page": 149,
+      "embeddedImageName": "im149.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2581,
+        3555
+      ],
+      "nativePixelSHA256": "c20c725f717f50b3f6a9b72f6fd809714e51c3aed0ccd3086cd4d370d951fa6a",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 152,
+      "embeddedImageName": "im152.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2481,
+        3485
+      ],
+      "nativePixelSHA256": "7ea1041709e1aae419266eb81612a9d79071bb371db0e8ff3b33a20713eb2e74",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 158,
+      "embeddedImageName": "im158.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2484,
+        3487
+      ],
+      "nativePixelSHA256": "b7cbce49a969ea818cbbf23e7c5e1e168c31bcb5e09e759edda639aeb7dc5bcd",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 160,
+      "embeddedImageName": "im160.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2499,
+        3498
+      ],
+      "nativePixelSHA256": "0a01f7b1ab89c4f650fad0061011788f34ee8b6b0f9710519baec388dac0ac97",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 161,
+      "embeddedImageName": "im161.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2606,
+        3572
+      ],
+      "nativePixelSHA256": "fa1586c15ca1eba3bf040a025adf18b58d0832d478df94f607f39e7189ef4f25",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 162,
+      "embeddedImageName": "im162.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2598,
+        3567
+      ],
+      "nativePixelSHA256": "b3d52dd72ee1519ef7c6f4475e23003bbc36278413dedc8099364e6259d526e3",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 163,
+      "embeddedImageName": "im163.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2599,
+        3567
+      ],
+      "nativePixelSHA256": "a35776b0faaf6039a51585288d8817287346e08d832cfe534c7fbfbc0b992295",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 171,
+      "embeddedImageName": "im171.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2507,
+        3503
+      ],
+      "nativePixelSHA256": "f0f361f7de0404bc6b694d0530ffe3785c8a44bdacdd363c0de216449a03b7ae",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 173,
+      "embeddedImageName": "im173.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2525,
+        3516
+      ],
+      "nativePixelSHA256": "c7991b83ea8184088297a8a7b093b04a2e8342db4caa0f459965933eb54524b3",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 175,
+      "embeddedImageName": "im175.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2534,
+        3523
+      ],
+      "nativePixelSHA256": "9f3938dac597840ba4d4e20aa48646d862411354c52a60b6654dbfd69c094755",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 181,
+      "embeddedImageName": "im181.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2543,
+        3529
+      ],
+      "nativePixelSHA256": "c81b7ab1e1e00d913457d12442335278646afc239ab3fa7214541de1a437f194",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 184,
+      "embeddedImageName": "im184.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2561,
+        3541
+      ],
+      "nativePixelSHA256": "ce771c4bd1d3cc0ced5783d9857ecb4d5c6a944c98bd227823fd822a04a56e53",
+      "freshlyExtractedOriginalPixels": true
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-yod-dagesh-tight-native.png",
+      "sha256": "18ef98995c677c8d11f5f240c2d7f319a7aa5976c287c8ca55ada50e9d14d487",
+      "page": 160,
+      "nativeBounds": [
+        891,
+        1440,
+        917,
+        1482
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-yod-dagesh-tight-15x.png",
+      "sha256": "ce6cdf2f57bc892e41e3572552a50df5bee2625f3e72c00997cb8fe9a3ed3075",
+      "page": 160,
+      "nativeBounds": [
+        891,
+        1440,
+        917,
+        1482
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-first-yod-dagesh-word-native.png",
+      "sha256": "fcf9ff5d20fbe945e57e5f997511a9e758193f4976696cdf27d5478a9301d2ff",
+      "page": 160,
+      "nativeBounds": [
+        650,
+        1390,
+        970,
+        1535
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-3-first-yod-dagesh-word-4x.png",
+      "sha256": "f866d94f1e0803acff5e814d289cca037cd1c95940c479fef1f56456b5bbdb6f",
+      "page": 160,
+      "nativeBounds": [
+        650,
+        1390,
+        970,
+        1535
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-first-yod-point-comparison-native.png",
+      "sha256": "3b0282608d1cd6a03b5cdcd4fef9ef314bef8e3b87703d10d19f8b251faaa81e",
+      "page": 171,
+      "nativeBounds": [
+        1422,
+        1508,
+        1449,
+        1553
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-first-yod-point-comparison-20x.png",
+      "sha256": "927e5168e7d50db8fef2f466a2dcc262d4e4d67259b212188ac75970c84baf18",
+      "page": 171,
+      "nativeBounds": [
+        1422,
+        1508,
+        1449,
+        1553
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-second-yod-plain-comparison-native.png",
+      "sha256": "82b1250d54cba18e0e4ce6efe849215ff5125fd6606a60455cf01ff34048a06d",
+      "page": 171,
+      "nativeBounds": [
+        1401,
+        1508,
+        1428,
+        1553
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-second-yod-plain-comparison-20x.png",
+      "sha256": "def4894b14b59178e6be54cb629589e43e0c1d535d3ffd77a30f6d1b6a1c78d6",
+      "page": 171,
+      "nativeBounds": [
+        1401,
+        1508,
+        1428,
+        1553
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-3-final-yod-plain-fixed-native.png",
+      "sha256": "0aa89a3e32d3ec48a1f5ab29ec7ec75a4ecbd38ddfe4c81f754c10518f669177",
+      "page": 160,
+      "nativeBounds": [
+        875,
+        1440,
+        899,
+        1482
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-3-final-yod-plain-fixed-20x.png",
+      "sha256": "f40f14a3a61d6c9e4aa6f91348ec9a78ec751f6b8b101cff3123dd3966bf64b7",
+      "page": 160,
+      "nativeBounds": [
+        875,
+        1440,
+        899,
+        1482
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-hayyim-control-word-native.png",
+      "sha256": "5af5f62e3729ea447ed50695f6862d7f1b0051b9423a1499ac3626904fae2975",
+      "page": 171,
+      "nativeBounds": [
+        1340,
+        1465,
+        1550,
+        1580
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-10-hayyim-control-word-4x.png",
+      "sha256": "6aa2d2ce27c7d4dd999dd999447f8e4c95d928f4efebc2b75d1f70215b9912ac",
+      "page": 171,
+      "nativeBounds": [
+        1340,
+        1465,
+        1550,
+        1580
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis2-15-behayyav-control-context-native.png",
+      "sha256": "db608ed5ddba234c4c11ae3eaf480bc49504252ec52779d20fbfa9c53b5b91b8",
+      "page": 149,
+      "nativeBounds": [
+        1950,
+        380,
+        2210,
+        490
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis2-15-behayyav-control-context-5x.png",
+      "sha256": "60903ccf3a5feb2606c40addbc1d186cf6866128fc08c3ab3a7d9385eeff7a56",
+      "page": 149,
+      "nativeBounds": [
+        1950,
+        380,
+        2210,
+        490
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis4-9-hayyei-control-context-native.png",
+      "sha256": "7562d59d4a2e57546c08fa27a4339a4e2c664ac27775a432907338b1b1780596",
+      "page": 152,
+      "nativeBounds": [
+        670,
+        1220,
+        1030,
+        1345
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis4-9-hayyei-control-context-5x.png",
+      "sha256": "cf663221b936a8e5fa4108f968efa5a11a17dafc7254a13c31d6bbc9b2aa7518",
+      "page": 152,
+      "nativeBounds": [
+        670,
+        1220,
+        1030,
+        1345
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis7-6-hahayyim-control-context-native.png",
+      "sha256": "090573791a683575b224a23f72142b458217132336251a1d2e8c4d48ec41d859",
+      "page": 158,
+      "nativeBounds": [
+        1510,
+        465,
+        2150,
+        575
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis7-6-hahayyim-control-context-4x.png",
+      "sha256": "2b0ca6aefb45555b3a39fc9dd0dda92c62b09d848e415215f40c521cd017eb34",
+      "page": 158,
+      "nativeBounds": [
+        1510,
+        465,
+        2150,
+        575
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-8-hayyamim-word-fixed-native.png",
+      "sha256": "acadf32a58dd6e8d5f41777e13e2e9ab06e67ca0b4fffbda090b55884b98b8ac",
+      "page": 161,
+      "nativeBounds": [
+        1280,
+        630,
+        1500,
+        725
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis8-8-hayyamim-word-fixed-6x.png",
+      "sha256": "104462a1d0b29cfa0c67d1f5140484c127eb04527a6f6435884c4b7cf33f8248",
+      "page": 161,
+      "nativeBounds": [
+        1280,
+        630,
+        1500,
+        725
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-tight-native.png",
+      "sha256": "21fd05fb60348846513836d67be496b63d2a1fb7a08b7ea8505ed4e23ebfc9ec",
+      "page": 162,
+      "nativeBounds": [
+        1120,
+        550,
+        1150,
+        610
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-tight-15x.png",
+      "sha256": "48b029b5f9d288023311e13a74358481bf124e987da4b75ba85d96b7e09ae349",
+      "page": 162,
+      "nativeBounds": [
+        1120,
+        550,
+        1150,
+        610
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-word-native.png",
+      "sha256": "bb3e1edea057b62987a92606dfe906fc7b0b35492b719078fd9a678a89848458",
+      "page": 162,
+      "nativeBounds": [
+        1020,
+        495,
+        1150,
+        610
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-8-20-gimel-dagesh-word-4x.png",
+      "sha256": "b5a8628dbdca039966989cf8100317f91bc2999fdc26d7aac69e0ad14ee808c0",
+      "page": 162,
+      "nativeBounds": [
+        1020,
+        495,
+        1150,
+        610
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-gimel-point-comparison-native.png",
+      "sha256": "5ec3a3010bb464f9dd9063c63927b218854019114984d1856eb3cce5a3d6187b",
+      "page": 171,
+      "nativeBounds": [
+        496,
+        1223,
+        525,
+        1277
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-gimel-point-comparison-20x.png",
+      "sha256": "d901b3f27cf1612b4061b01d17fe32bcb4ff6aeabfac58e9a3ebb3edf6862197",
+      "page": 171,
+      "nativeBounds": [
+        496,
+        1223,
+        525,
+        1277
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-gimel-plain-native.png",
+      "sha256": "4ff2fc0d0fac2c03606ec0eac4fc42cfbc76e4aab2f817d7be900b96fc984473",
+      "page": 163,
+      "nativeBounds": [
+        1830,
+        1220,
+        1880,
+        1305
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-gimel-plain-15x.png",
+      "sha256": "9d705425e13b8db0f41e6c96293e6587ea3f8d73b4c6783969ff1befdc988763",
+      "page": 163,
+      "nativeBounds": [
+        1830,
+        1220,
+        1880,
+        1305
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-control-word-native.png",
+      "sha256": "bca7cb42c3171d56ac7ade3e6d8787b01cd697e986101713ab4b804acceccbbc",
+      "page": 171,
+      "nativeBounds": [
+        485,
+        1190,
+        600,
+        1300
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-8-gam-control-word-5x.png",
+      "sha256": "55d4493282a5992799d5aad9cb8ff1604642f18896a06598e79dd3e1111d8cff",
+      "page": 171,
+      "nativeBounds": [
+        485,
+        1190,
+        600,
+        1300
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-native.png",
+      "sha256": "23bcc141c91f34c79d50fa7720d522a328a2118c595b5d1bdb1ba5e436faf2a6",
+      "page": 163,
+      "nativeBounds": [
+        1820,
+        1210,
+        1980,
+        1310
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-word-fixed-5x.png",
+      "sha256": "c73f58d1cda034224be6dd2482cf197c6c164c950262364ae3f856287b22e8b6",
+      "page": 163,
+      "nativeBounds": [
+        1820,
+        1210,
+        1980,
+        1310
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-13-1-pe-dagesh-tight-native.png",
+      "sha256": "1c3187684328382ea8606b6ae9b72fc7d19c6677150c22196453b12fadf531cf",
+      "page": 171,
+      "nativeBounds": [
+        610,
+        390,
+        655,
+        450
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-13-1-pe-dagesh-tight-15x.png",
+      "sha256": "c4f072b2f5202d42db9771e2a62f1ff59acff4a463e3ff780b17b9f4db858bc1",
+      "page": 171,
+      "nativeBounds": [
+        610,
+        390,
+        655,
+        450
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-13-1-pe-1-dagesh-word-native.png",
+      "sha256": "76f8832cb242332f3250388d5b6f317974ef08d44953080ceab667064c6b8d24",
+      "page": 171,
+      "nativeBounds": [
+        610,
+        370,
+        670,
+        480
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-13-1-pe-1-dagesh-word-4x.png",
+      "sha256": "ec4149b457bb01495ea41cabd4b60f1fa90a2914e7ad3393386d6df85e749da3",
+      "page": 171,
+      "nativeBounds": [
+        610,
+        370,
+        670,
+        480
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-samepage-pe-word-native.png",
+      "sha256": "31c77c21a18da938bd1ba1a07a1c626eaafd559f0d33d138c22f2f449a74f34c",
+      "page": 171,
+      "nativeBounds": [
+        665,
+        370,
+        830,
+        465
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-samepage-pe-word-5x.png",
+      "sha256": "9a9d55142994622bbaee7f881f21315a726b090507a570ea91b48ea97f7a4811",
+      "page": 171,
+      "nativeBounds": [
+        665,
+        370,
+        830,
+        465
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-pe-plain-comparison-native.png",
+      "sha256": "1cc1d6683d12b8174786f7eb53d3d0eb6ed32e30e776a69c4d6c1e7994d1889f",
+      "page": 173,
+      "nativeBounds": [
+        1088,
+        800,
+        1128,
+        857
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-pe-plain-comparison-15x.png",
+      "sha256": "1e7cb1d26ca551e16d822c42ada848b955157ba0db305f81b36dced537400174",
+      "page": 173,
+      "nativeBounds": [
+        1088,
+        800,
+        1128,
+        857
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-control-word-native.png",
+      "sha256": "7201891bc9dccefd3751d7560a8e85643f7fbcfe044e2b20977dd0a6ef5a328a",
+      "page": 173,
+      "nativeBounds": [
+        985,
+        765,
+        1200,
+        875
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-lenafshot-control-word-5x.png",
+      "sha256": "7902a64aeea4a91efac9d36a34e52532037c6a14bae92c5ece5f51b6fce22bc9",
+      "page": 173,
+      "nativeBounds": [
+        985,
+        765,
+        1200,
+        875
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-pe-point-comparison-native.png",
+      "sha256": "2c7f1364da4ddc00c429f72b1e662cafc2dc8af3de5ad223e277617be7d676d7",
+      "page": 173,
+      "nativeBounds": [
+        1902,
+        1170,
+        1948,
+        1235
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-pe-point-comparison-15x.png",
+      "sha256": "9d27351a264fa62642c8624e433e87412ca309bf1ecf3db4da21ee20502766f3",
+      "page": 173,
+      "nativeBounds": [
+        1902,
+        1170,
+        1948,
+        1235
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-control-word-native.png",
+      "sha256": "99c0c6f7d5428c2d238b6ed43b5b73031bd1dc93f4b802032427f25708320909",
+      "page": 173,
+      "nativeBounds": [
+        1760,
+        1120,
+        1970,
+        1240
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-15-pitom-control-word-5x.png",
+      "sha256": "74d076c7ae96be1826c30492075c8b7d01e6dad10e8066c7f1cbd2a8be029860",
+      "page": 173,
+      "nativeBounds": [
+        1760,
+        1120,
+        1970,
+        1240
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-14-11-pe-dagesh-tight-native.png",
+      "sha256": "e7c6ea44d20d8c79721d871124e4776be94e3cc435a0a96d30e6e2b55fd8f374",
+      "page": 173,
+      "nativeBounds": [
+        1170,
+        710,
+        1210,
+        755
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-14-11-pe-dagesh-tight-15x.png",
+      "sha256": "bf270cbde98ffbf685721aa014d8ae5e8ccd3513750e494ac76a63db7d1b6b23",
+      "page": 173,
+      "nativeBounds": [
+        1170,
+        710,
+        1210,
+        755
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-14-11-pe-1-dagesh-word-native.png",
+      "sha256": "4ffb572239fc7b499cf31f0e6d324bf7d278ac271730a7720c6c9129531185fe",
+      "page": 173,
+      "nativeBounds": [
+        1110,
+        710,
+        1220,
+        780
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-14-11-pe-1-dagesh-word-4x.png",
+      "sha256": "1f8412cf6ff6a02e804104a29f45261a4a1f5cc0e79b392504c5d13a78d39e7a",
+      "page": 173,
+      "nativeBounds": [
+        1110,
+        710,
+        1220,
+        780
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-mifal-pe-point-comparison-fixed-native.png",
+      "sha256": "724d4f98ddb3f3168adb4132de191bfba5cab1fb4331f73140c70381dc1413c7",
+      "page": 173,
+      "nativeBounds": [
+        268,
+        720,
+        315,
+        775
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis14-11-mifal-pe-point-comparison-fixed-15x.png",
+      "sha256": "6d90004088f15fc0dca1de6a1c84b2c6ee9eb13a5629eca2f4816c5b2ec53497",
+      "page": 173,
+      "nativeBounds": [
+        268,
+        720,
+        315,
+        775
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-dagesh-tight-native.png",
+      "sha256": "27b98ef80a986328b6b65383c65753a293edf73516c5fcae04c77d2bf2be4d2f",
+      "page": 175,
+      "nativeBounds": [
+        1775,
+        1910,
+        1828,
+        1965
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-dagesh-tight-15x.png",
+      "sha256": "a25e101ac7aed40dafd5404caff85b6399da831ae0dc2f0a555c1685dd718551",
+      "page": 175,
+      "nativeBounds": [
+        1775,
+        1910,
+        1828,
+        1965
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-2-dagesh-word-native.png",
+      "sha256": "8fa7ac963f01e1b12148fc303acb070f96480113bd2333759b08b9129e851d55",
+      "page": 175,
+      "nativeBounds": [
+        1750,
+        1910,
+        1855,
+        2010
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-15-8-shin-2-dagesh-word-4x.png",
+      "sha256": "babcd20e9e0de6d6f28400319fbb1031139836b1f64296071fa9397fe65fd5ff",
+      "page": 175,
+      "nativeBounds": [
+        1750,
+        1910,
+        1855,
+        2010
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-native.png",
+      "sha256": "aff6d97004d2058dba20fb8cc34ffe8e7902f8a3de87ead19dc8a5e33fbfb755",
+      "page": 171,
+      "nativeBounds": [
+        1637,
+        572,
+        1692,
+        635
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-shin-detached-point-20x.png",
+      "sha256": "bdfbfddddd5368d68feca2db7fc0efac52c622319b29a360a1580e5a0f12e7b9",
+      "page": 171,
+      "nativeBounds": [
+        1637,
+        572,
+        1692,
+        635
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-native.png",
+      "sha256": "842336193f13017d0cf3c37801270ef839fa72f9253dd570e369c7cdf85831aa",
+      "page": 171,
+      "nativeBounds": [
+        1500,
+        550,
+        1770,
+        670
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis13-2-hashamayim-control-word-5x.png",
+      "sha256": "3dac755aaf2c92bda7216264dc2fa7626cad7db005dd14a57fe643de8d9ff86d",
+      "page": 171,
+      "nativeBounds": [
+        1500,
+        550,
+        1770,
+        670
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-native.png",
+      "sha256": "6533ae9ce8a8ccfc04d6777c02447e66f73fb21583b39c60e06212a65ef3e20f",
+      "page": 163,
+      "nativeBounds": [
+        1870,
+        1235,
+        1928,
+        1305
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis9-16-nassig-shin-point-comparison-15x.png",
+      "sha256": "36becd431f0d7fbe20b3895dde8c4400843c486929177d51779f24cc293c6f67",
+      "page": 163,
+      "nativeBounds": [
+        1870,
+        1235,
+        1928,
+        1305
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-native.png",
+      "sha256": "87d72dc0c7bcd991f117c8642e6010b97d4aaf0d1958aef128ba979e3fb0b9a3",
+      "page": 175,
+      "nativeBounds": [
+        1560,
+        1420,
+        1775,
+        1550
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-charash-control-word-5x.png",
+      "sha256": "9239a7bfe0868c990c0953b8ce1cdce34353614e94c5fb82731a2cd1f89896dd",
+      "page": 175,
+      "nativeBounds": [
+        1560,
+        1420,
+        1775,
+        1550
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-native.png",
+      "sha256": "e4df0c3bbb9d372357e3eaa9e003806a672a3e258d370325cac92885aadeb6cb",
+      "page": 175,
+      "nativeBounds": [
+        1240,
+        1420,
+        1450,
+        1550
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis15-7-lalush-control-word-5x.png",
+      "sha256": "015c77f512319cb2ce13926918102f1c8d8c7ac6e40f288c07198c0e732eebc4",
+      "page": 175,
+      "nativeBounds": [
+        1240,
+        1420,
+        1450,
+        1550
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "role": "same-font source comparator",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-shin-dagesh-tight-native.png",
+      "sha256": "e0f8b0c044863e766f432b7637d9da9daa0e975fc96a3bfaed5511857ed73a8a",
+      "page": 181,
+      "nativeBounds": [
+        1220,
+        825,
+        1275,
+        890
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-shin-dagesh-tight-12x.png",
+      "sha256": "9d2ad94f2477bb3a76c3eb61a98e9788059b677190d5ddf19601400090cdd83b",
+      "page": 181,
+      "nativeBounds": [
+        1220,
+        825,
+        1275,
+        890
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-word2-vav-1-vowel-word-native.png",
+      "sha256": "7c698086232b2a6e4694b541c0828ceb8c74c83931f75bb98411fd656ad17c93",
+      "page": 181,
+      "nativeBounds": [
+        1110,
+        795,
+        1350,
+        920
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-18-1-word2-vav-1-vowel-word-4x.png",
+      "sha256": "5ad304f53fd5d23d90412598a1e1a96dc83f60c8f54aa3cba40ba40818e4a0ab",
+      "page": 181,
+      "nativeBounds": [
+        1110,
+        795,
+        1350,
+        920
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-shin-dagesh-tight-native.png",
+      "sha256": "8a0045115e121fde5e6a035c114edb6ff8384a81bdb24d29c6dd806bae9f091a",
+      "page": 184,
+      "nativeBounds": [
+        860,
+        1040,
+        905,
+        1120
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-shin-dagesh-tight-12x.png",
+      "sha256": "b1c1cc939be8f9a400214ba124659b8bdbaa18e47f36799c8729fb887e6259c1",
+      "page": 184,
+      "nativeBounds": [
+        860,
+        1040,
+        905,
+        1120
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-word6-shin-2-vowel-word-native.png",
+      "sha256": "33670706654aadccbfdaa106af5c7fb209619508cc2a18128839f249e262860f",
+      "page": 184,
+      "nativeBounds": [
+        630,
+        1005,
+        1010,
+        1140
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-WIS-DAGESH/wis-19-6-word6-shin-2-vowel-word-4x.png",
+      "sha256": "16434d9337705a560a5e9e3d97b75919cf95dad93d6ff1a46dd2b3978e50ce84",
+      "page": 184,
+      "nativeBounds": [
+        630,
+        1005,
+        1010,
+        1140
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/context",
+      "originalPDFPixelReplayPassed": true
+    }
+  ],
+  "evidenceFileCount": 74,
+  "freshOriginalPageCount": 12,
+  "detachedShinControl": {
+    "chapter": 13,
+    "verse": 2,
+    "word": "הַשָּׁמַיִם",
+    "page": 171,
+    "nativeBounds": [
+      1637,
+      572,
+      1692,
+      635
+    ],
+    "pointComponentPixelCount": 29,
+    "pointComponentBoundsRelativeToCrop": [
+      27,
+      25,
+      33,
+      31
+    ],
+    "shinBodyComponentPixelCount": 936,
+    "connectivity": 8,
+    "independentDotVerifiedVisually": true
+  },
+  "invariants": {
+    "exactOneCodePointAdditionPerChangedUnit": true,
+    "onlyU05BCAdded": true,
+    "existingCombiningScalarOrderPreserved": true,
+    "lettersBracketsPunctuationSpacingUnchanged": true,
+    "verseEndVerseSourcePagesAndBoundariesUnchanged": true,
+    "restoredLetterNotesByteEquivalent": true,
+    "allRetainedNotesUnchangedExceptListedAnchors": true,
+    "allUnchangedUnitsExactlyEquivalent": true,
+    "allSelectedEvidenceReplayedAgainstOriginalPDF": true,
+    "canonicalStillBaselineAtPublication": true
+  },
+  "priorReport": {
+    "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+    "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+  }
+}

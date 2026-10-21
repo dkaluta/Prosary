@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-21",
+  "pass": 71,
+  "startingNoteCount": 276,
+  "removedNoteCount": 3,
+  "remainingNoteCount": 273,
+  "books": [
+    {
+      "book": "ESG",
+      "beforeNoteCount": 28,
+      "afterNoteCount": 25,
+      "removedNoteIds": [
+        "esg-5-7-1-vowel",
+        "esg-5-7-2-vowel",
+        "esg-5-7-3-dagesh"
+      ],
+      "beforeDigest": "527701e89bb545e19d3c8261d8989434e155840ded228265f37f4a76fde63846",
+      "afterDigest": "93b6bc0e8fa98d886fbf86e0493143b095013886ccffc8f17a6050093f927375",
+      "sourceChanges": [
+        {
+          "book": "ESG",
+          "chapter": 5,
+          "verse": 7,
+          "before": "וַיַּהֲפֹךְ אֱלֹהִים אֶת־לֵב הַמֶּלֶךְ לְטוֹב וַיָּקָם מִכִּסְאוֹ בִּבְהָלָה וַיַחזק אֹתָהּ בִּזְרוֹעוֹתָיו עַד־שׁוּב רוּחָהּ אֵלֶיהָ וַיְדַבֵּר אֵלֶיהָ טוֹבוֹת׃",
+          "after": "וַיַּהֲפֹךְ אֱלֹהִים אֶת־לֵב הַמֶּלֶךְ לְטוֹב וַיָּקָם מִכִּסְאוֹ בִּבְהָלָה וַיַחַזֵּק אֹתָהּ בִּזְרוֹעוֹתָיו עַד־שׁוּב רוּחָהּ אֵלֶיהָ וַיְדַבֵּר אֵלֶיהָ טוֹבוֹת׃"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-point-comparison-20261017-pass71.json",
+          "sha256": "b721a4194a64e5b60380e9492f0eb7d2da2cf3b156f89a3bb49c6d2eea6b04a7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-chrome-acquisition-20261018-pass71.json",
+          "sha256": "b1e8bbb6f49bf0763e5e6478a6a187235728650d2fdca73b0df92f72c5ffa266"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 0,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-point-comparison-20261017-pass71.json",
+      "sha256": "b721a4194a64e5b60380e9492f0eb7d2da2cf3b156f89a3bb49c6d2eea6b04a7"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-chrome-acquisition-20261018-pass71.json",
+      "sha256": "b1e8bbb6f49bf0763e5e6478a6a187235728650d2fdca73b0df92f72c5ffa266"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. All shared, Android and Apple tests passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 273,
+      "removedNotes": 3,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-9db50d92537dec170ea9bbad842996188a43f952ca070fb64bcf17ac02ad68a2.zip",
+      "archiveSHA256": "3b19b7a2701c253ce5efc71f13b1e338febf7e232603d6cebaae3b1236c91b34",
+      "archiveBytes": 3109661
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 377,
+      "remainingNoteCount": 273,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 364,
+      "distinctChangedSourceUnits": 130
+    }
+  }
+}

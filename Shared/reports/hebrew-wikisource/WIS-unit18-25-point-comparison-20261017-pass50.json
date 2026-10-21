@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "2026-10-17",
+  "pass": 50,
+  "book": "WIS",
+  "status": "Four source 18:25 points certified from authorized Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 50 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass50-WIS-18-25/source-provenance.json",
+    "sha256": "76affb784604560530673a4392313ebfd2208251228aaad77ee1e5f4e6587b06"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation until exhaustion.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 183 / קפג (viewer page 528, internal 543). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 344,
+  "sourceNotesBefore": 152,
+  "sourceNotesAfter": 148,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-18-25-word14-ayin-2-vowel",
+    "wis-18-25-word15-bet-2-vowel",
+    "wis-18-25-word16-sin-1-vowel",
+    "wis-18-25-word16-pe-2-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "wis-18-25-word16-sin-1-vowel": "U+05B8",
+    "wis-18-25-word16-pe-2-vowel": "U+05B8"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 18,
+      "verse": 25,
+      "before": "מִפְּנֵי אֵלֶּה נָסוֹג הַמַּשְׁחִית אֲחֹרָנִית וּמִפְּנֵי אֵלֶּה יָרֵא כִּי מַכַּת זַעמְךָ לְבדָּהּ שׂפקָה׃",
+      "after": "מִפְּנֵי אֵלֶּה נָסוֹג הַמַּשְׁחִית אֲחֹרָנִית וּמִפְּנֵי אֵלֶּה יָרֵא כִּי מַכַּת זַעמְךָ לְבדָּהּ שָׂפָקָה׃",
+      "beforeTextSHA256": "32a043b56f42552f8782a314f6451947f8a0d1803fe9b87879f5f08fd93b3f68",
+      "afterTextSHA256": "b476a8c0cf4ee02dcd27e1c83aa8fb411d25afcf500a886f380ec794ad79979c"
+    }
+  ],
+  "scope": {
+    "chapter": 18,
+    "verse": 25,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label כה on page קפג / 183 (viewer page 528, internal page 543) identifies the unit covering verse 25. Canonical verse 25 and sourcePages [183] are preserved.",
+  "decisions": [
+    {
+      "noteId": "wis-18-25-word14-ayin-2-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 25,
+      "anchor": "זַעמְךָ",
+      "letterIndex": 2,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Ayin base tail extends to y=1314; the area below across 13 consecutive rows (y=1315..1327) is pure white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass50-WIS-18-25/wis-18-25-ayin-2-vowel-target-native.png",
+        "sha256": "13c74e835c9f1016c00a42497d387f3d916021951979518795ce9784cb875b69"
+      }
+    },
+    {
+      "noteId": "wis-18-25-word15-bet-2-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 25,
+      "anchor": "לְבדָּהּ",
+      "letterIndex": 2,
+      "decision": "confirmUnpointedConsonantAndRetireSourceNote",
+      "markProposed": "none",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Base bar of Bet terminates at y=1315 with normal stroke weight (9 px). The region below across 17 consecutive rows (y=1316..1332) is completely blank white paper with 0 ink pixels. Confirmed unpointed consonant in Kahana print.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass50-WIS-18-25/wis-18-25-bet-2-vowel-target-native.png",
+        "sha256": "3309b3d29446def8d298925c395243442e118ce0b525fc3fe7d85696a2a05e1f"
+      }
+    },
+    {
+      "noteId": "wis-18-25-word16-sin-1-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 25,
+      "anchor": "שׂפקָה",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Vowel",
+      "finding": "Beneath Sin sits a detached 23x26 px mark consisting of a horizontal top bar (y=1316..1324) and a central descending stem (y=1325..1341, width 11 px). Matches control Qamats under Qof in the same word. Certified printed Qamats (U+05B8).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass50-WIS-18-25/wis-18-25-sin-1-vowel-target-native.png",
+        "sha256": "e72ffe20452d44c75bde548d76bab4375f3093b859016318aa8e88989f062210"
+      }
+    },
+    {
+      "noteId": "wis-18-25-word16-pe-2-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 25,
+      "anchor": "שׂפקָה",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "qamats",
+      "codePoint": "U+05B8",
+      "markClassification": "Vowel",
+      "finding": "Beneath Pe sits a 23x25 px mark consisting of a horizontal bar (width 23 px) and a central descending stem (width 11 px, height 15 px). Matches the Qamats under Sin and Qof in both geometry and ink volume. Pausal lengthening at Sof Pasuq in Biblical Hebrew (שָׂפָקָה׃). Certified printed Qamats (U+05B8).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass50-WIS-18-25/wis-18-25-pe-2-vowel-target-native.png",
+        "sha256": "9b595548c07d1b9e754aedcdbf592cc7352ba273b5cf72448908335fd56d81b4"
+      }
+    }
+  ]
+}

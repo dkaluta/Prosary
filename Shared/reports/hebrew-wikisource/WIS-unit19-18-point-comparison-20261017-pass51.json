@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "2026-10-17",
+  "pass": 51,
+  "book": "WIS",
+  "status": "Four source 19:18 points certified from authorized Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 51 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass51-WIS-19-18/source-provenance.json",
+    "sha256": "9b79ef130df6532cfe7474f2d7272f1255729a4aa161bb3a9d2be5bf072090da"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation until exhaustion.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected on page 185 / קפה (viewer page 530, internal 545). No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 340,
+  "sourceNotesBefore": 148,
+  "sourceNotesAfter": 144,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 4,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-19-18-word13-tsadi-1-vowel",
+    "wis-19-18-word13-lamed-2-vowel",
+    "wis-19-18-word13-lamed-4-vowel",
+    "wis-19-18-word14-kaf-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 4,
+  "addedCombiningMarks": {
+    "wis-19-18-word13-tsadi-1-vowel": "U+05B0",
+    "wis-19-18-word13-lamed-2-vowel": "U+05B4",
+    "wis-19-18-word13-lamed-4-vowel": "U+05B5",
+    "wis-19-18-word14-kaf-1-vowel": "U+05B7"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 19,
+      "verse": 18,
+      "before": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צלילי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "after": "כִּי הַיְסוֹדוֹת אֶת־סִדְרָם הֶחֱלִיפוּ כַּאֲשֶׁר יִשְׁתַּנֶּה קֶצֶב צְלִילֵי הַנֵּבֶל בְּהִשְׁתַּנּוֹת מֵיתָרָיו אַף כִּי־קוֹלָם יִשָּׁאֵר תָּמִיד כָּל־עֻמַּת שֶׁהָיָה וְזֹאת יוּכַל הָאִישׁ לִשְׁפֹּט לְנָכוֹן בִּרְאוֹתוֹ אֶת־הַמַּעֲשִׂים׃",
+      "beforeTextSHA256": "ea76ba956a6135bfe4b470a68917bafdc92c4fd26768a6a01793ab3e4d3a9c9e",
+      "afterTextSHA256": "d1751906bb6e21ed6342078c58e921b94f3c02e1ed8e7ae400e86954dcf82f05"
+    }
+  ],
+  "scope": {
+    "chapter": 19,
+    "verse": 18,
+    "allFourUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label יח on page קפה / 185 (viewer page 530, internal page 545) identifies the unit covering verse 18. Canonical verse 18 and sourcePages [185] are preserved.",
+  "decisions": [
+    {
+      "noteId": "wis-19-18-word13-tsadi-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 18,
+      "anchor": "צלילי",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "sheva",
+      "codePoint": "U+05B0",
+      "markClassification": "Vowel",
+      "finding": "Beneath Tsadi base (rows 54..64) sits a vertically stacked mark consisting of an upper node (rows 66..73, width 6-8 px) and a lower node (rows 76..81, width 8-9 px) connected by a central vertical waist. Matches control Sheva under Lamed in לְנָכוֹן. Certified printed Sheva (U+05B0).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass51-WIS-19-18/wis-19-18-tsadi-1-sheva-target-native.png",
+        "sha256": "0505dacd89e6ef5fa34f731a78641b47a51ce482313dbe76082febbd716de542"
+      }
+    },
+    {
+      "noteId": "wis-19-18-word13-lamed-2-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 18,
+      "anchor": "צלילי",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "hiriq",
+      "codePoint": "U+05B4",
+      "markClassification": "Vowel",
+      "finding": "Beneath first Lamed foot sits a single discrete round stamped dot at rows 67..73 (8x9 px) with 8 consecutive rows of blank white paper below (rows 75..82). Matches control Hiriq under Lamed in לִשְׁפֹּט. Certified printed Hiriq (U+05B4).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass51-WIS-19-18/wis-19-18-lamed-2-hiriq-target-native.png",
+        "sha256": "5e53fb9b218fa3903f331aa32d3dd7999246aec455d4ca19ff76b133d3bbc74f"
+      }
+    },
+    {
+      "noteId": "wis-19-18-word13-lamed-4-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 18,
+      "anchor": "צלילי",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "markProposed": "tsere",
+      "codePoint": "U+05B5",
+      "markClassification": "Vowel",
+      "finding": "Beneath second Lamed foot sits a 18-pixel wide horizontal pair of stamped nodes (rows 67..72) with a distinct central basal notch at row 73 and 9 consecutive blank rows below. Matches control Tsere in construct plural form צְלִילֵי. Certified printed Tsere (U+05B5).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass51-WIS-19-18/wis-19-18-lamed-4-tsere-target-native.png",
+        "sha256": "8f351ff2e0c116eca714a343b7eef15d816a46e423c4a3708c025e999e1f11c2"
+      }
+    },
+    {
+      "noteId": "wis-19-18-word14-kaf-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 18,
+      "anchor": "כּאֲשֶׁר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Beneath base of Kaf sits a detached horizontal bar at rows 67..72 (16 px wide, 6 px high) with 9 consecutive rows of 0-ink blank white paper below (rows 73..81). Preserves central Dagesh in Kaf. Matches control Patah under Kaf in כַּאֲשֶׁר of verse 17. Certified printed Patah (U+05B7).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass51-WIS-19-18/wis-19-18-kaf-1-patah-target-native.png",
+        "sha256": "bbf7fe06273950f260c324bf513af69c7d18e9e78a09cba23df54b6d080a12a8"
+      }
+    }
+  ]
+}

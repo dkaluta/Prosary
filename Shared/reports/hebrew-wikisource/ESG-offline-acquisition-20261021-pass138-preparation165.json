@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 138,
+  "integrationPass": 138,
+  "preparationID": 165,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Existing authorized offline Psik Chrome captures; no browser or network access. Legacy and saved capture page labels retained; printed pagination is not inferred.",
+  "additionalSourceProvenance": [],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Existing saved offline Chrome overview and native4x mid-left capture only. Historical PDF ownword crop was numerical address locator only, never evidence/classifier. Newly extracted PDF224 was explored but its Alef lower ink merges; final reading derives exclusively from this occurrence in higher-resolution saved Chrome native pixels. No PDF crop or raster is used as final evidence, no new source acquisition/network/OCR/viewer/enhancement.",
+  "sourceDocument": "Kahana Volume A",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    224
+  ],
+  "savedCaptureViewerPageLabels": [
+    569
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page224/extension-volumeA-569-page-overview.png",
+      "sha256": "b54d26203488d26f834ef11649aaf3d88dd9df904c2984111ef43028fc4c1441",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeA-page224/extension-volumeA-569-zoom4-mid-left.png",
+      "sha256": "d679c168475ea6de55b6bf8c4cf27eb784528436525c9754b95664c667dc674b",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation165-ESG-7-2/source-provenance.json",
+    "sha256": "74dd733d3424a4ed27b10b28dd8aae7f846374d56278266aaabfc3ebb4747f5d"
+  }
+}

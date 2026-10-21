@@ -1,0 +1,3728 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 4,
+  "books": [
+    "S3Y",
+    "ESG",
+    "SUS"
+  ],
+  "status": "Complete above-letter vowel follow-up; all105 disclosures retained",
+  "sourceScan": {
+    "path": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+    "sha256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5"
+  },
+  "scope": "All105 current additions vowel/shuruq positions, including every lamed ascender and the corrected actual SUS23 occurrence, were freshly inspected above the target letter. This is an additional review angle on the same105 IDs, not new unique positions.",
+  "method": "Original embedded A2 pixels only, bounded upper frames at native resolution and10x nearest-neighbor, read with the main pass4 source-word context. Each upper frame includes50 source pixels above the located head band and the target head/ascender. Visible existing neighboring holam/shin/sin marks were not reassigned to missing target vowels. Previous-row remnants were distinguished in the word/page context. No OCR, inference from grammar, sharpening, smoothing, reconstruction or another translation supplied text.",
+  "notesInspected": 105,
+  "notesInspectedByBook": {
+    "S3Y": 42,
+    "ESG": 44,
+    "SUS": 19
+  },
+  "resolved": 0,
+  "retained": 105,
+  "canonicalChanged": [],
+  "canonicalFileSHA256Before": {
+    "S3Y": "6868b6e7fe7f7be54a75969ab26f3547d951682aed3a2af8a2afa0d968172f51",
+    "ESG": "47d79113d179dc2067929d30f71093f2b515efc463f51496704c3651a24056ac",
+    "SUS": "cd052dc2dd090026c900b6fc3f1c178e09957c7e7e3f67f21cfd2ae7e7dcf64c"
+  },
+  "canonicalFileSHA256After": {
+    "S3Y": "6868b6e7fe7f7be54a75969ab26f3547d951682aed3a2af8a2afa0d968172f51",
+    "ESG": "47d79113d179dc2067929d30f71093f2b515efc463f51496704c3651a24056ac",
+    "SUS": "cd052dc2dd090026c900b6fc3f1c178e09957c7e7e3f67f21cfd2ae7e7dcf64c"
+  },
+  "previousFinishedReport": {
+    "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+    "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd",
+    "unchanged": true
+  },
+  "findings": [
+    {
+      "noteId": "s3y-1-1-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "ויַעַן",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        1925,
+        759,
+        1980,
+        836
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-1-word1-letter1-vowel-upper-native.png",
+          "sha256": "ff2cbd3980069496b98d88b157f5016c085bf50023087363fd79b574f31b3951",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-1-word1-letter1-vowel-upper-10x.png",
+          "sha256": "2fec9f7dd162fcb314389c6703a764e79a5b08df7015cb747a638718ac440687",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-1-word14-letter3-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "הַמְקמִים",
+      "letterIndex": 3,
+      "targetLetter": "ק",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        1002,
+        846,
+        1074,
+        923
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-1-word14-letter3-vowel-upper-native.png",
+          "sha256": "df2dff282c98f4318619c140a202abb5d0af23de4061a3432019b93686dc415d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-1-word14-letter3-vowel-upper-10x.png",
+          "sha256": "8903192dc6508ab4f72665b00db5b928318eb8bcafb6834f46af068096bac4d7",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-1-word15-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "ויְבִיאוּם",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        850,
+        851,
+        905,
+        928
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-1-word15-letter1-vowel-upper-native.png",
+          "sha256": "fc982ecc13227bf73d4bc267fb766694c95ca9b25010b81a7782c0483a4949c4",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-1-word15-letter1-vowel-upper-10x.png",
+          "sha256": "176fa228f2a65db29eabe083189320ee23834a95eed56913c96f21c888cf417d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-1-word17-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "ויַשְׁלִיכוּם",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        2067,
+        947,
+        2121,
+        1024
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-1-word17-letter1-vowel-upper-native.png",
+          "sha256": "fa5bc96316e2a293f0c0b7f71bba823aa277155dffa77b13880575737583c843",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-1-word17-letter1-vowel-upper-10x.png",
+          "sha256": "1c3f892fbb31a904c6fab43e7fcaffa6197ec01fbf7d687598de4c0d260f1c62",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-2-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 2,
+      "blockId": null,
+      "anchor": "ותִּשְׂרֹף",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        1486,
+        941,
+        1539,
+        1018
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-2-word1-letter1-vowel-upper-native.png",
+          "sha256": "0e9f93e4acee1f4f60c4ac675436710868b7a3857d9d26e35a4f3a200400f2d3",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-2-word1-letter1-vowel-upper-10x.png",
+          "sha256": "9e005430e7585b4a00eef3952cf623d720f20a33c99159c504357f248a5a7c57",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-2-word10-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 2,
+      "blockId": null,
+      "anchor": "ותֹּאכְלֵם",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        921,
+        1033,
+        974,
+        1110
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-2-word10-letter1-vowel-upper-native.png",
+          "sha256": "9cad0216951c8082a764f614a2528e9e14019722df69b5c43798a935945b4576",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-2-word10-letter1-vowel-upper-10x.png",
+          "sha256": "b9e99c7323746a24fa44f1085c85c4b6868400dc645fee7f1e89b434f32e3cb3",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-3-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "ויִתְפַּלְלוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        2069,
+        1137,
+        2121,
+        1214
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-3-word1-letter1-vowel-upper-native.png",
+          "sha256": "ea5fa53d0932bdb4151e244a171823ab6da3b7360dce7598dfc54c11bb590e64",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-3-word1-letter1-vowel-upper-10x.png",
+          "sha256": "f8ec1a26ea9a43ad7a740d79e289c56c83bbea7ef0307dfa622a99f4cbf46a17",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-3-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "ויְהַלְלוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        1196,
+        1129,
+        1253,
+        1206
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-3-word5-letter1-vowel-upper-native.png",
+          "sha256": "daa69018914c58dbbf7ebb39f7d3114d4a5e74f155c0065f0a31706b37c2aecf",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-3-word5-letter1-vowel-upper-10x.png",
+          "sha256": "9c004cf06eb9acb9509eda125571ed49297bff37c3d2a0f64474edb416c3caf0",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-4-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "ויָקָם",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        1408,
+        1227,
+        1462,
+        1304
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word1-letter1-vowel-upper-native.png",
+          "sha256": "cd6e130a066aa870421b2aeca49f53fec353e28bda9196fc11fe1c80ef58d874",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word1-letter1-vowel-upper-10x.png",
+          "sha256": "62b5aefc4f070e56918b155eb4814edcd1a2824ba47d3fe7f209ef1d6b5410d0",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-4-word3-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "ויִתְפַּלֵּל",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        1083,
+        1223,
+        1136,
+        1300
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word3-letter1-vowel-upper-native.png",
+          "sha256": "a0b16d0539f8d6f9be29611472782dff07d96ec0e59e414cc9b043427f8fb980",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word3-letter1-vowel-upper-10x.png",
+          "sha256": "8268357a2861d370badd0ae81335641d9ab6bac94a499d62c927cf50e769d216",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-4-word4-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "ויִפְתַּח",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        867,
+        1221,
+        920,
+        1298
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word4-letter1-vowel-upper-native.png",
+          "sha256": "4af3433c01e20e8999f3c24dfdbb41ffa52c6d77c0ca72bd5789ec81c6bcf8fe",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word4-letter1-vowel-upper-10x.png",
+          "sha256": "b7615a59ef3884bd337b118b8938ee6635cd7414f2e04ecaac12cf52d3897890",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-4-word6-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "ויוֹדֶה",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        475,
+        1226,
+        527,
+        1303
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word6-letter1-vowel-upper-native.png",
+          "sha256": "a46ff1b74c1909dba0609bd2c99946371e07682b07f00acf8cbdadff86160bee",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word6-letter1-vowel-upper-10x.png",
+          "sha256": "f51477a0d5188ac0cbb13b8bde8c6bb25fdbb2f29c4938a93fe2038b31408605",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-4-word15-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "ויֹאמְרוּ׃",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        2070,
+        1420,
+        2123,
+        1497
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word15-letter1-vowel-upper-native.png",
+          "sha256": "8c7bfea6ff1027897325857eeb3c95758f7c75c5a3e87bad5b11e49c1e12f1cb",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-4-word15-letter1-vowel-upper-10x.png",
+          "sha256": "64c8beb906c81d9e622ffd8534209e7635cdf5db3091305804ebe4ff2a01c742",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-11-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "anchor": "ותִּתֵּן",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 233,
+      "sourceImageSHA256": "744bbbd9073165f347061297bf89e5a779b4c506aea1edf6864105b94b5f0e18",
+      "upperPixelBox": [
+        1482,
+        2071,
+        1535,
+        2148
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-11-word1-letter1-vowel-upper-native.png",
+          "sha256": "ca4c7cab8329c71acde395688fc6dc7e11ce043e1ba2691be65420a4cb02d6fd",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-11-word1-letter1-vowel-upper-10x.png",
+          "sha256": "b02c84f07cd5c0da193d66bbc8b028f56d1459055a59b0881ffeacbc7cec6240",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-16-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 16,
+      "blockId": null,
+      "anchor": "ונְּהִי",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        680,
+        422,
+        732,
+        499
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-16-word5-letter1-vowel-upper-native.png",
+          "sha256": "473f00ff68e36f6f54dd6ce130cea8a8f2e6fd516658f8731cfd3f76babd9b38",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-16-word5-letter1-vowel-upper-10x.png",
+          "sha256": "1c1a524208880b9c181347d1261085cce9e14de2607557d27dd00a3bc326795a",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-19-word5-letter2-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "blockId": null,
+      "anchor": "וְרבְבוֹת",
+      "letterIndex": 2,
+      "targetLetter": "ר",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        1099,
+        800,
+        1169,
+        877
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-19-word5-letter2-vowel-upper-native.png",
+          "sha256": "06e6390b1a88019f7da483b4bcb6715d446ef7796be14cd917cb054525209430",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-19-word5-letter2-vowel-upper-10x.png",
+          "sha256": "6a37a651364fe5afe9211efa2723ee55831e5a3c8ece2f62a1cc6a7be41ae4e1",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-19-word10-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "blockId": null,
+      "anchor": "קרְבָּנֵנוּ",
+      "letterIndex": 1,
+      "targetLetter": "ק",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        1971,
+        883,
+        2041,
+        960
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-19-word10-letter1-vowel-upper-native.png",
+          "sha256": "26539a48e8305f3ec2e4a237a189d0148c6ad49ed0a455ce08d7c58def34a330",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-19-word10-letter1-vowel-upper-10x.png",
+          "sha256": "4c5ea20f360732d0b0c67ac2388c488bb2648cd1df136475a6397d996f2fbdc9",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-22-word7-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "anchor": "ויִסּוֹגוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        688,
+        1176,
+        741,
+        1253
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-22-word7-letter1-vowel-upper-native.png",
+          "sha256": "7ba2246ad2e3bbdee4ac726535ddeefc48897cbedb1ceb5d3c7b251e756dd97f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-22-word7-letter1-vowel-upper-10x.png",
+          "sha256": "a4aaded2c2f8b73c1159d4b131030d290a6579946d842cd4e7263ea1a4f5d54f",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-25-word10-letter2-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "blockId": null,
+      "anchor": "וכאשֶׁר",
+      "letterIndex": 2,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        386,
+        1454,
+        455,
+        1531
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word10-letter2-vowel-upper-native.png",
+          "sha256": "aaa0d43ac000f6ea4aadef91d34249d489e7ce30f482140ebbff53511b78a712",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word10-letter2-vowel-upper-10x.png",
+          "sha256": "eaad2bb9bf8d0077a6472f61b698c7951c0b8f180f1900e27606d126b3c2f29c",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-25-word10-letter3-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "blockId": null,
+      "anchor": "וכאשֶׁר",
+      "letterIndex": 3,
+      "targetLetter": "א",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        351,
+        1454,
+        421,
+        1531
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word10-letter3-vowel-upper-native.png",
+          "sha256": "6bca47bb049847389ddbabff5861e7239c5a7a56f2375ce76a0756e7ce24b957",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word10-letter3-vowel-upper-10x.png",
+          "sha256": "17004d0199998e5cdce689e7f7893b43f166de8a52a72df7b8387c5a1bbbe8b5",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-25-word28-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "blockId": null,
+      "anchor": "נפְט",
+      "letterIndex": 1,
+      "targetLetter": "נ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        1492,
+        1766,
+        1550,
+        1843
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word28-letter1-vowel-upper-native.png",
+          "sha256": "8588cd7c5e4fa90bbc284a9f9d73279f1dcffc1ebfea951b30ab7604b6514b89",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word28-letter1-vowel-upper-10x.png",
+          "sha256": "4459703c4af59f085ca294c18800567c715fe845f7aacfbdc121bc955e266c56",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-25-word21-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "blockId": null,
+      "anchor": "ויִהְיוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        1303,
+        1648,
+        1355,
+        1725
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word21-letter1-vowel-upper-native.png",
+          "sha256": "4386f7f9d5f2b25ae29fbf1d9500fc4483ce6a3f850fc0d622aeff3d84361eeb",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word21-letter1-vowel-upper-10x.png",
+          "sha256": "bfcf4af64075438a8dee10ab96bf9150ac9078dac2b3f91c25221a5f35d3c5c2",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-25-word25-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 25,
+      "blockId": null,
+      "anchor": "[ואֲחֵרִים]",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        443,
+        1643,
+        498,
+        1720
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word25-letter1-vowel-upper-native.png",
+          "sha256": "b9ccefc0cdfa0b682de15c9c596361347ca74edfa7de4bf4d742a2a77ff45d22",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-25-word25-letter1-vowel-upper-10x.png",
+          "sha256": "64a0fe7ff2b213c30cb6dc189fae023292b91654ca2aa0237de922d290d6f72d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-26-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 26,
+      "blockId": null,
+      "anchor": "ויַעַל",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        715,
+        1735,
+        769,
+        1812
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-26-word1-letter1-vowel-upper-native.png",
+          "sha256": "e086eaf276cda46ae1566bebb9ae00b7f5935a832c99025b52b20fb15d709321",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-26-word1-letter1-vowel-upper-10x.png",
+          "sha256": "7ff64f64fcc060083ab2315b5d92d4c85e561ba536e8f306c04bca742496742a",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-27-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "anchor": "ויֵצֵא",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        1019,
+        1836,
+        1072,
+        1913
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-27-word1-letter1-vowel-upper-native.png",
+          "sha256": "976b642db23575b80c0717d97666a05882bf185a4c28ad8cdad80066a5691253",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-27-word1-letter1-vowel-upper-10x.png",
+          "sha256": "7ec6c02a3269adedc7d8744eacef2940f656c68ffb1324636e020a4b6460e0c2",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-27-word2-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "anchor": "ויִשְׂרֹף",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        853,
+        1833,
+        906,
+        1910
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-27-word2-letter1-vowel-upper-native.png",
+          "sha256": "8b318daf726938d07fc288308272729b010aa077e50322703aa25be704e0fb35",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-27-word2-letter1-vowel-upper-10x.png",
+          "sha256": "a4abc217cd2c530b99cc07f161ccd8cb5f9b81e45fd546eccaf84b9ca29f5c67",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-28-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "blockId": null,
+      "anchor": "וחֲבֵרָיו",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        548,
+        1930,
+        601,
+        2007
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-28-word5-letter1-vowel-upper-native.png",
+          "sha256": "64703f3ee94e84c67a82d23a8e140f980f684d05da9bb2d5712e87a96ea1aaa0",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-28-word5-letter1-vowel-upper-10x.png",
+          "sha256": "6f5a5eafb9e845485dbbf53ece0d85b96c4770110d732e3957805a009c01e56b",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-28-word7-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 28,
+      "blockId": null,
+      "anchor": "ויֶהֱדֹף",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        1755,
+        2025,
+        1807,
+        2102
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-28-word7-letter1-vowel-upper-native.png",
+          "sha256": "3f3e7f4dfbe662fa408c0cbacb63643471d5b08ea5909bd78bf9dd5be15e59f0",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-28-word7-letter1-vowel-upper-10x.png",
+          "sha256": "8fcd74c0951340dbda1d48545b4e286e2437230ff41510b1d7dd70905796eecf",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-29-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 29,
+      "blockId": null,
+      "anchor": "ויַעַשׂ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 234,
+      "sourceImageSHA256": "dc4aa282a926dfcf87350abc43b98dde08caa3de60226cc4dd255678d9d9534d",
+      "upperPixelBox": [
+        1090,
+        2023,
+        1143,
+        2100
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-29-word1-letter1-vowel-upper-native.png",
+          "sha256": "a84a81781319e9af9779a7970b07a9851916318754692d87c5d5a53048371f01",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-29-word1-letter1-vowel-upper-10x.png",
+          "sha256": "30da62a51907442a2cc9120ef0cbff09d82d6332927c976c18f4e116c803aae7",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-30-vayaanu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "blockId": null,
+      "anchor": "ויַעֲנוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 235,
+      "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+      "upperPixelBox": [
+        1685,
+        366,
+        1737,
+        443
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-30-vayaanu-vav-vowel-upper-native.png",
+          "sha256": "911aa06a57b58b3162915771cedc3401f6c8f8877ef0326140da2e6bc4ad90b6",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-30-vayaanu-vav-vowel-upper-10x.png",
+          "sha256": "f089a002415a0a0a1bcda5afa659468eb6d58b26e2ef6ac62f09bc55caccdf80",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-30-vayhalelu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "blockId": null,
+      "anchor": "ויְהַלְלוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 235,
+      "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+      "upperPixelBox": [
+        1064,
+        360,
+        1115,
+        437
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-30-vayhalelu-vav-vowel-upper-native.png",
+          "sha256": "26eb8283a29c37412a6125de226cdbe14c888713256e7cd9c665b26c741c1bb2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-30-vayhalelu-vav-vowel-upper-10x.png",
+          "sha256": "8b4c15f6b4078dd6eb1f7d67b1acb1c113a22e9dfb0644f335d9cd64e73e2bb8",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-30-vayshabehu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "blockId": null,
+      "anchor": "ויְשַׁבְּחוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 235,
+      "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+      "upperPixelBox": [
+        859,
+        365,
+        911,
+        442
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-30-vayshabehu-vav-vowel-upper-native.png",
+          "sha256": "cf4779052a47c13bc7c092baac989e6d5a95b68f610b8dfc97ea767db144b711",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-30-vayshabehu-vav-vowel-upper-10x.png",
+          "sha256": "064016b17dcca0ea8b880329c3867f37f3daa5a2601199ecc03903bd00c15c47",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-30-vayromemu-vav-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 30,
+      "blockId": null,
+      "anchor": "ויְרוֹמְמוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 235,
+      "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+      "upperPixelBox": [
+        646,
+        370,
+        697,
+        447
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-30-vayromemu-vav-vowel-upper-native.png",
+          "sha256": "aae46fd5b5684ef3e7ece4b85c8701c3b84ac7ebe8c2cd39be9df6bab3fb74b2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-30-vayromemu-vav-vowel-upper-10x.png",
+          "sha256": "38b14f653929d1d0583ef07ba11a144d2769062d6c1dc8e380b1b59256a35fb8",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-35-rakiya-resh-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 35,
+      "blockId": null,
+      "anchor": "בִּרקִיעַ",
+      "letterIndex": 2,
+      "targetLetter": "ר",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 235,
+      "sourceImageSHA256": "cf0db3667aa9fbd6cdb66fd225bcecdacb2d8f629b75f8d52f028255fa948bbf",
+      "upperPixelBox": [
+        1698,
+        1024,
+        1767,
+        1101
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-35-rakiya-resh-vowel-upper-native.png",
+          "sha256": "6fdf5c002437f7a5096360b354a638c14c72e7f0e0f5f2efda09626cda8273ff",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-35-rakiya-resh-vowel-upper-10x.png",
+          "sha256": "df6b93c0b00cb291350a0bf6a2fe5fa533808fc597c82e92b37fd50427cd8d06",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-52-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 52,
+      "blockId": null,
+      "anchor": "ועֲנָנִים",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 236,
+      "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+      "upperPixelBox": [
+        1425,
+        692,
+        1478,
+        769
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-52-word1-letter1-vowel-upper-native.png",
+          "sha256": "c3d8f7ff6dd75de7a642e09bf4d482530590e25cb4e400e0e3b857e2b1eb7620",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-52-word1-letter1-vowel-upper-10x.png",
+          "sha256": "cc084e4a896a5793d5250f10f6665f52a39f54502a2a1c9d3312b4a97de62236",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-60-word2-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 60,
+      "blockId": null,
+      "anchor": "וחַיַת",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 236,
+      "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+      "upperPixelBox": [
+        1408,
+        1445,
+        1461,
+        1522
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-60-word2-letter1-vowel-upper-native.png",
+          "sha256": "63178337016b27ee767fdd9c89a229088f92b5bc97debb86363c240fd82cf27a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-60-word2-letter1-vowel-upper-10x.png",
+          "sha256": "9e2dcf9e17db0bbd6c2e1d5f136e09fdabf010a28ac93e4413795d9c021c350d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-tail-word4-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchor": "ויְהִי",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 236,
+      "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+      "upperPixelBox": [
+        1793,
+        2568,
+        1846,
+        2645
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word4-letter1-vowel-upper-native.png",
+          "sha256": "0995f209c773e4048eaf47ccf41826dd633973660d6fde8ce150958ce05d9796",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word4-letter1-vowel-upper-10x.png",
+          "sha256": "818846627ab5e4898c58df3c3c85e7f688f4dceb1f39e50a916477e2959f9f08",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-tail-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchor": "ויָקָם",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 236,
+      "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+      "upperPixelBox": [
+        833,
+        2572,
+        886,
+        2649
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word5-letter1-vowel-upper-native.png",
+          "sha256": "3d17d42fb9aa4765857503405225f39fc9e09148daee87cd105dab4cb8a52cf2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word5-letter1-vowel-upper-10x.png",
+          "sha256": "05d29fcdf54e436208ff4418a71e16905c5de7eb245e521d4c0b9b84ab97af38",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-tail-word6-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchor": "ויַרְא",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 236,
+      "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+      "upperPixelBox": [
+        691,
+        2569,
+        744,
+        2646
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word6-letter1-vowel-upper-native.png",
+          "sha256": "04bb8fd77511fa52cf8ea9c176ba1eafa17746cef602b9e49fac86463ade04e9",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word6-letter1-vowel-upper-10x.png",
+          "sha256": "319c1b1b3583a1f163c425c20d15feca440f3fc698236b409915d8f8ae1a9ba1",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-tail-word7-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchor": "ויִתְמַהּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 236,
+      "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+      "upperPixelBox": [
+        1827,
+        2660,
+        1879,
+        2737
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word7-letter1-vowel-upper-native.png",
+          "sha256": "5ed02a768194e26a335c7d824158227c8ea8a51f3eba7a28aed01f4466daa432",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word7-letter1-vowel-upper-10x.png",
+          "sha256": "60b74575b2fbd2f9c143c3accbe3123cd33eb70754dfbba87776e8ea3c552199",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-tail-word8-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchor": "ויְמַהֵר",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 236,
+      "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+      "upperPixelBox": [
+        1164,
+        2665,
+        1217,
+        2742
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word8-letter1-vowel-upper-native.png",
+          "sha256": "47ee279cfb80471de836e0518830db2079d67cbb7bf772f3de0ada766d784042",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word8-letter1-vowel-upper-10x.png",
+          "sha256": "c1c51a05896eb3474afae1fe0a65f793c49036b8ee3ecf6d3715ec5b7fb22fa6",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "s3y-1-tail-word9-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": null,
+      "blockId": "s3y-closing-narrative",
+      "anchor": "ויֹאמֶר",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 236,
+      "sourceImageSHA256": "fb8add17cdba888ce13bc7f8212ae35f1264b96a97c9016e5a95b20a85b7b8d5",
+      "upperPixelBox": [
+        818,
+        2666,
+        869,
+        2743
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word9-letter1-vowel-upper-native.png",
+          "sha256": "8f68775c73a5b61a9945e22ebb1b1d9c0eb76d6124b191bf9fc72407836c6e8b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/s3y-1-tail-word9-letter1-vowel-upper-10x.png",
+          "sha256": "7f5911f1183d44ea976abab0657ed16f2a0458b2ae210d142e73a8e4bb9a3928",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-1-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 215,
+      "sourceImageSHA256": "1f5b863954bf59288d98f980dc2e0d6e8f4f07c36e9507d4f12aacdf840d0f36",
+      "upperPixelBox": [
+        1655,
+        627,
+        1724,
+        704
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-1-1-vowel-upper-native.png",
+          "sha256": "bd1ffea5d871879052c55dcc83370d2d0ac6fa78edd8f6d94bafcab26179f3b4",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-1-1-vowel-upper-10x.png",
+          "sha256": "9afc84fe9c898efce23fe82dc109a76488cdfdc15ef98e04c1705ffa69c135ca",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-1-2-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "למְלֹךְ",
+      "letterIndex": 1,
+      "targetLetter": "ל",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 215,
+      "sourceImageSHA256": "1f5b863954bf59288d98f980dc2e0d6e8f4f07c36e9507d4f12aacdf840d0f36",
+      "upperPixelBox": [
+        1508,
+        529,
+        1578,
+        606
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-1-2-vowel-upper-native.png",
+          "sha256": "3ce8416894ff5537df5256532e3dc6523d545f3439b20cc547481ee249168b4f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-1-2-vowel-upper-10x.png",
+          "sha256": "2ccd560890adce07f64ca6f2708fc7985b248bcca9cf5ac7557903be6f8f5580",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-11-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 216,
+      "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+      "upperPixelBox": [
+        314,
+        436,
+        385,
+        513
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-11-1-vowel-upper-native.png",
+          "sha256": "ad7ebdeaab91602a32d75a7c3b6404758513a2de896eec1ac79393b1dcdf019a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-11-1-vowel-upper-10x.png",
+          "sha256": "65250a6d57ca383e23e36219027cce96aa65674437ad3bbaa33094cf57aace3e",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-12-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 12,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 216,
+      "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+      "upperPixelBox": [
+        1856,
+        704,
+        1922,
+        781
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-12-1-vowel-upper-native.png",
+          "sha256": "2663693c03463e42a1f85471da721edb731bd12ebd5d304c337e20ba14c91393",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-12-1-vowel-upper-10x.png",
+          "sha256": "79e6188c3aded460833369a4f59184c75fb8300538b480846d82bebc96c24429",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-13-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 13,
+      "blockId": null,
+      "anchor": "למְזִמּוֹתֵיהֶם",
+      "letterIndex": 1,
+      "targetLetter": "ל",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 216,
+      "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+      "upperPixelBox": [
+        791,
+        815,
+        861,
+        892
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-13-1-vowel-upper-native.png",
+          "sha256": "fe0c602128d10cc2f3461ef57314afe151053fff7a9b92c3a27b28b98007a06b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-13-1-vowel-upper-10x.png",
+          "sha256": "3047b099e7fe73307cffdf0b2eede8ff7f6661c03f55ffff85794f992dc51c2d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-14-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "anchor": "ויוֹדוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 216,
+      "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+      "upperPixelBox": [
+        1145,
+        998,
+        1198,
+        1075
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-14-1-vowel-upper-native.png",
+          "sha256": "4d63402bf22051369a7e271bc4681e13e4b3176c715e49b8f02a575e9c1cceff",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-14-1-vowel-upper-10x.png",
+          "sha256": "43248e56e36a0c5cfc632ac3e329c5a6a9e127461b1e807f6ca50ad879b06f89",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-14-2-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "anchor": "ויוּבְלוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 216,
+      "sourceImageSHA256": "29910f22178ef7c6aade837cec9e2f5a9a738bd982741f956fee37700dac5518",
+      "upperPixelBox": [
+        667,
+        1001,
+        720,
+        1078
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-14-2-vowel-upper-native.png",
+          "sha256": "046c2badaf2f713799a5a2eba316f9f259f6ff976305f4187d4a78a37ea24322",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-14-2-vowel-upper-10x.png",
+          "sha256": "3b9c7bb492592de8597bb7ad465b1b4a116674974d553cc9865bb31a78cc47ee",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-15-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 15,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        776,
+        276,
+        844,
+        353
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-15-1-vowel-upper-native.png",
+          "sha256": "b8fa6f0e155792bf0f858d4daba58cf25332f29dbb303cf32f4f3a62bdfe16a0",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-15-1-vowel-upper-10x.png",
+          "sha256": "e95f78786bc203d5a970b019bcbc8661833d7f59b6124214628be93003ec5403",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-16-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 16,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        1009,
+        368,
+        1078,
+        445
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-16-1-vowel-upper-native.png",
+          "sha256": "df1f48b8712a0ca1b2793d7c893abbc92c3c712f77a9884abdedea37b9567c81",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-16-1-vowel-upper-10x.png",
+          "sha256": "0908242e3a8015aaaadd8bd2d819cb1a6b027cdb8bd1509164d96116e7d1db30",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-1-17-1-vowel",
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        1550,
+        565,
+        1620,
+        642
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-17-1-vowel-upper-native.png",
+          "sha256": "f5559d5eda563b476b37a96d81e59f4105ae3849a878cbddaefe89469ed2a8a1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-1-17-1-vowel-upper-10x.png",
+          "sha256": "40eb1eaa1b1052a8378b1fdf9ab86fe1e986c6fdbbaaf989b05900164d89d02e",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-2-3-1-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "לשְׁמֹר",
+      "letterIndex": 1,
+      "targetLetter": "ל",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        492,
+        1108,
+        562,
+        1185
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-1-vowel-upper-native.png",
+          "sha256": "e373dea7c84f680edf6b0bc672d70db81a7c4e985e329f9e1f3c1eaa10ba9beb",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-1-vowel-upper-10x.png",
+          "sha256": "1116e8522b9ef02a27316437b40dfe81bef5878850e82cc18a81f0eb708b7c59",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-2-3-2-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "בְּכלכלת",
+      "letterIndex": 2,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        2033,
+        1204,
+        2102,
+        1281
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-2-vowel-upper-native.png",
+          "sha256": "4cb4708582a4999de657bd872983ba0d5f62a9543c578b6255339f45141cae83",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-2-vowel-upper-10x.png",
+          "sha256": "eebef32e2ad47a9b4fc2dec75af423622959851fc92a6c89524fdfb3453abd28",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-2-3-3-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "בְּכלכלת",
+      "letterIndex": 3,
+      "targetLetter": "ל",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        1997,
+        1204,
+        2066,
+        1281
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-3-vowel-upper-native.png",
+          "sha256": "9505fb951903512e5c4190a5876d55ba34bcf391f41bcb00af542abc06c69625",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-3-vowel-upper-10x.png",
+          "sha256": "511210544cc1d8693f8d07749b4d0f9aa2c92cdbc240d1ea865efdc197db1201",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-2-3-4-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "בְּכלכלת",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        1969,
+        1204,
+        2032,
+        1281
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-4-vowel-upper-native.png",
+          "sha256": "a31b1236be28a7389b7e0487eef75273c1e324a148676fec1bbc337b72fa677b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-4-vowel-upper-10x.png",
+          "sha256": "5d18694b597ad57e8239c6605d15f660835ec545e7de09d55eea59a8c14fd40a",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-2-3-5-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "בְּכלכלת",
+      "letterIndex": 5,
+      "targetLetter": "ל",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        1932,
+        1204,
+        2003,
+        1281
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-5-vowel-upper-native.png",
+          "sha256": "6153d5a5aebe6dbf4060a60ddb9169a0100f5fce75fe9ce310e9afc62e3e45e5",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-5-vowel-upper-10x.png",
+          "sha256": "21bfbdec2b550f8b07f8cd81f8410fadc962c04e291d13adfb091b8541d8aa22",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-2-3-6-vowel",
+      "book": "ESG",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "לַעָבר",
+      "letterIndex": 3,
+      "targetLetter": "ב",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 217,
+      "sourceImageSHA256": "23bc144ffd6f31ab7c73966b940d965e57c8022b849ee2c894a5a11c61e97b38",
+      "upperPixelBox": [
+        1825,
+        1299,
+        1895,
+        1376
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-6-vowel-upper-native.png",
+          "sha256": "5366de292f7580d28523b765a08e3e4e1cc0ccd41ec832c2bee5859f0905ab58",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-2-3-6-vowel-upper-10x.png",
+          "sha256": "b364f227658f64eb25e8ce35fbee635fb45346005acf29b9249f09f5439dfa6d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-3-1-1-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 218,
+      "sourceImageSHA256": "d50c765356f4479ff87f27ce7c4901a11acfa164cb65ec99fe1e82fa41db6371",
+      "upperPixelBox": [
+        1461,
+        1513,
+        1530,
+        1590
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-3-1-1-vowel-upper-native.png",
+          "sha256": "d62069dfdafc5262a5fe214016c84505da3b0c10754c6842b20f76bb4657e663",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-3-1-1-vowel-upper-10x.png",
+          "sha256": "98420d38abfb2a89b65885cb3a50bfba3dc51fb67951309c2e5f639f69515e6f",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-3-10-1-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "blockId": null,
+      "anchor": "ב[עַם]",
+      "letterIndex": 1,
+      "targetLetter": "ב",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 219,
+      "sourceImageSHA256": "68b7bf927c88005bcb0785c33df93b0a0d320ecd2ed8b11bece564d9dd93261e",
+      "upperPixelBox": [
+        1666,
+        769,
+        1738,
+        846
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-3-10-1-vowel-upper-native.png",
+          "sha256": "4ab8e81642f10cd7203e772515a6129e09a0db7d468a3993ccfd9a4339ee1d34",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-3-10-1-vowel-upper-10x.png",
+          "sha256": "ac199d119b24d5ee3286536661fe918ea853af7a6d1fc175b65c33bf00d525e4",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-3-10-2-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "blockId": null,
+      "anchor": "מְשׁבְּחֶךָ",
+      "letterIndex": 2,
+      "targetLetter": "ש",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 219,
+      "sourceImageSHA256": "68b7bf927c88005bcb0785c33df93b0a0d320ecd2ed8b11bece564d9dd93261e",
+      "upperPixelBox": [
+        1022,
+        829,
+        1100,
+        906
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-3-10-2-vowel-upper-native.png",
+          "sha256": "3061140688b2e1b2bcdcfcafc6d65f7c42c77340794c5f17ca9e464171ac6493",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-3-10-2-vowel-upper-10x.png",
+          "sha256": "6a3b74bd585ad764262b1b9d9f54a4d44ec22be566e50458d4e88eba0e3b80c0",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-4-17-2-vowel",
+      "book": "ESG",
+      "chapter": 4,
+      "verse": 17,
+      "blockId": null,
+      "anchor": "תָעב",
+      "letterIndex": 2,
+      "targetLetter": "ע",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 220,
+      "sourceImageSHA256": "fb5c541a0166e973bc6f7748cce8bc56d76ae41e71cc5e90d094a3a4621f3ede",
+      "upperPixelBox": [
+        1202,
+        1441,
+        1271,
+        1518
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-4-17-2-vowel-upper-native.png",
+          "sha256": "593ca9fe4bc90895647fbf28657a708cecc8c323cff85073b187966e26b0ee45",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-4-17-2-vowel-upper-10x.png",
+          "sha256": "cb6eee61f7a1d584fe39a4172eee5bd37e3a78ea2a8bef1065fe6acc90c2469d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-5-3-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "כמשׁענּה",
+      "letterIndex": 1,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 221,
+      "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+      "upperPixelBox": [
+        1779,
+        572,
+        1848,
+        649
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-1-vowel-upper-native.png",
+          "sha256": "ade32bd36194368b669ee0270777057ba52187ad8a3d53337ed6a2f1e5091fc1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-1-vowel-upper-10x.png",
+          "sha256": "21533ca1fb11a8755bf2d7b9047459ee413f7822f0059ec96c084e2de2bbff15",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-5-3-2-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "כמשׁענּה",
+      "letterIndex": 2,
+      "targetLetter": "מ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 221,
+      "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+      "upperPixelBox": [
+        1741,
+        572,
+        1812,
+        649
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-2-vowel-upper-native.png",
+          "sha256": "7defb3bae720d352ea686cb3fd24a15c61912e62ef304ad8999d30223b659c93",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-2-vowel-upper-10x.png",
+          "sha256": "e5f14045dbd0840df66f3f51bdb9e9549f09fe0d23e2823c92e5bc58008baf4a",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-5-3-3-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "כמשׁענּה",
+      "letterIndex": 3,
+      "targetLetter": "ש",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 221,
+      "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+      "upperPixelBox": [
+        1705,
+        572,
+        1775,
+        649
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-3-vowel-upper-native.png",
+          "sha256": "a9625d6274c95842f1dc842cc8e62443a8a2101883470c5e16caa7c7a3c310c5",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-3-vowel-upper-10x.png",
+          "sha256": "3170471776f293bc626d7a65075d1cfcf2c330531da09ca7ad03b5bf81df442d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-5-3-4-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "כמשׁענּה",
+      "letterIndex": 4,
+      "targetLetter": "ע",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 221,
+      "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+      "upperPixelBox": [
+        1685,
+        572,
+        1740,
+        649
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-4-vowel-upper-native.png",
+          "sha256": "cc2d3f127236c676723858d4dc5ae8122258ceccec267e691e884800f17cc482",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-4-vowel-upper-10x.png",
+          "sha256": "b7a34eba7e93b2f15295c15170bf9285a12b8bf54765ab5a0913698bcf30d806",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-5-3-5-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "כמשׁענּה",
+      "letterIndex": 5,
+      "targetLetter": "נ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 221,
+      "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+      "upperPixelBox": [
+        1662,
+        572,
+        1718,
+        649
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-5-vowel-upper-native.png",
+          "sha256": "90885fd9e46a28a274f0febb4104fb9a162280a665fa4a7e9f0bb42b35f6242f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-3-5-vowel-upper-10x.png",
+          "sha256": "2243183d557871b3adcfee41718d606383a212ab6456d9be540e74a93565850b",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-5-4-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "מזְהִירָה",
+      "letterIndex": 1,
+      "targetLetter": "מ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 221,
+      "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+      "upperPixelBox": [
+        1835,
+        668,
+        1906,
+        745
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-4-1-vowel-upper-native.png",
+          "sha256": "3a46d126c080dc2e55339e8c9164a53838a0a1a586d435b773b690992da68a5b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-4-1-vowel-upper-10x.png",
+          "sha256": "7334300a1f02605bb7389242af665ab6d5df85f4f12d4728fd0f2192e624db04",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-5-7-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "blockId": null,
+      "anchor": "וַיַחזק",
+      "letterIndex": 3,
+      "targetLetter": "ח",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 221,
+      "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+      "upperPixelBox": [
+        932,
+        1230,
+        1002,
+        1307
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-7-1-vowel-upper-native.png",
+          "sha256": "782cc27480512f2a37bfe59eaf2aa1e370977fa13be8127f930cba816153f46e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-7-1-vowel-upper-10x.png",
+          "sha256": "3d52de6b0561da2448d29a99ddddbaac966572abc119b37a867c0d65ab7e7b1a",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-5-7-2-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 7,
+      "blockId": null,
+      "anchor": "וַיַחזק",
+      "letterIndex": 4,
+      "targetLetter": "ז",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 221,
+      "sourceImageSHA256": "70794f37350b9590f9750141189dd649c91ec52a2aaa426c3584f1b878b25cd2",
+      "upperPixelBox": [
+        913,
+        1230,
+        964,
+        1307
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-7-2-vowel-upper-native.png",
+          "sha256": "eeb166226a55f28d65d464e995a4dd91fccebd3f2e6a2c407622da24d4c57231",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-5-7-2-vowel-upper-10x.png",
+          "sha256": "9b7408ad7de3b07b9a7550fcd5320f3065fc446f83da3a10fa8f920fc1fec427",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-6-5-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 5,
+      "blockId": null,
+      "anchor": "להְיוֹת",
+      "letterIndex": 1,
+      "targetLetter": "ל",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 222,
+      "sourceImageSHA256": "8bd3f135cedd36c1b65e297b11352a3aaee2fab0b81eb4aa2c33f643b0229c2c",
+      "upperPixelBox": [
+        673,
+        1148,
+        743,
+        1225
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-5-1-vowel-upper-native.png",
+          "sha256": "aa12e7ce3bbf30b1213f52786091037ac9d53ecb593e0a53545a93bfa52f046c",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-5-1-vowel-upper-10x.png",
+          "sha256": "ef841eaba0d94e3b803f65b2ec1f88776d823f92498c25401e6196e16c2273ea",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-6-11-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 11,
+      "blockId": null,
+      "anchor": "להָנוֹת",
+      "letterIndex": 1,
+      "targetLetter": "ל",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 223,
+      "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+      "upperPixelBox": [
+        1993,
+        468,
+        2064,
+        545
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-11-1-vowel-upper-native.png",
+          "sha256": "ef06d78bd46e6df1f5134ce25b3169124f64e3dc7f6f033bfa9f41880bcad05b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-11-1-vowel-upper-10x.png",
+          "sha256": "48e3408ca31a17e7b2f05be8d59ea4fda85a1d42b6145fa86ba181e00f9b96e6",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-6-13-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 13,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 223,
+      "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+      "upperPixelBox": [
+        1783,
+        850,
+        1851,
+        927
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-13-1-vowel-upper-native.png",
+          "sha256": "d95e671a7d6b0182b0cb656db5af8b5585c57e84ca6e143e38bd883765826253",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-13-1-vowel-upper-10x.png",
+          "sha256": "5c9f8fbcb2f31ad06331bced3c9b73244af3f913bd2d76761dffd398ae717646",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-6-14-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 14,
+      "blockId": null,
+      "anchor": "נעֱזָבִים",
+      "letterIndex": 1,
+      "targetLetter": "נ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 223,
+      "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+      "upperPixelBox": [
+        2001,
+        1037,
+        2058,
+        1114
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-14-1-vowel-upper-native.png",
+          "sha256": "d8706871b81cb738edd4c6d69222a2aae22ca1ad1980dfd33f6c65298f5aed69",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-14-1-vowel-upper-10x.png",
+          "sha256": "6a75cdaea9eee932c3683390edbf313f3d1316a14c9cab78ebcf91ac75147a2c",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-6-15-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "blockId": null,
+      "anchor": "נקיִים",
+      "letterIndex": 1,
+      "targetLetter": "נ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 223,
+      "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+      "upperPixelBox": [
+        2007,
+        1225,
+        2065,
+        1302
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-15-1-vowel-upper-native.png",
+          "sha256": "20a88f3a997e0dafd1bc0e9b25589656b70636e940e45b2c2186dc6660ae4112",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-15-1-vowel-upper-10x.png",
+          "sha256": "54495ddb886a1dcd5d650dc9325f59fd4f85c17ab7e94688c5d7cd3e8b54f46b",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-6-15-2-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "blockId": null,
+      "anchor": "נקיִים",
+      "letterIndex": 2,
+      "targetLetter": "ק",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 223,
+      "sourceImageSHA256": "f3354c45ec7cd04d0850759e9b27448314ce2263dd9182391f61a8a5a836b961",
+      "upperPixelBox": [
+        1971,
+        1225,
+        2042,
+        1302
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-15-2-vowel-upper-native.png",
+          "sha256": "8d6ddab32e8a64b2252ce63d92dcb41e830291e7e26115def2254f21a3c5ca1d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-15-2-vowel-upper-10x.png",
+          "sha256": "2f2f98411e0d2e9faa0ab686368793c8a0479bcb19197154dcc09a347ff1a65d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-6-23-1-vowel",
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 23,
+      "blockId": null,
+      "anchor": "וְזִכרוֹן",
+      "letterIndex": 3,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 224,
+      "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+      "upperPixelBox": [
+        1743,
+        1169,
+        1810,
+        1246
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-23-1-vowel-upper-native.png",
+          "sha256": "6178f8499f8f7cf4e97ecc232ea2de139f376cb8d91bdbf82569c966eddf7424",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-6-23-1-vowel-upper-10x.png",
+          "sha256": "7569fa4b88e58a7a67eea26a90b2f6466537bcf925a6cac5cdd9e30240cb99f7",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-7-1-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "מָרְדְּכי",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 224,
+      "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+      "upperPixelBox": [
+        1553,
+        1622,
+        1623,
+        1699
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-1-1-vowel-upper-native.png",
+          "sha256": "c961ee2f0626385fd08b7fcc194e4765c2dd1c8b2b8f0f06ebb2c4485a1ffec9",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-1-1-vowel-upper-10x.png",
+          "sha256": "1f7da326bc4f63893272724a5da2938f673b9059272edf47e92dffe5da94348d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-7-2-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 2,
+      "blockId": null,
+      "anchor": "אזְכֹּר",
+      "letterIndex": 1,
+      "targetLetter": "א",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 224,
+      "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+      "upperPixelBox": [
+        689,
+        1616,
+        759,
+        1693
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-2-1-vowel-upper-native.png",
+          "sha256": "d0555798e4bf639b1ba1b4aa1e84951007d059830536b39770469ef96b300e76",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-2-1-vowel-upper-10x.png",
+          "sha256": "b525e5ee148eb8c23f62a86779574a3a68b044ae37cb8d7c2aad09fc505f74b3",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-7-3-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "וַיַמְלִיכהָ",
+      "letterIndex": 6,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 224,
+      "sourceImageSHA256": "c34c445bdc0da6f6193e97c65eee297de0ab6941c626d53ae0279a8920cd5fcc",
+      "upperPixelBox": [
+        575,
+        1901,
+        645,
+        1978
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-3-1-vowel-upper-native.png",
+          "sha256": "f5b107b68f1e3e63a9544495bb71f5b221ac61f93425bfafb8ff6d83c7a50e7d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-3-1-vowel-upper-10x.png",
+          "sha256": "eae6973041d63ec9f1083f0cb51d8adbd8bd292348e3fa7455e6650ff86f471d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-7-6-2-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 6,
+      "blockId": null,
+      "anchor": "כמוֹהֶם",
+      "letterIndex": 1,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 225,
+      "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+      "upperPixelBox": [
+        873,
+        560,
+        939,
+        637
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-6-2-vowel-upper-native.png",
+          "sha256": "96ba33781725405917c85d1734ded7eff1a0aa3b49561ab95ce9a3c4d5302357",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-6-2-vowel-upper-10x.png",
+          "sha256": "07845f4ced865d58b65d70339a2eb474849aae660c6d35451e7fc754321457dc",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-7-9-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 9,
+      "blockId": null,
+      "anchor": "וַיַצדֵּק",
+      "letterIndex": 3,
+      "targetLetter": "צ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 225,
+      "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+      "upperPixelBox": [
+        389,
+        849,
+        458,
+        926
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-9-1-vowel-upper-native.png",
+          "sha256": "dfb610f5e22bed808a8a47f7ff65c487f21dab9fd8d3eddb01e9978894191107",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-7-9-1-vowel-upper-10x.png",
+          "sha256": "846ad55e6e05d37401ba7b8557173494a38686815492c6d7fbd0df5305d2dbc2",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-colophon-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchor": "בירוּשָׁלִָם",
+      "letterIndex": 1,
+      "targetLetter": "ב",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 225,
+      "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+      "upperPixelBox": [
+        941,
+        1425,
+        1005,
+        1502
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-colophon-1-vowel-upper-native.png",
+          "sha256": "83ed00cf29cc8bef7a76010e403bc864a3601454deb6ac9af10f4245772571e7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-colophon-1-vowel-upper-10x.png",
+          "sha256": "e5dc5ea1bd81a8640910cb34e54f07a581f2e7cc5c0fefb227ea97ca4ac2a31c",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-colophon-3-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchor": "ליסִימָכוֹס",
+      "letterIndex": 1,
+      "targetLetter": "ל",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 225,
+      "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+      "upperPixelBox": [
+        1653,
+        1429,
+        1712,
+        1506
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-colophon-3-vowel-upper-native.png",
+          "sha256": "492d177a51db08a8d36d0c79682184b4c6a3ed97773e316e3bf7b56fafeaafc2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-colophon-3-vowel-upper-10x.png",
+          "sha256": "7e85ff7a0db2481713d2427d23af358e59321d21a16d08f70daa56a216eca4d1",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-colophon-4-shuruq",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchor": "וקלֵיאוֹפַטְרָה",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "shuruq",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 225,
+      "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+      "upperPixelBox": [
+        1190,
+        1239,
+        1242,
+        1316
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-colophon-4-shuruq-upper-native.png",
+          "sha256": "574224729ed3e753833593024ce9302a095e4a681285426c4f1cc0f5af28a3a6",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-colophon-4-shuruq-upper-10x.png",
+          "sha256": "e46edf9069ef649c89a409b1c3c77cea659b4f45922c55a8e7c929106c4b4743",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "esg-colophon-5-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": null,
+      "blockId": "esg-translation-colophon",
+      "anchor": "וקלֵיאוֹפַטְרָה",
+      "letterIndex": 2,
+      "targetLetter": "ק",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 225,
+      "sourceImageSHA256": "fdb678597a881c73c47cc9f282a13d14dfb742501136769143a6168c6909f230",
+      "upperPixelBox": [
+        1161,
+        1239,
+        1224,
+        1316
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-colophon-5-vowel-upper-native.png",
+          "sha256": "7b35da099e6186a51c4b54050e6766c1d922d11b6de188a3ac14572a88b0c390",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/esg-colophon-5-vowel-upper-10x.png",
+          "sha256": "5c3679a01a862b0a0af62dbf80af583685cb93d52a7c03498e24d4af98a66517",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-4-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "מִכּלָּם",
+      "letterIndex": 2,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 237,
+      "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+      "upperPixelBox": [
+        437,
+        1842,
+        507,
+        1919
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-4-letter-2-vowel-upper-native.png",
+          "sha256": "3e77807cfbdedd9f8bbab832a823d08dd3d4cdde55c1115dcd8edf956dcb6a63",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-4-letter-2-vowel-upper-10x.png",
+          "sha256": "ad529642fefdeedb0297af430a77bbc7348781f47d525a3025ed70e29ccd0f2b",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-5-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 5,
+      "blockId": null,
+      "anchor": "כּמַנְהִיגֵי",
+      "letterIndex": 1,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 237,
+      "sourceImageSHA256": "32b4186fecaf46fa75b7cbdfe349756ca712a2eeaa7014e0c1cd806924a8d658",
+      "upperPixelBox": [
+        2031,
+        2123,
+        2102,
+        2200
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-5-letter-1-vowel-upper-native.png",
+          "sha256": "7b584bbe15dad79617db4341b08f968a2397af3a11a5828742458f2f57d5027b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-5-letter-1-vowel-upper-10x.png",
+          "sha256": "e5efb622b5eae1b9701cb9b30bc545fc58e11c902d90e485f3ba9f5bba94e0e5",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-9-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 9,
+      "blockId": null,
+      "anchor": "ונַּהַפְכוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 238,
+      "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+      "upperPixelBox": [
+        1976,
+        1280,
+        2030,
+        1357
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-9-letter-1-vowel-upper-native.png",
+          "sha256": "d554d88e8e3f284f09379cd93f4bd601c7d3d191b590b6a7265721d0641ac084",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-9-letter-1-vowel-upper-10x.png",
+          "sha256": "72168973ebb5ec87c76b2cf4aef4d75e97f71c99f157e94018b1eeef83beb0e7",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-14-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "anchor": "ויָסֹבּוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 238,
+      "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+      "upperPixelBox": [
+        1438,
+        1760,
+        1493,
+        1837
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-14-letter-1-vowel-upper-native.png",
+          "sha256": "e85d17789311c13e3b040ba018e1d19c4aa871599bbc7b3dd732f45a3d49df89",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-14-letter-1-vowel-upper-10x.png",
+          "sha256": "ecba64e76cfdbdeb8b6277320ea6a1914d6705340a1233ab726bbd6ddee48e72",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-17-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 17,
+      "blockId": null,
+      "anchor": "ותַמְרוּקִים",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 238,
+      "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+      "upperPixelBox": [
+        1166,
+        2241,
+        1219,
+        2318
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-17-letter-1-vowel-upper-native.png",
+          "sha256": "31b7f8edf4e5770203c312ea6fb8076ed143987f0dc4876ee53f3a36a6793e59",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-17-letter-1-vowel-upper-10x.png",
+          "sha256": "ac1d0107a64d5eec3e76f43f6bc6f65faa70800a8e5db17a0e3a06891218dcc3",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-18-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "blockId": null,
+      "anchor": "בּיַרְכתַיִם",
+      "letterIndex": 1,
+      "targetLetter": "ב",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 238,
+      "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+      "upperPixelBox": [
+        1457,
+        2427,
+        1529,
+        2504
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-18-letter-1-vowel-upper-native.png",
+          "sha256": "c5b9be52c0e88384fd3110fdf3e5819a2f9455c2c47b7e37028764d975445b76",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-18-letter-1-vowel-upper-10x.png",
+          "sha256": "f35634543fcee2a50cb2b91652e1f7fdc580b6d518dbb50c3c8e7ce371d3ae00",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-18-letter-4-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "blockId": null,
+      "anchor": "בּיַרְכתַיִם",
+      "letterIndex": 4,
+      "targetLetter": "כ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 238,
+      "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+      "upperPixelBox": [
+        1369,
+        2427,
+        1438,
+        2504
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-18-letter-4-vowel-upper-native.png",
+          "sha256": "4aa52980efb54b9df5e8d00ab4d1f8e96adbbc6900e48fa3188975fbd28d8bb7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-18-letter-4-vowel-upper-10x.png",
+          "sha256": "f68f6c09c7ed04cf112ce39df5708038a783c4ceff168055aec5bd811ffcc898",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-18-tsadi-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 18,
+      "blockId": null,
+      "anchor": "צוּוּ",
+      "letterIndex": 1,
+      "targetLetter": "צ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 238,
+      "sourceImageSHA256": "8405559dbd7e9cb8abf1b1c37d7aab518c5a6a08a324250c74b620582681d363",
+      "upperPixelBox": [
+        706,
+        2431,
+        778,
+        2508
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-18-tsadi-vowel-upper-native.png",
+          "sha256": "1ead7cf762a24faa0b2e900c12f4fc475d8d201c500d2e3b84c1a2aef24cf19b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-18-tsadi-vowel-upper-10x.png",
+          "sha256": "99c2c7734d104f2ab15467c325b66f11eddd330bee88cbbf2972b82973847ec5",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-22-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "anchor": "אעֱשׂנָּה",
+      "letterIndex": 1,
+      "targetLetter": "א",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 239,
+      "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+      "upperPixelBox": [
+        2003,
+        1263,
+        2074,
+        1340
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-22-letter-1-vowel-upper-native.png",
+          "sha256": "4237a18647eddd3a22bc43aaac85a8d4b32671dd7ed7302b165491d4c71a17a5",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-22-letter-1-vowel-upper-10x.png",
+          "sha256": "f513cc7d87f8c7bd383bdc132c182f2a7a349b678d76b0f3fa650e2c81e5728d",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-22-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "anchor": "אעֱשׂנָּה",
+      "letterIndex": 3,
+      "targetLetter": "ש",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 239,
+      "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+      "upperPixelBox": [
+        1923,
+        1263,
+        2001,
+        1340
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-22-letter-3-vowel-upper-native.png",
+          "sha256": "f00114cb341d286c876a3ee1048c899501f13d5b165b5083147256c832ca6eff",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-22-letter-3-vowel-upper-10x.png",
+          "sha256": "7beabfc30a95214c0a82d5f508d28ed1bb9046c162f21e0b3a7f5472e855517f",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-23-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "blockId": null,
+      "anchor": "אעֱשׂנָּה",
+      "letterIndex": 1,
+      "targetLetter": "א",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 239,
+      "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+      "upperPixelBox": [
+        614,
+        1263,
+        687,
+        1340
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-23-letter-1-vowel-upper-native.png",
+          "sha256": "ee6b493f167047427b455e7d80499b987e926c6a107996f490d34c042a9bf6ba",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-23-letter-1-vowel-upper-10x.png",
+          "sha256": "be3e1aab2fd736bfa93883e745dff6b2c780186a9943414994d48437947e2020",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-23-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 23,
+      "blockId": null,
+      "anchor": "אעֱשׂנָּה",
+      "letterIndex": 3,
+      "targetLetter": "ש",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 239,
+      "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+      "upperPixelBox": [
+        535,
+        1263,
+        620,
+        1340
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-23-letter-3-vowel-upper-native.png",
+          "sha256": "afe2063838e5775d28bf44eb451c062579af000ac0b584525c526c091e513e75",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-23-letter-3-vowel-upper-10x.png",
+          "sha256": "69cf5f8cb6e36c528d8fa27877fd7955ba01e0308f2f19e3fc034b5ff401dc15",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-27-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 27,
+      "blockId": null,
+      "anchor": "ויִתְבּוֹשָׁשׁוּ",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 239,
+      "sourceImageSHA256": "f9a29c4eda52fab3bc7dbb3e34cde2fef8834c8260a6949a025012962b0702fe",
+      "upperPixelBox": [
+        779,
+        1627,
+        831,
+        1704
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-27-letter-1-vowel-upper-native.png",
+          "sha256": "d0162e3a19f682dfb0192c213f526e23371a2941701832fa8bebb75d9d53bdc0",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-27-letter-1-vowel-upper-10x.png",
+          "sha256": "c7261ecade857872e4ff2a40d7724b9af10345c4c6f9e4c0fb956a53fe6cdb24",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-38-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "blockId": null,
+      "anchor": "בְּפנּת",
+      "letterIndex": 2,
+      "targetLetter": "פ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 240,
+      "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+      "upperPixelBox": [
+        1215,
+        1876,
+        1283,
+        1953
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-38-letter-2-vowel-upper-native.png",
+          "sha256": "be3bdbf65b75228ef1f0ce024a1dec4409c4897bcea1bbc75fa3aa0343c2550b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-38-letter-2-vowel-upper-10x.png",
+          "sha256": "29fb676c37821c71b647db4ceea770436ebaba512f1bfb62ddfd2f994749f359",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-38-letter-3-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 38,
+      "blockId": null,
+      "anchor": "בְּפנּת",
+      "letterIndex": 3,
+      "targetLetter": "נ",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 240,
+      "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+      "upperPixelBox": [
+        1195,
+        1876,
+        1249,
+        1953
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-38-letter-3-vowel-upper-native.png",
+          "sha256": "6ef169650bf5f4ac77877cadc1333eb80d814b7000f983947e3fa71d7fea2d37",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-38-letter-3-vowel-upper-10x.png",
+          "sha256": "a3055f73fbf5fcc6eae443c1998ea259c319bd378de677b6cebe46efa9a11808",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-40-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 40,
+      "blockId": null,
+      "anchor": "ונִּשְׁאַל",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 240,
+      "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+      "upperPixelBox": [
+        1228,
+        2066,
+        1286,
+        2143
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-40-letter-1-vowel-upper-native.png",
+          "sha256": "9f89d5a34eec74a55bee749a9e5fbba9b5509e27eaad14b8616e23e01f96397d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-40-letter-1-vowel-upper-10x.png",
+          "sha256": "7340b21d7cfdc4a745c38b2d065c96cdd1f3b056d2923dcff79f3abf209f2858",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-47-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 47,
+      "blockId": null,
+      "anchor": "ויִפֶן",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 240,
+      "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+      "upperPixelBox": [
+        1228,
+        2726,
+        1280,
+        2803
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-47-letter-1-vowel-upper-native.png",
+          "sha256": "ffdfa69b0a3095b13f33b8138a334034e131922586a04413477ff008e726811a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-47-letter-1-vowel-upper-10x.png",
+          "sha256": "fabe901782294ff7875322137975c94bd113e7b46a09778bade554f30f186ad1",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-48-letter-2-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 48,
+      "blockId": null,
+      "anchor": "הַאמְנָם",
+      "letterIndex": 2,
+      "targetLetter": "א",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 240,
+      "sourceImageSHA256": "1b763368b34542af650862787ae6e64043c14154ce26611a2e2c0e4caaa4f21b",
+      "upperPixelBox": [
+        868,
+        2825,
+        939,
+        2902
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-48-letter-2-vowel-upper-native.png",
+          "sha256": "607fe9de515e61ed2360d577671cadab9ee6475b4c09dbdaeebc5db7ee412e58",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-48-letter-2-vowel-upper-10x.png",
+          "sha256": "1762b0384bbdc288cad87565e0d80eac10c365a41fc10074b43684c69baae9a7",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "noteId": "sus-1-62-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "blockId": null,
+      "anchor": "ויִמָלֵט",
+      "letterIndex": 1,
+      "targetLetter": "ו",
+      "mark": "vowel",
+      "disposition": "retainDisclosure",
+      "finding": "The complete above-letter region and head/ascender were inspected. No additional upper vowel can be assigned securely to this missing target. Raised ink in these frames is a connected letter crown, already transcribed neighboring holam or shin/sin point, or previous-row material; it does not resolve the disclosed point. Lower-region uncertainty remains as recorded in the separate main pass4 report.",
+      "sourcePage": 242,
+      "sourceImageSHA256": "328a623dd608960c5aee2f5c0f06c95521c3a57dd6e2d5b05629cfe37c5e5d38",
+      "upperPixelBox": [
+        1492,
+        2194,
+        1544,
+        2271
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-62-letter-1-vowel-upper-native.png",
+          "sha256": "a61e45d2be2003ecb08f56bfefa2bd08cd60f13517a2785bfac21e4dfe473c76",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-ADDITIONS-UPPER/sus-1-62-letter-1-vowel-upper-10x.png",
+          "sha256": "973c20cda1ea2a0c66ef0dcf9f1b467f22935f961819e1ea8449f86008c3fad0",
+          "scale": 10,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "all105ExactIdsPresentOnce": true,
+    "allUpperHeadAndAscenderFramesVisuallyInspected": true,
+    "mainPass4ReportUnchanged": true,
+    "allThreeCanonicalFilesByteIdenticalToPass4Baseline": true,
+    "allLettersPointsBracketsWitnessesGapsBlocksAndOrderPreserved": true,
+    "durableEvidenceImages": 210,
+    "freshPDFPixelReproductionCount": 210,
+    "allEvidenceHashesAndFreshPixelsPassed": true
+  }
+}

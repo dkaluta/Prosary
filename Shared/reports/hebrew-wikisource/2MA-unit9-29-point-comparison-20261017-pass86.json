@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 86,
+  "book": "2MA",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass86-2MA-9-29/source-provenance.json",
+    "sha256": "42adebd5991852e0734411ab6daa04c433175e9aba253c21831ba1bc70a6e76b"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 8,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "2ma-9-29-lamed-3-vowel",
+    "2ma-9-29-pe-1-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "a76050147f63995997800739d8c48c6fb50535d69709166ea63a7b6d5ef87afd",
+  "contentSHA256After": "d3e81b238e6666e486b2dadeea3a32fca61796f61ae982a2d8972e9a8831592c",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "2ma-9-29-pe-1-dagesh",
+      "book": "2MA",
+      "chapter": 9,
+      "verse": 29,
+      "anchorBefore": "פִילפּוֹס",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "noDagesh",
+      "codePoint": null,
+      "markClassification": "DageshAbsence",
+      "finding": "Native ASCII pixel maps show the tongue of the first pe, a clear blank area to its right, and the separate right wall. There is no detached dagesh in that area. Same-row unpointed pe in בפחדו has the same tongue construction; the medial pe in the target word has a plainly detached interior dot at [241,1356,252,1366], area72 at threshold128.",
+      "targetCapture": "extension-volumeB-214-zoom4-upper-right.png",
+      "letterBounds": [
+        372,
+        1325,
+        431,
+        1397
+      ],
+      "pointBounds": null,
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass86-2MA-9-29/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "2ma-9-29-lamed-3-vowel",
+      "book": "2MA",
+      "chapter": 9,
+      "verse": 29,
+      "anchorBefore": "פִילפּוֹס",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "hiriq",
+      "codePoint": "U+05B4",
+      "markClassification": "Vowel",
+      "finding": "The lamed foot ends at y1397 and a separate lower single-dot component begins y1399. Threshold128 divides the printed dot into area126 plus area6; it is one physical dot, without a horizontal bar or second dot. Same-word first-pe hiriq has bbox [398,1399,408,1412], area107.",
+      "targetCapture": "extension-volumeB-214-zoom4-upper-right.png",
+      "letterBounds": [
+        270,
+        1288,
+        330,
+        1397
+      ],
+      "pointBounds": [
+        288,
+        1399,
+        300,
+        1414
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass86-2MA-9-29/independent-pixel-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 9,
+      "verse": 29,
+      "before": "וְאֶת־גְּוִיָּתוֹ הֶעֱבִיר לִמְקוֹמוֹ פִילפּוֹס אֲשֶׁר גָּדַל אִתּוֹ וְהוּא בְפַחְדוֹ מִפְּנֵי בֶּן־אַנְטִיוֹכוֹס בָּרַח אֶל־תַּלְמַי פִילוֹמֵטוֹר מִצְרָיְמָה׃",
+      "after": "וְאֶת־גְּוִיָּתוֹ הֶעֱבִיר לִמְקוֹמוֹ פִילִפּוֹס אֲשֶׁר גָּדַל אִתּוֹ וְהוּא בְפַחְדוֹ מִפְּנֵי בֶּן־אַנְטִיוֹכוֹס בָּרַח אֶל־תַּלְמַי פִילוֹמֵטוֹר מִצְרָיְמָה׃"
+    }
+  ],
+  "scope": {
+    "chapter": 9,
+    "verse": 29,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  },
+  "independentReview": {
+    "kind": "independentPostApplicationAudit",
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass86-2MA-9-29/independent-post-application-audit.json",
+    "sha256": "bab7776bbe65b0e62c183e109ec35dfa84d6ae719cfb6ce395d7a6db544b23d3",
+    "status": "passed",
+    "scope": "All18 native and nearest4x crops replayed; first-pe interior blank versus medial-pe positive dagesh; lamed hiriq; exact single approved scalar addition; no other units changed; five protected disclosures and review inventories unchanged."
+  }
+}

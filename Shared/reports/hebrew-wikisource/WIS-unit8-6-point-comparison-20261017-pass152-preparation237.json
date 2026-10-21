@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 152,
+  "integrationPass": 152,
+  "preparationID": 237,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation237-WIS-8-6/source-provenance.json",
+    "sha256": "97a8fb5071f1c0e63a813ee78bed1d1bb3a798430c093f388cf6962ff89e3934"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-8-6-tsadi"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-8-6-tsadi",
+      "book": "WIS",
+      "chapter": 8,
+      "verse": 6,
+      "anchorBefore": "יוֹצר",
+      "letterIndex": 3,
+      "decision": "retainNote",
+      "finding": "Own Tsadi892px8-connected component spans[688,1810,723,1856]. Heavy lowerfoot1837..1848 touches two lower lobes1849..1855, with connected bridge1851..1853. Own literal native pixels do not independently delimit an exact vowel mark or exact count, and blank rows below1855 do not establish absence. Complete own יוצר has four physical RTL letters and only one occurrence; prior יותר carries Tav and following הנמצאים has its own different Tsadi. Full own/control words and actual inline boundaries independently inspected. Retain original unreadable vowel disclosure and every original scalar.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a0/a03466ddfefad75e2007d57fb5928056070a0cfc71f6eded7515d86513003f78.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/a0/a03466ddfefad75e2007d57fb5928056070a0cfc71f6eded7515d86513003f78.bin",
+      "inspectedBounds": [
+        688,
+        1810,
+        723,
+        1856
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation237-WIS-8-6/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 8,
+    "verse": 6,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation237-WIS-8-6/independent-review.json",
+    "sha256": "31e28d957fbc64cc4cb06af83205953c4a2f06191c8e8aa38c3bb99f66ec9723"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation237-WIS-8-6/primary-preparation.json",
+    "sha256": "9912fb56ec582b9552fabc121cbb5329205eb19c4972407fd933adba39ee7ca2"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation237-WIS-8-6/consensus-preparation.json",
+    "sha256": "758f5176e9bc79d585d44050a34b7519ed6985772e2e9320d124521635589f9b"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

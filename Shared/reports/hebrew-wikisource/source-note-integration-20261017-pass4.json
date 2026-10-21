@@ -1,0 +1,414 @@
+{
+  "date": "2026-10-17",
+  "pass": 4,
+  "startingNoteCount": 650,
+  "removedNoteCount": 14,
+  "remainingNoteCount": 636,
+  "books": [
+    {
+      "book": "1MA",
+      "beforeNoteCount": 17,
+      "afterNoteCount": 16,
+      "removedNoteIds": [
+        "1ma-15-14-bet-dagesh"
+      ],
+      "beforeDigest": "05e8897fbeb509871c5ab01c6020613a42af57b431fdfe126dd5baa4af68b5ab",
+      "afterDigest": "b930664f707c8758980dc64fbc61822970d3a231cb1cb508bbcbb4c36603f8ef",
+      "sourceChanges": [
+        {
+          "book": "1MA",
+          "chapter": 15,
+          "verse": 14,
+          "before": "וַיָּסֹבוּ",
+          "after": "וַיָּסֹבּוּ",
+          "retiredNoteIds": [
+            "1ma-15-14-bet-dagesh"
+          ],
+          "independentReviewer": "bel_pass3",
+          "finding": "A detached interior rectangle is separated from bet roof, stem and foot even under eight-neighbor pixel connectivity."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        }
+      ]
+    },
+    {
+      "book": "2MA",
+      "beforeNoteCount": 14,
+      "afterNoteCount": 13,
+      "removedNoteIds": [
+        "2ma-12-45-shin-3-dagesh"
+      ],
+      "beforeDigest": "62846afbd2fc06d63961c8a46130a6863952e880a1a7dde18d00e92c628edba8",
+      "afterDigest": "e800ea33f27b5f8c6f38588118e1feb4ab984dba6171aaf4294c0089de9a3457",
+      "sourceChanges": [
+        {
+          "book": "2MA",
+          "chapter": 12,
+          "verse": 45,
+          "before": "קְדֻשָׁה",
+          "after": "קְדֻשָּׁה",
+          "retiredNoteIds": [
+            "2ma-12-45-shin-3-dagesh"
+          ],
+          "independentReviewer": "bel_pass3",
+          "finding": "A separate five-pixel interior component has white separation from both shin diagonals and base; full-word context verifies the third letter."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        }
+      ]
+    },
+    {
+      "book": "SIR",
+      "beforeNoteCount": 37,
+      "afterNoteCount": 30,
+      "removedNoteIds": [
+        "sir-11-28-shin-dagesh",
+        "sir-11-32-nun-vowel",
+        "sir-2-2-het-vowel",
+        "sir-24-32-resh-vowel",
+        "sir-31-7-yod-vowel",
+        "sir-32-4-mem-vowel",
+        "sir-6-29-lamed-vowel"
+      ],
+      "beforeDigest": "138f39c54b1964699a5c31fd27999e321e385168ef1a5cfdb03e330b95c56f10",
+      "afterDigest": "229ec7bcd5a77c081bee30af5bb6711e057dfb6156adb1c274f0ab922e89b7a2",
+      "sourceChanges": [
+        {
+          "book": "SIR",
+          "chapter": 11,
+          "verse": 28,
+          "before": "תְּאַשְׁ[רֵהוּ",
+          "after": "תְּאַשְּׁ[רֵהוּ",
+          "retiredNoteIds": [
+            "sir-11-28-shin-dagesh"
+          ],
+          "independentReviewer": "wisdom_pass3",
+          "finding": "A separate six-pixel shin interior rectangle has a continuous white border to the surrounding strokes."
+        },
+        {
+          "book": "SIR",
+          "chapter": 11,
+          "verse": 32,
+          "before": "מִנּצוֹץ",
+          "after": "מִנִּצוֹץ",
+          "retiredNoteIds": [
+            "sir-11-32-nun-vowel"
+          ],
+          "independentReviewer": "wisdom_pass3",
+          "finding": "One compact detached point below nun matches the same-word mem hiriq. The independent nun dagesh remains intact."
+        },
+        {
+          "book": "SIR",
+          "chapter": 24,
+          "verse": 32,
+          "before": "וְאוֹריתִיו",
+          "after": "וְאוֹרִיתִיו",
+          "retiredNoteIds": [
+            "sir-24-32-resh-vowel"
+          ],
+          "independentReviewer": "wisdom_pass3",
+          "finding": "A single detached compact square below resh is distinct from the adjacent vav's two-point sheva."
+        },
+        {
+          "book": "SIR",
+          "chapter": 31,
+          "verse": 7,
+          "before": "יוקשׁ־בוֹ",
+          "after": "יִוקשׁ־בוֹ",
+          "retiredNoteIds": [
+            "sir-31-7-yod-vowel"
+          ],
+          "independentReviewer": "bel_pass3",
+          "finding": "A single detached diamond sits below the short initial yod on the vowel line; separate vav and qof omissions remain disclosed."
+        },
+        {
+          "book": "SIR",
+          "chapter": 6,
+          "verse": 29,
+          "before": "וְתַבְלתֶהָ",
+          "after": "וְתַבְלֹתֶהָ",
+          "retiredNoteIds": [
+            "sir-6-29-lamed-vowel"
+          ],
+          "independentReviewer": "wisdom_pass3",
+          "finding": "A compact detached square left of the lamed ascender matches the adjacent-page lamed holam in 6:10. The lower irregularity is the ordinary descending letter foot."
+        },
+        {
+          "book": "SIR",
+          "chapter": 2,
+          "verse": 2,
+          "before": "וחזָק",
+          "after": "וחֲזָק",
+          "retiredNoteIds": [
+            "sir-2-2-het-vowel"
+          ],
+          "independentReviewer": "root",
+          "finding": "A broad flat left bar and upper/lower right points establish hataf-patah. Same-font hataf-qamats has a long downward stem and hataf-segol has distinct left point lobes. Initial vav uncertainty stays disclosed."
+        },
+        {
+          "book": "SIR",
+          "chapter": 32,
+          "verse": 4,
+          "before": "מִזְמר",
+          "after": "מִזְמֹר",
+          "retiredNoteIds": [
+            "sir-32-4-mem-vowel"
+          ],
+          "independentReviewer": "root",
+          "finding": "A compact raised lobe above the third mem's upper-left shoulder matches the known mem holam in 32:18 and is absent on the same-word first mem. One diagonal pixel contact does not obscure its distinct upper-vowel geometry."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        }
+      ]
+    },
+    {
+      "book": "WIS",
+      "beforeNoteCount": 206,
+      "afterNoteCount": 203,
+      "removedNoteIds": [
+        "wis-12-8-lamed",
+        "wis-18-9-word9-het-3-vowel",
+        "wis-19-10-word10-mem-2-vowel"
+      ],
+      "beforeDigest": "6ee71f2a305d6caa75b43edfe61f43134ad12fc6cead8c5aea790b5e47aabf06",
+      "afterDigest": "cbcc373536d0a4769af2695574680a174502dab9eab147b79c507b00161ad1a2",
+      "sourceChanges": [
+        {
+          "book": "WIS",
+          "chapter": 12,
+          "verse": 8,
+          "before": "כּשְׁלחַ",
+          "after": "כּשְׁלֹחַ",
+          "retiredNoteIds": [
+            "wis-12-8-lamed"
+          ],
+          "independentReviewer": "root",
+          "finding": "The raised upper-left lobe matches the same-page lamed-holam in 12:10 and is absent on the plain lamed in 12:7. Preserve final het patah."
+        },
+        {
+          "book": "WIS",
+          "chapter": 18,
+          "verse": 9,
+          "before": "ויָחקּוּ",
+          "after": "ויָחֹקּוּ",
+          "retiredNoteIds": [
+            "wis-18-9-word9-het-3-vowel"
+          ],
+          "independentReviewer": "root",
+          "finding": "A raised compact lobe above the left het roof has a narrow connecting neck, unlike same-page plain het caps; above-line context rules out intrusion. Initial vav note remains."
+        },
+        {
+          "book": "WIS",
+          "chapter": 19,
+          "verse": 10,
+          "before": "הַמּצָאוֹת",
+          "after": "הַמֹּצָאוֹת",
+          "retiredNoteIds": [
+            "wis-19-10-word10-mem-2-vowel"
+          ],
+          "independentReviewer": "root",
+          "finding": "A tall upper-left stem and compact raised globe distinguish holam from the ordinary same-page mem shoulder; above-line context rules out preceding-row ink."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        }
+      ]
+    },
+    {
+      "book": "BEL",
+      "beforeNoteCount": 224,
+      "afterNoteCount": 222,
+      "removedNoteIds": [
+        "bel-1-21-245-vayeesof-wide-letter4-vowel",
+        "bel-1-38-247-zakhor38-letter2-vowel"
+      ],
+      "beforeDigest": "d123f7fbcf093b48e868661e59060ea471e00442902650c4aa0bbd59541c8ea2",
+      "afterDigest": "44b1106cfe58852b0b8edae6f6c392db03eb209ddfe4212b6db1eba4ce362f08",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 21,
+          "before": "ויאֱסף",
+          "after": "ויאֱסֹף",
+          "retiredNoteIds": [
+            "bel-1-21-245-vayeesof-wide-letter4-vowel"
+          ],
+          "independentReviewer": "root",
+          "finding": "A raised compact head over the left samekh roof matches the same-font certified kaf holam on this page and is absent on the same-page ordinary samekh. Full-line context excludes preceding-line or neighboring-letter ink."
+        },
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 38,
+          "before": "זָכר",
+          "after": "זָכֹר",
+          "retiredNoteIds": [
+            "bel-1-38-247-zakhor38-letter2-vowel"
+          ],
+          "independentReviewer": "root",
+          "finding": "A compact upper-left head on a narrow neck differs from the same-page bare kaf and matches the literal same-font kaf holam on page245; same-page lamed holam and full-line context corroborate the upper-vowel interpretation."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass4.json",
+          "sha256": "9477c310d2e6674df9f26ce46d566e5f3c9b2588e883bac06fd53ae29cc934df"
+        }
+      ]
+    }
+  ],
+  "sourceReview": {
+    "freshDistinctPointTargets": 610,
+    "carriedForwardRecentExactDageshTargets": 35,
+    "unchangedAuthorizedRestorationDisclosures": 5,
+    "freshUpperAndIndependentChallengesOverlapTheseTargets": true
+  },
+  "dailyWholeBookPinsUpdated": 24,
+  "dailySelectedRowsChanged": [
+    {
+      "appointment": "daily|2 Maccabees 12:43–46",
+      "book": "2MA",
+      "chapter": 12,
+      "verse": 45,
+      "before": "קְדֻשָׁה",
+      "after": "קְדֻשָּׁה",
+      "retiredNoteIds": [
+        "2ma-12-45-shin-3-dagesh"
+      ]
+    }
+  ],
+  "allDailySelectionsAndClauseBoundariesPreserved": true,
+  "all26CatholicUnitPinsByteUnchanged": true,
+  "allCatholicPresentationDecisionsPreserved": true,
+  "unchangedSourceBooks": [
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SUS",
+    "TOB"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+      "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+      "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+      "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass4.json",
+      "sha256": "9477c310d2e6674df9f26ce46d566e5f3c9b2588e883bac06fd53ae29cc934df"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+      "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-upper-vowel-reinspection-20261017-pass4.json",
+      "sha256": "708680ec471354f183f2b17bd9a2dba0c7d43a062e14f0606ef646cc0d9532a3"
+    }
+  ],
+  "state": "applied, regenerated, evidence hashes and native parity verified, shared and available native tests passed",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 636,
+      "notesByBook": {
+        "TOB": 12,
+        "JDT": 0,
+        "WIS": 203,
+        "SIR": 30,
+        "BAR": 0,
+        "1MA": 16,
+        "2MA": 13,
+        "LJE": 0,
+        "ESG": 50,
+        "S3Y": 65,
+        "SUS": 25,
+        "BEL": 222
+      },
+      "changedArchiveChapters": 12,
+      "preservedArchiveMembers": 1324,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "dailyReadingsPayloadChanges": [
+        "2MA12:45 source-certified dagesh and corresponding note retirement"
+      ],
+      "matchingNativeDataCopies": 3,
+      "verifiedReferencedEvidenceFileHashPairs": 2577,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-ef101bc2937e413faa02cfa0f91fbcab5944857820247dcaa6dc4d99caf7d508.zip",
+      "archiveSHA256": "e58ae936e30d00333608d45a87861e64070118e61322bc238490c6e72bcad91d",
+      "archiveBytes": 3116861
+    },
+    "sharedTests": {
+      "test-bible-library.py": 21,
+      "test-hebrew-deuterocanon.py": 22,
+      "test-scripture-source-notes.py": 13,
+      "test-bible-source-structure.py": 12,
+      "test-hebrew-daily-readings.py": 14,
+      "test-reading-texts.py": 32,
+      "totalPassed": 114
+    },
+    "android": {
+      "task": "testDebugUnitTest --rerun-tasks",
+      "suites": 71,
+      "tests": 576,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "apple": {
+      "destination": "macOS",
+      "passedTests": 56,
+      "failedTests": 0,
+      "skippedTests": 0,
+      "result": "passed",
+      "resultBundle": "Test-Prosary-2026.10.17_13-46-31-+0300.xcresult"
+    },
+    "windows": {
+      "runtimeTests": "not run on macOS",
+      "generatedDataCopies": "byte-identical to Shared"
+    },
+    "generationChecks": {
+      "bibleLibrarySecondPass": "passed, byte-stable",
+      "readingTextsSecondPass": "passed, byte-stable",
+      "readingMappings": "passed",
+      "scopedDiffWhitespace": "passed"
+    }
+  }
+}

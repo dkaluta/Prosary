@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 103,
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 1 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-5-17/source-provenance.json",
+    "sha256": "cfa53b85515912042335d519b52c508ffd1339d7acfc48012ada2dd0ccedceb9"
+  },
+  "sourceNotesBefore": 11,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "tob-5-17-ayin-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "tob-5-17-said-vav-vowel"
+  ],
+  "contentSHA256Before": "006777d8b0f31d90f1d884efdd1065baa6e132de9f7165ea1773485809152d57",
+  "contentSHA256After": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "tob-5-17-ayin-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 17,
+      "anchorBefore": "לְרֵעהוּ",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "The third physical letter, Ayin, has one complete separate rounded horizontal bar26pixelswide and7high beneath its oblique lower body. The component has one flat top/bottom envelope and no paired lobes, middle gap, second vertical node or descending stem. Its own contour supports Patah. The same-word Resh Tsere is two separate round nodes [2277,1200,2290,1210] and [2292,1200,2305,1210], while the same-unit first וַיֹּאמֶר has a literal detached horizontal Patah. The reading is taken from the queried physical bar, without supplying an expected spelling.",
+      "targetCapture": "extension-volumeB-329-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeB-329-zoom4-upper-left.png",
+      "inspectedBounds": [
+        2174,
+        1123,
+        2233,
+        1205
+      ],
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        2192,
+        1205,
+        2218,
+        1212
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-5-17/consensus-preparation.json"
+    },
+    {
+      "noteId": "tob-5-17-said-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 17,
+      "anchorBefore": "ויֹּאמֶר לוֹ אָבִיו",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The correctly addressed second ויאמר, followed by לו אביו, is available in the original embedded raster. Its small Vav shaft joins a broad low foot only about10pixelswide and6high. The saturated lower material has no independently complete detached point contour; the available resolution cannot exclude a short stem-bearing mark or merged terminal. The new preemptive high-resolution continuation was not certified from available captures. Retain the vowel disclosure after examining the complete cross-page source unit; no companion or preceding ויאמר fills it.",
+      "targetCapture": "primary-326-native.png",
+      "targetSourceIdentifier": "primary-326-native.png",
+      "inspectedBounds": [
+        517,
+        353,
+        530,
+        384
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-5-17/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 17,
+      "before": "נֵאוֹתוּ אִישׁ לְרֵעהוּ וַיֹּאמֶר אֶל־טוֹבִיָּה הָכוֹן לַדֶּרֶךְ וְהַצְלִיחוּ וַיָּכֶן בְּנוֹ אֶת־אֲשֶׁר לַדֶּרֶךְ ויֹּאמֶר לוֹ אָבִיו לֵךְ עִם־הָאִישׁ וֵאלֹהִים הַיּוֹשֵׁב בַּשָּׁמַיִם יַצְלִיחַ אֶת־דַּרְכְּכֶם וּמַלְאָכוֹ יֵלֵךְ עִמָּכֶם וַיֵּצְאוּ שְׁנֵיהֶם לָלֶכֶת לְדַרְכָּם וְכֶלֶב הַנַּעַר עִמָּם׃",
+      "after": "נֵאוֹתוּ אִישׁ לְרֵעַהוּ וַיֹּאמֶר אֶל־טוֹבִיָּה הָכוֹן לַדֶּרֶךְ וְהַצְלִיחוּ וַיָּכֶן בְּנוֹ אֶת־אֲשֶׁר לַדֶּרֶךְ ויֹּאמֶר לוֹ אָבִיו לֵךְ עִם־הָאִישׁ וֵאלֹהִים הַיּוֹשֵׁב בַּשָּׁמַיִם יַצְלִיחַ אֶת־דַּרְכְּכֶם וּמַלְאָכוֹ יֵלֵךְ עִמָּכֶם וַיֵּצְאוּ שְׁנֵיהֶם לָלֶכֶת לְדַרְכָּם וְכֶלֶב הַנַּעַר עִמָּם׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 17,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-5-17/independent-review.json",
+    "sha256": "391392bedcf4ce87b0b84f6e5e853f2c955a5ebec928402b68106e2429fd3765"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-5-17/primary-preparation.json",
+    "sha256": "5e0c6c9169dcda06988865f42d607d2ef950651eaa29c929770c90b852c40841"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass103-TOB-5-17/consensus-preparation.json",
+    "sha256": "12850b09fe1dd19bbdb6106ba01d365a66b40c0d5f469ce275bcebdd6fd27c47"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

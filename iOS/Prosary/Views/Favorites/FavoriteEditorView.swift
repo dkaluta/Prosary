@@ -120,13 +120,13 @@ struct FavoriteEditorView: View {
       #if os(macOS)
       RosaryOptionsSections(
         rosary: $prayer.rosary,
-        languageCode: LanguageCatalog.resolve(prayer.languageCode).code)
+        languageCode: prayer.languageCode)
       #else
       Section {
         NavigationLink {
           RosaryOptionsEditorView(
             rosary: $prayer.rosary,
-            languageCode: LanguageCatalog.resolve(prayer.languageCode).code)
+            languageCode: prayer.languageCode)
         } label: {
           LabeledContent("favoriteEditor.rosaryOptions", value: prayer.rosary.mysterySelectionSummary)
         }

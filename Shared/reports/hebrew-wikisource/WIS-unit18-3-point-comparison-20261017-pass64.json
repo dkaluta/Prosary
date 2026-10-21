@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 64,
+  "book": "WIS",
+  "status": "Three 18:3 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 64.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass64-WIS-18-3/source-provenance.json",
+    "sha256": "5c5b62f4169348c8edc28fa7a5684240bc7b1a5f35d3a0ff296348510f5b80cc"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 181. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 296,
+  "sourceNotesBefore": 138,
+  "sourceNotesAfter": 135,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-18-3-word3-vav-1-vowel",
+    "wis-18-3-word3-tav-2-vowel",
+    "wis-18-3-word4-kaf-2-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 0,
+  "addedCombiningMarks": {},
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 18,
+    "verse": 3,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 3 on page קפא / 181 (viewer page 526) in Kahana Volume A, Wisdom of Solomon.",
+  "decisions": [
+    {
+      "noteId": "wis-18-3-word3-vav-1-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 3,
+      "anchor": "ותחַת",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Vav of ותחַת consists of a bare vertical stem terminating at row 1280, with 80 consecutive rows of pure white paper (rows 1282..1360, cols 1380..1410) beneath its baseline. There is no vowel mark (no Sheva, Hireq, or Patah). Confirmed unpointed consonant ו.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass64-WIS-18-3/wis-18-3-vav-target-native.png",
+        "sha256": "b749403abd6ff0925ca1e16b21cfb722c73b2dbe4bdabddeb6823df7b0b14346"
+      }
+    },
+    {
+      "noteId": "wis-18-3-word3-tav-2-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 3,
+      "anchor": "ותחַת",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Medial Tav of ותחַת has its foot terminating cleanly at row 1324, followed by 36 consecutive rows of pure white paper (rows 1325..1360, cols 1310..1365) beneath its base. There is no vowel mark (no Patah, Qamats, or Sheva). Confirmed unpointed consonant ת.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass64-WIS-18-3/wis-18-3-tav-target-native.png",
+        "sha256": "3bdb14fbdde00df553058166fa5a3ab08da9e4181df833c902271ae57dcea161"
+      }
+    },
+    {
+      "noteId": "wis-18-3-word4-kaf-2-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 3,
+      "anchor": "הֲכינוֹתָ",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Medial Kaf of הֲכינוֹתָ terminates its base foot at row 1322, with 38 consecutive rows of pure white paper (rows 1323..1360, cols 1040..1093) beneath its base. Precedes mater lectionis Yod. Confirmed unpointed consonant כ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass64-WIS-18-3/wis-18-3-kaf-target-native.png",
+        "sha256": "e23a736415259b49e49fbe103c4618a56e60e8ac5483ddf44defd88b41240b3a"
+      }
+    }
+  ]
+}

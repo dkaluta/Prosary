@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 31,
+  "book": "ESG",
+  "status": "Opening-word prose transcription correction only; no source decision, pixel, packet or canonical changes",
+  "supersedesOnly": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-point-comparison-20261017-pass31.json",
+      "sha256": "bfb74dc8e508e850ac30467f8ebef6ca89414a154b5b93110a0bd5028720522e",
+      "jsonPointer": "/sourceAddressPolicy",
+      "before": "Source5:7 begins ויהפוך after the preceding לפניה colon on the row marked ז, spans the complete following row, and ends טובות colon on the third row before ויאמר begins the following combined source8-9. All source wording, printed labels, punctuation and complete unit boundaries remain unchanged.",
+      "after": "Source5:7 begins וַיַּהֲפֹךְ after the preceding לפניה colon on the row marked ז, spans the complete following row, and ends טובות colon on the third row before ויאמר begins the following combined source8-9. All source wording, printed labels, punctuation and complete unit boundaries remain unchanged."
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-5-7/frame-ledger.json",
+      "sha256": "02d3432f789530731bd352bad31e01489f25c3c23b5e11da2c65fb020b13e78b",
+      "frameName": "ESG5-7-complete-numbered-context",
+      "field": "literalLabel",
+      "before": "Complete three-row source5:7 from ויהפוך after לפניה colon through טובות colon before ויאמר; printed ז and following ח-ט",
+      "after": "Complete three-row source5:7 from וַיַּהֲפֹךְ after לפניה colon through טובות colon before ויאמר; printed ז and following ח-ט"
+    }
+  ],
+  "reason": "The opening word was mistyped in prose with an extra vav. Original page221 and canonical source5:7 retain וַיַּהֲפֹךְ. This correction changes only the two prose quotations in the immutable report and frame ledger.",
+  "evidenceUnchanged": true,
+  "sourceDecisionsUnchanged": true,
+  "acceptedPacketSHA256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+  "canonicalFilesUnchanged": true
+}

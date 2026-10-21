@@ -29,19 +29,53 @@ struct BibleSourceBlockList: View {
   let display: BibleDisplayChapter
   let script: String
   var canonicalReference: String? = nil
-  @ObservedObject private var typography = PrayerTypographyMonitor.shared
 
   var body: some View {
     LazyVStack(alignment: .leading, spacing: 16) {
-      let heading = ScriptureChapterHeading(chapter: display.chapter.chapter, edition: edition, script: script)
-      Group {
-        if let canonicalReference { Text(verbatim: canonicalReference).bold() }
-        else { Text(verbatim: heading.label).bold() + Text(verbatim: " \(heading.number)") }
-      }
-        .font(sourceFont(canonicalReference ?? heading.text))
-        .accessibilityAddTraits(.isHeader)
-        .accessibilityIdentifier("readings.chapter.\(display.chapter.chapter)")
+      BibleSourceChapterHeading(edition: edition, chapter: display.chapter.chapter,
+        script: script, canonicalReference: canonicalReference)
       ForEach(display.blocks) { block in
+        BibleSourceBlockRow(edition: edition, displayChapter: display.chapter.chapter,
+          block: block, script: script, canonicalReference: canonicalReference)
+      }
+    }
+    .environment(\.layoutDirection, edition.isBibleRightToLeft ? .rightToLeft : .leftToRight)
+    .accessibilityElement(children: .contain)
+    .accessibilityIdentifier("bible.sourceBlocks")
+  }
+}
+
+struct BibleSourceChapterHeading: View {
+  let edition: ReadingTextEdition
+  let chapter: Int
+  let script: String
+  var canonicalReference: String? = nil
+  @ObservedObject private var typography = PrayerTypographyMonitor.shared
+
+  var body: some View {
+    let heading = ScriptureChapterHeading(chapter: chapter, edition: edition, script: script)
+    Group {
+      if let canonicalReference { Text(verbatim: canonicalReference).bold() }
+      else { Text(verbatim: heading.label).bold() + Text(verbatim: " \(heading.number)") }
+    }
+    .font(PrayerTypography.font(languageCode: edition.languageCode, isScripture: true,
+      text: canonicalReference ?? heading.text, typefaces: typography.typefaces))
+    .accessibilityAddTraits(.isHeader)
+    .accessibilityIdentifier("readings.chapter.\(chapter)")
+  }
+}
+
+/// The continuous and paged readers render exactly the same source unit, including notes.
+struct BibleSourceBlockRow: View {
+  let edition: ReadingTextEdition
+  let displayChapter: Int
+  let block: BibleDisplayBlock
+  let script: String
+  var canonicalReference: String? = nil
+  var bookTypography = false
+  @ObservedObject private var typography = PrayerTypographyMonitor.shared
+
+  var body: some View {
         VStack(alignment: .leading, spacing: 8) {
           if block.isScripture {
             let text = block.unit?.displayedText(script: script, edition: edition) ?? block.text
@@ -50,14 +84,8 @@ struct BibleSourceBlockList: View {
                 .environment(\.layoutDirection, UILanguage.isRightToLeft(UILanguage.current) ? .rightToLeft : .leftToRight)
                 .accessibilityIdentifier("bible.printedLabel.\(block.id)")
             }
-            HStack(alignment: .firstTextBaseline, spacing: 8) {
-              if canonicalReference == nil, let label = block.unit.map({ biblePrimaryLabel($0, displayChapter: display.chapter.chapter, edition: edition, script: script) }) ?? block.printedLabel {
-                Text(verbatim: label).font(.caption).foregroundStyle(.secondary).fixedSize()
-              }
-              Text(verbatim: text).font(sourceFont(text)).lineSpacing(5)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .textSelection(.enabled)
+            scriptureText(text)
+            .accessibilityElement(children: .contain)
             .accessibilityIdentifier(block.unit.map { "bible.verse.\($0.verse)" } ?? "bible.scripture.\(block.id)")
             if canonicalReference == nil, block.kind == .verse, let printedLabel = block.printedLabel {
               Text(biblePrintedLabel(printedLabel))
@@ -75,14 +103,38 @@ struct BibleSourceBlockList: View {
           ScriptureSourceNotesView(notes: block.sourceNotes)
         }
         .id(block.id)
+        .accessibilityElement(children: .contain)
         .accessibilityIdentifier("bible.block.\(block.id)")
-      }
-    }
     .environment(\.layoutDirection, edition.isBibleRightToLeft ? .rightToLeft : .leftToRight)
-    .accessibilityIdentifier("bible.sourceBlocks")
   }
 
   private func sourceFont(_ text: String) -> Font {
     PrayerTypography.font(languageCode: edition.languageCode, isScripture: true, text: text, typefaces: typography.typefaces)
+  }
+
+  @ViewBuilder
+  private func scriptureText(_ text: String) -> some View {
+    let label = canonicalReference == nil ? block.unit.map {
+      biblePrimaryLabel($0, displayChapter: displayChapter, edition: edition, script: script)
+    } ?? block.printedLabel : nil
+    #if os(iOS)
+    if bookTypography {
+      BibleBookVerseText(text: text, label: label, languageCode: edition.languageCode,
+        isRightToLeft: edition.isBibleRightToLeft, typefaces: typography.typefaces)
+    } else {
+      continuousScriptureText(text, label: label)
+    }
+    #else
+    continuousScriptureText(text, label: label)
+    #endif
+  }
+
+  private func continuousScriptureText(_ text: String, label: String?) -> some View {
+    HStack(alignment: .firstTextBaseline, spacing: 8) {
+      if let label { Text(verbatim: label).font(.caption).foregroundStyle(.secondary).fixedSize() }
+      Text(verbatim: text).font(sourceFont(text)).lineSpacing(5)
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+    .textSelection(.enabled)
   }
 }

@@ -1,0 +1,673 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "book": "WIS",
+  "status": "Two false-positive omission notes retired after native-pixel comparison and independent root verification",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "canonicalSHA256Before": "112baca00e48c687f617e9678ba79cc4bf4e8c37ccae20d5af0186f85f91800d",
+  "method": "Inspected lossless native raster crops with nearest-neighbor enlargement, full body context, and same-page letter/point comparators. No OCR or grammatical inference was used to supply Hebrew. Reviewed all34 chapter18 notes, all seven WIS dagesh notes (one overlaps chapter18), and the remaining final-letter vowel note14:1. Independent root review verified each proposed note-only correction.",
+  "reviewedSourceNoteCount": 41,
+  "sourceNotesBefore": 212,
+  "sourceNotesAfter": 210,
+  "retiredSourceNoteIds": [
+    "wis-14-1-ayin-5-vowel",
+    "wis-18-3-word3-tav-4-vowel"
+  ],
+  "primaryTextChanged": false,
+  "combiningMarksChanged": false,
+  "restoredConsonantsChanged": false,
+  "decisions": [
+    {
+      "chapter": 14,
+      "verse": 1,
+      "originalText": "וְיֵשׁ אֲשֶׁר יִתְכּוֹנֵן אִישׁ לִנְסֹעַ בַּיָּם וְלַעֲבֹר דֶּרֶךְ גַּלִּים סוֹאֲנִים וישַׁוּע לְעֵץ רָקָב מִן־הָאֳנִיָּה אֲשֶׁר תִּשָּׂאֵהוּ׃",
+      "correctedText": "וְיֵשׁ אֲשֶׁר יִתְכּוֹנֵן אִישׁ לִנְסֹעַ בַּיָּם וְלַעֲבֹר דֶּרֶךְ גַּלִּים סוֹאֲנִים וישַׁוּע לְעֵץ רָקָב מִן־הָאֳנִיָּה אֲשֶׁר תִּשָּׂאֵהוּ׃",
+      "retiredNotes": [
+        {
+          "id": "wis-14-1-ayin-5-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "וישַׁוּע",
+          "occurrence": 1,
+          "letterIndex": 5,
+          "mark": "vowel",
+          "sourcePages": [
+            172
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=172"
+        }
+      ],
+      "sourcePages": [
+        172
+      ],
+      "finding": "The final ayin has its ordinary broad sloping foot on the baseline and clear white space below. Same-page final ayin in13:14 בצבע has the same plain foot;14:1 לנסע separately shows the small detached patah below the foot. The previous lower-foot uncertainty was a false positive. No vowel is supplied or removed.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-14-1-vayshava.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-14-1-final-ayin.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-13-14-batseva-comparator.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-14-1-linsoa-pointed-comparator.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-172-body-context.png"
+      ],
+      "decision": "retireFalsePositiveSourceNote",
+      "independentRootReview": "Root separately viewed target, full source context and same-page comparators and concurred before canonical note removal."
+    },
+    {
+      "chapter": 18,
+      "verse": 3,
+      "originalText": "ותחַת אֵלֶּה הכינוֹתָ לָהֶם [לְיִשְׂרָאֵל] עַמּוּד אֵשׁ לַנְחוֹתָם דֶּרֶךְ בַּל־יָדָעוּ וְשֶׁמֶשׁ מַרְפֵּא לְמַסָּע כָּבוֹד׃",
+      "correctedText": "ותחַת אֵלֶּה הכינוֹתָ לָהֶם [לְיִשְׂרָאֵל] עַמּוּד אֵשׁ לַנְחוֹתָם דֶּרֶךְ בַּל־יָדָעוּ וְשֶׁמֶשׁ מַרְפֵּא לְמַסָּע כָּבוֹד׃",
+      "retiredNotes": [
+        {
+          "id": "wis-18-3-word3-tav-4-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ותחַת",
+          "occurrence": 1,
+          "letterIndex": 4,
+          "mark": "vowel",
+          "sourcePages": [
+            181
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181"
+        }
+      ],
+      "sourcePages": [
+        181
+      ],
+      "finding": "The final tav has the ordinary thick left foot at the letter baseline, with no independent lower point and a clear region below the middle/right. Same-page final tav in18:4 תורת has the same left-foot shape. The earlier solid-diamond finding described part of the letter, not an unreadable vowel. Initial vav and medial tav notes remain; visible het patah is unchanged.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-18-3-vetachat.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-18-3-final-tav.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-18-4-torat-comparator.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-181-body-context.png"
+      ],
+      "decision": "retireFalsePositiveSourceNote",
+      "independentRootReview": "Root separately viewed target, full source context and same-page comparators and concurred before canonical note removal."
+    }
+  ],
+  "unresolvedInspections": [
+    {
+      "chapter": 8,
+      "verse": 3,
+      "noteId": "wis-8-3-first-yod-dagesh",
+      "anchor": "חַיֵי",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 8,
+      "verse": 20,
+      "noteId": "wis-8-20-gimel-dagesh",
+      "anchor": "גוּף",
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 13,
+      "verse": 1,
+      "noteId": "wis-13-1-pe-1-dagesh",
+      "anchor": "פְעֻלּוֹתָיו",
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 14,
+      "verse": 11,
+      "noteId": "wis-14-11-pe-1-dagesh",
+      "anchor": "פְקדָּה",
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 15,
+      "verse": 8,
+      "noteId": "wis-15-8-shin-2-dagesh",
+      "anchor": "יַשׁוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "noteId": "wis-18-1-word1-vav-1-vowel",
+      "anchor": "ולחסידיךָ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "noteId": "wis-18-1-word1-lamed-2-vowel",
+      "anchor": "ולחסידיךָ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "noteId": "wis-18-1-word1-het-3-vowel",
+      "anchor": "ולחסידיךָ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "noteId": "wis-18-1-word1-samekh-4-vowel",
+      "anchor": "ולחסידיךָ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "noteId": "wis-18-1-word1-dalet-6-vowel",
+      "anchor": "ולחסידיךָ",
+      "letterIndex": 6,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "noteId": "wis-18-1-word2-vav-1-vowel",
+      "anchor": "ויְאשְׁרוּם",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "noteId": "wis-18-1-word2-alef-3-vowel",
+      "anchor": "ויְאשְׁרוּם",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 1,
+      "noteId": "wis-18-1-word2-shin-4-dagesh",
+      "anchor": "ויְאשְׁרוּם",
+      "letterIndex": 4,
+      "mark": "dagesh",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 3,
+      "noteId": "wis-18-3-word3-vav-1-vowel",
+      "anchor": "ותחַת",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 3,
+      "noteId": "wis-18-3-word3-tav-2-vowel",
+      "anchor": "ותחַת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 3,
+      "noteId": "wis-18-3-word4-he-1-vowel",
+      "anchor": "הכינוֹתָ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 3,
+      "noteId": "wis-18-3-word4-kaf-2-vowel",
+      "anchor": "הכינוֹתָ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 4,
+      "noteId": "wis-18-4-word5-bet-1-vowel",
+      "anchor": "בּצדק",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 4,
+      "noteId": "wis-18-4-word5-tsadi-2-vowel",
+      "anchor": "בּצדק",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 4,
+      "noteId": "wis-18-4-word5-dalet-3-vowel",
+      "anchor": "בּצדק",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 5,
+      "noteId": "wis-18-5-word6-samekh-2-vowel",
+      "anchor": "יִסּרתָּם",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 5,
+      "noteId": "wis-18-5-word6-resh-3-vowel",
+      "anchor": "יִסּרתָּם",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 5,
+      "noteId": "wis-18-5-word7-bet-3-vowel",
+      "anchor": "וְאִבּדְתָּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 5,
+      "noteId": "wis-18-5-word8-kaf-1-vowel",
+      "anchor": "כלָּם",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 9,
+      "noteId": "wis-18-9-word9-vav-1-vowel",
+      "anchor": "ויָחקּוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 9,
+      "noteId": "wis-18-9-word9-het-3-vowel",
+      "anchor": "ויָחקּוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 14,
+      "noteId": "wis-18-14-word10-lamed-3-vowel",
+      "anchor": "הָשְׁלךְ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 18,
+      "noteId": "wis-18-18-word11-lamed-1-vowel",
+      "anchor": "לפְנֵי־כֹל",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 23,
+      "noteId": "wis-18-23-word12-vav-1-vowel",
+      "anchor": "ונערְמוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 23,
+      "noteId": "wis-18-23-word12-nun-2-vowel",
+      "anchor": "ונערְמוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 23,
+      "noteId": "wis-18-23-word12-ayin-3-vowel",
+      "anchor": "ונערְמוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 24,
+      "noteId": "wis-18-24-word13-alef-3-vowel",
+      "anchor": "וּפְארְךָ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 25,
+      "noteId": "wis-18-25-word14-zayin-1-vowel",
+      "anchor": "זעמְךָ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 25,
+      "noteId": "wis-18-25-word14-ayin-2-vowel",
+      "anchor": "זעמְךָ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 25,
+      "noteId": "wis-18-25-word15-lamed-1-vowel",
+      "anchor": "לבדָּהּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 25,
+      "noteId": "wis-18-25-word15-bet-2-vowel",
+      "anchor": "לבדָּהּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 25,
+      "noteId": "wis-18-25-word16-sin-1-vowel",
+      "anchor": "שׂפקָה",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 18,
+      "verse": 25,
+      "noteId": "wis-18-25-word16-pe-2-vowel",
+      "anchor": "שׂפקָה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "decision": "retainUnresolvedSourceNote"
+    },
+    {
+      "chapter": 19,
+      "verse": 6,
+      "noteId": "wis-19-6-word6-shin-2-dagesh",
+      "anchor": "יִשׁמְרוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "decision": "retainUnresolvedSourceNote"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-18-3-vetachat.png",
+      "sourcePDFPage": 181,
+      "nativeDimensions": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1310,
+        965,
+        1515,
+        1090
+      ],
+      "scale": 4,
+      "resampling": "nearest",
+      "sha256": "64a2321797f52aaa5f32175ff7f1eda1c968d292eac95ce7892f687b4128bf3d"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-18-3-final-tav.png",
+      "sourcePDFPage": 181,
+      "nativeDimensions": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1320,
+        985,
+        1410,
+        1090
+      ],
+      "scale": 4,
+      "resampling": "nearest",
+      "sha256": "de0daee3a9eac77e1427d8f706360f40069b2ea57b4cde48bcafb9f85cbb6b46"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-18-4-torat-comparator.png",
+      "sourcePDFPage": 181,
+      "nativeDimensions": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1415,
+        1290,
+        1595,
+        1385
+      ],
+      "scale": 4,
+      "resampling": "nearest",
+      "sha256": "915c516312d607150d6bbb9a6464fcdc0e51b8f224a3e9405244172b19b26a64"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-181-body-context.png",
+      "sourcePDFPage": 181,
+      "nativeDimensions": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        180,
+        735,
+        2070,
+        1385
+      ],
+      "scale": 1,
+      "resampling": "nearest",
+      "sha256": "945e3d5d9a5c1db47ae907d036baaab388830d4f15270705fb96d0f1ffdfbc24"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-14-1-vayshava.png",
+      "sourcePDFPage": 172,
+      "nativeDimensions": [
+        2644,
+        3598
+      ],
+      "nativeBounds": [
+        1885,
+        1195,
+        2075,
+        1310
+      ],
+      "scale": 4,
+      "resampling": "nearest",
+      "sha256": "98d82bedc2ff335202280ab37076b008834094c5354910eef2ba4ae1ef6b5b93"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-14-1-final-ayin.png",
+      "sourcePDFPage": 172,
+      "nativeDimensions": [
+        2644,
+        3598
+      ],
+      "nativeBounds": [
+        1890,
+        1205,
+        1970,
+        1305
+      ],
+      "scale": 4,
+      "resampling": "nearest",
+      "sha256": "c5b8f75cf30cc86946da7760b626ccbf339e0b36e03b1d991e9ee7324004d726"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-13-14-batseva-comparator.png",
+      "sourcePDFPage": 172,
+      "nativeDimensions": [
+        2644,
+        3598
+      ],
+      "nativeBounds": [
+        560,
+        350,
+        735,
+        480
+      ],
+      "scale": 4,
+      "resampling": "nearest",
+      "sha256": "abcafd31f3f1bcb4fe8ac26f9ae6625baf0dadf388bf54a69eb8d6c64af2efcf"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-14-1-linsoa-pointed-comparator.png",
+      "sourcePDFPage": 172,
+      "nativeDimensions": [
+        2644,
+        3598
+      ],
+      "nativeBounds": [
+        1175,
+        1100,
+        1325,
+        1220
+      ],
+      "scale": 4,
+      "resampling": "nearest",
+      "sha256": "fe45de0803116b1822e00c88bd3db1416341a6d10a7c8bccda11525cf0d3797a"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-WIS/WIS-172-body-context.png",
+      "sourcePDFPage": 172,
+      "nativeDimensions": [
+        2644,
+        3598
+      ],
+      "nativeBounds": [
+        300,
+        350,
+        2150,
+        1320
+      ],
+      "scale": 1,
+      "resampling": "nearest",
+      "sha256": "2235fe6ad7056b533f8b01dd7b5555df35902e60fa628212c99295d2a67b4f56"
+    }
+  ],
+  "additionalWitnessResearch": {
+    "sourceURL": "https://htinstitute.co.il/wp-content/uploads/2024/08/.pdf",
+    "downloadedFile": "/private/tmp/prosary-wis-20261017/htinstitute-2024.pdf",
+    "sha256": "789fa39544ed4c7b1c51ec592af64f74d0e2d80960603809a0e43763e6ee490b",
+    "pageCount": 668,
+    "metadataSubject": "ID 34334 - Available for FREE at www.hebrewbooks.org",
+    "finding": "Newly downloaded 2024-hosted full-volume PDF is another container for the same Hebrewbooks scan. Primary pages145,155,179,181,182,183 correspond to alternate488,498,522,524,525,526 and have identical decoded 1-bit raster bytes, dimensions and mode. It adds no independent visible evidence.",
+    "rawPixelComparisons": [
+      {
+        "primaryPage": 145,
+        "alternatePage": 488,
+        "dimensions": [
+          2591,
+          3562
+        ],
+        "mode": "1",
+        "decodedPixelSHA256": "ef3ae7795ba2892162018c03cad67c776e8ed24011480b8d4f6bfb5783ecdaff",
+        "identical": true
+      },
+      {
+        "primaryPage": 155,
+        "alternatePage": 498,
+        "dimensions": [
+          2529,
+          3519
+        ],
+        "mode": "1",
+        "decodedPixelSHA256": "d0a359a2f2a6cf25277e541e8dccb4dd6b8e0b22069eb0f1764802eef48909bc",
+        "identical": true
+      },
+      {
+        "primaryPage": 179,
+        "alternatePage": 522,
+        "dimensions": [
+          2540,
+          3526
+        ],
+        "mode": "1",
+        "decodedPixelSHA256": "e4ce628a6a7b04be9b923e6eca996d546a48bba0698d53cb1636f81ee07d1c9e",
+        "identical": true
+      },
+      {
+        "primaryPage": 181,
+        "alternatePage": 524,
+        "dimensions": [
+          2543,
+          3529
+        ],
+        "mode": "1",
+        "decodedPixelSHA256": "c81b7ab1e1e00d913457d12442335278646afc239ab3fa7214541de1a437f194",
+        "identical": true
+      },
+      {
+        "primaryPage": 182,
+        "alternatePage": 525,
+        "dimensions": [
+          2570,
+          3547
+        ],
+        "mode": "1",
+        "decodedPixelSHA256": "2a8e997d8ee6be859903822e8e63f4f866ae7edcd5655da9ed7f328ef6092608",
+        "identical": true
+      },
+      {
+        "primaryPage": 183,
+        "alternatePage": 526,
+        "dimensions": [
+          2534,
+          3522
+        ],
+        "mode": "1",
+        "decodedPixelSHA256": "e3a134aba36242b7dedb96fd0cf6c87b5885e174bfb34fb0641a54e66f631f76",
+        "identical": true
+      }
+    ]
+  },
+  "canonicalSHA256After": "119c6a56e95a296c25aa4c4600535a2b451db1be35ee8fed50c661081a5489aa"
+}

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 149,
+  "integrationPass": 149,
+  "preparationID": 211,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation211-WIS-1-3/source-provenance.json",
+    "sha256": "a8f4f4ae797deda10b4ccbdad29c4cca81ad65451a6b250d16d7b8146b8cce4e"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-1-3-mahshavot-het"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-1-3-mahshavot-het",
+      "book": "WIS",
+      "chapter": 1,
+      "verse": 3,
+      "anchorBefore": "מַחשָׁבוֹת",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own second Het712px[2074,875,2107,928] full roof and left/right uprights bound inside complete six-letter second word. Right upright2100..2104 y908..911 narrows at912 then connected left-expanded horizontal lowerbar2081..2103y915..917; lower rightlobe2095..2102 descends through927. Native continuity y913..915 prevents exact independent compound-vowel classification or printed absence. Literal own Mem77px horizontal detached point and own Vav29px upper node do not supply Het mark. Retain exact disclosure and every original scalar.",
+      "targetCapture": "primary-145-native.png",
+      "targetSourceIdentifier": "primary-145-native.png",
+      "inspectedBounds": [
+        2070,
+        865,
+        2110,
+        938
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation211-WIS-1-3/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 3,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation211-WIS-1-3/independent-review.json",
+    "sha256": "a4b912b35e5ccc1ad93c739572015ea42f159a938016679973f083280896e019"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation211-WIS-1-3/primary-preparation.json",
+    "sha256": "f126bff0c88a729dbb817fb5a50cf9cfb672bb35e553d59e1a8151d5265510a4"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass149-preparation211-WIS-1-3/consensus-preparation.json",
+    "sha256": "d3ad0b12e5c610de1934ebfe49d691f8a9f5b841d5bb8fc24972a4a6167f142b"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

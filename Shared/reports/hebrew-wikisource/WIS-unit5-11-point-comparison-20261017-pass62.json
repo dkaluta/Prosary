@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 62,
+  "book": "WIS",
+  "status": "Three 5:11 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 62.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass62-WIS-5-11/source-provenance.json",
+    "sha256": "c31ee2a045ce595c3bce906eb0f01318906fb112d7030bac32ef095e1c211b52"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 154. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 302,
+  "sourceNotesBefore": 144,
+  "sourceNotesAfter": 141,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-5-11-vav",
+    "wis-5-11-pe",
+    "wis-5-11-bet"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "U+05B0 SHEVA": 1
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 11,
+      "before": "אוֹ כְעוֹף הַפּוֹרֵחַ בַּשָּׁמַיִם וְלֹא יִמָּצֵא כָּל־זֵכֶר לִמְעוּפוֹ רַק מַשַּׁק הַכְּנָפַיִם יַצְלֹף אֶת־הָרוּחַ הַקַּל ויפלְּגֵהוּ בּהֲמֻלָּה עֲצוּמָה וְיֶחֱצֵהוּ בִּתְנוּפַת אֶבְרָתוֹ הִנֵּה עָבַר־בּוֹ וְכָל־אוֹת לֹא־נִשְׁאֲרָה [אַחֲרָיו׃",
+      "after": "אוֹ כְעוֹף הַפּוֹרֵחַ בַּשָּׁמַיִם וְלֹא יִמָּצֵא כָּל־זֵכֶר לִמְעוּפוֹ רַק מַשַּׁק הַכְּנָפַיִם יַצְלֹף אֶת־הָרוּחַ הַקַּל וְיפלְּגֵהוּ בּהֲמֻלָּה עֲצוּמָה וְיֶחֱצֵהוּ בִּתְנוּפַת אֶבְרָתוֹ הִנֵּה עָבַר־בּוֹ וְכָל־אוֹת לֹא־נִשְׁאֲרָה [אַחֲרָיו׃",
+      "beforeTextSHA256": "f77ec9247a677ff71a2db0af0f74d2b9429102231b90ecf8bb3ac4c7f8374f2d",
+      "afterTextSHA256": "62a37f58c305c01859ce1b86eb975e9d4b8aaf238cdeb9ceee455fb22db5cd85"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 11,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 11 on page קנד / 154 (viewer page 499) in Kahana Volume A, Wisdom of Solomon.",
+  "decisions": [
+    {
+      "noteId": "wis-5-11-vav",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 11,
+      "anchor": "ויפלְּגֵהוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "sheva",
+      "codePoint": "U+05B0",
+      "markClassification": "Vowel",
+      "finding": "Initial Vav of ויפלְּגֵהוּ is pointed with an unmistakable printed Sheva (two vertical stamped ink punch dots at rows 286..295 and 304..317, cols 937..944, separated by lighter neck at min 24). Resolved as וְ (U+05B0).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass62-WIS-5-11/wis-5-11-vav-target-native.png",
+        "sha256": "54c9579992d51034911d160e9b713fccaae2d8683b0d508f4f2bcaff02be4ff0"
+      }
+    },
+    {
+      "noteId": "wis-5-11-pe",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 11,
+      "anchor": "ויפלְּגֵהוּ",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Medial Pe of ויפלְּגֵהוּ has 85 consecutive rows of clean white paper (rows 240..324, cols 770..855) beneath its baseline. Confirmed unpointed consonant פ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass62-WIS-5-11/wis-5-11-pe-target-native.png",
+        "sha256": "61d3a5c4ba8ef09dd6bc5fdbe0ac134cb64dfd2464b5b6f0d2596987ca6257c6"
+      }
+    },
+    {
+      "noteId": "wis-5-11-bet",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 11,
+      "anchor": "בּהֲמֻלָּה",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonantWithDagesh",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Bet of בּהֲמֻלָּה carries an internal Dagesh with 54 consecutive rows of pure white paper (rows 271..324, cols 470..540) beneath its baseline. Confirmed unpointed consonant with Dagesh בּ.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass62-WIS-5-11/wis-5-11-bet-target-native.png",
+        "sha256": "d19249f608fbcd46aac338c8d14e2511afb2fe2d5d14fefbe5a70294563f3aff"
+      }
+    }
+  ]
+}

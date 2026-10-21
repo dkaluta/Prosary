@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 227,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation227-WIS-6-4/source-provenance.json",
+    "sha256": "98fef62cc0b04bd3ca28e4dc14cd96cac2e9ad893bacdd3a61e75deb10d12f6c"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-6-4-resh"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-6-4-resh",
+      "book": "WIS",
+      "chapter": 6,
+      "verse": 4,
+      "anchorBefore": "מֵישָׁרים",
+      "letterIndex": 4,
+      "decision": "retainNote",
+      "finding": "Fresh exact native literalASCII and components: ownResh523px[685,1624,718,1673] has rightstem continuing through1650..1664 and broadening connected bulb atx709..717 y1665..1671 ending2px y1672. No detached diagnostic vowel or independent exact absence. Blank lower rows do not prove absence. Neighboring ShinQamats142px never supplies this mark. Original scalars/disclosure retained.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b9/b96ea0a805aae38b87eebd87baf6f4ae7f091d339cf73c1259c494d29e1e1c57.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b9/b96ea0a805aae38b87eebd87baf6f4ae7f091d339cf73c1259c494d29e1e1c57.bin",
+      "inspectedBounds": [
+        682,
+        1620,
+        721,
+        1690
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation227-WIS-6-4/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 6,
+    "verse": 4,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation227-WIS-6-4/independent-review.json",
+    "sha256": "25be1327274fa901021f121fc50de01841f681ab14619c928fb73d27d655fdd8"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation227-WIS-6-4/primary-preparation.json",
+    "sha256": "39c71dbd38fd6f8ecb5f9887b3f15f319655fb34076bb74a7f858901de686552"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation227-WIS-6-4/consensus-preparation.json",
+    "sha256": "00a6a35fb2adb16abc3fa187668d4ab355a959c03b3c5ae8e6a0fe676d0520b1"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

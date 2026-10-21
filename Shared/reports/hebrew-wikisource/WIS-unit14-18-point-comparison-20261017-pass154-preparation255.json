@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 154,
+  "integrationPass": 154,
+  "preparationID": 255,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation255-WIS-14-18/source-provenance.json",
+    "sha256": "6ba9db43a555142eea0e0ccacfe2e3a69e261d2559d0301158eae5e2288478c9"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-14-18-nun-2-vowel"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-14-18-nun-2-vowel",
+      "book": "WIS",
+      "chapter": 14,
+      "verse": 18,
+      "anchorBefore": "הֵניעָה",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Strict offline own independent pypdf extraction of one embedded native image from pinned PDF174. Own native Pillow NumPy SciPy arrays, literal ASCII, exact crops and integer NEAREST only. Old exactRGB replay locates only. No image viewing/web/browser/OCR/rendering/enhancement/smoothing/sharpening/grammar/normalization/expected spelling/borrowed marks.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/16/1659a2c4b53b173d483b3a85cd86b43a7e90d38c287163b1261ba1511f56e01d.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/16/1659a2c4b53b173d483b3a85cd86b43a7e90d38c287163b1261ba1511f56e01d.bin",
+      "inspectedBounds": [
+        1866,
+        688,
+        1889,
+        751
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation255-WIS-14-18/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 14,
+    "verse": 18,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation255-WIS-14-18/independent-review.json",
+    "sha256": "0f34176b55348d197c9322f259b7078a6adfeadb7ca447acbd11b184b9ae140b"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation255-WIS-14-18/primary-preparation.json",
+    "sha256": "414581a269d8f5ddef76d320782835c4b0848d8d2063d44116dfd4765e3a128a"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass154-preparation255-WIS-14-18/consensus-preparation.json",
+    "sha256": "8137a17246c283499e308836644281cff3d6f943321f8b405a20961446fd4330"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

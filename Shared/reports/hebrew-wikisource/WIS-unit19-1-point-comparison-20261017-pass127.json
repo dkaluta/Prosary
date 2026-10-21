@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 127,
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 2 retained.",
+  "applicationState": "All disclosures retained; canonical book/review metadata unchanged. Tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass127-WIS-19-1/source-provenance.json",
+    "sha256": "248f0cb1c2c0a846dd09001d49b152c43e3abe27dde487f8d4fdeb3ea937cfd6"
+  },
+  "sourceNotesBefore": 109,
+  "sourceNotesAfter": 109,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 2,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-19-1-word1-alef-2-vowel",
+    "wis-19-1-word1-vav-1-vowel"
+  ],
+  "contentSHA256Before": "8c0a17df1ccbc7c1b474021fb9cc45ac204d188162ac737ec30ce3f350c69315",
+  "contentSHA256After": "8c0a17df1ccbc7c1b474021fb9cc45ac204d188162ac737ec30ce3f350c69315",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-19-1-word1-vav-1-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 1,
+      "anchorBefore": "ואת",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "The complete initial Vav shaft runs into a broad expansion around1007..1026 and a further elongated lower terminal through1081. A saturated vertical continuation joins those expansions; the lower mass does not expose a bounded round node or a uniquely classifiable bar/stem. Same-unit ordinary final Vav in באפו has a narrow shaft ending1031, so the target has real additional lower ink, but the printed contour does not uniquely distinguish a vowel class. Retain the exact disclosure; no absence or added point is certified. Independent peer: Independent own6x Vav shaft lower portion includes a broad expansion then a long thick saturated continuation terminating1081. The visible extra lower ink is real compared with the same-unit ordinary Vav ending1031, but no exposed node, bar or head/stem geometry uniquely identifies its vowel. An absence cannot be certified either. Retain unchanged.",
+      "targetCapture": "extension-volumeA-528-zoom6-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-528-zoom6-mid-right.png",
+      "inspectedBounds": [
+        512,
+        924,
+        562,
+        1081
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass127-WIS-19-1/consensus-preparation.json"
+    },
+    {
+      "noteId": "wis-19-1-word1-alef-2-vowel",
+      "book": "WIS",
+      "chapter": 19,
+      "verse": 1,
+      "anchorBefore": "ואת",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Below the complete Alef diagonal and left foot is a broad saturated plate, connected through the left lower body. Its lower contour contains irregular recesses and split basal protrusions rather than an independently exposed exact point shape. The same-unit Alef in באפו has a similarly joined lower plate and is recorded as a literal contour comparison, not assumed to be a positive class from spelling. A separate same-unit Lamed Qamats shows a broad head and long lower stem, but excluding that one comparator does not uniquely identify the target plate. Both4x and6x reproduce the ambiguity. Retain without adding a codepoint. Independent peer: Independent own6x Alef left lower arm narrows through1038, abruptly broadens1039..1057 into an irregular plate joined to its body. SAMEUNIT Alef in complete באפו shows a similar joined plate through1057; that comparator itself has no separately certified vowel. SAMEUNIT Lamed detached Qamats has broad head then long stem[542,1043,588,1093], but exclusion of that one class does not resolve target into another exact mark. No unique Patah, other mark or printed absence is certified; retain.",
+      "targetCapture": "extension-volumeA-528-zoom6-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-528-zoom6-mid-right.png",
+      "inspectedBounds": [
+        412,
+        924,
+        505,
+        1058
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass127-WIS-19-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 19,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass127-WIS-19-1/independent-review.json",
+    "sha256": "20af4b460b7ca187ff1135ef98d43fff74ef11e2a3c22ea3236c44cd4e4d892f"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass127-WIS-19-1/primary-preparation.json",
+    "sha256": "588f26965739091bb42ccd330c8c497952ba26585dc2df1290171700ed4f317c"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass127-WIS-19-1/consensus-preparation.json",
+    "sha256": "caf31779797ad9880a51b99d6569c96cd710e1fcf5af153d58386b88dd1686a8"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

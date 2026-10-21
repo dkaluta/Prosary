@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 142,
+  "integrationPass": 142,
+  "preparationID": 187,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation187-SIR-30-16/source-provenance.json",
+    "sha256": "6dcd3da4c979f9ed2138b53ac86011ef9f02ea4ce343c84184afb72b3536bafc"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-30-16-resh-vowel"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-30-16-resh-vowel",
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 16,
+      "anchorBefore": "שֵׁר־עֶצֶם",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "OwnsecondResh3110px88x111 nativecomponent[1768,569,1856,680] containsbroadroof/rightstemcontinuingintoraggedlowerterminal, no detachedpointboundary/dot/plate. Clearbelow680doesnotcertifyabsence becauseupperterminal remainsconfluent; exactvowelclass notindependentlyrecoverable. Owncompletefivelettercompoundbound withliteralhyphenbetweenReshandAyin. InitialShin hasindependentTserepair227px18x19[1895,684,1913,703]and243px19x19[1918,684,1937,703],5clearcolumnsbetweenand7clearrowsafterShinbody677; compactseparatenodesareindependentlyliteralbutdonotsupplyReshmark. Retain exactsourceNote/allscalars.",
+      "targetCapture": "extension-volumeB-496-zoom6-lower-mid.png",
+      "targetSourceIdentifier": "extension-volumeB-496-zoom6-lower-mid.png",
+      "inspectedBounds": [
+        1768,
+        569,
+        1856,
+        680
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation187-SIR-30-16/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 30,
+    "verse": 16,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation187-SIR-30-16/independent-review.json",
+    "sha256": "bffdbdbcafeb420b270de0572ca3622e518020ead9ce8a1fbe844f23f3ca9b48"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation187-SIR-30-16/primary-preparation.json",
+    "sha256": "91660cea719377a3f93d4e7b66db1c32bbdaf5909170b0c50c643832ff4a4454"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation187-SIR-30-16/consensus-preparation.json",
+    "sha256": "21a0008b94d7833cf71d63587a2647b66d0837474f37a5b34f7b03a8e5f8ea02"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

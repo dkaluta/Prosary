@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 169,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "S3Y",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation169-S3Y-1-16/source-provenance.json",
+    "sha256": "79fbd27426814e15b75cd8c40ca7c2a2fd5bee801dbdf02cc7aebb310f5351ab"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-16-word5-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "d1f129724960a1e9139f38dc28c73537e07d34c628737fdae0e47fd74c73494b",
+  "contentSHA256After": "9088fb929b283553f74a30e71a4e7fd050b6b7f6bba40d9e7e5d50f6d49db727",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "s3y-1-16-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 16,
+      "anchorBefore": "ונְּהִי",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Own Vav ends1677 at128, then detached shallow464px39x15 horizontal stamp[2336,1690,2375,1705], with tiny10px4x3 upperfray[2344,1687,2348,1690]. At64 main340px37x13 remains a short horizontal stamp; at192 upperfray joins main into611px41x21 but no sustained downward stem or second lower node. Main broad run1693..1699 spans33..39px; shallow basal teeth end1704, clear all54rows1706..1759. Literal complete sameunitהיום initialHe has separate751px45x19 broad shallow bar[1919,1682,1964,1701], no descending stem, clear lowerfield. Own He has compact249px16x19 single dot[2198,1686,2214,1705], a distinct roundpoint. These own native shapes support short horizontal Patah U05B7 for Vav, with upperfray honestly disclosed. Peer must challenge whether fray/holes leave class ambiguous; no canonical vowel/grammar/parallel supplies class. Independent peer: Independent peer confirms literal own fourconsonant ונהי, Vav-Nun-He-Yod, between מכלהגוים and היום; originalprose extraneousNun was correctedv2 while exact anchorונְּהִי unchanged. Own Vavends1677; detachedmain464px39x15 stamp[2336,1690,2375,1705] plus10px4x3 upperfray[2344,1687,2348,1690] form broadhorizontal band. At1693..1700 width34..39px; lowerhole splits two short basalteeth but no sustainedverticalstem, no separate secondlowernode. Below1705,54rows min210. Sameunit completeהיום initialHe has751px45x19 broad horizontalstamp[1919,1682,1964,1701], broadmiddlewidth41..45px and similar shortbasalteeth, clearbelow1700. OwnwordHe compact249px16x19 Hiriq contrasts in width/topology. Own broadshort Vav stamp supports PatahU05B7 with upperfray/holes explicitlydisclosed, no canonical/grammar inference.",
+      "targetCapture": "extension-volumeA-579-zoom6-top-left.png",
+      "targetSourceIdentifier": "extension-volumeA-579-zoom6-top-left.png",
+      "inspectedBounds": [
+        2329,
+        1578,
+        2367,
+        1678
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        2335,
+        1685,
+        2376,
+        1706
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation169-S3Y-1-16/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 16,
+      "before": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם ונְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+      "after": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם וַנְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 16,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation169-S3Y-1-16/independent-review.json",
+    "sha256": "b84bd4bd491cdfb3448de32a26d89df897356aa02b9f1200ac8292281fc53305"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation169-S3Y-1-16/primary-preparation.json",
+    "sha256": "324ac34b8af048c25652feb5352bcfe01942e708dd0ea94b02dd8fa02d1a91e4"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation169-S3Y-1-16/consensus-preparation.json",
+    "sha256": "15ca03ef759de2554231acec1ad8208a23c7360ebe050487c56f7f7fcb4e2747"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "chapter": 1,
+        "verse": 16,
+        "before": [
+          {
+            "id": "s3y-1-16-word5-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ונְּהִי",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          }
+        ],
+        "after": []
+      }
+    ],
+    "changedRows": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "chapter": 1,
+        "verse": 16,
+        "before": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם ונְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+        "after": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם וַנְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+        "sourceNotesBefore": [
+          {
+            "id": "s3y-1-16-word5-letter1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ונְּהִי",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              234
+            ],
+            "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+          }
+        ],
+        "sourceNotesAfter": []
+      }
+    ],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Daniel 3:47–51",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

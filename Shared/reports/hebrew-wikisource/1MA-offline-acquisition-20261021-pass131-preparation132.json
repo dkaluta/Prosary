@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 131,
+  "integrationPass": 131,
+  "preparationID": 132,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-1MA-offline-originals/source-provenance.json",
+      "sha256": "2ee7c89e0461cf5c4d81c8494c943ccdbecedef9b3ec3ce30f5193950b4929ad"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Existing offline Chrome4x/6x preemptive captures plus exact historically hash-pinned original primary KahanaB embedded PDF raster for target registration/context. No new browser/network acquisition.",
+  "sourceDocument": "Kahana Volume B",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    150
+  ],
+  "savedCaptureViewerPageLabels": [
+    152
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-1MA-offline-originals/primary-150-native.png",
+      "sha256": "767c11120769fcfbefbd81238d5ab06186f4e449ffa9ef9c17a73cfd455116d8",
+      "resolution": [
+        1650,
+        2550
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-1MA-offline-originals/source-provenance.json",
+        "sha256": "2ee7c89e0461cf5c4d81c8494c943ccdbecedef9b3ec3ce30f5193950b4929ad"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "אברהם כהנא",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/wiki/ספר_המקבים_א_-_כל_הספר",
+        "attribution": "ספר המקבים א — תרגום אברהם כהנא, הספרים החיצונים, כרך ב."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        }
+      ]
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page150/extension-volumeB-152-page-overview.png",
+      "sha256": "75a6fb4856f25a4a61fc1479a5837ecbf13a27c2b65c0b4da4fc965a4022c502",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page150/extension-volumeB-152-zoom6-mid-mid.png",
+      "sha256": "e372ad4a41daee80c4443a7e13099a278ae5ddfc3a3b10dc04f1221cac1d06ab",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page150/extension-volumeB-152-zoom4-mid-left.png",
+      "sha256": "f3c76df0950e95ef746bb5d39b6772d40e52e8df83457875c0365838258e2f1e",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass131-preparation132-1MA-10-57/source-provenance.json",
+    "sha256": "ccdfffe2ba7a438d1f959348b3d7c91ce249da71bfed0a00b539e8072ba93e71"
+  }
+}

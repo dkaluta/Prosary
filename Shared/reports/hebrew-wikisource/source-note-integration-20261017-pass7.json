@@ -1,0 +1,317 @@
+{
+  "date": "2026-10-17",
+  "pass": 7,
+  "startingNoteCount": 629,
+  "removedNoteCount": 10,
+  "remainingNoteCount": 619,
+  "books": [
+    {
+      "book": "1MA",
+      "beforeNoteCount": 12,
+      "afterNoteCount": 8,
+      "removedNoteIds": [
+        "1ma-14-34-tav-vowel",
+        "1ma-6-38-kaf-vowel",
+        "1ma-9-1-bet-vowel",
+        "1ma-9-56-resh-vowel"
+      ],
+      "beforeDigest": "be17586b8b64a64899f17ddb265d5a1e13ae8e0dc4683d3347e06316d08e4f61",
+      "afterDigest": "07175c48885e515471647c6f0ca7d140db8a6e036a7d9b833424649efea64d3d",
+      "sourceChanges": [
+        {
+          "book": "1MA",
+          "chapter": 6,
+          "verse": 38,
+          "before": "וּמְכסִּים",
+          "after": "וּמְכַסִּים",
+          "retiredNoteIds": [
+            "1ma-6-38-kaf-vowel"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "A broad bar with shallow one-pixel lower lugs matches same-page mem/hei patah and differs from the deep alef qamats stem."
+        },
+        {
+          "book": "1MA",
+          "chapter": 9,
+          "verse": 1,
+          "before": "בּקְחִידֵס",
+          "after": "בַּקְחִידֵס",
+          "retiredNoteIds": [
+            "1ma-9-1-bet-vowel"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "The ragged flat bar matches the same-unit bet patah in במלחמה, while the mem qamats has a deep stem and the alef segol has three separate stamps."
+        },
+        {
+          "book": "1MA",
+          "chapter": 9,
+          "verse": 56,
+          "before": "בְּרגְזָה",
+          "after": "בְּרָגְזָה",
+          "retiredNoteIds": [
+            "1ma-9-56-resh-vowel"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "The broad head and deep detached central lower foot match the same-word zayin qamats, unlike local shallow patah and three-dot segol controls."
+        },
+        {
+          "book": "1MA",
+          "chapter": 14,
+          "verse": 34,
+          "before": "לְתקֵּן",
+          "after": "לְתַקֵּן",
+          "retiredNoteIds": [
+            "1ma-14-34-tav-vowel"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "The flat bar and one-pixel lower lug contrast with the same-letter, same-row tav qamats long stem and match the local article hei patah."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-vowel-comparison-20261017-pass7.json",
+          "sha256": "2e6876aca9d634a68a526dfc4147cc4c033298fde604e3a15f103aa6ab9046df"
+        }
+      ]
+    },
+    {
+      "book": "WIS",
+      "beforeNoteCount": 203,
+      "afterNoteCount": 198,
+      "removedNoteIds": [
+        "wis-15-8-shin-2-dagesh",
+        "wis-18-1-word2-shin-4-dagesh",
+        "wis-19-6-word6-shin-2-dagesh",
+        "wis-8-20-gimel-dagesh",
+        "wis-8-3-first-yod-dagesh"
+      ],
+      "beforeDigest": "cbcc373536d0a4769af2695574680a174502dab9eab147b79c507b00161ad1a2",
+      "afterDigest": "41f9599c8980dd1166976714cdb916d5fe2e11efd5b0220f364841bce4344a49",
+      "sourceChanges": [
+        {
+          "book": "WIS",
+          "chapter": 8,
+          "verse": 3,
+          "before": "חַיֵי",
+          "after": "חַיֵּי",
+          "retiredNoteIds": [
+            "wis-8-3-first-yod-dagesh"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "The rounded low-left lobe and enclosed white notch match a same-font pointed first yod; two plain final yod controls have only head and narrow descender."
+        },
+        {
+          "book": "WIS",
+          "chapter": 8,
+          "verse": 20,
+          "before": "גוּף",
+          "after": "גּוּף",
+          "retiredNoteIds": [
+            "wis-8-20-gimel-dagesh"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "A rounded mid-left lobe lies between head and normal foot and matches the homologous detached gimel point in 13:8; bare 9:16 gimel has a narrow straight shaft."
+        },
+        {
+          "book": "WIS",
+          "chapter": 15,
+          "verse": 8,
+          "before": "יַשׁוּ",
+          "after": "יַשּׁוּ",
+          "retiredNoteIds": [
+            "wis-15-8-shin-2-dagesh"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "The rounded interior bulb beside the middle diagonal matches the literal detached 13:2 shin point and the narrow-bridge 9:16 point, unlike plain 15:7 middle arms."
+        },
+        {
+          "book": "WIS",
+          "chapter": 18,
+          "verse": 1,
+          "before": "ויְאשְׁרוּם",
+          "after": "ויְאשְּׁרוּם",
+          "retiredNoteIds": [
+            "wis-18-1-word2-shin-4-dagesh"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "The compact right-facing interior lobe matches the detached 13:2 shin point and narrow-bridge 9:16 intermediate; bare same-font middle diagonals lack it."
+        },
+        {
+          "book": "WIS",
+          "chapter": 19,
+          "verse": 6,
+          "before": "יִשׁמְרוּ",
+          "after": "יִשּׁמְרוּ",
+          "retiredNoteIds": [
+            "wis-19-6-word6-shin-2-dagesh"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "The rounded low-right lobe beside the middle diagonal agrees with detached and narrow-bridge same-font shin points, unlike the thin plain diagonals."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        }
+      ]
+    },
+    {
+      "book": "BEL",
+      "beforeNoteCount": 222,
+      "afterNoteCount": 221,
+      "removedNoteIds": [
+        "bel-1-36-247-baseara36-letter4-vowel"
+      ],
+      "beforeDigest": "44b1106cfe58852b0b8edae6f6c392db03eb209ddfe4212b6db1eba4ce362f08",
+      "afterDigest": "15294ac66ff0573bc8979494f88f182280b653c7731c502ceeae7cba746e1751",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 36,
+          "before": "בִסְעָרה",
+          "after": "בִסְעָרָה",
+          "retiredNoteIds": [
+            "bel-1-36-247-baseara36-letter4-vowel"
+          ],
+          "independentReviewer": "root, with cross-agent glyph challenges documented in source report",
+          "finding": "The original A2 transverse crossbar and long downward stem match the same-page resh qamats in רעתו and differ from a bare resh. Physical contact does not erase the separate vowel geometry; PSIK is discovery/comparison only."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass7.json",
+          "sha256": "d61f75c812cccc30a270a84820113d44bb15b11f06db3eeb45bd8cc4e4d6c211"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/PSIK-authenticated-source-inspection-20261017.json",
+          "sha256": "81347cbd0d2d8e38340b184d9a772e8c90b584696abc122b13e2e3a5f95f1663"
+        }
+      ]
+    }
+  ],
+  "retainedAnchorUpdates": 3,
+  "dailyWholeBookPinsUpdated": 10,
+  "allCompleteDailyAppointmentsByteUnchanged": 20,
+  "allCatholicPresentationFilesByteUnchanged": true,
+  "unchangedSourceBooks": [
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/MACCABEES-vowel-comparison-20261017-pass7.json",
+      "sha256": "2e6876aca9d634a68a526dfc4147cc4c033298fde604e3a15f103aa6ab9046df"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+      "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass7.json",
+      "sha256": "d61f75c812cccc30a270a84820113d44bb15b11f06db3eeb45bd8cc4e4d6c211"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/PSIK-authenticated-source-inspection-20261017.json",
+      "sha256": "81347cbd0d2d8e38340b184d9a772e8c90b584696abc122b13e2e3a5f95f1663"
+    }
+  ],
+  "state": "applied, regenerated, source replay and data parity verified,114 shared576 Android56 Apple tests passed",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 619,
+      "notesByBook": {
+        "TOB": 12,
+        "JDT": 0,
+        "WIS": 198,
+        "SIR": 29,
+        "BAR": 0,
+        "1MA": 8,
+        "2MA": 11,
+        "LJE": 0,
+        "ESG": 50,
+        "S3Y": 65,
+        "SUS": 25,
+        "BEL": 221
+      },
+      "changedArchiveChapters": 8,
+      "preservedArchiveMembers": 1328,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "unchangedDailyReadingsPayload": true,
+      "matchingNativeDataCopies": 3,
+      "verifiedReferencedEvidenceFiles": 240,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-8a6a113035ff80701f463efe46053627ee4d328e1c28421e434c41390d2d1d8b.zip",
+      "archiveSHA256": "e7606c369edb83cf3f17bbb552a8c05316099b63d07dad10a80236efbd455015",
+      "archiveBytes": 3115058
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 31,
+      "remainingNoteCount": 619,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "SIR",
+        "WIS"
+      ],
+      "exactSourceUnitChanges": 31,
+      "changedArchiveChapters": 22,
+      "preservedArchiveMembers": 1314,
+      "allSourceBodiesReplayOnlyApprovedChanges": true,
+      "allCatholicPresentationDecisionsAnd26PinsUnchanged": true,
+      "dailyPayloadChanges": [
+        "2MA12:45 certified dagesh and matching note retirement"
+      ],
+      "savedUserPDFsUnchanged": [
+        "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך א.pdf",
+        "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך ב.pdf"
+      ]
+    },
+    "sharedTests": {
+      "test-bible-library.py": 21,
+      "test-hebrew-deuterocanon.py": 22,
+      "test-scripture-source-notes.py": 13,
+      "test-bible-source-structure.py": 12,
+      "test-hebrew-daily-readings.py": 14,
+      "test-reading-texts.py": 32,
+      "totalPassed": 114
+    },
+    "android": {
+      "task": "testDebugUnitTest --rerun-tasks",
+      "suites": 71,
+      "tests": 576,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "apple": {
+      "destination": "macOS",
+      "passedTests": 56,
+      "failedTests": 0,
+      "skippedTests": 0,
+      "result": "passed",
+      "resultBundle": "Test-Prosary-2026.10.17_14-34-18-+0300.xcresult"
+    },
+    "windows": {
+      "runtimeTests": "not run on macOS",
+      "generatedDataCopies": "byte-identical to Shared"
+    },
+    "generationChecks": {
+      "bibleLibrarySecondPass": "passed, byte-stable",
+      "readingTexts": "passed, byte-stable",
+      "readingMappings": "passed",
+      "scopedDiffWhitespace": "passed"
+    }
+  }
+}

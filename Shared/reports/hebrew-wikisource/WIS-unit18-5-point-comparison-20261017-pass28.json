@@ -1,0 +1,2165 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 28,
+  "book": "WIS",
+  "status": "One resh sheva proposed; three vowel omissions retained after complete source18:5 original-pixel review",
+  "applicationState": "Author proposal only; pending independent peer and root review; no canonical mutation by author",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://he.wikisource.org/wiki/הספרים_החיצונים_(כהנא)",
+  "method": "Fresh original first embedded image from A2 page181; complete numbered three-row source unit, whole target words and glyphs, literal same-page competing controls. Strict bounds asserted before every crop, native or positive integer NEAREST only. No OCR, expected spelling, grammar, enhancement, normalization, smoothing, sharpening or alternate witness supplies a point.",
+  "baselineGlobalSourceNoteCount": 474,
+  "canonicalSHA256Before": "dd813400a5ed51de44c7d65b9604c6b19eab379733f2dac3d0643a793f269d32",
+  "contentSHA256Before": "790f69aaf283da83ddf9888114b25a4d4da9a29cf2c3e0455ca223e680209cdc",
+  "contentSHA256After": "bf39de8e15671ca4c6afec43a4edc4971588e69ba0178dff1703929e94d128f4",
+  "sourceNotesBefore": 186,
+  "sourceNotesAfter": 185,
+  "reviewedSourceNoteCount": 4,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 3,
+  "retiredSourceNoteIds": [
+    "wis-18-5-word6-resh-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "wis-18-5-word6-samekh-2-vowel",
+    "wis-18-5-word7-bet-3-vowel",
+    "wis-18-5-word8-kaf-1-vowel"
+  ],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "U+05B0": 1
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "id": "wis-18-5-word6-samekh-2-vowel",
+      "oldAnchor": "יִסּרתָּם",
+      "newAnchor": "יִסּרְתָּם",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "physicalSpanBefore": [
+        102,
+        111
+      ],
+      "physicalSpanAfter": [
+        102,
+        112
+      ]
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 18,
+      "verse": 5,
+      "before": "הֵם זָמְמוּ לְהָמִית עוֹלְלֵי חֲסִידִים [וְרַק] אֶחָד מִן־הַיְלוּדִים הַמֻּשְׁלָכִים נִמְלָט וְהִנֵּה יִסּרתָּם וַתִּקַּח מֵהֶם בָּנִים לָרֹב וְאִבּדְתָּ כלָּם יַחַד בְּמַיִם עַזִּים׃",
+      "after": "הֵם זָמְמוּ לְהָמִית עוֹלְלֵי חֲסִידִים [וְרַק] אֶחָד מִן־הַיְלוּדִים הַמֻּשְׁלָכִים נִמְלָט וְהִנֵּה יִסּרְתָּם וַתִּקַּח מֵהֶם בָּנִים לָרֹב וְאִבּדְתָּ כלָּם יַחַד בְּמַיִם עַזִּים׃",
+      "textSHA256Before": "f660bf3ca3907c9bbb510dc1f7d5a457d24d8ba706f3d5b9f48fd3b4d0ed8deb",
+      "textSHA256After": "3de002589e51a750b88eaa8ed530155b371ebdbd8ff2e3adf4d32b454eef9fa7"
+    }
+  ],
+  "decisions": [
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "before": "יִסּרתָּם",
+      "after": "יִסּרְתָּם",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-18-5-word6-resh-3-vowel"
+      ],
+      "addedCodePoint": "U+05B0",
+      "baselineAnchor": "יִסּרתָּם",
+      "baselineUnitScalarInsertionOffset": 107,
+      "baselinePhysicalSpan": [
+        102,
+        111
+      ]
+    }
+  ],
+  "inspections": [
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "id": "wis-18-5-word6-samekh-2-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "יִסּרתָּם",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        181
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "Samekh retains its internal dagesh and a broad lower impression fused to the letter base. Its shallow two-lobed bottom resembles the pe tsere control, but the upper separation is completely absorbed by the samekh foot; the same-page samekh sheva and qamats controls show how vertical points likewise merge there. Neither a unique point nor source absence is certified. Keep this vowel omission.",
+      "baselinePhysicalAnnotationSpan": [
+        102,
+        111
+      ],
+      "targetFrame": "target01-samekh",
+      "wordFrame": "target-word-yisrtam"
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "id": "wis-18-5-word6-resh-3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "יִסּרתָּם",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        181
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181",
+      "decision": "proposeSourceCertifiedPoint",
+      "finding": "The complete resh ends its main stem above two rounded lower nodes separated by a narrow neck. The two lower lobes match the literal resh sheva in marpe. The qamats resh in rau has a conspicuous broad transverse head above a narrower tail; the target instead re-expands into a second rounded lower point. The resh patah and hiriq controls have a single lower mass, and the bare resh in zerua lacks both nodes. The whole contour supports U+05B0 even though joined to the letter stem.",
+      "baselinePhysicalAnnotationSpan": [
+        102,
+        111
+      ],
+      "targetFrame": "target02-resh",
+      "wordFrame": "target-word-yisrtam"
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "id": "wis-18-5-word7-bet-3-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "וְאִבּדְתָּ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        181
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "Bet retains its internal dagesh. The lower impression is broad and fused to its baseline, with two shallow bottom lobes. Literal tsere at pe resembles that underside, but the base consumes the boundary needed to distinguish a two-point vowel from a merged bar or other fused point. The bet sheva, qamats and qubuts controls expose how much of a point can merge into the foot. No unique scalar is certified; keep the vowel omission.",
+      "baselinePhysicalAnnotationSpan": [
+        142,
+        153
+      ],
+      "targetFrame": "target03-bet",
+      "wordFrame": "target-word-veibadta"
+    },
+    {
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "id": "wis-18-5-word8-kaf-1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "כלָּם",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        181
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf has a long fused extension that slopes right to a lower bulb. The bet qubuts control shows a similarly slanted connection, but the same-page kaf sheva in kemohem also has a fused upper mass, narrow neck and offset lower bulb. The target does not preserve three independently distinguishable nodes or another contour decisive against that sheva competitor. Length or expected spelling is not evidence. Keep the vowel omission.",
+      "baselinePhysicalAnnotationSpan": [
+        154,
+        159
+      ],
+      "targetFrame": "target04-kaf",
+      "wordFrame": "target-word-kulam"
+    }
+  ],
+  "frames": [
+    {
+      "id": "p181-full-original",
+      "role": "page",
+      "caption": "Fresh first embedded image of original PDF page181",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        0,
+        0,
+        2543,
+        3529
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/p181-full-original-native.png",
+          "sha256": "2f3633131cfae3945f8a25dbd5b9eb880c7e0d10f0c5ca3335901330ab23fe72",
+          "scale": 1,
+          "resampling": "native"
+        }
+      ]
+    },
+    {
+      "id": "wis18-5-complete-numbered-context",
+      "role": "completeUnit",
+      "caption": "Full source18:5 beginning after printed ה and ending before printed ו; all three rows including square-bracketed word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        210,
+        1250,
+        2160,
+        1600
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/wis18-5-complete-numbered-context-native.png",
+          "sha256": "1a2f22fe2c96cd76eeabf8fc8ff7a2a5915ba6905e4a24903373c79247f9477a",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/wis18-5-complete-numbered-context-2x.png",
+          "sha256": "ddb63d118bcc257bb931bbd689c8e64c9b182901230f0116499250aaf1ddcc8c",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "target-word-yisrtam",
+      "role": "word",
+      "caption": "Complete יִסּרתָּם, both samekh and resh omissions",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        705,
+        1375,
+        910,
+        1470
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-yisrtam-native.png",
+          "sha256": "13b413c305f4f8ee66afeb86e90c96812834ae7044bb3c848f5db08e3deafdc2",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-yisrtam-5x.png",
+          "sha256": "e4eee933f0a49997569676a58b33ce11b001bd4f073a0c0c3bc01c8062ae0c37",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "target-word-veibadta",
+      "role": "word",
+      "caption": "Complete וְאִבּדְתָּ with bet vowel omission",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1670,
+        1475,
+        1875,
+        1575
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-veibadta-native.png",
+          "sha256": "64069292646491ba0f80fa1a560417fa693f591c33ca1c4596b6340fac13905c",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-veibadta-5x.png",
+          "sha256": "77be397972ae34aa3f344f531614c958941014200cdb23f9ed734b30cad2d12a",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "target-word-kulam",
+      "role": "word",
+      "caption": "Complete כלָּם with kaf vowel omission",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1530,
+        1475,
+        1665,
+        1575
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-kulam-native.png",
+          "sha256": "7828d4b58a155c97571c692af866201430705db769762f009fb4f1153e0fe7df",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-kulam-5x.png",
+          "sha256": "b95e1c2ad2c126515328c06390f0caad65221638369b566d3903db456870561e",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "target01-samekh",
+      "role": "glyph",
+      "caption": "Complete samekh at letter2 of יִסּרתָּם including lower impression",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        837,
+        1395,
+        872,
+        1466
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target01-samekh-native.png",
+          "sha256": "74550f0fa561ca6a2d38293cf3ce7f6264bf1b7046dbc0b220618d4a5be0990d",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target01-samekh-15x.png",
+          "sha256": "0ab7e190fa2383397d4ed4dd1e536c9e22e23d6b7a4a8fa447c2decd22f59a7f",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "target02-resh",
+      "role": "glyph",
+      "caption": "Complete resh at letter3 of יִסּרתָּם including both lower nodes",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        801,
+        1395,
+        838,
+        1466
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target02-resh-native.png",
+          "sha256": "9246ca58dab1ca87c866923c29d39a80f311bad5392268fe17f136c73cd824eb",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target02-resh-15x.png",
+          "sha256": "67db4f270dea732cd2dd7550a5022cd3b3d34aed218bd20fbc324fcadcbbb25a",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "target03-bet",
+      "role": "glyph",
+      "caption": "Complete bet at letter3 of וְאִבּדְתָּ including lower impression",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1763,
+        1495,
+        1799,
+        1566
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target03-bet-native.png",
+          "sha256": "7ffab82613f69327b3b3d3b89c314fd071f761a3b9a1c090b5ca02ad8bbc62ab",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target03-bet-15x.png",
+          "sha256": "3212d59dbfb155919fdcf4ad99879a208f9101bb60a7438000ce8924a9cf07e1",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "target04-kaf",
+      "role": "glyph",
+      "caption": "Complete kaf at letter1 of כלָּם including full slanted extension",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1616,
+        1495,
+        1652,
+        1574
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target04-kaf-native.png",
+          "sha256": "4eba5542b37029f06f594426d742595fb2b4ab4301be9e7937d7f3553492f382",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target04-kaf-15x.png",
+          "sha256": "ef83ffecc67ada5c3b47d51b0941109c5315e4c4b8cecabfc7702bb3a191cf38",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-marpe-word",
+      "role": "controlWord",
+      "caption": "Literal resh sheva and pe tsere in מַרְפֵּא",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1030,
+        1090,
+        1205,
+        1185
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-word-native.png",
+          "sha256": "d819d8f1377ad209cd3a907b00033bb3a6a251f798c4b1fbde862ff81398108c",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-word-5x.png",
+          "sha256": "5f5ca592c4a6b64100952c98d61aa3cb845d441072628f51330f83a60a135d79",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-marpe-resh-sheva",
+      "role": "controlGlyph",
+      "caption": "Same-page resh with two vertically arranged sheva nodes",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1113,
+        1115,
+        1150,
+        1178
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-resh-sheva-native.png",
+          "sha256": "c5a3c676ef7b1e121d1acfd7d40574b5245a27d62e24e30b7a0cfdb1cc6135c7",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-resh-sheva-15x.png",
+          "sha256": "502b51f804a3dd65be5bc25fdf332c692c0d0fb8f46fdfef88b5591bd57f6b71",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-marpe-pe-tsere",
+      "role": "controlGlyph",
+      "caption": "Same-page pe with fused horizontal two-node tsere impression",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1080,
+        1115,
+        1114,
+        1175
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-pe-tsere-native.png",
+          "sha256": "e5830c3d473493abf53f9e0a85446629ac0fa743f31b77a0121c786f623a96c3",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-pe-tsere-15x.png",
+          "sha256": "b130782ba30c4b4fe5145df6fed87bcabe259191ee33e79d86fbdf05ef2121cd",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-lo-rau-word",
+      "role": "controlWord",
+      "caption": "Literal resh qamats in לֹא־רָאוּ",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1370,
+        810,
+        1585,
+        915
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-lo-rau-word-native.png",
+          "sha256": "de819d6610a9869f6221478d9461d094fafe7a540281c2eb6cb47dd895afed58",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-lo-rau-word-5x.png",
+          "sha256": "6fb5e717522ff9be0f4e1bf6d255eb56b55a982e30525a6e07b495ea585dbe7d",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-rau-resh-qamats",
+      "role": "controlGlyph",
+      "caption": "Same-page resh qamats with wider upper head and lower tail",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1438,
+        840,
+        1478,
+        905
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-rau-resh-qamats-native.png",
+          "sha256": "3ef5a6b07aba1e19947c60602ece895f37df3887e99a61e598079ab99feb824b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-rau-resh-qamats-15x.png",
+          "sha256": "765c4cb50b942c36e512461c77853691f8a1289e62754b6d85e19c5507efa2f7",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-zarah-word",
+      "role": "controlWord",
+      "caption": "Literal resh patah in זָרַח",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        485,
+        325,
+        625,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zarah-word-native.png",
+          "sha256": "6d98eb84bd05c04a1eec91059821d793f09fc87018f59c4c772840b7e2f53404",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zarah-word-5x.png",
+          "sha256": "259ce5b52692e7673ce638d389c679509c21018d54e950a2defefa06a34cd053",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-zarah-resh-patah",
+      "role": "controlGlyph",
+      "caption": "Same-page resh patah with single transverse lower mass",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        539,
+        365,
+        576,
+        425
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zarah-resh-patah-native.png",
+          "sha256": "8a33863478ebba1ed55db8ac46b6edc20c7c801d607e88d877f63556aab05c05",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zarah-resh-patah-15x.png",
+          "sha256": "3fa5bce96e69ee917f3fd1e2b521d0384d2f840360ef2c10063c886f6bfa3511",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-veheheridum-word",
+      "role": "controlWord",
+      "caption": "Literal resh hiriq in וְהֶחֱרִידוּם",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1160,
+        325,
+        1430,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-veheheridum-word-native.png",
+          "sha256": "b69332ddfa5fcbe2d4a98e7d42d1b7640e0aecc138f788bdfaea223c7a904d00",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-veheheridum-word-4x.png",
+          "sha256": "0346fe121e356758d01b369af4a94e14a4b6d38b981eddf9ada4fc0fb358474c",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-veheheridum-resh-hiriq",
+      "role": "controlGlyph",
+      "caption": "Same-page resh hiriq, single lower point",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1298,
+        360,
+        1337,
+        425
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-veheheridum-resh-hiriq-native.png",
+          "sha256": "f4d489e96aa8cf5ddfcb7c718de8d7dbd0fadfa3c31194588e62bb4fdc01fdf8",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-veheheridum-resh-hiriq-15x.png",
+          "sha256": "db03fcd46977574de1dd65e4d52421250e0e48bd5bc22314d5da73f02eee615f",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-zerua-word",
+      "role": "controlWord",
+      "caption": "Literal bare resh in זָרוּעַ",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        220,
+        325,
+        390,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zerua-word-native.png",
+          "sha256": "ee8681433be95948d219483be8eb7d1c6cb4a6394520a1032e3fd62979737e08",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zerua-word-5x.png",
+          "sha256": "8067a8528c5e5ff76140c99dc8131f5a5c7d706dad61dccafcf29cac866d6a66",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-zerua-resh-no-lower-vowel",
+      "role": "controlGlyph",
+      "caption": "Same-page ordinary resh stem with no attached lower point",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        291,
+        365,
+        328,
+        415
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zerua-resh-no-lower-vowel-native.png",
+          "sha256": "4d42279fd6ea1366005327f4d44f73966645fd47d8f122d24162f27cfdb03c6a",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zerua-resh-no-lower-vowel-15x.png",
+          "sha256": "dd10c9a1f80c3b6983a219ef019644203a51e9323ab16a7e72c0e880027f7677",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-lo-yisbelu-word",
+      "role": "controlWord",
+      "caption": "Samekh and bet shevas in לֹא־יִסְבְּלוּ",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        710,
+        810,
+        970,
+        910
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-lo-yisbelu-word-native.png",
+          "sha256": "f7e0c91f494f938afdf174a0c302f285b2a065eaf557ecb5ffdb24146f540db0",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-lo-yisbelu-word-5x.png",
+          "sha256": "576545ef1fc2057762d52880c36ab7beb5a9b8b73ebfcbd7fde69d92d2da3ecb",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-bemaasar-word",
+      "role": "controlWord",
+      "caption": "Bet sheva and samekh qamats in בְּמַאֲסָר",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        960,
+        1190,
+        1210,
+        1290
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-bemaasar-word-native.png",
+          "sha256": "fefe74ac4dcc3f51059e2bfd26a4c6193a5903035c565fb7d97d83b57ba41a9b",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-bemaasar-word-5x.png",
+          "sha256": "73efb0e6c94eb754e0349f66983f896d19dbe613b3bd848a63ac42d767b9c65a",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-banim-word",
+      "role": "controlWord",
+      "caption": "Bet qamats in בָּנִים",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        250,
+        1380,
+        390,
+        1480
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-banim-word-native.png",
+          "sha256": "aaec9c4fd91aba0c3a320ad0e89e1dfaf06df65e1dfcd024f8e93fcc3b9ca8bc",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-banim-word-5x.png",
+          "sha256": "c0c40bd855071b4b7915a0617fe92cf8d8055030f0e41b3737b0c0c1fe5be98d",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-busar-word",
+      "role": "controlWord",
+      "caption": "Bet qubuts in בֻּשַּׂר with slanted fused nodes",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        520,
+        1470,
+        670,
+        1570
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-busar-word-native.png",
+          "sha256": "1e5c61d7f909470d690ee1803ca41bac25168d8cb592eeacc1b63fbd371cbb81",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-busar-word-5x.png",
+          "sha256": "7689357683ab2140833d8ee9d0d3f051cf8c4641c02cc01970d1152cdc1edd96",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-kemohem-word",
+      "role": "controlWord",
+      "caption": "Kaf sheva in כְּמוֹהֶם, fused upper impression and lower bulb",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        500,
+        810,
+        715,
+        915
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kemohem-word-native.png",
+          "sha256": "6c211b5dd5a9f0d254ac8dd49478aef888a06e0be2e90860fdafe391dbd844b9",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kemohem-word-5x.png",
+          "sha256": "a2508680d37260ec7118d7cf1e2d318e02e689ecd209c04dd41c11297786badf",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-kavod-word",
+      "role": "controlWord",
+      "caption": "Kaf qamats in כָּבוֹד",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        690,
+        1090,
+        860,
+        1185
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kavod-word-native.png",
+          "sha256": "6c1be8f76206c8ef1fba16c6b3f79500448228a4874252770d0fe512147f4282",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kavod-word-5x.png",
+          "sha256": "97283ec00c113ec71fc5d292c0d327495451ca72e759bc11d522297c702b9fb2",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-kol-word",
+      "role": "controlWord",
+      "caption": "Kaf qamats in כָּל, neighboring maqafs preserved",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        825,
+        325,
+        935,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kol-word-native.png",
+          "sha256": "e2913567c0aa0e53129d73f1a49734e8e352541e20da462068df64a80d831fbb",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kol-word-5x.png",
+          "sha256": "e4793ce2b702bea01d97a02c62909eab32bbd2b0363489e3cc8bfe979b7b292c",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "id": "control-ki-word",
+      "role": "controlWord",
+      "caption": "Kaf hiriq in כִּי",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+      "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+      "sourcePDFPage": 181,
+      "nativeBounds": [
+        1030,
+        325,
+        1110,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "fullyInsideOriginalImage": true,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-ki-word-native.png",
+          "sha256": "4f41eb101aa61c103c0a72e83ca486f74686f8310eee52d96909775e561c3d63",
+          "scale": 1,
+          "resampling": "native"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-ki-word-5x.png",
+          "sha256": "e39cc6c6c991324e2222bade39b789b28cd070cd323f4ddb88ecd0f4acfbe5a5",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/p181-full-original-native.png",
+      "sha256": "2f3633131cfae3945f8a25dbd5b9eb880c7e0d10f0c5ca3335901330ab23fe72",
+      "page": 181,
+      "nativeBounds": [
+        0,
+        0,
+        2543,
+        3529
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/wis18-5-complete-numbered-context-native.png",
+      "sha256": "1a2f22fe2c96cd76eeabf8fc8ff7a2a5915ba6905e4a24903373c79247f9477a",
+      "page": 181,
+      "nativeBounds": [
+        210,
+        1250,
+        2160,
+        1600
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/wis18-5-complete-numbered-context-2x.png",
+      "sha256": "ddb63d118bcc257bb931bbd689c8e64c9b182901230f0116499250aaf1ddcc8c",
+      "page": 181,
+      "nativeBounds": [
+        210,
+        1250,
+        2160,
+        1600
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-yisrtam-native.png",
+      "sha256": "13b413c305f4f8ee66afeb86e90c96812834ae7044bb3c848f5db08e3deafdc2",
+      "page": 181,
+      "nativeBounds": [
+        705,
+        1375,
+        910,
+        1470
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-yisrtam-5x.png",
+      "sha256": "e4eee933f0a49997569676a58b33ce11b001bd4f073a0c0c3bc01c8062ae0c37",
+      "page": 181,
+      "nativeBounds": [
+        705,
+        1375,
+        910,
+        1470
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-veibadta-native.png",
+      "sha256": "64069292646491ba0f80fa1a560417fa693f591c33ca1c4596b6340fac13905c",
+      "page": 181,
+      "nativeBounds": [
+        1670,
+        1475,
+        1875,
+        1575
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-veibadta-5x.png",
+      "sha256": "77be397972ae34aa3f344f531614c958941014200cdb23f9ed734b30cad2d12a",
+      "page": 181,
+      "nativeBounds": [
+        1670,
+        1475,
+        1875,
+        1575
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-kulam-native.png",
+      "sha256": "7828d4b58a155c97571c692af866201430705db769762f009fb4f1153e0fe7df",
+      "page": 181,
+      "nativeBounds": [
+        1530,
+        1475,
+        1665,
+        1575
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target-word-kulam-5x.png",
+      "sha256": "b95e1c2ad2c126515328c06390f0caad65221638369b566d3903db456870561e",
+      "page": 181,
+      "nativeBounds": [
+        1530,
+        1475,
+        1665,
+        1575
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target01-samekh-native.png",
+      "sha256": "74550f0fa561ca6a2d38293cf3ce7f6264bf1b7046dbc0b220618d4a5be0990d",
+      "page": 181,
+      "nativeBounds": [
+        837,
+        1395,
+        872,
+        1466
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target01-samekh-15x.png",
+      "sha256": "0ab7e190fa2383397d4ed4dd1e536c9e22e23d6b7a4a8fa447c2decd22f59a7f",
+      "page": 181,
+      "nativeBounds": [
+        837,
+        1395,
+        872,
+        1466
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target02-resh-native.png",
+      "sha256": "9246ca58dab1ca87c866923c29d39a80f311bad5392268fe17f136c73cd824eb",
+      "page": 181,
+      "nativeBounds": [
+        801,
+        1395,
+        838,
+        1466
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target02-resh-15x.png",
+      "sha256": "67db4f270dea732cd2dd7550a5022cd3b3d34aed218bd20fbc324fcadcbbb25a",
+      "page": 181,
+      "nativeBounds": [
+        801,
+        1395,
+        838,
+        1466
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target03-bet-native.png",
+      "sha256": "7ffab82613f69327b3b3d3b89c314fd071f761a3b9a1c090b5ca02ad8bbc62ab",
+      "page": 181,
+      "nativeBounds": [
+        1763,
+        1495,
+        1799,
+        1566
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target03-bet-15x.png",
+      "sha256": "3212d59dbfb155919fdcf4ad99879a208f9101bb60a7438000ce8924a9cf07e1",
+      "page": 181,
+      "nativeBounds": [
+        1763,
+        1495,
+        1799,
+        1566
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target04-kaf-native.png",
+      "sha256": "4eba5542b37029f06f594426d742595fb2b4ab4301be9e7937d7f3553492f382",
+      "page": 181,
+      "nativeBounds": [
+        1616,
+        1495,
+        1652,
+        1574
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/target04-kaf-15x.png",
+      "sha256": "ef83ffecc67ada5c3b47d51b0941109c5315e4c4b8cecabfc7702bb3a191cf38",
+      "page": 181,
+      "nativeBounds": [
+        1616,
+        1495,
+        1652,
+        1574
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-word-native.png",
+      "sha256": "d819d8f1377ad209cd3a907b00033bb3a6a251f798c4b1fbde862ff81398108c",
+      "page": 181,
+      "nativeBounds": [
+        1030,
+        1090,
+        1205,
+        1185
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-word-5x.png",
+      "sha256": "5f5ca592c4a6b64100952c98d61aa3cb845d441072628f51330f83a60a135d79",
+      "page": 181,
+      "nativeBounds": [
+        1030,
+        1090,
+        1205,
+        1185
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-resh-sheva-native.png",
+      "sha256": "c5a3c676ef7b1e121d1acfd7d40574b5245a27d62e24e30b7a0cfdb1cc6135c7",
+      "page": 181,
+      "nativeBounds": [
+        1113,
+        1115,
+        1150,
+        1178
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-resh-sheva-15x.png",
+      "sha256": "502b51f804a3dd65be5bc25fdf332c692c0d0fb8f46fdfef88b5591bd57f6b71",
+      "page": 181,
+      "nativeBounds": [
+        1113,
+        1115,
+        1150,
+        1178
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-pe-tsere-native.png",
+      "sha256": "e5830c3d473493abf53f9e0a85446629ac0fa743f31b77a0121c786f623a96c3",
+      "page": 181,
+      "nativeBounds": [
+        1080,
+        1115,
+        1114,
+        1175
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-marpe-pe-tsere-15x.png",
+      "sha256": "b130782ba30c4b4fe5145df6fed87bcabe259191ee33e79d86fbdf05ef2121cd",
+      "page": 181,
+      "nativeBounds": [
+        1080,
+        1115,
+        1114,
+        1175
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-lo-rau-word-native.png",
+      "sha256": "de819d6610a9869f6221478d9461d094fafe7a540281c2eb6cb47dd895afed58",
+      "page": 181,
+      "nativeBounds": [
+        1370,
+        810,
+        1585,
+        915
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-lo-rau-word-5x.png",
+      "sha256": "6fb5e717522ff9be0f4e1bf6d255eb56b55a982e30525a6e07b495ea585dbe7d",
+      "page": 181,
+      "nativeBounds": [
+        1370,
+        810,
+        1585,
+        915
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-rau-resh-qamats-native.png",
+      "sha256": "3ef5a6b07aba1e19947c60602ece895f37df3887e99a61e598079ab99feb824b",
+      "page": 181,
+      "nativeBounds": [
+        1438,
+        840,
+        1478,
+        905
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-rau-resh-qamats-15x.png",
+      "sha256": "765c4cb50b942c36e512461c77853691f8a1289e62754b6d85e19c5507efa2f7",
+      "page": 181,
+      "nativeBounds": [
+        1438,
+        840,
+        1478,
+        905
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zarah-word-native.png",
+      "sha256": "6d98eb84bd05c04a1eec91059821d793f09fc87018f59c4c772840b7e2f53404",
+      "page": 181,
+      "nativeBounds": [
+        485,
+        325,
+        625,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zarah-word-5x.png",
+      "sha256": "259ce5b52692e7673ce638d389c679509c21018d54e950a2defefa06a34cd053",
+      "page": 181,
+      "nativeBounds": [
+        485,
+        325,
+        625,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zarah-resh-patah-native.png",
+      "sha256": "8a33863478ebba1ed55db8ac46b6edc20c7c801d607e88d877f63556aab05c05",
+      "page": 181,
+      "nativeBounds": [
+        539,
+        365,
+        576,
+        425
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zarah-resh-patah-15x.png",
+      "sha256": "3fa5bce96e69ee917f3fd1e2b521d0384d2f840360ef2c10063c886f6bfa3511",
+      "page": 181,
+      "nativeBounds": [
+        539,
+        365,
+        576,
+        425
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-veheheridum-word-native.png",
+      "sha256": "b69332ddfa5fcbe2d4a98e7d42d1b7640e0aecc138f788bdfaea223c7a904d00",
+      "page": 181,
+      "nativeBounds": [
+        1160,
+        325,
+        1430,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-veheheridum-word-4x.png",
+      "sha256": "0346fe121e356758d01b369af4a94e14a4b6d38b981eddf9ada4fc0fb358474c",
+      "page": 181,
+      "nativeBounds": [
+        1160,
+        325,
+        1430,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-veheheridum-resh-hiriq-native.png",
+      "sha256": "f4d489e96aa8cf5ddfcb7c718de8d7dbd0fadfa3c31194588e62bb4fdc01fdf8",
+      "page": 181,
+      "nativeBounds": [
+        1298,
+        360,
+        1337,
+        425
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-veheheridum-resh-hiriq-15x.png",
+      "sha256": "db03fcd46977574de1dd65e4d52421250e0e48bd5bc22314d5da73f02eee615f",
+      "page": 181,
+      "nativeBounds": [
+        1298,
+        360,
+        1337,
+        425
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zerua-word-native.png",
+      "sha256": "ee8681433be95948d219483be8eb7d1c6cb4a6394520a1032e3fd62979737e08",
+      "page": 181,
+      "nativeBounds": [
+        220,
+        325,
+        390,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zerua-word-5x.png",
+      "sha256": "8067a8528c5e5ff76140c99dc8131f5a5c7d706dad61dccafcf29cac866d6a66",
+      "page": 181,
+      "nativeBounds": [
+        220,
+        325,
+        390,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zerua-resh-no-lower-vowel-native.png",
+      "sha256": "4d42279fd6ea1366005327f4d44f73966645fd47d8f122d24162f27cfdb03c6a",
+      "page": 181,
+      "nativeBounds": [
+        291,
+        365,
+        328,
+        415
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-zerua-resh-no-lower-vowel-15x.png",
+      "sha256": "dd10c9a1f80c3b6983a219ef019644203a51e9323ab16a7e72c0e880027f7677",
+      "page": 181,
+      "nativeBounds": [
+        291,
+        365,
+        328,
+        415
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-lo-yisbelu-word-native.png",
+      "sha256": "f7e0c91f494f938afdf174a0c302f285b2a065eaf557ecb5ffdb24146f540db0",
+      "page": 181,
+      "nativeBounds": [
+        710,
+        810,
+        970,
+        910
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-lo-yisbelu-word-5x.png",
+      "sha256": "576545ef1fc2057762d52880c36ab7beb5a9b8b73ebfcbd7fde69d92d2da3ecb",
+      "page": 181,
+      "nativeBounds": [
+        710,
+        810,
+        970,
+        910
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-bemaasar-word-native.png",
+      "sha256": "fefe74ac4dcc3f51059e2bfd26a4c6193a5903035c565fb7d97d83b57ba41a9b",
+      "page": 181,
+      "nativeBounds": [
+        960,
+        1190,
+        1210,
+        1290
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-bemaasar-word-5x.png",
+      "sha256": "73efb0e6c94eb754e0349f66983f896d19dbe613b3bd848a63ac42d767b9c65a",
+      "page": 181,
+      "nativeBounds": [
+        960,
+        1190,
+        1210,
+        1290
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-banim-word-native.png",
+      "sha256": "aaec9c4fd91aba0c3a320ad0e89e1dfaf06df65e1dfcd024f8e93fcc3b9ca8bc",
+      "page": 181,
+      "nativeBounds": [
+        250,
+        1380,
+        390,
+        1480
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-banim-word-5x.png",
+      "sha256": "c0c40bd855071b4b7915a0617fe92cf8d8055030f0e41b3737b0c0c1fe5be98d",
+      "page": 181,
+      "nativeBounds": [
+        250,
+        1380,
+        390,
+        1480
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-busar-word-native.png",
+      "sha256": "1e5c61d7f909470d690ee1803ca41bac25168d8cb592eeacc1b63fbd371cbb81",
+      "page": 181,
+      "nativeBounds": [
+        520,
+        1470,
+        670,
+        1570
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-busar-word-5x.png",
+      "sha256": "7689357683ab2140833d8ee9d0d3f051cf8c4641c02cc01970d1152cdc1edd96",
+      "page": 181,
+      "nativeBounds": [
+        520,
+        1470,
+        670,
+        1570
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kemohem-word-native.png",
+      "sha256": "6c211b5dd5a9f0d254ac8dd49478aef888a06e0be2e90860fdafe391dbd844b9",
+      "page": 181,
+      "nativeBounds": [
+        500,
+        810,
+        715,
+        915
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kemohem-word-5x.png",
+      "sha256": "a2508680d37260ec7118d7cf1e2d318e02e689ecd209c04dd41c11297786badf",
+      "page": 181,
+      "nativeBounds": [
+        500,
+        810,
+        715,
+        915
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kavod-word-native.png",
+      "sha256": "6c1be8f76206c8ef1fba16c6b3f79500448228a4874252770d0fe512147f4282",
+      "page": 181,
+      "nativeBounds": [
+        690,
+        1090,
+        860,
+        1185
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kavod-word-5x.png",
+      "sha256": "97283ec00c113ec71fc5d292c0d327495451ca72e759bc11d522297c702b9fb2",
+      "page": 181,
+      "nativeBounds": [
+        690,
+        1090,
+        860,
+        1185
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kol-word-native.png",
+      "sha256": "e2913567c0aa0e53129d73f1a49734e8e352541e20da462068df64a80d831fbb",
+      "page": 181,
+      "nativeBounds": [
+        825,
+        325,
+        935,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-kol-word-5x.png",
+      "sha256": "e4793ce2b702bea01d97a02c62909eab32bbd2b0363489e3cc8bfe979b7b292c",
+      "page": 181,
+      "nativeBounds": [
+        825,
+        325,
+        935,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-ki-word-native.png",
+      "sha256": "4f41eb101aa61c103c0a72e83ca486f74686f8310eee52d96909775e561c3d63",
+      "page": 181,
+      "nativeBounds": [
+        1030,
+        325,
+        1110,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/control-ki-word-5x.png",
+      "sha256": "e39cc6c6c991324e2222bade39b789b28cd070cd323f4ddb88ecd0f4acfbe5a5",
+      "page": 181,
+      "nativeBounds": [
+        1030,
+        325,
+        1110,
+        435
+      ],
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "fullyInsideOriginalImage": true,
+      "originalPDFPixelReplayPassed": true
+    }
+  ],
+  "nativeFrameCount": 28,
+  "evidenceFileCount": 55,
+  "freshOriginalPageCount": 1,
+  "invariants": {
+    "allSourceAndGateBytesUnchangedByAuthor": true,
+    "allPriorScalarsAndCombiningOrderPreserved": true,
+    "allFiveProtectedRestorationsPreserved": true,
+    "completeUnitAndSourceBoundariesUnchanged": true,
+    "allPublishedPNGsAuthorReplayedFromFreshOriginal": true,
+    "allCropsStrictlyWithinSourceBounds": true,
+    "standaloneAfterDigestFromPass28Baseline": true
+  },
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/accepted.json",
+    "sha256": "f3f10b84373d95c87f54247adf4c91a7f98c2c151bccbf1e561bc14dfb9dc155"
+  },
+  "frameLedger": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/frame-ledger.json",
+    "sha256": "1a25a0c2e345f0595649a41c7b46fc20fd0c275ac1548eeba9de6398d6ddd69b"
+  },
+  "authorPixelReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass28-WIS-UNIT18-5/author-original-pixel-replay.json",
+    "sha256": "b4b231cdae59faf511fb0e615f5ac38ff0df6a8151535c0db5fc2a38368ea4b8"
+  }
+}

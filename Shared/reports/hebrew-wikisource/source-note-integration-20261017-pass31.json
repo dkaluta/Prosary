@@ -1,0 +1,583 @@
+{
+  "date": "2026-10-17",
+  "pass": 31,
+  "startingNoteCount": 467,
+  "removedNoteCount": 2,
+  "remainingNoteCount": 465,
+  "books": [
+    {
+      "book": "ESG",
+      "beforeNoteCount": 46,
+      "afterNoteCount": 44,
+      "removedNoteIds": [
+        "esg-6-15-2-vowel",
+        "esg-6-15-3-dagesh"
+      ],
+      "beforeDigest": "5baa2cf0993e774904b6507c0a781a1cabc7fc8ef9006b8880d474cb458ccf5d",
+      "afterDigest": "56f4bc38f12527417a01799aaa36909bd81d7d8b4c56eb86bad1356655f9aafb",
+      "sourceChanges": [
+        {
+          "book": "ESG",
+          "chapter": 6,
+          "verse": 15,
+          "before": "נקיִים",
+          "after": "נקיִּים",
+          "retiredNoteIds": [
+            "esg-6-15-3-dagesh"
+          ],
+          "occurrence": 1,
+          "baselineAnchor": "נקיִים",
+          "baselineUnitScalarInsertionOffset": 114,
+          "addedCodePoint": "U+05BC",
+          "finding": "First yod contour recedes below its head then re-expands left into a rounded lower node. Literal pointed yods in hayyeyhem/vayitnakel show that addition; adjacent plain yods and the heavy ordinary vayibatser yod taper without the distinct lower re-expansion. Existing hiriq is preserved before appended BC.",
+          "independentReviewer": "Root and an independent source reviewer inspected exact original glyph, complete word, numbered source context and literal same-font controls."
+        },
+        {
+          "book": "ESG",
+          "chapter": 6,
+          "verse": 15,
+          "before": "נקיִּים",
+          "after": "נקִיִּים",
+          "retiredNoteIds": [
+            "esg-6-15-2-vowel"
+          ],
+          "occurrence": 1,
+          "baselineAnchor": "נקיִים",
+          "baselineUnitScalarInsertionOffset": 112,
+          "addedCodePoint": "U+05B4",
+          "finding": "Qof has one rounded subbaseline node with a narrow connector to the tail. Literal naqi hiriq shares this position; bare tsedeq qof lacks it, yebaqshu sheva has two vertically separate nodes, and actual tsere/segol controls spread or branch differently. Complete surrounding white space excludes a second point.",
+          "independentReviewer": "Root and an independent source reviewer inspected exact original glyph, complete word, numbered source context and literal same-font controls."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-point-comparison-20261017-pass31.json",
+          "sha256": "bfb74dc8e508e850ac30467f8ebef6ca89414a154b5b93110a0bd5028720522e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-point-comparison-20261017-pass31.json",
+          "sha256": "248ac9fb159aedb320b02705723b9e5b145946dd447540d2f7850e75fa90e2b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-boundary-label-supplement-20261017-pass31.json",
+          "sha256": "4f285db896e582fe073ddaa769e9f428a537e40b87a042dacb22fc7843074979"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-boundary-label-supplement-20261017-pass31.json",
+          "sha256": "d0239026b53bef42c754140837b80696ad0178e0528490a270a6de0ceffc4adb"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 1,
+  "retainedAnchorUpdateDetails": [
+    {
+      "book": "ESG",
+      "id": "esg-6-15-1-vowel",
+      "oldAnchor": "נקיִים",
+      "newAnchor": "נקִיִּים"
+    }
+  ],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-point-comparison-20261017-pass31.json",
+      "sha256": "bfb74dc8e508e850ac30467f8ebef6ca89414a154b5b93110a0bd5028720522e"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-point-comparison-20261017-pass31.json",
+      "sha256": "248ac9fb159aedb320b02705723b9e5b145946dd447540d2f7850e75fa90e2b1"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-boundary-label-supplement-20261017-pass31.json",
+      "sha256": "4f285db896e582fe073ddaa769e9f428a537e40b87a042dacb22fc7843074979"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-boundary-label-supplement-20261017-pass31.json",
+      "sha256": "d0239026b53bef42c754140837b80696ad0178e0528490a270a6de0ceffc4adb"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SUS-unit1-18-point-comparison-20261017-pass31.json",
+      "sha256": "8921d8db48c76d989719f1492860703c8a90d79bd2fb2b332c7326b5c79679ed"
+    }
+  ],
+  "state": "Applied and regenerated; exact source changes, daily excerpts, Catholic ordering and native data parity verified. 114 shared, 582 Android and 56 Apple tests passed.",
+  "anchorRefreshEventCount": 3,
+  "anchorRefreshEvents": [
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-1-vowel",
+      "oldAnchor": "נקיִים",
+      "newAnchor": "נקיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        116
+      ],
+      "physicalSpanAfter": [
+        110,
+        117
+      ]
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-2-vowel",
+      "oldAnchor": "נקיִים",
+      "newAnchor": "נקיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        116
+      ],
+      "physicalSpanAfter": [
+        110,
+        117
+      ]
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-1-vowel",
+      "oldAnchor": "נקיִּים",
+      "newAnchor": "נקִיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        117
+      ],
+      "physicalSpanAfter": [
+        110,
+        118
+      ]
+    }
+  ],
+  "occurrenceRefreshEventCount": 0,
+  "occurrenceRefreshEvents": [],
+  "locatorRefreshEventCount": 3,
+  "locatorRefreshEvents": [
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-1-vowel",
+      "oldAnchor": "נקיִים",
+      "newAnchor": "נקיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        116
+      ],
+      "physicalSpanAfter": [
+        110,
+        117
+      ]
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-2-vowel",
+      "oldAnchor": "נקיִים",
+      "newAnchor": "נקיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        116
+      ],
+      "physicalSpanAfter": [
+        110,
+        117
+      ]
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-1-vowel",
+      "oldAnchor": "נקיִּים",
+      "newAnchor": "נקִיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        117
+      ],
+      "physicalSpanAfter": [
+        110,
+        118
+      ]
+    }
+  ],
+  "finalSurvivingOccurrenceChanges": [],
+  "anchorRefreshEventSemantics": "Anchor-text events and occurrence changes are counted separately. Physical-span selection preserves the exact source token for every annotation. No surviving occurrence changes are approved in this batch.",
+  "liveViewportContextChecks": [],
+  "validation": {
+    "delivery": {
+      "remainingNotes": 465,
+      "notesByBook": {
+        "TOB": 12,
+        "JDT": 0,
+        "WIS": 184,
+        "SIR": 23,
+        "BAR": 0,
+        "1MA": 8,
+        "2MA": 10,
+        "LJE": 0,
+        "ESG": 44,
+        "S3Y": 48,
+        "SUS": 18,
+        "BEL": 118
+      },
+      "removedNotes": 2,
+      "changedArchiveChapters": 1,
+      "preservedArchiveMembers": 1335,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "verifiedReferencedEvidenceFiles": 263,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-abdce17de63386581bc16b75d61af945e65609c8942356da02851e1dc5f1c832.zip",
+      "archiveSHA256": "2e442dc7cdb5c258e476f3585de6a303ca57fa72a0b147e76654dcf93b1520ca",
+      "archiveBytes": 3112607
+    },
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 185,
+      "remainingNoteCount": 465,
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "BEL",
+        "ESG",
+        "S3Y",
+        "SIR",
+        "SUS",
+        "WIS"
+      ],
+      "exactSourcePointChanges": 185,
+      "distinctChangedSourceUnits": 98,
+      "changedArchiveChapters": 37,
+      "preservedArchiveMembers": 1299,
+      "allSourceBodiesReplayOnlyApprovedChanges": true,
+      "allCatholicPresentationDecisionsPreserved": true,
+      "unchangedCatholicUnitPins": 25,
+      "refreshedCatholicUnitPins": [
+        "SIR11:34 full-unit hash for one independently certified sheva"
+      ],
+      "dailyPayloadChanges": [
+        {
+          "appointment": "daily|2 Maccabees 12:43–46",
+          "book": "2MA",
+          "chapter": 12,
+          "verse": 45,
+          "noteID": "2ma-12-45-shin-3-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 4,
+          "noteID": "s3y-1-4-word1-letter2-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 4,
+          "noteID": "s3y-1-4-word3-letter2-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 4,
+          "noteID": "s3y-1-4-word4-letter2-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 19,
+          "noteID": "s3y-1-19-word10-letter1-vowel",
+          "addedCodePoint": "U+05B8"
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 26,
+          "noteID": "s3y-1-26-word1-letter2-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 27,
+          "noteID": "s3y-1-27-word1-letter2-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 27,
+          "noteID": "s3y-1-27-word2-letter2-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 28,
+          "noteID": "s3y-1-28-word7-letter2-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 30,
+          "noteID": "s3y-1-30-vayaanu-yod-dagesh",
+          "addedCodePoint": "U+05BC"
+        },
+        {
+          "appointment": "daily|Wisdom 6:12–16",
+          "book": "WIS",
+          "chapter": 6,
+          "verse": 16,
+          "noteID": "wis-6-16-bet",
+          "addedCodePoint": "U+05B0"
+        }
+      ],
+      "dailyChangedSourceRows": 8,
+      "savedUserPDFsUnchanged": [
+        "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך ב.pdf",
+        "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך א.pdf"
+      ]
+    },
+    "sharedTests": {
+      "test-bible-library.py": 21,
+      "test-hebrew-deuterocanon.py": 22,
+      "test-scripture-source-notes.py": 13,
+      "test-bible-source-structure.py": 12,
+      "test-hebrew-daily-readings.py": 14,
+      "test-reading-texts.py": 32,
+      "totalPassed": 114
+    },
+    "android": {
+      "task": "testDebugUnitTest --rerun-tasks",
+      "suites": 72,
+      "tests": 582,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "result": "passed"
+    },
+    "apple": {
+      "destination": "macOS",
+      "passedTests": 56,
+      "failedTests": 0,
+      "skippedTests": 0,
+      "result": "passed",
+      "resultBundle": "/private/tmp/prosary-hebrew-pass31-20261017/apple.xcresult"
+    },
+    "windows": {
+      "runtimeTests": "not run on macOS",
+      "generatedDataCopies": "byte-identical to Shared"
+    },
+    "generationChecks": {
+      "bibleLibrarySecondPass": "passed, byte-stable",
+      "readingTexts": "passed, byte-stable",
+      "readingMappings": "passed",
+      "scopedDiffWhitespace": "passed"
+    },
+    "independentAudits": [
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/independent-all-packet-pixel-audit.json",
+        "sha256": "a2885fb8296fb598eb4cceedb806d9ebb1d14352b692864fb69d90b0646fd77b"
+      },
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/independent-mutation-audit.json",
+        "sha256": "40a9c3efd2786ed3e77650ea292adfd3a4b9675008fd3df3102b3e094325bb71"
+      },
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/independent-applied-byte-confirmation.json",
+        "sha256": "88c6f1841a313cbb9d762b2977f5e17818170783d8468c9d96842be4bb318eb5"
+      },
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/helper-reuse-proof.json",
+        "sha256": "32688a972a3b2a9b6115f4a70890e4e6219de42f90364ad2f4efc1af38837ac4"
+      },
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/root-visual-decisions.json",
+        "sha256": "ed4e45e0c0b4205934555f1a643e23e2e8dc9f9985d8754d894101c14b01c60e"
+      },
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/peer-esg5-7-audit.json",
+        "sha256": "d660d0719595372aa6fedce06279d06685ea8f3fe59b97c377b5820f92d06139",
+        "ownership": "Separate reviewer audit"
+      },
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/peer-esg5-7-boundary-supplement-audit.json",
+        "sha256": "5070fed9cf7bdf06b3cd444491b49e3e8f7b8c776b2d4669637e27f5170c8859",
+        "ownership": "Separate reviewer audit"
+      },
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/peer-esg6-15-audit.json",
+        "sha256": "ca921734b04dc49cbb0cac6eeb4d48154a8169ef4ae88604585eab13776f5995",
+        "ownership": "Separate reviewer audit"
+      },
+      {
+        "path": "/private/tmp/prosary-hebrew-pass31-20261017/peer-sus1-18-audit.json",
+        "sha256": "c9e707cc01df60298cb3a7676e5f06ad96dc293f7f71c79b54c3a5e9ea5ba34f",
+        "ownership": "Independent peer; not author of SUS1:18 source report. Fresh original extraction and visual comparison plus independent pixel, physical-location, and digest checks. No canonical or published-report mutation."
+      }
+    ],
+    "workspacePreservation": {
+      "branch": "feature/home-card-columns",
+      "stagedManifestPatchByteUnchanged": true,
+      "unrelatedTrackedFilesChecked": 2603,
+      "unrelatedFilesChangedExternallyDuringRun": [],
+      "sourceWritesRestrictedToReviewedBooksAndApprovalDailyGates": true,
+      "frozenHistoricalFilesByteUnchanged": 9768,
+      "unrelatedUntrackedFilesByteUnchanged": 21
+    }
+  },
+  "sourceReportCorrections": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-boundary-label-supplement-20261017-pass31.json",
+      "sha256": "4f285db896e582fe073ddaa769e9f428a537e40b87a042dacb22fc7843074979",
+      "type": "One control label corrected; pixels and decisions unchanged",
+      "details": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-point-comparison-20261017-pass31.json",
+          "sha256": "bfb74dc8e508e850ac30467f8ebef6ca89414a154b5b93110a0bd5028720522e",
+          "jsonPointer": "/sourceAddressPolicy",
+          "before": "Source5:7 begins ויהפוך after the preceding לפניה colon on the row marked ז, spans the complete following row, and ends טובות colon on the third row before ויאמר begins the following combined source8-9. All source wording, printed labels, punctuation and complete unit boundaries remain unchanged.",
+          "after": "Source5:7 begins וַיַּהֲפֹךְ after the preceding לפניה colon on the row marked ז, spans the complete following row, and ends טובות colon on the third row before ויאמר begins the following combined source8-9. All source wording, printed labels, punctuation and complete unit boundaries remain unchanged."
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-5-7/frame-ledger.json",
+          "sha256": "02d3432f789530731bd352bad31e01489f25c3c23b5e11da2c65fb020b13e78b",
+          "frameName": "ESG5-7-complete-numbered-context",
+          "field": "literalLabel",
+          "before": "Complete three-row source5:7 from ויהפוך after לפניה colon through טובות colon before ויאמר; printed ז and following ח-ט",
+          "after": "Complete three-row source5:7 from וַיַּהֲפֹךְ after לפניה colon through טובות colon before ויאמר; printed ז and following ח-ט"
+        }
+      ],
+      "canonicalConsonantsAndExistingScalarsUnchanged": true
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-boundary-label-supplement-20261017-pass31.json",
+      "sha256": "d0239026b53bef42c754140837b80696ad0178e0528490a270a6de0ceffc4adb",
+      "type": "One control label corrected; pixels and decisions unchanged",
+      "details": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-point-comparison-20261017-pass31.json",
+          "sha256": "248ac9fb159aedb320b02705723b9e5b145946dd447540d2f7850e75fa90e2b1",
+          "jsonPointer": "/sourceAddressPolicy",
+          "before": "Source6:15 on A2 p223 starts והנה in the left portion of the row marked טו after previous unit ends המקודנים׃; continues through the full next row; ends חייהם׃ on the following row marked טז before והמה begins source6:16. All three rows and printed labels are preserved.",
+          "after": "Source6:15 on A2 p223 starts והנה in the left portion of the row marked טו after previous unit ends הַמַּקְדוֹנִים׃; continues through the full next row; ends חייהם׃ on the following row marked טז before והמה begins source6:16. All three rows and printed labels are preserved."
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/frame-ledger.json",
+          "sha256": "c282b74a1a21baaef7f10fd670f50f189e4059d12cae49c36db2ffd6ef9bfeb0",
+          "frameName": "ESG6-15-complete-numbered-unit",
+          "field": "literalLabel",
+          "before": "Full source6:15: starts והנה after source14 terminal המקודנים; wraps next row; ends חייהם before source16 והמה",
+          "after": "Full source6:15: starts והנה after source14 terminal הַמַּקְדוֹנִים; wraps next row; ends חייהם before source16 והמה"
+        }
+      ],
+      "canonicalConsonantsAndExistingScalarsUnchanged": true
+    }
+  ],
+  "reviewSequence": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-review-sequence-20261017.json",
+    "sha256": "f406dcc6edb5ae5063944f7cf3ef587c950b24182d3ba19a46366a14c84dc642"
+  },
+  "nextReviewPriority": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-priority-20261017-after-pass31.json",
+    "sha256": "aa891293b7400860183a429b70c133574c20897f41e7f780c2fb619c1925eec7",
+    "reviewSequence": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-review-sequence-20261017.json",
+      "sha256": "f406dcc6edb5ae5063944f7cf3ef587c950b24182d3ba19a46366a14c84dc642"
+    },
+    "nextUnits": [
+      {
+        "book": "WIS",
+        "chapter": 11,
+        "verse": 8,
+        "blockId": null,
+        "notes": 3
+      },
+      {
+        "book": "WIS",
+        "chapter": 12,
+        "verse": 5,
+        "blockId": null,
+        "notes": 3
+      },
+      {
+        "book": "WIS",
+        "chapter": 16,
+        "verse": 19,
+        "blockId": null,
+        "notes": 3
+      }
+    ]
+  }
+}

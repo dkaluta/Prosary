@@ -1,0 +1,1454 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 10,
+  "book": "WIS",
+  "status": "Twelve fresh selected exact-letter vowel inspections; all twelve notes retained",
+  "applicationState": "source-only retained findings; no canonical correction proposed",
+  "baselineGlobalSourceNoteCount": 599,
+  "canonicalSHA256Before": "8ffe738ba8e75d74f2c67faab643c42e89a80c44d5fa42a0cc354d816b403ffb",
+  "contentSHA256Before": "b6c53baae2bc6e6e3f30236f73e4c6e87b8749b50ba7a4f60fd2ffb052588ca4",
+  "contentSHA256After": "b6c53baae2bc6e6e3f30236f73e4c6e87b8749b50ba7a4f60fd2ffb052588ca4",
+  "sourceNotesBefore": 195,
+  "sourceNotesAfter": 195,
+  "reviewedSourceNoteCount": 12,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 12,
+  "reviewedSourceNoteIds": [
+    "wis-4-2-letter-6-vowel",
+    "wis-6-9-shin",
+    "wis-6-18-bet",
+    "wis-7-9-mem",
+    "wis-7-15-kaf-kahagut",
+    "wis-7-15-kaf-kiyaut",
+    "wis-8-1-first-kaf",
+    "wis-10-14-shin",
+    "wis-15-1-kaf-2-vowel",
+    "wis-15-18-mem-1-vowel",
+    "wis-16-20-kaf-3-vowel",
+    "wis-18-3-word3-tav-2-vowel"
+  ],
+  "retiredSourceNoteIds": [],
+  "retainedNoteAnchorUpdates": [],
+  "combiningMarksAdded": 0,
+  "excludedAuthorizedRestoredLetterNoteCount": 4,
+  "method": "A fresh bounded exact-letter study of twelve remaining WIS vowel annotations in chapters that still contain notes. Original A2 embedded image pixels only, complete target words and native/integer nearest-neighbor exact-letter views. Eleven heavily merged lower profiles remain unclassified; no claim is made that all eleven received a separate literal-control search. The detached18:3 tav mark received a focused competing-class comparison with same-word het-patah, same-page same-letter tav-tsere, detached qamats and same-font segol. An upper notch and flat lower edge do not exclude both irregular patah and fused tsere, so it remains disclosed. No grammar, expected spelling, OCR, sharpening, smoothing, new witness, or blank-cavity inference supplies a mark. All selected durable images are freshly replayed from original PDF extraction; algorithms certify provenance, not readings. Superseded clipped frames are excluded. Historical reports remain immutable.",
+  "scope": {
+    "selectedPositions": 12,
+    "reviewedChapters": [
+      4,
+      6,
+      7,
+      8,
+      10,
+      15,
+      16,
+      18
+    ],
+    "allReviewedChaptersContainAnnotationsAtBaseline": true,
+    "tinyNecessaryLocalAndSameFontControlsOnly": true,
+    "notWholeBookRecollation": true,
+    "priorReshAndPeRetentionsExcluded": true
+  },
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "independentReview": {
+    "root": "Separately viewed18:3 full tav, expanded whole word, same-word het-patah and same-page same-letter tav-tsere. Agreed that upper notch plus flat loweredge cannot uniquely exclude irregular patah versus fused tsere; explicitly requested the final twelve-retentions report. Root accepted the other eleven heavy-profile retention findings without proposing edits."
+  },
+  "inspections": [
+    {
+      "chapter": 4,
+      "verse": 2,
+      "id": "wis-4-2-letter-6-vowel",
+      "anchor": "בְּתַהֲלוּכת",
+      "occurrence": 1,
+      "letterIndex": 6,
+      "mark": "vowel",
+      "sourcePages": [
+        151
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=151",
+      "targetLetter": "כ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower foot and rounded extension form a saturated continuous block. No independently bounded bar, stem or point pair uniquely survives; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-kaf-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-kaf-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-4-2-letter-6-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-4-2-letter-6-vowel-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 6,
+      "verse": 9,
+      "id": "wis-6-9-shin",
+      "anchor": "תִכָּשׁלוּ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        156
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=156",
+      "targetLetter": "ש",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The shin lower region has a small internal white gap and two low tips, but the surrounding foot/point mass is merged. Neither sheva, bar nor triangle can be certified from the remaining contour; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis6-9-shin-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis6-9-shin-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-6-9-shin-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-6-9-shin-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 6,
+      "verse": 18,
+      "id": "wis-6-18-bet",
+      "anchor": "עֲרבּת",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        156
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=156",
+      "targetLetter": "ב",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The bet lower mass is broad, flat-bottomed and contiguous with the complete foot. A distinct point class cannot be separated from the foot geometry; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis6-18-bet-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis6-18-bet-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-6-18-resh-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-6-18-resh-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 9,
+      "id": "wis-7-9-mem",
+      "anchor": "כְּדֹמן",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=158",
+      "targetLetter": "מ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "A broad lower head, small upper window and central lower projection survive. A merged qamats head/stem or collapsed upper pair plus third point remain competing explanations; the contour does not independently decide them. Retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-9-mem-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-9-mem-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-7-9-mem-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-7-9-mem-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "id": "wis-7-15-kaf-kahagut",
+      "anchor": "כּהָגוּת",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=158",
+      "targetLetter": "כ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower head is fused into the foot above a narrower shaft and terminal bulb. A merged vowel head with stem and a joined two-dot profile are not uniquely distinguishable; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kaf-kahagut-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kaf-kahagut-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-7-15-kaf-kahagut-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-7-15-kaf-kahagut-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 7,
+      "verse": 15,
+      "id": "wis-7-15-kaf-kiyaut",
+      "anchor": "כּיָאוּת",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        158
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=158",
+      "targetLetter": "כ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The full corrected frame shows a narrow descending extension and lower bulb under a foot-fused upper mass. The original clipped left-word locator is superseded by a complete word and target frame. The added point remains ambiguous; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kaf-kiyaut-full-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kaf-kiyaut-full-target-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kiyaut-fullword-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kiyaut-fullword-4x.png"
+      ]
+    },
+    {
+      "chapter": 8,
+      "verse": 1,
+      "id": "wis-8-1-first-kaf",
+      "anchor": "וּתְכלְכֵּל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        160
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=160",
+      "targetLetter": "כ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "A large rounded lower mass is fused to the kaf foot and lacks internal point structure. No unique flat bar, pair, third node or central stem can be recovered; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis8-1-firstkaf-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis8-1-firstkaf-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-8-1-first-kaf-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-8-1-first-kaf-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 10,
+      "verse": 14,
+      "id": "wis-10-14-shin",
+      "anchor": "תִטּשׁהוּ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        165
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=165",
+      "targetLetter": "ש",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The shin has two small low tips around a flat merged base, without a separate diagnostic upper edge. A partially filled pair/triangle or irregular merged bar remains possible; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis10-14-shin-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis10-14-shin-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-10-14-tet-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-10-14-tet-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 1,
+      "id": "wis-15-1-kaf-2-vowel",
+      "anchor": "תְּכלְכֵּל",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        175
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=175",
+      "targetLetter": "כ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower block has a shallow central bottom spur, but is fused across the foot. Its surviving outline does not distinguish the exact lower vowel; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis15-1-kaf-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis15-1-kaf-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-15-1-kaf-2-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-15-1-kaf-2-vowel-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 15,
+      "verse": 18,
+      "id": "wis-15-18-mem-1-vowel",
+      "anchor": "משְׁלָן",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        176
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=176",
+      "targetLetter": "מ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The mem has a broad upper lower-mass and narrower terminal bulb. The upper mass could incorporate a vowel head or an upper round point as well as the ordinary foot; counting two swellings cannot decide the class. Retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis15-18-mem-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis15-18-mem-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-15-18-mem-1-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-15-18-mem-1-vowel-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 16,
+      "verse": 20,
+      "id": "wis-16-20-kaf-3-vowel",
+      "anchor": "הֶאֱכלְתָּ",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "vowel",
+      "sourcePages": [
+        178
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=178",
+      "targetLetter": "כ",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The kaf lower end is a saturated rounded block with a flat edge and no distinct mark contour. Retain the unresolved vowel note.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis16-20-kaf-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis16-20-kaf-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-16-20-kaf-3-vowel-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-16-20-kaf-3-vowel-word-4x.png"
+      ]
+    },
+    {
+      "chapter": 18,
+      "verse": 3,
+      "id": "wis-18-3-word3-tav-2-vowel",
+      "anchor": "ותחַת",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "vowel",
+      "sourcePages": [
+        181
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=181",
+      "targetLetter": "ת",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "A detached shallow horizontal lower mark has a central upper notch but an entirely flat lower edge. The same-word het-patah is a continuous bar; the same-page same-letter tav-tsere in laavotenu has two lobes with upper and lower waists. The target remains compatible with an irregular patah bar or a joined tsere pair whose lower waist has filled. Detached qamats and same-font mem-segol exclude neither of those two remaining classes. The expanded whole-word frame and numbered printed3 row preserve the complete lower region. No unique vowel is established; retain.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-tav-target-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-tav-target-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-vetahat-expanded-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-vetahat-expanded-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-numbered-source-context-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-sameword-het-patah-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-sameword-het-patah-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-hakhinota-tav-qamats-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-hakhinota-tav-qamats-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-6-laavotenu-tav-tsere-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-6-laavotenu-tav-tsere-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-6-samepage-tav-tsere-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-6-samepage-tav-tsere-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-mem-segol-counter-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-mem-segol-counter-12x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-bmilchemet-mem-segol-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-bmilchemet-mem-segol-word-4x.png"
+      ]
+    }
+  ],
+  "sourceImages": [
+    {
+      "page": 151,
+      "embeddedImageName": "im151.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2523,
+        3515
+      ],
+      "nativePixelSHA256": "fb67dfb16216ca8e25241661731d3deccdf671aa298e51e938e6e862f2a3aac7",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 156,
+      "embeddedImageName": "im156.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2487,
+        3490
+      ],
+      "nativePixelSHA256": "f2ee0edd956fabbb739a894a0f9c30f5e0b2dc9f11da1c06cb4449ffdb47fa5c",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 158,
+      "embeddedImageName": "im158.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2484,
+        3487
+      ],
+      "nativePixelSHA256": "b7cbce49a969ea818cbbf23e7c5e1e168c31bcb5e09e759edda639aeb7dc5bcd",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 160,
+      "embeddedImageName": "im160.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2499,
+        3498
+      ],
+      "nativePixelSHA256": "0a01f7b1ab89c4f650fad0061011788f34ee8b6b0f9710519baec388dac0ac97",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 165,
+      "embeddedImageName": "im165.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2516,
+        3510
+      ],
+      "nativePixelSHA256": "60568e738d732596ec29d72a91aa3c8ce0fa6c2d1a98a589e40ee1cdd5606710",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 171,
+      "embeddedImageName": "im171.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2507,
+        3503
+      ],
+      "nativePixelSHA256": "f0f361f7de0404bc6b694d0530ffe3785c8a44bdacdd363c0de216449a03b7ae",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 175,
+      "embeddedImageName": "im175.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2534,
+        3523
+      ],
+      "nativePixelSHA256": "9f3938dac597840ba4d4e20aa48646d862411354c52a60b6654dbfd69c094755",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 176,
+      "embeddedImageName": "im176.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2654,
+        3605
+      ],
+      "nativePixelSHA256": "21fcd004f79c5a975e7ecd61b2b13628b8ad857c1a86d9b3b3277e2e7920d525",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 178,
+      "embeddedImageName": "im178.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2610,
+        3575
+      ],
+      "nativePixelSHA256": "d9c2b49af11a8cca1e9069e7f90bdfe492f244e3a61bce2e6ba67d573d2f736c",
+      "freshlyExtractedOriginalPixels": true
+    },
+    {
+      "page": 181,
+      "embeddedImageName": "im181.tiff",
+      "imageCount": 1,
+      "mode": "1",
+      "size": [
+        2543,
+        3529
+      ],
+      "nativePixelSHA256": "c81b7ab1e1e00d913457d12442335278646afc239ab3fa7214541de1a437f194",
+      "freshlyExtractedOriginalPixels": true
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-kaf-target-native.png",
+      "sha256": "dc8302c35b641ca12ef4e4871df9e4e16bfa933e48133665255b310973768aac",
+      "page": 151,
+      "nativeBounds": [
+        1648,
+        1724,
+        1697,
+        1800
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-kaf-target-15x.png",
+      "sha256": "d2f7a9d78026d18641d47f7e9e6bcd494f54f9f8941d42c2a8e71eb6fba218c9",
+      "page": 151,
+      "nativeBounds": [
+        1648,
+        1724,
+        1697,
+        1800
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-4-2-letter-6-vowel-word-native.png",
+      "sha256": "e51299fed88540955ebf2975f4ba8f473796d65173c8a73a3ca119a861279e9a",
+      "page": 151,
+      "nativeBounds": [
+        1610,
+        1710,
+        1790,
+        1820
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-4-2-letter-6-vowel-word-4x.png",
+      "sha256": "5c3bc16cd74cd6f36aff918690325ecc9f0fac28f45c465f2058a769d6797e51",
+      "page": 151,
+      "nativeBounds": [
+        1610,
+        1710,
+        1790,
+        1820
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis6-9-shin-target-native.png",
+      "sha256": "7d656d6071f252490c2ccb7f29d727013d52284d7537895e976658b9ff97875a",
+      "page": 156,
+      "nativeBounds": [
+        343,
+        650,
+        398,
+        732
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis6-9-shin-target-15x.png",
+      "sha256": "1f004856de8b3fb8fb516925bc036cdb696c7cd166a262a83ade85835cc6ed81",
+      "page": 156,
+      "nativeBounds": [
+        343,
+        650,
+        398,
+        732
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-6-9-shin-word-native.png",
+      "sha256": "2b1ce9f308c95c0d5dad6dfa10502ad001f928a6481c1285cf1f445cd2e69f04",
+      "page": 156,
+      "nativeBounds": [
+        265,
+        650,
+        490,
+        785
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-6-9-shin-word-4x.png",
+      "sha256": "c77488a7c6cd10fa7dda280169986cb07cd7089af60313ec212ebbc41c4545ad",
+      "page": 156,
+      "nativeBounds": [
+        265,
+        650,
+        490,
+        785
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis6-18-bet-target-native.png",
+      "sha256": "63a430381ed59a57eada6a46e41020bbdd39995634bee2b5085aa9110db4c7ec",
+      "page": 156,
+      "nativeBounds": [
+        1103,
+        1785,
+        1155,
+        1860
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis6-18-bet-target-15x.png",
+      "sha256": "453280e68ae9bb6e61737537924f89bbfa03460c004d640626f5873ec2cdf354",
+      "page": 156,
+      "nativeBounds": [
+        1103,
+        1785,
+        1155,
+        1860
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-6-18-resh-word-native.png",
+      "sha256": "364398f55e2ea3eaa9c59364036b4794bc417661d5d7567ad443c8a6188e0603",
+      "page": 156,
+      "nativeBounds": [
+        1010,
+        1750,
+        1260,
+        1890
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-6-18-resh-word-4x.png",
+      "sha256": "72e328a7a0da2b396c234eb37dc77f2d4ae37bc623464e33d40d75ef80a5de6d",
+      "page": 156,
+      "nativeBounds": [
+        1010,
+        1750,
+        1260,
+        1890
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-9-mem-target-native.png",
+      "sha256": "ada923441a52cf0662ea6ec9a6669f869b600a902e177f21e0cdc25251e89f09",
+      "page": 158,
+      "nativeBounds": [
+        884,
+        870,
+        931,
+        944
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-9-mem-target-15x.png",
+      "sha256": "cf3ffe38a8cfc821c6922c1e11cdf0836a280be3b7f3768a3189b965736ab8d7",
+      "page": 158,
+      "nativeBounds": [
+        884,
+        870,
+        931,
+        944
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-7-9-mem-word-native.png",
+      "sha256": "235fbc16861c7a77628f184f1c8cc74c84f3e7407d3979d155981cb11047bd8f",
+      "page": 158,
+      "nativeBounds": [
+        840,
+        864,
+        1030,
+        975
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-7-9-mem-word-4x.png",
+      "sha256": "936c12b3736ef5bfeaf65c670608197483560e587bbad3ddb47c017a1ddeebd1",
+      "page": 158,
+      "nativeBounds": [
+        840,
+        864,
+        1030,
+        975
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kaf-kahagut-target-native.png",
+      "sha256": "44da52ac095c60a1efba57004b48ec6f954d6a561e7266d3d46b1441405350a2",
+      "page": 158,
+      "nativeBounds": [
+        1685,
+        1715,
+        1739,
+        1790
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kaf-kahagut-target-15x.png",
+      "sha256": "6874a173d072a88217aa8577fe635ec7837398bf77aa0c807a614a72fff82524",
+      "page": 158,
+      "nativeBounds": [
+        1685,
+        1715,
+        1739,
+        1790
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-7-15-kaf-kahagut-word-native.png",
+      "sha256": "29733d46d9d51dcf2a416f56ee9c9f61d88f743ed566dc11e612504cfdf01eac",
+      "page": 158,
+      "nativeBounds": [
+        1430,
+        1700,
+        1850,
+        1820
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-7-15-kaf-kahagut-word-4x.png",
+      "sha256": "d1513244c834bf771f40d9169db255a33d07c96a2df929f5698813fe22f817f8",
+      "page": 158,
+      "nativeBounds": [
+        1430,
+        1700,
+        1850,
+        1820
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kaf-kiyaut-full-target-native.png",
+      "sha256": "6cc586b7bc53264e841b3ea733cff724b5e07677895dab77f6eb7f532c05e968",
+      "page": 158,
+      "nativeBounds": [
+        900,
+        1690,
+        960,
+        1780
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kaf-kiyaut-full-target-12x.png",
+      "sha256": "f664db55ef31d2af9d387a155fd09b60f04851ad2cd4395d57ddf6ea1a9e45e2",
+      "page": 158,
+      "nativeBounds": [
+        900,
+        1690,
+        960,
+        1780
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kiyaut-fullword-native.png",
+      "sha256": "006a02810a6fa82e601e67b198ef8abfc596a0c77a83f01c3797dded11bafa46",
+      "page": 158,
+      "nativeBounds": [
+        750,
+        1680,
+        1040,
+        1800
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis7-15-kiyaut-fullword-4x.png",
+      "sha256": "cff601bddee482da88b3f216d5022e495044847b34868602a4020f101b3c0322",
+      "page": 158,
+      "nativeBounds": [
+        750,
+        1680,
+        1040,
+        1800
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis8-1-firstkaf-target-native.png",
+      "sha256": "e7aa6d24da1fad293ee116cec56833fafd85b34463956edcc3f94b34c48196c8",
+      "page": 160,
+      "nativeBounds": [
+        1080,
+        1150,
+        1130,
+        1230
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis8-1-firstkaf-target-15x.png",
+      "sha256": "21ec4fc3bf965513fb6a0c0c11a548dc87b56910cb5fbe7eec85e16db2a4337d",
+      "page": 160,
+      "nativeBounds": [
+        1080,
+        1150,
+        1130,
+        1230
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-8-1-first-kaf-word-native.png",
+      "sha256": "5577ff09a041d2eec983b4229ea9383a6e4ca224469082b378597e5a65d06403",
+      "page": 160,
+      "nativeBounds": [
+        840,
+        1120,
+        1190,
+        1250
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-8-1-first-kaf-word-4x.png",
+      "sha256": "04425b0c984adf08fb1f5db4ff12348f04fbd21705130ba55ce8bce01f8797e6",
+      "page": 160,
+      "nativeBounds": [
+        840,
+        1120,
+        1190,
+        1250
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis10-14-shin-target-native.png",
+      "sha256": "2c693a5f5feb8e37cde1d4421a81de2948ff6bd58fdae4f64ffc9eecd6b02de1",
+      "page": 165,
+      "nativeBounds": [
+        571,
+        1132,
+        630,
+        1220
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis10-14-shin-target-15x.png",
+      "sha256": "5b6362069bd820a96901a530405cdf8ab4b5ab2bc6c3d263ad980b2971cd6656",
+      "page": 165,
+      "nativeBounds": [
+        571,
+        1132,
+        630,
+        1220
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-10-14-tet-word-native.png",
+      "sha256": "159647276e87b9e62df50bb177392c34f66a7582fa6dd856730237162a94b385",
+      "page": 165,
+      "nativeBounds": [
+        410,
+        1110,
+        900,
+        1290
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-10-14-tet-word-4x.png",
+      "sha256": "09d4e9e105b929498e1f92fa0900e1ead1b2bafb583ebffda0fc1ff79ec804f9",
+      "page": 165,
+      "nativeBounds": [
+        410,
+        1110,
+        900,
+        1290
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis15-1-kaf-target-native.png",
+      "sha256": "1ee418f8b9087a3ea4b4c4528610f5731a92e8645b452016312e98aeda16027e",
+      "page": 175,
+      "nativeBounds": [
+        466,
+        793,
+        513,
+        864
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis15-1-kaf-target-15x.png",
+      "sha256": "8d9838cd05e9b145db2dd7edd9a94066a11145d46c9c199c0f08bbab42077d15",
+      "page": 175,
+      "nativeBounds": [
+        466,
+        793,
+        513,
+        864
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-15-1-kaf-2-vowel-word-native.png",
+      "sha256": "396f9b897dbcf2b4469521467c453419a13bb248d940a401d9adc61be053a329",
+      "page": 175,
+      "nativeBounds": [
+        360,
+        775,
+        565,
+        880
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-15-1-kaf-2-vowel-word-4x.png",
+      "sha256": "65616e9ba5b366aaaa8b224c4317ba06ae5a139bd8fef3b01b2a46a8e873ac3c",
+      "page": 175,
+      "nativeBounds": [
+        360,
+        775,
+        565,
+        880
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis15-18-mem-target-native.png",
+      "sha256": "18178c864599600f3137bd4054b8bc7fb5c31631450ad41790ecdafba08621f1",
+      "page": 176,
+      "nativeBounds": [
+        1140,
+        1505,
+        1194,
+        1590
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis15-18-mem-target-15x.png",
+      "sha256": "d835654bfb4577e9460aee088f07037c30aecf00dcb360ea2a0963115c0ebd70",
+      "page": 176,
+      "nativeBounds": [
+        1140,
+        1505,
+        1194,
+        1590
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-15-18-mem-1-vowel-word-native.png",
+      "sha256": "93e2290a65fa8b02e8c377f4e404d439d0bb20518bdd00abb0ad2bb30c20f035",
+      "page": 176,
+      "nativeBounds": [
+        1005,
+        1490,
+        1265,
+        1600
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-15-18-mem-1-vowel-word-4x.png",
+      "sha256": "d7ef346b03514cec2f792db8b58fe03a9ca5ea40ebe248149b19b6f904ff90c0",
+      "page": 176,
+      "nativeBounds": [
+        1005,
+        1490,
+        1265,
+        1600
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis16-20-kaf-target-native.png",
+      "sha256": "bd131eb6c0cae05a01cca2e3e6192263151373e52e35442129280dc00860610c",
+      "page": 178,
+      "nativeBounds": [
+        1036,
+        1347,
+        1082,
+        1420
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis16-20-kaf-target-15x.png",
+      "sha256": "ed79902c59f0f2820a66cc875ade773761ca1842b6d0c7c25752d081c4ad5947",
+      "page": 178,
+      "nativeBounds": [
+        1036,
+        1347,
+        1082,
+        1420
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-16-20-kaf-3-vowel-word-native.png",
+      "sha256": "2174a7ac58ed36dae33ef480d1b657be582b92bc8dff879ef8a07561c6a54081",
+      "page": 178,
+      "nativeBounds": [
+        930,
+        1340,
+        1170,
+        1420
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis-16-20-kaf-3-vowel-word-4x.png",
+      "sha256": "6c3948d4fc0e7168cf144e93d97369dbe71f182ccc726fe17bdd00a8b77b5681",
+      "page": 178,
+      "nativeBounds": [
+        930,
+        1340,
+        1170,
+        1420
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-tav-target-native.png",
+      "sha256": "477ef131885963ab414cd228acf891459eea002fd57bc6557360657b32b4e7be",
+      "page": 181,
+      "nativeBounds": [
+        1435,
+        1020,
+        1485,
+        1094
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-tav-target-15x.png",
+      "sha256": "aa12739dabfd9b5d070959cb8b389fd26eac9e6433d7fea4a25fad4002cab35f",
+      "page": 181,
+      "nativeBounds": [
+        1435,
+        1020,
+        1485,
+        1094
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "exact annotated-letter target",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-vetahat-expanded-word-native.png",
+      "sha256": "485703d727e2abadd94f9d9fe6b19222760fc09b043d76cf0264be63f7114a4e",
+      "page": 181,
+      "nativeBounds": [
+        1290,
+        985,
+        1535,
+        1115
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-vetahat-expanded-word-4x.png",
+      "sha256": "f0605de0d502e42127e923b1033183286a91f2c727f08312aee6ea11c0611239",
+      "page": 181,
+      "nativeBounds": [
+        1290,
+        985,
+        1535,
+        1115
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete target word/source address",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-numbered-source-context-native.png",
+      "sha256": "1d921138e3c7e0422a525cb91091ca3430c7420be08462a81e13d3bf3d4339f2",
+      "page": 181,
+      "nativeBounds": [
+        230,
+        975,
+        2150,
+        1115
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "numbered original target row",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-sameword-het-patah-native.png",
+      "sha256": "efd99d27d030c343b17e24cbb717bb8f5814c03ea53ddcc838d8dce4e64d614c",
+      "page": 181,
+      "nativeBounds": [
+        1391,
+        1023,
+        1437,
+        1094
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-sameword-het-patah-15x.png",
+      "sha256": "dcdb9f3f17400edb80fd125b1f67ef829a27adc769823b327b203d2d4d7d4104",
+      "page": 181,
+      "nativeBounds": [
+        1391,
+        1023,
+        1437,
+        1094
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-hakhinota-tav-qamats-word-native.png",
+      "sha256": "9524bffdff17490196aaa1dfd26d7437b630db20367ac1dc671414d38505cdb2",
+      "page": 181,
+      "nativeBounds": [
+        975,
+        990,
+        1160,
+        1110
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-3-hakhinota-tav-qamats-word-4x.png",
+      "sha256": "b9c327ae381f78f9613697c7e7fdaf1040413268a770f8edd304345fc2105d16",
+      "page": 181,
+      "nativeBounds": [
+        975,
+        990,
+        1160,
+        1110
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-6-laavotenu-tav-tsere-word-native.png",
+      "sha256": "3807561353e4af4da7dab54d306fe6f6199ddbb86f1a900db87db8e0bbff193e",
+      "page": 181,
+      "nativeBounds": [
+        230,
+        1480,
+        520,
+        1585
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-6-laavotenu-tav-tsere-word-4x.png",
+      "sha256": "72120972b41a67da28c7800e36c2460a1c1a8681864e5c81e25ccac44107a6d6",
+      "page": 181,
+      "nativeBounds": [
+        230,
+        1480,
+        520,
+        1585
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-6-samepage-tav-tsere-native.png",
+      "sha256": "ee2552c3aac8c8d32cabbec3d4f12313074681a4f96f475403d01703fe534cf7",
+      "page": 181,
+      "nativeBounds": [
+        330,
+        1488,
+        372,
+        1565
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis18-6-samepage-tav-tsere-15x.png",
+      "sha256": "82f97cfa12d6dc1ee946888b1e2aaf0bde7249cfdacb24b93edaddf903063b8c",
+      "page": 181,
+      "nativeBounds": [
+        330,
+        1488,
+        372,
+        1565
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-native.png",
+      "sha256": "f42225d14f6f33a84108c8557311335da5ea8f9660b04634483cf54c08556d74",
+      "page": 171,
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis13-10-lamed-detached-qamats-counter-12x.png",
+      "sha256": "a7bdde68bce79879e30ecfbc65b8b8e64528b95e87f8edd3d9b1e1343fc01cf1",
+      "page": 171,
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-mem-segol-counter-native.png",
+      "sha256": "f87fe589f5a87bd6a6529a771b996d4aeb79480becba01a41c6fd690b23045da",
+      "page": 151,
+      "nativeBounds": [
+        693,
+        1767,
+        739,
+        1838
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-mem-segol-counter-12x.png",
+      "sha256": "52ea76bf7cc8eec13dfa3b66fde79815e83b201fa0c6d5ffcb8a62d05cb76002",
+      "page": 151,
+      "nativeBounds": [
+        693,
+        1767,
+        739,
+        1838
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "role": "literal competing point/control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis13-10-umlalim-control-word-native.png",
+      "sha256": "d3c3e23e507e061a1f55857fc37eec0bedd456a7525b2152c8e956104be0d127",
+      "page": 171,
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete competing-control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis13-10-umlalim-control-word-4x.png",
+      "sha256": "73acd2c65238d10ed67888ed8c44a4e178c634d1f99749caa489a2f08841832c",
+      "page": 171,
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete competing-control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-bmilchemet-mem-segol-word-native.png",
+      "sha256": "9b753d1b4fa6da9de88e2a2022f6a30eaf3d1ea72af661b280c44cb5b69f2036",
+      "page": 151,
+      "nativeBounds": [
+        630,
+        1740,
+        960,
+        1875
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "role": "complete competing-control word",
+      "originalPDFPixelReplayPassed": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass10-WIS-VOWELS/wis4-2-bmilchemet-mem-segol-word-4x.png",
+      "sha256": "7f24db2795fee924525f1fa37f05a5437904f47a601f65a1b50dd924e65c5fb3",
+      "page": 151,
+      "nativeBounds": [
+        630,
+        1740,
+        960,
+        1875
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "role": "complete competing-control word",
+      "originalPDFPixelReplayPassed": true
+    }
+  ],
+  "evidenceFileCount": 65,
+  "freshOriginalPageCount": 10,
+  "invariants": {
+    "canonicalByteEquivalentTo599Baseline": true,
+    "allTextAndSourceNotesUnchanged": true,
+    "fourAuthorizedRestorationDisclosuresUnchanged": true,
+    "allSelectedEvidenceReplayedAgainstFreshOriginalPDF": true,
+    "noGateDailyPresentationOrGeneratedEdits": true
+  },
+  "priorReport": {
+    "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+    "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+  }
+}

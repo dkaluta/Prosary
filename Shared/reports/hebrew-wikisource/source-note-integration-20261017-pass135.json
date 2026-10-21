@@ -1,0 +1,899 @@
+{
+  "date": "2026-10-21",
+  "pass": 135,
+  "startingNoteCount": 188,
+  "removedNoteCount": 2,
+  "remainingNoteCount": 186,
+  "reviewedSourceNoteCount": 6,
+  "retainedInspectedSourceNoteCount": 4,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 6,
+      "afterNoteCount": 6,
+      "removedNoteIds": [],
+      "retainedInspectedNoteIds": [
+        "bel-1-13-244-daniel13-letter3-dagesh",
+        "bel-1-14-244-vayehi14-letter1-vowel",
+        "bel-1-25-245-vayomer25-letter1-vowel"
+      ],
+      "beforeDigest": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
+      "afterDigest": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
+      "sourceChanges": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-13-point-comparison-20261017-pass135-preparation146.json",
+          "sha256": "524650302b0ecba952459a2b74d79eae78d83ee76f6dc498f49ed472962a59a0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-14-point-comparison-20261017-pass135-preparation147.json",
+          "sha256": "844707cab86c856ba62c9d27f6fd169c80beeb1ca394797b440bc7df8d3fae41"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-25-point-comparison-20261017-pass135-preparation148.json",
+          "sha256": "9667ad3247d33de88df04de9cb806f3018b68b635ba4219436bcd6e9de9e1379"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit1-11-point-comparison-20261017-pass135-preparation149.json",
+          "sha256": "dfc18791cdfc660cc811b7877a6f336c81715d1e58e89a28254fe1172728d1c9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit1-12-point-comparison-20261017-pass135-preparation150.json",
+          "sha256": "766a071784bf1098392950088e462652a5d431353abc69b6a4c6c1bb0a2eaa0d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit1-13-point-comparison-20261017-pass135-preparation151.json",
+          "sha256": "1f416078ab5c6dc7b237cbde61b5d6ddc421644f3ee5bf3de0f7e9f133b46cb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation146.json",
+          "sha256": "51288b9a1ba976e4e8ca95c97d6d68e5f62c41bf3669878ff360da4374d35445"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation147.json",
+          "sha256": "b612cc22fe4e4e25489b067bd421bf07fd87537fdb85d47a3147f18534b7c747"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation148.json",
+          "sha256": "af023cbb5fbc194948861eb5faf43be6955e604b6243be9580a16e12f1dda1bc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation149.json",
+          "sha256": "3b11076360728c32290b1e028e0277d5732cb0826f206e17abedadc2b2a6fc4b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation150.json",
+          "sha256": "7af26f09c30815903bb3e0990a58e03cacd22ae60d91a795709d6d362514f427"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation151.json",
+          "sha256": "51766528854ba226b861f7f95f52ecd66e9f7e98a3da7958514735f2c9d4e94f"
+        }
+      ]
+    },
+    {
+      "book": "ESG",
+      "beforeNoteCount": 20,
+      "afterNoteCount": 18,
+      "removedNoteIds": [
+        "esg-1-12-1-vowel",
+        "esg-1-13-1-vowel"
+      ],
+      "retainedInspectedNoteIds": [
+        "esg-1-11-1-vowel"
+      ],
+      "beforeDigest": "aa0c3f6b1f98fa756a177da72f53a2d719f4209d4b503724449bb260e8be1851",
+      "afterDigest": "2805db7a35d6eca1d180ef7188ad341da23b7c7cda2ebb92ccdc497e14acf2e4",
+      "sourceChanges": [
+        {
+          "book": "ESG",
+          "chapter": 1,
+          "verse": 12,
+          "before": "וּמָרְדְּכי יָשֵׁן בַּחֲצַר הַמֶּלֶךְ הוּא וּבִגְתָן וְתֶרֶשׁ שְׁנֵי סָרִיסֵי הַמֶּלֶךְ שֹׁמְרֵי הֶחָצֵר׃",
+          "after": "וּמָרְדְּכַי יָשֵׁן בַּחֲצַר הַמֶּלֶךְ הוּא וּבִגְתָן וְתֶרֶשׁ שְׁנֵי סָרִיסֵי הַמֶּלֶךְ שֹׁמְרֵי הֶחָצֵר׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 10,
+              "mark": "ַ",
+              "codePoint": "U+05B7"
+            }
+          ]
+        },
+        {
+          "book": "ESG",
+          "chapter": 1,
+          "verse": 13,
+          "before": "וַיִּשְׁמַע אֶת־מוֹעֲצוֹתֵיהֶם וַיָּבֶן למְזִמּוֹתֵיהֶם וַיֵּדַע כִּי מְבַקְּשִׁים הֵם לִשְׁלֹחַ יָד בַּמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ וַיַּגֵּד לַמֶּלֶךְ עַל־אֵלֶּה׃",
+          "after": "וַיִּשְׁמַע אֶת־מוֹעֲצוֹתֵיהֶם וַיָּבֶן לִמְזִמּוֹתֵיהֶם וַיֵּדַע כִּי מְבַקְּשִׁים הֵם לִשְׁלֹחַ יָד בַּמֶּלֶךְ אֲחַשְׁוֵרוֹשׁ וַיַּגֵּד לַמֶּלֶךְ עַל־אֵלֶּה׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 41,
+              "mark": "ִ",
+              "codePoint": "U+05B4"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-13-point-comparison-20261017-pass135-preparation146.json",
+          "sha256": "524650302b0ecba952459a2b74d79eae78d83ee76f6dc498f49ed472962a59a0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-14-point-comparison-20261017-pass135-preparation147.json",
+          "sha256": "844707cab86c856ba62c9d27f6fd169c80beeb1ca394797b440bc7df8d3fae41"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-25-point-comparison-20261017-pass135-preparation148.json",
+          "sha256": "9667ad3247d33de88df04de9cb806f3018b68b635ba4219436bcd6e9de9e1379"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit1-11-point-comparison-20261017-pass135-preparation149.json",
+          "sha256": "dfc18791cdfc660cc811b7877a6f336c81715d1e58e89a28254fe1172728d1c9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit1-12-point-comparison-20261017-pass135-preparation150.json",
+          "sha256": "766a071784bf1098392950088e462652a5d431353abc69b6a4c6c1bb0a2eaa0d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit1-13-point-comparison-20261017-pass135-preparation151.json",
+          "sha256": "1f416078ab5c6dc7b237cbde61b5d6ddc421644f3ee5bf3de0f7e9f133b46cb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation146.json",
+          "sha256": "51288b9a1ba976e4e8ca95c97d6d68e5f62c41bf3669878ff360da4374d35445"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation147.json",
+          "sha256": "b612cc22fe4e4e25489b067bd421bf07fd87537fdb85d47a3147f18534b7c747"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation148.json",
+          "sha256": "af023cbb5fbc194948861eb5faf43be6955e604b6243be9580a16e12f1dda1bc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation149.json",
+          "sha256": "3b11076360728c32290b1e028e0277d5732cb0826f206e17abedadc2b2a6fc4b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation150.json",
+          "sha256": "7af26f09c30815903bb3e0990a58e03cacd22ae60d91a795709d6d362514f427"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation151.json",
+          "sha256": "51766528854ba226b861f7f95f52ecd66e9f7e98a3da7958514735f2c9d4e94f"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [
+    {
+      "kind": "historicalDailyRowCatchup",
+      "appointment": "daily|Esther 13:8–11; 15–17",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 10,
+      "frozenDailyRow": {
+        "chapter": 3,
+        "verse": 10,
+        "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+        "sourceNotes": [
+          {
+            "id": "esg-3-10-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "ב[עַם]",
+            "occurrence": 1,
+            "letterIndex": 1,
+            "mark": "vowel",
+            "sourcePages": [
+              219
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+          },
+          {
+            "id": "esg-3-10-2-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מְשׁבְּחֶךָ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "vowel",
+            "sourcePages": [
+              219
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+          },
+          {
+            "id": "esg-3-10-3-dagesh",
+            "kind": "unreadablePoint",
+            "anchor": "מְשׁבְּחֶךָ",
+            "occurrence": 1,
+            "letterIndex": 2,
+            "mark": "dagesh",
+            "sourcePages": [
+              219
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+          }
+        ]
+      },
+      "frozenCanonicalRow": {
+        "verse": 10,
+        "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
+        "chapter": 3
+      },
+      "after": {
+        "chapter": 3,
+        "verse": 10,
+        "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃"
+      },
+      "previouslyCertifiedPointInsertions": [
+        {
+          "offset": 154,
+          "mark": "ִ",
+          "codePoint": "U+05B4"
+        }
+      ],
+      "previouslyRetiredIds": [
+        "esg-3-10-1-vowel",
+        "esg-3-10-2-vowel",
+        "esg-3-10-3-dagesh"
+      ],
+      "report": {
+        "path": "Shared/reports/hebrew-wikisource/ESG-unit3-10-point-comparison-20261017-pass70.json",
+        "sha256": "9b7086e66a68be6e75e040e349dbbe62ea8e7d59c1c611e50101ed3314b1ca53"
+      },
+      "sourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+        "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+      },
+      "countedAsCurrentPassMarks": false
+    },
+    {
+      "kind": "historicalDailyBoundaryCatchup",
+      "appointment": "daily|Esther 13:8–11; 15–17",
+      "field": "closingText",
+      "selection": {
+        "chapter": 3,
+        "verse": 10
+      },
+      "frozenSourceScalarSpan": [
+        0,
+        169
+      ],
+      "before": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+      "after": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
+      "report": {
+        "path": "Shared/reports/hebrew-wikisource/ESG-unit3-10-point-comparison-20261017-pass70.json",
+        "sha256": "9b7086e66a68be6e75e040e349dbbe62ea8e7d59c1c611e50101ed3314b1ca53"
+      },
+      "sourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+        "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+      },
+      "countedAsCurrentPassMarks": false
+    }
+  ],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 19,
+  "dailyReviewMetadataUnchangedCount": 19,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [
+    "daily|Esther 13:8–11; 15–17"
+  ],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-13-point-comparison-20261017-pass135-preparation146.json",
+      "sha256": "524650302b0ecba952459a2b74d79eae78d83ee76f6dc498f49ed472962a59a0"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-14-point-comparison-20261017-pass135-preparation147.json",
+      "sha256": "844707cab86c856ba62c9d27f6fd169c80beeb1ca394797b440bc7df8d3fae41"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-25-point-comparison-20261017-pass135-preparation148.json",
+      "sha256": "9667ad3247d33de88df04de9cb806f3018b68b635ba4219436bcd6e9de9e1379"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit1-11-point-comparison-20261017-pass135-preparation149.json",
+      "sha256": "dfc18791cdfc660cc811b7877a6f336c81715d1e58e89a28254fe1172728d1c9"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit1-12-point-comparison-20261017-pass135-preparation150.json",
+      "sha256": "766a071784bf1098392950088e462652a5d431353abc69b6a4c6c1bb0a2eaa0d"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit1-13-point-comparison-20261017-pass135-preparation151.json",
+      "sha256": "1f416078ab5c6dc7b237cbde61b5d6ddc421644f3ee5bf3de0f7e9f133b46cb9"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation146.json",
+      "sha256": "51288b9a1ba976e4e8ca95c97d6d68e5f62c41bf3669878ff360da4374d35445"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation147.json",
+      "sha256": "b612cc22fe4e4e25489b067bd421bf07fd87537fdb85d47a3147f18534b7c747"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-offline-acquisition-20261021-pass135-preparation148.json",
+      "sha256": "af023cbb5fbc194948861eb5faf43be6955e604b6243be9580a16e12f1dda1bc"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation149.json",
+      "sha256": "3b11076360728c32290b1e028e0277d5732cb0826f206e17abedadc2b2a6fc4b"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation150.json",
+      "sha256": "7af26f09c30815903bb3e0990a58e03cacd22ae60d91a795709d6d362514f427"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-offline-acquisition-20261021-pass135-preparation151.json",
+      "sha256": "51766528854ba226b861f7f95f52ecd66e9f7e98a3da7958514735f2c9d4e94f"
+    }
+  ],
+  "state": "Applied, regenerated and audited. Recorded Shared, Android and Apple checks passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 186,
+      "removedNotes": 2,
+      "changedArchiveChapters": 1,
+      "changedArchiveMembers": [
+        "chapters/ESG/1.json",
+        "manifest.json"
+      ],
+      "preservedArchiveMembers": 1335,
+      "addedArchiveMembers": [],
+      "removedArchiveMembers": [],
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-bac6b7ab9163a2b4ea5bbea228331d575d78db825b9eeb393a46e5894533f33e.zip",
+      "archiveSHA256": "91329eb7106ebb7e45e7a3bb8184b36f4ed6f3ba063f3c8babe4d9ccfa775fe6",
+      "archiveBytes": 3107743,
+      "baselineArchive": "Shared/dist/bibles/masoretic-delitzsch-ef5693bfefc24148c667946ba362be415476387ff5b71a1f4341c612390a5147.zip",
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 1,
+      "matchingNativeDataCopies": 3,
+      "nativeDataCopyMatches": {
+        "Apple": true,
+        "Android": true,
+        "Windows": true
+      },
+      "dailyCurrentPassChangedRowCount": 0,
+      "dailyHistoricalCatchupChangedRowCount": 1,
+      "dailyActualChangedRowCount": 1
+    },
+    "verification": {
+      "build-bible-library": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/build-bible-library.log",
+        "durationSeconds": 10.66,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/build-bible-library.py",
+          "--sync"
+        ],
+        "logSHA256": "3dc15e953209a9cc38061fc71b7ffe853545e483dd62ad2b0cb649007c78b8bf",
+        "passed": true
+      },
+      "fetch-readings": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/fetch-readings.log",
+        "durationSeconds": 0.36,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/fetch-readings.py",
+          "--localize-only",
+          "--sync"
+        ],
+        "logSHA256": "e992955842d03ea87d10df8bc777939feb45672843f43b92a7c14d9e31efc8fd",
+        "passed": true
+      },
+      "hebrew-deuterocanon": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/hebrew-deuterocanon.log",
+        "durationSeconds": 0.07,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/hebrew_deuterocanon.py"
+        ],
+        "logSHA256": "42bbf7608e36afd3779d18752c0f99f576ce13b6c0e3e576275d87c963610f0e",
+        "passed": true
+      },
+      "asset-deduplication": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/asset-deduplication.log",
+        "durationSeconds": 0.16,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/test-asset-deduplication.py"
+        ],
+        "logSHA256": "ef86bea90e26a5d58506ed3dc0943d23de67bc89de67a92b129d82db5041e42e",
+        "passed": true
+      },
+      "android": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/android.log",
+        "durationSeconds": 21.57,
+        "command": [
+          "./gradlew",
+          "--offline",
+          "testDebugUnitTest",
+          "--rerun"
+        ],
+        "successMarker": "BUILD SUCCESSFUL",
+        "testTaskLines": [
+          "> Task :app:testDebugUnitTest"
+        ],
+        "freshTestTaskExecuted": true,
+        "freshTestResults": {
+          "suites": 73,
+          "tests": 585,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "logSHA256": "c4ebefd324112e3b905b39d00fecab29f5633fe78eb14c4cf0c3d8017108f074",
+        "passed": true
+      },
+      "apple": {
+        "command": [
+          "xcodebuild",
+          "test",
+          "-scheme",
+          "Prosary",
+          "-destination",
+          "platform=macOS",
+          "-parallel-testing-enabled",
+          "NO",
+          "-only-testing:ProsaryTests"
+        ],
+        "exitCode": 0,
+        "completed": true,
+        "durationSeconds": 44.59,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/apple.log",
+        "logSHA256": "3b6301eae253473f98b6d1e35090b80df4034636051a273ec5a62839ee6be735",
+        "successMarker": "** TEST SUCCEEDED **",
+        "persistentLog": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-apple-recovery/apple-full-retry.log",
+          "sha256": "3b6301eae253473f98b6d1e35090b80df4034636051a273ec5a62839ee6be735"
+        },
+        "priorFailurePreserved": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-apple-recovery/apple-test-recovery.json",
+          "sha256": "5ea50d56513debdb7d60970e8fd55293ca61ea11fe024a9551a2dd34bbf17015"
+        },
+        "initialAttemptExitCode": 65,
+        "focusedRetryExitCode": 0,
+        "recoveryHistory": [
+          {
+            "kind": "focused",
+            "command": [
+              "xcodebuild",
+              "test",
+              "-scheme",
+              "Prosary",
+              "-destination",
+              "platform=macOS",
+              "-parallel-testing-enabled",
+              "NO",
+              "-only-testing:ProsaryTests/MacPrayerStoreLocationTests/testLegacyPresetMetadataWithMissingPresetTableIsRejectedWithoutReset"
+            ],
+            "exitCode": 0,
+            "completed": true,
+            "durationSeconds": 9.17,
+            "log": "/private/tmp/prosary-pass135-20261021/apple-focused-retry.log",
+            "logSHA256": "6d2b8c5cbd110279d035bc7e72ba5f1c614509df8634998e0a1701a0f2a9ec38",
+            "successMarker": "** TEST SUCCEEDED **",
+            "persistentLog": {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-apple-recovery/apple-focused-retry.log",
+              "sha256": "6d2b8c5cbd110279d035bc7e72ba5f1c614509df8634998e0a1701a0f2a9ec38"
+            }
+          },
+          {
+            "kind": "full",
+            "command": [
+              "xcodebuild",
+              "test",
+              "-scheme",
+              "Prosary",
+              "-destination",
+              "platform=macOS",
+              "-parallel-testing-enabled",
+              "NO",
+              "-only-testing:ProsaryTests"
+            ],
+            "exitCode": 0,
+            "completed": true,
+            "durationSeconds": 44.59,
+            "log": "/private/tmp/prosary-pass135-20261021/apple-full-retry.log",
+            "logSHA256": "3b6301eae253473f98b6d1e35090b80df4034636051a273ec5a62839ee6be735",
+            "successMarker": "** TEST SUCCEEDED **",
+            "persistentLog": {
+              "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-apple-recovery/apple-full-retry.log",
+              "sha256": "3b6301eae253473f98b6d1e35090b80df4034636051a273ec5a62839ee6be735"
+            }
+          }
+        ],
+        "passed": true
+      }
+    },
+    "sourceMutationApplied": true,
+    "requiredChecksApplicable": true,
+    "requiredChecksMissingOrFailed": [],
+    "checksNotRunOrFailed": [],
+    "protectedRestoredLetterDisclosuresUnchanged": true,
+    "unrelatedTrackedSourceFilesByteUnchanged": true,
+    "unrelatedTrackedSourceFilesChecked": 2273,
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 464,
+      "remainingNoteCount": 186
+    },
+    "preexistingStaleDailyReviewPins": [
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "remainingStaleDailyReviewPins": [
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "preexistingStalePresentationPins": [],
+    "remainingStalePresentationPins": [],
+    "exactDailyCanonicalProjection": {
+      "dailyBoundaryTextUpdates": [],
+      "dailyRowNoteUpdates": [],
+      "changedRows": [],
+      "appointmentsCompared": [
+        {
+          "appointment": "daily|Esther 13:8–11; 15–17",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        }
+      ],
+      "metadataCorrections": [
+        {
+          "kind": "historicalDailyRowCatchup",
+          "appointment": "daily|Esther 13:8–11; 15–17",
+          "book": "ESG",
+          "chapter": 3,
+          "verse": 10,
+          "frozenDailyRow": {
+            "chapter": 3,
+            "verse": 10,
+            "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+            "sourceNotes": [
+              {
+                "id": "esg-3-10-1-vowel",
+                "kind": "unreadablePoint",
+                "anchor": "ב[עַם]",
+                "occurrence": 1,
+                "letterIndex": 1,
+                "mark": "vowel",
+                "sourcePages": [
+                  219
+                ],
+                "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+              },
+              {
+                "id": "esg-3-10-2-vowel",
+                "kind": "unreadablePoint",
+                "anchor": "מְשׁבְּחֶךָ",
+                "occurrence": 1,
+                "letterIndex": 2,
+                "mark": "vowel",
+                "sourcePages": [
+                  219
+                ],
+                "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+              },
+              {
+                "id": "esg-3-10-3-dagesh",
+                "kind": "unreadablePoint",
+                "anchor": "מְשׁבְּחֶךָ",
+                "occurrence": 1,
+                "letterIndex": 2,
+                "mark": "dagesh",
+                "sourcePages": [
+                  219
+                ],
+                "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=219"
+              }
+            ]
+          },
+          "frozenCanonicalRow": {
+            "verse": 10,
+            "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
+            "chapter": 3
+          },
+          "after": {
+            "chapter": 3,
+            "verse": 10,
+            "text": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃"
+          },
+          "previouslyCertifiedPointInsertions": [
+            {
+              "offset": 154,
+              "mark": "ִ",
+              "codePoint": "U+05B4"
+            }
+          ],
+          "previouslyRetiredIds": [
+            "esg-3-10-1-vowel",
+            "esg-3-10-2-vowel",
+            "esg-3-10-3-dagesh"
+          ],
+          "report": {
+            "path": "Shared/reports/hebrew-wikisource/ESG-unit3-10-point-comparison-20261017-pass70.json",
+            "sha256": "9b7086e66a68be6e75e040e349dbbe62ea8e7d59c1c611e50101ed3314b1ca53"
+          },
+          "sourceProvenance": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+            "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+          },
+          "countedAsCurrentPassMarks": false
+        },
+        {
+          "kind": "historicalDailyBoundaryCatchup",
+          "appointment": "daily|Esther 13:8–11; 15–17",
+          "field": "closingText",
+          "selection": {
+            "chapter": 3,
+            "verse": 10
+          },
+          "frozenSourceScalarSpan": [
+            0,
+            169
+          ],
+          "before": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+          "after": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
+          "report": {
+            "path": "Shared/reports/hebrew-wikisource/ESG-unit3-10-point-comparison-20261017-pass70.json",
+            "sha256": "9b7086e66a68be6e75e040e349dbbe62ea8e7d59c1c611e50101ed3314b1ca53"
+          },
+          "sourceProvenance": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass70-ESG-3-10/source-provenance.json",
+            "sha256": "4b1708a31bab6927b2e8f00c1851119f71412183f8a9127b4bcf9ea5d40dc1f4"
+          },
+          "countedAsCurrentPassMarks": false
+        }
+      ],
+      "historicalCatchupPointCount": 1,
+      "historicalCatchupRetiredIdCount": 3
+    },
+    "sharedValidationCycleCount": 1,
+    "perUnitValidationCyclesClaimed": false,
+    "verificationRecord": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/verification.json",
+      "sha256": "3360558db50248a2f1e6722afe43fb71483a4bf08e2add9e712371dfffd7f53b"
+    },
+    "secondGenerationByteStability": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/byte-stability.json",
+      "sha256": "10f537988d171ff8bae304485507bc29ee1d425858e5ea2eff9ffa5c0d2b36a9",
+      "checkedFiles": 113,
+      "passed": true
+    },
+    "integrationAudit": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/integration-audit.json",
+      "sha256": "4631e52c2afa3d6966a2074c43c0624941a3d5c079f7b80580ed4eb8387095a8"
+    },
+    "batchPreflightPlan": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/batch-plan.json",
+      "sha256": "a90fe72a5849ab3d69e387cdb51f83691f364160bd5199bdff6e5b8a4e422636"
+    },
+    "frozenBatchBaselineManifest": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/baseline-manifest.json",
+      "sha256": "c752793d6ce48c78d83ff1d3d83b50c036c96c62b1c6f357be0e16510de4f5e2"
+    },
+    "independentBatchPreflightReview": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass135-batch/root-independent-batch-preflight-review.json",
+      "sha256": "82893f82fe6a8da848aff8cbac505cb949eaf30c0d62c2c269ea7cb4ce6e71b4",
+      "batchPlanSHA256": "a90fe72a5849ab3d69e387cdb51f83691f364160bd5199bdff6e5b8a4e422636"
+    }
+  },
+  "dailyRowNoteUpdates": [],
+  "historicalDailyCatchupPointCount": 1,
+  "historicalDailyCatchupPreviouslyRetiredIdCount": 3,
+  "integrationMode": "largerBatch",
+  "preparationIds": [
+    146,
+    147,
+    148,
+    149,
+    150,
+    151
+  ],
+  "unitCount": 6,
+  "batchUnits": [
+    {
+      "preparationID": 146,
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 13,
+      "blockId": null,
+      "changed": false,
+      "retiredIds": [],
+      "retainedIds": [
+        "bel-1-13-244-daniel13-letter3-dagesh"
+      ],
+      "consensus": {
+        "path": "/private/tmp/pass146-BEL-1-13-pixel-preparation/consensus-preparation.json",
+        "sha256": "1c55f53c31f3261078e5538355ae2fdd063c6ecceba1f03f9383b08c1d499018"
+      },
+      "primary": {
+        "path": "/private/tmp/pass146-BEL-1-13-pixel-preparation/pass146-BEL-1-13-pixel-preparation.json",
+        "sha256": "d7d09e5807ca735f2dc763fdfce0141d20f56d2108b623a1e06666806144f7a0"
+      },
+      "peer": {
+        "path": "/private/tmp/pass146-BEL-1-13-pixel-preparation/independent-review.json",
+        "sha256": "bc74b95c69e9969e8c5ce272a7e0272b6b949309a042d03c122d910198368614"
+      }
+    },
+    {
+      "preparationID": 147,
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 14,
+      "blockId": null,
+      "changed": false,
+      "retiredIds": [],
+      "retainedIds": [
+        "bel-1-14-244-vayehi14-letter1-vowel"
+      ],
+      "consensus": {
+        "path": "/private/tmp/pass147-BEL-1-14-pixel-preparation/consensus-preparation.json",
+        "sha256": "b6a0c642b8bd4be28af1e2330caebfca62fb72245eb87f1fb447938a80095380"
+      },
+      "primary": {
+        "path": "/private/tmp/pass147-BEL-1-14-pixel-preparation/pass147-BEL-1-14-pixel-preparation.json",
+        "sha256": "5deb8a5e8f9b9bf1ab9d80a4d557ac5d1d4c9e2a33f1dfbdcab8695535439bef"
+      },
+      "peer": {
+        "path": "/private/tmp/pass147-BEL-1-14-pixel-preparation/next-independent-review.json",
+        "sha256": "c683eaacd09fe494278f2363c67925f417affa59f9fbec03034059900532dcb2"
+      }
+    },
+    {
+      "preparationID": 148,
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 25,
+      "blockId": null,
+      "changed": false,
+      "retiredIds": [],
+      "retainedIds": [
+        "bel-1-25-245-vayomer25-letter1-vowel"
+      ],
+      "consensus": {
+        "path": "/private/tmp/pass148-BEL-1-25-pixel-preparation/consensus-preparation.json",
+        "sha256": "3f04f42d6e15481d67a7b4005dd0dbb8d0787546eb824da33ef0f2afebbe6d1d"
+      },
+      "primary": {
+        "path": "/private/tmp/pass148-BEL-1-25-pixel-preparation/pass148-BEL-1-25-pixel-preparation.json",
+        "sha256": "ac26ca73e3ff3ca239ec284040bc5222687a263a2ff7d7b3645b095f0b0da469"
+      },
+      "peer": {
+        "path": "/private/tmp/pass148-BEL-1-25-pixel-preparation/independent-review.json",
+        "sha256": "2178af169add5e7efdd3178afc544acb5a37e97a51fa9b1a9ef527f132ffe9a3"
+      }
+    },
+    {
+      "preparationID": 149,
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "changed": false,
+      "retiredIds": [],
+      "retainedIds": [
+        "esg-1-11-1-vowel"
+      ],
+      "consensus": {
+        "path": "/private/tmp/pass149-ESG-1-11-pixel-preparation/consensus-preparation.json",
+        "sha256": "d196d4f3afc2b89a784c5ef59243059845e51abea82d65933fff6b342eb8f7db"
+      },
+      "primary": {
+        "path": "/private/tmp/pass149-ESG-1-11-pixel-preparation/pass149-ESG-1-11-pixel-preparation.json",
+        "sha256": "65a36e3ee51d573239d12ad6b792e8bd73b30ec98317b9a30f960f667433003c"
+      },
+      "peer": {
+        "path": "/private/tmp/pass149-ESG-1-11-pixel-preparation/root-independent-review.json",
+        "sha256": "1a46623b85abceb56b9889e5a086c444b02795205200ff03d231fea32a2d1ccf"
+      }
+    },
+    {
+      "preparationID": 150,
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 12,
+      "blockId": null,
+      "changed": true,
+      "retiredIds": [
+        "esg-1-12-1-vowel"
+      ],
+      "retainedIds": [],
+      "consensus": {
+        "path": "/private/tmp/pass150-ESG-1-12-pixel-preparation/consensus-preparation.json",
+        "sha256": "5e8eee028bd5ed294277ec1a15e361e111014e317542f219d95afd54c46fe75e"
+      },
+      "primary": {
+        "path": "/private/tmp/pass150-ESG-1-12-pixel-preparation/pass150-ESG-1-12-pixel-preparation.json",
+        "sha256": "c6c50ef731d1d59a444010ebd0f8e2d179d7be39df823c199a6e6368278ef416"
+      },
+      "peer": {
+        "path": "/private/tmp/pass150-ESG-1-12-pixel-preparation/integrator-independent-review.json",
+        "sha256": "243569f089d5f0a97d77cf61e2d4892aa4afd1011d280781e122626dac210bba"
+      }
+    },
+    {
+      "preparationID": 151,
+      "book": "ESG",
+      "chapter": 1,
+      "verse": 13,
+      "blockId": null,
+      "changed": true,
+      "retiredIds": [
+        "esg-1-13-1-vowel"
+      ],
+      "retainedIds": [],
+      "consensus": {
+        "path": "/private/tmp/pass151-ESG-1-13-pixel-preparation/consensus-preparation.json",
+        "sha256": "6149a9db01eada877adec78edf4066f59bf258cf962f699d48cecb945cd162fa"
+      },
+      "primary": {
+        "path": "/private/tmp/pass151-ESG-1-13-pixel-preparation/pass151-ESG-1-13-pixel-preparation.json",
+        "sha256": "d1a5ac85bd05a56c082ac618f98be0cb414adcf9f7bffbac74697c5ea7324d22"
+      },
+      "peer": {
+        "path": "/private/tmp/pass151-ESG-1-13-pixel-preparation/independent-review.json",
+        "sha256": "a71f798dde3a5ca41c6bc18aeab0a4306a67e2e6b92e15dcc58c34551a8c6ed4"
+      }
+    }
+  ],
+  "sourcePreparationIdPolicy": "Immutable primary/peer packet numeric pass fields are preparation IDs. Published pass identifies this complete integration batch.",
+  "validationScope": "One full six-check and second-generation stability cycle validates the complete applied batch; no separate per-unit check cycle is claimed."
+}

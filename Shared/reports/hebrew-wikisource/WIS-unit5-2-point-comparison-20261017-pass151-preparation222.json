@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 222,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation222-WIS-5-2/source-provenance.json",
+    "sha256": "e58892f3ccb03fc50e60b403ddd0c29614171551120d628738f32f6c451cead9"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-2-mem"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-5-2-mem",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 2,
+      "anchorBefore": "מרֹב",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Native ASCII whole word and complete Mem independently inspected. Heavy bottom-right Mem mass at1658..1682 y1518..1529 continues into irregular downward projection1659..1674 y1530..1538; no detached exact vowel outline or independently defensible absence. Neighbor Resh and Mem connect through very thin contact near1646..1649; wholeword component inventory records that honestly. Retain original disclosure and every scalar. Literal own Resh detached Holam inspected as separate control; whole yivku Yod Hiriq likewise controls only, no transfer.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/77/77b4ba86060f9363793348361e708fbae9cb5a3f63acca97ce5dbe12c7957b86.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/77/77b4ba86060f9363793348361e708fbae9cb5a3f63acca97ce5dbe12c7957b86.bin",
+      "inspectedBounds": [
+        1640,
+        1485,
+        1690,
+        1545
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation222-WIS-5-2/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation222-WIS-5-2/independent-review.json",
+    "sha256": "d8b9b94caa6b22e22d92071cdb6d475bb848be9bf49be95f343541fa08fcc3e5"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation222-WIS-5-2/primary-preparation.json",
+    "sha256": "cd6edd9d60b2d22bc57c4601530cc6188feef18e33dd5dc2ec36732619eff854"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation222-WIS-5-2/consensus-preparation.json",
+    "sha256": "65273bf5ea6b5482c8cb6ea9dd14c81ee1ca252d3ed8871c959d4e54e71c589d"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

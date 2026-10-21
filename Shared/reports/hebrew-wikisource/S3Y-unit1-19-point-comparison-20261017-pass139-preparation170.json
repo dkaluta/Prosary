@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 170,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "S3Y",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation170-S3Y-1-19/source-provenance.json",
+    "sha256": "8b58f30c5835ef9630897a88cad09e2d4514f8dc94f45e301b8dbc0534a5cf5d"
+  },
+  "sourceNotesBefore": 6,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "s3y-1-19-word5-letter2-vowel"
+  ],
+  "contentSHA256Before": "9088fb929b283553f74a30e71a4e7fd050b6b7f6bba40d9e7e5d50f6d49db727",
+  "contentSHA256After": "9088fb929b283553f74a30e71a4e7fd050b6b7f6bba40d9e7e5d50f6d49db727",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "s3y-1-19-word5-letter2-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "anchorBefore": "וְרבְבוֹת",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "OwnResh is one550px33x49 connectedcomponent. Narrow5..6px rightstem descends through884, curvesleft885..888 thenwidens7..8px lowerterminal889..892 andtapers toonepixel895, no blank separation/independentlowerpoint. Couldinclude a mergedpoint or irregularbodyterminal; exactclass/absence cannot be established. Fullwordincludes6consonants ו-ר-ב-ב-ו-ת; literal fifthVav upperHolam32px7x6[1034,839,1041,845] is separately visible but cannot classify queriedResh lowerink. Retainnote/allscalars. Higher savednative4x independentlyconfirms sameownResh1632px59x92[2349,354,2408,446]:8pxrightstem through429 shiftsleft431..435 then10px lowterminal436..443 andtapers445, directlyconnected at64/128/192. No isolatedclassifiablepoint. Retentionconfirmedafterincludingstronger owncapture. Independent peer: Independent peer confirms full Vav-Resh-Bet-Bet-Vav-Tav own word after ופרים before כבשים, queried second Resh. Historical nativePDF Resh550px33x49 component has rightstem continuing into low terminal with no detached mark. Independent highercapture challenge found saved4x ownResh1632px[2349,354,2408,446];8px stem through429 shiftsleft431..435 then widens to10px terminal436..443 and tapers444..445, continuously connected at64/128/192. This is no independent exact point or exactabsence proof. Literal fifthVav has separate77px7x13 upperHolam[2188,336,2195,349] in highercapture and32px7x6 inPDF, independently readable but not classifier of Resh lowerink. Retain exactnote/allscalars; priorretired othernote not reapplied. Correct complete source19 beginsLEFT503row, full547,RIGHT590, not v1 provisionaloffset.",
+      "targetCapture": "A2-234-complete-native.png",
+      "targetSourceIdentifier": "A2-234-complete-native.png",
+      "inspectedBounds": [
+        1121,
+        847,
+        1154,
+        896
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation170-S3Y-1-19/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 19,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation170-S3Y-1-19/independent-review.json",
+    "sha256": "cbf8955942011e8eb40f0352fdb5b7a5197f3d6fa168756f43f67227f1c15859"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation170-S3Y-1-19/primary-preparation.json",
+    "sha256": "9375ceb24dc58b96f410013562f7496b5f65fd63b8a932e6952e217db06d3d69"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation170-S3Y-1-19/consensus-preparation.json",
+    "sha256": "0c052acf4afdac8f0ba029be838cfcbb4266369691b9dc427efd1215351106d3"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

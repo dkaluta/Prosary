@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 85,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass85-BEL-1-34/source-provenance.json",
+    "sha256": "46a39f3ea911b0cac59ddbc73aa3d9c5e75e63a9c9552305c15925b38f14bf3f"
+  },
+  "sourceNotesBefore": 22,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-34-246-daniel-letter3-dagesh",
+    "bel-1-34-246-vayomer34-letter1-vowel",
+    "bel-1-34-246-vayomer34-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "6787c0601f6626f61ad2f5c14e9302d35a6329e3181cd94a23387c4325017cb7",
+  "contentSHA256After": "3a753667ffa9932d45dbea5fd165a302d8ef93061dea4c9b6b3c2fca0aa2069c",
+  "combiningMarksAdded": 3,
+  "decisions": [
+    {
+      "noteId": "bel-1-34-246-vayomer34-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 34,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Registered true34 initial vav has body component[1855,1226,1883,1293], area743 at threshold128. A detached horizontal printed bar beneath it is[1858,1300,1888,1313], area296, separated by seven clean rows from the body. Same-row mem of malakh has a detached horizontal patah[1474,1303,1502,1313], area246; adjacent lamed sheva has two distinct vertical dots at[1410,1303,1420,1316] and[1410,1321,1422,1334]. Root and independent pixel reviewer accepted patah U+05B7.",
+      "targetCapture": "extension-volumeA-591-zoom4-lower-left.png",
+      "letterBounds": [
+        1848,
+        1215,
+        1895,
+        1325
+      ],
+      "pointBounds": [
+        1858,
+        1300,
+        1888,
+        1313
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass85-BEL-1-34/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-34-246-vayomer34-letter2-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 34,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "At the registered true34 yod, the low-left printed lobe at x1825..1833,y1255..1263 is distinct from the thin right tail at x1841..1843,y1255..1268, with a verified clear window at x1834..1838,y1259..1263 between lobe and tail (25 pixels, none below grayscale128). The same-row plain-yod control in hakotsrim[2125,1218,2157,1275] has a single curving right tail at x2129..2152 and empty lower-left; it lacks this lobe. The true34 Daniel yod provides a plainly detached positive dagesh. Root and independent pixel reviewer expressly accepted this fused low-left dagesh U+05BC after native replay; no decision is inferred merely from expected spelling.",
+      "targetCapture": "extension-volumeA-591-zoom4-lower-left.png",
+      "letterBounds": [
+        1815,
+        1195,
+        1852,
+        1280
+      ],
+      "pointBounds": [
+        1825,
+        1255,
+        1834,
+        1264
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass85-BEL-1-34/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-34-246-daniel-letter3-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 34,
+      "anchorBefore": "דָּנִיֵאל",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "Broad-frame registration and independent fine local alignment map Pass30 original third-yod bounds[681,2877,703,2955] to raw bottom-left[2376.52,84.05,2439.00,303.23], contained by the native evidence crop. The yod body lies around y104..164; its detached interior dagesh is x2391..2416,y140..158, separated from the descending right tail by clear paper. Existing tsere is y206..224. Root and independent pixel reviewer accepted U+05BC. The Daniel candidate at lower-left y1245 was rejected as three rows earlier.",
+      "targetCapture": "extension-volumeA-591-zoom6-bottom-left.png",
+      "letterBounds": [
+        2370,
+        80,
+        2455,
+        310
+      ],
+      "pointBounds": [
+        2391,
+        140,
+        2417,
+        159
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass85-BEL-1-34/independent-pixel-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 34,
+      "before": "ויֹאמֶר מַלְאַךְ יְיָ אֶל־חֲבַקּוּק שָׂא־נָא אֶת־הַמַּאֲכָל בְּיָדְךָ בָּבֶלָה אֶל־דָּנִיֵאל אֲשֶׁר בְּבוֹר הָאֲרָיוֹת׃",
+      "after": "וַיֹּאמֶר מַלְאַךְ יְיָ אֶל־חֲבַקּוּק שָׂא־נָא אֶת־הַמַּאֲכָל בְּיָדְךָ בָּבֶלָה אֶל־דָּנִיֵּאל אֲשֶׁר בְּבוֹר הָאֲרָיוֹת׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 34,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  },
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass85-BEL-1-34/independent-post-application-audit.json",
+    "sha256": "8587507a8ab4ef9d6a67b2098b4201a4b90a4d56a3d6c8302fae0bc3cf0444c4",
+    "status": "passed",
+    "scope": "Source-address registration, all20 native/nearest crop replays, exact three approved scalar additions, protected disclosures, approval digests, archive parity and unrelated-source preservation. Runtime tests recorded separately.",
+    "registrationProof": {
+      "kind": "sourceAddressRegistrationProof",
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass85-BEL-1-34/registration-proof.json",
+      "sha256": "f0fb4f30a685ec2b617cd38282d71981c1c78ce47844d84792e62e91d1616761"
+    }
+  }
+}

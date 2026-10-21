@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 141,
+  "integrationPass": 141,
+  "preparationID": 182,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation182-SIR-11-34/source-provenance.json",
+    "sha256": "9a9ab8e5b5388b6b1c6bd67eb3efcc5b73a80c1307792d00bee81b33dcd0d20f"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-11-34-vav-vowel"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-11-34-vav-vowel",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 34,
+      "anchorBefore": "וינַכֶּרְךָ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Own initialVav in complete sixletter וינכרך independently identified rightofYod. Its159px10x31 connectedcomponent[711,1599,721,1630] narrowstem descends through1623, then widensfrom2pxto5px at1625..1628 beforetaper1629, with no blank separation. Exact point/body boundary or independent vowelclass cannot be certified. Whitebelow1630 doesnotprove absence. Literal ownfourthKaf interiorDagesh is detached10px4x3 node[672,1611,676,1614] within fullKaf openbody[664,1598,685,1635], independently read without canonical pointclass. Adjacenttiny7pxspot belowYod is not used as a certifiedcontrol or targetpoint. Retain exact original Vavnote/allscalars; previousReshrestoration remains untouched.",
+      "targetCapture": "primary-468-native.png",
+      "targetSourceIdentifier": "primary-468-native.png",
+      "inspectedBounds": [
+        711,
+        1599,
+        721,
+        1630
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation182-SIR-11-34/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 11,
+    "verse": 34,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation182-SIR-11-34/independent-review.json",
+    "sha256": "99a2a8a6bfd3bdbadd32aa6bcdf8e8a2d7fc61be9f50ddcf6fc87c46d9744ae9"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation182-SIR-11-34/primary-preparation.json",
+    "sha256": "590e1b7ce6eaaeb948787b482402688f7348d71130917a04fdb197a15d50b6e4"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation182-SIR-11-34/consensus-preparation.json",
+    "sha256": "f1c400c1afade094c5908b53a47cb96fdc12f450654a3f4f38625b224fe2e11c"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

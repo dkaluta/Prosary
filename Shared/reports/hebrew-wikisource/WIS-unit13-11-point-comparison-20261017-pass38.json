@@ -1,0 +1,510 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "batchDate": "2026-10-17",
+  "pass": 38,
+  "book": "WIS",
+  "status": "Five source 13:11 points certified from authorized Chrome Psik scan; all unit disclosures retired",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 38 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/source-provenance.json",
+    "sha256": "0c251db1979450a0621624c27f929758baf80c7760e4dc9a1459bff1bc7b05ca"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik reader in Chrome and directed continuation on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected. No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point. Screenshot replay is not PDF embedded-pixel replay.",
+  "baselineGlobalSourceNoteCount": 395,
+  "canonicalSHA256Before": "4bd99c8c872490e7f58a7badc18497c7fb16774317fab43a3e4bafa93aec2f73",
+  "contentSHA256Before": "43107eb39c65ab4590545b70da9bb7a8371e9a8b07139845536831b4011f771a",
+  "contentSHA256After": "c6e36895a88cecd97fd6e7af904151b4ba2894637e436174acf208ad7ebd2286",
+  "sourceNotesBefore": 165,
+  "sourceNotesAfter": 160,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 5,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-13-11-bet-1-vowel",
+    "wis-13-11-mem-2-vowel",
+    "wis-13-11-vav-1-vowel",
+    "wis-13-11-pe-3-vowel",
+    "wis-13-11-tsadi-4-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 5,
+  "addedCombiningMarks": {
+    "U+05B0": 1,
+    "U+05B4": 1,
+    "U+05B5": 1,
+    "U+05B7": 2
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 13,
+      "verse": 11,
+      "before": "אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת בּמּשּׂוֹר נֵצֶר נוֹחַ לְטַלְטֵל ויפצּל כָּל־קְלִפָּתוֹ מִסָּבִיב בְּהַשְׂכֵּל וּבְכִשְׁרוֹן מְלָאכָה וְיֵיטִיב עֲשׂוֹת כְּלִי לְצָרְכֵי חַיָּיו׃",
+      "after": "אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת בְּמַּשּׂוֹר נֵצֶר נוֹחַ לְטַלְטֵל וִיפַצֵּל כָּל־קְלִפָּתוֹ מִסָּבִיב בְּהַשְׂכֵּל וּבְכִשְׁרוֹן מְלָאכָה וְיֵיטִיב עֲשׂוֹת כְּלִי לְצָרְכֵי חַיָּיו׃",
+      "beforeTextSHA256": "6ce3572e1792d8636ed5147c3890b04d155740a7da11403e5d650d440857607d",
+      "afterTextSHA256": "9febe032f06caf99b12478c9914a155b6445e484183191427f984db8f13beed5"
+    }
+  ],
+  "scope": {
+    "chapter": 13,
+    "verse": 11,
+    "allFiveUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Printed source label יא on page תצט / 499 (viewer page 516, internal page 531) identifies the complete unit starting אוֹ אִם־חָרַשׁ עֵצִים יִכְרֹת after קֶדֶם׃ closes 13:10, and ending לְצָרְכֵי חַיָּיו׃ before וְאֶת־הָרְסִיסִים begins 13:12. Canonical verse 11 and sourcePages [171] are preserved.",
+  "decisions": [
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "before": "בּמּשּׂוֹר",
+      "after": "בְּמַּשּׂוֹר",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-13-11-bet-1-vowel"
+      ],
+      "addedCodePoint": "U+05B0",
+      "baselineAnchor": "בּמּשּׂוֹר",
+      "baselineUnitScalarInsertionOffset": 32,
+      "baselinePhysicalSpan": [
+        30,
+        40
+      ],
+      "targetClusterBefore": [
+        "U+05D1",
+        "U+05BC"
+      ],
+      "targetClusterAfter": [
+        "U+05D1",
+        "U+05BC",
+        "U+05B0"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "before": "בּמּשּׂוֹר",
+      "after": "בְּמַּשּׂוֹר",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-13-11-mem-2-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "בּמּשּׂוֹר",
+      "baselineUnitScalarInsertionOffset": 34,
+      "baselinePhysicalSpan": [
+        30,
+        40
+      ],
+      "targetClusterBefore": [
+        "U+05DE",
+        "U+05BC"
+      ],
+      "targetClusterAfter": [
+        "U+05DE",
+        "U+05BC",
+        "U+05B7"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "before": "ויפצּל",
+      "after": "וִיפַצֵּל",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-13-11-vav-1-vowel"
+      ],
+      "addedCodePoint": "U+05B4",
+      "baselineAnchor": "ויפצּל",
+      "baselineUnitScalarInsertionOffset": 64,
+      "baselinePhysicalSpan": [
+        63,
+        69
+      ],
+      "targetClusterBefore": [
+        "U+05D5"
+      ],
+      "targetClusterAfter": [
+        "U+05D5",
+        "U+05B4"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "before": "ויפצּל",
+      "after": "וִיפַצֵּל",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-13-11-pe-3-vowel"
+      ],
+      "addedCodePoint": "U+05B7",
+      "baselineAnchor": "ויפצּל",
+      "baselineUnitScalarInsertionOffset": 66,
+      "baselinePhysicalSpan": [
+        63,
+        69
+      ],
+      "targetClusterBefore": [
+        "U+05E4"
+      ],
+      "targetClusterAfter": [
+        "U+05E4",
+        "U+05B7"
+      ]
+    },
+    {
+      "book": "WIS",
+      "chapter": 13,
+      "verse": 11,
+      "before": "ויפצּל",
+      "after": "וִיפַצֵּל",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "wis-13-11-tsadi-4-vowel"
+      ],
+      "addedCodePoint": "U+05B5",
+      "baselineAnchor": "ויפצּל",
+      "baselineUnitScalarInsertionOffset": 68,
+      "baselinePhysicalSpan": [
+        63,
+        69
+      ],
+      "targetClusterBefore": [
+        "U+05E6",
+        "U+05BC"
+      ],
+      "targetClusterAfter": [
+        "U+05E6",
+        "U+05BC",
+        "U+05B5"
+      ]
+    }
+  ],
+  "points": [
+    {
+      "noteId": "wis-13-11-bet-1-vowel",
+      "reading": "sheva",
+      "scalar": "U+05B0",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial bet of בְּמַשּׂוֹר, two crisp, distinct vertical round dots forming a sheva are clearly visible beneath the consonant stroke.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-bet-target-word-zoom6.png",
+          "sha256": "d445d0f57204104bc3cedcfebb149a9d8dc90fc837a0f9210255ae62f7d83934",
+          "dimensions": "510x155",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-bet-target-word-zoom6-x4.png",
+            "sha256": "d9ec8576f02eb8117a13f8e79f7dfc9c12ed29e1f605f036c847570faac75813",
+            "dimensions": "2040x620",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-bet-whole-glyph-zoom6.png",
+          "sha256": "48d51ab5e614a85aebbf619a0fda109d72f038cca79f2f7268f04e10e0a99d87",
+          "dimensions": "140x155",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-bet-whole-glyph-zoom6-x4.png",
+            "sha256": "ababafca531c0389e87f33dc34956599b0f84d6a0bc098d9013605f49c264a8a",
+            "dimensions": "560x620",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-verse sheva under lamed in לְטַלְטֵל on line 16",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-bet-positive-control-zoom6.png",
+          "sha256": "eed9670733f4f0f542885386bae5ae7919dc678de40cb2ec4f3d5f8c18eeb3f0",
+          "dimensions": "120x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-bet-positive-control-zoom6-x4.png",
+            "sha256": "1f70e4b7e10dd9a1abfcac3b0c486ab042dc8ab28ad8ba225d5211ddb537f4a0",
+            "dimensions": "480x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-verse patah under pe in וִיפַצֵּל on line 16",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-bet-competing-control-zoom6.png",
+          "sha256": "37b9787f7568cfbdbcb829d70b545ac50d5e89900c48f84a00674bda78f7f624",
+          "dimensions": "110x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-bet-competing-control-zoom6-x4.png",
+            "sha256": "2c5ee1be8c3dc5eed86f438eff8d409850681ba9021b0bc6a99cff0196029f55",
+            "dimensions": "440x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "wis-13-11-mem-2-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the medial mem of בְּמַשּׂוֹר, a solid, distinct horizontal line forming a patah is clearly visible directly below the base stroke.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-mem-target-word-zoom6.png",
+          "sha256": "d445d0f57204104bc3cedcfebb149a9d8dc90fc837a0f9210255ae62f7d83934",
+          "dimensions": "510x155",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-mem-target-word-zoom6-x4.png",
+            "sha256": "d9ec8576f02eb8117a13f8e79f7dfc9c12ed29e1f605f036c847570faac75813",
+            "dimensions": "2040x620",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-mem-whole-glyph-zoom6.png",
+          "sha256": "2fa8ecc77e7eab1e5f2657bb29d141e76a55ec8c1e2bf72b4bfce150b01f0812",
+          "dimensions": "150x155",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-mem-whole-glyph-zoom6-x4.png",
+            "sha256": "46b5130be293af5009e8adb2b3e0bfd9c0981a04f42ae4acb77052290e47d64f",
+            "dimensions": "600x620",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-verse patah under pe in וִיפַצֵּל on line 16",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-mem-positive-control-zoom6.png",
+          "sha256": "37b9787f7568cfbdbcb829d70b545ac50d5e89900c48f84a00674bda78f7f624",
+          "dimensions": "110x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-mem-positive-control-zoom6-x4.png",
+            "sha256": "2c5ee1be8c3dc5eed86f438eff8d409850681ba9021b0bc6a99cff0196029f55",
+            "dimensions": "440x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-verse sheva under lamed in לְטַלְטֵל on line 16",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-mem-competing-control-zoom6.png",
+          "sha256": "eed9670733f4f0f542885386bae5ae7919dc678de40cb2ec4f3d5f8c18eeb3f0",
+          "dimensions": "120x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-bemasor-mem-competing-control-zoom6-x4.png",
+            "sha256": "1f70e4b7e10dd9a1abfcac3b0c486ab042dc8ab28ad8ba225d5211ddb537f4a0",
+            "dimensions": "480x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "wis-13-11-vav-1-vowel",
+      "reading": "hiriq",
+      "scalar": "U+05B4",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the initial vav of וִיפַצֵּל, a single, centered round dot forming a hiriq is distinctly visible beneath the vertical stem.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-vav-target-word-zoom6.png",
+          "sha256": "d6c963280ef7aa73a8ac1ca376594f89ea0e8f1966c0238abe8987c7fe61a28d",
+          "dimensions": "430x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-vav-target-word-zoom6-x4.png",
+            "sha256": "04ad7cec101275d7ac202899f10f5cfc002d17d9f9c88146f24715d4b464a35c",
+            "dimensions": "1720x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-vav-whole-glyph-zoom6.png",
+          "sha256": "05ce91c9533b5b876f39c2bf7808f3ed4895f5b9d652e13ca51a326e896ee3b5",
+          "dimensions": "80x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "993156176af42a11701f4f766c3fbd67a536e4d765d271329ad4600f7a779137",
+            "dimensions": "320x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-verse hiriq under yod in יִכְרֹת on line 15",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-vav-positive-control-zoom6.png",
+          "sha256": "3fc290596357f49d047ccb8487612a4e44bfb0bdd1e88840a9ce4fc778cb2b39",
+          "dimensions": "110x155",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-vav-positive-control-zoom6-x4.png",
+            "sha256": "541120821fe984681090fa231e3424398e981640d1f92b2f12c9c3f7fa04dea4",
+            "dimensions": "440x620",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-word tsere under tsadi in וִיפַצֵּל on line 16",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-vav-competing-control-zoom6.png",
+          "sha256": "89b2ab3b08f75a01a7bca6ddbf9fe2b322e1a6052ecf01ff984242869b52ebfa",
+          "dimensions": "120x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-vav-competing-control-zoom6-x4.png",
+            "sha256": "b3561b4727638d255faa074ed955a8b195b3affcf36795be2eec95b2b921b1a8",
+            "dimensions": "480x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "wis-13-11-pe-3-vowel",
+      "reading": "patah",
+      "scalar": "U+05B7",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the pe of וִיפַצֵּל, a clear, crisp horizontal bar forming a patah is distinctly visible beneath the base curve of the letter.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-pe-target-word-zoom6.png",
+          "sha256": "d6c963280ef7aa73a8ac1ca376594f89ea0e8f1966c0238abe8987c7fe61a28d",
+          "dimensions": "430x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-pe-target-word-zoom6-x4.png",
+            "sha256": "04ad7cec101275d7ac202899f10f5cfc002d17d9f9c88146f24715d4b464a35c",
+            "dimensions": "1720x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-pe-whole-glyph-zoom6.png",
+          "sha256": "37b9787f7568cfbdbcb829d70b545ac50d5e89900c48f84a00674bda78f7f624",
+          "dimensions": "110x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-pe-whole-glyph-zoom6-x4.png",
+            "sha256": "2c5ee1be8c3dc5eed86f438eff8d409850681ba9021b0bc6a99cff0196029f55",
+            "dimensions": "440x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-verse patah under mem in בְּמַשּׂוֹר on line 15",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-pe-positive-control-zoom6.png",
+          "sha256": "2fa8ecc77e7eab1e5f2657bb29d141e76a55ec8c1e2bf72b4bfce150b01f0812",
+          "dimensions": "150x155",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-pe-positive-control-zoom6-x4.png",
+            "sha256": "46b5130be293af5009e8adb2b3e0bfd9c0981a04f42ae4acb77052290e47d64f",
+            "dimensions": "600x620",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-verse sheva under lamed in לְטַלְטֵל on line 16",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-pe-competing-control-zoom6.png",
+          "sha256": "eed9670733f4f0f542885386bae5ae7919dc678de40cb2ec4f3d5f8c18eeb3f0",
+          "dimensions": "120x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-pe-competing-control-zoom6-x4.png",
+            "sha256": "1f70e4b7e10dd9a1abfcac3b0c486ab042dc8ab28ad8ba225d5211ddb537f4a0",
+            "dimensions": "480x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    },
+    {
+      "noteId": "wis-13-11-tsadi-4-vowel",
+      "reading": "tsere",
+      "scalar": "U+05B5",
+      "action": "retireNote",
+      "evidence": {
+        "finding": "Under the tsadi with dagesh in וִיפַצֵּל, two clear horizontal dots placed side-by-side forming a tsere are distinctly visible.",
+        "targetWord": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-tsadi-target-word-zoom6.png",
+          "sha256": "d6c963280ef7aa73a8ac1ca376594f89ea0e8f1966c0238abe8987c7fe61a28d",
+          "dimensions": "430x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-tsadi-target-word-zoom6-x4.png",
+            "sha256": "04ad7cec101275d7ac202899f10f5cfc002d17d9f9c88146f24715d4b464a35c",
+            "dimensions": "1720x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "wholeGlyph": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-tsadi-whole-glyph-zoom6.png",
+          "sha256": "89b2ab3b08f75a01a7bca6ddbf9fe2b322e1a6052ecf01ff984242869b52ebfa",
+          "dimensions": "120x180",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-tsadi-whole-glyph-zoom6-x4.png",
+            "sha256": "b3561b4727638d255faa074ed955a8b195b3affcf36795be2eec95b2b921b1a8",
+            "dimensions": "480x720",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "positiveControl": {
+          "description": "Same-verse tsere under nun in נֵצֶר on line 15",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-tsadi-positive-control-zoom6.png",
+          "sha256": "5672c40a485a828845427a750124482db3eeeea5d56de388b9a3a763dfff0351",
+          "dimensions": "130x155",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-tsadi-positive-control-zoom6-x4.png",
+            "sha256": "0a57a9a1de7af9008a87e447cb18a5b53b61b60cfe6779ce9462e67251b1b0cc",
+            "dimensions": "520x620",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        "competingControl": {
+          "description": "Same-word segol under tsadi in נֵצֶר on line 15",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-tsadi-competing-control-zoom6.png",
+          "sha256": "8bcceb3f562716fcd6eb5dea5b525ce4e47c6b29450dc6ef27336a264f0847cf",
+          "dimensions": "130x155",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass38-WIS-13-11/wis-13-11-vayefatsel-tsadi-competing-control-zoom6-x4.png",
+            "sha256": "e1ac92364c0f4366ccbdf8d24bcadf5177dee2261a339f9f8c14aeac067a6111",
+            "dimensions": "520x620",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      }
+    }
+  ]
+}

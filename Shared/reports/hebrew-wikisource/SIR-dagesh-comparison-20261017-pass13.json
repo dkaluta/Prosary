@@ -1,0 +1,2024 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 13,
+  "book": "SIR",
+  "status": "One exact source dagesh independently approved; five uncertainties retained; no canonical mutation by author",
+  "applicationState": "pendingRootIntegration",
+  "baselineDirectory": "/private/tmp/prosary-hebrew-pass13-20261017/baseline",
+  "baselineGlobalNoteCount": 573,
+  "canonicalInput": "Shared/content/hebrew-deuterocanon/SIR.json",
+  "canonicalInputSHA256": "b28b8ad77c578c9c37512c3cdfae92f0bd3e8a649995f0aef52e1ac2dcaa988d",
+  "canonicalOutputSHA256": "b28b8ad77c578c9c37512c3cdfae92f0bd3e8a649995f0aef52e1ac2dcaa988d",
+  "canonicalChanged": false,
+  "beforeBookSourceNoteCount": 24,
+  "expectedPacketOnlySourceNoteCountAfter": 23,
+  "reviewedSourceNoteCount": 6,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 5,
+  "beforeSourceContentSHA256": "df59c58b7903d7a5eecd8609f38c1a5d4e2093d107473069586793a212cb398a",
+  "expectedPacketOnlySourceContentSHA256After": "5d7865abc86858892e6e71a7541e77be958edd2875eeeee3d4e46c97d98da8ac",
+  "scope": {
+    "reviewedChapters": [
+      1,
+      6,
+      16,
+      23,
+      24,
+      49
+    ],
+    "allSixTargetChaptersAlreadyAnnotated": true,
+    "notWholeBookRecollation": true
+  },
+  "method": "Fresh embedded native primary/companion full glyphs, complete words, numbered source contexts and literal typeface comparisons. Pointed controls are visually verified source marks, not canonical spelling assertions. Connectivity alone neither certifies nor rejects a point; an added node must remain diagnostic against the ordinary branch or foot. All archived native/nearest-neighbor pixels freshly reproduce exactly from the original PDF images. No OCR, grammatical expectation, alternative translation, enhancement, filtering, drawing, reconstruction or new-witness claim.",
+  "accepted": [
+    {
+      "book": "SIR",
+      "chapter": 23,
+      "verse": 12,
+      "before": "מִצַדִּיקִים",
+      "after": "מִצַּדִּיקִים",
+      "retiredNoteIds": [
+        "sir-23-12-tsadi-dagesh"
+      ],
+      "finding": "The complete companion glyph has a compact detached left-interior stamp, white-separated from the continuing branch and already complete foot. Its location and size match the literal pointed tsadi in24:17; same-unit תמצא has the ordinary branch/foot without that added stamp. Primary scan is saturated but verifies the identical complete word and numbered12 two-row address. Root and wisdom_pass3 independently approved U+05BC only; retain existing tsadi patah before the inserted mark and existing dalet dagesh/hiriq order."
+    }
+  ],
+  "retiredSourceNoteIds": [
+    "sir-23-12-tsadi-dagesh"
+  ],
+  "retainedSourceNoteIds": [
+    "sir-1-3-1-dagesh",
+    "sir-16-26-nun-dagesh",
+    "sir-24-17-nun-dagesh",
+    "sir-49-10-yod-dagesh",
+    "sir-6-3-nun-dagesh"
+  ],
+  "allRemainingSourceNoteIdsAfterPacket": [
+    "sir-1-3-1-dagesh",
+    "sir-11-10-qof-vowel",
+    "sir-11-12-nun-vowel",
+    "sir-11-34-vav-vowel",
+    "sir-13-18-alef-vowel",
+    "sir-16-26-nun-dagesh",
+    "sir-2-2-vav-vowel",
+    "sir-24-17-nun-dagesh",
+    "sir-29-19-bet-vowel",
+    "sir-3-18-ayin-vowel",
+    "sir-30-16-resh-vowel",
+    "sir-30-19-yod-vowel",
+    "sir-31-21-vav-vowel",
+    "sir-31-6-lamed-vowel",
+    "sir-31-7-qof-vowel",
+    "sir-31-7-vav-vowel",
+    "sir-32-12-tet-vowel",
+    "sir-39-14-bet-vowel",
+    "sir-39-35-qof-vowel",
+    "sir-4-24-dalet-vowel",
+    "sir-49-10-yod-dagesh",
+    "sir-51-4-resh-vowel",
+    "sir-6-3-nun-dagesh"
+  ],
+  "retainedAnchorUpdates": [],
+  "unitTextHashChangesAfterPacket": [
+    {
+      "chapter": 23,
+      "verse": 12,
+      "beforeTextSHA256": "bf561ada3896ac2555be134405160cd9e4b32693a2fc4689ddb7c474d38f7986",
+      "afterTextSHA256": "09eb79e8dfd8c04f699b71c9dc3134e34e15010f06268015ad981860c550e276"
+    }
+  ],
+  "scalarConservation": {
+    "oneU05BCAtSecondHebrewLetterOnly": true,
+    "existingTsadiPatahThenNewDagesh": [
+      "U+05B7",
+      "U+05BC"
+    ],
+    "existingDaletDageshThenHiriqPreserved": [
+      "U+05BC",
+      "U+05B4"
+    ],
+    "allOldScalarsRetainRelativeOrder": true,
+    "allOtherElevenBooksByteUnchanged": true,
+    "noConsonantPunctuationWitnessGapRestorationBlockOrOrderChange": true
+  },
+  "findings": [
+    {
+      "id": "sir-1-3-1-dagesh",
+      "chapter": 1,
+      "verse": 3,
+      "anchor": "גֹבַהּ",
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "sourcePages": [
+        449
+      ],
+      "decision": "retainDisclosure",
+      "finding": "The gimel lower interior is absorbed into the ordinary broad foot, with a small white channel. The local גיל comparison has a similar natural foot/channel; the כגפן candidate comparator is itself too joined to supply an independent positive dot. No unique added node or source-certified absence is established, so retain."
+    },
+    {
+      "id": "sir-6-3-nun-dagesh",
+      "chapter": 6,
+      "verse": 3,
+      "anchor": "וְהֶנִיחַתְךָ",
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "sourcePages": [
+        457
+      ],
+      "decision": "retainDisclosure",
+      "finding": "The prospective lower-left lobe remains part of the broad rising nun foot. The independently detached11:32 nun point sits above a complete ordinary foot, while this stamp cannot be separated typographically from the foot contour. Primary is more saturated. Retain without assuming either presence or absence."
+    },
+    {
+      "id": "sir-16-26-nun-dagesh",
+      "chapter": 16,
+      "verse": 26,
+      "anchor": "תַנֵיהֶם]",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        475
+      ],
+      "decision": "retainDisclosure",
+      "finding": "At the exact second letter of תניהם] the abbreviated or damaged head/shaft and low-left mass do not preserve the ordinary complete nun contour plus an independently diagnostic added point. The full word and primary scan establish the correct glyph, but the detached11:32 control does not settle whether the compact lower mass here belongs to the letter or a mark. Retain all brackets and the existing note."
+    },
+    {
+      "id": "sir-23-12-tsadi-dagesh",
+      "chapter": 23,
+      "verse": 12,
+      "anchor": "מִצַדִּיקִים",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        483
+      ],
+      "decision": "proposeExactDagesh",
+      "finding": "The complete companion glyph has a compact detached left-interior stamp, white-separated from the continuing branch and already complete foot. Its location and size match the literal pointed tsadi in24:17; same-unit תמצא has the ordinary branch/foot without that added stamp. Primary scan is saturated but verifies the identical complete word and numbered12 two-row address. Root and wisdom_pass3 independently approved U+05BC only; retain existing tsadi patah before the inserted mark and existing dalet dagesh/hiriq order.",
+      "before": "מִצַדִּיקִים",
+      "after": "מִצַּדִּיקִים",
+      "retiredNoteIds": [
+        "sir-23-12-tsadi-dagesh"
+      ],
+      "independentApproval": [
+        "root",
+        "wisdom_pass3"
+      ]
+    },
+    {
+      "id": "sir-24-17-nun-dagesh",
+      "chapter": 24,
+      "verse": 17,
+      "anchor": "וְנִצַּנִי",
+      "letterIndex": 4,
+      "mark": "dagesh",
+      "sourcePages": [
+        485
+      ],
+      "decision": "retainDisclosure",
+      "finding": "The fourth-letter nun has its ordinary head, descending shaft and broad foot, without a separately diagnostic added interior mass like the literal11:32 positive. The earlier same-word nun supplies an ordinary-foot comparison. Similarity to a bare letter does not certify point absence in a saturated foot, so retain."
+    },
+    {
+      "id": "sir-49-10-yod-dagesh",
+      "chapter": 49,
+      "verse": 10,
+      "anchor": "וַיוֹשַׁ[גְבוּהוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        527
+      ],
+      "decision": "retainDisclosure",
+      "finding": "The exact second-letter yod retains an ordinary short head/tail; a distinctive extra low-left node like the certified10:28 positive is not established. Same-unit תהי supplies a plain-shape comparison. A point absorbed into a dark head cannot be excluded by this resemblance, so retain; all restoration brackets remain unchanged."
+    }
+  ],
+  "addressVerification": [
+    "Companion231/235/244/248/249/270 left halves correspond to primary449/457/475/483/485/527 respectively; complete words and numbered contexts are independently checked.",
+    "23:12 is the two-row unit beginning יש מלה נמשלה למות and continuing מצדיקים כל אלה ירחק; the target is the tsadi of the first word on the continuation row, distinct from the already pointed adjacent dalet. Same-unit תמצא on the preceding physical row supplies the plain tsadi contour.",
+    "24:17 ונצני supplies the literal pointed tsadi comparison only; the separate fourth-letter nun remains unresolved.",
+    "16:26 closing bracket in תניהם] and49:10 all reconstruction brackets are preserved verbatim."
+  ],
+  "evidenceSummary": {
+    "nativeFrames": 44,
+    "pngCount": 82,
+    "freshPDFPageImages": 14,
+    "allFreshPDFReplaysPassed": true
+  },
+  "frames": [
+    {
+      "key": "sir-1-3-1-dagesh-complete-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 231,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9d062d4254307f85be2c7bd1c75765464a0c1020141673aca8db6c53f3cf4db3",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        1305,
+        550,
+        1385,
+        600
+      ],
+      "nativeBounds": [
+        1305,
+        550,
+        1385,
+        600
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-1-3-1-dagesh-complete-word-native.png",
+          "sha256": "f52763b398bd0d0cc3b9062ef27639a4a8464b37c57e17b99bbf8770a5202a5e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-1-3-1-dagesh-complete-word-5x.png",
+          "sha256": "06c4fe336ab3d8cf02bf4409981ce2f78bcd46adf560cbae6922b0cfaf80209a",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir-6-3-nun-dagesh-complete-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 235,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "87533d490e9a9d46047c50710e053f642eb014a7e17e257fc28154c018877086",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        775,
+        590,
+        905,
+        645
+      ],
+      "nativeBounds": [
+        775,
+        590,
+        905,
+        645
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-6-3-nun-dagesh-complete-word-native.png",
+          "sha256": "c5fe7d1d7df5f432ecbebc75bb3d0da0518831a93c873503277386e18206b12b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-6-3-nun-dagesh-complete-word-5x.png",
+          "sha256": "1a92f4a3e5fa72b03e486bf4c61691f77c82ff8d1b229b23d8907d577834cf4d",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir-16-26-nun-dagesh-complete-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 244,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "36b39ccfde57792286d37812aaa1b2c2868976fbfa82379e8a43a9f9f95f570c",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        710,
+        1190,
+        1000,
+        1270
+      ],
+      "nativeBounds": [
+        710,
+        1190,
+        1000,
+        1270
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-16-26-nun-dagesh-complete-word-native.png",
+          "sha256": "a597853ba4c676eb0d43cdc2c9c195686bf5548a072b2b02ce77ef8f04dd9229",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-16-26-nun-dagesh-complete-word-5x.png",
+          "sha256": "3de3fe8278994a7e1a1275fce743a7063a20ebc7ed2c0187cbc847dca69edda1",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir-23-12-tsadi-dagesh-complete-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 248,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "5ab151c66722330f8952292b543a7ed1972530a23c11c3d6e7a2a499b83e4f99",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        1240,
+        1500,
+        1370,
+        1560
+      ],
+      "nativeBounds": [
+        1240,
+        1500,
+        1370,
+        1560
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-23-12-tsadi-dagesh-complete-word-native.png",
+          "sha256": "3ea68162c2482a2dcc564344a4f056ed5f6bfb5b63864615bce9b583348c8f74",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-23-12-tsadi-dagesh-complete-word-5x.png",
+          "sha256": "8e1e92e7d2c59f74a444d1b7895dca26a4b38047630e8857be8ee685dda01de1",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir-24-17-nun-dagesh-complete-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 249,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "a3d2a36eeabdc6a17c9176a58c14040965f45bc39836331cf8b3893176ed6d25",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        840,
+        835,
+        925,
+        900
+      ],
+      "nativeBounds": [
+        840,
+        835,
+        925,
+        900
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-24-17-nun-dagesh-complete-word-native.png",
+          "sha256": "f813eaea7d087144021ecebd97dab95f41c8f7e1e113f618873680b5481a2a9f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-24-17-nun-dagesh-complete-word-5x.png",
+          "sha256": "a4c4ba709842aa2bf361422a9a675f2b57ba78734054d7c8b1f857c5f5e6b9fd",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir-49-10-yod-dagesh-complete-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 270,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9fc3e6759a62f885ef195abd55fd48e748779a8883f60f59efbeecd5880e79ba",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        775,
+        285,
+        895,
+        350
+      ],
+      "nativeBounds": [
+        775,
+        285,
+        895,
+        350
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-49-10-yod-dagesh-complete-word-native.png",
+          "sha256": "aaf246c7e3035dcb38a82d56b187d84d34e7ba1ee1437c5040e239e4f04df17b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir-49-10-yod-dagesh-complete-word-5x.png",
+          "sha256": "dfa2520154c07e14d6388d5cc8008111bb58eae071dd2a9e64c091b09fa25cc8",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir1-3-gimel-whole-target",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 231,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9d062d4254307f85be2c7bd1c75765464a0c1020141673aca8db6c53f3cf4db3",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        1348,
+        560,
+        1372,
+        598
+      ],
+      "nativeBounds": [
+        1348,
+        560,
+        1372,
+        598
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-3-gimel-whole-target-native.png",
+          "sha256": "2d69579fcd7ec93cd831843ef15ae97b53a1cedf51abd374baf4b128316e9cb5",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-3-gimel-whole-target-15x.png",
+          "sha256": "0c388ab5f23c9796fe145b9c762b7bcb6cec42f2916539c6266b56acc8e97d2d",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir6-3-nun-whole-target",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 235,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "87533d490e9a9d46047c50710e053f642eb014a7e17e257fc28154c018877086",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        851,
+        601,
+        871,
+        639
+      ],
+      "nativeBounds": [
+        851,
+        601,
+        871,
+        639
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir6-3-nun-whole-target-native.png",
+          "sha256": "4fc3660103bf219a80d92d03ce7c79fdd80f6b87e4efde9687c3370f47dc7aaa",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir6-3-nun-whole-target-15x.png",
+          "sha256": "420319f37702867957490cc5cf76da7c628764720025a4a6b56d023ac0fa973d",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir16-26-nun-whole-target",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 244,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "36b39ccfde57792286d37812aaa1b2c2868976fbfa82379e8a43a9f9f95f570c",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        817,
+        1215,
+        841,
+        1255
+      ],
+      "nativeBounds": [
+        817,
+        1215,
+        841,
+        1255
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir16-26-nun-whole-target-native.png",
+          "sha256": "3863771a308841ecd3c8cca6dae2970cdc3052cb7baf9142f9d65ca55ccae1f6",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir16-26-nun-whole-target-15x.png",
+          "sha256": "57447d15e7b773271dce5c53d878b63d5ebb0476a1ac8dcc90b5573a404fa288",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir23-12-tsadi-FINAL-complete-target",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 248,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "5ab151c66722330f8952292b543a7ed1972530a23c11c3d6e7a2a499b83e4f99",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        1315,
+        1497,
+        1359,
+        1550
+      ],
+      "nativeBounds": [
+        1315,
+        1497,
+        1359,
+        1550
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-tsadi-FINAL-complete-target-native.png",
+          "sha256": "c28a31050643953dd48c8f269f0e008524bdcc8abbcaa59cf452f76099b6bb0d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-tsadi-FINAL-complete-target-20x.png",
+          "sha256": "df33f390d018d5b0138a080af7a5b9b6fd1f9a135cd2b9d8427549a843620e86",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir24-17-nun-whole-target",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 249,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "a3d2a36eeabdc6a17c9176a58c14040965f45bc39836331cf8b3893176ed6d25",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        861,
+        853,
+        882,
+        894
+      ],
+      "nativeBounds": [
+        861,
+        853,
+        882,
+        894
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-nun-whole-target-native.png",
+          "sha256": "e1ba5436dee62080f156504ef45415ddc5793f001a5e54e43c48f860da32c0fe",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-nun-whole-target-15x.png",
+          "sha256": "9f9fa10400e363107029562e943aa278a1b65c26c0de14f651058f7a98b145be",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir49-10-yod-FINAL-complete-target",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 270,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9fc3e6759a62f885ef195abd55fd48e748779a8883f60f59efbeecd5880e79ba",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        856,
+        297,
+        883,
+        340
+      ],
+      "nativeBounds": [
+        856,
+        297,
+        883,
+        340
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-yod-FINAL-complete-target-native.png",
+          "sha256": "4ed7f46a5ed843b06f365b12b50babee1810d3f8b76798677fcb84e8a79a71e3",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-yod-FINAL-complete-target-20x.png",
+          "sha256": "4367c101d06235acb20556bffe4fc39205bd2605f71f747655727eae75ab7c38",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir1-3-primary-word-locator",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 449,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "529cba6ae88838dfe1f41d523acdf1f9daac3123d2c30ffc93021bff47e3e9b9",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        1220,
+        650,
+        1350,
+        750
+      ],
+      "nativeBounds": [
+        1220,
+        650,
+        1350,
+        750
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-3-primary-word-locator-native.png",
+          "sha256": "8b03bc8ba433cd7f972b7b3388bf27983b28328f403e8482cf705c0b816e4ac0",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-3-primary-word-locator-5x.png",
+          "sha256": "7b4cae1df51558c12b26a633144da04e6190a7502ec259d5bd8db9386e823364",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir6-3-primary-ACTUAL-word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 457,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "debfd0be8745e800332677fb3ded199ff1fee1b29cef5986cfb4a37e1eae99fb",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        550,
+        865,
+        745,
+        940
+      ],
+      "nativeBounds": [
+        550,
+        865,
+        745,
+        940
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir6-3-primary-ACTUAL-word-native.png",
+          "sha256": "6c402cc698fc6c5de8e1250aa59a4166b3839c4057acb3ee4a53aa75af679850",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir6-3-primary-ACTUAL-word-5x.png",
+          "sha256": "83f23070edaee80b89d9eae0dee4a37940c2ab5ea8be938d9c2c487762e91f1d",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir16-26-primary-ACTUAL-word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 475,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "e2c4aa66b3f60248da4efab1cd416f5400e8c194819d9e6bafb4f8d5e9ef63b5",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        495,
+        1718,
+        735,
+        1785
+      ],
+      "nativeBounds": [
+        495,
+        1718,
+        735,
+        1785
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir16-26-primary-ACTUAL-word-native.png",
+          "sha256": "112564d00950820c669b70bd9abf16e49fe2b8bc45cdf2eeefb743126d801a78",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir16-26-primary-ACTUAL-word-5x.png",
+          "sha256": "36ae1b6be7867cc71dfa6f6768b720894e73b21e3d5698b449883f39e0540c57",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir23-12-primary-complete-target-word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 483,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "e73fe44c32b370deffd01fbaa15eddac83ed17108896d0478a5b8704e2307d12",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        1170,
+        2055,
+        1355,
+        2135
+      ],
+      "nativeBounds": [
+        1170,
+        2055,
+        1355,
+        2135
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-primary-complete-target-word-native.png",
+          "sha256": "0fedad61bc851914e5e50359685e48ccc441a17013c928b46a19e9571682c526",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-primary-complete-target-word-5x.png",
+          "sha256": "7b802a04e89a13bea3701823db8a4d5291875b665436f3f5125718fbb676e815",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir24-17-primary-word-locator",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 485,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "45a28bb5a777090ff41169957f6de7fb3b30e5d2b3130508a3bf8373bbf1b90c",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        400,
+        1170,
+        745,
+        1260
+      ],
+      "nativeBounds": [
+        400,
+        1170,
+        745,
+        1260
+      ],
+      "scale": 4,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-primary-word-locator-native.png",
+          "sha256": "2cad0f0e0550975e698c11f015a15dc413fc321eba75d74156c10b701e6ddb12",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-primary-word-locator-4x.png",
+          "sha256": "cf257778ceee6f4d1e6514d110728f91e02de201c21a34f4120410544dd3313e",
+          "scale": 4,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir49-10-primary-FINAL-complete-word",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 527,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "e3d5b9747363908529cde84b88bb31c0bd6e671fdb62929d054de32a517741e8",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        535,
+        420,
+        740,
+        500
+      ],
+      "nativeBounds": [
+        535,
+        420,
+        740,
+        500
+      ],
+      "scale": 5,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-primary-FINAL-complete-word-native.png",
+          "sha256": "6ecaa0a1a9684cadef9ef262f3dad7c8a71014db6a2b1c1782e2175003f0bca1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-primary-FINAL-complete-word-5x.png",
+          "sha256": "c2e9a7750ab29423de7c3d4b5e8d761fea6309095968659fc24454d641d17ade",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir1-3-primary-complete-gimel",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 449,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "529cba6ae88838dfe1f41d523acdf1f9daac3123d2c30ffc93021bff47e3e9b9",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        1306,
+        671,
+        1332,
+        730
+      ],
+      "nativeBounds": [
+        1306,
+        671,
+        1332,
+        730
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-3-primary-complete-gimel-native.png",
+          "sha256": "cb744273e9777fd2a5daa3322bc68ff011be05af91088c30a9d5fe0b3cf5ddb7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-3-primary-complete-gimel-15x.png",
+          "sha256": "2946ae0d0f0efbf2b11c74620ff153204682560283e19f0f4977951319bad86b",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir6-3-primary-complete-nun",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 457,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "debfd0be8745e800332677fb3ded199ff1fee1b29cef5986cfb4a37e1eae99fb",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        675,
+        878,
+        700,
+        930
+      ],
+      "nativeBounds": [
+        675,
+        878,
+        700,
+        930
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir6-3-primary-complete-nun-native.png",
+          "sha256": "a2596477871e2f926383aac5a464359c82dc62d778be685296641d4f7980e5ea",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir6-3-primary-complete-nun-15x.png",
+          "sha256": "faae922c7aa51b9bf955bfac142aedab57266eb2430488b763becb82ab3a2e6a",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir16-26-primary-complete-nun",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 475,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "e2c4aa66b3f60248da4efab1cd416f5400e8c194819d9e6bafb4f8d5e9ef63b5",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        632,
+        1725,
+        657,
+        1778
+      ],
+      "nativeBounds": [
+        632,
+        1725,
+        657,
+        1778
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir16-26-primary-complete-nun-native.png",
+          "sha256": "e4a5383e420a687a4ff88777767b3cf2a8e2c767a49d05acc049a0289b42cc84",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir16-26-primary-complete-nun-15x.png",
+          "sha256": "6f73bacbee58a36ef73840ca00b9fc82419cdce85722e9c25c2e11e308322cd7",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir23-12-primary-tsadi-complete-target",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 483,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "e73fe44c32b370deffd01fbaa15eddac83ed17108896d0478a5b8704e2307d12",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        1276,
+        2075,
+        1318,
+        2130
+      ],
+      "nativeBounds": [
+        1276,
+        2075,
+        1318,
+        2130
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-primary-tsadi-complete-target-native.png",
+          "sha256": "71b18fcaa15d1429b986cadd5e4198ffccf4a3c8a2f4c42f25031009ba69c9ce",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-primary-tsadi-complete-target-15x.png",
+          "sha256": "8a270bf9e674925e19f9c0b3fec8de71498a97db016ee8fc6eec1f68db37f8b7",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir24-17-primary-complete-nun",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 485,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "45a28bb5a777090ff41169957f6de7fb3b30e5d2b3130508a3bf8373bbf1b90c",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        658,
+        1195,
+        684,
+        1252
+      ],
+      "nativeBounds": [
+        658,
+        1195,
+        684,
+        1252
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-primary-complete-nun-native.png",
+          "sha256": "b28f2e4231a2435a00cc239a217f32b3710dc1c0b72bb23d7ac1c7d05b5f8fa4",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-primary-complete-nun-15x.png",
+          "sha256": "3afff6873c9c14bebf0f7db8eef72161ececa86b97c1ea58abb17174ee8a61cd",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir49-10-yod-primary-FINAL-complete-target",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 527,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "e3d5b9747363908529cde84b88bb31c0bd6e671fdb62929d054de32a517741e8",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        690,
+        438,
+        721,
+        492
+      ],
+      "nativeBounds": [
+        690,
+        438,
+        721,
+        492
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-yod-primary-FINAL-complete-target-native.png",
+          "sha256": "b01649746be2aace1421ed900c88353ae3adc725807c7c6199afa23584427326",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-yod-primary-FINAL-complete-target-15x.png",
+          "sha256": "41a4a03aa1708c6cdaeb5b07e70ba4984315344e4949c13ac1880e440b2e5c00",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir1-3-complete-numbered-context",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 231,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9d062d4254307f85be2c7bd1c75765464a0c1020141673aca8db6c53f3cf4db3",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        600,
+        450,
+        1436,
+        690
+      ],
+      "nativeBounds": [
+        600,
+        450,
+        1436,
+        690
+      ],
+      "scale": 1,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-3-complete-numbered-context-native.png",
+          "sha256": "a6e45581c7bdf71cf79f11e6fe739a83bff0044a26e72a8293c3c348a6fd773e",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir6-3-complete-numbered-context",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 235,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "87533d490e9a9d46047c50710e053f642eb014a7e17e257fc28154c018877086",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        650,
+        500,
+        1436,
+        690
+      ],
+      "nativeBounds": [
+        650,
+        500,
+        1436,
+        690
+      ],
+      "scale": 1,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir6-3-complete-numbered-context-native.png",
+          "sha256": "599b6f69373dce3c84f2b1e4f2d15b8ff0fb7a62e64e90767c32bca62d91935e",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir16-26-complete-numbered-context",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 244,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "36b39ccfde57792286d37812aaa1b2c2868976fbfa82379e8a43a9f9f95f570c",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        650,
+        1130,
+        1436,
+        1300
+      ],
+      "nativeBounds": [
+        650,
+        1130,
+        1436,
+        1300
+      ],
+      "scale": 1,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir16-26-complete-numbered-context-native.png",
+          "sha256": "85ec258e3f4ea1cf13290b38a2a2f2ec7b7456af0e9eaac3acfb73b00455325e",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir23-12-extra-numbered-two-rows",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 248,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "5ab151c66722330f8952292b543a7ed1972530a23c11c3d6e7a2a499b83e4f99",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        650,
+        1400,
+        1430,
+        1590
+      ],
+      "nativeBounds": [
+        650,
+        1400,
+        1430,
+        1590
+      ],
+      "scale": 2,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-extra-numbered-two-rows-native.png",
+          "sha256": "0b896876a5d8925774858b2afbc88bb2fbcb74ecdbe8cf11133d00b7a9412d4c",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-extra-numbered-two-rows-2x.png",
+          "sha256": "9675fabac86a6a8d26efc9410ef065e25221868dec7687f16ba71c651941fce4",
+          "scale": 2,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir24-17-complete-numbered-context",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 249,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "a3d2a36eeabdc6a17c9176a58c14040965f45bc39836331cf8b3893176ed6d25",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        650,
+        730,
+        1436,
+        950
+      ],
+      "nativeBounds": [
+        650,
+        730,
+        1436,
+        950
+      ],
+      "scale": 1,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-complete-numbered-context-native.png",
+          "sha256": "f01a831fb7541fa4091adff448dc586d908597d7d0bb607bf58045701e790df0",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir49-10-complete-numbered-context",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 270,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9fc3e6759a62f885ef195abd55fd48e748779a8883f60f59efbeecd5880e79ba",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        650,
+        190,
+        1436,
+        395
+      ],
+      "nativeBounds": [
+        650,
+        190,
+        1436,
+        395
+      ],
+      "scale": 1,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-complete-numbered-context-native.png",
+          "sha256": "48256048bb6282d1b4e657e4df7b43cfbd8d9fc6792b8243df5792f25c0ee3e4",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir23-primary-unit12-both-rows",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+      "sourcePDFPage": 483,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "e73fe44c32b370deffd01fbaa15eddac83ed17108896d0478a5b8704e2307d12",
+      "halfBounds": null,
+      "halfRelativeBounds": [
+        200,
+        1990,
+        1510,
+        2220
+      ],
+      "nativeBounds": [
+        200,
+        1990,
+        1510,
+        2220
+      ],
+      "scale": 1,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-primary-unit12-both-rows-native.png",
+          "sha256": "093ed973d540fd917852789ae91311c73717c3101923ded78c7f56e3cd88c20a",
+          "scale": 1,
+          "resampling": "none"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir24-17-tsadi-EXPANDED-pointed-control",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 249,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "a3d2a36eeabdc6a17c9176a58c14040965f45bc39836331cf8b3893176ed6d25",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        870,
+        850,
+        905,
+        895
+      ],
+      "nativeBounds": [
+        870,
+        850,
+        905,
+        895
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-tsadi-EXPANDED-pointed-control-native.png",
+          "sha256": "53a5fe147342474dd6fdcecd77803e57f5593e15773e685202f091b068f847aa",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-tsadi-EXPANDED-pointed-control-20x.png",
+          "sha256": "81b25cd33542aab5cf149ccb4db1098701eaab1724814bfb3c278aac3d20e5c9",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir23-12-tsadi-EXPANDED-plain-control",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 248,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "5ab151c66722330f8952292b543a7ed1972530a23c11c3d6e7a2a499b83e4f99",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        765,
+        1453,
+        798,
+        1504
+      ],
+      "nativeBounds": [
+        765,
+        1453,
+        798,
+        1504
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-tsadi-EXPANDED-plain-control-native.png",
+          "sha256": "fc1e48d58c0f7de9237dc806729d405ce134b14f5adb04ab565fdcfdd8e29cd2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-tsadi-EXPANDED-plain-control-20x.png",
+          "sha256": "501db59181b571e800c344b08cd64e68ab16f27c60c6a3474b0e0d8bc47586bd",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir23-12-timtza-plain-tsadi-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 248,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "5ab151c66722330f8952292b543a7ed1972530a23c11c3d6e7a2a499b83e4f99",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        750,
+        1450,
+        840,
+        1505
+      ],
+      "nativeBounds": [
+        750,
+        1450,
+        840,
+        1505
+      ],
+      "scale": 6,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-timtza-plain-tsadi-word-native.png",
+          "sha256": "cce85b153c10856f2fac36bc3da270acca087ac90585e36cb483729da763756f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir23-12-timtza-plain-tsadi-word-6x.png",
+          "sha256": "5d8084569aa75408a01399647d9b6e9a18e395431e29a43d788596dd4e6bc55a",
+          "scale": 6,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir24-17-complete-word-large",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 249,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "a3d2a36eeabdc6a17c9176a58c14040965f45bc39836331cf8b3893176ed6d25",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        840,
+        835,
+        925,
+        900
+      ],
+      "nativeBounds": [
+        840,
+        835,
+        925,
+        900
+      ],
+      "scale": 15,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-complete-word-large-native.png",
+          "sha256": "f813eaea7d087144021ecebd97dab95f41c8f7e1e113f618873680b5481a2a9f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-complete-word-large-15x.png",
+          "sha256": "701c88e07d2988b7993b626702b2fb976c6ffb4c1c406d8af8d5b1decdfa0257",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir11-32-nun-pointed-positive",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 241,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "cfd173b140cc691c7bae376627f2426bc0912af1111f3e07facda9514ee9977d",
+      "halfBounds": [
+        1436,
+        0,
+        2872,
+        2024
+      ],
+      "halfRelativeBounds": [
+        1101,
+        928,
+        1127,
+        968
+      ],
+      "nativeBounds": [
+        2537,
+        928,
+        2563,
+        968
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir11-32-nun-pointed-positive-native.png",
+          "sha256": "68651dd942515ee468b90ee7e8e41c5d52d2de81f5e7a3deb9a299f7e4bdf74c",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir11-32-nun-pointed-positive-20x.png",
+          "sha256": "da8d05265ca1d8a5667cb1852ab2827ae1cdb3fefebaf7596245ce6be53868ae",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir11-32-nun-positive-complete-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 241,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "cfd173b140cc691c7bae376627f2426bc0912af1111f3e07facda9514ee9977d",
+      "halfBounds": [
+        1436,
+        0,
+        2872,
+        2024
+      ],
+      "halfRelativeBounds": [
+        1040,
+        912,
+        1150,
+        980
+      ],
+      "nativeBounds": [
+        2476,
+        912,
+        2586,
+        980
+      ],
+      "scale": 6,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir11-32-nun-positive-complete-word-native.png",
+          "sha256": "44073f54c5a345832cf1d71d8a916bc59d481a6e3ad4e1d840472ed6e923b7ce",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir11-32-nun-positive-complete-word-6x.png",
+          "sha256": "b84a05254cdabbc6687fb0fe673f517b872f2b4fd088c87af0178ee31afc1f03",
+          "scale": 6,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir24-17-first-nun-CORRECT-plain-control",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 249,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "a3d2a36eeabdc6a17c9176a58c14040965f45bc39836331cf8b3893176ed6d25",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        889,
+        850,
+        907,
+        895
+      ],
+      "nativeBounds": [
+        889,
+        850,
+        907,
+        895
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-first-nun-CORRECT-plain-control-native.png",
+          "sha256": "f919666a5ea641c75b2ab95d66a1e852613ec8c9c698cfa6100bd514e8f0956f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir24-17-first-nun-CORRECT-plain-control-20x.png",
+          "sha256": "7408cad5f756bf888a9e5558ddea518aa4c129dc5da3abc4121fa5ec854e4d14",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir1-11-gimel-plain-control",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 231,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9d062d4254307f85be2c7bd1c75765464a0c1020141673aca8db6c53f3cf4db3",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        881,
+        938,
+        905,
+        987
+      ],
+      "nativeBounds": [
+        881,
+        938,
+        905,
+        987
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-11-gimel-plain-control-native.png",
+          "sha256": "f8d7ff2a377783e987aa3eef3a7554ac2d58d3e283fb6430b3e4dcdcf87cde39",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-11-gimel-plain-control-20x.png",
+          "sha256": "962b90462121e9b804c0abf633932b3fdf28a556b783b5d2956bce78e610083e",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir1-11-vgil-complete-corrected-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 231,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9d062d4254307f85be2c7bd1c75765464a0c1020141673aca8db6c53f3cf4db3",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        865,
+        935,
+        919,
+        995
+      ],
+      "nativeBounds": [
+        865,
+        935,
+        919,
+        995
+      ],
+      "scale": 8,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-11-vgil-complete-corrected-word-native.png",
+          "sha256": "05fafec84c8458c100600eec7fab7641df4644e693d341ebf39900b6cb1719f6",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir1-11-vgil-complete-corrected-word-8x.png",
+          "sha256": "17322ae061af948f2a09ef5c2a4237371fb6ddc67b100fe21ad7fbffb4f83369",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir10-28-yod-detached-positive",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 240,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "0cb7c164209967c919dab3705f122d618d74a842e5662c5d072e9bd259abc626",
+      "halfBounds": [
+        1436,
+        0,
+        2872,
+        2024
+      ],
+      "halfRelativeBounds": [
+        470,
+        368,
+        500,
+        410
+      ],
+      "nativeBounds": [
+        1906,
+        368,
+        1936,
+        410
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir10-28-yod-detached-positive-native.png",
+          "sha256": "f881226443299b3f49d5b966b94633e2e62e6cd088df551f1fcf88924d7d9ca1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir10-28-yod-detached-positive-20x.png",
+          "sha256": "8f8dcf6ec304241b621d97eacd9e7522a0a4cef5014f66e209f52f7b3eca08b1",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir10-28-yod-positive-complete-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 240,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "0cb7c164209967c919dab3705f122d618d74a842e5662c5d072e9bd259abc626",
+      "halfBounds": [
+        1436,
+        0,
+        2872,
+        2024
+      ],
+      "halfRelativeBounds": [
+        410,
+        360,
+        545,
+        418
+      ],
+      "nativeBounds": [
+        1846,
+        360,
+        1981,
+        418
+      ],
+      "scale": 6,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir10-28-yod-positive-complete-word-native.png",
+          "sha256": "80cb1b46b5d82e65f8cc372d1bd35de8e8d286e183e109b9dc54c5ecd8a34c5f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir10-28-yod-positive-complete-word-6x.png",
+          "sha256": "0ecf0dab20c399a0ec29fe870464914c2dcefd750398c201c59ff788c6f2e9cd",
+          "scale": 6,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir49-10-yod-tehi-plain-control",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 270,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9fc3e6759a62f885ef195abd55fd48e748779a8883f60f59efbeecd5880e79ba",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        838,
+        256,
+        858,
+        282
+      ],
+      "nativeBounds": [
+        838,
+        256,
+        858,
+        282
+      ],
+      "scale": 20,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-yod-tehi-plain-control-native.png",
+          "sha256": "f2049fe406ccc3f75fca19aed298a9a1f837b666b4b987ab8660cdb0b8207347",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-yod-tehi-plain-control-20x.png",
+          "sha256": "601f89c6871b135467cd1ee5e4faa303255966c546efffe7bdfb52b836d0b94f",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    },
+    {
+      "key": "sir49-10-yod-tehi-plain-word",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFSHA256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7",
+      "sourcePDFPage": 270,
+      "imageIndex": 0,
+      "sourceImageRGBPixelSHA256": "9fc3e6759a62f885ef195abd55fd48e748779a8883f60f59efbeecd5880e79ba",
+      "halfBounds": [
+        0,
+        0,
+        1436,
+        2024
+      ],
+      "halfRelativeBounds": [
+        800,
+        235,
+        900,
+        285
+      ],
+      "nativeBounds": [
+        800,
+        235,
+        900,
+        285
+      ],
+      "scale": 6,
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-yod-tehi-plain-word-native.png",
+          "sha256": "846e7dbf8af59707789f71d0e1afb88e8a7682a68de14638ce03c1a6294f0677",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/sir49-10-yod-tehi-plain-word-6x.png",
+          "sha256": "12f2f1d13399d04fe0c0db15ae3b44dff67023ff7d68ee67a18e7dccae0c9193",
+          "scale": 6,
+          "resampling": "nearest-neighbor"
+        }
+      ],
+      "freshOriginalPDFPixelReplay": true
+    }
+  ],
+  "evidenceManifest": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/original-PDF-native-replay.json",
+    "sha256": "97f84c8bb34e2e79483303b51fe36e7a61a6ad633ab183b3d04e811ccdd1fd0c"
+  },
+  "acceptedArtifact": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass13-SIR-DAGESH/accepted.json",
+    "sha256": "c158c0c9c413404e369820706ddf9ee1b9bd956c495daed58264f8a4986b549c"
+  },
+  "excludedExploratoryFrames": [
+    {
+      "names": [
+        "initial sir23-12-tsadi-exact-target",
+        "sir23-12-tsadi-whole-target"
+      ],
+      "reason": "The early tight frame clipped the left stamp. Only the final expanded full glyph is target proof."
+    },
+    {
+      "names": [
+        "sir16-26-extra-CORRECT-nun"
+      ],
+      "reason": "Despite the exploratory name this trial is the later he, not the second-letter nun. Excluded; actual nun is817..841 in the full token."
+    },
+    {
+      "names": [
+        "sir24-17-first-nun-local-plain-comparison"
+      ],
+      "reason": "Initial frame clipped the first nun and centred the adjoining vav; replaced by889..907 complete frame."
+    },
+    {
+      "names": [
+        "sir24-17-kaggefen-gimel-pointed-control"
+      ],
+      "reason": "Canonical point supplied a locator but the printed mark is merged with the lower foot. Not a certified literal positive; excluded from durable positive evidence."
+    },
+    {
+      "names": [
+        "early primary word and target locators not listed in frames"
+      ],
+      "reason": "Exploratory row or side crops are excluded. Durable corrected complete words and exact glyphs are freshly replayed."
+    }
+  ],
+  "priorImmutableReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+      "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+      "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+      "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+      "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+      "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+    }
+  ],
+  "validation": {
+    "allSixExactIdsAnchorsMatch573Baseline": true,
+    "allTwelveCanonicalSourceFilesByteUnchangedFrom573Baseline": true,
+    "allDurableImagesFreshlyReproduced": true,
+    "noCanonicalCentralDailyPresentationGeneratedMutationByAuthor": true
+  }
+}

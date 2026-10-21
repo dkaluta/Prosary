@@ -118,4 +118,30 @@ final class BeadModelsTests: XCTestCase {
     }
     XCTAssertEqual(layout.bottomBeads[9].state, .current)
   }
+
+  @MainActor
+  func testHebrewSpokenProgressUsesTheSessionRiteRatherThanTheAppDefault() throws {
+    let savedInterface = InterfaceLanguageStore.shared.selection
+    let savedDefault = UserDefaults.standard.object(forKey: LanguageCatalog.defaultsKey)
+    let savedOrder = UserDefaults.standard.object(forKey: LanguageCatalog.fallbackOrderKey)
+    defer {
+      InterfaceLanguageStore.shared.selection = savedInterface
+      for (key, value) in [(LanguageCatalog.defaultsKey, savedDefault), (LanguageCatalog.fallbackOrderKey, savedOrder)] {
+        if let value { UserDefaults.standard.set(value, forKey: key) }
+        else { UserDefaults.standard.removeObject(forKey: key) }
+      }
+    }
+    InterfaceLanguageStore.shared.selection = "he"
+    for (language, other, title) in [("he", "he-x-gamliel", "שמחי מרים"), ("he-x-gamliel", "he", "שלום לך מרים")] {
+      UserDefaults.standard.set(other, forKey: LanguageCatalog.defaultsKey)
+      LanguageCatalog.setFallbackOrder([other, language])
+      let steps = PrayerEngine().buildSteps(for: Prayer(languageCode: language))
+      let index = try XCTUnwrap(steps.firstIndex { $0.decadeIndex == 0 && $0.hailMaryIndexInDecade == 3 })
+      let layout = BeadLayout.build(steps: steps, currentIndex: index, hasClosingCross: true,
+                                    languageCode: language)
+      XCTAssertEqual(layout.accessibilityDescription
+        .replacingOccurrences(of: "\u{2068}", with: "").replacingOccurrences(of: "\u{2069}", with: ""),
+                     "עשור 1 מתוך 5, \(title) 3 מתוך 10")
+    }
+  }
 }

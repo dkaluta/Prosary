@@ -3,6 +3,7 @@
 # requires-python = ">=3.11"
 # ///
 """Audit shipped Bible downloads against pinned text, exclusions and native copies."""
+import copy
 import hashlib
 import importlib.util
 import io
@@ -14,6 +15,8 @@ import unittest
 from unittest import mock
 import zipfile
 
+import hebrew_bible_presentation as hebrew_presentation
+
 TOOLS = Path(__file__).resolve().parent
 ROOT = TOOLS.parents[1]
 spec = importlib.util.spec_from_file_location("bible_library_builder", TOOLS / "build-bible-library.py")
@@ -22,7 +25,7 @@ spec.loader.exec_module(library)
 
 
 def assert_supplement_chapter(test, payload, source, preserve_text):
-    """Compare published contents with approved source units, in printed order."""
+    """Compare published contents with whole source units in reviewed reading order."""
     expected = []
     for unit in source["verses"]:
         row = {"chapter": source["number"], "verse": unit["verse"],
@@ -50,7 +53,7 @@ class BibleLibraryTests(unittest.TestCase):
         cls.catalog = json.loads(cls.catalog_bytes)
         cls.editions = {edition["id"]: edition for edition in cls.catalog["editions"]}
         supplement, cls.supplement_review = library.load_hebrew_supplement()
-        cls.supplement = {book["book"]: book for book in supplement}
+        cls.supplement = {book["book"]: hebrew_presentation.aligned_book(book) for book in supplement}
 
     def test_catalog_ids_metadata_and_native_parity(self):
         self.assertEqual(self.catalog["schemaVersion"], 1)
@@ -193,6 +196,17 @@ class BibleLibraryTests(unittest.TestCase):
             self.assertEqual(len(books["REV"]["chapters"]), 22)
         self.assertEqual(len(self.editions["douay-rheims-1899"]["books"]), 73)
 
+    def test_hebrew_tanakh_precedes_catholic_deuterocanon_then_new_testament(self):
+        book_ids = [book["id"] for book in self.editions["masoretic-delitzsch"]["books"]]
+        self.assertEqual(book_ids, list(library.HEBREW_BOOK_ORDER))
+        self.assertEqual(book_ids[:39], (
+            "GEN EXO LEV NUM DEU JOS JDG 1SA 2SA 1KI 2KI ISA JER EZK "
+            "HOS JOL AMO OBA JON MIC NAM HAB ZEP HAG ZEC MAL "
+            "PSA PRO JOB SNG RUT LAM ECC EST DAN EZR NEH 1CH 2CH").split())
+        self.assertEqual(book_ids[39:51],
+                         "TOB JDT ESG 1MA 2MA WIS SIR BAR LJE S3Y SUS BEL".split())
+        self.assertEqual(book_ids[51:], self.builder.CODES[39:66])
+
     def test_all_150_published_italian_psalms_retain_native_rows(self):
         from martini_daily_psalms import default_resolver
         from reading_step_mapping import Unavailable
@@ -241,6 +255,62 @@ class BibleLibraryTests(unittest.TestCase):
 
 
 class HebrewSupplementBuildTests(unittest.TestCase):
+    def test_hebrew_book_order_is_independent_of_import_order_and_preserves_chapters(self):
+        builder = library.reading_builder()
+        source_codes = builder.CODES + ["LJE", "ESG", "S3Y", "SUS", "BEL"]
+        self.assertEqual(set(library.HEBREW_BOOK_ORDER), set(source_codes))
+        self.assertEqual(len(library.HEBREW_BOOK_ORDER), len(source_codes))
+        self.assertEqual(list(library.HEBREW_BOOK_ORDER[-27:]), builder.CODES[39:66])
+        edition = {"id": "masoretic-delitzsch", "languageCode": "he", "name": "Fixture",
+                   "attribution": "Synthetic test", "sourceURL": "https://example.org/base"}
+        # Reverse the import sequence and use nonnumeric printed verse order. A book
+        # list correction must neither sort those units nor change their identities.
+        chapters = [(book, 1, [{"chapter": 1, "verse": verse,
+                               "text": f"Synthetic {book} {verse}"}
+                              for verse in (3, 1, 2)], True)
+                    for book in reversed(source_codes)]
+        names = {book: {"name": f"Source {book}"} for book in source_codes}
+        _, raw, metadata = library.make_archive(edition, chapters, names)
+        self.assertEqual([book["id"] for book in metadata["books"]],
+                         list(library.HEBREW_BOOK_ORDER))
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            self.assertEqual(json.loads(archive.read("manifest.json"))["books"], metadata["books"])
+            for book, chapter, rows, _ in chapters:
+                payload = json.loads(archive.read(f"chapters/{book}/{chapter}.json"))
+                self.assertEqual(payload["book"], book)
+                self.assertEqual(payload["chapter"], chapter)
+                self.assertEqual(payload["verses"], rows)
+
+    def test_other_editions_keep_their_existing_book_sequence(self):
+        edition = {"id": "douay-rheims-1899", "languageCode": "en", "name": "Fixture",
+                   "attribution": "Synthetic test", "sourceURL": "https://example.org/base"}
+        codes = ["TOB", "WIS", "GEN", "EST", "SNG", "REV", "MAT", "MAL"]
+        chapters = [(book, 1, [{"chapter": 1, "verse": 1, "text": f"Synthetic {book}"}], True)
+                    for book in codes]
+        names = {book: {"name": f"Source {book}"} for book in codes}
+        _, _, metadata = library.make_archive(edition, chapters, names)
+        self.assertEqual([book["id"] for book in metadata["books"]],
+                         ["GEN", "EST", "SNG", "MAL", "TOB", "WIS", "MAT", "REV"])
+
+    def test_book_order_changes_revision_without_changing_chapter_bytes(self):
+        edition = {"id": "masoretic-delitzsch", "languageCode": "he", "name": "Fixture",
+                   "attribution": "Synthetic test", "sourceURL": "https://example.org/base"}
+        chapters = [(book, 1, [{"chapter": 1, "verse": 1, "text": f"Synthetic {book}"}], True)
+                    for book in ("GEN", "RUT", "JDG")]
+        names = {book: {"name": book} for book, _, _, _ in chapters}
+        filename, raw, metadata = library.make_archive(edition, chapters, names)
+        with mock.patch.object(library, "HEBREW_BOOK_ORDER", ("GEN", "RUT", "JDG")):
+            original_filename, original_raw, original_metadata = library.make_archive(edition, chapters, names)
+        self.assertNotEqual(filename, original_filename)
+        self.assertNotEqual(metadata["revision"], original_metadata["revision"])
+        self.assertNotEqual(metadata["archiveSHA256"], original_metadata["archiveSHA256"])
+        self.assertEqual(library.make_archive(edition, chapters, names), (filename, raw, metadata))
+        with zipfile.ZipFile(io.BytesIO(raw)) as current, zipfile.ZipFile(io.BytesIO(original_raw)) as original:
+            self.assertEqual(current.namelist(), original.namelist())
+            for path in current.namelist():
+                if path != "manifest.json":
+                    self.assertEqual(current.read(path), original.read(path))
+
     def test_build_preserves_source_order_notes_routes_and_credit(self):
         # Exercise build's authoring-to-archive projection using synthetic text only.
         # This cannot enable a real unfinished book or write a production archive.
@@ -352,6 +422,88 @@ class HebrewSupplementBuildTests(unittest.TestCase):
              mock.patch.object(library, "load_hebrew_supplement", return_value=([source], [])):
             with self.assertRaisesRegex(ValueError, "Unknown Catholic placement: SUS 2"):
                 library.build()
+
+
+class HebrewPresentationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.source = json.loads((ROOT / "Shared/content/hebrew-deuterocanon/SIR.json").read_text())
+        cls.reviews = json.loads(hebrew_presentation.REVIEW_PATH.read_text())
+
+    def test_reviewed_whole_units_follow_catholic_content_sequence(self):
+        before = copy.deepcopy(self.source)
+        projected = hebrew_presentation.aligned_book(self.source)
+        self.assertEqual(self.source, before)
+        chapters = {chapter["number"]: chapter for chapter in projected["chapters"]}
+        expected = {3: [24, 25, 26, 27, 28], 10: [1, 2, 3, 5, 4, 6],
+                    31: [13, 15, 14, 16], 33: [26, 27, 28, 30], 36: [23, 24, 25, 26, 27],
+                    37: [22, 24, 25, 26], 38: [20, 21, 22, 23], 48: [6, 7, 8, 9], 50: [1, 2, 3, 4]}
+        for number, sequence in expected.items():
+            with self.subTest(chapter=number):
+                chapter = chapters[number]
+                self.assertEqual([row["verse"] for row in chapter["verses"] if row["verse"] in sequence], sequence)
+                if "contentBlocks" in chapter:
+                    self.assertEqual([block["verse"] for block in chapter["contentBlocks"]
+                        if block["kind"] == "verse" and block["chapter"] == number and
+                        block["verse"] in sequence], sequence)
+        self.assertEqual(chapters[11]["contentBlocks"][-1],
+                         {"id": "sir-11-34", "kind": "verse", "chapter": 11, "verse": 34})
+        self.assertEqual([block["verse"] for block in chapters[12]["contentBlocks"][:2]], [1, 2])
+        self.assertNotIn("addressRoutes", projected)
+        self.assertEqual(next(row for row in chapters[33]["verses"] if row["verse"] == 28)["endVerse"], 29)
+
+    def test_projection_conserves_every_full_unit_note_witness_and_boundary(self):
+        projected = hebrew_presentation.aligned_book(self.source)
+        source_units = [(chapter["number"], row) for chapter in self.source["chapters"] for row in chapter["verses"]]
+        projected_units = [(chapter["number"], row) for chapter in projected["chapters"] for row in chapter["verses"]]
+        self.assertEqual(sorted(source_units, key=lambda item: (item[0], item[1]["verse"])),
+                         sorted(projected_units, key=lambda item: (item[0], item[1]["verse"])))
+        source_blocks = [block for chapter in self.source["chapters"] for block in chapter.get("contentBlocks", [])]
+        projected_blocks = [block for chapter in projected["chapters"] for block in chapter.get("contentBlocks", [])]
+        self.assertEqual(sorted(source_blocks, key=lambda block: block["id"]),
+                         sorted(projected_blocks, key=lambda block: block["id"]))
+        source_chapters = {chapter["number"]: chapter for chapter in self.source["chapters"]}
+        for chapter in projected["chapters"]:
+            original = source_chapters[chapter["number"]]
+            if chapter["number"] in (41, 42, 51):
+                self.assertEqual(chapter, original)
+            if chapter["number"] == 31:
+                self.assertEqual([block for block in chapter["contentBlocks"]
+                                  if block.get("verse", 19) >= 19],
+                                 [block for block in original["contentBlocks"]
+                                  if block.get("verse", 19) >= 19])
+            self.assertEqual(chapter.get("isComplete", True), original.get("isComplete", True))
+
+    def test_changed_source_requires_new_review(self):
+        changed = copy.deepcopy(self.source)
+        changed["chapters"][0]["verses"][0]["text"] += " synthetic change"
+        with self.assertRaisesRegex(ValueError, "source changed; review Catholic presentation again"):
+            hebrew_presentation.aligned_book(changed)
+
+    def test_forged_unit_pin_is_rejected(self):
+        reviews = copy.deepcopy(self.reviews)
+        reviews["books"]["SIR"]["reorderings"][0]["units"][0]["textSHA256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "reviewed source unit changed"):
+            hebrew_presentation.aligned_book(self.source, reviews)
+
+    def test_duplicate_or_missing_reading_unit_is_rejected(self):
+        for sequence in ([25, 25, 26], [25, 26]):
+            reviews = copy.deepcopy(self.reviews)
+            reviews["books"]["SIR"]["reorderings"][0]["readingVerses"] = sequence
+            with self.subTest(sequence=sequence), self.assertRaisesRegex(ValueError, "preserve each complete source unit"):
+                hebrew_presentation.aligned_book(self.source, reviews)
+
+    def test_unreviewed_source_order_is_rejected(self):
+        reviews = copy.deepcopy(self.reviews)
+        reviews["books"]["SIR"]["reorderings"][0]["sourceVerses"] = [25, 26, 27]
+        with self.assertRaisesRegex(ValueError, "reviewed source order changed"):
+            hebrew_presentation.aligned_book(self.source, reviews)
+
+    def test_changed_chapter_return_boundary_is_rejected(self):
+        reviews = copy.deepcopy(self.reviews)
+        reviews["books"]["SIR"]["chapterReturns"][0]["sourceNextVerse"] = 3
+        with self.assertRaisesRegex(ValueError, "chapter return boundaries require exact pins"):
+            hebrew_presentation.aligned_book(self.source, reviews)
 
 
 if __name__ == "__main__":

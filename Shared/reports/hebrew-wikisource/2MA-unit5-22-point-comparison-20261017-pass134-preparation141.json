@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 134,
+  "integrationPass": 134,
+  "preparationID": 141,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "2MA",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation141-2MA-5-22/source-provenance.json",
+    "sha256": "ca8d98217a91d5bd66d88c9a83bfea1157ec242400cd90d2e86537b9aab3a71d"
+  },
+  "sourceNotesBefore": 8,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "2ma-5-22-lamed-3-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "d3e81b238e6666e486b2dadeea3a32fca61796f61ae982a2d8972e9a8831592c",
+  "contentSHA256After": "2f31c3b0bf55af042b8a2ad3c11ed5f984684d948eb242bce83b19949b0cd863",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "2ma-5-22-lamed-3-vowel",
+      "book": "2MA",
+      "chapter": 5,
+      "verse": 22,
+      "anchorBefore": "פִּילפּוֹס",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "Own third Lamed body ends1380. After three clear rows, a single compact oval117px12x13 occupies[1210,1384,1222,1397] at threshold128. It is detached from the whole Lamed; full field below1397 through1430 is clear below192, with no second node, bar or descending stem. Literal SAMEWORD first Pe independently has one compact112px12x12 lower dot[1320,1384,1332,1396], the same rounded class. First Pe existing internal Dagesh69px[1330,1338,1340,1348] is a separate preserved mark and does not supply this reading. The own native compact single lower dot certifies Hiriq U05B4; no expected spelling, other name occurrence or companion witness supplies the mark. Independent peer: Independent native complete six-consonant word identifies third Lamed separately from both Pe letters, Yod, Vav and Samekh. Its body ends1380 at128; three clear rows1381..1383 precede a single compact117px12x13 rounded lower dot at1210..1222,y1384..1397. At64 its90px core remains compact;192 adds only the same single148px oval. The full1056px lower continuation has minimum240 and zero pixels below192, excluding additional lower node or stem. Same-word first Pe has a separately detached112px12x12 rounded lower point at1320..1332,y1384..1396, physically matching this class; its internal69px dot is distinct and preserved. Own compact single lower dot independently certifies Hiriq U05B4. No companion mark, expected spelling, grammar or another occurrence supplies the class.",
+      "targetCapture": "extension-volumeB-199-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeB-199-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1192,
+        1274,
+        1250,
+        1381
+      ],
+      "markProposed": "Hiriq",
+      "codePoint": "U+05B4",
+      "pointBounds": [
+        1210,
+        1384,
+        1222,
+        1397
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation141-2MA-5-22/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 22,
+      "before": "וַיַּשְׁאֵר פְּקִידִים לְהָרֵעַ לָעָם אֶת־פִּילפּוֹס מֵעַם־הַפְרִיגִים בִּירוּשָׁלֵם וְהוּא אַכְזָרִי בְטִבְעוֹ מִמַּפְקִידֵהוּ׃",
+      "after": "וַיַּשְׁאֵר פְּקִידִים לְהָרֵעַ לָעָם אֶת־פִּילִפּוֹס מֵעַם־הַפְרִיגִים בִּירוּשָׁלֵם וְהוּא אַכְזָרִי בְטִבְעוֹ מִמַּפְקִידֵהוּ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 22,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation141-2MA-5-22/independent-review.json",
+    "sha256": "650e692097c319a781e10b6d4a486b19236481772133a2edc9f44863bd172bc1"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation141-2MA-5-22/primary-preparation.json",
+    "sha256": "f2d396fe4ea90a2bf81c21defc2d558a51e366cd00460128abacc976b33231cf"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation141-2MA-5-22/consensus-preparation.json",
+    "sha256": "eb5352c080300d411c37107f9d4af6ed5dc06121d13bdc1faa68d07ce23276c2"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|2 Maccabees 12:43–46",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|2 Maccabees 1:23–27",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

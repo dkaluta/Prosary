@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 136,
+  "integrationPass": 136,
+  "preparationID": 155,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation155-ESG-3-1/source-provenance.json",
+    "sha256": "8734bbae0dc12bd8cc80edbb7027265400d061dec86891632eacff0ef3160c0c"
+  },
+  "sourceNotesBefore": 16,
+  "sourceNotesAfter": 15,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-3-1-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "aa8d30fe8ae05c2fd37404aa2f791d82a426da2b337edffe8ec7cf41d1139e52",
+  "contentSHA256After": "d09096b0ed396e0e863eef574f6b90c47025dfde4edeb445618b3a91f706d860",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-3-1-1-vowel",
+      "book": "ESG",
+      "chapter": 3,
+      "verse": 1,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "finding": "OwnfourthKaf completebodyends373. Fiveclearrows separate an independent196px28x8horizontalplate[560,379,588,387] at128. Bar remainswide throughitslowerrows with no descendingstem or secondnode; entirefield390..439 below192 isclear. Literal SAMEWORDfirstMem has separately exposed419px25x31 Qamats[765,377,790,408], broadhead377..386 then sustained narrowstem387..407; directnativecontrast distinguishes queriedpurebar from head+stem. OwnDalet separate66pxinternaldot is preserved independently. CertifyPatahU05B7 from own cleanlydetachedhorizontalstamp, without any inheritedpoint from anothername, expectedspelling or normalization. Independent peer: Independent current native whole bracketed word is [Mem-Resh-Dalet-Kaf-Yod], immediately afterויתפלל in the sole source3:1row. OwnfourthKaf has a complete openleft curvedright body ending373, fiveblankrows374..378, then isolated196pixel28x8horizontalplate[560,379,588,387]. At128 the last barrow386 is still24pixelswide; it does not taper into a narrowstem or a secondary lowernode. At64 the samebar is132pixels26x6;at192239pixels30x9ends387. Following390..439field is white255. Literal samewordMem has independent419pixel25x31head/stem[765,377,790,408], with approximately10..13pixelwide sustainedstem to407; this is directly distinct from the targetbar terminating386. Literal samewordDalet bears a detached66pixel7x11interiornode[637,338,644,349], clearly bound tothatDalet and unchanged. Nativefullword/index, cleanownbar and directhead/stemcontrol certify ownKaf Patah U+05B7. No repeatedname occurrence or canonical vowel labels supply a point.",
+      "targetCapture": "extension-volumeA-563-zoom4-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-563-zoom4-mid-right.png",
+      "inspectedBounds": [
+        544,
+        301,
+        603,
+        374
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        560,
+        379,
+        588,
+        387
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation155-ESG-3-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 3,
+      "verse": 1,
+      "before": "וַיִּתְפַּלֵּל [מָרְדְּכי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃",
+      "after": "וַיִּתְפַּלֵּל [מָרְדְּכַי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃"
+    }
+  ],
+  "scope": {
+    "chapter": 3,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation155-ESG-3-1/independent-review.json",
+    "sha256": "a9bfe895d7bee7065efb79b8c8b4ff8f3e940727f637d802ac1d8859ca098070"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation155-ESG-3-1/primary-preparation.json",
+    "sha256": "9e3066a68e06fa2e552568ff8ba6e1b1ba30a6cefc49793333cfa9743d956357"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass136-preparation155-ESG-3-1/consensus-preparation.json",
+    "sha256": "97fe684a124f36d158382fa8fc226dd9fc7937b96edd4fdd5d7de1da31e8351a"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "field": "openingText",
+        "sourceBook": "ESG",
+        "selection": {
+          "chapter": 3,
+          "verse": 1
+        },
+        "frozenSourceScalarSpan": [
+          0,
+          81
+        ],
+        "before": "וַיִּתְפַּלֵּל [מָרְדְּכי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃",
+        "after": "וַיִּתְפַּלֵּל [מָרְדְּכַי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃",
+        "approvedInsertionsWithinSpan": [
+          {
+            "offset": 24,
+            "mark": "ַ",
+            "codePoint": "U+05B7"
+          }
+        ]
+      }
+    ],
+    "dailyRowNoteUpdates": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "chapter": 3,
+        "verse": 1,
+        "before": [
+          {
+            "id": "esg-3-1-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מָרְדְּכי",
+            "occurrence": 1,
+            "letterIndex": 4,
+            "mark": "vowel",
+            "sourcePages": [
+              218
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=218"
+          }
+        ],
+        "after": []
+      }
+    ],
+    "changedRows": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "chapter": 3,
+        "verse": 1,
+        "before": "וַיִּתְפַּלֵּל [מָרְדְּכי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃",
+        "after": "וַיִּתְפַּלֵּל [מָרְדְּכַי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃",
+        "sourceNotesBefore": [
+          {
+            "id": "esg-3-1-1-vowel",
+            "kind": "unreadablePoint",
+            "anchor": "מָרְדְּכי",
+            "occurrence": 1,
+            "letterIndex": 4,
+            "mark": "vowel",
+            "sourcePages": [
+              218
+            ],
+            "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=218"
+          }
+        ],
+        "sourceNotesAfter": []
+      }
+    ],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

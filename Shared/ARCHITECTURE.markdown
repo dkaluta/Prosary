@@ -1900,6 +1900,10 @@ while book and chapter `canonicalReference` metadata identifies their Catholic p
 Baruch 6, Daniel 3/13/14, and Esther A–F. Native pickers and chapter headings use these
 denotations; their verse labels explicitly identify the printed source numbering.
 Source titles, translator credits, printed labels and source gaps remain visible.
+The Hebrew book list keeps Tanakh order, then the deuterocanonical section in
+Catholic relative order, then the New Testament. Separately pinned Sirach reviews
+align selected whole units in the generated Bible's reading and picker order;
+canonical source transcriptions and independent daily mappings retain their own order.
 
 Isolated unreadable Hebrew points may be omitted only with an explicit source note.
 An explicitly approved consonant restoration has a distinct `restoredLetter` note;
@@ -1909,8 +1913,9 @@ readers show the note separately from scripture. Bible archives with notes use
 version 2 so older readers reject them. The contract and strict review rules are in
 [SCRIPTURE-SOURCE-NOTES.markdown](SCRIPTURE-SOURCE-NOTES.markdown).
 
-Bible archive version 3 preserves exceptional printed source order through chapter
-`contentBlocks` and explicit book `addressRoutes`, without duplicating primary text.
+Bible archive version 3 represents exceptional source structure and reviewed reading
+sequences through chapter `contentBlocks` and explicit book `addressRoutes`, without
+duplicating primary text.
 The complete-book installation validator accounts for every primary presentation;
 the reader displays distinct witnesses, unnumbered scripture and source labels.
 Colophon blocks also retain exact source notes without becoming selectable scripture
@@ -2038,6 +2043,16 @@ interface languages and non-Hebrew prayer languages retain the established inter
 behavior. Saved custom names, sourced prayer bodies, and independently authored step headings
 remain intact; the Mission's Our Father heading intentionally retains its tradition when the
 body falls back through another source.
+
+Hebrew Rosary option labels and spoken bead progress follow the selected Hebrew tradition
+through the same sourced-title resolution, including explicit per-prayer overrides. A
+tradition change refreshes opening-prayer names, opening Fatima context, presenter hints,
+Creed names and Hail Mary progress without relying on the global default or fallback order.
+Other interface languages retain their existing labels; Hebrew interfaces use descriptive
+labels for non-Hebrew prayer languages. Static portable option metadata uses descriptive
+Hebrew labels instead of fixing a rite-specific prayer title. The Vicariate Anima Christi
+title is `נפש המשיח` in the Rosary and Stations,
+matching the sourced prayer's incipit; both headings carry Vicariate provenance.
 
 ## Interface languages and new prayer sources
 

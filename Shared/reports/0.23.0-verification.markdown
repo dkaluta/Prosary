@@ -1,0 +1,57 @@
+# Prosary 0.23.0 release verification
+
+Prepared on 2026-10-22 from `feature/home-card-columns` for the authorized merge
+and beta release. Android version is 0.23.0 (60), Apple marketing version is 0.23.0
+(local project build 2300; Xcode Cloud assigns its own build number), and Windows
+package version is 0.23.0.0.
+
+## Changes
+
+- Whole-book Bible readers and page navigation across the native ports, with
+  reviewed Hebrew book and complete-unit reading order.
+- Rite-aware prayer and Rosary choices and sourced Hebrew display titles.
+- Hebrew deuterocanon source-note review through integration pass 157, preserving
+  all remaining uncertain readings and five protected restored-letter notes.
+- Retirement guards for the exact superseded community litany upload, preserving
+  the built-in Litany of Loreto and other authors' prayers.
+
+## Local validation
+
+- Android: 585 unit tests, zero failures/errors/skips; device-test sources compile;
+  signed release bundle builds, including release vital lint.
+- Apple: iOS app and unit-test targets compile on the installed Xcode 27.1 SDK.
+  The iOS 27.1 simulator run reports 606 XCTest tests and two Swift tests with zero
+  failures. Xcode result-bundle finalization is tracked separately during release.
+  All seven preceding integration validation cycles passed the macOS unit suite.
+- Repository: 64 tests pass and the production build succeeds on Node 22.22.2.
+- Bible library: 21 tests pass. A clean staged checkout, without the separate raw
+  evidence archive, passes generation `--check`, 22 Hebrew deuterocanon tests and
+  14 Hebrew daily-reading tests, using the existing hash-pinned offline source cache.
+- Localized content, translation completeness, supplied contributor corrections,
+  and all seven Nicene Creed tests pass. A stale device-test argument list and the
+  exact rite-metadata expectation were repaired before the successful reruns.
+- Windows runtime tests passed in GitHub CI run `39687947041` at `a249a0f6`.
+  Building and publishing an MSIX still requires Windows and has not been done here.
+
+The documented iPhone 17 Pro simulator is absent locally. An existing iOS 27.0
+simulator could not launch the test host; the successful test assertions use the
+existing iOS 27.1 iPhone Duo simulator. No new simulators were created.
+
+## Artifacts and distribution boundaries
+
+The signed Android bundle SHA-256 is
+`7c4db6e33ef0858e0459df81542342267be0bb2c7860f2e700a5021f39bae960`.
+Android publishing targets the existing Play closed-alpha track. Pushing `main`
+triggers Xcode Cloud; archive, processing, internal TestFlight, external review and
+public availability must be verified separately. This is a beta release, not the
+1.0 App Store launch.
+
+The [source-review publication record](hebrew-source-review-publication-20261022.markdown)
+documents the separate lossless release asset and every original evidence hash.
+The full archive was read back and verified before publication. Raw evidence and
+obsolete generated Bible revisions remain intact locally and are excluded from the
+new Git commit. The currently referenced Bible archive is included.
+
+The Repository's deployed catalog/access guards do not themselves prove deletion
+of an old public blob or installation of its database constraint. Those maintenance
+steps require working production configuration and separate verification.

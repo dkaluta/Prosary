@@ -126,8 +126,8 @@ final class PrayerNamePresentationTests: XCTestCase {
     }
     UserDefaults.standard.set("he-x-gamliel", forKey: LanguageCatalog.defaultsKey)
     LanguageCatalog.setFallbackOrder(["he-x-gamliel", "he"])
-    let expectedTitles = ["ourFather": "אבינו שבשמים", "hailMary": "שלום לך",
-                          "gloryBe": "שבח לאב", "creed": "אני מאמין", "holyGod": "קדוש האלהים"]
+    let expectedTitles = ["ourFather": "אבינו שבשמים", "hailMary": "שמחי מרים",
+                          "gloryBe": "כבוד לאב", "creed": "אני מאמין", "holyGod": "קדוש האלהים"]
     for (id, expected) in expectedTitles {
       let prayer = try XCTUnwrap(BasicPrayerCatalog.prayer(id: id))
       let name = PrayerNamePresentation.basicPrayer(prayer, languageCode: "he",
@@ -169,6 +169,66 @@ final class PrayerNamePresentationTests: XCTestCase {
       XCTAssertEqual(PrayerNamePresentation.basicPrayer(prayer, languageCode: "en",
         interfaceLanguage: "he", showPrayerLanguage: false).title, "Our Father")
       XCTAssertEqual(LanguageCatalog.resolve("").code, language)
+    }
+  }
+
+  func testHebrewRosaryOptionNamesFollowTheExplicitRiteAgainstTheAppDefault() throws {
+    let savedInterface = InterfaceLanguageStore.shared.selection
+    let savedDefault = UserDefaults.standard.object(forKey: LanguageCatalog.defaultsKey)
+    let savedOrder = UserDefaults.standard.object(forKey: LanguageCatalog.fallbackOrderKey)
+    defer {
+      InterfaceLanguageStore.shared.selection = savedInterface
+      for (key, value) in [(LanguageCatalog.defaultsKey, savedDefault), (LanguageCatalog.fallbackOrderKey, savedOrder)] {
+        if let value { UserDefaults.standard.set(value, forKey: key) }
+        else { UserDefaults.standard.removeObject(forKey: key) }
+      }
+    }
+    InterfaceLanguageStore.shared.selection = "he"
+    for (language, other, ourFather, hailMary, gloryBe, creed, cross) in [
+      ("he", "he-x-gamliel", "אבינו שבשמים", "שמחי מרים", "כבוד לאב", "אני מאמין", "סימן הצלב"),
+      ("he-x-gamliel", "he", "תפילת האדון", "שלום לך מרים", "השבח לאב", "מאמינים של ניקאה", "אות הצלב"),
+    ] {
+      UserDefaults.standard.set(other, forKey: LanguageCatalog.defaultsKey)
+      LanguageCatalog.setFallbackOrder([other, language])
+      func label(_ key: String, chosen: String? = nil) -> String {
+        RosaryPrayerLabels.option("favoriteEditor." + key, languageCode: chosen ?? language, fallback: "missing")
+          .replacingOccurrences(of: "\u{2068}", with: "").replacingOccurrences(of: "\u{2069}", with: "")
+      }
+      XCTAssertEqual(label("openingPrayers"), "“\(ourFather)” ו־3 “\(hailMary)” בפתיחה")
+      XCTAssertEqual(label("openingFatimaPrayer"), "“הו ישוע שלי” אחרי תפילת “\(gloryBe)” הפותחת")
+      XCTAssertEqual(label("apostlesCreed"), creed)
+      XCTAssertEqual(label("finalSignOfCross"), "\(cross) בסוף")
+      XCTAssertTrue(label("presenterModeFooter").contains("“\(hailMary)”"))
+      XCTAssertTrue(label("presenterModeFooter").contains("“\(gloryBe)”"))
+      let schemaOption = try XCTUnwrap(PrayerPackStore.options(for: "rosary").first { $0.key == "openingPrayers" })
+      XCTAssertEqual(schemaOption.localizedName(bundleId: "rosary", languageCode: language),
+                     RosaryPrayerLabels.option("favoriteEditor.openingPrayers", languageCode: language, fallback: "missing"))
+      let antiphon = try XCTUnwrap(PrayerPackStore.options(for: "rosary").first { $0.key == "antiphon" })
+      for optionCase in antiphon.cases ?? [] {
+        guard let value = MarianAntiphonOption(rawValue: optionCase.id), value != .none, value != .seasonal else { continue }
+        XCTAssertEqual(antiphon.localizedCaseName(optionCase, bundleId: "rosary", languageCode: language),
+                       value.displayName(languageCode: language))
+      }
+      let inherited = label("openingPrayers", chosen: "")
+      XCTAssertEqual(inherited, label("openingPrayers", chosen: other))
+    }
+  }
+
+  func testRosaryCaptionsKeepOtherInterfacesAndUseNeutralHebrewForOtherPrayerLanguages() {
+    for language in ["he", "he-x-gamliel", "en", "arc"] {
+      let opening = RosaryPrayerLabels.option("favoriteEditor.openingPrayers", languageCode: language,
+                                             interfaceLanguage: "en", fallback: "missing")
+      XCTAssertEqual(opening, UILanguage.text("favoriteEditor.openingPrayers", language: "en", fallback: "missing"))
+      XCTAssertEqual(RosaryPrayerLabels.hailMaryProgress(3, total: 10, languageCode: language,
+                                                        interfaceLanguage: "en"), "Hail Mary 3 of 10")
+    }
+    for language in ["en", "arc"] {
+      XCTAssertEqual(RosaryPrayerLabels.option("favoriteEditor.openingPrayers", languageCode: language,
+                                               interfaceLanguage: "he", fallback: "missing"), "תפילות פתיחה")
+      XCTAssertEqual(RosaryPrayerLabels.hailMaryProgress(3, total: 10, languageCode: language,
+                                                        interfaceLanguage: "he"), "תפילה 3 מתוך 10")
+      XCTAssertEqual(RosaryPrayerLabels.option("favoriteEditor.fatimaPrayer", languageCode: language,
+                                               interfaceLanguage: "he", fallback: "missing"), "תפילת פאטימה בסוף כל רז")
     }
   }
 }

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 225,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation225-WIS-5-17/source-provenance.json",
+    "sha256": "7a2e61086d8b67b5e0c54555dd40c0a77fe5d48236e151eecd68830b9a45c571"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-17-kaf"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-5-17-kaf",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 17,
+      "anchorBefore": "כּנֶּשֶׁק",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Owncompleteword nativeASCII and components: Kaf878px[1848,343,1881,400] rightstem joins heavy lowerbar371..382; attached irregular extension383..399 has narrow verticalfoot but no independently separable exact vowel head. Blank surroundings do not certifyabsence. Existing Kaf Dagesh39px[1861,361,1868,368] separately readable, preserve it. Retain unreadable vowel note and every original scalar.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b9/b96ea0a805aae38b87eebd87baf6f4ae7f091d339cf73c1259c494d29e1e1c57.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/b9/b96ea0a805aae38b87eebd87baf6f4ae7f091d339cf73c1259c494d29e1e1c57.bin",
+      "inspectedBounds": [
+        1845,
+        338,
+        1886,
+        407
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation225-WIS-5-17/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 17,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation225-WIS-5-17/independent-review.json",
+    "sha256": "6ffc014c9b88adf06d080cb2090bea2d8ddd97b64dfdfab734c36ed7712701e1"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation225-WIS-5-17/primary-preparation.json",
+    "sha256": "c5e7269bb66dfdbb291a51133e91948467171721dc25003004e4ed154363f8a7"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation225-WIS-5-17/consensus-preparation.json",
+    "sha256": "109ed580a6a4e69465d99542e13a36433242583fb5ffae23cbc72f514920729e"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

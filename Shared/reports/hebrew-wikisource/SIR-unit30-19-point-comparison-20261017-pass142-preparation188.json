@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 142,
+  "integrationPass": 142,
+  "preparationID": 188,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation188-SIR-30-19/source-provenance.json",
+    "sha256": "a54739c5cc64cf4a5a806eccd3d7b24a585b4bbb298c08673702d3074050f05a"
+  },
+  "sourceNotesBefore": 20,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-30-19-yod-vowel"
+  ],
+  "contentSHA256Before": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-30-19-yod-vowel",
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 19,
+      "anchorBefore": "שֶׁ[ישׁ]",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own completeש[יש] has threeHebrewletters Shin-Yod-Shin plusprintedbrackets; Yod2body660px26x46[784,1637,810,1683]. Queriedlowerstamp independentlydetached288px28x15[784,1709,812,1724] shows TWOupperlobes separatedwhitegap1709..1712, thenfusesinto onebroadirregularmass1713..1718 andtapersunevenlyrightthrough1723. No continuouswhitesplitbetweenpotentialnodes; exactTsere/Patah/otherclass cannotbeindependentlycertified fromthisownstamp andnoconventionalspellingused. Retainexactvowelomissionnote/allscalars/brackets. Literal ownfirstShin Segol independentlyhasTHREEseparatenodes81px10x10[869,1719,879,1729],91px10x10[884,1719,894,1729],104px12x12[874,1732,886,1744]; ownfinalShin upperrightdot87px10x10[756,1622,766,1632] independentlyvisible. OwnYodalsohas separate93px10x10 interiorinknode[789,1665,799,1675]; itsclassification/canonicalabsence isnotadjudicatedunderthisvowel-onlynote, explicitlydeferredwithoutanyedit.",
+      "targetCapture": "extension-volumeB-497-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeB-497-zoom4-header.png",
+      "inspectedBounds": [
+        784,
+        1637,
+        810,
+        1683
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation188-SIR-30-19/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 30,
+    "verse": 19,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation188-SIR-30-19/independent-review.json",
+    "sha256": "b2c6ce5a2a7ffca07b7def31d84ac42b3a13618c91ce45b701e3d93d6a4e66e0"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation188-SIR-30-19/primary-preparation.json",
+    "sha256": "584e9bb6d30aa59b1437761217eb0daeb8dc226f6c3ccdf9161fad1b7f527008"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-preparation188-SIR-30-19/consensus-preparation.json",
+    "sha256": "2c57957f242bdfa851a97af4e628461c1464ec92b8cd8c3668aaf216df978f66"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

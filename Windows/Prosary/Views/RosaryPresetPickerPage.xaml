@@ -163,7 +163,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="PickerOpeningPrayers" Grid.Column="0" Text="Opening Our Father &amp; 3 Hail Marys" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.OpeningPrayersLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningPrayers, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid>
@@ -171,7 +171,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="PickerOpeningFatima" Grid.Column="0" Text="Fatima Prayer after the opening Glory Be" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.OpeningFatimaLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeOpeningFatimaPrayer, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid>
@@ -179,7 +179,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="PickerFatima" Grid.Column="0" Text="Fatima Prayer after each decade" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.FatimaLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFatimaPrayer, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid>
@@ -203,7 +203,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="PickerStMichael" Grid.Column="0" Text="St. Michael prayer" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.StMichaelLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeStMichaelPrayer, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid>
@@ -211,7 +211,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock x:Uid="PickerFinalCross" Grid.Column="0" Text="Final Sign of the Cross" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind ViewModel.FinalSignLabel, Mode=OneWay}" VerticalAlignment="Center" TextWrapping="Wrap" />
                                     <ToggleSwitch Grid.Column="1" OnContent="" OffContent="" IsOn="{x:Bind ViewModel.IncludeFinalSignOfCross, Mode=TwoWay}" />
                                 </Grid>
                                 <Grid ColumnSpacing="8">

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 138,
+  "integrationPass": 138,
+  "preparationID": 164,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation164-ESG-7-1/source-provenance.json",
+    "sha256": "ddbacc1a2d1abca2f952475964232cb81994988783ec3be7c1bb464ac9b0f380"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 9,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-7-1-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "21f903caa7f57ed8b6ce7216c4d4c07347b0b550677873cf3ef90617ffaf2258",
+  "contentSHA256After": "c9fa00f71d99e0dca21e4e4238901888af2fe6c1d70d1cc4c5721bd21c7feaca",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-7-1-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 1,
+      "anchorBefore": "מָרְדְּכי",
+      "letterIndex": 4,
+      "decision": "retireNote",
+      "finding": "Own full Kaf lower body has wide baseline through532, then right upward bridge533..537 and short additional horizontal plate below538..547. Main plate widens left647.. to676right through541..544; no sustained downward stem and no ink below192 in51rows549..599. This is explicitly not detached: upward body contact is disclosed. Literal ownunit initial Vav in completeויאמר has narrowshaft through533, narrow bridge534..535, and additional25px-wide horizontalplate[1218,536,1243,548], ending on identical548baseline, clear below. Its full lowfield supports literal Patah independently from body stroke. Sameword Mem has detached480px28x31 Qamats[852,538,880,569], broad head538..547 then sustained8..13px narrowstem548..568. Own Kaf plate has short horizontal configuration matching literal Vav, contrasting long Mem stem. Only own Kaf Patah U05B7 proposed; no prior name, canonical vowel, grammar or expected spelling supplies a point. Independent peer: Independent peer verifies unprefixed five-letter Mem-Resh-Dalet-Kaf-Yod between ויאמר and מאת, own Kaf index4. Kaf has main basal body through532, narrower upward bridge533..537 and added short broad lower plate538..547, explicitly connected above. Its lower plate broadens both sides of the narrower bridge then ends on548baseline, with clear lowerfield through599 at192 and no sustained downstem. Independently read initial Vav in complete ויאמר has narrowshaft,6..8px bridge534..535 then broad19..25px lower horizontal plate536..547, same baseline and no downstem. Own Mem has separate480px28x31 Qamats, broadhead538..547 then sustained narrowstem548..568, plainly distinct. Literal Vav short horizontal point and own Kaf added lowerplate support own Patah U05B7 despite disclosed upward contact. No other name or canonical vowel supplies this class.",
+      "targetCapture": "extension-volumeA-569-zoom4-mid-right.png",
+      "targetSourceIdentifier": "extension-volumeA-569-zoom4-mid-right.png",
+      "inspectedBounds": [
+        631,
+        461,
+        690,
+        548
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        647,
+        536,
+        677,
+        548
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation164-ESG-7-1/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 7,
+      "verse": 1,
+      "before": "וַיֹּאמֶר מָרְדְּכי מֵאֵת יְיָ הָיְתָה זֹאת׃",
+      "after": "וַיֹּאמֶר מָרְדְּכַי מֵאֵת יְיָ הָיְתָה זֹאת׃"
+    }
+  ],
+  "scope": {
+    "chapter": 7,
+    "verse": 1,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation164-ESG-7-1/independent-review.json",
+    "sha256": "1e4a1ad98ddb419d71b81c5c090277aaa25847d67be73ec9f9d7dc6a13317227"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation164-ESG-7-1/primary-preparation.json",
+    "sha256": "371f9fce0184cc3efaba681d4d0e5764cdb446b379427b59aef0cf614d116115"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation164-ESG-7-1/consensus-preparation.json",
+    "sha256": "c79a5c566aeaeda65c7bb36fecf29d6756082886a36a26db3cd5960822ebbf69"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

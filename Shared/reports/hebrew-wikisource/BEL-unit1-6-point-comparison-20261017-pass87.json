@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 87,
+  "book": "BEL",
+  "status": "Exact printed point decisions certified from existing authorized offline scan captures.",
+  "applicationState": "Root and independent pixel review completed; applied. Regeneration and runtime checks recorded separately in integration report.",
+  "method": "Native pixel crops and integer nearest-neighbor only. Raw pixel ASCII and component measurements; no OCR, enhancement, grammar, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass87-BEL-1-6/source-provenance.json",
+    "sha256": "bca9ae237f13f06f2d6d56918e63d13fd76c3a4463698a90cf74e1192fc5fb5f"
+  },
+  "sourceNotesBefore": 19,
+  "sourceNotesAfter": 17,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-6-243-vayomer6-letter1-vowel",
+    "bel-1-6-243-vayomer6-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "3a753667ffa9932d45dbea5fd165a302d8ef93061dea4c9b6b3c2fca0aa2069c",
+  "contentSHA256After": "15d26e29b791a96b3ec840f45a2a7ee329e52c4f05a677425e55859e5d0fbd14",
+  "combiningMarksAdded": 2,
+  "decisions": [
+    {
+      "noteId": "bel-1-6-243-vayomer6-letter1-vowel",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 6,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "The vav shaft ends at y1016; after eight clear rows a detached broad horizontal stroke occupies y1024–1043. It has one continuous upper plateau, no pair of separate lower dots, and no long central descending qamats stem. Its literal same-letter patah comparator in lower-source ויהי3 is likewise a detached horizontal stroke [982,1271,1010,1281], area229 in zoom4, below shaft [974,1194,1003,1263]. The tiny lower-right residual is a three-row edge fragment, not a long central stem.",
+      "targetCapture": "extension-volumeA-588-zoom6-mid-right.png",
+      "letterBounds": [
+        923,
+        912,
+        969,
+        1016
+      ],
+      "pointBounds": [
+        930,
+        1024,
+        976,
+        1046
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass87-BEL-1-6/independent-pixel-preparation.json"
+    },
+    {
+      "noteId": "bel-1-6-243-vayomer6-letter2-dagesh",
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 6,
+      "anchorBefore": "ויֹאמֶר",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "dagesh",
+      "codePoint": "U+05BC",
+      "markClassification": "Dagesh",
+      "finding": "The short yod contour and the interior dot are separate connected components. The dot lies left of the lower yod shaft and below its broad cap; a clear white channel separates them. Same-row kaf in כי has a separate interior dot [412,970,431,981], area166.",
+      "targetCapture": "extension-volumeA-588-zoom6-mid-right.png",
+      "letterBounds": [
+        877,
+        916,
+        911,
+        981
+      ],
+      "pointBounds": [
+        881,
+        955,
+        896,
+        970
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass87-BEL-1-6/independent-pixel-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 6,
+      "before": "ויֹאמֶר כִּי אֵינֶנִּי עוֹבֵד צְלָמִים מַעֲשֵׂי יְדֵי אָדָם כִּי־אִם אֶת־הָאֱלֹהִים הַחַי קוֹנֵה שָׁמַיִם וָאָרֶץ אָדוֹן כָּל־בָּשָׂר׃",
+      "after": "וַיֹּאמֶר כִּי אֵינֶנִּי עוֹבֵד צְלָמִים מַעֲשֵׂי יְדֵי אָדָם כִּי־אִם אֶת־הָאֱלֹהִים הַחַי קוֹנֵה שָׁמַיִם וָאָרֶץ אָדוֹן כָּל־בָּשָׂר׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 6,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true
+  }
+}

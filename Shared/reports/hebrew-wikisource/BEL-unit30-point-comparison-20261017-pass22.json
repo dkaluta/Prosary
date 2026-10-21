@@ -1,0 +1,1448 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 22,
+  "book": "BEL",
+  "status": "Three literal yod dagesh points approved; two initial-vav vowels retained in complete source 30",
+  "applicationState": "pendingRootIntegration; no canonical source, gate or generated file modified by author",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf",
+  "method": "Continue the first cycle through unreviewed annotated complete units. All five source 30 positions re-addressed against fresh complete glyphs, whole source words and numbered context on original PDF page 246. Literal detached and merged pointed yods and a paired plain yod challenge the three BC readings; detached vowel classes, full vav under-sheva and ordinary shuruq-vav footer challenge both retained initial vowels. Native extraction and integer nearest-neighbor enlargement only. No expected wording, grammar, OCR, sharpening, smoothing, normalization or other witness supplies any point. All 51 exported PNGs replay against original embedded pixels within original image bounds; all five target crops nest identically inside their complete native words.",
+  "baselineGlobalSourceNoteCount": 501,
+  "canonicalSHA256Before": "83ca33d5d04f8943fe81e5d82833e5678215a32bb7b9185cca120ca850c08f6a",
+  "contentSHA256Before": "1becdf4787bd5b790239a30140fe99a6c91140bd7fc505240751331784ddc326",
+  "contentSHA256After": "9fbc3a07c7af37c7cd45bdfdc4df74553cb0907900359cb6d1c63f559bf87b8f",
+  "sourceNotesBefore": 146,
+  "sourceNotesAfter": 143,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 2,
+  "retiredSourceNoteIds": [
+    "bel-1-30-246-daniel-letter3-dagesh",
+    "bel-1-30-246-vayar30-letter2-dagesh",
+    "bel-1-30-246-vayiten30-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "bel-1-30-246-vayar30-letter1-vowel",
+    "bel-1-30-246-vayiten30-letter1-vowel"
+  ],
+  "combiningMarksAdded": 3,
+  "addedCombiningMarks": {
+    "U+05BC DAGESH": 3
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 30,
+      "id": "bel-1-30-246-vayar30-letter1-vowel",
+      "oldAnchor": "ויַרְא",
+      "newAnchor": "ויַּרְא",
+      "oldOccurrence": 1,
+      "newOccurrence": 1
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 30,
+      "id": "bel-1-30-246-vayiten30-letter1-vowel",
+      "oldAnchor": "ויִתֵּן",
+      "newAnchor": "ויִּתֵּן",
+      "oldOccurrence": 1,
+      "newOccurrence": 1
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 30,
+      "originalText": "ויַרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵאל׃",
+      "correctedText": "ויַּרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִּתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵּאל׃",
+      "textSHA256Before": "633d5d2dc38df00982b5abe1307b90dd89a593c9caae08988cb62a9e57727b6d",
+      "textSHA256After": "b346ebd23e358029c5fbe1ac71bbf7efd81f418a233631a1ff8ad3aa00acf115",
+      "combiningMarksAdded": 3,
+      "retiredNoteIds": [
+        "bel-1-30-246-daniel-letter3-dagesh",
+        "bel-1-30-246-vayar30-letter2-dagesh",
+        "bel-1-30-246-vayiten30-letter2-dagesh"
+      ],
+      "selectedByCompleteDailyAppointment": false
+    }
+  ],
+  "scope": {
+    "priority": "First cycle through still-unreviewed annotated complete units before ambiguity revisits",
+    "chapter": 1,
+    "verse": 30,
+    "allFiveUnitDisclosuresReviewed": true,
+    "allReviewedChaptersContainAnnotationsAtBaseline": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Stored source 30 starts וירא המלך near the end of page 246 lower Theodotion row labeled 30, after source 29 concludes ואת־ביתך׃. It continues on the following physical row through את־דניאל׃, before source 31 begins וישליכו אותו. Preserve the complete source unit, its punctuation, every existing scalar and combining-mark order, witnesses, gaps, all five restoration disclosures and Catholic presentation.",
+  "independentReview": {
+    "root": "Root accepts three exact BC additions after existing B5, B7 and B4, occurrence 1, after viewing three complete glyphs, three whole words, complete source 30 numbered context, paired BEL15 plain and pointed glyphs plus word, and detached BEL36 glyph plus word. Each has a pronounced low-left rounded branch following a head inset beside a narrower terminating right tail; the vayiten bottom notch is distinct. The plain control has only the right tail. Root also viewed both complete initial-vav targets and agrees to retain both notes because their merged broad bases lack a unique separate mark.",
+    "WISPeer": "Independent WIS peer accepts all three BEL30 BC additions after fresh views of all twelve requested frames. Each complete yod has a lower-left rounded branch after head recession beside a narrower continuing right tail; the branch is especially distinguished by a lower notch in vayiten, but none requires an inner white window. Detached BEL36 node position and paired BEL15 pointed body corroborate; paired BEL15 plain lacks the branch. Complete words and numbered 29/30 context secure source 30 from וירא through את־דניאל׃ before וישליכו. Append BC after existing B7, B4 and B5 respectively, occurrence 1. No vav vowel approved."
+  },
+  "decisions": [
+    {
+      "chapter": 1,
+      "verse": 30,
+      "retiredNote": {
+        "id": "bel-1-30-246-daniel-letter3-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "דָּנִיֵאל",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "dagesh",
+        "sourcePages": [
+          246
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246"
+      },
+      "oldAnchor": "דָּנִיֵאל",
+      "newAnchor": "דָּנִיֵּאל",
+      "addedCodePoint": "U+05BC",
+      "addedMark": "dagesh",
+      "targetClusterBefore": [
+        "U+05D9",
+        "U+05B5"
+      ],
+      "targetClusterAfter": [
+        "U+05D9",
+        "U+05B5",
+        "U+05BC"
+      ],
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The complete yod has an additional lower-left lobe below a recession in the head beside a narrower continuing right tail. The source-detached BEL36 point occupies that lower-left position, and the paired BEL15 pointed yod has the same added branch while its plain yod has only the tail. This comparison supports the additional dagesh without a white-window or expected-wording inference. Append BC after the already present vowel in the existing scalar order.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target05-daniel-yod-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target05-daniel-yod-COMPLETE-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word03-daniel-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word03-daniel-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png"
+      ],
+      "originalText": "ויַרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵאל׃",
+      "correctedText": "ויַּרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִּתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵּאל׃",
+      "textSHA256Before": "633d5d2dc38df00982b5abe1307b90dd89a593c9caae08988cb62a9e57727b6d",
+      "textSHA256After": "b346ebd23e358029c5fbe1ac71bbf7efd81f418a233631a1ff8ad3aa00acf115"
+    },
+    {
+      "chapter": 1,
+      "verse": 30,
+      "retiredNote": {
+        "id": "bel-1-30-246-vayar30-letter2-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "ויַרְא",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          246
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246"
+      },
+      "oldAnchor": "ויַרְא",
+      "newAnchor": "ויַּרְא",
+      "addedCodePoint": "U+05BC",
+      "addedMark": "dagesh",
+      "targetClusterBefore": [
+        "U+05D9",
+        "U+05B7"
+      ],
+      "targetClusterAfter": [
+        "U+05D9",
+        "U+05B7",
+        "U+05BC"
+      ],
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The complete yod has an additional lower-left lobe below a recession in the head beside a narrower continuing right tail. The source-detached BEL36 point occupies that lower-left position, and the paired BEL15 pointed yod has the same added branch while its plain yod has only the tail. This comparison supports the additional dagesh without a white-window or expected-wording inference. Append BC after the already present vowel in the existing scalar order.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target02-vayar-yod-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target02-vayar-yod-COMPLETE-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word01-vayar-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word01-vayar-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png"
+      ],
+      "originalText": "ויַרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵאל׃",
+      "correctedText": "ויַּרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִּתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵּאל׃",
+      "textSHA256Before": "633d5d2dc38df00982b5abe1307b90dd89a593c9caae08988cb62a9e57727b6d",
+      "textSHA256After": "b346ebd23e358029c5fbe1ac71bbf7efd81f418a233631a1ff8ad3aa00acf115"
+    },
+    {
+      "chapter": 1,
+      "verse": 30,
+      "retiredNote": {
+        "id": "bel-1-30-246-vayiten30-letter2-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "ויִתֵּן",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "dagesh",
+        "sourcePages": [
+          246
+        ],
+        "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246"
+      },
+      "oldAnchor": "ויִתֵּן",
+      "newAnchor": "ויִּתֵּן",
+      "addedCodePoint": "U+05BC",
+      "addedMark": "dagesh",
+      "targetClusterBefore": [
+        "U+05D9",
+        "U+05B4"
+      ],
+      "targetClusterAfter": [
+        "U+05D9",
+        "U+05B4",
+        "U+05BC"
+      ],
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The complete yod has an additional lower-left lobe below a recession in the head beside a narrower continuing right tail. The source-detached BEL36 point occupies that lower-left position, and the paired BEL15 pointed yod has the same added branch while its plain yod has only the tail. This comparison supports the additional dagesh without a white-window or expected-wording inference. Append BC after the already present vowel in the existing scalar order.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target04-vayiten-yod-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target04-vayiten-yod-COMPLETE-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word02-vayiten-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word02-vayiten-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png"
+      ],
+      "originalText": "ויַרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵאל׃",
+      "correctedText": "ויַּרְא הַמֶּלֶךְ כִּי הֵצִיקוּ לוֹ מְאֹד ויִּתֵּן לָהֶם מֵאֹנֶס אֶת־דָּנִיֵּאל׃",
+      "textSHA256Before": "633d5d2dc38df00982b5abe1307b90dd89a593c9caae08988cb62a9e57727b6d",
+      "textSHA256After": "b346ebd23e358029c5fbe1ac71bbf7efd81f418a233631a1ff8ad3aa00acf115"
+    }
+  ],
+  "inspections": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 30,
+      "id": "bel-1-30-246-daniel-letter3-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "דָּנִיֵאל",
+      "occurrence": 1,
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The complete yod has an additional lower-left lobe below a recession in the head beside a narrower continuing right tail. The source-detached BEL36 point occupies that lower-left position, and the paired BEL15 pointed yod has the same added branch while its plain yod has only the tail. This comparison supports the additional dagesh without a white-window or expected-wording inference. Append BC after the already present vowel in the existing scalar order.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target05-daniel-yod-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target05-daniel-yod-COMPLETE-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word03-daniel-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word03-daniel-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 30,
+      "id": "bel-1-30-246-vayar30-letter1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויַרְא",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The full initial vav has a broad rounded basal mass joined to its shaft. Exact native nesting disproves the apparent gap in the smaller word display. The width is bar-like but the joined plateau has no uniquely diagnostic partition into an independent vowel; comparison with detached patah, tsere, qamats, single hiriq, under-sheva and ordinary vav foot leaves the point class unresolved. Retain without claiming point absence.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target01-vayar-vav-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target01-vayar-vav-COMPLETE-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word01-vayar-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word01-vayar-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-patah-class-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-patah-class-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-tsere-class-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-tsere-class-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-qamats-class-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-qamats-class-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-qamats-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-patah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-patah-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-tsere-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-tsere-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-avi-bet-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-beiti-avi-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-beiti-avi-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 30,
+      "id": "bel-1-30-246-vayar30-letter2-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "ויַרְא",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The complete yod has an additional lower-left lobe below a recession in the head beside a narrower continuing right tail. The source-detached BEL36 point occupies that lower-left position, and the paired BEL15 pointed yod has the same added branch while its plain yod has only the tail. This comparison supports the additional dagesh without a white-window or expected-wording inference. Append BC after the already present vowel in the existing scalar order.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target02-vayar-yod-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target02-vayar-yod-COMPLETE-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word01-vayar-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word01-vayar-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 30,
+      "id": "bel-1-30-246-vayiten30-letter1-vowel",
+      "kind": "unreadablePoint",
+      "anchor": "ויִתֵּן",
+      "occurrence": 1,
+      "letterIndex": 1,
+      "mark": "vowel",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "decision": "retainUnresolvedSourceNote",
+      "finding": "The full initial vav ends in a broad shallow joined base with an uneven lower edge. Native nesting shows one contiguous shaft and base. The contour lacks two comparable stacked nodes or a uniquely detached single point or bar; literal competing vowel classes and the ordinary vav footer leave a fused-point versus terminal-ink ambiguity. Retain without supplying a vowel.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target03-vayiten-vav-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target03-vayiten-vav-COMPLETE-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word02-vayiten-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word02-vayiten-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-patah-class-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-patah-class-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-tsere-class-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-tsere-class-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-qamats-class-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-qamats-class-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-qamats-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-qamats-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-patah-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-patah-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-tsere-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-tsere-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-avi-bet-hiriq-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-beiti-avi-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-beiti-avi-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-full-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-full-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-complete-control-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-complete-control-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-control-row-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-control-row-3x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 30,
+      "id": "bel-1-30-246-vayiten30-letter2-dagesh",
+      "kind": "unreadablePoint",
+      "anchor": "ויִתֵּן",
+      "occurrence": 1,
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "sourcePages": [
+        246
+      ],
+      "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=246",
+      "decision": "resolvePrintedDageshAndRetireSourceNote",
+      "finding": "The complete yod has an additional lower-left lobe below a recession in the head beside a narrower continuing right tail. The source-detached BEL36 point occupies that lower-left position, and the paired BEL15 pointed yod has the same added branch while its plain yod has only the tail. This comparison supports the additional dagesh without a white-window or expected-wording inference. Append BC after the already present vowel in the existing scalar order.",
+      "evidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target04-vayiten-yod-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target04-vayiten-yod-COMPLETE-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word02-vayiten-COMPLETE-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word02-vayiten-COMPLETE-5x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-20x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/bel30-complete-numbered-context-native.png",
+      "sha256": "339a24b92a5f525af32c6473b47e70e04e2d482785f71b460fce5f6e496603d0",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        200,
+        2100,
+        2370,
+        2430
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word01-vayar-COMPLETE-native.png",
+      "sha256": "1b54247617d7c94ed7881b417ef6b4a3c972318c649bd501f947aecc21194b7f",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        375,
+        2160,
+        610,
+        2300
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word01-vayar-COMPLETE-5x.png",
+      "sha256": "8853daecd18a31fb493f310643b289b13a70b007dbdf5d46300cad07c2eedace",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        375,
+        2160,
+        610,
+        2300
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word02-vayiten-COMPLETE-native.png",
+      "sha256": "b5a94952af2fffa6aa1fa2facdd806e50fbda16327b51cd7b61c34f028f6fb93",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        1290,
+        2260,
+        1480,
+        2400
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word02-vayiten-COMPLETE-5x.png",
+      "sha256": "c2f2995ebb235dd173729911b9fff808b734a70cef84651b1687be75cf002b44",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        1290,
+        2260,
+        1480,
+        2400
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word03-daniel-COMPLETE-native.png",
+      "sha256": "ab6db32c324db6d4a16147b4bd891a1e07626ad6ffc45943f875430c63d7c522",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        650,
+        2260,
+        885,
+        2400
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/word03-daniel-COMPLETE-5x.png",
+      "sha256": "8d8d1d1dcb90007bfaaf1dec38c10079108db786abea89a7717f4d3feeebdb39",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        650,
+        2260,
+        885,
+        2400
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target01-vayar-vav-COMPLETE-native.png",
+      "sha256": "03b50c2889775a9a66a3d8a864cfcbd6f788c531de913c1bd964b018e96b865c",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        552,
+        2215,
+        576,
+        2282
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target01-vayar-vav-COMPLETE-20x.png",
+      "sha256": "3826079b996a8d803037a4ea3bd89838035252f1e6a13560db82c9b2357e3408",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        552,
+        2215,
+        576,
+        2282
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target02-vayar-yod-COMPLETE-native.png",
+      "sha256": "bf592bcd73ef1c2ca61c979a2e48af568acfd089d63ae6ede51b4717b510239f",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        531,
+        2215,
+        552,
+        2282
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target02-vayar-yod-COMPLETE-20x.png",
+      "sha256": "ed616c4bd0acf246fa324d548ff5f1671ad6aba23b9994cf4e2bd6c32d172a08",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        531,
+        2215,
+        552,
+        2282
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target03-vayiten-vav-COMPLETE-native.png",
+      "sha256": "4aa9102186b3dcea25c7fc6eedd1c1587c759bef0603c668915f7f9a927a2b1c",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        1433,
+        2318,
+        1458,
+        2380
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target03-vayiten-vav-COMPLETE-20x.png",
+      "sha256": "bfa06ef4fbdfa7ac8fd58f49614e3e938433fea160827fc857c6313d4caf6f6f",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        1433,
+        2318,
+        1458,
+        2380
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target04-vayiten-yod-COMPLETE-native.png",
+      "sha256": "16ba0186e069841fdc71353f962f381b8f3253894a18f95176ae9a9177558abe",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        1413,
+        2318,
+        1433,
+        2380
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target04-vayiten-yod-COMPLETE-20x.png",
+      "sha256": "8b8c3f630de0930ce483052e78027a9c00eeb749200e1bd566c241eff6b3bb29",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        1413,
+        2318,
+        1433,
+        2380
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target05-daniel-yod-COMPLETE-native.png",
+      "sha256": "d8d55add7cc25c541e0d45279e907fbe2a261b731e7e2f120fd5881bfb3f6285",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        778,
+        2318,
+        800,
+        2380
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/target05-daniel-yod-COMPLETE-20x.png",
+      "sha256": "e9393cc4e83ddec2c75b7d4b2c566ad5b5b6278e267c77543da4b8d334706a16",
+      "page": 246,
+      "originalSize": [
+        2489,
+        3491
+      ],
+      "nativeBounds": [
+        778,
+        2318,
+        800,
+        2380
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-native.png",
+      "sha256": "3c2f7841b3e4397f608c06588d53ccd82ba62d39555665b2ff08ff2277df4e71",
+      "page": 247,
+      "originalSize": [
+        2698,
+        3547
+      ],
+      "nativeBounds": [
+        1867,
+        1377,
+        1891,
+        1422
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-positive-20x.png",
+      "sha256": "4974a99bce5d69544af4283c419c1dc738816f7d16648197ddc68e28acaa7d04",
+      "page": 247,
+      "originalSize": [
+        2698,
+        3547
+      ],
+      "nativeBounds": [
+        1867,
+        1377,
+        1891,
+        1422
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-native.png",
+      "sha256": "f9ede4438211d35582f4ff03129ec78d089a82672497d6a5efb46d762ef2349b",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1832,
+        2882,
+        1864,
+        2953
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-pointed-yod-20x.png",
+      "sha256": "3f2321d46a91a346efd4597c8aa673c8192886b982b5c596ad201a533e519a61",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1832,
+        2882,
+        1864,
+        2953
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-native.png",
+      "sha256": "52ce099a8975bede2bb5126867d5fa0ecc31acdc67d2ea0e33c260a5c85d6aa8",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1778,
+        2888,
+        1802,
+        2940
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-plain-yod-20x.png",
+      "sha256": "0428685a7bdb891474b008d40a99cbd10165a2e244c2186bde8c8c12239d4257",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1778,
+        2888,
+        1802,
+        2940
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-native.png",
+      "sha256": "1e3a5f386fe7f0041c197626ffb08c083f39cfa83a1b701eafa286295b10fbac",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1675,
+        2850,
+        1930,
+        3000
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/paired15-complete-word-4x.png",
+      "sha256": "bef34f47eea828de8d1b32e4ee3fa29f6c7341a0e210531734c1db8f5cf4114e",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        1675,
+        2850,
+        1930,
+        3000
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-native.png",
+      "sha256": "8006ab3989a3f4e6e05bfe7b939fc8b7da1f31d8e2dffa098edc8bb2510bf579",
+      "page": 247,
+      "originalSize": [
+        2698,
+        3547
+      ],
+      "nativeBounds": [
+        1665,
+        1325,
+        1965,
+        1485
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/detached-yod36-COMPLETE-word-4x.png",
+      "sha256": "8dea57860fd7adaeb1f68d6ed4b755c8b5fe0354edb2415ce0df3e2c1414f0eb",
+      "page": 247,
+      "originalSize": [
+        2698,
+        3547
+      ],
+      "nativeBounds": [
+        1665,
+        1325,
+        1965,
+        1485
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-patah-class-native.png",
+      "sha256": "3821fffd0f4cf681d13af84a769b8b2297f17832309de36bd6780a145ed32d1f",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        428,
+        1504,
+        470,
+        1574
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-patah-class-15x.png",
+      "sha256": "58b49fff987229602200bd1b5415ad7ec0d67e150dba18f75dd0596bc3a5d2eb",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        428,
+        1504,
+        470,
+        1574
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-tsere-class-native.png",
+      "sha256": "b3de2982216ff58d808aad9a5fb7717341a575778a69727d396a83161ce7837d",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-tsere-class-15x.png",
+      "sha256": "795c062c9aead575838dc71b33d156352d1d6f68c87c0c29cc7de802e37dab78",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1392,
+        365,
+        1435,
+        465
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-qamats-class-native.png",
+      "sha256": "f42225d14f6f33a84108c8557311335da5ea8f9660b04634483cf54c08556d74",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-detached-qamats-class-15x.png",
+      "sha256": "6596e0d053aa228a9cb155fe37385e0d02e9389658c9187fd1a9cc7e6071aba8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        724,
+        1393,
+        760,
+        1488
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-qamats-COMPLETE-word-native.png",
+      "sha256": "d3c3e23e507e061a1f55857fc37eec0bedd456a7525b2152c8e956104be0d127",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-qamats-COMPLETE-word-4x.png",
+      "sha256": "73acd2c65238d10ed67888ed8c44a4e178c634d1f99749caa489a2f08841832c",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        615,
+        1390,
+        880,
+        1495
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-patah-COMPLETE-word-native.png",
+      "sha256": "2948c1fd48ada7731d53b939b00dbc26e1f89249e3e7952288cbbe05f14c23cb",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        295,
+        1465,
+        560,
+        1605
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-patah-COMPLETE-word-4x.png",
+      "sha256": "531c533fd2be22c99e4e5e40e2307bbd172ab6407e618eaca916a256e71f0cd8",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        295,
+        1465,
+        560,
+        1605
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-tsere-COMPLETE-word-native.png",
+      "sha256": "a40e9445c75980485ca4a7e1933b866608752e4756cc626486d0bf06419e7287",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1350,
+        340,
+        1460,
+        495
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/WIS-tsere-COMPLETE-word-4x.png",
+      "sha256": "9068369c2dd44fc097b142f59e16b056be02033bfdaa0bd7ebf7dbc56ef5e178",
+      "page": 171,
+      "originalSize": [
+        2507,
+        3503
+      ],
+      "nativeBounds": [
+        1350,
+        340,
+        1460,
+        495
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-avi-bet-hiriq-COMPLETE-native.png",
+      "sha256": "ed750fc0c7af4ee9788fa4a9c842a2983b403a6a3fc08a9507b3a2d7b662e7e0",
+      "page": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        380,
+        1690,
+        430,
+        1790
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-avi-bet-hiriq-COMPLETE-15x.png",
+      "sha256": "42f0d09e1c64496cd46efa2ef92f15508104852ea2feea90eb32d7d60ccbaf73",
+      "page": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        380,
+        1690,
+        430,
+        1790
+      ],
+      "scale": 15,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-beiti-avi-COMPLETE-word-native.png",
+      "sha256": "391122d95a0a77be390bcac59587de5889b3f630059e7c3bdc68e7e8304bcb1c",
+      "page": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        330,
+        1665,
+        665,
+        1800
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/ESG-beiti-avi-COMPLETE-word-4x.png",
+      "sha256": "015a930ce2a9b88b48915a2803fdbdbee455d9c5dfa37c03e4cbd136b409ae2f",
+      "page": 219,
+      "originalSize": [
+        2600,
+        3474
+      ],
+      "nativeBounds": [
+        330,
+        1665,
+        665,
+        1800
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-full-control-native.png",
+      "sha256": "c748d7d3ba95d9cfeddd79b3f6c7c362b2a7f067f85281a0f0d2b8a9b0ae5836",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        730,
+        2785,
+        756,
+        2875
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-full-control-20x.png",
+      "sha256": "914527ac8d2899a99d8fc3562dc6d9084fc44639c069e9e5139d70a635148573",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        730,
+        2785,
+        756,
+        2875
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-complete-control-word-native.png",
+      "sha256": "ab5fc1efe8f6ed1a57e42938f2bb7af956977ad78795a43f957407508d88fe63",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        550,
+        2760,
+        790,
+        2890
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-vav-SHEVA-complete-control-word-4x.png",
+      "sha256": "88e0c452c888730ee52f7d81be4d56865c53846feb7666ef2ad3895b845a5b24",
+      "page": 244,
+      "originalSize": [
+        2543,
+        3529
+      ],
+      "nativeBounds": [
+        550,
+        2760,
+        790,
+        2890
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-lowerfoot-control-native.png",
+      "sha256": "7a62244fa7aa2ef133fcde9fd419cd93ea3ebb15d1c5e9554b4bbe6d335269ff",
+      "page": 233,
+      "originalSize": [
+        2625,
+        3493
+      ],
+      "nativeBounds": [
+        1870,
+        1365,
+        1900,
+        1445
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-lowerfoot-control-20x.png",
+      "sha256": "8a8328f7ff8431e27533a58f141e0387d32da2d9be029d2b1476d5c7d2c51efb",
+      "page": 233,
+      "originalSize": [
+        2625,
+        3493
+      ],
+      "nativeBounds": [
+        1870,
+        1365,
+        1900,
+        1445
+      ],
+      "scale": 20,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-control-row-native.png",
+      "sha256": "8467b5e535c78a3b8f62db7c330eff8657462071e05c7362046653a10ffbd12e",
+      "page": 233,
+      "originalSize": [
+        2625,
+        3493
+      ],
+      "nativeBounds": [
+        1150,
+        1340,
+        1950,
+        1450
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/literal-shuruq-vav-ordinary-control-row-3x.png",
+      "sha256": "24c371b31bbd0288d681b32c84917841a94ab0f386532d52e1e060196bbb8774",
+      "page": 233,
+      "originalSize": [
+        2625,
+        3493
+      ],
+      "nativeBounds": [
+        1150,
+        1340,
+        1950,
+        1450
+      ],
+      "scale": 3,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    }
+  ],
+  "nativeFrameCount": 26,
+  "evidenceFileCount": 51,
+  "freshOriginalPageCount": 6,
+  "invariants": {
+    "onlyThreeBCAppendedAfterExistingYodVowels": true,
+    "allPriorSourceScalarsAndCombiningOrderPreserved": true,
+    "allConsonantsAndSourceUnitBoundariesUnchanged": true,
+    "allOriginalPunctuationAndRestorationDisclosuresPreserved": true,
+    "twoRetainedAnchorsRefreshedOnly": true,
+    "noOccurrenceValueChanged": true,
+    "dailyAndCatholicGatesUntouchedByAuthor": true,
+    "allExportedPNGsFreshlyReplayed": true,
+    "allExportedPNGsWithinOriginalImageBounds": true,
+    "allFiveTargetWordNativeNestingVerified": true,
+    "canonicalStillBaselineAtPublication": true,
+    "priorPinnedReportsUnchanged": true
+  },
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/accepted.json",
+    "sha256": "32a61357f4c5d6456b3a8ff98c838e67a6d83ede9c069620150652797eff723c"
+  },
+  "frameLedger": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/frame-ledger.json",
+    "sha256": "d6eb3cd9f9acf9b50d680e10e9b4a380ee166ca8200e3a1660d2d6deddd7e184"
+  },
+  "authorPixelReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/author-original-pixel-replay.json",
+    "sha256": "1ec0b8495d8834f265c3407b936909e6f7679b9c52fc7ca9b8eafe35aae58c35"
+  },
+  "nativeNestingCheck": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass22-BEL-UNIT30/native-nesting-check.json",
+    "sha256": "87107bb4df90bfe8c28ba1e73f19db32a949eb2680d555df7ead63cf3cef1c05"
+  }
+}

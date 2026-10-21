@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 80,
+  "book": "S3Y",
+  "status": "Two 1:2 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 80.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass80-S3Y-1-2/source-provenance.json",
+    "sha256": "27788caace113e60c13e169c244fe7933d6f02a74df241b2ad26d032587cd252"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 233. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 257,
+  "sourceNotesBefore": 19,
+  "sourceNotesAfter": 17,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-2-word1-letter1-vowel",
+    "s3y-1-2-word10-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "s3y-1-2-word1-letter1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    },
+    "s3y-1-2-word10-letter1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 2,
+      "before": "ותִּשְׂרֹף הַלֶּהָבָה הַיּוֹצֵאת מִן־הַכִּבְשָׁן אֶת־הָאֲנָשִׁים אֲשֶׁר אָסְרוּ אֶת־עֲזַרְיָה וְאֶת־חֲבֵרָיו ותֹּאכְלֵם וְהֵם נִשְׁמָרוּ׃",
+      "after": "וַתִּשְׂרֹף הַלֶּהָבָה הַיּוֹצֵאת מִן־הַכִּבְשָׁן אֶת־הָאֲנָשִׁים אֲשֶׁר אָסְרוּ אֶת־עֲזַרְיָה וְאֶת־חֲבֵרָיו וַתֹּאכְלֵם וְהֵם נִשְׁמָרוּ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 2,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 2 on page רלג / 233 (viewer page 578) in Kahana Volume A, Prayer of Azariah and Song of the Three Children.",
+  "decisions": [
+    {
+      "noteId": "s3y-1-2-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 2,
+      "anchor": "ותִּשְׂרֹף",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Under initial Vav of ותִּשְׂרֹף, high-resolution preemptive capture demonstrates a crisp, solid horizontal Patah bar spanning 30 pixels wide and 17 pixels tall stamped directly beneath the Vav foot. Clean white paper separates the mark from surrounding ink; matches positive control Patah from הַלֶּהָבָה on the same line. Confirmed printed Patah (U+05B7).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass80-S3Y-1-2/s3y-1-2-vatisrof-vav-patah-native.png",
+        "sha256": "469a98cc4cfb82bc8d819ebc5ba7cfeaff1b076cb2ccaad4f35ceafb9031beb3"
+      }
+    },
+    {
+      "noteId": "s3y-1-2-word10-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 2,
+      "anchor": "ותֹּאכְלֵם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Under initial Vav of ותֹּאכְלֵם, high-resolution preemptive capture demonstrates a distinct horizontal Patah bar 22 pixels wide directly below the Vav stem, followed by clean white paper below. Distinct from competing two-dot Sheva under Shin/Kaf. Confirmed printed Patah (U+05B7).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass80-S3Y-1-2/s3y-1-2-vatokhlem-vav-patah-native.png",
+        "sha256": "d590d417f18a06310ccaa514b14ffcc7f576646d511fedb13d6676c2f9cdc915"
+      }
+    }
+  ]
+}

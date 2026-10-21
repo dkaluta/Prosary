@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 138,
+  "integrationPass": 138,
+  "preparationID": 167,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation167-ESG-7-9/source-provenance.json",
+    "sha256": "527acb58d7ebe166b91e47dcae39397920c3b1988db66c2504800f74e835909f"
+  },
+  "sourceNotesBefore": 8,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-7-9-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "43857531d84bb9f39e7eb0e5b44a49caf0bbcec133fc233df076012208af0006",
+  "contentSHA256After": "d2aac037f718d868a10d3d3474385e6b9f74e7e7122c2e7536a762bf69e31430",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-7-9-1-vowel",
+      "book": "ESG",
+      "chapter": 7,
+      "verse": 9,
+      "anchorBefore": "וַיַצדֵּק",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": null,
+      "targetCapture": "extension-volumeA-570-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeA-570-zoom4-upper-left.png",
+      "inspectedBounds": [
+        951,
+        515,
+        1010,
+        590
+      ],
+      "markProposed": "Sheva",
+      "codePoint": "U+05B0",
+      "pointBounds": [
+        972,
+        593,
+        990,
+        623
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation167-ESG-7-9/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 7,
+      "verse": 9,
+      "before": "וַיִּזְכֹּר אֱלֹהִים אֶת־עַמּוֹ וַיַצדֵּק אֶת־נַחֲלָתוֹ׃",
+      "after": "וַיִּזְכֹּר אֱלֹהִים אֶת־עַמּוֹ וַיַצְדֵּק אֶת־נַחֲלָתוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 7,
+    "verse": 9,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation167-ESG-7-9/independent-review.json",
+    "sha256": "62a5fef7dda8b41307103da0ef79d9bd4e7054fc223738859c9067a4db41162a"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation167-ESG-7-9/primary-preparation.json",
+    "sha256": "730a66367ca2759307cfcdc5440eac9955c01fa4582933cadfbd7f19db8d4d1e"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass138-preparation167-ESG-7-9/consensus-preparation.json",
+    "sha256": "059c67f89cdf6d50fb3cd41b7cbcdb95cfbc951c894b10c74e68339756b89cc2"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

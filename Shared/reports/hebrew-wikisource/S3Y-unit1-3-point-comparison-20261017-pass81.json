@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 81,
+  "book": "S3Y",
+  "status": "Two 1:3 unreadablePoint source points certified from authorized Psik scan; both points resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 81.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass81-S3Y-1-3/source-provenance.json",
+    "sha256": "f97108e5b34d1ac382a7d5f2ef294eb1641dd6531a041412a7d181b78af0580f"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 233. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 255,
+  "sourceNotesBefore": 17,
+  "sourceNotesAfter": 15,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-3-word1-letter1-vowel",
+    "s3y-1-3-word5-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "s3y-1-3-word1-letter1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    },
+    "s3y-1-3-word5-letter1-vowel": {
+      "combiningMark": "ַ",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 3,
+      "before": "ויִּתְפַּלְלוּ חֲנַנְיָה עֲזַרְיָה וּמִישָׁאֵל ויְהַלְלוּ אֶת־יְיָ כַּאֲשֶׁר צִוָּה הַמֶּלֶךְ לְהַשְׁלִיכֵם לְתוֹךְ־הַכִּבְשָׁן׃",
+      "after": "וַיִּתְפַּלְלוּ חֲנַנְיָה עֲזַרְיָה וּמִישָׁאֵל וַיְהַלְלוּ אֶת־יְיָ כַּאֲשֶׁר צִוָּה הַמֶּלֶךְ לְהַשְׁלִיכֵם לְתוֹךְ־הַכִּבְשָׁן׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 3,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 3 on page רלג / 233 (viewer page 578) in Kahana Volume A, Prayer of Azariah and Song of the Three Children.",
+  "decisions": [
+    {
+      "noteId": "s3y-1-3-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 3,
+      "anchor": "ויִּתְפַּלְלוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Under initial Vav of ויִּתְפַּלְלוּ, high-resolution preemptive capture demonstrates a crisp, solid horizontal Patah bar spanning 26 pixels wide and 12 pixels tall stamped directly beneath the Vav foot. Clean white paper separates the mark from surrounding ink; matches positive control Patah on the same page. Confirmed printed Patah (U+05B7).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass81-S3Y-1-3/s3y-1-3-vayitpalelu-vav-patah-native.png",
+        "sha256": "03a834de476da5d5756a68024e79145ed9d0644eee0464fff5f5a10ecfc70874"
+      }
+    },
+    {
+      "noteId": "s3y-1-3-word5-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 3,
+      "anchor": "ויְהַלְלוּ",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Vowel",
+      "finding": "Under initial Vav of ויְהַלְלוּ, high-resolution preemptive capture demonstrates a clear horizontal Patah bar spanning 28 pixels wide directly beneath the Vav stem, followed by clean white paper below. Distinct from competing two-dot Sheva. Confirmed printed Patah (U+05B7).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass81-S3Y-1-3/s3y-1-3-vayhalelu-vav-patah-native.png",
+        "sha256": "e5f3676d95442cc221853e23a8e5554dc11581cd09fad0f99441ec7ac5d65508"
+      }
+    }
+  ]
+}

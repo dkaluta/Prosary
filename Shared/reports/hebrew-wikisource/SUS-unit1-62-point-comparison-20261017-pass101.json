@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 101,
+  "book": "SUS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 2 disclosures retired and 0 retained.",
+  "applicationState": "Consensus changes applied; generation and tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass101-SUS-1-62/source-provenance.json",
+    "sha256": "c80d149dd924c0952597371d564ca704718a7a91b895c5d8daba9115d3a4795e"
+  },
+  "sourceNotesBefore": 9,
+  "sourceNotesAfter": 7,
+  "reviewedSourceNoteCount": 2,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "sus-1-62-letter-1-vowel",
+    "sus-1-62-letter-2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "5ce4fa39ac83e26147b015f17c089a3de4173a66fa699bd14cb35322b0f8e968",
+  "contentSHA256After": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "sus-1-62-letter-1-vowel",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "anchorBefore": "ויִמָּלֵט",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "The initial vav has a new broad LEFT horizontal lobe in the vowel band below the ordinary same-row Vav terminal baseline y351. Its rounded bar ends at y370, with blank space underneath; it has no second vertical node or descending Qamats stem. The ordinary ביום holam-Vav [941,247,983,351] has no such branch. The literal same-letter Patah in unit63 וַיְהַלְלוּ has a detached26x13 horizontal bar, while literal same-letter Qamats in unit64 וָהָלְאָה has a detached42x50 stem-bearing mark. These controls support the target's short horizontal Patah despite contact with its shaft; classification is not derived from a grammatical expectation.",
+      "targetCapture": "extension-volumeA-587-zoom6-lower-mid.png",
+      "inspectedBounds": [
+        2134,
+        243,
+        2184,
+        370
+      ],
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        2142,
+        350,
+        2184,
+        370
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass101-SUS-1-62/consensus-preparation.json"
+    },
+    {
+      "noteId": "sus-1-62-letter-2-dagesh",
+      "book": "SUS",
+      "chapter": 1,
+      "verse": 62,
+      "anchorBefore": "ויִמָּלֵט",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "finding": "The complete second physical Yod has a head that recedes to one uninterrupted right tail. The lower-left Dagesh field [2088,284,2105,310] contains442 entirely white pixels, with no detached point or second branch and no damaged/saturated bridge concealing a point. The same-unit ordinary final Yod in נקי has an equal442-pixel all-white field; the same-unit pointed Yod in ביום has a clearly detached158-pixel Dagesh at that relative site. Resolve only the Dagesh disclosure; preserve the existing Yod Hiriq and every other mark.",
+      "targetCapture": "extension-volumeA-587-zoom6-lower-mid.png",
+      "inspectedBounds": [
+        2081,
+        239,
+        2119,
+        309
+      ],
+      "markProposed": "noDagesh",
+      "codePoint": null,
+      "pointBounds": null,
+      "markClassification": "DageshAbsence",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass101-SUS-1-62/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 62,
+      "before": "ויִמָּלֵט דָּם נָקִי בַּיּוֹם הַהוּא׃",
+      "after": "וַיִמָּלֵט דָּם נָקִי בַּיּוֹם הַהוּא׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 62,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass101-SUS-1-62/independent-review.json",
+    "sha256": "98968a6cf944ff054aa96e3385fbdf6b3505844c3a6a755f4f751adab3bcc95b"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass101-SUS-1-62/primary-preparation.json",
+    "sha256": "820155d262196b47dd97a6849905fa28f9e481c3a7fc08ec555183cd7f1a22a6"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass101-SUS-1-62/consensus-preparation.json",
+    "sha256": "5790165da5fdc05529b3be4a0b448fb1d5863d3de59f403e718c4478f3892ea1"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreservesCanonicalReviewMetadata": true
+  }
+}

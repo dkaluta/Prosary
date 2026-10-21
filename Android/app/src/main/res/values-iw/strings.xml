@@ -64,6 +64,9 @@
     <string name="bible_choose_verse">"בחירת פסוק"</string>
     <string name="bible_previous_chapter">"הפרק הזמין הקודם"</string>
     <string name="bible_next_chapter">"הפרק הזמין הבא"</string>
+    <string name="bible_previous_page">"העמוד הקודם"</string>
+    <string name="bible_next_page">"העמוד הבא"</string>
+    <string name="bible_page_count">"עמודים %1$d–%2$d מתוך %3$d"</string>
     <string name="bible_chapter_error">"לא ניתן לפתוח את הפרק שהורד. יש להסיר את ההורדה ולהוריד שוב."</string>
     <string name="bible_remove_notice">"להסיר את “%1$s” מהמכשיר? אפשר להוריד שוב. קריאות היום יישארו זמינות."</string>
     <string name="bible_remove_error">"לא ניתן להסיר את ההורדה. יש לנסות שוב."</string>
@@ -215,14 +218,14 @@
     <string name="ro_which_mystery">איזה רז</string>
     <string name="ro_opening_section">תפילות הפתיחה והרזים</string>
     <string name="ro_apostles_creed">אני מאמין</string>
-    <string name="ro_opening_prayers">“אבינו שבשמים” ו־3 “שלום לך” בפתיחה</string>
-    <string name="ro_opening_fatima">תפילת פאטימה אחרי תפילת “שבח לאב” הפותחת</string>
-    <string name="ro_fatima">“הו ישוע שלי” בסוף כל רז</string>
+    <string name="ro_opening_prayers">תפילות פתיחה</string>
+    <string name="ro_opening_fatima">תפילת פאטימה הנוספת בפתיחה</string>
+    <string name="ro_fatima">תפילת פאטימה בסוף כל רז</string>
     <string name="ro_faithful_departed">למען הנפטרים</string>
     <string name="ro_display_section">תצוגה</string>
     <string name="ro_mystery_artwork">איורי הרזים</string>
     <string name="ro_presenter_mode">מצב מנחה</string>
-    <string name="ro_presenter_hint">איחוד עשר ה“שלום לך” וה“שבח לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</string>
+    <string name="ro_presenter_hint">איחוד התפילות החוזרות בכל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</string>
     <string name="ro_closing_section">תפילות סיום</string>
     <string name="ro_marian_antiphon">אנטיפונה למרים</string>
     <string name="ro_closing_intentions">כוונות הסיום</string>
@@ -306,7 +309,7 @@
     <string name="bead_opening_prayers">תפילות פתיחה</string>
     <string name="bead_closing_prayers">תפילות סיום</string>
     <string name="bead_decade_of">רז %1$d מתוך %2$d</string>
-    <string name="bead_hail_mary_of">שלום לך %1$d מתוך %2$d</string>
+    <string name="bead_hail_mary_of">תפילה %1$d מתוך %2$d</string>
     <string name="bead_antiphon_letter">מ</string>
     <string name="bead_progress">התקדמות המחרוזת. %1$s</string>
 
@@ -676,4 +679,10 @@
     <string name="home_widgets_color">צבע התא</string>
     <string name="home_widgets_set_accent_color">הגדרת צבע הדגשה…</string>
     <string name="home_widgets_remove_accent_color">הסרת צבע ההדגשה</string>
+    <string name="ro_opening_prayers_named">“%1$s” ו־3 “%2$s” בפתיחה</string>
+    <string name="ro_opening_fatima_named">“%1$s” אחרי תפילת “%2$s” הפותחת</string>
+    <string name="ro_fatima_named">“%1$s” בסוף כל רז</string>
+    <string name="ro_presenter_hint_named">איחוד עשר תפילות “%1$s” ו“%2$s” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</string>
+    <string name="ro_final_sign_named">%1$s בסוף</string>
+    <string name="bead_prayer_of">%1$s %2$d מתוך %3$d</string>
 </resources>

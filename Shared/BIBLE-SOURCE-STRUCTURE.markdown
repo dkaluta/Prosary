@@ -12,7 +12,9 @@ unambiguous source mappings.
 
 Each chapter retains its existing `verses` array as the unique, nonoverlapping
 primary address index. `verseCount` still counts that array. Optional, nonempty
-`contentBlocks` supplies the complete physical display order for that chapter.
+`contentBlocks` supplies the complete display order for that chapter. This is the
+physical source order by default; a separately pinned Catholic presentation review
+may reorder complete source units in the generated archive only (see below).
 Without it, the ordinary verse-array renderer is unchanged.
 
 Each block has a stable book-wide `id` matching `[a-z0-9][a-z0-9-]*` and one of these
@@ -56,6 +58,9 @@ limitations in the closing metadata and never turn that metadata into scripture.
 Catholic placement denotations in book/chapter `canonicalReference` metadata do not
 change any source address or route. For example, Kahana Letter of Jeremiah retains
 work ID `LJE` and source chapter 1 while its picker and heading display Baruch 6.
+The Hebrew catalog keeps deuterocanonical works together after the Masoretic books
+and before the New Testament, in Catholic relative order. This book sequence does
+not itself reorder any work's printed units or create a route between books.
 Its verse labels remain explicitly printed source labels; they cannot be presented
 as Baruch 6 citations without a separately reviewed verse crosswalk. The same rule
 applies to Daniel and Esther additions. Esther's source chapter 7 retains its
@@ -93,7 +98,7 @@ Render primary units, witnesses and unnumbered passages as selectable scripture 
 the selected edition's direction, font and source notes. Render source headings
 separately and colophons in attribution styling with any source notes directly
 after their text; neither joins copied scripture.
-Never collapse or hide a witness as an editorial note. Preserve physical block order.
+Never collapse or hide a witness as an editorial note. Preserve supplied block order.
 
 The verse picker follows the displayed blocks. Primary references and witnesses
 have choices; unnumbered passages, headings and colophons do not invent verse choices.
@@ -114,8 +119,9 @@ Canonical Hebrew books remain source schema 1. Chapters may contain the same
 `contentBlocks`, and the book may contain `addressRoutes`. Every self-contained
 textual block additionally requires `sourcePages` and `textSHA256`; the latter hashes
 its exact `text`. A reference block has neither because its primary unit owns them.
-The archive generator strips these authoring evidence fields, preserves all blocks
-and routes, and validates again before writing version 3.
+The archive generator strips these authoring evidence fields, preserves all block
+objects, and validates again before writing version 3. Source order and routes are
+retained except for the explicitly reviewed projection described below.
 
 All textual block pages count toward the complete-book review. All block fields and
 routes enter the book digest. The independent approval additionally pins an ordered
@@ -135,7 +141,30 @@ review. The complete digest pins the witness text and addresses, while the
 independent block inventory pins its presence and physical order. Actual omitted
 labels still require explicit source-gap evidence and a partial-chapter label.
 
-Concrete fixtures must cover the 11:33 / 12:1 / 11:34 / 12:2 interleaving, repeated
+Concrete source fixtures must cover the 11:33 / 12:1 / 11:34 / 12:2 interleaving, repeated
 51:13, overlapping 41:14ב and 14א–16, the unnumbered thanksgiving hymn, colophons and
 the Susanna printed-label discrepancy. Reject missing or duplicated presentations,
 dangling references, incorrect routes, forged hashes and unsupported versions.
+
+## Reviewed Catholic presentation
+
+The optional Hebrew Bible generator may project a separately reviewed reading
+sequence over the approved source book. `tools/hebrew-bible-presentation-reviews.json`
+pins the whole source-book digest, exact affected units, before/after sequences,
+Catholic source URLs and clause-comparison rationale. Unreviewed units keep their
+source sequence. The projection uses a copy, conserves every complete primary unit
+and block object, and validates the resulting complete book. No text, verse label,
+combined range, source note, witness, gap or completeness flag changes.
+
+For same-chapter changes, both the generated `verses` array and any `contentBlocks`
+are reordered together so the picker and reading agree. A reviewed return to a
+unit's own source chapter moves its reference block and removes the obsolete
+cross-chapter route; it does not create a same-chapter route. Current Sirach 11:34
+therefore appears at the end of chapter 11 in the download while its canonical
+source retains the printed interleaving. The canonical approval digest and daily
+appointment selections continue to refer to the original source. The generated
+archive receives a new content-addressed revision, without rewriting prior archives.
+
+This projection is a bounded reading-order alignment, not a general Catholic verse
+crosswalk. Mixed clauses that would require splitting or choosing source witnesses
+stay unchanged. See [BIBLE-VIEWER.markdown](BIBLE-VIEWER.markdown) for the current scope.

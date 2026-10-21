@@ -1,0 +1,2192 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 31,
+  "book": "ESG",
+  "status": "Two source6:15 points certified; initial-nun vowel disclosure retained",
+  "applicationState": "Proposal only; independent source peer/root audits pending. Canonical source, review gates and generated files not modified.",
+  "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_A2.pdf",
+  "sourcePDFSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
+  "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=223",
+  "method": "Fresh pypdf native embedded image pixels from hash-pinned original A2 PDF. Strict bounds before every crop; native or integer NEAREST only. Full numbered source6:15, complete target word/glyphs and literal positive/competing controls inspected. No OCR, grammar, expected spelling, normalization, enhancement or another witness supplies a point. Author replay is not independent.",
+  "baselineGlobalSourceNoteCount": 467,
+  "canonicalSHA256Before": "a79ab72078ce29257629a40c6ac563ec994f85b55d66838e1bdf95b7bcc571a2",
+  "contentSHA256Before": "5baa2cf0993e774904b6507c0a781a1cabc7fc8ef9006b8880d474cb458ccf5d",
+  "contentSHA256After": "56f4bc38f12527417a01799aaa36909bd81d7d8b4c56eb86bad1356655f9aafb",
+  "sourceNotesBefore": 46,
+  "sourceNotesAfter": 44,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [
+    "esg-6-15-2-vowel",
+    "esg-6-15-3-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [
+    "esg-6-15-1-vowel"
+  ],
+  "combiningMarksAdded": 2,
+  "addedCombiningMarks": {
+    "U+05B4": 1,
+    "U+05BC": 1
+  },
+  "retainedNoteAnchorUpdates": [
+    {
+      "book": "ESG",
+      "id": "esg-6-15-1-vowel",
+      "oldAnchor": "נקיִים",
+      "newAnchor": "נקִיִּים"
+    }
+  ],
+  "physicalAnchorEvents": [
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-1-vowel",
+      "oldAnchor": "נקיִים",
+      "newAnchor": "נקיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        116
+      ],
+      "physicalSpanAfter": [
+        110,
+        117
+      ]
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-2-vowel",
+      "oldAnchor": "נקיִים",
+      "newAnchor": "נקיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        116
+      ],
+      "physicalSpanAfter": [
+        110,
+        117
+      ]
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "id": "esg-6-15-1-vowel",
+      "oldAnchor": "נקיִּים",
+      "newAnchor": "נקִיִּים",
+      "oldOccurrence": 1,
+      "newOccurrence": 1,
+      "anchorTextChanged": true,
+      "occurrenceChanged": false,
+      "physicalSpanBefore": [
+        110,
+        117
+      ],
+      "physicalSpanAfter": [
+        110,
+        118
+      ]
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 6,
+      "verse": 15,
+      "before": "וְהִנֵּה אֲנַחְנוּ מָצָאנוּ אֶת־הַיְּהוּדִים אֲשֶׁר הַפּוֹשֵׁעַ הַבְּלִיַּעַל הַזֶּה מָסַר אוֹתָם לָאֲבַדּוֹן נקיִים מֵעָוֹן כִּי בְּחֻקֵּי צֶדֶק יְכַלְכְּלוּ אֶת־אֹרַח חַיֵּיהֶם׃",
+      "after": "וְהִנֵּה אֲנַחְנוּ מָצָאנוּ אֶת־הַיְּהוּדִים אֲשֶׁר הַפּוֹשֵׁעַ הַבְּלִיַּעַל הַזֶּה מָסַר אוֹתָם לָאֲבַדּוֹן נקִיִּים מֵעָוֹן כִּי בְּחֻקֵּי צֶדֶק יְכַלְכְּלוּ אֶת־אֹרַח חַיֵּיהֶם׃",
+      "beforeTextSHA256": "973c6c8284d16b61b65214d071d6e45a259c477a8de1b18a59b5d91ed6ffce76",
+      "afterTextSHA256": "96fd6a73be920a8fa98d004035f861deb92836684dad9f0ffd2c2f5985b95a8c"
+    }
+  ],
+  "scope": {
+    "chapter": 6,
+    "verse": 15,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Source6:15 on A2 p223 starts והנה in the left portion of the row marked טו after previous unit ends המקודנים׃; continues through the full next row; ends חייהם׃ on the following row marked טז before והמה begins source6:16. All three rows and printed labels are preserved.",
+  "decisions": [
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "before": "נקיִים",
+      "after": "נקיִּים",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "esg-6-15-3-dagesh"
+      ],
+      "addedCodePoint": "U+05BC",
+      "baselineAnchor": "נקיִים",
+      "baselineUnitScalarInsertionOffset": 114,
+      "baselinePhysicalSpan": [
+        110,
+        116
+      ],
+      "targetClusterBefore": [
+        "U+05D9",
+        "U+05B4"
+      ],
+      "targetClusterAfter": [
+        "U+05D9",
+        "U+05B4",
+        "U+05BC"
+      ]
+    },
+    {
+      "book": "ESG",
+      "chapter": 6,
+      "verse": 15,
+      "before": "נקיִּים",
+      "after": "נקִיִּים",
+      "occurrence": 1,
+      "retiredNoteIds": [
+        "esg-6-15-2-vowel"
+      ],
+      "addedCodePoint": "U+05B4",
+      "baselineAnchor": "נקיִים",
+      "baselineUnitScalarInsertionOffset": 112,
+      "baselinePhysicalSpan": [
+        110,
+        116
+      ],
+      "targetClusterBefore": [
+        "U+05E7"
+      ],
+      "targetClusterAfter": [
+        "U+05E7",
+        "U+05B4"
+      ]
+    }
+  ],
+  "inspections": [
+    {
+      "note": {
+        "id": "esg-6-15-1-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "נקיִים",
+        "occurrence": 1,
+        "letterIndex": 1,
+        "mark": "vowel",
+        "sourcePages": [
+          223
+        ],
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=223"
+      },
+      "decision": "retainNote",
+      "finding": "The entire initial nun has a continuous narrow column descending from its sloping foot, with only a small enlargement at its bottom. The literal nun qamats in נָקִי and ונאוה has transverse shoulders; the nun hiriq in נתלה is a small rounded terminal; the vav sheva in ונאוה and qof sheva in יבקשו show paired vertical nodes; plain nun in מצאנו stops at the ordinary sloping foot. The target long fused column does not preserve enough subdivisions to distinguish a fused pair or a different obscured point. Retain its vowel disclosure; neither absence nor a particular vowel is certified.",
+      "physicalLocator": {
+        "id": "esg-6-15-1-vowel",
+        "anchorScalarSpan": [
+          110,
+          116
+        ],
+        "targetScalarIndex": 110,
+        "targetClusterScalarSpan": [
+          110,
+          111
+        ],
+        "targetClusterScalars": [
+          "U+05E0"
+        ]
+      }
+    },
+    {
+      "note": {
+        "id": "esg-6-15-2-vowel",
+        "kind": "unreadablePoint",
+        "anchor": "נקיִים",
+        "occurrence": 1,
+        "letterIndex": 2,
+        "mark": "vowel",
+        "sourcePages": [
+          223
+        ],
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=223"
+      },
+      "decision": "approvePrintedMark",
+      "finding": "The complete qof has one rounded lower node distinct from the diagonal arm: the arm narrows to a short neck before expanding into a compact rounded dot, with white space around its left, right and lower perimeter. The detached single hiriq beneath qof in נָקִי fixes the size and position; plain qof in same-row צֶדֶק lacks this node. Literal qof tsere in בְּחֻקֵּי and בִּקֵּשׁ has a wider horizontal lower mass, qof segol in קֶדֶם has a broader cluster and lower third-point extension, and qof sheva in יבקשו has two vertical dots. The target preserves a single dot, not those competing structures. Certify U+05B4 after qof at baseline unit scalar112. The point is joined at its upper-left edge; certification uses the entire contour, not expected word form.",
+      "physicalLocator": {
+        "id": "esg-6-15-2-vowel",
+        "anchorScalarSpan": [
+          110,
+          116
+        ],
+        "targetScalarIndex": 111,
+        "targetClusterScalarSpan": [
+          111,
+          112
+        ],
+        "targetClusterScalars": [
+          "U+05E7"
+        ]
+      }
+    },
+    {
+      "note": {
+        "id": "esg-6-15-3-dagesh",
+        "kind": "unreadablePoint",
+        "anchor": "נקיִים",
+        "occurrence": 1,
+        "letterIndex": 3,
+        "mark": "dagesh",
+        "sourcePages": [
+          223
+        ],
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_A2.pdf#page=223"
+      },
+      "decision": "approvePrintedMark",
+      "finding": "The first yod has a definite left-edge inset below the head, followed by a rounded lower-left re-expansion joined to the right stem. The lower node projects left beyond the inset and has a rounded lower boundary separate from the slightly longer right tail. Same-row first yod in חַיֵּיהֶם and yod in ויתנכל show this dagesh-node location and contour. Adjacent second yod in the target, second yod in חַיֵּיהֶם, ordinary yod in נָקִי and heavy ordinary yod in ויבצר have head-to-tail outlines without that lower-left node. Certify U+05BC after the existing yod+hiriq cluster at baseline scalar114, preserving the hiriq and its prior combining order. A white hole is not required; the complete contour distinguishes the literal competitors.",
+      "physicalLocator": {
+        "id": "esg-6-15-3-dagesh",
+        "anchorScalarSpan": [
+          110,
+          116
+        ],
+        "targetScalarIndex": 112,
+        "targetClusterScalarSpan": [
+          112,
+          114
+        ],
+        "targetClusterScalars": [
+          "U+05D9",
+          "U+05B4"
+        ]
+      }
+    }
+  ],
+  "physicalNoteSpans": [
+    {
+      "id": "esg-6-15-1-vowel",
+      "anchorScalarSpan": [
+        110,
+        116
+      ],
+      "targetScalarIndex": 110,
+      "targetClusterScalarSpan": [
+        110,
+        111
+      ],
+      "targetClusterScalars": [
+        "U+05E0"
+      ]
+    },
+    {
+      "id": "esg-6-15-2-vowel",
+      "anchorScalarSpan": [
+        110,
+        116
+      ],
+      "targetScalarIndex": 111,
+      "targetClusterScalarSpan": [
+        111,
+        112
+      ],
+      "targetClusterScalars": [
+        "U+05E7"
+      ]
+    },
+    {
+      "id": "esg-6-15-3-dagesh",
+      "anchorScalarSpan": [
+        110,
+        116
+      ],
+      "targetScalarIndex": 112,
+      "targetClusterScalarSpan": [
+        112,
+        114
+      ],
+      "targetClusterScalars": [
+        "U+05D9",
+        "U+05B4"
+      ]
+    }
+  ],
+  "reviewedUnits": [
+    {
+      "chapter": 6,
+      "verse": 15,
+      "originalText": "וְהִנֵּה אֲנַחְנוּ מָצָאנוּ אֶת־הַיְּהוּדִים אֲשֶׁר הַפּוֹשֵׁעַ הַבְּלִיַּעַל הַזֶּה מָסַר אוֹתָם לָאֲבַדּוֹן נקיִים מֵעָוֹן כִּי בְּחֻקֵּי צֶדֶק יְכַלְכְּלוּ אֶת־אֹרַח חַיֵּיהֶם׃",
+      "textSHA256": "973c6c8284d16b61b65214d071d6e45a259c477a8de1b18a59b5d91ed6ffce76",
+      "sourcePages": [
+        223
+      ],
+      "allNoteIds": [
+        "esg-6-15-1-vowel",
+        "esg-6-15-2-vowel",
+        "esg-6-15-3-dagesh"
+      ]
+    }
+  ],
+  "evidenceImages": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/source222-full-original-native.png",
+      "sha256": "2874c0d0a9697966cbd11242c2f1604c1cd6c47c374a6e2c93c0bf145a4dcb6e",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        0,
+        0,
+        2482,
+        3487
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/source223-full-original-native.png",
+      "sha256": "e1d364f00b1b31d912a8ed989ae543e1c785ff03d731b0f055b63d87a9d5dc20",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        0,
+        0,
+        2619,
+        3488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/ESG6-15-complete-numbered-unit-native.png",
+      "sha256": "9eb37708ad4506ab33f6cfd0884711fe653c28f06deb5bc30322e1b395c1dbd1",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        260,
+        1030,
+        2220,
+        1350
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/ESG6-15-complete-numbered-unit-2x.png",
+      "sha256": "975b92a31f1451b1dc005f9aeaa08c4fe65b95d002fdca6c0ef5c2664dd962f7",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        260,
+        1030,
+        2220,
+        1350
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-complete-word-native.png",
+      "sha256": "41f721413d8316341088217b35580d4c98c5d43b3840d85a0c6709b1a4ac8586",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1905,
+        1255,
+        2060,
+        1345
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-complete-word-6x.png",
+      "sha256": "6256703e15b1e5cda3c3eb05edd9dbebb6916c0998ad7735fc9c866047fb3c75",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1905,
+        1255,
+        2060,
+        1345
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-nun-complete-native.png",
+      "sha256": "46776d9a2da904d92e4253dc70db5b455392d92c73d1f4249f61bd1b3242b949",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        2024,
+        1267,
+        2055,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-nun-complete-12x.png",
+      "sha256": "5671af54ad873139458ff8ef9c80df4f939d9cb871dbd6c08f8b4f756dbbeb76",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        2024,
+        1267,
+        2055,
+        1340
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-qof-complete-native.png",
+      "sha256": "3b2439e3d56a621b51faa04d62f05e181b6eda1250e151ecb0690074e9aef79a",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1987,
+        1267,
+        2028,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-qof-complete-12x.png",
+      "sha256": "664a475bb61945ca821c50185f54268f9fad6d5e4aa575eca6e9d81a87bf2fff",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1987,
+        1267,
+        2028,
+        1340
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-first-yod-complete-native.png",
+      "sha256": "a5bef0a35ab7b5894efe67b6e9b756001ff8d614d9f438a57aef191c22287de5",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1967,
+        1263,
+        1991,
+        1338
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-first-yod-complete-16x.png",
+      "sha256": "eafc6340bb2bb49863f3e595c1479329a3ff5f5500118d482a600180a95d8ee9",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1967,
+        1263,
+        1991,
+        1338
+      ],
+      "scale": 16,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-adjacent-second-yod-native.png",
+      "sha256": "6d9a90d304489b50b82c294ec83498868afa613a57d1274dc5b929ad1d31bb08",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1946,
+        1265,
+        1970,
+        1335
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-adjacent-second-yod-16x.png",
+      "sha256": "2d82eab4e4af9be517263dedeb45dcb3c44599dd6926b181b2bed1c9f6314528",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1946,
+        1265,
+        1970,
+        1335
+      ],
+      "scale": 16,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-naqi-complete-word-native.png",
+      "sha256": "79d1e798f26a179393f4f5d39aff3d816fab8886417f9b493352d5c408931e21",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1620,
+        1260,
+        1755,
+        1375
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-naqi-complete-word-6x.png",
+      "sha256": "80592507ecae23c29ea98fec728d21120798f15dd95c6b797c2ad79ed38fd557",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1620,
+        1260,
+        1755,
+        1375
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-naqi-qof-hiriq-native.png",
+      "sha256": "35050dc3a153feb56582bebf581d1c30dca2b3cdb6206918ffe5e990be875eb7",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1668,
+        1283,
+        1710,
+        1354
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-naqi-qof-hiriq-12x.png",
+      "sha256": "6b3f2dc378a3a004ccdcda969fd18ab98bb226d02666fb1dcbb6d9ccc723eb62",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1668,
+        1283,
+        1710,
+        1354
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-tsedeq-complete-word-native.png",
+      "sha256": "704fb6e97a4d8e404f941b5ffa05b0c16f2e31bba1cd0e5cd056c5fadf34ee26",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1360,
+        1235,
+        1495,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-tsedeq-complete-word-6x.png",
+      "sha256": "7ac2de1e20604a4d5e2f525496905d7000f1d6f28c460abd6b4a4c0efef2e00c",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1360,
+        1235,
+        1495,
+        1340
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-tsedeq-plain-qof-native.png",
+      "sha256": "4ebeccafdd3237c87361dc318c1c7b7096a76a1496befff258142ed4feac81f1",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1370,
+        1263,
+        1412,
+        1337
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-tsedeq-plain-qof-12x.png",
+      "sha256": "2825efef963cd1f4a7bb1d11328078e804e972a2f3761cc7f887513b48a1fcb2",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1370,
+        1263,
+        1412,
+        1337
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-behuqey-complete-word-native.png",
+      "sha256": "1f0b16085e48fa0cfd921805472c9e6c7d7069a109d06d6b9ba2105919889ff9",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1495,
+        1235,
+        1665,
+        1345
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-behuqey-complete-word-5x.png",
+      "sha256": "74646191f029849ddc101f432669ddbc4b406cb5489f85b7cced6c5fe7e86ab7",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1495,
+        1235,
+        1665,
+        1345
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-biqesh-complete-word-native.png",
+      "sha256": "c3e4b4a9fa0b779fe4020bff6bbfc4acb41ed872f24ad2753ed31fdbf8ae38b4",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        475,
+        765,
+        640,
+        875
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-biqesh-complete-word-5x.png",
+      "sha256": "8f4ed7592e3f88e31c584afa544c5ced7ccef2e848b684affc9c14101e0896ff",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        475,
+        765,
+        640,
+        875
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qedem-complete-word-native.png",
+      "sha256": "92f6a2254ce22c6e507fe87850e3851d8b91d35e35a446adb56717bda2945983",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1245,
+        1455,
+        1400,
+        1550
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qedem-complete-word-5x.png",
+      "sha256": "e13a433e511ff303bfcb812b9f767ed7542a9de1e12fa1e714bd7217198d24b0",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1245,
+        1455,
+        1400,
+        1550
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qof-sheva-complete-word-native.png",
+      "sha256": "9aa440d9fc4b162ac2aec6582f04571c511abf2fa5bf3e113fcfa68befb51f7f",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1645,
+        690,
+        1840,
+        805
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qof-sheva-complete-word-5x.png",
+      "sha256": "2a8e3a200e2e2f18464e3cecd826d05186d89e9b697206dcb6faa20d2ee26bd8",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1645,
+        690,
+        1840,
+        805
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qof-sheva-complete-glyph-native.png",
+      "sha256": "1a59dce2fe7c1cacf9a80bc46f05f835844b36ac2c9bd64c7c790423a2902ea4",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1720,
+        713,
+        1761,
+        785
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qof-sheva-complete-glyph-12x.png",
+      "sha256": "015338f04565731feaae98d215342e9bfb62105eb5cfe89859f5be501bca0e46",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1720,
+        713,
+        1761,
+        785
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-hayeyhem-complete-word-native.png",
+      "sha256": "cc2e459923d6314e3f3ddaf685c81d32ff3b4640fa92f9bfcd90ff1123367268",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        730,
+        1240,
+        910,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-hayeyhem-complete-word-5x.png",
+      "sha256": "84a9960a6d5f5e7bfc0d7a9bd74dceb47934e661d9012ba0cc3a0bf0ffb28c25",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        730,
+        1240,
+        910,
+        1340
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-hayeyhem-first-yod-native.png",
+      "sha256": "408f3025793c71ee513f84fd6923eefcef9d6e1866ca8d748306b6f2794c7b0f",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        825,
+        1260,
+        850,
+        1325
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-hayeyhem-first-yod-14x.png",
+      "sha256": "27be6de860bad91eb7c6bf7b60eb4005888b04be91eef986f264d79a82bc2591",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        825,
+        1260,
+        850,
+        1325
+      ],
+      "scale": 14,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-hayeyhem-second-yod-native.png",
+      "sha256": "46bac328be5b043a231e9dfab3b9cdc852d9a9686e221cabf7ae93589f4f73ec",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        803,
+        1260,
+        830,
+        1325
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-hayeyhem-second-yod-14x.png",
+      "sha256": "a5b0e9596c0e81e4cc129bf5064e2588995e742cff92fd2e0b3ff945716decd9",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        803,
+        1260,
+        830,
+        1325
+      ],
+      "scale": 14,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-vayitnakkel-complete-word-native.png",
+      "sha256": "aab19f6c84e32c6ecf10abdffb9dc7c4f69abde16673aacbd457f38ecfdee833",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        635,
+        675,
+        830,
+        780
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-vayitnakkel-complete-word-5x.png",
+      "sha256": "0489a1a3dd98bb176c24092a65351fb619888e40c9baccde6c90175c8075e183",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        635,
+        675,
+        830,
+        780
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-vayibatser-complete-word-native.png",
+      "sha256": "392a3a4bd55597731fd60b53fbb6d21bb36e59521077bc6c63d5a9ad7da13e84",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1440,
+        675,
+        1640,
+        780
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-vayibatser-complete-word-5x.png",
+      "sha256": "f18441ece37e847a8f4a401a779580d734a636c3abd4be6fc66d5599f0c70aa9",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1440,
+        675,
+        1640,
+        780
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-naweh-complete-word-native.png",
+      "sha256": "d1388db6abd1db8fdd57ef9dd35da4e5aa4087bcec619c72cdbe93dd6f59d146",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1760,
+        1430,
+        1955,
+        1540
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-naweh-complete-word-5x.png",
+      "sha256": "8c4af72f8cb248118eb48d76df9970bca3bb3f2a3624797fcde9e861831a5d36",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1760,
+        1430,
+        1955,
+        1540
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-nitlah-complete-word-native.png",
+      "sha256": "0227e627cb3c45b017f1daad46fde223d2b363ef41d0bdecb12bd295ed640e03",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1740,
+        1615,
+        1950,
+        1735
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-nitlah-complete-word-5x.png",
+      "sha256": "e86b82bf20691b2b0b511cbeddbbb93743553af147a65a2c7fff214d6d3ca8bf",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1740,
+        1615,
+        1950,
+        1735
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-matsanu-complete-word-native.png",
+      "sha256": "eb049e91dc0e707e6bced56fd5884fd8abdf164f5a42e3d49ed30d7a556f1354",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1890,
+        1135,
+        2065,
+        1245
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-matsanu-complete-word-5x.png",
+      "sha256": "2f96e056c966a1a75994b8f92826fd943738e3d32ab7ee10d9fa42ee4f2488a8",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1890,
+        1135,
+        2065,
+        1245
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/source222-full-original-native.png",
+      "sha256": "2874c0d0a9697966cbd11242c2f1604c1cd6c47c374a6e2c93c0bf145a4dcb6e",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        0,
+        0,
+        2482,
+        3487
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/source223-full-original-native.png",
+      "sha256": "e1d364f00b1b31d912a8ed989ae543e1c785ff03d731b0f055b63d87a9d5dc20",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        0,
+        0,
+        2619,
+        3488
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/ESG6-15-complete-numbered-unit-native.png",
+      "sha256": "9eb37708ad4506ab33f6cfd0884711fe653c28f06deb5bc30322e1b395c1dbd1",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        260,
+        1030,
+        2220,
+        1350
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/ESG6-15-complete-numbered-unit-2x.png",
+      "sha256": "975b92a31f1451b1dc005f9aeaa08c4fe65b95d002fdca6c0ef5c2664dd962f7",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        260,
+        1030,
+        2220,
+        1350
+      ],
+      "scale": 2,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-complete-word-native.png",
+      "sha256": "41f721413d8316341088217b35580d4c98c5d43b3840d85a0c6709b1a4ac8586",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1905,
+        1255,
+        2060,
+        1345
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-complete-word-6x.png",
+      "sha256": "6256703e15b1e5cda3c3eb05edd9dbebb6916c0998ad7735fc9c866047fb3c75",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1905,
+        1255,
+        2060,
+        1345
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-nun-complete-native.png",
+      "sha256": "46776d9a2da904d92e4253dc70db5b455392d92c73d1f4249f61bd1b3242b949",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        2024,
+        1267,
+        2055,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-nun-complete-12x.png",
+      "sha256": "5671af54ad873139458ff8ef9c80df4f939d9cb871dbd6c08f8b4f756dbbeb76",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        2024,
+        1267,
+        2055,
+        1340
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-qof-complete-native.png",
+      "sha256": "3b2439e3d56a621b51faa04d62f05e181b6eda1250e151ecb0690074e9aef79a",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1987,
+        1267,
+        2028,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-qof-complete-12x.png",
+      "sha256": "664a475bb61945ca821c50185f54268f9fad6d5e4aa575eca6e9d81a87bf2fff",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1987,
+        1267,
+        2028,
+        1340
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-first-yod-complete-native.png",
+      "sha256": "a5bef0a35ab7b5894efe67b6e9b756001ff8d614d9f438a57aef191c22287de5",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1967,
+        1263,
+        1991,
+        1338
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/target-first-yod-complete-16x.png",
+      "sha256": "eafc6340bb2bb49863f3e595c1479329a3ff5f5500118d482a600180a95d8ee9",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1967,
+        1263,
+        1991,
+        1338
+      ],
+      "scale": 16,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-adjacent-second-yod-native.png",
+      "sha256": "6d9a90d304489b50b82c294ec83498868afa613a57d1274dc5b929ad1d31bb08",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1946,
+        1265,
+        1970,
+        1335
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-adjacent-second-yod-16x.png",
+      "sha256": "2d82eab4e4af9be517263dedeb45dcb3c44599dd6926b181b2bed1c9f6314528",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1946,
+        1265,
+        1970,
+        1335
+      ],
+      "scale": 16,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-naqi-complete-word-native.png",
+      "sha256": "79d1e798f26a179393f4f5d39aff3d816fab8886417f9b493352d5c408931e21",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1620,
+        1260,
+        1755,
+        1375
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-naqi-complete-word-6x.png",
+      "sha256": "80592507ecae23c29ea98fec728d21120798f15dd95c6b797c2ad79ed38fd557",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1620,
+        1260,
+        1755,
+        1375
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-naqi-qof-hiriq-native.png",
+      "sha256": "35050dc3a153feb56582bebf581d1c30dca2b3cdb6206918ffe5e990be875eb7",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1668,
+        1283,
+        1710,
+        1354
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-naqi-qof-hiriq-12x.png",
+      "sha256": "6b3f2dc378a3a004ccdcda969fd18ab98bb226d02666fb1dcbb6d9ccc723eb62",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1668,
+        1283,
+        1710,
+        1354
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-tsedeq-complete-word-native.png",
+      "sha256": "704fb6e97a4d8e404f941b5ffa05b0c16f2e31bba1cd0e5cd056c5fadf34ee26",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1360,
+        1235,
+        1495,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-tsedeq-complete-word-6x.png",
+      "sha256": "7ac2de1e20604a4d5e2f525496905d7000f1d6f28c460abd6b4a4c0efef2e00c",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1360,
+        1235,
+        1495,
+        1340
+      ],
+      "scale": 6,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-tsedeq-plain-qof-native.png",
+      "sha256": "4ebeccafdd3237c87361dc318c1c7b7096a76a1496befff258142ed4feac81f1",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1370,
+        1263,
+        1412,
+        1337
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-tsedeq-plain-qof-12x.png",
+      "sha256": "2825efef963cd1f4a7bb1d11328078e804e972a2f3761cc7f887513b48a1fcb2",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1370,
+        1263,
+        1412,
+        1337
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-behuqey-complete-word-native.png",
+      "sha256": "1f0b16085e48fa0cfd921805472c9e6c7d7069a109d06d6b9ba2105919889ff9",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1495,
+        1235,
+        1665,
+        1345
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-behuqey-complete-word-5x.png",
+      "sha256": "74646191f029849ddc101f432669ddbc4b406cb5489f85b7cced6c5fe7e86ab7",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1495,
+        1235,
+        1665,
+        1345
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-biqesh-complete-word-native.png",
+      "sha256": "c3e4b4a9fa0b779fe4020bff6bbfc4acb41ed872f24ad2753ed31fdbf8ae38b4",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        475,
+        765,
+        640,
+        875
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-biqesh-complete-word-5x.png",
+      "sha256": "8f4ed7592e3f88e31c584afa544c5ced7ccef2e848b684affc9c14101e0896ff",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        475,
+        765,
+        640,
+        875
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qedem-complete-word-native.png",
+      "sha256": "92f6a2254ce22c6e507fe87850e3851d8b91d35e35a446adb56717bda2945983",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1245,
+        1455,
+        1400,
+        1550
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qedem-complete-word-5x.png",
+      "sha256": "e13a433e511ff303bfcb812b9f767ed7542a9de1e12fa1e714bd7217198d24b0",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1245,
+        1455,
+        1400,
+        1550
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qof-sheva-complete-word-native.png",
+      "sha256": "9aa440d9fc4b162ac2aec6582f04571c511abf2fa5bf3e113fcfa68befb51f7f",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1645,
+        690,
+        1840,
+        805
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qof-sheva-complete-word-5x.png",
+      "sha256": "2a8e3a200e2e2f18464e3cecd826d05186d89e9b697206dcb6faa20d2ee26bd8",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1645,
+        690,
+        1840,
+        805
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qof-sheva-complete-glyph-native.png",
+      "sha256": "1a59dce2fe7c1cacf9a80bc46f05f835844b36ac2c9bd64c7c790423a2902ea4",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1720,
+        713,
+        1761,
+        785
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-qof-sheva-complete-glyph-12x.png",
+      "sha256": "015338f04565731feaae98d215342e9bfb62105eb5cfe89859f5be501bca0e46",
+      "page": 222,
+      "originalSize": [
+        2482,
+        3487
+      ],
+      "nativeBounds": [
+        1720,
+        713,
+        1761,
+        785
+      ],
+      "scale": 12,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-hayeyhem-complete-word-native.png",
+      "sha256": "cc2e459923d6314e3f3ddaf685c81d32ff3b4640fa92f9bfcd90ff1123367268",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        730,
+        1240,
+        910,
+        1340
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-hayeyhem-complete-word-5x.png",
+      "sha256": "84a9960a6d5f5e7bfc0d7a9bd74dceb47934e661d9012ba0cc3a0bf0ffb28c25",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        730,
+        1240,
+        910,
+        1340
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-hayeyhem-first-yod-native.png",
+      "sha256": "408f3025793c71ee513f84fd6923eefcef9d6e1866ca8d748306b6f2794c7b0f",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        825,
+        1260,
+        850,
+        1325
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-hayeyhem-first-yod-14x.png",
+      "sha256": "27be6de860bad91eb7c6bf7b60eb4005888b04be91eef986f264d79a82bc2591",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        825,
+        1260,
+        850,
+        1325
+      ],
+      "scale": 14,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-hayeyhem-second-yod-native.png",
+      "sha256": "46bac328be5b043a231e9dfab3b9cdc852d9a9686e221cabf7ae93589f4f73ec",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        803,
+        1260,
+        830,
+        1325
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-hayeyhem-second-yod-14x.png",
+      "sha256": "a5b0e9596c0e81e4cc129bf5064e2588995e742cff92fd2e0b3ff945716decd9",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        803,
+        1260,
+        830,
+        1325
+      ],
+      "scale": 14,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-vayitnakkel-complete-word-native.png",
+      "sha256": "aab19f6c84e32c6ecf10abdffb9dc7c4f69abde16673aacbd457f38ecfdee833",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        635,
+        675,
+        830,
+        780
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/literal-vayitnakkel-complete-word-5x.png",
+      "sha256": "0489a1a3dd98bb176c24092a65351fb619888e40c9baccde6c90175c8075e183",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        635,
+        675,
+        830,
+        780
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-vayibatser-complete-word-native.png",
+      "sha256": "392a3a4bd55597731fd60b53fbb6d21bb36e59521077bc6c63d5a9ad7da13e84",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1440,
+        675,
+        1640,
+        780
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-vayibatser-complete-word-5x.png",
+      "sha256": "f18441ece37e847a8f4a401a779580d734a636c3abd4be6fc66d5599f0c70aa9",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1440,
+        675,
+        1640,
+        780
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-naweh-complete-word-native.png",
+      "sha256": "d1388db6abd1db8fdd57ef9dd35da4e5aa4087bcec619c72cdbe93dd6f59d146",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1760,
+        1430,
+        1955,
+        1540
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-naweh-complete-word-5x.png",
+      "sha256": "8c4af72f8cb248118eb48d76df9970bca3bb3f2a3624797fcde9e861831a5d36",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1760,
+        1430,
+        1955,
+        1540
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-nitlah-complete-word-native.png",
+      "sha256": "0227e627cb3c45b017f1daad46fde223d2b363ef41d0bdecb12bd295ed640e03",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1740,
+        1615,
+        1950,
+        1735
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-nitlah-complete-word-5x.png",
+      "sha256": "e86b82bf20691b2b0b511cbeddbbb93743553af147a65a2c7fff214d6d3ca8bf",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1740,
+        1615,
+        1950,
+        1735
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-matsanu-complete-word-native.png",
+      "sha256": "eb049e91dc0e707e6bced56fd5884fd8abdf164f5a42e3d49ed30d7a556f1354",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1890,
+        1135,
+        2065,
+        1245
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/competitor-matsanu-complete-word-5x.png",
+      "sha256": "2f96e056c966a1a75994b8f92826fd943738e3d32ab7ee10d9fa42ee4f2488a8",
+      "page": 223,
+      "originalSize": [
+        2619,
+        3488
+      ],
+      "nativeBounds": [
+        1890,
+        1135,
+        2065,
+        1245
+      ],
+      "scale": 5,
+      "resampling": "nearest-neighbor",
+      "originalPDFPixelReplayPassed": true,
+      "fullyInsideOriginalImage": true
+    }
+  ],
+  "nativeFrameCount": 25,
+  "evidenceFileCount": 48,
+  "freshOriginalPageCount": 2,
+  "independentReview": {
+    "status": "pending"
+  },
+  "invariants": {
+    "allPriorScalarsAndCombiningOrderPreserved": true,
+    "allConsonantsPunctuationAndSourceBoundariesUnchanged": true,
+    "allRestoredLetterDisclosuresPreserved": true,
+    "onlyCertifiedNotesRetired": true,
+    "oneSurvivingAnchorRefreshed": true,
+    "noOccurrenceChanges": true,
+    "allCropsStrictlyWithinSourceBounds": true,
+    "allPublishedPNGsReplayedFromFreshOriginal": true,
+    "all18BaselinePinsMatchLiveAtPublication": true,
+    "canonicalStillBaselineAtPublication": true
+  },
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/accepted.json",
+    "sha256": "9d7a75aa2bc2500c6b3b03e37fbbfbd7ac847f59becc76d5de5e1fd5f7471f51"
+  },
+  "frameLedger": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/frame-ledger.json",
+    "sha256": "c282b74a1a21baaef7f10fd670f50f189e4059d12cae49c36db2ffd6ef9bfeb0"
+  },
+  "authorPixelReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/author-original-pixel-replay.json",
+    "sha256": "7f0d970f10ef1af90133e0cba1177eb41dc2caaaea22536aed17e5c0bb41b884"
+  }
+}

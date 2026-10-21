@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 151,
+  "integrationPass": 151,
+  "preparationID": 223,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation223-WIS-5-12/source-provenance.json",
+    "sha256": "4add08a7dc604da4b2a12fd69c349ec35845205b1617e6f365cb7f0a47a8610a"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-5-12-kaf"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-5-12-kaf",
+      "book": "WIS",
+      "chapter": 5,
+      "verse": 12,
+      "anchorBefore": "וּכרֶגַע",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own whole five-letter word inspected afresh. Exact own kaf is one742px connected component [1855,1342,1887,1399]; lower bar and narrow downward extension remain continuous with foot. No unique complete detached vowel geometry or independently established absence. Connectedness alone does not identify the attached mark.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/7b/7b93bf6703f0738fc416271c5d39a7dd7354640e70d0e7f1aa97942cc1131133.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/7b/7b93bf6703f0738fc416271c5d39a7dd7354640e70d0e7f1aa97942cc1131133.bin",
+      "inspectedBounds": [
+        1855,
+        1342,
+        1887,
+        1399
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation223-WIS-5-12/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 5,
+    "verse": 12,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation223-WIS-5-12/independent-review.json",
+    "sha256": "ce1325492a11550b45fd46f376da7b9d8ae6bee0b3428f54421c1278fe48a21d"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation223-WIS-5-12/primary-preparation.json",
+    "sha256": "3419af90c4b08cc0927e06b2ee39396081cd86b724cbeea78428f934e0e6d721"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass151-preparation223-WIS-5-12/consensus-preparation.json",
+    "sha256": "5f8f079beb2301809d8ce9ecb371d977a63ac87b7ed2cf2597fc17ebbf088964"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

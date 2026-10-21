@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 174,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "S3Y",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation174-S3Y-1-52/source-provenance.json",
+    "sha256": "d69d47916234d35a13b681d8b9aa942cabb23b69dd8c745ef3b2f902c1b61ec5"
+  },
+  "sourceNotesBefore": 4,
+  "sourceNotesAfter": 3,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-52-word1-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "c4f9dd7e4f90b27ea7c38d6816242806204a85ba59c129684d9206b55ad9982f",
+  "contentSHA256After": "881e1518540e87bdb9ec7a92fcb7b00457428a89c7a883c5a05d8e286a090977",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "s3y-1-52-word1-letter1-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 52,
+      "anchorBefore": "ועֲנָנִים",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": null,
+      "targetCapture": "extension-volumeA-581-zoom4-header.png",
+      "targetSourceIdentifier": "extension-volumeA-581-zoom4-header.png",
+      "inspectedBounds": [
+        283,
+        1658,
+        306,
+        1732
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        288,
+        1735,
+        317,
+        1748
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation174-S3Y-1-52/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 52,
+      "before": "בָּרְכוּ אֶת־יְיָ בְּרָקִים ועֲנָנִים הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃",
+      "after": "בָּרְכוּ אֶת־יְיָ בְּרָקִים וַעֲנָנִים הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 52,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation174-S3Y-1-52/independent-review.json",
+    "sha256": "d70bc94cb666d7e13b0a571b9483e5e77336e20092c3f3eb849066f0f3cfbd41"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation174-S3Y-1-52/primary-preparation.json",
+    "sha256": "9e37adf0682fee6e19c6236a065cc91715656909bf76e94f92db6af8ccaaa2bb"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation174-S3Y-1-52/consensus-preparation.json",
+    "sha256": "d6dd94109e2711350411458c66fb34bcf34f0b3c82e181fd197744f96bb26dea"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Daniel 3:25, 34–45",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Daniel 3:47–51",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

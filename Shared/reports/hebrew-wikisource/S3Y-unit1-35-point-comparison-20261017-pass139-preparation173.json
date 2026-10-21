@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 139,
+  "integrationPass": 139,
+  "preparationID": 173,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "S3Y",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation173-S3Y-1-35/source-provenance.json",
+    "sha256": "7e9211dd83d19e293f33e63beb1c0ef8e3fc1d092602085ce9bb00ce9c56ebda"
+  },
+  "sourceNotesBefore": 4,
+  "sourceNotesAfter": 4,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "s3y-1-35-rakiya-resh-vowel"
+  ],
+  "contentSHA256Before": "c4f9dd7e4f90b27ea7c38d6816242806204a85ba59c129684d9206b55ad9982f",
+  "contentSHA256After": "c4f9dd7e4f90b27ea7c38d6816242806204a85ba59c129684d9206b55ad9982f",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "s3y-1-35-rakiya-resh-vowel",
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 35,
+      "anchorBefore": "בִּרקִיעַ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": null,
+      "targetCapture": "extension-volumeA-580-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-580-zoom4-upper-right.png",
+      "inspectedBounds": [
+        813,
+        851,
+        872,
+        956
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation173-S3Y-1-35/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 1,
+    "verse": 35,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation173-S3Y-1-35/independent-review.json",
+    "sha256": "c50e2113062cac52f2963943e0a745b3b7a2bb243ec50edd80351d8189106dfc"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation173-S3Y-1-35/primary-preparation.json",
+    "sha256": "8c13a63de051dccf3beb82c6e5556aca371d4564161b6be71862451e16d268cc"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-preparation173-S3Y-1-35/consensus-preparation.json",
+    "sha256": "8b14f3f2697efb0218cc31c77d638832636bcb3e902d861377c9afa381fa7d84"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

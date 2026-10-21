@@ -1,0 +1,662 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-18",
+  "batchDate": "2026-10-17",
+  "pass": 36,
+  "book": "S3Y",
+  "status": "All eight remaining notes in S3Y closing narrative certified and retired via authorized high-resolution Chrome captures.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 36 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-chrome-acquisition/extension-volumeA-581-zoom6-narrative-right-sl2100.png",
+    "sha256": "1937b1952549f1a66d7bf73bd3697f1958b90749d222fb08c756704ace9a98d5"
+  },
+  "sourceAuthorization": "User explicitly directed to prioritize from the current point the verses with most unresolved vowel marks using the authorized signed-in Psik session.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected. No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point. Screenshot replay is not PDF embedded-pixel replay.",
+  "baselineGlobalSourceNoteCount": 421,
+  "canonicalSHA256Before": "ee4512c936406c3d07b9f89aa7a1c93f35ae2c23623921146aaa6bbb6fe2bacc",
+  "contentSHA256Before": "9f5a3affa9f5348997e103480753bd094d1cd5a71359f98dc6461907831b4683",
+  "contentSHA256After": "afb7c3af2dff396dd41b69a1c973389d2f925fde4ebf350aff9c5ac01cac4dc1",
+  "sourceNotesBefore": 48,
+  "sourceNotesAfter": 40,
+  "reviewedSourceNoteCount": 8,
+  "resolvedSourceNoteCount": 8,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "s3y-1-tail-word4-letter1-vowel",
+    "s3y-1-tail-word5-letter1-vowel",
+    "s3y-1-tail-word6-letter1-vowel",
+    "s3y-1-tail-word7-letter1-vowel",
+    "s3y-1-tail-word7-letter2-dagesh",
+    "s3y-1-tail-word8-letter1-vowel",
+    "s3y-1-tail-word9-letter1-vowel",
+    "s3y-1-tail-word9-letter2-dagesh"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 8,
+  "addedCombiningMarks": {
+    "s3y-1-tail-word4-letter1-vowel": "U+05B7",
+    "s3y-1-tail-word5-letter1-vowel": "U+05B7",
+    "s3y-1-tail-word6-letter1-vowel": "U+05B7",
+    "s3y-1-tail-word7-letter1-vowel": "U+05B7",
+    "s3y-1-tail-word7-letter2-dagesh": "U+05BC",
+    "s3y-1-tail-word8-letter1-vowel": "U+05B7",
+    "s3y-1-tail-word9-letter1-vowel": "U+05B7",
+    "s3y-1-tail-word9-letter2-dagesh": "U+05BC"
+  },
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "beforeText": "ויְהִי כַּאֲשֶׁר שָׁמַע הַמֶּלֶךְ אוֹתָם מְהַלְלִים ויָּקָם ויַּרְא אוֹתָם כִּי חַיִּים הֵם ויִתְמַהּ הַמֶּלֶךְ נְבוּכַדְנֶאצַּר ויְמַהֵר לָקוּם ויֹאמֶר לְאֹהֲבָיו — — —׃",
+      "afterText": "וַיְהִי כַּאֲשֶׁר שָׁמַע הַמֶּלֶךְ אוֹתָם מְהַלְלִים וַיָּקָם וַיַּרְא אוֹתָם כִּי חַיִּים הֵם וַיִּתְמַהּ הַמֶּלֶךְ נְבוּכַדְנֶאצַּר וַיְמַהֵר לָקוּם וַיֹּאמֶר לְאֹהֲבָיו — — —׃",
+      "beforeTextSHA256": "b8ef41aea860675631e0f693717e04b80a8fc9d898dc9e20b38f584f5d94e0f5",
+      "afterTextSHA256": "bc25ec15e58c0ebea70ed6cd93711bfec8e90eeaf05b872a8c2f2b6577d951ab",
+      "retiredNoteCount": 8,
+      "retainedNoteCount": 0
+    }
+  ],
+  "decisions": [
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "noteId": "s3y-1-tail-word4-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "reading": "patah",
+      "retiredNoteIds": [
+        "s3y-1-tail-word4-letter1-vowel"
+      ],
+      "sourcePage": 236,
+      "finding": "Under initial vav of וַיְהִי, a clear, unambiguous horizontal patah bar is visible completely detached from the foot of the vav.",
+      "targetEvidence": [
+        {
+          "kind": "target-word-zoom6",
+          "label": "Full word containing target point at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayehi-vav-target-word-zoom6.png",
+          "sha256": "0f1229d439a05b2e63ead9711d8edaf7fc2fddc19ab94f4d4f0439fc45dd9b3e",
+          "dimensions": "250x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayehi-vav-target-word-zoom6-x4.png",
+            "sha256": "20504b204639111a3996f31fec5e3aad4d2e93d321b365e3f8078a26423b6e7f",
+            "dimensions": "1000x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "whole-glyph-zoom6",
+          "label": "Whole consonant glyph with mark at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayehi-vav-whole-glyph-zoom6.png",
+          "sha256": "41d4e9e77cff4b6245c2feb519f9285a5fa3e47f16ebb8cd1d0398bf9f937845",
+          "dimensions": "85x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayehi-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "ed9815d9a62ee2c1da7b63a4367934c8c833f225153fa3ed6d53c4a8acb81c6d",
+            "dimensions": "340x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "positive-control-zoom6",
+          "label": "Same-line patah under mem in שָׁמַע on line 1 of closing narrative",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayehi-vav-positive-control-zoom6.png",
+          "sha256": "8fd421ca8563f7b1c05b28d3974cb4b746b5889aa65c2a76b7a1f8f58e6b0567",
+          "dimensions": "100x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayehi-vav-positive-control-zoom6-x4.png",
+            "sha256": "01e5314f0ff52fe4762e8cd98e8c7639fc24376c11744dc0d0c306fab58edfe5",
+            "dimensions": "400x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "competing-control-zoom6",
+          "label": "Same-word sheva under yod in וַיְהִי",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayehi-vav-competing-control-zoom6.png",
+          "sha256": "eeea32f9a0b18aaeded72cce33daf6350247c94256cee9890a48f351b361dde8",
+          "dimensions": "80x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayehi-vav-competing-control-zoom6-x4.png",
+            "sha256": "7b7891e3302ca51d9c0b3f1f86efcced8f7a34cb0f73c57cecb1a6e0c2ca041f",
+            "dimensions": "320x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "noteId": "s3y-1-tail-word5-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "reading": "patah",
+      "retiredNoteIds": [
+        "s3y-1-tail-word5-letter1-vowel"
+      ],
+      "sourcePage": 236,
+      "finding": "Under initial vav of וַיָּקָם, a clear horizontal patah stroke is distinct and detached from the foot of the vav.",
+      "targetEvidence": [
+        {
+          "kind": "target-word-zoom6",
+          "label": "Full word containing target point at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayaqam-vav-target-word-zoom6.png",
+          "sha256": "763b0dad5dd65bf73db69d5e319b591e44edef277a2c38e9d26e64247ad3f8c2",
+          "dimensions": "300x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayaqam-vav-target-word-zoom6-x4.png",
+            "sha256": "a92c459cb837f74646a791bc8bdddf21f5b42923e9f5985cbf972ee17a9bb383",
+            "dimensions": "1200x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "whole-glyph-zoom6",
+          "label": "Whole consonant glyph with mark at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayaqam-vav-whole-glyph-zoom6.png",
+          "sha256": "aec63f76fc88eea93ffa28c8370cef47c2461d7c7f15fee7188434f816b955c5",
+          "dimensions": "100x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayaqam-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "d0d7a9b2bd67fcd781514cc4dfa9320b33ea7a601d9722844bfb0ffc5815ad2b",
+            "dimensions": "400x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "positive-control-zoom6",
+          "label": "Same-line patah under vav in וַיְהִי",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayaqam-vav-positive-control-zoom6.png",
+          "sha256": "777557d7b6db853937f14d500622acb68d28e77fc3eb970d73d2ac9626144611",
+          "dimensions": "250x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayaqam-vav-positive-control-zoom6-x4.png",
+            "sha256": "90235ca8dc600f756e41aeaa3a282d6e3709d4cce7a7f6e00682299d4fdd6375",
+            "dimensions": "1000x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "competing-control-zoom6",
+          "label": "Same-word qamats under yod in וַיָּקָם",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayaqam-vav-competing-control-zoom6.png",
+          "sha256": "548202543636c815f81d1d1699adc2df19f10ef96156a915ae1421759c7e3c00",
+          "dimensions": "80x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayaqam-vav-competing-control-zoom6-x4.png",
+            "sha256": "f2c045df5ab2726e6b73a7e0bda4cd85bd3750d905a5a8abf6a9ed229f34ae16",
+            "dimensions": "320x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "noteId": "s3y-1-tail-word6-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "reading": "patah",
+      "retiredNoteIds": [
+        "s3y-1-tail-word6-letter1-vowel"
+      ],
+      "sourcePage": 236,
+      "finding": "Under initial vav of וַיַּרְא, a sharp horizontal patah bar extends cleanly below the consonant.",
+      "targetEvidence": [
+        {
+          "kind": "target-word-zoom6",
+          "label": "Full word containing target point at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayar-vav-target-word-zoom6.png",
+          "sha256": "59fb288ba8ee690202639c6e16ac9592407e6dbb932667740a478ce6392f10a9",
+          "dimensions": "300x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayar-vav-target-word-zoom6-x4.png",
+            "sha256": "58e9c3608506fb49a378776ef547cf3be633aff47acc6cb45eab89379a62b6c1",
+            "dimensions": "1200x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "whole-glyph-zoom6",
+          "label": "Whole consonant glyph with mark at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayar-vav-whole-glyph-zoom6.png",
+          "sha256": "1c398c50783c4183e596706f359b6a95a290bf1619eb8222273d0d6a9e8e7d79",
+          "dimensions": "90x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayar-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "2bfd5335271878cc82171496d3868281544a89293252ec425fe38a578fa5385b",
+            "dimensions": "360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "positive-control-zoom6",
+          "label": "Same-word patah under yod in וַיַּרְא",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayar-vav-positive-control-zoom6.png",
+          "sha256": "54892fe97c00b93a5b83acf264f2f00a16af2ec68a85d40826d783b9f483bdcf",
+          "dimensions": "90x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayar-vav-positive-control-zoom6-x4.png",
+            "sha256": "ea8079ab9a60b0458d5801fc78b50fec58466e4c8fbe42613756d7614ed3fee4",
+            "dimensions": "360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "competing-control-zoom6",
+          "label": "Same-word sheva under resh in וַיַּרְא",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayar-vav-competing-control-zoom6.png",
+          "sha256": "6d17bae26bd766a0f1e54d6a96aa4c2559d8213c96f2a70805a86cfa51017536",
+          "dimensions": "80x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayar-vav-competing-control-zoom6-x4.png",
+            "sha256": "f97a47fc9b1dc7264d4f7c7182b4f8a932a933cd1eab2570965d5293962d66dc",
+            "dimensions": "320x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "noteId": "s3y-1-tail-word7-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "reading": "patah",
+      "retiredNoteIds": [
+        "s3y-1-tail-word7-letter1-vowel"
+      ],
+      "sourcePage": 236,
+      "finding": "Under initial vav of וַיִּתְמַהּ, a clear horizontal patah stroke is distinct from the consonant.",
+      "targetEvidence": [
+        {
+          "kind": "target-word-zoom6",
+          "label": "Full word containing target point at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-vav-target-word-zoom6.png",
+          "sha256": "41e386274cb30bd6e0adfefd8dc37e3610e0af65bda6b987516a56a51bee0474",
+          "dimensions": "370x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-vav-target-word-zoom6-x4.png",
+            "sha256": "64b88820eb5b535c5457b64984f81a4e9d1d15206bf1b34844fd03b5b3d33b0d",
+            "dimensions": "1480x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "whole-glyph-zoom6",
+          "label": "Whole consonant glyph with mark at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-vav-whole-glyph-zoom6.png",
+          "sha256": "a8adf8ee45916c3dfc4207cb78152c90f897b29d452d21aee470319c1d612fbe",
+          "dimensions": "90x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "77571c42e0181f19820feb0b03b8ed339123e52a07a5f650c7cc3a7f483c7c7e",
+            "dimensions": "360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "positive-control-zoom6",
+          "label": "Same-word patah under mem in וַיִּתְמַהּ",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-vav-positive-control-zoom6.png",
+          "sha256": "7b79b50cc7755e0b23b667db36b931c93d9c519175fbd2a1e72bcdf27e9ac735",
+          "dimensions": "100x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-vav-positive-control-zoom6-x4.png",
+            "sha256": "bd803f7022e50fe33157eb53469caea965f52ded31ad082b7ca5865611a89d2a",
+            "dimensions": "400x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "competing-control-zoom6",
+          "label": "Same-word sheva under tav in וַיִּתְמַהּ",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-vav-competing-control-zoom6.png",
+          "sha256": "3a67defea7bc018f202dbc80e0b9dbc969a38239217fba37f4d701bfc33a3305",
+          "dimensions": "80x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-vav-competing-control-zoom6-x4.png",
+            "sha256": "959c5f256f3ea0ae76f662c43d950ec05cc97eb2fbfea867ba0703a636834723",
+            "dimensions": "320x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "noteId": "s3y-1-tail-word7-letter2-dagesh",
+      "addedScalar": "U+05BC",
+      "reading": "dagesh",
+      "retiredNoteIds": [
+        "s3y-1-tail-word7-letter2-dagesh"
+      ],
+      "sourcePage": 236,
+      "finding": "In yod of וַיִּתְמַהּ, a distinct dagesh dot is centered in the belly of the consonant, with hiriq below.",
+      "targetEvidence": [
+        {
+          "kind": "target-word-zoom6",
+          "label": "Full word containing target point at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-yod-target-word-zoom6.png",
+          "sha256": "41e386274cb30bd6e0adfefd8dc37e3610e0af65bda6b987516a56a51bee0474",
+          "dimensions": "370x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-yod-target-word-zoom6-x4.png",
+            "sha256": "64b88820eb5b535c5457b64984f81a4e9d1d15206bf1b34844fd03b5b3d33b0d",
+            "dimensions": "1480x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "whole-glyph-zoom6",
+          "label": "Whole consonant glyph with mark at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-yod-whole-glyph-zoom6.png",
+          "sha256": "a25a4990d5fe032c9d5ab34b9887db0c1cda422966f32f42d386a93e2c945806",
+          "dimensions": "80x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-yod-whole-glyph-zoom6-x4.png",
+            "sha256": "e38c7d4339b41e72357441df83fe3ad382eb97e094aa8058e1d0d031ca99db4a",
+            "dimensions": "320x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "positive-control-zoom6",
+          "label": "Same-sentence dagesh in kaf in כַּאֲשֶׁר",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-yod-positive-control-zoom6.png",
+          "sha256": "016665a709721eab19e5e551b72e463c997cbd459017990e431f2855f2af94a9",
+          "dimensions": "115x115",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-yod-positive-control-zoom6-x4.png",
+            "sha256": "9491e176f49b5eb63d921f31d753c7500119830cffb82544219d330c7bd8a665",
+            "dimensions": "460x460",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "competing-control-zoom6",
+          "label": "Same-page undageshed yod in וַיְהִי",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-yod-competing-control-zoom6.png",
+          "sha256": "eeea32f9a0b18aaeded72cce33daf6350247c94256cee9890a48f351b361dde8",
+          "dimensions": "80x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayitmah-yod-competing-control-zoom6-x4.png",
+            "sha256": "7b7891e3302ca51d9c0b3f1f86efcced8f7a34cb0f73c57cecb1a6e0c2ca041f",
+            "dimensions": "320x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "noteId": "s3y-1-tail-word8-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "reading": "patah",
+      "retiredNoteIds": [
+        "s3y-1-tail-word8-letter1-vowel"
+      ],
+      "sourcePage": 236,
+      "finding": "Under initial vav of וַיְמַהֵר, a crisp horizontal patah bar is visible.",
+      "targetEvidence": [
+        {
+          "kind": "target-word-zoom6",
+          "label": "Full word containing target point at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vaymaher-vav-target-word-zoom6.png",
+          "sha256": "3c74d65af8792fc9b7f08df20790080270542f11ba38ad9eb22ab428b09a832f",
+          "dimensions": "350x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vaymaher-vav-target-word-zoom6-x4.png",
+            "sha256": "1b6fa1a462b0e187b41c82cd7640a944ccdf079858fcba4dbea3951138c59d6f",
+            "dimensions": "1400x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "whole-glyph-zoom6",
+          "label": "Whole consonant glyph with mark at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vaymaher-vav-whole-glyph-zoom6.png",
+          "sha256": "c5032f559a4b9e90e535663cd78d3fc55c06e0915a0842a8d2051bff5b2de6d7",
+          "dimensions": "90x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vaymaher-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "aa47b3a8de96c84df75072795bdc869781ceabc7999412db5698cc3d93c62376",
+            "dimensions": "360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "positive-control-zoom6",
+          "label": "Same-word patah under mem in וַיְמַהֵר",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vaymaher-vav-positive-control-zoom6.png",
+          "sha256": "c481f377e4682df810a86d6c292c59e5671b699bc1a535b16c4d1e971b23bbe1",
+          "dimensions": "100x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vaymaher-vav-positive-control-zoom6-x4.png",
+            "sha256": "e6eef60a8dbd9a813ff4e03ca2e7113271de97e239676dc59c6b9ab447a6d519",
+            "dimensions": "400x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "competing-control-zoom6",
+          "label": "Same-word sheva under yod in וַיְמַהֵר",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vaymaher-vav-competing-control-zoom6.png",
+          "sha256": "dfd58cf2341cc5a6cd306e4b77d900189f554c26ac861837c18b00e2285a0888",
+          "dimensions": "80x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vaymaher-vav-competing-control-zoom6-x4.png",
+            "sha256": "72f5201eb7d99c06059660eac248dd467c1b28b14d1d759354a805486228acb8",
+            "dimensions": "320x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "noteId": "s3y-1-tail-word9-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "reading": "patah",
+      "retiredNoteIds": [
+        "s3y-1-tail-word9-letter1-vowel"
+      ],
+      "sourcePage": 236,
+      "finding": "Under initial vav of וַיֹּאמֶר, a clear horizontal patah bar is detached from the foot of the vav.",
+      "targetEvidence": [
+        {
+          "kind": "target-word-zoom6",
+          "label": "Full word containing target point at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-vav-target-word-zoom6.png",
+          "sha256": "f673b928ed0af62ec14f56778e86320f6261e449d739add20b0cf9c139a9faf8",
+          "dimensions": "340x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-vav-target-word-zoom6-x4.png",
+            "sha256": "dd780de583b4e5c43091aab59643d17472f311c0e284ba87748c5f50e7af3151",
+            "dimensions": "1360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "whole-glyph-zoom6",
+          "label": "Whole consonant glyph with mark at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-vav-whole-glyph-zoom6.png",
+          "sha256": "c8a5b187895f74c6ed24a20170473e1ed4e00f96afa6c6087adb71be304fc2ba",
+          "dimensions": "90x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-vav-whole-glyph-zoom6-x4.png",
+            "sha256": "9a339c03167ccfefa97497971c782e22e75bf6fab095dfae1430c6e0cefdc02a",
+            "dimensions": "360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "positive-control-zoom6",
+          "label": "Same-sentence patah under yod in וַיַּרְא",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-vav-positive-control-zoom6.png",
+          "sha256": "54892fe97c00b93a5b83acf264f2f00a16af2ec68a85d40826d783b9f483bdcf",
+          "dimensions": "90x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-vav-positive-control-zoom6-x4.png",
+            "sha256": "ea8079ab9a60b0458d5801fc78b50fec58466e4c8fbe42613756d7614ed3fee4",
+            "dimensions": "360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "competing-control-zoom6",
+          "label": "Same-word segol under mem in וַיֹּאמֶר",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-vav-competing-control-zoom6.png",
+          "sha256": "6a88797c8cc17bae249253d98d5b6feff744ea8c93f4ba53150f229cd2302d25",
+          "dimensions": "80x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-vav-competing-control-zoom6-x4.png",
+            "sha256": "f09633c1023f1e4f6dcd0c7fb1ec90da6e0b98d7e1e0b1e52b163315418e38b9",
+            "dimensions": "320x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      ]
+    },
+    {
+      "book": "S3Y",
+      "chapter": 1,
+      "blockId": "s3y-closing-narrative",
+      "noteId": "s3y-1-tail-word9-letter2-dagesh",
+      "addedScalar": "U+05BC",
+      "reading": "dagesh",
+      "retiredNoteIds": [
+        "s3y-1-tail-word9-letter2-dagesh"
+      ],
+      "sourcePage": 236,
+      "finding": "In yod of וַיֹּאמֶר, a centered dagesh dot is present in the consonant belly, with holam dot above left.",
+      "targetEvidence": [
+        {
+          "kind": "target-word-zoom6",
+          "label": "Full word containing target point at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-yod-target-word-zoom6.png",
+          "sha256": "f673b928ed0af62ec14f56778e86320f6261e449d739add20b0cf9c139a9faf8",
+          "dimensions": "340x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-yod-target-word-zoom6-x4.png",
+            "sha256": "dd780de583b4e5c43091aab59643d17472f311c0e284ba87748c5f50e7af3151",
+            "dimensions": "1360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "whole-glyph-zoom6",
+          "label": "Whole consonant glyph with mark at zoom 6",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-yod-whole-glyph-zoom6.png",
+          "sha256": "043d66f5d56078f26dd3b798ef1cad4fcd5c301bd7a433d0fc0949cc5406ac50",
+          "dimensions": "90x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-yod-whole-glyph-zoom6-x4.png",
+            "sha256": "c640f5e2ef67ba2502e3c5b5b61a9abbbd040cd6400d10fbda29424999bd91bd",
+            "dimensions": "360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "positive-control-zoom6",
+          "label": "Same-sentence dagesh in yod in וַיָּקָם",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-yod-positive-control-zoom6.png",
+          "sha256": "159e755321113739c7e7656f6f3b8493fcdaa34ce8cb0aec69cdc5ff274d9f42",
+          "dimensions": "100x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-yod-positive-control-zoom6-x4.png",
+            "sha256": "d4000ce123e969de755df19e8fdca259bfd8e63d8de5e48a1d2c12ac7112a61f",
+            "dimensions": "400x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        },
+        {
+          "kind": "competing-control-zoom6",
+          "label": "Same-line undageshed yod in לְאֹהֲבָיו",
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-yod-competing-control-zoom6.png",
+          "sha256": "ac736efa8d92361c83bc8f1bd62a8ba19fe2f639332051ff19e9ae6b743c9516",
+          "dimensions": "90x150",
+          "scaled4x": {
+            "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass36-S3Y-tail/s3y-tail-vayomer-yod-competing-control-zoom6-x4.png",
+            "sha256": "32a2cafcf6e9cc50a84bbf14325022c1d52baf5944b395f7ba53b7df983fbe07",
+            "dimensions": "360x600",
+            "scale": 4,
+            "interpolation": "nearest",
+            "pixelEquality": true
+          }
+        }
+      ]
+    }
+  ]
+}

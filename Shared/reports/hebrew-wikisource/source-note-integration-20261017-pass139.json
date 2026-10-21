@@ -1,0 +1,1013 @@
+{
+  "date": "2026-10-21",
+  "pass": 139,
+  "startingNoteCount": 175,
+  "removedNoteCount": 4,
+  "remainingNoteCount": 171,
+  "reviewedSourceNoteCount": 7,
+  "retainedInspectedSourceNoteCount": 3,
+  "books": [
+    {
+      "book": "S3Y",
+      "beforeNoteCount": 7,
+      "afterNoteCount": 3,
+      "removedNoteIds": [
+        "s3y-1-16-word5-letter1-vowel",
+        "s3y-1-22-word7-letter1-vowel",
+        "s3y-1-26-word1-letter1-vowel",
+        "s3y-1-52-word1-letter1-vowel"
+      ],
+      "retainedInspectedNoteIds": [
+        "s3y-1-11-word1-letter1-vowel",
+        "s3y-1-19-word5-letter2-vowel",
+        "s3y-1-35-rakiya-resh-vowel"
+      ],
+      "beforeDigest": "d1f129724960a1e9139f38dc28c73537e07d34c628737fdae0e47fd74c73494b",
+      "afterDigest": "881e1518540e87bdb9ec7a92fcb7b00457428a89c7a883c5a05d8e286a090977",
+      "sourceChanges": [
+        {
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 16,
+          "before": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם ונְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+          "after": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם וַנְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 44,
+              "mark": "ַ",
+              "codePoint": "U+05B7"
+            }
+          ]
+        },
+        {
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 22,
+          "before": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ ויִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+          "after": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ וְיִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 62,
+              "mark": "ְ",
+              "codePoint": "U+05B0"
+            }
+          ]
+        },
+        {
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 26,
+          "before": "ויַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "after": "וַיַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 1,
+              "mark": "ַ",
+              "codePoint": "U+05B7"
+            }
+          ]
+        },
+        {
+          "book": "S3Y",
+          "chapter": 1,
+          "verse": 52,
+          "before": "בָּרְכוּ אֶת־יְיָ בְּרָקִים ועֲנָנִים הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃",
+          "after": "בָּרְכוּ אֶת־יְיָ בְּרָקִים וַעֲנָנִים הַלְלֻהוּ וְרוֹמְמֻהוּ לְעוֹלָמִים׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 29,
+              "mark": "ַ",
+              "codePoint": "U+05B7"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-11-point-comparison-20261017-pass139-preparation168.json",
+          "sha256": "801c017e83d6201b892aae85a3dcfe6ecfd31484804fe929efbc93fe55b46dbb"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-16-point-comparison-20261017-pass139-preparation169.json",
+          "sha256": "d8f0a06fdd9083e72907f31dc6943289ccbf29371ce52a3852cd3cf2d099578f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-19-point-comparison-20261017-pass139-preparation170.json",
+          "sha256": "640bece2f0171c0038bf91df4a71fb6521e0b211480b521054c446205b9ef080"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-22-point-comparison-20261017-pass139-preparation171.json",
+          "sha256": "461c29a4fcf952cbb8ebdb8e26dbe427962adbb452ecc5d9631be313dd519ac4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-26-point-comparison-20261017-pass139-preparation172.json",
+          "sha256": "f33b0ad4800b6201f4cde19acd60103c0cc8025c3fcfed5271d867be63ef08c5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-35-point-comparison-20261017-pass139-preparation173.json",
+          "sha256": "bfbac542cd76cafc204036643488fbaf233988261d551adea4e1219d32e7b8db"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-52-point-comparison-20261017-pass139-preparation174.json",
+          "sha256": "355d6cc3e15208086e2f499dca0edc36d9f3e839e8a69726043069094b601284"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation168.json",
+          "sha256": "5288b04215de74a1f7167edd2dd9c65dcca4644675ad07cb5c94c74c9fb21959"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation169.json",
+          "sha256": "8f02862670e1112a3be032a419990b86e58ad18d118954b2664e42a2f9f08770"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation170.json",
+          "sha256": "990f7b608b8e3dd16f67c19a46007ed4c975f006e74e1082b16399d451ad776f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation171.json",
+          "sha256": "c1fbf7fdf75d78e10d2ff627c5806c4d4d1911a54cd60a878ee572d13e30ca19"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation172.json",
+          "sha256": "de2e9327212a5003c824843c111a8d8b074bb851708ed1dbccbc626e0e8ebe95"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation173.json",
+          "sha256": "91d72ba486413c1cac017bb41eac43b62b0d0f88e056c6e5ca18beac26b74918"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation174.json",
+          "sha256": "0f50eaf9f7d09da383709f50816e5ac9e4b8319d569d7910395cf0e9810c71f2"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [],
+  "retainedAnchorUpdates": 0,
+  "retainedAnchorUpdateDetails": [],
+  "dailyWholeBookPinsUpdated": 2,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 18,
+  "dailyReviewMetadataUnchangedCount": 18,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [
+    "daily|Daniel 3:25, 34–45",
+    "daily|Daniel 3:47–51"
+  ],
+  "dailySelectedPointChanges": [
+    {
+      "appointment": "daily|Daniel 3:25, 34–45",
+      "chapter": 1,
+      "verse": 16,
+      "before": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם ונְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+      "after": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם וַנְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+      "sourceNotesBefore": [
+        {
+          "id": "s3y-1-16-word5-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ונְּהִי",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            234
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+        }
+      ],
+      "sourceNotesAfter": []
+    },
+    {
+      "appointment": "daily|Daniel 3:25, 34–45",
+      "chapter": 1,
+      "verse": 22,
+      "before": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ ויִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+      "after": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ וְיִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+      "sourceNotesBefore": [
+        {
+          "id": "s3y-1-22-word7-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִסּוֹגוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            234
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+        }
+      ],
+      "sourceNotesAfter": []
+    },
+    {
+      "appointment": "daily|Daniel 3:47–51",
+      "chapter": 1,
+      "verse": 26,
+      "before": "ויַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+      "after": "וַיַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+      "sourceNotesBefore": [
+        {
+          "id": "s3y-1-26-word1-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויַּעַל",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            234
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+        }
+      ],
+      "sourceNotesAfter": []
+    }
+  ],
+  "dailyBoundaryTextUpdates": [
+    {
+      "appointment": "daily|Daniel 3:47–51",
+      "field": "openingText",
+      "sourceBook": "S3Y",
+      "selection": {
+        "chapter": 1,
+        "verse": 26
+      },
+      "frozenSourceScalarSpan": [
+        0,
+        66
+      ],
+      "before": "ויַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+      "after": "וַיַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+      "approvedInsertionsWithinSpan": [
+        {
+          "offset": 1,
+          "mark": "ַ",
+          "codePoint": "U+05B7"
+        }
+      ]
+    }
+  ],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-11-point-comparison-20261017-pass139-preparation168.json",
+      "sha256": "801c017e83d6201b892aae85a3dcfe6ecfd31484804fe929efbc93fe55b46dbb"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-16-point-comparison-20261017-pass139-preparation169.json",
+      "sha256": "d8f0a06fdd9083e72907f31dc6943289ccbf29371ce52a3852cd3cf2d099578f"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-19-point-comparison-20261017-pass139-preparation170.json",
+      "sha256": "640bece2f0171c0038bf91df4a71fb6521e0b211480b521054c446205b9ef080"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-22-point-comparison-20261017-pass139-preparation171.json",
+      "sha256": "461c29a4fcf952cbb8ebdb8e26dbe427962adbb452ecc5d9631be313dd519ac4"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-26-point-comparison-20261017-pass139-preparation172.json",
+      "sha256": "f33b0ad4800b6201f4cde19acd60103c0cc8025c3fcfed5271d867be63ef08c5"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-35-point-comparison-20261017-pass139-preparation173.json",
+      "sha256": "bfbac542cd76cafc204036643488fbaf233988261d551adea4e1219d32e7b8db"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-52-point-comparison-20261017-pass139-preparation174.json",
+      "sha256": "355d6cc3e15208086e2f499dca0edc36d9f3e839e8a69726043069094b601284"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation168.json",
+      "sha256": "5288b04215de74a1f7167edd2dd9c65dcca4644675ad07cb5c94c74c9fb21959"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation169.json",
+      "sha256": "8f02862670e1112a3be032a419990b86e58ad18d118954b2664e42a2f9f08770"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation170.json",
+      "sha256": "990f7b608b8e3dd16f67c19a46007ed4c975f006e74e1082b16399d451ad776f"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation171.json",
+      "sha256": "c1fbf7fdf75d78e10d2ff627c5806c4d4d1911a54cd60a878ee572d13e30ca19"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation172.json",
+      "sha256": "de2e9327212a5003c824843c111a8d8b074bb851708ed1dbccbc626e0e8ebe95"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation173.json",
+      "sha256": "91d72ba486413c1cac017bb41eac43b62b0d0f88e056c6e5ca18beac26b74918"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-offline-acquisition-20261021-pass139-preparation174.json",
+      "sha256": "0f50eaf9f7d09da383709f50816e5ac9e4b8319d569d7910395cf0e9810c71f2"
+    }
+  ],
+  "state": "Applied, regenerated and audited. Recorded Shared, Android and Apple checks passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 171,
+      "removedNotes": 4,
+      "changedArchiveChapters": 1,
+      "changedArchiveMembers": [
+        "chapters/S3Y/1.json",
+        "manifest.json"
+      ],
+      "preservedArchiveMembers": 1335,
+      "addedArchiveMembers": [],
+      "removedArchiveMembers": [],
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-b70a8fecb88b9218c99717c0ace11f3891ade1ab34d7f48068bf8a7fe3ba7cfc.zip",
+      "archiveSHA256": "7936406422d58acf51496d84fa4f03318ec0cd8349ce0aa142b4e729f40b6987",
+      "archiveBytes": 3107165,
+      "baselineArchive": "Shared/dist/bibles/masoretic-delitzsch-e5d8956a3209f456ef23293cc0fb4d3c9e133169392e5891f0c7404a432aa9cf.zip",
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "chapter": 1,
+          "verse": 16,
+          "before": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם ונְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+          "after": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם וַנְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+          "sourceNotesBefore": [
+            {
+              "id": "s3y-1-16-word5-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ונְּהִי",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "sourceNotesAfter": []
+        },
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "chapter": 1,
+          "verse": 22,
+          "before": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ ויִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+          "after": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ וְיִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+          "sourceNotesBefore": [
+            {
+              "id": "s3y-1-22-word7-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִסּוֹגוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "sourceNotesAfter": []
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "chapter": 1,
+          "verse": 26,
+          "before": "ויַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "after": "וַיַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "sourceNotesBefore": [
+            {
+              "id": "s3y-1-26-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַּעַל",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "sourceNotesAfter": []
+        }
+      ],
+      "dailyChangedRowCount": 3,
+      "dailyChangedAppointmentCount": 2,
+      "matchingNativeDataCopies": 3,
+      "nativeDataCopyMatches": {
+        "Apple": true,
+        "Android": true,
+        "Windows": true
+      },
+      "dailyCurrentPassChangedRowCount": 3,
+      "dailyHistoricalCatchupChangedRowCount": 0,
+      "dailyActualChangedRowCount": 3
+    },
+    "verification": {
+      "build-bible-library": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/build-bible-library.log",
+        "durationSeconds": 10.54,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/build-bible-library.py",
+          "--sync"
+        ],
+        "logSHA256": "c8c70832b74541f42a411d39846a08afc73f4fceefa0276d99007055bb436758",
+        "passed": true
+      },
+      "fetch-readings": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/fetch-readings.log",
+        "durationSeconds": 0.35,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/fetch-readings.py",
+          "--localize-only",
+          "--sync"
+        ],
+        "logSHA256": "e992955842d03ea87d10df8bc777939feb45672843f43b92a7c14d9e31efc8fd",
+        "passed": true
+      },
+      "hebrew-deuterocanon": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/hebrew-deuterocanon.log",
+        "durationSeconds": 0.07,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/hebrew_deuterocanon.py"
+        ],
+        "logSHA256": "42bbf7608e36afd3779d18752c0f99f576ce13b6c0e3e576275d87c963610f0e",
+        "passed": true
+      },
+      "asset-deduplication": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/asset-deduplication.log",
+        "durationSeconds": 0.16,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/test-asset-deduplication.py"
+        ],
+        "logSHA256": "ef86bea90e26a5d58506ed3dc0943d23de67bc89de67a92b129d82db5041e42e",
+        "passed": true
+      },
+      "android": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/android.log",
+        "durationSeconds": 20.67,
+        "command": [
+          "./gradlew",
+          "--offline",
+          "testDebugUnitTest",
+          "--rerun"
+        ],
+        "successMarker": "BUILD SUCCESSFUL",
+        "testTaskLines": [
+          "> Task :app:testDebugUnitTest"
+        ],
+        "freshTestTaskExecuted": true,
+        "freshTestResults": {
+          "suites": 73,
+          "tests": 585,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "logSHA256": "4bf16596cb36190c38a7422b9bbb44c236e1bc7c3e7f9441f548d5378ad48034",
+        "passed": true
+      },
+      "apple": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/apple.log",
+        "durationSeconds": 48.93,
+        "command": [
+          "xcodebuild",
+          "test",
+          "-scheme",
+          "Prosary",
+          "-destination",
+          "platform=macOS",
+          "-parallel-testing-enabled",
+          "NO",
+          "-only-testing:ProsaryTests"
+        ],
+        "successMarker": "** TEST SUCCEEDED **",
+        "logSHA256": "c8d7c8c52fdca4923dcbd07b517317d0521021852903662e94119d9ba922df99",
+        "passed": true
+      }
+    },
+    "sourceMutationApplied": true,
+    "requiredChecksApplicable": true,
+    "requiredChecksMissingOrFailed": [],
+    "checksNotRunOrFailed": [],
+    "protectedRestoredLetterDisclosuresUnchanged": true,
+    "unrelatedTrackedSourceFilesByteUnchanged": true,
+    "unrelatedTrackedSourceFilesChecked": 2274,
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 479,
+      "remainingNoteCount": 171
+    },
+    "preexistingStaleDailyReviewPins": [
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "remainingStaleDailyReviewPins": [
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17"
+    ],
+    "preexistingStalePresentationPins": [],
+    "remainingStalePresentationPins": [],
+    "exactDailyCanonicalProjection": {
+      "dailyBoundaryTextUpdates": [
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "field": "openingText",
+          "sourceBook": "S3Y",
+          "selection": {
+            "chapter": 1,
+            "verse": 26
+          },
+          "frozenSourceScalarSpan": [
+            0,
+            66
+          ],
+          "before": "ויַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "after": "וַיַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "approvedInsertionsWithinSpan": [
+            {
+              "offset": 1,
+              "mark": "ַ",
+              "codePoint": "U+05B7"
+            }
+          ]
+        }
+      ],
+      "dailyRowNoteUpdates": [
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "chapter": 1,
+          "verse": 16,
+          "before": [
+            {
+              "id": "s3y-1-16-word5-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ונְּהִי",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "after": []
+        },
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "chapter": 1,
+          "verse": 22,
+          "before": [
+            {
+              "id": "s3y-1-22-word7-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִסּוֹגוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "after": []
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "chapter": 1,
+          "verse": 26,
+          "before": [
+            {
+              "id": "s3y-1-26-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַּעַל",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "after": []
+        }
+      ],
+      "changedRows": [
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "chapter": 1,
+          "verse": 16,
+          "before": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם ונְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+          "after": "כִּי מָעַטְנוּ אֲדֹנֵינוּ מִכָּל־הַגּוֹיִם וַנְּהִי הַיּוֹם דַּלִּים בְּכָל־הָאָרֶץ בַּעֲוֹנוֹתֵינוּ׃",
+          "sourceNotesBefore": [
+            {
+              "id": "s3y-1-16-word5-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ונְּהִי",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "sourceNotesAfter": []
+        },
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "chapter": 1,
+          "verse": 22,
+          "before": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ ויִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+          "after": "וְהַצִּילֵנוּ כְנִפְלְאוֹתֶיךָ וְתֵן כָּבוֹד לְשִׁמְךָ יְיָ׃ וְיִסּוֹגוּ אָחוֹר כָּל־הַגֹּמְלִים לַעֲבָדֶיךָ רָעָה וְיֵבוֹשׁוּ מִכָּל־גְּבוּרָתָם וְכֹחָם יִשָּׁבֵר׃",
+          "sourceNotesBefore": [
+            {
+              "id": "s3y-1-22-word7-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויִסּוֹגוּ",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "sourceNotesAfter": []
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "chapter": 1,
+          "verse": 26,
+          "before": "ויַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "after": "וַיַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+          "sourceNotesBefore": [
+            {
+              "id": "s3y-1-26-word1-letter1-vowel",
+              "kind": "unreadablePoint",
+              "anchor": "ויַּעַל",
+              "occurrence": 1,
+              "letterIndex": 1,
+              "mark": "vowel",
+              "sourcePages": [
+                234
+              ],
+              "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+            }
+          ],
+          "sourceNotesAfter": []
+        }
+      ],
+      "appointmentsCompared": [
+        {
+          "appointment": "daily|Daniel 3:25, 34–45",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        },
+        {
+          "appointment": "daily|Daniel 3:47–51",
+          "frozenApprovalDigestWasStale": false,
+          "oldRowsExactlyCanonical": true,
+          "newRowsExactlyCanonical": true,
+          "allSelectionsAndNonpointMetadataPreserved": true
+        }
+      ],
+      "metadataCorrections": [],
+      "historicalCatchupPointCount": 0,
+      "historicalCatchupRetiredIdCount": 0
+    },
+    "sharedValidationCycleCount": 1,
+    "perUnitValidationCyclesClaimed": false,
+    "verificationRecord": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/verification.json",
+      "sha256": "6cea0935bd028d765363575266cb5e6dfa3187769d7f747984f08e7782c6b854"
+    },
+    "secondGenerationByteStability": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/byte-stability.json",
+      "sha256": "ffd025bcde1e1518d4c288ecbfe7f2e4a83ea729681c49a2ef2a321e3d537d12",
+      "checkedFiles": 113,
+      "passed": true
+    },
+    "integrationAudit": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/integration-audit.json",
+      "sha256": "fb471e4a64963a837cbad3b18e341870ff5db8102be8765d00377cfb6575d790"
+    },
+    "batchPreflightPlan": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/batch-plan.json",
+      "sha256": "560d3b47309021fe921f81806403cae764d5d65ea591bbbee49ba6380b3cff13"
+    },
+    "frozenBatchBaselineManifest": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/baseline-manifest.json",
+      "sha256": "0cd609d4e6ebd74611730cd4a0c2a226481a2d46d6c88b0b943684788df8d9d1"
+    },
+    "independentBatchPreflightReview": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass139-batch/root-independent-batch-preflight-review.json",
+      "sha256": "4eaeba60efe85b7be4acae587778aee1123843825d4127aac84e4ea5ad2d81db",
+      "batchPlanSHA256": "560d3b47309021fe921f81806403cae764d5d65ea591bbbee49ba6380b3cff13"
+    }
+  },
+  "dailyRowNoteUpdates": [
+    {
+      "appointment": "daily|Daniel 3:25, 34–45",
+      "chapter": 1,
+      "verse": 16,
+      "before": [
+        {
+          "id": "s3y-1-16-word5-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ונְּהִי",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            234
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+        }
+      ],
+      "after": []
+    },
+    {
+      "appointment": "daily|Daniel 3:25, 34–45",
+      "chapter": 1,
+      "verse": 22,
+      "before": [
+        {
+          "id": "s3y-1-22-word7-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויִסּוֹגוּ",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            234
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+        }
+      ],
+      "after": []
+    },
+    {
+      "appointment": "daily|Daniel 3:47–51",
+      "chapter": 1,
+      "verse": 26,
+      "before": [
+        {
+          "id": "s3y-1-26-word1-letter1-vowel",
+          "kind": "unreadablePoint",
+          "anchor": "ויַּעַל",
+          "occurrence": 1,
+          "letterIndex": 1,
+          "mark": "vowel",
+          "sourcePages": [
+            234
+          ],
+          "sourceURL": "https://upload.wikimedia.org/wikisource/he/e/ed/Apocrypha_Kahana_A2.pdf#page=234"
+        }
+      ],
+      "after": []
+    }
+  ],
+  "historicalDailyCatchupPointCount": 0,
+  "historicalDailyCatchupPreviouslyRetiredIdCount": 0,
+  "integrationMode": "largerBatch",
+  "preparationIds": [
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174
+  ],
+  "unitCount": 7,
+  "batchUnits": [
+    {
+      "preparationID": 168,
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 11,
+      "blockId": null,
+      "changed": false,
+      "retiredIds": [],
+      "retainedIds": [
+        "s3y-1-11-word1-letter1-vowel"
+      ],
+      "consensus": {
+        "path": "/private/tmp/pass168-S3Y-1-11-pixel-preparation/consensus-preparation-v3.json",
+        "sha256": "a30a9795bf7995b622c51b02094646342ffa78d5a99e2db3c65137db9fc2f2ef"
+      },
+      "primary": {
+        "path": "/private/tmp/pass168-S3Y-1-11-pixel-preparation/pass168-S3Y-1-11-pixel-preparation-v3.json",
+        "sha256": "dba864883f483ad3ce376467a04187d9ef14951062e506b42716a3a2d65be40e"
+      },
+      "peer": {
+        "path": "/private/tmp/pass168-S3Y-1-11-pixel-preparation/peer-independent-review-v3.json",
+        "sha256": "897ab7ac77dffc675a2cd514f4e8e6a21d9ebb77bbc61eb45120375f6d6571ff"
+      }
+    },
+    {
+      "preparationID": 169,
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 16,
+      "blockId": null,
+      "changed": true,
+      "retiredIds": [
+        "s3y-1-16-word5-letter1-vowel"
+      ],
+      "retainedIds": [],
+      "consensus": {
+        "path": "/private/tmp/pass169-S3Y-1-16-pixel-preparation/consensus-preparation.json",
+        "sha256": "15ca03ef759de2554231acec1ad8208a23c7360ebe050487c56f7f7fcb4e2747"
+      },
+      "primary": {
+        "path": "/private/tmp/pass169-S3Y-1-16-pixel-preparation/pass169-S3Y-1-16-pixel-preparation-v2.json",
+        "sha256": "324ac34b8af048c25652feb5352bcfe01942e708dd0ea94b02dd8fa02d1a91e4"
+      },
+      "peer": {
+        "path": "/private/tmp/pass169-S3Y-1-16-pixel-preparation/primary-independent-review.json",
+        "sha256": "b84bd4bd491cdfb3448de32a26d89df897356aa02b9f1200ac8292281fc53305"
+      }
+    },
+    {
+      "preparationID": 170,
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 19,
+      "blockId": null,
+      "changed": false,
+      "retiredIds": [],
+      "retainedIds": [
+        "s3y-1-19-word5-letter2-vowel"
+      ],
+      "consensus": {
+        "path": "/private/tmp/pass170-S3Y-1-19-pixel-preparation/consensus-preparation-v3.json",
+        "sha256": "0c052acf4afdac8f0ba029be838cfcbb4266369691b9dc427efd1215351106d3"
+      },
+      "primary": {
+        "path": "/private/tmp/pass170-S3Y-1-19-pixel-preparation/pass170-S3Y-1-19-pixel-preparation-v3.json",
+        "sha256": "9375ceb24dc58b96f410013562f7496b5f65fd63b8a932e6952e217db06d3d69"
+      },
+      "peer": {
+        "path": "/private/tmp/pass170-S3Y-1-19-pixel-preparation/peer-independent-review-v3.json",
+        "sha256": "cbf8955942011e8eb40f0352fdb5b7a5197f3d6fa168756f43f67227f1c15859"
+      }
+    },
+    {
+      "preparationID": 171,
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 22,
+      "blockId": null,
+      "changed": true,
+      "retiredIds": [
+        "s3y-1-22-word7-letter1-vowel"
+      ],
+      "retainedIds": [],
+      "consensus": {
+        "path": "/private/tmp/pass171-S3Y-1-22-pixel-preparation/consensus-preparation.json",
+        "sha256": "8abab68cc9fea1c7a5b6ab825e92f22e82ae6024eca50d43f76cfe35eaf3f5ff"
+      },
+      "primary": {
+        "path": "/private/tmp/pass171-S3Y-1-22-pixel-preparation/pass171-S3Y-1-22-pixel-preparation.json",
+        "sha256": "6a37972fe2b3f2a752fa1a0400d45b3bd78159fd5429c031ebe7e476a1561643"
+      },
+      "peer": {
+        "path": "/private/tmp/pass171-S3Y-1-22-pixel-preparation/primary-independent-review.json",
+        "sha256": "a4a4c3b5bca1f22235ed73e84fa33f5b2d608622e9878bb363b4d40c490eadb6"
+      }
+    },
+    {
+      "preparationID": 172,
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 26,
+      "blockId": null,
+      "changed": true,
+      "retiredIds": [
+        "s3y-1-26-word1-letter1-vowel"
+      ],
+      "retainedIds": [],
+      "consensus": {
+        "path": "/private/tmp/pass172-S3Y-1-26-pixel-preparation/consensus-preparation.json",
+        "sha256": "3d728a76b30fb227f8c0190bb6440e3a3cc1d35adf0c89cc604b6f997cf0ecef"
+      },
+      "primary": {
+        "path": "/private/tmp/pass172-S3Y-1-26-pixel-preparation/pass172-S3Y-1-26-pixel-preparation.json",
+        "sha256": "858f9e2ab7e09ddab8918cb637e5c2bbf3555353f8a06fb16064763959fc94be"
+      },
+      "peer": {
+        "path": "/private/tmp/pass172-S3Y-1-26-pixel-preparation/integrator-independent-review.json",
+        "sha256": "22aab2bcb6076b5c40427c671f196f10ef3a4c0002e6b22eece7f2e1554b3bc7"
+      }
+    },
+    {
+      "preparationID": 173,
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 35,
+      "blockId": null,
+      "changed": false,
+      "retiredIds": [],
+      "retainedIds": [
+        "s3y-1-35-rakiya-resh-vowel"
+      ],
+      "consensus": {
+        "path": "/private/tmp/pass173-S3Y-1-35-pixel-preparation/consensus-preparation.json",
+        "sha256": "8b14f3f2697efb0218cc31c77d638832636bcb3e902d861377c9afa381fa7d84"
+      },
+      "primary": {
+        "path": "/private/tmp/pass173-S3Y-1-35-pixel-preparation/pass173-S3Y-1-35-pixel-preparation.json",
+        "sha256": "8c13a63de051dccf3beb82c6e5556aca371d4564161b6be71862451e16d268cc"
+      },
+      "peer": {
+        "path": "/private/tmp/pass173-S3Y-1-35-pixel-preparation/integrator-independent-review.json",
+        "sha256": "c50e2113062cac52f2963943e0a745b3b7a2bb243ec50edd80351d8189106dfc"
+      }
+    },
+    {
+      "preparationID": 174,
+      "book": "S3Y",
+      "chapter": 1,
+      "verse": 52,
+      "blockId": null,
+      "changed": true,
+      "retiredIds": [
+        "s3y-1-52-word1-letter1-vowel"
+      ],
+      "retainedIds": [],
+      "consensus": {
+        "path": "/private/tmp/pass174-S3Y-1-52-pixel-preparation/consensus-preparation.json",
+        "sha256": "d6dd94109e2711350411458c66fb34bcf34f0b3c82e181fd197744f96bb26dea"
+      },
+      "primary": {
+        "path": "/private/tmp/pass174-S3Y-1-52-pixel-preparation/pass174-S3Y-1-52-pixel-preparation.json",
+        "sha256": "9e37adf0682fee6e19c6236a065cc91715656909bf76e94f92db6af8ccaaa2bb"
+      },
+      "peer": {
+        "path": "/private/tmp/pass174-S3Y-1-52-pixel-preparation/integrator-independent-review.json",
+        "sha256": "d70bc94cb666d7e13b0a571b9483e5e77336e20092c3f3eb849066f0f3cfbd41"
+      }
+    }
+  ],
+  "sourcePreparationIdPolicy": "Immutable primary/peer packet numeric pass fields are preparation IDs. Published pass identifies this complete integration batch.",
+  "validationScope": "One full six-check and second-generation stability cycle validates the complete applied batch; no separate per-unit check cycle is claimed."
+}

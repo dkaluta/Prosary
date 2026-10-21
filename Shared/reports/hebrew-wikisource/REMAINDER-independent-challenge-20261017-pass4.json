@@ -1,0 +1,5050 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 4,
+  "books": [
+    "SIR",
+    "1MA",
+    "2MA",
+    "TOB"
+  ],
+  "status": "Complete independent challenge of73 remaining point notes; two new SIR restorations approved, one parallel SIR restoration corroborated,70 disclosures retained",
+  "scope": "The79 point-note inventory covered by root context metadata contained six restorations already approved at dispatch. This report freshly challenges the other73. It deliberately overlaps the root review and earlier source-note reports; it is not73 new unique positions or a new whole-book review. The separate2MA14:4 consonant-restoration disclosure is outside this point-only scope.",
+  "method": "Source metadata bounds were re-cropped directly from their original native images, bypassing shared scratch output names, and viewed at8x nearest-neighbor. Above-letter regions and lamed ascenders were explicitly inspected as possible holam positions. Promising cases received exact-letter15x/20x and same-word/same-page/adjacent-page comparisons. The hataf-qamats discriminator has no body occurrence on target451 or immediate450/452, so a farther same-font31:2 example on493 is explicitly identified as such. Every durable image was reproduced from a fresh PDF extraction; SIR companion halves use the established spread/side mapping. No OCR, grammar, another translation, normalization, sharpening, smoothing or synthetic pixels supplied readings. A compound point may be diagnostic despite a narrow internal bridge; holam geometry may be diagnostic despite one diagonal point-to-shoulder contact. Source form and comparisons determine the decision.",
+  "notesFreshlyChallenged": 73,
+  "notesFreshlyChallengedByBook": {
+    "1MA": 16,
+    "2MA": 12,
+    "SIR": 33,
+    "TOB": 12
+  },
+  "alreadyAcceptedAtDispatchExcludedNoteIds": [
+    "1ma-15-14-bet-dagesh",
+    "2ma-12-45-shin-3-dagesh",
+    "sir-11-28-shin-dagesh",
+    "sir-11-32-nun-vowel",
+    "sir-24-32-resh-vowel",
+    "sir-31-7-yod-vowel"
+  ],
+  "newApprovedProposalsFromThisChallenge": 2,
+  "newApprovedProposalNoteIds": [
+    "sir-2-2-het-vowel",
+    "sir-32-4-mem-vowel"
+  ],
+  "parallelApprovedRestorationCorroboratedHere": 1,
+  "parallelApprovedCorroboratedNoteIds": [
+    "sir-6-29-lamed-vowel"
+  ],
+  "resolvedWithinChallengedScope": 3,
+  "retainedWithinChallengedScope": 70,
+  "canonicalEditsPerformedByThisReviewer": false,
+  "canonicalFileSHA256Before": {
+    "SIR": "55af853b4955ca1f9bbeea04fe60db0a5bca29b26b4d4b02d50d424dcb6a7f16",
+    "1MA": "b3cc5762e9fb7ac4785ded238d9c0a791ddc426df6fa8bf9c8408339b095b444",
+    "2MA": "b3e4ebc304210a4027ccd7a68e2a398bf1fc31405845c93d73a8612384e10d6e",
+    "TOB": "7c722b421ce3ccf5e69bc8cfcb1a2b9a3e0ba03917c2506452a537351840107b"
+  },
+  "canonicalFileSHA256After": {
+    "SIR": "55af853b4955ca1f9bbeea04fe60db0a5bca29b26b4d4b02d50d424dcb6a7f16",
+    "1MA": "b3cc5762e9fb7ac4785ded238d9c0a791ddc426df6fa8bf9c8408339b095b444",
+    "2MA": "b3e4ebc304210a4027ccd7a68e2a398bf1fc31405845c93d73a8612384e10d6e",
+    "TOB": "7c722b421ce3ccf5e69bc8cfcb1a2b9a3e0ba03917c2506452a537351840107b"
+  },
+  "previousFinishedReports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+      "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04",
+      "unchanged": true
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/MACCABEES-note-reinspection-20261017-pass3.json",
+      "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40",
+      "unchanged": true
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017-pass3.json",
+      "sha256": "01d93083ca96971df5bef9995a5caa5c0850ecc73fab909986f7ea8b625be959",
+      "unchanged": true
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+      "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd",
+      "unchanged": true
+    }
+  ],
+  "sourceScans": [
+    {
+      "role": "primary",
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+    },
+    {
+      "role": "extra",
+      "path": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7"
+    }
+  ],
+  "scratchLocatorClarifications": [
+    {
+      "noteId": "sir-11-12-nun-vowel",
+      "explanation": "The root scratch ledger reused verse-level image names for ENOSH and VAYANA. This review generated its own pixels directly from metadata, correctly examined ENOSH at extra467,[515,360,625,415], and discards the different primary VAYANA row as a target witness. No restoration was proposed for this note.",
+      "acceptedTargetContextKey": "context-09",
+      "discardedInitialMetadataContextIndex": 10
+    },
+    {
+      "noteIds": [
+        "tob-5-1-second-vav-vowel",
+        "tob-5-17-said-vav-vowel"
+      ],
+      "explanation": "The initial per-verse metadata also listed these second-word vav IDs on the first-word/ayin crops. They are assigned only to their separately located actual ויאמר source-word evidence here."
+    }
+  ],
+  "findings": [
+    {
+      "noteId": "1ma-10-46-vav-vowel",
+      "book": "1MA",
+      "chapter": 10,
+      "verse": 46,
+      "blockId": null,
+      "anchor": "וכִשְׁמֹעַ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-45"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-10-57-pe-dagesh",
+      "book": "1MA",
+      "chapter": 10,
+      "verse": 57,
+      "blockId": null,
+      "anchor": "וּקְלֵיאָפַטְרָה",
+      "letterIndex": 6,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-46",
+        "context-47"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-14-32-mem-vowel",
+      "book": "1MA",
+      "chapter": 14,
+      "verse": 32,
+      "blockId": null,
+      "anchor": "וַיַּחֲמשׁ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-48",
+        "context-49"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-14-34-tav-vowel",
+      "book": "1MA",
+      "chapter": 14,
+      "verse": 34,
+      "blockId": null,
+      "anchor": "לְתקֵּן",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-50",
+        "context-51"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-15-37-qof-vowel",
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 37,
+      "blockId": null,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-54"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-15-40-qof-vowel",
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 40,
+      "blockId": null,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-55",
+        "context-56"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-16-1-qof-vowel",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-57",
+        "context-58"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-16-4-qof-vowel",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-59",
+        "context-60"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-16-8-qof-vowel",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 8,
+      "blockId": null,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-61",
+        "context-62"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-4-18-yod-dagesh",
+      "book": "1MA",
+      "chapter": 4,
+      "verse": 18,
+      "blockId": null,
+      "anchor": "קוֹמְמִיוֹת",
+      "letterIndex": 5,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-37"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-5-34-yod-dagesh",
+      "book": "1MA",
+      "chapter": 5,
+      "verse": 34,
+      "blockId": null,
+      "anchor": "בַּיוֹם",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-38"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-6-10-yod-dagesh",
+      "book": "1MA",
+      "chapter": 6,
+      "verse": 10,
+      "blockId": null,
+      "anchor": "מִיָגוֹן",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-39"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-6-26-yod-dagesh",
+      "book": "1MA",
+      "chapter": 6,
+      "verse": 26,
+      "blockId": null,
+      "anchor": "הַיוֹם",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-40"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-6-38-kaf-vowel",
+      "book": "1MA",
+      "chapter": 6,
+      "verse": 38,
+      "blockId": null,
+      "anchor": "וּמְכסִּים",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-41"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-9-1-bet-vowel",
+      "book": "1MA",
+      "chapter": 9,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "בּקְחִידֵס",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-42"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "1ma-9-56-resh-vowel",
+      "book": "1MA",
+      "chapter": 9,
+      "verse": 56,
+      "blockId": null,
+      "anchor": "בְּרגְזָה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-43",
+        "context-44"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-1-10-he-1-vowel",
+      "book": "2MA",
+      "chapter": 1,
+      "verse": 10,
+      "blockId": null,
+      "anchor": "המְּשׁוּחִים",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-63"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-11-25-samekh-2-vowel",
+      "book": "2MA",
+      "chapter": 11,
+      "verse": 25,
+      "blockId": null,
+      "anchor": "נַסיעַם",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-73",
+        "context-74"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-11-4-bet-3-vowel",
+      "book": "2MA",
+      "chapter": 11,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "מֵרִבבוֹת",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-72"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-15-34-het-2-vowel",
+      "book": "2MA",
+      "chapter": 15,
+      "verse": 34,
+      "blockId": null,
+      "anchor": "מֵחלְלוֹ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-77",
+        "context-78"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-2-28-yod-2-dagesh",
+      "book": "2MA",
+      "chapter": 2,
+      "verse": 28,
+      "blockId": null,
+      "anchor": "דִיוּקֵי",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-64"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-3-26-dalet-3-vowel",
+      "book": "2MA",
+      "chapter": 3,
+      "verse": 26,
+      "blockId": null,
+      "anchor": "וּמַדהִירֵי",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-65"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-5-22-lamed-3-vowel",
+      "book": "2MA",
+      "chapter": 5,
+      "verse": 22,
+      "blockId": null,
+      "anchor": "פִּילפּוֹס",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-66"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-6-11-he-2-vowel",
+      "book": "2MA",
+      "chapter": 6,
+      "verse": 11,
+      "blockId": null,
+      "anchor": "מִהרוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-67",
+        "context-68"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-7-40-bet-1-vowel",
+      "book": "2MA",
+      "chapter": 7,
+      "verse": 40,
+      "blockId": null,
+      "anchor": "בּיָי",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-69"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-8-4-yod-2-dagesh",
+      "book": "2MA",
+      "chapter": 8,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "הַיְלָדִים",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-70"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-9-29-lamed-3-vowel",
+      "book": "2MA",
+      "chapter": 9,
+      "verse": 29,
+      "blockId": null,
+      "anchor": "פִילפּוֹס",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-71"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "2ma-9-29-pe-1-dagesh",
+      "book": "2MA",
+      "chapter": 9,
+      "verse": 29,
+      "blockId": null,
+      "anchor": "פִילפּוֹס",
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-71"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-1-3-1-dagesh",
+      "book": "SIR",
+      "chapter": 1,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "גֹבַהּ",
+      "letterIndex": 1,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-00"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-10-28-yod-dagesh",
+      "book": "SIR",
+      "chapter": 10,
+      "verse": 28,
+      "blockId": null,
+      "anchor": "כַּיוֹצֵא",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-07"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-11-10-qof-vowel",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 10,
+      "blockId": null,
+      "anchor": "עִשְׂקךְ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-08"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-11-12-nun-vowel",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 12,
+      "blockId": null,
+      "anchor": "א[וֹ]נשׁ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-09"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-11-34-resh-vowel",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 34,
+      "blockId": null,
+      "anchor": "וינַכֶּרךָ",
+      "letterIndex": 5,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-14"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-11-34-vav-vowel",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 34,
+      "blockId": null,
+      "anchor": "וינַכֶּרךָ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-14"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-12-16-first-mem-vowel",
+      "book": "SIR",
+      "chapter": 12,
+      "verse": 16,
+      "blockId": null,
+      "anchor": "מהָמַרוֹת",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-15"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-13-18-alef-vowel",
+      "book": "SIR",
+      "chapter": 13,
+      "verse": 18,
+      "blockId": null,
+      "anchor": "מֵאי[ן]",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-16",
+        "context-17"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-16-26-nun-dagesh",
+      "book": "SIR",
+      "chapter": 16,
+      "verse": 26,
+      "blockId": null,
+      "anchor": "תַנֵיהֶם]",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-18"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-2-2-het-vowel",
+      "book": "SIR",
+      "chapter": 2,
+      "verse": 2,
+      "blockId": null,
+      "anchor": "וחזָק",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-01"
+      ],
+      "disposition": "rootApprovedRestorationPendingCanonicalIntegration",
+      "before": "וחזָק",
+      "after": "וחֲזָק",
+      "finding": "A broad flat left bar and upper/lower right points establish hataf-patah. Same-font hataf-qamats has a long downward stem and hataf-segol has distinct left point lobes. Initial vav uncertainty stays disclosed.",
+      "proposalOrigin": "thisIndependentChallenge",
+      "independentReviewer": "root independently viewed exact target and comparator original-pixel crops, then explicitly approved before any canonical edit",
+      "tightAndComparatorKeys": [
+        "sir-2-2-het",
+        "sir-2-4-alef-hataf-patah",
+        "sir-1-14-alef-hataf-segol",
+        "sir-31-2-het-hataf-qamats",
+        "sir-2-4-haarech",
+        "sir-1-14-neemanim",
+        "sir-31-2-mecholi-context"
+      ]
+    },
+    {
+      "noteId": "sir-2-2-vav-vowel",
+      "book": "SIR",
+      "chapter": 2,
+      "verse": 2,
+      "blockId": null,
+      "anchor": "וחזָק",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-01"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-23-12-tsadi-dagesh",
+      "book": "SIR",
+      "chapter": 23,
+      "verse": 12,
+      "blockId": null,
+      "anchor": "מִצַדִּיקִים",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-19"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-24-17-nun-dagesh",
+      "book": "SIR",
+      "chapter": 24,
+      "verse": 17,
+      "blockId": null,
+      "anchor": "וְנִצַּנִי",
+      "letterIndex": 4,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-20"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-26-14-yod-vowel",
+      "book": "SIR",
+      "chapter": 26,
+      "verse": 14,
+      "blockId": null,
+      "anchor": "לִמְיסֶּרֶת",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-22"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-29-19-bet-vowel",
+      "book": "SIR",
+      "chapter": 29,
+      "verse": 19,
+      "blockId": null,
+      "anchor": "קַבּלֶת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-23"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-3-18-ayin-vowel",
+      "book": "SIR",
+      "chapter": 3,
+      "verse": 18,
+      "blockId": null,
+      "anchor": "מַעט",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-02"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-3-22-he-vowel",
+      "book": "SIR",
+      "chapter": 3,
+      "verse": 22,
+      "blockId": null,
+      "anchor": "שֶׁהרְשֵׁיתָ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-03"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-30-16-resh-vowel",
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 16,
+      "blockId": null,
+      "anchor": "שֵׁר־עֶצֶם",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-24",
+        "context-25"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-30-19-yod-vowel",
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 19,
+      "blockId": null,
+      "anchor": "שֶׁ[ישׁ]",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-26"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-31-21-vav-vowel",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 21,
+      "blockId": null,
+      "anchor": "קִוה",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-29"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-31-6-lamed-vowel",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 6,
+      "blockId": null,
+      "anchor": "וְלא מָצְאוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-27"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-31-7-qof-vowel",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 7,
+      "blockId": null,
+      "anchor": "יוקשׁ־בוֹ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-28"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-31-7-vav-vowel",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 7,
+      "blockId": null,
+      "anchor": "יוקשׁ־בוֹ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-28"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-32-12-tet-vowel",
+      "book": "SIR",
+      "chapter": 32,
+      "verse": 12,
+      "blockId": null,
+      "anchor": "[פְּטר]",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-31"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-32-4-mem-vowel",
+      "book": "SIR",
+      "chapter": 32,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "מִזְמר",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-30"
+      ],
+      "disposition": "rootApprovedRestorationPendingCanonicalIntegration",
+      "before": "מִזְמר",
+      "after": "מִזְמֹר",
+      "finding": "A compact raised lobe above the third mem's upper-left shoulder matches the known mem holam in 32:18 and is absent on the same-word first mem. One diagonal pixel contact does not obscure its distinct upper-vowel geometry.",
+      "proposalOrigin": "thisIndependentChallenge",
+      "independentReviewer": "root independently viewed exact target and comparator original-pixel crops, then explicitly approved before any canonical edit",
+      "tightAndComparatorKeys": [
+        "sir-32-4-third-mem",
+        "sir-32-4-first-mem",
+        "sir-32-18-mem-holam",
+        "sir-32-18-yishmor-context"
+      ]
+    },
+    {
+      "noteId": "sir-39-14-bet-vowel",
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 14,
+      "blockId": null,
+      "anchor": "בּרכוּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-32"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-39-14-resh-vowel",
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 14,
+      "blockId": null,
+      "anchor": "בּרכוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-32"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-39-35-qof-vowel",
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 35,
+      "blockId": null,
+      "anchor": "הַקּ[דוֹשׁ]",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-33"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-4-24-dalet-vowel",
+      "book": "SIR",
+      "chapter": 4,
+      "verse": 24,
+      "blockId": null,
+      "anchor": "נוֹדעַת",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-04"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-49-10-yod-dagesh",
+      "book": "SIR",
+      "chapter": 49,
+      "verse": 10,
+      "blockId": null,
+      "anchor": "וַיוֹשַׁ[גְבוּהוּ",
+      "letterIndex": 2,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-34",
+        "context-35"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-51-4-resh-vowel",
+      "book": "SIR",
+      "chapter": 51,
+      "verse": 4,
+      "blockId": null,
+      "anchor": "מֵרבּוֹת",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-36"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "sir-6-29-lamed-vowel",
+      "book": "SIR",
+      "chapter": 6,
+      "verse": 29,
+      "blockId": null,
+      "anchor": "וְתַבְלתֶהָ",
+      "letterIndex": 4,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-06"
+      ],
+      "disposition": "separatelyApprovedRestorationCorroboratedHere",
+      "before": "וְתַבְלתֶהָ",
+      "after": "וְתַבְלֹתֶהָ",
+      "finding": "The upper-left detached point is visible in the complete lamed frame; this independently viewed context corroborates the source holam proposal discovered by the parallel reviewer. It is not counted as a new proposal from this challenge.",
+      "proposalOrigin": "parallelReviewer",
+      "independentReviewer": "wisdom_pass3"
+    },
+    {
+      "noteId": "sir-6-3-nun-dagesh",
+      "book": "SIR",
+      "chapter": 6,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "וְהֶנִיחַתְךָ",
+      "letterIndex": 3,
+      "mark": "dagesh",
+      "contextKeys": [
+        "context-05"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-1-1-gimel-vowel",
+      "book": "TOB",
+      "chapter": 1,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "גּבָּאֵל",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-79",
+        "context-80"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-2-3-mem-vowel",
+      "book": "TOB",
+      "chapter": 2,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "משְׁלָךְ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-81",
+        "context-82"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-5-1-second-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "ויֹּאמֶר לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "tob-5-1-second-word-extra"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-5-1-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 1,
+      "blockId": null,
+      "anchor": "ויַּעַן",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-83",
+        "context-84"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-5-10-ayin-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 10,
+      "blockId": null,
+      "anchor": "רֵעהוּ",
+      "letterIndex": 2,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-87",
+        "context-88"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-5-12-first-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 12,
+      "blockId": null,
+      "anchor": "ויֹּאמֶר לוֹ הֲשֵׁבֶט",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-89",
+        "context-90"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-5-17-ayin-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 17,
+      "blockId": null,
+      "anchor": "לְרֵעהוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-91",
+        "context-92"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-5-17-said-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 17,
+      "blockId": null,
+      "anchor": "ויֹּאמֶר לוֹ אָבִיו",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "tob-5-17-said-word-extra"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-5-21-said-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 21,
+      "blockId": null,
+      "anchor": "ויֹּאמֶר לָהּ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-93",
+        "context-94"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-5-3-initial-vav-vowel",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 3,
+      "blockId": null,
+      "anchor": "ויִּתֶּן־לוֹ",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-85",
+        "context-86"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-6-8-gimel-vowel",
+      "book": "TOB",
+      "chapter": 6,
+      "verse": 8,
+      "blockId": null,
+      "anchor": "יִפָּגעוּ",
+      "letterIndex": 3,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-95",
+        "context-96"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    },
+    {
+      "noteId": "tob-9-5-second-gabael-gimel-vowel",
+      "book": "TOB",
+      "chapter": 9,
+      "verse": 5,
+      "blockId": null,
+      "anchor": "גבָּאֵל",
+      "letterIndex": 1,
+      "mark": "vowel",
+      "contextKeys": [
+        "context-97",
+        "context-98"
+      ],
+      "disposition": "retainDisclosure",
+      "finding": "The target was challenged in unchanged native-source context at8x nearest-neighbor, including its upper head/ascender region and lower point area. No complete additional point shape is secure. Connected foot/head ink, partial lost strokes, bridges and isolated remnants remain uncertain; existing adjacent vowel and shin/sin marks are not reassigned to this target."
+    }
+  ],
+  "contexts": [
+    {
+      "key": "context-00",
+      "book": "SIR",
+      "chapter": 1,
+      "verse": 3,
+      "noteIds": [
+        "sir-1-3-1-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-449.png",
+      "sourceImageSHA256": "9d59eff4032b710e9e04dddc9f20f67cb8207e5845dcd0db59f7f2acc34bd263",
+      "pixelBox": [
+        1305,
+        550,
+        1385,
+        600
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-00-native.png",
+          "sha256": "3df48f429187906472c8966e3cf56d00498b1fd24f38b9b30c81bd55d869bca7",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-00-8x.png",
+          "sha256": "1257cca5409f2f5f560cc80812bffa0c942c87650c1a77cfaaf6528faec7f94e",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-01",
+      "book": "SIR",
+      "chapter": 2,
+      "verse": 2,
+      "noteIds": [
+        "sir-2-2-vav-vowel",
+        "sir-2-2-het-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-451.png",
+      "sourceImageSHA256": "b6b967beb992c3ad9657ea69d3f219da36704fea4f6a42bc9ab0112f23fdbfd7",
+      "pixelBox": [
+        1120,
+        455,
+        1220,
+        510
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-01-native.png",
+          "sha256": "90f9bad363c1afb1cabd4b1f2af44b7050bb7e49a624f8b4576291106d7f0150",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-01-8x.png",
+          "sha256": "2132f27fa41fe8dc34d373a4733e6654d68e1f357ff3a706b78ad6ef61484002",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-02",
+      "book": "SIR",
+      "chapter": 3,
+      "verse": 18,
+      "noteIds": [
+        "sir-3-18-ayin-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-453.png",
+      "sourceImageSHA256": "8c1d74c66f776a4ba583c16802666ff42bfb5d2a889d11cf43cef3e04868f17c",
+      "pixelBox": [
+        1260,
+        170,
+        1330,
+        225
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-02-native.png",
+          "sha256": "68a288124304b3ef9259c3dc736adf41c4629c4e2ceb30c72378acc624dee475",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-02-8x.png",
+          "sha256": "aa946bb500ec3b5b2e5a03448b7ab37281d16fa2ada9952fe748dec785abe305",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-03",
+      "book": "SIR",
+      "chapter": 3,
+      "verse": 22,
+      "noteIds": [
+        "sir-3-22-he-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-453.png",
+      "sourceImageSHA256": "8c1d74c66f776a4ba583c16802666ff42bfb5d2a889d11cf43cef3e04868f17c",
+      "pixelBox": [
+        1130,
+        310,
+        1260,
+        365
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-03-native.png",
+          "sha256": "abbb499db2f0d05ea13ee5a687d6cf7cca6ddf4f337abd833c0e57cd88429d97",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-03-8x.png",
+          "sha256": "eccc3c23fcb6457b40696f9cca13bfd858d23e4ef6cf703ecdfa4fae473dbd20",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-04",
+      "book": "SIR",
+      "chapter": 4,
+      "verse": 24,
+      "noteIds": [
+        "sir-4-24-dalet-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-455.png",
+      "sourceImageSHA256": "de7275dd3bfa7c3b31bf3e5f815bd268bdeb08055b8909bcccb27b45f9437ced",
+      "pixelBox": [
+        1120,
+        500,
+        1205,
+        555
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-04-native.png",
+          "sha256": "a37cb681fef1bbc469826e3515a24917e41ed79bba60c6dada5109bcbfbe2cc4",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-04-8x.png",
+          "sha256": "845f1cdee4fd75746a0aa169357eca10a2360f5c8d8c0b85a61d5079eea4986e",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-05",
+      "book": "SIR",
+      "chapter": 6,
+      "verse": 3,
+      "noteIds": [
+        "sir-6-3-nun-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-457.png",
+      "sourceImageSHA256": "8cb19a967bf76510c44477f137ead05a062caf00a5162d75f8873ecc7baa1a06",
+      "pixelBox": [
+        775,
+        590,
+        905,
+        645
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-05-native.png",
+          "sha256": "6f26291239783980aba2cb985f263cada88eaba19acb25e407155a410b98cf26",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-05-8x.png",
+          "sha256": "fca30b660d744645784d9d630527810f32cd0e88286e527708c71e0bbbe133fe",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-06",
+      "book": "SIR",
+      "chapter": 6,
+      "verse": 29,
+      "noteIds": [
+        "sir-6-29-lamed-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-459.png",
+      "sourceImageSHA256": "40fe3df45cae76135f7a2649d9f26a926e9d314a3fa6689de8e4834ac4b7555b",
+      "pixelBox": [
+        760,
+        365,
+        885,
+        415
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-06-native.png",
+          "sha256": "9870dae52b80562a9b0ad421708f6b2449ad17b2877deae73540c5bc90c19b85",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-06-8x.png",
+          "sha256": "948a4a58702b6eea3f6540e2fa62cb9c41d03df0865e99e2143d6bc885bf30a9",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-07",
+      "book": "SIR",
+      "chapter": 10,
+      "verse": 28,
+      "noteIds": [
+        "sir-10-28-yod-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-466.png",
+      "sourceImageSHA256": "e5c826399ff852cfc7536dd3e0350bf7fbaa14a76f01c9a9fdae17ede1f8d064",
+      "pixelBox": [
+        420,
+        365,
+        520,
+        415
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-07-native.png",
+          "sha256": "2f19b4bb4357cd1524aa4a614e58be598ef4e372ef32694baa7ca2827f7d0e03",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-07-8x.png",
+          "sha256": "902f29debb8a9cf5449fae3b98bb76454230a2c8254b0399e6eae14073b495ba",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-08",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 10,
+      "noteIds": [
+        "sir-11-10-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-467.png",
+      "sourceImageSHA256": "173ab3cb70d4b92c6aefea2a9784a518db162c15dcb6b9e89c080b44fdc72763",
+      "pixelBox": [
+        1000,
+        220,
+        1100,
+        270
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-08-native.png",
+          "sha256": "22222ab9d47cc706206c29517aec43e484f816d29dc3c0cf118dc59f8b222759",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-08-8x.png",
+          "sha256": "4bd537a603593057e766263cce20337de5ae495b442e0818495f7714db1a53aa",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-09",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 12,
+      "noteIds": [
+        "sir-11-12-nun-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-467.png",
+      "sourceImageSHA256": "173ab3cb70d4b92c6aefea2a9784a518db162c15dcb6b9e89c080b44fdc72763",
+      "pixelBox": [
+        515,
+        360,
+        625,
+        415
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-09-native.png",
+          "sha256": "bc833cdbb44b8d4c945845f9d708c0732ef930500e116b4b81dc82856ff25cbd",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-09-8x.png",
+          "sha256": "8f65223f3eec52be239716d6cfede4492f8c6fe57c8425476b266be081391dbf",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-14",
+      "book": "SIR",
+      "chapter": 11,
+      "verse": 34,
+      "noteIds": [
+        "sir-11-34-vav-vowel",
+        "sir-11-34-resh-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-468.png",
+      "sourceImageSHA256": "c4c4afdcd8fce14e0b4e204acab882fc4bb24e063b660df976b2dc76f74c4109",
+      "pixelBox": [
+        570,
+        1105,
+        690,
+        1160
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-14-native.png",
+          "sha256": "5ac991395cbefcf460ed33cae9aba1e080d4ec43587b7aeb867fbf07b404827a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-14-8x.png",
+          "sha256": "bdd08df81096741b0c85c6d865f856bb8e15a6f8659c6d388078cc40f5e6e606",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-15",
+      "book": "SIR",
+      "chapter": 12,
+      "verse": 16,
+      "noteIds": [
+        "sir-12-16-first-mem-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-469.png",
+      "sourceImageSHA256": "19c7ac97bb9ccc05d0f3fc2c63889a7aadfd65bf91a3377b315d7f6ac5411b36",
+      "pixelBox": [
+        490,
+        1000,
+        770,
+        1060
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-15-native.png",
+          "sha256": "ef0ab2d29681ad3c406bd4b83d425a3c5efa27f14ca677397bc76bb8f05aea41",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-15-8x.png",
+          "sha256": "953c8ecdd281db20d24dc193284a50b77b7da1e54c465ab337095610aa904ae8",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-16",
+      "book": "SIR",
+      "chapter": 13,
+      "verse": 18,
+      "noteIds": [
+        "sir-13-18-alef-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-471.png",
+      "sourceImageSHA256": "b5f2daaca55c7b9d25c856564f5f96d273e961f60e1fc54964d2fd5df361cb23",
+      "pixelBox": [
+        1270,
+        310,
+        1390,
+        365
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-16-native.png",
+          "sha256": "e6715c211f14e8d42a9b40b9ae0b3d4ce87f057050816d445357af03e9ede4ab",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-16-8x.png",
+          "sha256": "18613e187168419a5d03559aa9f533dd9a9f0ba3d483e90dd004aa4979e88049",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-17",
+      "book": "SIR",
+      "chapter": 13,
+      "verse": 18,
+      "noteIds": [
+        "sir-13-18-alef-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-471.png",
+      "sourceImageSHA256": "b1b61a7592931109292c1a519e2e2367e3db8f47f97b6f1f3e22c67c51506157",
+      "pixelBox": [
+        1220,
+        500,
+        1360,
+        575
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-17-native.png",
+          "sha256": "c0fcfaf5a34dfd951e1c26794d1271f074c88ccc190159a072f0ba489eaf0fe1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-17-8x.png",
+          "sha256": "ac14442cae78ffd4adc603b4b58399c213bf2e6d073fc61f71ca2f3b7199ebbf",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-18",
+      "book": "SIR",
+      "chapter": 16,
+      "verse": 26,
+      "noteIds": [
+        "sir-16-26-nun-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-475.png",
+      "sourceImageSHA256": "42d1aee9b7a371d3f85bcbce4802801b4b6ad2af53e082820b83759aac297214",
+      "pixelBox": [
+        710,
+        1190,
+        1000,
+        1270
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-18-native.png",
+          "sha256": "b6cd150c765f5c2df9e4cca4cef6eb38fe5db66270a043007aa2b396418110de",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-18-8x.png",
+          "sha256": "e8bac98c683729ff2e8090452f6933fa4a767f9454896791aea146fd81f30964",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-19",
+      "book": "SIR",
+      "chapter": 23,
+      "verse": 12,
+      "noteIds": [
+        "sir-23-12-tsadi-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-483.png",
+      "sourceImageSHA256": "378e468290d9c1bf44e586b9a962814c28e690c13d12d01a34b3b55fc772c818",
+      "pixelBox": [
+        1240,
+        1500,
+        1370,
+        1560
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-19-native.png",
+          "sha256": "2d18bb7769b9b9555632541ba5e503144642485d1d29baa3cf3c5d5e2c1396f2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-19-8x.png",
+          "sha256": "53a82c49be8132279bb80a39c2618c0d9b309c15bc48a9ad2274d19166bc877e",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-20",
+      "book": "SIR",
+      "chapter": 24,
+      "verse": 17,
+      "noteIds": [
+        "sir-24-17-nun-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-485.png",
+      "sourceImageSHA256": "28cea470ef5f05f1fed4033a7146c07218936ff5996c4a83576ae181acb5c1d3",
+      "pixelBox": [
+        840,
+        835,
+        925,
+        900
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-20-native.png",
+          "sha256": "33a2b184db1b58706269e7c75a1dd7152416bae4d1eb9ad193dab0db4fc4c692",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-20-8x.png",
+          "sha256": "7f254a45ea8cf6ff93b634189b51ecee4147cbf21c4057725f37768edc7f1164",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-22",
+      "book": "SIR",
+      "chapter": 26,
+      "verse": 14,
+      "noteIds": [
+        "sir-26-14-yod-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-488.png",
+      "sourceImageSHA256": "c34219e445a5a53093e07a8d6dc7860b422db8516758b475696de74ef375f7d2",
+      "pixelBox": [
+        450,
+        265,
+        570,
+        325
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-22-native.png",
+          "sha256": "9b1b5ac6f2fdeb0fde7c8bf085df4de5e1433d48c86d921f8e4d38d67c2ec305",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-22-8x.png",
+          "sha256": "3b1f35b5c6f3fc0bfd1faecad7e7b7be02f777acbec01bfa69fa5f9dd4e1a031",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-23",
+      "book": "SIR",
+      "chapter": 29,
+      "verse": 19,
+      "noteIds": [
+        "sir-29-19-bet-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-491.png",
+      "sourceImageSHA256": "53feafada57b570ec2af9beaf7f5485baaed299e42fe59fa30df2e6c29e2ff04",
+      "pixelBox": [
+        730,
+        1350,
+        825,
+        1415
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-23-native.png",
+          "sha256": "625c26434e2a4fadfb727f81d00b14c8e6066967e55bfd3b1d6710dedca7bbd8",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-23-8x.png",
+          "sha256": "bed725f373f491dcce74d1afb4d988647ff7954f1956be8045559e9792440261",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-24",
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 16,
+      "noteIds": [
+        "sir-30-16-resh-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-492.png",
+      "sourceImageSHA256": "2c460516e3f6dc9dc83965b9a4fcb52e5f27c77e481f0685faf3b57696feda49",
+      "pixelBox": [
+        790,
+        1260,
+        925,
+        1320
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-24-native.png",
+          "sha256": "7832ba17f144df0e848a8c47710a47221833dda6778d00096a4021a2b8c66e98",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-24-8x.png",
+          "sha256": "452bdb19f37895b3ce72a84c213abf8552800c6d8d728fb463296fc63c640c40",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-25",
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 16,
+      "noteIds": [
+        "sir-30-16-resh-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-492.png",
+      "sourceImageSHA256": "7d8c9d7dae9812a4ab98dc70b8ff6a639d0eaa11c6586c805de48ef13dcd7f82",
+      "pixelBox": [
+        825,
+        1745,
+        1000,
+        1830
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-25-native.png",
+          "sha256": "af6411a0e8842b2853c7f9a3ed4dd185a99615af89ff2030eb6c5eca93644a42",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-25-8x.png",
+          "sha256": "bd59ddf32908bbdf01364c1f61cccbbea1a6609c166c76cccc3d6ff307e4f02d",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-26",
+      "book": "SIR",
+      "chapter": 30,
+      "verse": 19,
+      "noteIds": [
+        "sir-30-19-yod-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-493.png",
+      "sourceImageSHA256": "b2d80ff3fd3f5d0d51b5fec208652d846a29aa251d5a853eb11a4080c12bd4ee",
+      "pixelBox": [
+        1150,
+        350,
+        1260,
+        410
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-26-native.png",
+          "sha256": "0a6c93624c6dc24a1078fac7899f9dae0e357f84d6eb6910536cf348246b2aa8",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-26-8x.png",
+          "sha256": "30b28796524fcf4a07cd46c9a9feb80a2e835a7bfaae6513641cf6bbd18bb731",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-27",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 6,
+      "noteIds": [
+        "sir-31-6-lamed-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-494.png",
+      "sourceImageSHA256": "7c48c3a4f52e723059dbed81fdb3944ae6028e2feab7b03ab0f176306eb7e656",
+      "pixelBox": [
+        1040,
+        350,
+        1170,
+        415
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-27-native.png",
+          "sha256": "cd4afc9b65258e6a96221cf4a5c522c1d1c3f290dcf33fc6fde6adbc9586bc00",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-27-8x.png",
+          "sha256": "d5dcb000a3fa1795bb3a43903b4ee1f3f22b39afc52cc8dd6ef15babb3a6362e",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-28",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 7,
+      "noteIds": [
+        "sir-31-7-vav-vowel",
+        "sir-31-7-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-494.png",
+      "sourceImageSHA256": "7c48c3a4f52e723059dbed81fdb3944ae6028e2feab7b03ab0f176306eb7e656",
+      "pixelBox": [
+        425,
+        400,
+        585,
+        465
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-28-native.png",
+          "sha256": "93f397122c95c5bd190baa4d1b969a56ac800ccf70601c37b5041b95d6b288cc",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-28-8x.png",
+          "sha256": "4a64e7d4681e5fed0cd8c237e905ba2fca17140520120f8e67bb6fe546c823ca",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-29",
+      "book": "SIR",
+      "chapter": 31,
+      "verse": 21,
+      "noteIds": [
+        "sir-31-21-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-495.png",
+      "sourceImageSHA256": "5683393209a1fa7eb847787d64f369c1898da05d13d89a0923cb157a32cfed53",
+      "pixelBox": [
+        735,
+        785,
+        850,
+        845
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-29-native.png",
+          "sha256": "310aa37cddc4cac78d31ed77137ba4702d239a3143a3121cc3177ae4a0029f22",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-29-8x.png",
+          "sha256": "d29fa373898a0556ad9a9193a2f5e6d5db458e3b400764b865bd49f3b3ceaa56",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-30",
+      "book": "SIR",
+      "chapter": 32,
+      "verse": 4,
+      "noteIds": [
+        "sir-32-4-mem-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-496.png",
+      "sourceImageSHA256": "3a829201ca1099ee9191d8d22fa06759e5f3f73459f231c583eab4de7efe2048",
+      "pixelBox": [
+        540,
+        825,
+        635,
+        885
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-30-native.png",
+          "sha256": "58a6664402ba606193cdcfcf012cac7670ae23285b0ea40303fc46d267cecdc0",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-30-8x.png",
+          "sha256": "e1c1cbf9cbb4e36689d7110f5e9e3e170919f4896dfad9a6cce5686c63388a6b",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-31",
+      "book": "SIR",
+      "chapter": 32,
+      "verse": 12,
+      "noteIds": [
+        "sir-32-12-tet-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-497.png",
+      "sourceImageSHA256": "3e8b83ab6fe1c23bf607809a992d751e1347e448685a89ba28d255e10ced8e32",
+      "pixelBox": [
+        1245,
+        535,
+        1370,
+        595
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-31-native.png",
+          "sha256": "dfc8c958736b88427660b9cd7375e2de7c1c9958fcd96d11253cdd770eeb5073",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-31-8x.png",
+          "sha256": "6e852d5d2bb99a0cbfdd26ac702ecede15faa7bf40c7cea9fe3c6e0edcb0dacc",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-32",
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 14,
+      "noteIds": [
+        "sir-39-14-bet-vowel",
+        "sir-39-14-resh-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-509.png",
+      "sourceImageSHA256": "427b4492d317db97aaf7645aedc996c9a58053cd4447e844a26c84f80e148422",
+      "pixelBox": [
+        845,
+        1275,
+        945,
+        1345
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-32-native.png",
+          "sha256": "2efe398d67947cb3c60a852736148649349f8775cf5ada8438a515de7e54405d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-32-8x.png",
+          "sha256": "23bb9f2aaf447b596faf5d171be26ff3cc93dd5d08015996bd6686ecedbf3b88",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-33",
+      "book": "SIR",
+      "chapter": 39,
+      "verse": 35,
+      "noteIds": [
+        "sir-39-35-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-510.png",
+      "sourceImageSHA256": "2b0ad9741d93558008649b2137ea318248b51c8a56bac6f3eb9df98a1bc2aa1d",
+      "pixelBox": [
+        380,
+        1170,
+        485,
+        1240
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-33-native.png",
+          "sha256": "b8f1976ed6d1312e66800fa8ff8b941356ba7994c3ef2a97aa8488f6e9559045",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-33-8x.png",
+          "sha256": "4af6a6cbf8db973922233368e59f4326130354ee5504017859cbb81ff8d45450",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-34",
+      "book": "SIR",
+      "chapter": 49,
+      "verse": 10,
+      "noteIds": [
+        "sir-49-10-yod-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-527.png",
+      "sourceImageSHA256": "b2402c74b1f9da2e7f71d09c157ddcdaa6f868aaef0cd2cddd3b2c0e236d9e63",
+      "pixelBox": [
+        775,
+        285,
+        895,
+        350
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-34-native.png",
+          "sha256": "978bd48b094b7c0409b0d2cecbe36c5aa0f271b56fd5ce9760bf258755675555",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-34-8x.png",
+          "sha256": "8ee44ac9e816a497c801050e048364c1628d52e9b243921f756e9cbc95dc13f8",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-35",
+      "book": "SIR",
+      "chapter": 49,
+      "verse": 10,
+      "noteIds": [
+        "sir-49-10-yod-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-527.png",
+      "sourceImageSHA256": "1a25eedf06c8d05ae8b6a96a915639f9001e1a4419c7bba84d409d46d6f8ed34",
+      "pixelBox": [
+        535,
+        420,
+        740,
+        500
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-35-native.png",
+          "sha256": "4c0780e8ae8b82a7181545720ffbb1eb6c4b2cf17e572e10a7781e47fa405f8b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-35-8x.png",
+          "sha256": "54a043705b1378ea934263413778e8fa23c5db683a99e7608f3a4e2dd4af2da0",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-36",
+      "book": "SIR",
+      "chapter": 51,
+      "verse": 4,
+      "noteIds": [
+        "sir-51-4-resh-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-529.png",
+      "sourceImageSHA256": "c7f8b5638ecae5f03d8eb9cb32408a6e3b020c073918cad815553e149340a68b",
+      "pixelBox": [
+        1225,
+        230,
+        1345,
+        295
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-36-native.png",
+          "sha256": "372405798dc620c8aa37b48a769b1ac10c8c4406205e9b561148eb34e86fcf33",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-36-8x.png",
+          "sha256": "25646f2d108190347beb478b48d397eb429948f121640d50564ec4f115c1aae6",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-37",
+      "book": "1MA",
+      "chapter": 4,
+      "verse": 18,
+      "noteIds": [
+        "1ma-4-18-yod-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-60-native.png",
+      "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+      "pixelBox": [
+        860,
+        245,
+        1030,
+        310
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-37-native.png",
+          "sha256": "630bb92bf1c74e4231829db8b75a435ad29a4c30deb9b1d6f1dd7603580b05b5",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-37-8x.png",
+          "sha256": "59ebf580569aa4d17c738a3a33aaf2fdfcdfa823edeb8a6763eeedd81ce7d00b",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-38",
+      "book": "1MA",
+      "chapter": 5,
+      "verse": 34,
+      "noteIds": [
+        "1ma-5-34-yod-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-124-native.png",
+      "sourceImageSHA256": "f603b1a5fbe8b0f3b6bc13a28db40e156c866d4f6f4cf4b6334948aa424f6753",
+      "pixelBox": [
+        1030,
+        370,
+        1150,
+        435
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-38-native.png",
+          "sha256": "2fdf15febea5ab2500cb89b1df79925ead403ca3c91ed91fb204a99d03391346",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-38-8x.png",
+          "sha256": "b26222fcfc6dfa043079becb75d1807f0a476369002239a261370447668e86ee",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-39",
+      "book": "1MA",
+      "chapter": 6,
+      "verse": 10,
+      "noteIds": [
+        "1ma-6-10-yod-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-128-native.png",
+      "sourceImageSHA256": "e4a601de453d1523a2f0b8679bb175bf270c7a2f4848b8841018504a4eef2802",
+      "pixelBox": [
+        410,
+        305,
+        535,
+        370
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-39-native.png",
+          "sha256": "c0c23697503df8d1f9988c950dd9b54b994b69eef9f83fbb35ea27430859f10a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-39-8x.png",
+          "sha256": "507bcbc86fa645fb54dcab87cbad9a52691113da35927a40e63510c4197ea049",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-40",
+      "book": "1MA",
+      "chapter": 6,
+      "verse": 26,
+      "noteIds": [
+        "1ma-6-26-yod-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-66-native.png",
+      "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+      "pixelBox": [
+        1150,
+        255,
+        1290,
+        315
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-40-native.png",
+          "sha256": "4bfe6a9a89d69f642f1bde86eecd01b9974ae692825403d0ef000b6ffd0ee942",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-40-8x.png",
+          "sha256": "450e1ca41a89c4bb4ca2ee043593e441354194af7bd116966303f2b7f4f0d74d",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-41",
+      "book": "1MA",
+      "chapter": 6,
+      "verse": 38,
+      "noteIds": [
+        "1ma-6-38-kaf-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-67-native.png",
+      "sourceImageSHA256": "82f6d712f11091f6e3a64fdd0c1d2fe1505585c927cb57d91eacc2a2697b68d1",
+      "pixelBox": [
+        2460,
+        325,
+        2610,
+        390
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-41-native.png",
+          "sha256": "9789d4f70d188dd8a27532696afdff1e5532c7811b4c3088085a03d70491af43",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-41-8x.png",
+          "sha256": "0fbec39e40b9fe2f400baa4bba19947a79637b547d67ce68e01710b9c7a11de5",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-42",
+      "book": "1MA",
+      "chapter": 9,
+      "verse": 1,
+      "noteIds": [
+        "1ma-9-1-bet-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-72-native.png",
+      "sourceImageSHA256": "2b1b92b6415b5a5e613e367dc50af730ed52e5a89b2da6f5e562323b98a79520",
+      "pixelBox": [
+        2420,
+        710,
+        2600,
+        785
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-42-native.png",
+          "sha256": "95f03c26efeeac2a31d099dadd4949c5c7d3fa06027ab1458688b71ce09e51be",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-42-8x.png",
+          "sha256": "0320561f556e2de41eec058a6536144a93df7b3909e3e3917891a9e2e7390700",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-43",
+      "book": "1MA",
+      "chapter": 9,
+      "verse": 56,
+      "noteIds": [
+        "1ma-9-56-resh-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-144-native.png",
+      "sourceImageSHA256": "ee1621a3765b5e4a2a8a0fecb04b76f5fa01fc5398b86f4b7a657548fc4c18bb",
+      "pixelBox": [
+        610,
+        785,
+        795,
+        855
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-43-native.png",
+          "sha256": "5274aee4c2cb7f62b9bc2f7213561912229979651be7546097c2ace6b476f8c6",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-43-8x.png",
+          "sha256": "980da3f24f675b55c4ccc9da0aae428cb2eb3c6800d2d7ea20be03cda582f301",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-44",
+      "book": "1MA",
+      "chapter": 9,
+      "verse": 56,
+      "noteIds": [
+        "1ma-9-56-resh-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-74-native.png",
+      "sourceImageSHA256": "471831cb3eb83d3619df2372eef5def67c235b918e9a5edf0ef52ab3a0e1c0a2",
+      "pixelBox": [
+        2325,
+        710,
+        2460,
+        775
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-44-native.png",
+          "sha256": "d2f02a9953fd35e1a4010f0a1fea04f37e7c859c2e94747c9ef33d57fe1302e9",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-44-8x.png",
+          "sha256": "b9a709765b34df9b95805eccf37fb65990045f3e9d0d5a477cd45092a99825c7",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-45",
+      "book": "1MA",
+      "chapter": 10,
+      "verse": 46,
+      "noteIds": [
+        "1ma-10-46-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-76-native.png",
+      "sourceImageSHA256": "2af12b7dfbd4547ce6619d6ab3b785fc91ee9b13a9a1f99e56d706612d61b445",
+      "pixelBox": [
+        1210,
+        805,
+        1370,
+        880
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-45-native.png",
+          "sha256": "aa8afa9c48a746a905420bb59f937ac7e26235d09e8b468bb484d38333508efe",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-45-8x.png",
+          "sha256": "5439d43811e241a75cdcacd069fada4789a0efdb67b62aab1437f06865497275",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-46",
+      "book": "1MA",
+      "chapter": 10,
+      "verse": 57,
+      "noteIds": [
+        "1ma-10-57-pe-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-150-native.png",
+      "sourceImageSHA256": "767c11120769fcfbefbd81238d5ab06186f4e449ffa9ef9c17a73cfd455116d8",
+      "pixelBox": [
+        480,
+        1226,
+        800,
+        1295
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-46-native.png",
+          "sha256": "5cb206c42e745c9a2ce7e470f24a5057dabb7c71aff2b700184a101780f6f33a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-46-8x.png",
+          "sha256": "165bad014f3d2fb1380b1f288e0ad0279664f75518cf9deae8a2e6f77aba562c",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-47",
+      "book": "1MA",
+      "chapter": 10,
+      "verse": 57,
+      "noteIds": [
+        "1ma-10-57-pe-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-77-native.png",
+      "sourceImageSHA256": "fd0adf4d196bfb357a03811631ba09da2fb705466bac546b6b444a3ad82c2288",
+      "pixelBox": [
+        2080,
+        811,
+        2160,
+        872
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-47-native.png",
+          "sha256": "dd829973255dde44b5ce8fa5e5bec56ad4818bce358acbb1ed34a2a89350fade",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-47-8x.png",
+          "sha256": "461e72c22db5438126c9dc2b0a72f5a759e186e249a7583a7f6dc981a0c9af58",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-48",
+      "book": "1MA",
+      "chapter": 14,
+      "verse": 32,
+      "noteIds": [
+        "1ma-14-32-mem-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-87-native.png",
+      "sourceImageSHA256": "d8c0b482a79a74c1079fc15b8a133a9f27fbb30f02806e24b19eda9e48c57352",
+      "pixelBox": [
+        2010,
+        1004,
+        2130,
+        1059
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-48-native.png",
+          "sha256": "3db8292aed2492a5093a95cfa53d58ef797a34d3c2495234d61c54241aa24284",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-48-8x.png",
+          "sha256": "1080f2a859eb94d5913ae3e7386d935da2fe6bc6863f8fad9397ab845f876461",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-49",
+      "book": "1MA",
+      "chapter": 14,
+      "verse": 32,
+      "noteIds": [
+        "1ma-14-32-mem-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-170-native.png",
+      "sourceImageSHA256": "6a7c60a780954851cc65bc6cac8a92bb41a05eedfdcdfde69a66575ef130b0e6",
+      "pixelBox": [
+        635,
+        1457,
+        775,
+        1510
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-49-native.png",
+          "sha256": "05fdb64bee4b765918fc57a57dd7d4c63245d9fd49edf4ec35d091f302e5ea3f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-49-8x.png",
+          "sha256": "0b805f47bacb547009b9b2b9e02ad67e39ca1cbca3ab6c9ff387f9f280c39bd3",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-50",
+      "book": "1MA",
+      "chapter": 14,
+      "verse": 34,
+      "noteIds": [
+        "1ma-14-34-tav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-171-native.png",
+      "sourceImageSHA256": "efcabf37194d35281ae44d4b59247ab69e08324195fb9f938e934f022c4f5c5c",
+      "pixelBox": [
+        1200,
+        390,
+        1340,
+        450
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-50-native.png",
+          "sha256": "20d0c56a6a36a2887595aa7c9e7fe21ec30448e8367cfba91dce44adf0231581",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-50-8x.png",
+          "sha256": "1b80caa19243d467113f709e18ee7e8d8027d989814636e9a0f608016bc5d639",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-51",
+      "book": "1MA",
+      "chapter": 14,
+      "verse": 34,
+      "noteIds": [
+        "1ma-14-34-tav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-87-native.png",
+      "sourceImageSHA256": "d8c0b482a79a74c1079fc15b8a133a9f27fbb30f02806e24b19eda9e48c57352",
+      "pixelBox": [
+        1235,
+        210,
+        1350,
+        275
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-51-native.png",
+          "sha256": "aac2964cf26859656faaab616d2ac5446da6009a852f19ac3dc6b3bbe9b015ea",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-51-8x.png",
+          "sha256": "f568c3cee9f02ac53c1089b7f01addf0b15db5267b3ec87c116a2f3e2263f5a5",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-54",
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 37,
+      "noteIds": [
+        "1ma-15-37-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-89-native.png",
+      "sourceImageSHA256": "9f069dfd4f3eb4b6d5608ba0d34bc2ad7708e967518d170b72a06db134d67186",
+      "pixelBox": [
+        475,
+        770,
+        670,
+        835
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-54-native.png",
+          "sha256": "3c2315aebcbea74cb15adfa5ee96523fc9fc440a090225b1aa4c4430125eb7b2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-54-8x.png",
+          "sha256": "aab1a7c3297d7a48d58ac0ce37b311c8ead6756338d29b99c03d3d736305f97a",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-55",
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 40,
+      "noteIds": [
+        "1ma-15-40-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-89-native.png",
+      "sourceImageSHA256": "9f069dfd4f3eb4b6d5608ba0d34bc2ad7708e967518d170b72a06db134d67186",
+      "pixelBox": [
+        1200,
+        972,
+        1420,
+        1025
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-55-native.png",
+          "sha256": "b245e0074b43eafa0966260bfeaacf2133a1f004ba806f203c3fa7a1ea4a77f1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-55-8x.png",
+          "sha256": "feeced833d9049f04b7865175513e0ffc716cd55f76133fc7d9f0f8a10c34403",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-56",
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 40,
+      "noteIds": [
+        "1ma-15-40-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-175-native.png",
+      "sourceImageSHA256": "3d5cd3e2ff29236f3082e68bbe2e38c77b96498e0379488fbe6f2e850ea2330b",
+      "pixelBox": [
+        1195,
+        1415,
+        1420,
+        1485
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-56-native.png",
+          "sha256": "fe2a6a4c0af93a8f4320ed3454c57f64815853c3632ae5006999c5e6f1101b5b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-56-8x.png",
+          "sha256": "145831b2e8aba7fbf1b33d246d6f6e212f9494d86568330cc2ed039fd11e45b5",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-57",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 1,
+      "noteIds": [
+        "1ma-16-1-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-89-native.png",
+      "sourceImageSHA256": "9f069dfd4f3eb4b6d5608ba0d34bc2ad7708e967518d170b72a06db134d67186",
+      "pixelBox": [
+        420,
+        1113,
+        675,
+        1166
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-57-native.png",
+          "sha256": "7fc3ef61c743ceaddc5808e19ed6c43dc3f3b5a490eb88e796d467456a9df1b1",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-57-8x.png",
+          "sha256": "b7d9bed35cc93f4303f920216e12bf3149c9ddf1387598466f94cf5c1c39543e",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-58",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 1,
+      "noteIds": [
+        "1ma-16-1-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-175-native.png",
+      "sourceImageSHA256": "3d5cd3e2ff29236f3082e68bbe2e38c77b96498e0379488fbe6f2e850ea2330b",
+      "pixelBox": [
+        220,
+        1602,
+        450,
+        1670
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-58-native.png",
+          "sha256": "3c6723981d5f8e84604a158b173aeb97d03cd5d6c82f05cc388ea5a1472af01a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-58-8x.png",
+          "sha256": "4bfea6fdb1c3023bbf68ab9e4f6d283909638da5a85c3095e2da80619f2c5ec3",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-59",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 4,
+      "noteIds": [
+        "1ma-16-4-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-90-native.png",
+      "sourceImageSHA256": "d3d0cadeab0c2a4d024903102447fad3c2b74240213f8194112e2fae70ec00ca",
+      "pixelBox": [
+        1730,
+        346,
+        1945,
+        402
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-59-native.png",
+          "sha256": "21b381bef9a5cf9e0ca3997add94eb127c0170f58faad917b035cff9593e4b42",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-59-8x.png",
+          "sha256": "4d414ca37a270520f4299439aa8146e1eccf225849ec9ba9e81648026f806f85",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-60",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 4,
+      "noteIds": [
+        "1ma-16-4-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-176-native.png",
+      "sourceImageSHA256": "a24978a04d2a4abf5284b78b4b3cc5f6865472fe61ca5b0e1eb691d2d9c11751",
+      "pixelBox": [
+        160,
+        581,
+        390,
+        653
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-60-native.png",
+          "sha256": "08c9d87c6af68f733c145ec78da68fd41f07cd5fa255b085fa44beb77238cc55",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-60-8x.png",
+          "sha256": "5f82d45dd9428ee6acb891d9d1fcf03a0f95ff7926a75d9014dc56486c40a51c",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-61",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 8,
+      "noteIds": [
+        "1ma-16-8-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-90-native.png",
+      "sourceImageSHA256": "d3d0cadeab0c2a4d024903102447fad3c2b74240213f8194112e2fae70ec00ca",
+      "pixelBox": [
+        1870,
+        581,
+        2090,
+        636
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-61-native.png",
+          "sha256": "ae150c93b479142c28d09a4efb9f60567c23ec609e3aa4f11527ed2a2fd69a7f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-61-8x.png",
+          "sha256": "908e72a8915f836853a6937e0f120bee4ee7fefd64e236278c35f883de117c85",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-62",
+      "book": "1MA",
+      "chapter": 16,
+      "verse": 8,
+      "noteIds": [
+        "1ma-16-8-qof-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-176-native.png",
+      "sourceImageSHA256": "a24978a04d2a4abf5284b78b4b3cc5f6865472fe61ca5b0e1eb691d2d9c11751",
+      "pixelBox": [
+        400,
+        895,
+        645,
+        963
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-62-native.png",
+          "sha256": "2a738bf57adc8e072acf035091428b0713b623ae04b617871e875969a519d193",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-62-8x.png",
+          "sha256": "d13b8077802843069a3dac346ee3c87fedbabdfddfafe36ce94fccd3f34273ba",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-63",
+      "book": "2MA",
+      "chapter": 1,
+      "verse": 10,
+      "noteIds": [
+        "2ma-1-10-he-1-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-92-native.png",
+      "sourceImageSHA256": "5482e13d0f0ca187b6030b163dcc4536418b0153cc5e7ab4a04f86badc3500d6",
+      "pixelBox": [
+        1670,
+        500,
+        1830,
+        560
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-63-native.png",
+          "sha256": "955c77ffa4708e90e2359d351ff421b896db97a20dc2ba387b6fbe80a6d4e731",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-63-8x.png",
+          "sha256": "ebd4b693495ef042b672441cc06012b98c0ff2d52577fb1f7ecff1556642f5e3",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-64",
+      "book": "2MA",
+      "chapter": 2,
+      "verse": 28,
+      "noteIds": [
+        "2ma-2-28-yod-2-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-95-native.png",
+      "sourceImageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+      "pixelBox": [
+        1980,
+        680,
+        2080,
+        745
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-64-native.png",
+          "sha256": "ed7a9c13e2502717084ebca978293097ce6758c00a3f54cf4adcb48f4a4fa188",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-64-8x.png",
+          "sha256": "ab57fb2feb918671842a3769826bcb00eff18885dacf32f492d41de6fdda214e",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-65",
+      "book": "2MA",
+      "chapter": 3,
+      "verse": 26,
+      "noteIds": [
+        "2ma-3-26-dalet-3-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-96-native.png",
+      "sourceImageSHA256": "893035bed135f9fa5def18cac8144c1e72b67e2c6919f4dfef328abd1b4a0051",
+      "pixelBox": [
+        700,
+        1240,
+        900,
+        1300
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-65-native.png",
+          "sha256": "9378687f251600e454524c2b2d3de9c3eebaf2fce0359729cac2694ce0cf6737",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-65-8x.png",
+          "sha256": "11d3ab6573f7697f4aa32176570c8db60ed3a636c38ee8b06f9a990bf47e39e7",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-66",
+      "book": "2MA",
+      "chapter": 5,
+      "verse": 22,
+      "noteIds": [
+        "2ma-5-22-lamed-3-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-100-native.png",
+      "sourceImageSHA256": "8335be40b4c6e3fd8d93b923e57500eb1c7448072ed3d41ea6bea4fdbcc289a8",
+      "pixelBox": [
+        510,
+        680,
+        670,
+        740
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-66-native.png",
+          "sha256": "057a1f291230ce571b02a82ae19b33fc281dbfe6868df6363859a5661ee40aa4",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-66-8x.png",
+          "sha256": "9bfd488ff92e434b05199552b492111699c9b0e574dd469ca581177a7407cb81",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-67",
+      "book": "2MA",
+      "chapter": 6,
+      "verse": 11,
+      "noteIds": [
+        "2ma-6-11-he-2-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-199-native.png",
+      "sourceImageSHA256": "a174e0879e99d021ffd2d258fa53108a4dee1c9a25dcc1544e3971aac38dda5a",
+      "pixelBox": [
+        200,
+        630,
+        330,
+        705
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-67-native.png",
+          "sha256": "0818a97953a3356c9b4fd685a277d05fc805c2665cc4d86e104f4253fb7175ab",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-67-8x.png",
+          "sha256": "e8f2e62d651e2479cee197f49ee656990f13aff540678307e9eee05f0dceaf3d",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-68",
+      "book": "2MA",
+      "chapter": 6,
+      "verse": 11,
+      "noteIds": [
+        "2ma-6-11-he-2-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-101-native.png",
+      "sourceImageSHA256": "0a4f383ac41c39e12db2d37c4fa446abfc1ab1fe086aeef9f12ae4a3859b571f",
+      "pixelBox": [
+        560,
+        405,
+        700,
+        470
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-68-native.png",
+          "sha256": "9606b5f51bcde1c52c8b0688c7b61ce16acdb7dfc54e139bbd3ea51db954976b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-68-8x.png",
+          "sha256": "a09c6f3f6b88ab78980dd8dfc3e68197ad10500fa5705d2c9765f46d3321d63c",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-69",
+      "book": "2MA",
+      "chapter": 7,
+      "verse": 40,
+      "noteIds": [
+        "2ma-7-40-bet-1-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-104-native.png",
+      "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+      "pixelBox": [
+        2050,
+        265,
+        2140,
+        320
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-69-native.png",
+          "sha256": "7e936d6f01e32c1f4b06e6d0682d16ae1bbdc9fc46efb263ee492dd8cd74adfe",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-69-8x.png",
+          "sha256": "9ec3e32fe45f4ae5224e7a765d6042c237672d781498c126ee3c16ce3d86d57f",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-70",
+      "book": "2MA",
+      "chapter": 8,
+      "verse": 4,
+      "noteIds": [
+        "2ma-8-4-yod-2-dagesh"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-104-native.png",
+      "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+      "pixelBox": [
+        1795,
+        600,
+        1940,
+        655
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-70-native.png",
+          "sha256": "94e6d51971742924eee2bd75f80346ad6bba06fa713eff941382567b0d218d70",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-70-8x.png",
+          "sha256": "acb048d90fd4fa9cedebea2acb8161895efd266aca975fa155d5580df7f45b70",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-71",
+      "book": "2MA",
+      "chapter": 9,
+      "verse": 29,
+      "noteIds": [
+        "2ma-9-29-pe-1-dagesh",
+        "2ma-9-29-lamed-3-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-108-native.png",
+      "sourceImageSHA256": "361f8eea23e04a024797e4bbf8c132bebbd8345b61b86ec9e369562e34f836a6",
+      "pixelBox": [
+        2240,
+        680,
+        2380,
+        740
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-71-native.png",
+          "sha256": "1688059b01da4d4ae90fa9d42b3cb1017d610fd426d1ad299cde365d7cd3491e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-71-8x.png",
+          "sha256": "17ea188e951880805b02dabcd9509b1927facf68ae0ab485e22e39db02325f45",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-72",
+      "book": "2MA",
+      "chapter": 11,
+      "verse": 4,
+      "noteIds": [
+        "2ma-11-4-bet-3-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-110-native.png",
+      "sourceImageSHA256": "73f52ce25e3e8b47421f55c5a8688f7eb1e2dde01ddce90a452d9bbd4ba60e18",
+      "pixelBox": [
+        730,
+        430,
+        885,
+        490
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-72-native.png",
+          "sha256": "cddc6cd2d4f3ac7d84f71fa235623ff5783aa25ce8b380f7a13550851548e67c",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-72-8x.png",
+          "sha256": "cb7c5b529ef0bd0249c343d82278569d633bb6fd6579e49b3ad20a948fd04be7",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-73",
+      "book": "2MA",
+      "chapter": 11,
+      "verse": 25,
+      "noteIds": [
+        "2ma-11-25-samekh-2-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-111-native.png",
+      "sourceImageSHA256": "9439b24061684b385db5cde9cd810235681914e68f07c75a29ab1a8fe7f59663",
+      "pixelBox": [
+        1790,
+        895,
+        1900,
+        955
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-73-native.png",
+          "sha256": "3493b09b906f994b85107398ea80848914713aaf3f36b7c15b546e1a02868ae6",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-73-8x.png",
+          "sha256": "7342989762be0c7e42619f6bded9e85fcaa9452c1c2ad33eb0336d5db619aa5a",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-74",
+      "book": "2MA",
+      "chapter": 11,
+      "verse": 25,
+      "noteIds": [
+        "2ma-11-25-samekh-2-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-218-native.png",
+      "sourceImageSHA256": "50c6fd9234e5b3e9e8756a862dc10e2320ab10a298446b9da332554f52f2bea5",
+      "pixelBox": [
+        280,
+        1270,
+        500,
+        1360
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-74-native.png",
+          "sha256": "f89c759344fcf12ce4d0742ef5b4a7ce3cdf0bac8e443201ad78809ff4d13cc8",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-74-8x.png",
+          "sha256": "cf0282d04b1fd63b9527fdd198ffa8f039365832d71e55436bb888446fb2fa87",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-77",
+      "book": "2MA",
+      "chapter": 15,
+      "verse": 34,
+      "noteIds": [
+        "2ma-15-34-het-2-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-118-native.png",
+      "sourceImageSHA256": "6b01b017167f4960561060e9389262eadea9cd28f1a905ec113c61b8eead6a21",
+      "pixelBox": [
+        1930,
+        1340,
+        2095,
+        1420
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-77-native.png",
+          "sha256": "73dc0814f14100e0de57c764f0d22acc20527ae811cd443542e9257615ab1e61",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-77-8x.png",
+          "sha256": "96cd00dfab33e219db694a02129d0ecaa4b648e18861f7ada054584ca91c1837",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-78",
+      "book": "2MA",
+      "chapter": 15,
+      "verse": 34,
+      "noteIds": [
+        "2ma-15-34-het-2-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-232-native.png",
+      "sourceImageSHA256": "2c00aad78769f13764748c0b989872dcc227f1a2c86b1f19620e7f19ee221645",
+      "pixelBox": [
+        540,
+        1890,
+        710,
+        1965
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-78-native.png",
+          "sha256": "1bf6af31d6eaff71f4ff0844b2c2bfd5fe29139811fb608067360ad95e332ea8",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-78-8x.png",
+          "sha256": "df0508495e0a0b022d0c4d3740e168598501d31c5a4d6b6aa8d5a000e214e3df",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-79",
+      "book": "TOB",
+      "chapter": 1,
+      "verse": 1,
+      "noteIds": [
+        "tob-1-1-gimel-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-312-native.png",
+      "sourceImageSHA256": "7c3df70adf578aab97fbba14f110c16da30b97286af1034780004a9ed50d403a",
+      "pixelBox": [
+        190,
+        550,
+        340,
+        630
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-79-native.png",
+          "sha256": "a48d8a50d4dcbd50a11e2a24f92ce58377bb4f3cfd2c6b2225053571116f461c",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-79-8x.png",
+          "sha256": "68cafd1106d215dc442349e79c8cb92bdaa81e32c20f859fd904ce29411162e4",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-80",
+      "book": "TOB",
+      "chapter": 1,
+      "verse": 1,
+      "noteIds": [
+        "tob-1-1-gimel-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-163-native.png",
+      "sourceImageSHA256": "2da8c4dfb1a6d8a02355715cc6056dc9f1bb47a453bed5ddfc7aa76f473a2b0f",
+      "pixelBox": [
+        1685,
+        465,
+        1785,
+        525
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-80-native.png",
+          "sha256": "463e238c859816f02b23bc918f12325415c72398905e0fbb5a31b2a074791069",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-80-8x.png",
+          "sha256": "140651b01ad3839c68d7723ad811e5eef82338940b7c1a940b2d987913a76b85",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-81",
+      "book": "TOB",
+      "chapter": 2,
+      "verse": 3,
+      "noteIds": [
+        "tob-2-3-mem-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-316-native.png",
+      "sourceImageSHA256": "dd65929d2564b1fa69e707c5142b793275cb586df5a34994bc9fdefdb5ddf3d8",
+      "pixelBox": [
+        670,
+        695,
+        795,
+        775
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-81-native.png",
+          "sha256": "b498751302a9510ac7da3b16125623f2b8b11df21346309f2e1c5c1d79bbbd4e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-81-8x.png",
+          "sha256": "5d80a6edf23be27db200a4b3cd824aaee2ce37dafb5c02bff8fa112ef9294449",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-82",
+      "book": "TOB",
+      "chapter": 2,
+      "verse": 3,
+      "noteIds": [
+        "tob-2-3-mem-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-165-native.png",
+      "sourceImageSHA256": "2c3fe9accf66a04e058f0c868695dcc74529c9ae6301717955684c467380c876",
+      "pixelBox": [
+        2050,
+        465,
+        2140,
+        520
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-82-native.png",
+          "sha256": "159ecfbeb5f53e9b7d514f3a86655767bea473ce565abf8da90b5ad2831b0247",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-82-8x.png",
+          "sha256": "82cc44ffbcf8c5b49860bfbbee1f3dfd3bbb1e17d8e5298f73b831428735a740",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-83",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 1,
+      "noteIds": [
+        "tob-5-1-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-323-native.png",
+      "sourceImageSHA256": "e3c481db64c80b7de2f3f51989948227f876a4e5c725259de226230233721228",
+      "pixelBox": [
+        1195,
+        900,
+        1270,
+        980
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-83-native.png",
+          "sha256": "ae76c85e95da853c656935f3fc6ce397c935ef29fedcee3fad9b9695af067076",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-83-8x.png",
+          "sha256": "6e6fcc60fcb2e85075eb62e2ed100e4be5d4ee12e985d9d13a46b63981a0cfba",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-84",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 1,
+      "noteIds": [
+        "tob-5-1-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-168-native.png",
+      "sourceImageSHA256": "aa69b3baf82fa96097eb8c8c231782caaf180f15065aa399959b817b7fd38f7f",
+      "pixelBox": [
+        1245,
+        580,
+        1315,
+        645
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-84-native.png",
+          "sha256": "4fd7ce94a183f226f5aecfbff42711a82f8d0f740796c6f48e1060cd00c221a2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-84-8x.png",
+          "sha256": "b15106731454aabec79d0531436dcb417e39201b135e0acd405fc73f9d2ed1c0",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-85",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 3,
+      "noteIds": [
+        "tob-5-3-initial-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-323-native.png",
+      "sourceImageSHA256": "e3c481db64c80b7de2f3f51989948227f876a4e5c725259de226230233721228",
+      "pixelBox": [
+        530,
+        960,
+        680,
+        1035
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-85-native.png",
+          "sha256": "dacb6c653707c880c5dc8515dc59ebf75a15059bcc0b8d6b4eb4e4bf3ff49e01",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-85-8x.png",
+          "sha256": "e841f85873c28177fa0eaebe14813eac5f3cf4ed80bdf771851022debf9e5414",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-86",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 3,
+      "noteIds": [
+        "tob-5-3-initial-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-168-native.png",
+      "sourceImageSHA256": "aa69b3baf82fa96097eb8c8c231782caaf180f15065aa399959b817b7fd38f7f",
+      "pixelBox": [
+        705,
+        638,
+        815,
+        695
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-86-native.png",
+          "sha256": "ca6c4275bc9c60f767d809c652e51243d0079daef958b66e5e18aa777ae0b70e",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-86-8x.png",
+          "sha256": "61fa63027716cc8aea35d13f6957297784e55cb6ec34b0fda7903530659ab45c",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-87",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 10,
+      "noteIds": [
+        "tob-5-10-ayin-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-324-native.png",
+      "sourceImageSHA256": "44d2d19f2099bc34d894dd0911888496c19df913701b147e666569b4e6571f4b",
+      "pixelBox": [
+        200,
+        770,
+        390,
+        860
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-87-native.png",
+          "sha256": "969a4ba0a0c5c0a75f5aa5eb199bd6ae2c28fecf5ac11ed3e4a1a34a8fe7d7fa",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-87-8x.png",
+          "sha256": "c5e15f834a8eb0db99d07dbd478dcbd0efcb5efff15db00d116b96f268fafb9f",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-88",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 10,
+      "noteIds": [
+        "tob-5-10-ayin-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-169-native.png",
+      "sourceImageSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+      "pixelBox": [
+        1710,
+        500,
+        1800,
+        550
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-88-native.png",
+          "sha256": "45cf8074ca03bbb5635abdc36af8f879391cc1d26297771725e55988d6ae918a",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-88-8x.png",
+          "sha256": "0a5ba4da54b2577f4203861a9624c7ca675f7bcee4d0e91ce693df5d6a9e24eb",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-89",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 12,
+      "noteIds": [
+        "tob-5-12-first-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-325-native.png",
+      "sourceImageSHA256": "828234e10a63a8743aef5588497c854439c2c8eb771e1cea1d6eb2e16add9561",
+      "pixelBox": [
+        1150,
+        330,
+        1265,
+        410
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-89-native.png",
+          "sha256": "99ce4e60b62940cee1c5c69c8cdb2fe903c33ce0a3a9ff5302c6061b4e4ded9c",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-89-8x.png",
+          "sha256": "3b1c334d0e5a19c36ef0e394b33862523de9cf04f3986c3fcaa02e19ada764c5",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-90",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 12,
+      "noteIds": [
+        "tob-5-12-first-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-169-native.png",
+      "sourceImageSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+      "pixelBox": [
+        1190,
+        225,
+        1280,
+        280
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-90-native.png",
+          "sha256": "f6a4993542a234eb19303bb143435f222924f3d784a056d4b11554a08ac1a140",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-90-8x.png",
+          "sha256": "41b0c0bc22d9f1ac216ae7717c9afd24370b060322edf2369db2493f18feb1f2",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-91",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 17,
+      "noteIds": [
+        "tob-5-17-ayin-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-325-native.png",
+      "sourceImageSHA256": "828234e10a63a8743aef5588497c854439c2c8eb771e1cea1d6eb2e16add9561",
+      "pixelBox": [
+        540,
+        940,
+        680,
+        1015
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-91-native.png",
+          "sha256": "5b1df571d8297dee4570429c51660255daaff4e4e9327749d88d938167858097",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-91-8x.png",
+          "sha256": "b9a4e8389ae241ada71672c97fddd200f83b4a86451f75957f1469b6923e1bf8",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-92",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 17,
+      "noteIds": [
+        "tob-5-17-ayin-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-169-native.png",
+      "sourceImageSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+      "pixelBox": [
+        755,
+        645,
+        855,
+        705
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-92-native.png",
+          "sha256": "ab8e094c5404067babbfcbd32bc76a37bf6427954fe8d396baa20a007c91ddcd",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-92-8x.png",
+          "sha256": "e0293627886ae48a9a0f33414c96d82d3b86a7e16b51717ca19f979b5a547d54",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-93",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 21,
+      "noteIds": [
+        "tob-5-21-said-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-326-native.png",
+      "sourceImageSHA256": "dd2a8acdb7f0d2dc6c4dc5ca42a6603b7bb98b3c8b0ca4d16ee37dc5cb2bf531",
+      "pixelBox": [
+        1000,
+        705,
+        1110,
+        785
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-93-native.png",
+          "sha256": "e1c50fd4b3bd8ccada5a14d5e836d84949d86f12219bffbfb11de31d6dd5e611",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-93-8x.png",
+          "sha256": "233bda786661d09f06621d0251639c70d1cd3f7b9b9aba3c3c5500808c572e2d",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-94",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 21,
+      "noteIds": [
+        "tob-5-21-said-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-170-native.png",
+      "sourceImageSHA256": "9765c1e9be1512524b390bf09acb5620ea497e130c4cacd0b1bd901532939f7d",
+      "pixelBox": [
+        2330,
+        460,
+        2425,
+        515
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-94-native.png",
+          "sha256": "6c9b8fe2465528bf84f42182ab3ccf0dded8f80c8e4841a2b71fad2c99136192",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-94-8x.png",
+          "sha256": "0d10e103653482b515cd0d2f4fcdb314024bb421c05722834e01e86ab9590563",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-95",
+      "book": "TOB",
+      "chapter": 6,
+      "verse": 8,
+      "noteIds": [
+        "tob-6-8-gimel-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-327-native.png",
+      "sourceImageSHA256": "6dbd49c55830f47507859b79f4d795196e043d1c9a062d3896ea23a32b47b5e5",
+      "pixelBox": [
+        1050,
+        630,
+        1160,
+        710
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-95-native.png",
+          "sha256": "15ad380f34df7679c9dd3e4ce2b9d32730255bb2df7a2266f67345e292aa8455",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-95-8x.png",
+          "sha256": "884d7522e736a8ab934238385707829eb90ea5530166f025003d3479b98b20ee",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-96",
+      "book": "TOB",
+      "chapter": 6,
+      "verse": 8,
+      "noteIds": [
+        "tob-6-8-gimel-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-170-native.png",
+      "sourceImageSHA256": "9765c1e9be1512524b390bf09acb5620ea497e130c4cacd0b1bd901532939f7d",
+      "pixelBox": [
+        1180,
+        425,
+        1260,
+        480
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-96-native.png",
+          "sha256": "d5720dbfefef3ee34ba7268e560841de7c197d360b5df5281e5f4499286f02e0",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-96-8x.png",
+          "sha256": "41db88f5f237e56171c70ae7df784c77ef3c7ec3d9a5ceaa9e6131e756b81c66",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-97",
+      "book": "TOB",
+      "chapter": 9,
+      "verse": 5,
+      "noteIds": [
+        "tob-9-5-second-gabael-gimel-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-335-native.png",
+      "sourceImageSHA256": "e7b7b075b6c689494640a9aedeb388cb1aece5d39cdd83d637d133959e26d23c",
+      "pixelBox": [
+        650,
+        345,
+        775,
+        420
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-97-native.png",
+          "sha256": "e4949d509bd6ff36fb7da1de7bbd6c4020ae5480bc2805e0cc74b067f9b11617",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-97-8x.png",
+          "sha256": "9ebdf0d1540671c26d0e26613c226fbe11e4743bef51051b3f4f46f0eb8029bd",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "context-98",
+      "book": "TOB",
+      "chapter": 9,
+      "verse": 5,
+      "noteIds": [
+        "tob-9-5-second-gabael-gimel-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-174-native.png",
+      "sourceImageSHA256": "deb5dd1c3a2acb1611ef9e4dba3306160cf02ee13d4046ad7f7cefcdbf8c8f65",
+      "pixelBox": [
+        835,
+        210,
+        920,
+        265
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-98-native.png",
+          "sha256": "c571c8f53557baa7ac24ca1f41a3d8ba750beb9c4078bb820b1d58ded95b6f8d",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/context-98-8x.png",
+          "sha256": "c0c53456a6be4d1584951c0b78c6e4bdacd30a9440549cf5d5d0040b90eeb873",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "tob-5-1-second-word-extra",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 1,
+      "noteIds": [
+        "tob-5-1-second-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-168-native.png",
+      "sourceImageSHA256": "aa69b3baf82fa96097eb8c8c231782caaf180f15065aa399959b817b7fd38f7f",
+      "pixelBox": [
+        1075,
+        580,
+        1165,
+        645
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/tob-5-1-second-word-extra-native.png",
+          "sha256": "0559270119b5961527b0241123f1d78c71bf2ef93c1736cc37577b9bdd996fd9",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/tob-5-1-second-word-extra-8x.png",
+          "sha256": "66ec0a9619c24202853c8b2326fbfd8cf0e660cd7106adb8bd3e17ae582e12d2",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "tob-5-17-said-word-extra",
+      "book": "TOB",
+      "chapter": 5,
+      "verse": 17,
+      "noteIds": [
+        "tob-5-17-said-vav-vowel"
+      ],
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-170-native.png",
+      "sourceImageSHA256": "9765c1e9be1512524b390bf09acb5620ea497e130c4cacd0b1bd901532939f7d",
+      "pixelBox": [
+        1890,
+        180,
+        1985,
+        235
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/tob-5-17-said-word-extra-native.png",
+          "sha256": "89006a157a2da33d32811e3237b375b15ea51472e4c43bf9b67a091d6bb1d031",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/tob-5-17-said-word-extra-8x.png",
+          "sha256": "e9c493c22f2d330a68d656693491f1f03a9786e7af6acb1e8dde301e1261be93",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    }
+  ],
+  "tightAndComparatorEvidence": [
+    {
+      "key": "sir-2-2-het",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-451.png",
+      "sourceImageSHA256": "b6b967beb992c3ad9657ea69d3f219da36704fea4f6a42bc9ab0112f23fdbfd7",
+      "pixelBox": [
+        1169,
+        470,
+        1189,
+        499
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-2-2-het-native.png",
+          "sha256": "628eff319e997055ba9a8c16e372b6a2cf4f4f1c15ec9e2d83dd9665b15c3498",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-2-2-het-20x.png",
+          "sha256": "6fbfdbe0407ad7395e449238632ff2ed29533f4922644c068e9b5f832913a1ce",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-4-24-dalet",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-455.png",
+      "sourceImageSHA256": "de7275dd3bfa7c3b31bf3e5f815bd268bdeb08055b8909bcccb27b45f9437ced",
+      "pixelBox": [
+        1160,
+        518,
+        1179,
+        546
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-4-24-dalet-native.png",
+          "sha256": "4040e5c01e25b075bb26bc8bd1e5ba49447eeb0095b68ef5e6806b7a6318d369",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-4-24-dalet-20x.png",
+          "sha256": "eeca7b301ba83faf34dcdd5fbff9b1a7dd4ad4f5054990d2b252b9154dd47a12",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-31-6-lamed-upper",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-494.png",
+      "sourceImageSHA256": "7c48c3a4f52e723059dbed81fdb3944ae6028e2feab7b03ab0f176306eb7e656",
+      "pixelBox": [
+        1132,
+        365,
+        1156,
+        405
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-31-6-lamed-upper-native.png",
+          "sha256": "47c837486b234ed1991693c63351b0b38f7b8c46cfbadc9929156fef6c6cefe4",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-31-6-lamed-upper-20x.png",
+          "sha256": "df4ba256eef0c4cdbc944e82a0a3153b190ae9fc8687316ca1de75cdf2610b4e",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-32-4-third-mem",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-496.png",
+      "sourceImageSHA256": "3a829201ca1099ee9191d8d22fa06759e5f3f73459f231c583eab4de7efe2048",
+      "pixelBox": [
+        552,
+        825,
+        596,
+        875
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-32-4-third-mem-native.png",
+          "sha256": "46b0ab6e186431005bd9a003fac3f23c87e85db666e1c9289ceb25a487622e66",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-32-4-third-mem-15x.png",
+          "sha256": "c8bc1b6571d405f4143ae02e56667def1a77bdafcd87a924992d3b5d5fa1487d",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-32-4-first-mem",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-496.png",
+      "sourceImageSHA256": "3a829201ca1099ee9191d8d22fa06759e5f3f73459f231c583eab4de7efe2048",
+      "pixelBox": [
+        599,
+        835,
+        631,
+        878
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-32-4-first-mem-native.png",
+          "sha256": "e0ee7ca286bccd96a3356fdda0cc6fa98324c0342abf2a34eabbfe977a0f7d7f",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-32-4-first-mem-15x.png",
+          "sha256": "4fc37c6492ed12c1af99a3fb2bc0d23e582ea7a47d7d332131cc559c770a9095",
+          "scale": 15,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-32-18-mem-holam",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-497.png",
+      "sourceImageSHA256": "3e8b83ab6fe1c23bf607809a992d751e1347e448685a89ba28d255e10ced8e32",
+      "pixelBox": [
+        690,
+        1030,
+        714,
+        1068
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-32-18-mem-holam-native.png",
+          "sha256": "926a3067463418a405d6d192d68566a888806f0d42c0319ad357a46f51909a88",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-32-18-mem-holam-20x.png",
+          "sha256": "62cb00733aeb3c96707b7fc608e4d6207ea8dae4aeeb8c74b6f5d63f9c5c3451",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-2-4-alef-hataf-patah",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-451.png",
+      "sourceImageSHA256": "b6b967beb992c3ad9657ea69d3f219da36704fea4f6a42bc9ab0112f23fdbfd7",
+      "pixelBox": [
+        631,
+        575,
+        649,
+        605
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-2-4-alef-hataf-patah-native.png",
+          "sha256": "4cd58921334047e4c5c2a340cf35dae70e3a63ffc3e56da2acf344ebb08bc158",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-2-4-alef-hataf-patah-20x.png",
+          "sha256": "d79f121f28148353d868652aa370738146dcf6510152b2107c1ae5b4a7d2d93e",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-1-14-alef-hataf-segol",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-450.png",
+      "sourceImageSHA256": "1517b393d0fb9c2c01a1520dbcf32a80b89e094e50954c5aa17e8d299c9dfba5",
+      "pixelBox": [
+        632,
+        145,
+        650,
+        170
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-1-14-alef-hataf-segol-native.png",
+          "sha256": "2da88508fe92cc695d150a88c257f94c9ac8a27151635eae112f085742308d87",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-1-14-alef-hataf-segol-20x.png",
+          "sha256": "f495e497c0572afb6922d3a13637c2bfd9fea354398e5d95c26ccfe51c2383f2",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-31-2-het-hataf-qamats",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-493.png",
+      "sourceImageSHA256": "b2d80ff3fd3f5d0d51b5fec208652d846a29aa251d5a853eb11a4080c12bd4ee",
+      "pixelBox": [
+        835,
+        904,
+        857,
+        935
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-31-2-het-hataf-qamats-native.png",
+          "sha256": "884be6ba157c0c074dc4dcd512b3b0439bb6e7cf6b6b06e762850c605d941db2",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-31-2-het-hataf-qamats-20x.png",
+          "sha256": "49c6f410b16d32a98dfd9d099bae6d5bdf521b3fc1c8236399519222f116ec73",
+          "scale": 20,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-2-4-haarech",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-451.png",
+      "sourceImageSHA256": "b6b967beb992c3ad9657ea69d3f219da36704fea4f6a42bc9ab0112f23fdbfd7",
+      "pixelBox": [
+        580,
+        552,
+        690,
+        608
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-2-4-haarech-native.png",
+          "sha256": "4adb1dac754609a507c6c65e5aa87312979e62b96e2bdc62a96d9fbd1b946b1b",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-2-4-haarech-8x.png",
+          "sha256": "2f8df4dd179ac040a3fb9d1f5328bf3d189294faadd58cc49ee249bd616d664c",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-1-14-neemanim",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-450.png",
+      "sourceImageSHA256": "1517b393d0fb9c2c01a1520dbcf32a80b89e094e50954c5aa17e8d299c9dfba5",
+      "pixelBox": [
+        570,
+        130,
+        675,
+        178
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-1-14-neemanim-native.png",
+          "sha256": "f03e792b473847cde3024f69fe68538ca71a2a68901b0d6a9c705b98f9ab6956",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-1-14-neemanim-8x.png",
+          "sha256": "128c097c73f4f08ac6c86c70af0c940d3a41f607ef897473ebcccbb6501754f1",
+          "scale": 8,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-31-2-mecholi-context",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-493.png",
+      "sourceImageSHA256": "b2d80ff3fd3f5d0d51b5fec208652d846a29aa251d5a853eb11a4080c12bd4ee",
+      "pixelBox": [
+        650,
+        890,
+        900,
+        950
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-31-2-mecholi-context-native.png",
+          "sha256": "5110a1f1f31631976a469284d4b9fc6e3f3e8df988168f028643455e78351104",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-31-2-mecholi-context-5x.png",
+          "sha256": "51fbb03741088c6e8c8ccd858d742b64442f3da37ba4720731948c1d45e59740",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    },
+    {
+      "key": "sir-32-18-yishmor-context",
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-497.png",
+      "sourceImageSHA256": "3e8b83ab6fe1c23bf607809a992d751e1347e448685a89ba28d255e10ced8e32",
+      "pixelBox": [
+        540,
+        1025,
+        850,
+        1080
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-32-18-yishmor-context-native.png",
+          "sha256": "817fb5b99a80975ddd95945d1381df5120a1bf3892a6c969faee81701193cfef",
+          "scale": 1,
+          "resampling": "none"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass4-REMAINDER-CHALLENGE/sir-32-18-yishmor-context-5x.png",
+          "sha256": "af09b9dcd4a248ba5e3b4897279997b886eb49745c3580d2e322558cd93ad228",
+          "scale": 5,
+          "resampling": "nearest-neighbor"
+        }
+      ]
+    }
+  ],
+  "nativeSourceImages": [
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-449.png",
+      "sourceImageSHA256": "9d59eff4032b710e9e04dddc9f20f67cb8207e5845dcd0db59f7f2acc34bd263",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 231,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-451.png",
+      "sourceImageSHA256": "b6b967beb992c3ad9657ea69d3f219da36704fea4f6a42bc9ab0112f23fdbfd7",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 232,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-453.png",
+      "sourceImageSHA256": "8c1d74c66f776a4ba583c16802666ff42bfb5d2a889d11cf43cef3e04868f17c",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 233,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-455.png",
+      "sourceImageSHA256": "de7275dd3bfa7c3b31bf3e5f815bd268bdeb08055b8909bcccb27b45f9437ced",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 234,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-457.png",
+      "sourceImageSHA256": "8cb19a967bf76510c44477f137ead05a062caf00a5162d75f8873ecc7baa1a06",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 235,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-459.png",
+      "sourceImageSHA256": "40fe3df45cae76135f7a2649d9f26a926e9d314a3fa6689de8e4834ac4b7555b",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 236,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-466.png",
+      "sourceImageSHA256": "e5c826399ff852cfc7536dd3e0350bf7fbaa14a76f01c9a9fdae17ede1f8d064",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 240,
+      "spreadSide": "right",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-467.png",
+      "sourceImageSHA256": "173ab3cb70d4b92c6aefea2a9784a518db162c15dcb6b9e89c080b44fdc72763",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 240,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-468.png",
+      "sourceImageSHA256": "c4c4afdcd8fce14e0b4e204acab882fc4bb24e063b660df976b2dc76f74c4109",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 241,
+      "spreadSide": "right",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-469.png",
+      "sourceImageSHA256": "19c7ac97bb9ccc05d0f3fc2c63889a7aadfd65bf91a3377b315d7f6ac5411b36",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 241,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-471.png",
+      "sourceImageSHA256": "b5f2daaca55c7b9d25c856564f5f96d273e961f60e1fc54964d2fd5df361cb23",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 242,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-471.png",
+      "sourceImageSHA256": "b1b61a7592931109292c1a519e2e2367e3db8f47f97b6f1f3e22c67c51506157",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 471,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-475.png",
+      "sourceImageSHA256": "42d1aee9b7a371d3f85bcbce4802801b4b6ad2af53e082820b83759aac297214",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 244,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-483.png",
+      "sourceImageSHA256": "378e468290d9c1bf44e586b9a962814c28e690c13d12d01a34b3b55fc772c818",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 248,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-485.png",
+      "sourceImageSHA256": "28cea470ef5f05f1fed4033a7146c07218936ff5996c4a83576ae181acb5c1d3",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 249,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-488.png",
+      "sourceImageSHA256": "c34219e445a5a53093e07a8d6dc7860b422db8516758b475696de74ef375f7d2",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 251,
+      "spreadSide": "right",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-491.png",
+      "sourceImageSHA256": "53feafada57b570ec2af9beaf7f5485baaed299e42fe59fa30df2e6c29e2ff04",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 252,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-492.png",
+      "sourceImageSHA256": "2c460516e3f6dc9dc83965b9a4fcb52e5f27c77e481f0685faf3b57696feda49",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 253,
+      "spreadSide": "right",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-492.png",
+      "sourceImageSHA256": "7d8c9d7dae9812a4ab98dc70b8ff6a639d0eaa11c6586c805de48ef13dcd7f82",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 492,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-493.png",
+      "sourceImageSHA256": "b2d80ff3fd3f5d0d51b5fec208652d846a29aa251d5a853eb11a4080c12bd4ee",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 253,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-494.png",
+      "sourceImageSHA256": "7c48c3a4f52e723059dbed81fdb3944ae6028e2feab7b03ab0f176306eb7e656",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 254,
+      "spreadSide": "right",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-495.png",
+      "sourceImageSHA256": "5683393209a1fa7eb847787d64f369c1898da05d13d89a0923cb157a32cfed53",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 254,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-496.png",
+      "sourceImageSHA256": "3a829201ca1099ee9191d8d22fa06759e5f3f73459f231c583eab4de7efe2048",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 255,
+      "spreadSide": "right",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-497.png",
+      "sourceImageSHA256": "3e8b83ab6fe1c23bf607809a992d751e1347e448685a89ba28d255e10ced8e32",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 255,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-509.png",
+      "sourceImageSHA256": "427b4492d317db97aaf7645aedc996c9a58053cd4447e844a26c84f80e148422",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 261,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-510.png",
+      "sourceImageSHA256": "2b0ad9741d93558008649b2137ea318248b51c8a56bac6f3eb9df98a1bc2aa1d",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 262,
+      "spreadSide": "right",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-527.png",
+      "sourceImageSHA256": "b2402c74b1f9da2e7f71d09c157ddcdaa6f868aaef0cd2cddd3b2c0e236d9e63",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 270,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/primary-527.png",
+      "sourceImageSHA256": "1a25eedf06c8d05ae8b6a96a915639f9001e1a4419c7bba84d409d46d6f8ed34",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 527,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-529.png",
+      "sourceImageSHA256": "c7f8b5638ecae5f03d8eb9cb32408a6e3b020c073918cad815553e149340a68b",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 271,
+      "spreadSide": "left",
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-60-native.png",
+      "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 60,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-124-native.png",
+      "sourceImageSHA256": "f603b1a5fbe8b0f3b6bc13a28db40e156c866d4f6f4cf4b6334948aa424f6753",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 124,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-128-native.png",
+      "sourceImageSHA256": "e4a601de453d1523a2f0b8679bb175bf270c7a2f4848b8841018504a4eef2802",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 128,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-66-native.png",
+      "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 66,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-67-native.png",
+      "sourceImageSHA256": "82f6d712f11091f6e3a64fdd0c1d2fe1505585c927cb57d91eacc2a2697b68d1",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 67,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-72-native.png",
+      "sourceImageSHA256": "2b1b92b6415b5a5e613e367dc50af730ed52e5a89b2da6f5e562323b98a79520",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 72,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-144-native.png",
+      "sourceImageSHA256": "ee1621a3765b5e4a2a8a0fecb04b76f5fa01fc5398b86f4b7a657548fc4c18bb",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 144,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-74-native.png",
+      "sourceImageSHA256": "471831cb3eb83d3619df2372eef5def67c235b918e9a5edf0ef52ab3a0e1c0a2",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 74,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-76-native.png",
+      "sourceImageSHA256": "2af12b7dfbd4547ce6619d6ab3b785fc91ee9b13a9a1f99e56d706612d61b445",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 76,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-150-native.png",
+      "sourceImageSHA256": "767c11120769fcfbefbd81238d5ab06186f4e449ffa9ef9c17a73cfd455116d8",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 150,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-77-native.png",
+      "sourceImageSHA256": "fd0adf4d196bfb357a03811631ba09da2fb705466bac546b6b444a3ad82c2288",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 77,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-87-native.png",
+      "sourceImageSHA256": "d8c0b482a79a74c1079fc15b8a133a9f27fbb30f02806e24b19eda9e48c57352",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 87,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-170-native.png",
+      "sourceImageSHA256": "6a7c60a780954851cc65bc6cac8a92bb41a05eedfdcdfde69a66575ef130b0e6",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 170,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-171-native.png",
+      "sourceImageSHA256": "efcabf37194d35281ae44d4b59247ab69e08324195fb9f938e934f022c4f5c5c",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 171,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-89-native.png",
+      "sourceImageSHA256": "9f069dfd4f3eb4b6d5608ba0d34bc2ad7708e967518d170b72a06db134d67186",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 89,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-175-native.png",
+      "sourceImageSHA256": "3d5cd3e2ff29236f3082e68bbe2e38c77b96498e0379488fbe6f2e850ea2330b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 175,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-90-native.png",
+      "sourceImageSHA256": "d3d0cadeab0c2a4d024903102447fad3c2b74240213f8194112e2fae70ec00ca",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 90,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-176-native.png",
+      "sourceImageSHA256": "a24978a04d2a4abf5284b78b4b3cc5f6865472fe61ca5b0e1eb691d2d9c11751",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 176,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-92-native.png",
+      "sourceImageSHA256": "5482e13d0f0ca187b6030b163dcc4536418b0153cc5e7ab4a04f86badc3500d6",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 92,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-95-native.png",
+      "sourceImageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 95,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-96-native.png",
+      "sourceImageSHA256": "893035bed135f9fa5def18cac8144c1e72b67e2c6919f4dfef328abd1b4a0051",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 96,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-100-native.png",
+      "sourceImageSHA256": "8335be40b4c6e3fd8d93b923e57500eb1c7448072ed3d41ea6bea4fdbcc289a8",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 100,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-199-native.png",
+      "sourceImageSHA256": "a174e0879e99d021ffd2d258fa53108a4dee1c9a25dcc1544e3971aac38dda5a",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 199,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-101-native.png",
+      "sourceImageSHA256": "0a4f383ac41c39e12db2d37c4fa446abfc1ab1fe086aeef9f12ae4a3859b571f",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 101,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-104-native.png",
+      "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 104,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-108-native.png",
+      "sourceImageSHA256": "361f8eea23e04a024797e4bbf8c132bebbd8345b61b86ec9e369562e34f836a6",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 108,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-110-native.png",
+      "sourceImageSHA256": "73f52ce25e3e8b47421f55c5a8688f7eb1e2dde01ddce90a452d9bbd4ba60e18",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 110,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-111-native.png",
+      "sourceImageSHA256": "9439b24061684b385db5cde9cd810235681914e68f07c75a29ab1a8fe7f59663",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 111,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-218-native.png",
+      "sourceImageSHA256": "50c6fd9234e5b3e9e8756a862dc10e2320ab10a298446b9da332554f52f2bea5",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 218,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/extra-118-native.png",
+      "sourceImageSHA256": "6b01b017167f4960561060e9389262eadea9cd28f1a905ec113c61b8eead6a21",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 118,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-maccabees-pass3-20261017/primary-232-native.png",
+      "sourceImageSHA256": "2c00aad78769f13764748c0b989872dcc227f1a2c86b1f19620e7f19ee221645",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 232,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-312-native.png",
+      "sourceImageSHA256": "7c3df70adf578aab97fbba14f110c16da30b97286af1034780004a9ed50d403a",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 312,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-163-native.png",
+      "sourceImageSHA256": "2da8c4dfb1a6d8a02355715cc6056dc9f1bb47a453bed5ddfc7aa76f473a2b0f",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 163,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-316-native.png",
+      "sourceImageSHA256": "dd65929d2564b1fa69e707c5142b793275cb586df5a34994bc9fdefdb5ddf3d8",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 316,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-165-native.png",
+      "sourceImageSHA256": "2c3fe9accf66a04e058f0c868695dcc74529c9ae6301717955684c467380c876",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 165,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-323-native.png",
+      "sourceImageSHA256": "e3c481db64c80b7de2f3f51989948227f876a4e5c725259de226230233721228",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 323,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-168-native.png",
+      "sourceImageSHA256": "aa69b3baf82fa96097eb8c8c231782caaf180f15065aa399959b817b7fd38f7f",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 168,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-324-native.png",
+      "sourceImageSHA256": "44d2d19f2099bc34d894dd0911888496c19df913701b147e666569b4e6571f4b",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 324,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-169-native.png",
+      "sourceImageSHA256": "20592bed284c61b70fc393c06c2c6d28a4100b0b16c62094ecbe17f7ab750d50",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 169,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-325-native.png",
+      "sourceImageSHA256": "828234e10a63a8743aef5588497c854439c2c8eb771e1cea1d6eb2e16add9561",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 325,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-326-native.png",
+      "sourceImageSHA256": "dd2a8acdb7f0d2dc6c4dc5ca42a6603b7bb98b3c8b0ca4d16ee37dc5cb2bf531",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 326,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-170-native.png",
+      "sourceImageSHA256": "9765c1e9be1512524b390bf09acb5620ea497e130c4cacd0b1bd901532939f7d",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 170,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-327-native.png",
+      "sourceImageSHA256": "6dbd49c55830f47507859b79f4d795196e043d1c9a062d3896ea23a32b47b5e5",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 327,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/primary-335-native.png",
+      "sourceImageSHA256": "e7b7b075b6c689494640a9aedeb388cb1aece5d39cdd83d637d133959e26d23c",
+      "sourcePDF": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sourcePDFPage": 335,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-tob-pass3-20261017/extra-174-native.png",
+      "sourceImageSHA256": "deb5dd1c3a2acb1611ef9e4dba3306160cf02ee13d4046ad7f7cefcdbf8c8f65",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 174,
+      "spreadSide": null,
+      "pixelsFreshlyReproduced": true
+    },
+    {
+      "sourceImage": "/private/tmp/prosary-sir-pass2-20261017/extra-450.png",
+      "sourceImageSHA256": "1517b393d0fb9c2c01a1520dbcf32a80b89e094e50954c5aa17e8d299c9dfba5",
+      "sourcePDF": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sourcePDFPage": 232,
+      "spreadSide": "right",
+      "pixelsFreshlyReproduced": true
+    }
+  ],
+  "validation": {
+    "all73ExactIdsPresentOnce": true,
+    "all73HaveActualTargetContext": true,
+    "correctENOSHSourceWordUsed": true,
+    "knownTOBSecondWordTargetsLocatedSeparately": true,
+    "freshPDFSourceImagesReproduced": 75,
+    "durableEvidenceImages": 210,
+    "allDurableHashesAndFreshSourcePixelsPassed": true,
+    "allFourCanonicalFilesByteIdenticalToPass4Baseline": true,
+    "allPriorFinishedReportsUnchanged": true,
+    "allSourceLettersExistingPointsPunctuationBracketsWitnessesGapsBlocksAndOrderPreserved": true
+  }
+}

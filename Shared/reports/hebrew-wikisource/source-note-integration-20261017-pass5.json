@@ -1,0 +1,265 @@
+{
+  "date": "2026-10-17",
+  "pass": 5,
+  "startingNoteCount": 636,
+  "removedNoteCount": 6,
+  "remainingNoteCount": 630,
+  "books": [
+    {
+      "book": "2MA",
+      "beforeNoteCount": 13,
+      "afterNoteCount": 12,
+      "removedNoteIds": [
+        "2ma-2-28-yod-2-dagesh"
+      ],
+      "beforeDigest": "e800ea33f27b5f8c6f38588118e1feb4ab984dba6171aaf4294c0089de9a3457",
+      "afterDigest": "db4e22295d0233e22c08e75a34ac294ada250ef311a008cdb076623a458632bd",
+      "sourceChanges": [
+        {
+          "book": "2MA",
+          "chapter": 2,
+          "verse": 28,
+          "before": "דִיוּקֵי",
+          "after": "דִיּוּקֵי",
+          "retiredNoteIds": [
+            "2ma-2-28-yod-2-dagesh"
+          ],
+          "independentReviewer": "wisdom_pass3, with root visual confirmation",
+          "finding": "The low-left rectangular lobe lies below a white gap from the yod head and matches a same-page detached dagesh. The same-word final bare yod lacks this lobe; a narrow lateral bridge does not erase the added-point shape."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        }
+      ]
+    },
+    {
+      "book": "1MA",
+      "beforeNoteCount": 16,
+      "afterNoteCount": 12,
+      "removedNoteIds": [
+        "1ma-4-18-yod-dagesh",
+        "1ma-5-34-yod-dagesh",
+        "1ma-6-10-yod-dagesh",
+        "1ma-6-26-yod-dagesh"
+      ],
+      "beforeDigest": "b930664f707c8758980dc64fbc61822970d3a231cb1cb508bbcbb4c36603f8ef",
+      "afterDigest": "be17586b8b64a64899f17ddb265d5a1e13ae8e0dc4683d3347e06316d08e4f61",
+      "sourceChanges": [
+        {
+          "book": "1MA",
+          "chapter": 4,
+          "verse": 18,
+          "before": "קוֹמְמִיוֹת",
+          "after": "קוֹמְמִיּוֹת",
+          "retiredNoteIds": [
+            "1ma-4-18-yod-dagesh"
+          ],
+          "independentReviewer": "wisdom_pass3, with root visual confirmation",
+          "finding": "A compact low-left lobe is separated vertically from the yod head, joined laterally by a narrow bridge to the continuing right stem, and matches same-font detached dageshes while bare yods lack that lower lobe."
+        },
+        {
+          "book": "1MA",
+          "chapter": 5,
+          "verse": 34,
+          "before": "בַּיוֹם",
+          "after": "בַּיּוֹם",
+          "retiredNoteIds": [
+            "1ma-5-34-yod-dagesh"
+          ],
+          "independentReviewer": "wisdom_pass3, with root visual confirmation",
+          "finding": "The compact low-left lobe matches a detached dagesh in the same printed row and differs from the same-row bare final yod; a narrow stem bridge preserves the added-point geometry."
+        },
+        {
+          "book": "1MA",
+          "chapter": 6,
+          "verse": 10,
+          "before": "מִיָגוֹן",
+          "after": "מִיָּגוֹן",
+          "retiredNoteIds": [
+            "1ma-6-10-yod-dagesh"
+          ],
+          "independentReviewer": "wisdom_pass3, with root visual confirmation",
+          "finding": "The companion shows a completely detached lower-left compact point with white separation from both yod head and stem."
+        },
+        {
+          "book": "1MA",
+          "chapter": 6,
+          "verse": 26,
+          "before": "הַיוֹם",
+          "after": "הַיּוֹם",
+          "retiredNoteIds": [
+            "1ma-6-26-yod-dagesh"
+          ],
+          "independentReviewer": "wisdom_pass3, with root visual confirmation",
+          "finding": "The compact lower-left lobe has a white band above it and a narrow lateral bridge to the yod stem; same-page detached dageshes and bare-yod controls distinguish it from an ordinary head or foot."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        }
+      ]
+    },
+    {
+      "book": "SIR",
+      "beforeNoteCount": 30,
+      "afterNoteCount": 29,
+      "removedNoteIds": [
+        "sir-10-28-yod-dagesh"
+      ],
+      "beforeDigest": "229ec7bcd5a77c081bee30af5bb6711e057dfb6156adb1c274f0ab922e89b7a2",
+      "afterDigest": "9b5c119b914fd62a15ec1b34674da9adcbc48d721d4bd84d2d69409e981965e9",
+      "sourceChanges": [
+        {
+          "book": "SIR",
+          "chapter": 10,
+          "verse": 28,
+          "before": "כַּיוֹצֵא",
+          "after": "כַּיּוֹצֵא",
+          "retiredNoteIds": [
+            "sir-10-28-yod-dagesh"
+          ],
+          "independentReviewer": "wisdom_pass3, with root visual confirmation",
+          "finding": "The companion exposes a completely detached lower-left rectangle on the second letter, separate from both yod head and right stem and from the neighboring kaf point."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        }
+      ]
+    }
+  ],
+  "freshYodTargets": 8,
+  "resolvedYodTargets": 6,
+  "retainedYodTargets": 2,
+  "freshTOBConnectedVowelTargets": 6,
+  "retainedTOBConnectedVowelTargets": 6,
+  "dailyWholeBookPinsUpdated": 14,
+  "allCompleteDailyAppointmentsByteUnchanged": 20,
+  "all26CatholicUnitPinsByteUnchanged": true,
+  "allCatholicPresentationDecisionsPreserved": true,
+  "unchangedSourceBooks": [
+    "BAR",
+    "BEL",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+      "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+      "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/TOB-connected-vowel-reinspection-20261017-pass5.json",
+      "sha256": "0558be19cf521c1189ad43f5572a0af6e33ed3610ace9ce89010ab8fd742494b"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/Kahana-PDF-image-layer-audit-20261017-pass5.json",
+      "sha256": "d9475c42fca4e6075d22648abdb67a5858185bd2bf893987e8e14182acffaadb"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/Kahana-public-scan-recovery-20261017.json",
+      "sha256": "d60d430d3220e89132cc0e0aaffb4dc6bc4c6e6d9d7fc68dcbcee2b28205c83b"
+    }
+  ],
+  "state": "applied and delivery verified; later content checkpoint carries final native regression results",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 630,
+      "notesByBook": {
+        "TOB": 12,
+        "JDT": 0,
+        "WIS": 203,
+        "SIR": 29,
+        "BAR": 0,
+        "1MA": 12,
+        "2MA": 12,
+        "LJE": 0,
+        "ESG": 50,
+        "S3Y": 65,
+        "SUS": 25,
+        "BEL": 222
+      },
+      "changedArchiveChapters": 5,
+      "preservedArchiveMembers": 1331,
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "unchangedDailyReadingsPayload": true,
+      "matchingNativeDataCopies": 3,
+      "verifiedReferencedEvidenceFiles": 223,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-894effc0bfdda42869bc5b7e4b7cd5b5a7bec4c6f3d2a058d69fce2247be6c43.zip",
+      "archiveSHA256": "d5c3fa8e0e7892e245761c698ba0d2078600b8fdf62ba5b17c7dfd0d412ddda0",
+      "archiveBytes": 3115916
+    },
+    "independentPreflight": {
+      "issues": [],
+      "addedU05BCScalars": 6,
+      "retiredExactNoteIds": [
+        "1ma-4-18-yod-dagesh",
+        "1ma-5-34-yod-dagesh",
+        "1ma-6-10-yod-dagesh",
+        "1ma-6-26-yod-dagesh",
+        "2ma-2-28-yod-2-dagesh",
+        "sir-10-28-yod-dagesh"
+      ],
+      "changedSourceBooks": [
+        "1MA",
+        "2MA",
+        "SIR"
+      ],
+      "remainingNotes": 630,
+      "remainingByChangedBook": {
+        "1MA": 12,
+        "2MA": 12,
+        "SIR": 29
+      },
+      "allOther9SourceBooksByteUnchanged": true,
+      "retainedNoteAnchorRefreshes": 0,
+      "all12ProposedSourceGatesPassed": true,
+      "dailyDigestPinsRefreshed": 14,
+      "completeDailyExcerptsByteUnchanged": 20,
+      "CatholicPinnedUnitsByteUnchanged": 26,
+      "verifiedLocalEvidencePairs": 223,
+      "preflightReportSHA256": "dffd96eda4a42da5eb6efde3aa8a42ed1dd33d5af5129af0770c0bb5243d8e76",
+      "proposedSourceDigests": {
+        "1MA": "be17586b8b64a64899f17ddb265d5a1e13ae8e0dc4683d3347e06316d08e4f61",
+        "2MA": "db4e22295d0233e22c08e75a34ac294ada250ef311a008cdb076623a458632bd",
+        "SIR": "9b5c119b914fd62a15ec1b34674da9adcbc48d721d4bd84d2d69409e981965e9"
+      },
+      "liveCanonicalStillUnchanged": true
+    },
+    "allTwelveSourceGates": "passed after application",
+    "immutableSourceLedgerReplay": "six complete proposed unit texts and hashes match",
+    "secondBibleGeneration": "passed, byte-stable",
+    "readingTextCheck": "passed, byte-identical",
+    "readingMappingAudit": "passed",
+    "nativeRegressionStatus": "Final pass6 content checkpoint (629 notes) passed114 shared,576 Android and56 Apple tests; it includes every pass5 correction."
+  }
+}

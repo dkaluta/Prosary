@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 132,
+  "integrationPass": 132,
+  "preparationID": 134,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "1MA",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation134-1MA-15-37/source-provenance.json",
+    "sha256": "215df08a6695f8ef7ac6d5db66da1ae6aaf7c1bb5fc3d4baf28d5556cca09339"
+  },
+  "sourceNotesBefore": 7,
+  "sourceNotesAfter": 6,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "1ma-15-37-qof-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "921cd63bbdc3e4b0ecc2c8abf71a9f4327eb10065c245f52a69f80d78295f510",
+  "contentSHA256After": "3d7b9b0f3a879e333463a77084a9ade6a22f7f3d71ee6ff7dedf023dbd92dc8b",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "1ma-15-37-qof-vowel",
+      "book": "1MA",
+      "chapter": 15,
+      "verse": 37,
+      "anchorBefore": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": "Own point is a detached28x10 horizontal stroke with a continuous21pixel straight upper edge, widest28pixel center, and only a shallow LEFT taper in its final two rows. It is seven blank rows below the right body and separately toRIGHT of the intrinsic Qof descender; two-column white clearance prevents counting that descender as vowel. Own lower continuation1440pixels min204 has zero ink below192, excluding any descending point stem. Literal SAMEUNIT Yod Patah inויעמד is a detached28x12 broad flat bar274pixels with internal white holes and shallow lower lobes; same-word Mem Tsere is two separated round nodes85+68pixels with a six-column white gap, not a continuous broad upper edge. SAMEPAGE explicit Alef Qamats in16:1אביו has a long lower stem30x34,450pixels. The own bounded flat-bar contour supports Patah U05B7; no repeated name/grammar/canonical control scalar supplies it. Independent peer: Independent complete own Qof body/right foot ends1716, intrinsic LEFT descender continues through1746, separately to left of bounded224px point[1355,1724,1383,1734]. Own mark has straight21px upper edge1724, one broad28px middle and shallow left basal taper1732..1733; no independently rounded pair or stem. Both the descender/point gap and seven white rows below the bowl establish it as detached lower mark. Literal SAMEUNIT Yod in full ויעמד has detached28x12 broad bar274px with continuous wide upper edge and shallow basal wear; Mem in same controlword has two genuinely separate round85/68px horizontal nodes with six white columns, not canonical-derived classification. Separately addressed source16:1 Alef Qamats has long34px head/stem450px, absent in target whose full continuation remains clear. Certify own flat Patah U05B7, preserving every current scalar, both separators and endVerse38.",
+      "targetCapture": "extension-volumeB-177-zoom4-upper-left.png",
+      "targetSourceIdentifier": "extension-volumeB-177-zoom4-upper-left.png",
+      "inspectedBounds": [
+        1340,
+        1642,
+        1401,
+        1747
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        1355,
+        1724,
+        1383,
+        1734
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation134-1MA-15-37/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 15,
+      "verse": 37,
+      "before": "וּטְרִיפוֹן יָרַד בָּאֳנִיָּה וַיִּבְרַח לְאָרְתוֹסִיָּה׃ וַיַּעֲמֵד הַמֶּלֶךְ אֶת־קנְדֶּבִּיוֹס לְשַׂר־צָבָא שֵׁנִי עַל־אֶרֶץ הַחוֹף וְחֵיל רַגְלִים וּפָרָשִׁים נָתַן־לוֹ׃",
+      "after": "וּטְרִיפוֹן יָרַד בָּאֳנִיָּה וַיִּבְרַח לְאָרְתוֹסִיָּה׃ וַיַּעֲמֵד הַמֶּלֶךְ אֶת־קַנְדֶּבִּיוֹס לְשַׂר־צָבָא שֵׁנִי עַל־אֶרֶץ הַחוֹף וְחֵיל רַגְלִים וּפָרָשִׁים נָתַן־לוֹ׃"
+    }
+  ],
+  "scope": {
+    "chapter": 15,
+    "verse": 37,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation134-1MA-15-37/independent-review.json",
+    "sha256": "2b3484e410d3235d6c4caa531bad51f7e45fe14270ef977db8d3226fdcc54c0d"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation134-1MA-15-37/primary-preparation.json",
+    "sha256": "1b29a8f029e98d8fae610e93774aa8ad1abe6a1ef49d76d179d5416d525b6658"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass132-preparation134-1MA-15-37/consensus-preparation.json",
+    "sha256": "deaa89bb32937e22985f3b42780a561675a82c46b68026072ad23060bbc644e6"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

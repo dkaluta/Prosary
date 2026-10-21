@@ -5,6 +5,7 @@ import { randomBytes } from "node:crypto";
 import type { Sql } from "postgres";
 import { createSqlClient } from "./db-connection.ts";
 import { uuidv7 } from "./uuidv7.ts";
+import { isRetiredBundle, RETIRED_BUNDLE_IDS } from "./retired-bundles.ts";
 
 let _sql: Sql | null = null;
 
@@ -205,12 +206,14 @@ export async function listBundles(filter: { q?: string; language?: string }): Pr
     SELECT b.*, u.username AS author
     FROM bundles b JOIN users u ON u.id = b.user_id
     WHERE TRUE
+      AND NOT (b.id = ANY(${[...RETIRED_BUNDLE_IDS]}))
       ${q ? s`AND (b.name ILIKE ${"%" + q + "%"} OR b.description ILIKE ${"%" + q + "%"} OR b.id ILIKE ${"%" + q + "%"})` : s``}
       ${language ? s`AND (${language} = ANY(b.languages) OR (${language} = 'he' AND 'he-x-gamliel' = ANY(b.languages)))` : s``}
     ORDER BY b.created_at DESC`;
 }
 
 export async function getBundle(id: string): Promise<BundleRow | null> {
+  if (isRetiredBundle(id)) return null;
   const rows = await sql()<BundleRow[]>`
     SELECT b.*, u.username AS author
     FROM bundles b JOIN users u ON u.id = b.user_id
@@ -228,6 +231,7 @@ export async function upsertBundle(bundle: {
   fileUrl: string;
   fileSize: number;
 }): Promise<void> {
+  if (isRetiredBundle(bundle.id)) throw new Error("This prayer bundle has been retired.");
   await sql()`
     INSERT INTO bundles (id, user_id, name, description, languages, tags, file_url, file_size)
     VALUES (${bundle.id}, ${bundle.userId}, ${bundle.name}, ${bundle.description},
@@ -248,6 +252,7 @@ export async function listBundlesByUsername(username: string): Promise<BundleRow
     SELECT b.*, u.username AS author
     FROM bundles b JOIN users u ON u.id = b.user_id
     WHERE u.username = ${username}
+      AND NOT (b.id = ANY(${[...RETIRED_BUNDLE_IDS]}))
     ORDER BY b.created_at DESC`;
 }
 

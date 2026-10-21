@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 147,
+  "integrationPass": 147,
+  "preparationID": 204,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "TOB",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation204-TOB-2-3/source-provenance.json",
+    "sha256": "3a3a054acff7a463a5b348b25872b49a1f86877d10bc59aaa5002c9676042eed"
+  },
+  "sourceNotesBefore": 10,
+  "sourceNotesAfter": 10,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "tob-2-3-mem-vowel"
+  ],
+  "contentSHA256Before": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "contentSHA256After": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "tob-2-3-mem-vowel",
+      "book": "TOB",
+      "chapter": 2,
+      "verse": 3,
+      "anchorBefore": "משְׁלָךְ",
+      "letterIndex": 1,
+      "decision": "retainNote",
+      "finding": "Exact ownfirstMem477px24x40[758,724,782,764] roof/rightframe/openinterior andsaturatedlowerbase743..750 remainconnected to bulkythenverticalterminal766..776 y751..763. NativeASCII cannot independentlyseparate exactvowelclass or printedabsence fromjoinedlowerfield. NeighborownShin11pxupperdot isdistinct literalcontrol, supplyingnoMemvowel. Wholefourletterword andactual2portions/realinlinewordandsofboundaries inspected. Retain exactdisclosure/alloriginalscalars.",
+      "targetCapture": "primary-316-native.png",
+      "targetSourceIdentifier": "primary-316-native.png",
+      "inspectedBounds": [
+        755,
+        712,
+        790,
+        775
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation204-TOB-2-3/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 2,
+    "verse": 3,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation204-TOB-2-3/independent-review.json",
+    "sha256": "30358aee695e0b840a0bd13ee6a7a29bd2540e312b101f51cb980fc9a144fd75"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation204-TOB-2-3/primary-preparation.json",
+    "sha256": "5706b45973242992c6c6b1d18d9cc02926afad30786fb8fa4224cc08d71e1f5e"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass147-preparation204-TOB-2-3/consensus-preparation.json",
+    "sha256": "d644eb5413b3f31e167b032940cd08fa423b0dce6733981b431b998a63473ca8"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -335,9 +335,9 @@ final class ReadingTextStoreTests: XCTestCase {
     }
     let sirach = try XCTUnwrap(dataset.passage(citation: "Sirach 51:13–17", isTorah: false, editionID: "masoretic-delitzsch"))
     XCTAssertEqual(sirach.verses.map(\.verse), [9, 10, 11, 12])
-    let note = try XCTUnwrap(sirach.sourceDisplays?.flatMap(\.blocks).flatMap(\.sourceNotes).first { $0.id == "sir-51-11-alef-vowel" })
-    XCTAssertEqual(note.anchor, "וְאזְכֶּרְךָ")
-    XCTAssertEqual(note.sourcePages, [529])
+    XCTAssertTrue(try XCTUnwrap(sirach.verses.first { $0.verse == 11 }).text.contains("וְאֶזְכֶּרְךָ"))
+    let sirachBlocks = try XCTUnwrap(sirach.sourceDisplays).flatMap(\.blocks)
+    XCTAssertTrue(sirachBlocks.flatMap(\.sourceNotes).isEmpty)
     let daniel = try XCTUnwrap(dataset.passage(citation: "Daniel 3:25, 34–45", isTorah: false, editionID: "masoretic-delitzsch"))
     XCTAssertEqual(daniel.source?.book, "S3Y")
     XCTAssertEqual(daniel.source?.name, "תפלת עזריה ושירת שלשת הנערים בכבשן")

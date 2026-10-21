@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 143,
+  "integrationPass": 143,
+  "preparationID": 191,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation191-SIR-32-12/source-provenance.json",
+    "sha256": "a41fee2064626973d847718953738a4c082800874841c9dc877b99676d5ad192"
+  },
+  "sourceNotesBefore": 19,
+  "sourceNotesAfter": 19,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "sir-32-12-tet-vowel"
+  ],
+  "contentSHA256Before": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "contentSHA256After": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "sir-32-12-tet-vowel",
+      "book": "SIR",
+      "chapter": 32,
+      "verse": 12,
+      "anchorBefore": "[פְּטר]",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own complete[פטר] threeHebrewlettersPe-Tet-Resh plusliteralbrackets independentlyidentified atactual12opening. SecondTet469px24x32[1274,827,1298,859] upperarms/fullbowl andbroadlowerinkareonecomponent. Lowerbowl widens845..849 thenroundslowerlobe851..858 withno independentlydetachedownvowel or exactbody/pointboundary; whitebelow859doesnotcertifyabsence. OwnPe andbrackets preservedliterally; no expectedspelling supplies omittedmark. Literal sameunitcompleteושלם secondShin has20px5x5 isolatedupperrightdot[1044,821,1049,826], oneblankrow826beforebody827, independentlyseeninactualfourconsonantword Vav-Shin-Lamed-Mem. ThisliteralcontrolcannotresolveTetlowerink. Retain exactoriginalnote/allscalars/brackets.",
+      "targetCapture": "primary-497-native.png",
+      "targetSourceIdentifier": "primary-497-native.png",
+      "inspectedBounds": [
+        1274,
+        827,
+        1298,
+        859
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation191-SIR-32-12/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 32,
+    "verse": 12,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation191-SIR-32-12/independent-review.json",
+    "sha256": "22254f2465fdf163652d2173c43f11a321dc1d11634c7da3cf0ef9f7518ffb37"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation191-SIR-32-12/primary-preparation.json",
+    "sha256": "767e7b46b9ffb96e1057fdd270b04f24656d906de0d72bb02447972f5d481293"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass143-preparation191-SIR-32-12/consensus-preparation.json",
+    "sha256": "f10a6adf90d54ae04892c6be01aa6342cbef5fd4b169588595e089f869e55b44"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

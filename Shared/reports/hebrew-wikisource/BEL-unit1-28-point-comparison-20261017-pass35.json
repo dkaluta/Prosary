@@ -1,0 +1,938 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-18",
+  "batchDate": "2026-10-17",
+  "pass": 35,
+  "book": "BEL",
+  "status": "All five remaining notes in BEL 1:28 certified and retired via authorized high-resolution Chrome captures.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 35 batch.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/source-provenance.json",
+    "sha256": "5768429a0d9224e2d4bd56077fa04574a8ba20e71a75f26d035f7637c45d97f1"
+  },
+  "sourceAuthorization": "User explicitly directed to prioritize from the current point the verses with most unresolved vowel marks using the authorized signed-in Psik session.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized signed-in Kahana scan, followed by strict bounds-before-crop native or integer NEAREST crops. Complete numbered source unit, target/control words and whole glyphs, literal positive and competing marks inspected. No OCR, grammar, expected spelling, normalization, enhancement or different witness supplies a point. Screenshot replay is not PDF embedded-pixel replay.",
+  "baselineGlobalSourceNoteCount": 446,
+  "canonicalSHA256Before": "f7591f1670e0aabd7058ecd188a22a6375bb384b78da94173ce5c936625f7317",
+  "contentSHA256Before": "971cc05eb4590a8294db143dd6bfc9731f6e8669c895748e1ee0091bc5eaa7ef",
+  "contentSHA256After": "3bc96a0a0746dce14003b725ade2e12eab7ee7b15f76980219c7845c612aab6c",
+  "sourceNotesBefore": 118,
+  "sourceNotesAfter": 113,
+  "reviewedSourceNoteCount": 5,
+  "resolvedSourceNoteCount": 5,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "bel-1-28-246-vayehi28-letter1-vowel",
+    "bel-1-28-246-kaasher-letter1-vowel",
+    "bel-1-28-246-vayirgezu-letter1-vowel",
+    "bel-1-28-246-vayilunu28-letter1-vowel",
+    "bel-1-28-246-vayomru28-letter1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 5,
+  "addedCombiningMarks": {
+    "bel-1-28-246-vayehi28-letter1-vowel": "U+05B7",
+    "bel-1-28-246-kaasher-letter1-vowel": "U+05B7",
+    "bel-1-28-246-vayirgezu-letter1-vowel": "U+05B7",
+    "bel-1-28-246-vayilunu28-letter1-vowel": "U+05B7",
+    "bel-1-28-246-vayomru28-letter1-vowel": "U+05B7"
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 1,
+      "verse": 28,
+      "beforeText": "ויְהִי כאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל ויִּרְגְּזוּ מְאֹד ויִּלּוֹנוּ עַל־הַמֶּלֶךְ ויֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "afterText": "וַיְהִי כַאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל וַיִּרְגְּזוּ מְאֹד וַיִּלּוֹנוּ עַל־הַמֶּלֶךְ וַיֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "beforeTextSHA256": "c164cd569b1869b2c34878cc94d421ed3ec22bf369451fc1a2a6820ef105b501",
+      "afterTextSHA256": "e87337aa2ce70f71e2333ba3ddf3d4b74e59af985d120b26ca9cbc8d38b2198b",
+      "retiredNoteCount": 5,
+      "retainedNoteCount": 0
+    }
+  ],
+  "scope": {
+    "chapter": 1,
+    "verse": 28,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookRecollation": true
+  },
+  "sourceAddressPolicy": "Authorized Chrome session over Psik reader at zoom 6 (scale 3.3). Native 1x and integer NEAREST 4x crops.",
+  "decisions": [
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "noteId": "bel-1-28-246-vayehi28-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "before": "ויְהִי",
+      "after": "וַיְהִי",
+      "retiredNoteIds": [
+        "bel-1-28-246-vayehi28-letter1-vowel"
+      ],
+      "targetNativeBounds": [
+        870,
+        845,
+        920,
+        935
+      ],
+      "sourcePage": 246,
+      "finding": "Under initial vav, an unambiguous horizontal patah bar is centered at y=920 under x=882-910, completely detached from the consonant foot. Preserves existing yod sheva and he hiriq.",
+      "unitBeforeTextSHA256": "c164cd569b1869b2c34878cc94d421ed3ec22bf369451fc1a2a6820ef105b501",
+      "unitAfterTextSHA256": "e87337aa2ce70f71e2333ba3ddf3d4b74e59af985d120b26ca9cbc8d38b2198b",
+      "correctedTextAfterEntirePacket": "וַיְהִי כַאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל וַיִּרְגְּזוּ מְאֹד וַיִּלּוֹנוּ עַל־הַמֶּלֶךְ וַיֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-vav-patah-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-vav-patah-4x.png"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "noteId": "bel-1-28-246-kaasher-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "before": "כאֲשֶׁר",
+      "after": "כַאֲשֶׁר",
+      "retiredNoteIds": [
+        "bel-1-28-246-kaasher-letter1-vowel"
+      ],
+      "targetNativeBounds": [
+        610,
+        845,
+        675,
+        935
+      ],
+      "sourcePage": 246,
+      "finding": "Under initial kaf, a clear horizontal patah bar is printed at y=920 across x=628-662 beneath the lower base of the kaf. Preserves alef hataf-patah and shin marks.",
+      "unitBeforeTextSHA256": "c164cd569b1869b2c34878cc94d421ed3ec22bf369451fc1a2a6820ef105b501",
+      "unitAfterTextSHA256": "e87337aa2ce70f71e2333ba3ddf3d4b74e59af985d120b26ca9cbc8d38b2198b",
+      "correctedTextAfterEntirePacket": "וַיְהִי כַאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל וַיִּרְגְּזוּ מְאֹד וַיִּלּוֹנוּ עַל־הַמֶּלֶךְ וַיֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-kaf-patah-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-kaf-patah-4x.png"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "noteId": "bel-1-28-246-vayirgezu-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "before": "ויִּרְגְּזוּ",
+      "after": "וַיִּרְגְּזוּ",
+      "retiredNoteIds": [
+        "bel-1-28-246-vayirgezu-letter1-vowel"
+      ],
+      "targetNativeBounds": [
+        1115,
+        845,
+        1165,
+        935
+      ],
+      "sourcePage": 246,
+      "finding": "Under initial vav, an unambiguous horizontal patah stroke is printed at y=920 under x=1128-1155, clearly separated from the vav shaft. Preserves existing yod dagesh/hiriq and following consonants.",
+      "unitBeforeTextSHA256": "c164cd569b1869b2c34878cc94d421ed3ec22bf369451fc1a2a6820ef105b501",
+      "unitAfterTextSHA256": "e87337aa2ce70f71e2333ba3ddf3d4b74e59af985d120b26ca9cbc8d38b2198b",
+      "correctedTextAfterEntirePacket": "וַיְהִי כַאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל וַיִּרְגְּזוּ מְאֹד וַיִּלּוֹנוּ עַל־הַמֶּלֶךְ וַיֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-vav-patah-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-vav-patah-4x.png"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "noteId": "bel-1-28-246-vayilunu28-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "before": "ויִּלּוֹנוּ",
+      "after": "וַיִּלּוֹנוּ",
+      "retiredNoteIds": [
+        "bel-1-28-246-vayilunu28-letter1-vowel"
+      ],
+      "targetNativeBounds": [
+        1680,
+        1005,
+        1730,
+        1095
+      ],
+      "sourcePage": 246,
+      "finding": "Under initial vav, a horizontal patah bar extends across x=1692-1720 at y=1080 below the vav baseline. Completely detached from the consonant foot.",
+      "unitBeforeTextSHA256": "c164cd569b1869b2c34878cc94d421ed3ec22bf369451fc1a2a6820ef105b501",
+      "unitAfterTextSHA256": "e87337aa2ce70f71e2333ba3ddf3d4b74e59af985d120b26ca9cbc8d38b2198b",
+      "correctedTextAfterEntirePacket": "וַיְהִי כַאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל וַיִּרְגְּזוּ מְאֹד וַיִּלּוֹנוּ עַל־הַמֶּלֶךְ וַיֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-vav-patah-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-vav-patah-4x.png"
+      ]
+    },
+    {
+      "book": "BEL",
+      "chapter": 1,
+      "verse": 28,
+      "noteId": "bel-1-28-246-vayomru28-letter1-vowel",
+      "addedScalar": "U+05B7",
+      "before": "ויֹּאמֵרוּ",
+      "after": "וַיֹּאמֵרוּ",
+      "retiredNoteIds": [
+        "bel-1-28-246-vayomru28-letter1-vowel"
+      ],
+      "targetNativeBounds": [
+        895,
+        1005,
+        950,
+        1095
+      ],
+      "sourcePage": 246,
+      "finding": "Under initial vav, an unambiguous horizontal patah bar is centered at y=1080 under x=910-938, separated by clear white paper from the vav vertical shaft.",
+      "unitBeforeTextSHA256": "c164cd569b1869b2c34878cc94d421ed3ec22bf369451fc1a2a6820ef105b501",
+      "unitAfterTextSHA256": "e87337aa2ce70f71e2333ba3ddf3d4b74e59af985d120b26ca9cbc8d38b2198b",
+      "correctedTextAfterEntirePacket": "וַיְהִי כַאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל וַיִּרְגְּזוּ מְאֹד וַיִּלּוֹנוּ עַל־הַמֶּלֶךְ וַיֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "targetEvidence": [
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-word-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-word-4x.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-vav-patah-native.png",
+        "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-vav-patah-4x.png"
+      ]
+    }
+  ],
+  "inspections": [
+    {
+      "id": "bel-1-28-246-vayehi28-letter1-vowel",
+      "kind": "unreadablePoint",
+      "mark": "vowel",
+      "decision": "certifyAndRetire",
+      "anchor": "ויְהִי",
+      "letterIndex": 1,
+      "occurrence": 1,
+      "finding": "Under initial vav, an unambiguous horizontal patah bar is centered at y=920 under x=882-910, completely detached from the consonant foot. Preserves existing yod sheva and he hiriq.",
+      "physicalLocator": {
+        "sourceUnit": "BEL 1:28",
+        "sourcePage": 246,
+        "viewerPage": 591,
+        "printedPage": "574",
+        "printedLabel": "תקעד"
+      }
+    },
+    {
+      "id": "bel-1-28-246-kaasher-letter1-vowel",
+      "kind": "unreadablePoint",
+      "mark": "vowel",
+      "decision": "certifyAndRetire",
+      "anchor": "כאֲשֶׁר",
+      "letterIndex": 1,
+      "occurrence": 1,
+      "finding": "Under initial kaf, a clear horizontal patah bar is printed at y=920 across x=628-662 beneath the lower base of the kaf. Preserves alef hataf-patah and shin marks.",
+      "physicalLocator": {
+        "sourceUnit": "BEL 1:28",
+        "sourcePage": 246,
+        "viewerPage": 591,
+        "printedPage": "574",
+        "printedLabel": "תקעד"
+      }
+    },
+    {
+      "id": "bel-1-28-246-vayirgezu-letter1-vowel",
+      "kind": "unreadablePoint",
+      "mark": "vowel",
+      "decision": "certifyAndRetire",
+      "anchor": "ויִּרְגְּזוּ",
+      "letterIndex": 1,
+      "occurrence": 1,
+      "finding": "Under initial vav, an unambiguous horizontal patah stroke is printed at y=920 under x=1128-1155, clearly separated from the vav shaft. Preserves existing yod dagesh/hiriq and following consonants.",
+      "physicalLocator": {
+        "sourceUnit": "BEL 1:28",
+        "sourcePage": 246,
+        "viewerPage": 591,
+        "printedPage": "574",
+        "printedLabel": "תקעד"
+      }
+    },
+    {
+      "id": "bel-1-28-246-vayilunu28-letter1-vowel",
+      "kind": "unreadablePoint",
+      "mark": "vowel",
+      "decision": "certifyAndRetire",
+      "anchor": "ויִּלּוֹנוּ",
+      "letterIndex": 1,
+      "occurrence": 1,
+      "finding": "Under initial vav, a horizontal patah bar extends across x=1692-1720 at y=1080 below the vav baseline. Completely detached from the consonant foot.",
+      "physicalLocator": {
+        "sourceUnit": "BEL 1:28",
+        "sourcePage": 246,
+        "viewerPage": 591,
+        "printedPage": "574",
+        "printedLabel": "תקעד"
+      }
+    },
+    {
+      "id": "bel-1-28-246-vayomru28-letter1-vowel",
+      "kind": "unreadablePoint",
+      "mark": "vowel",
+      "decision": "certifyAndRetire",
+      "anchor": "ויֹּאמֵרוּ",
+      "letterIndex": 1,
+      "occurrence": 1,
+      "finding": "Under initial vav, an unambiguous horizontal patah bar is centered at y=1080 under x=910-938, separated by clear white paper from the vav vertical shaft.",
+      "physicalLocator": {
+        "sourceUnit": "BEL 1:28",
+        "sourcePage": 246,
+        "viewerPage": 591,
+        "printedPage": "574",
+        "printedLabel": "תקעד"
+      }
+    }
+  ],
+  "physicalNoteSpans": [
+    {
+      "sourceUnit": "BEL 1:28",
+      "sourcePage": 246,
+      "viewerPage": 591,
+      "printedPage": "574",
+      "printedLabel": "תקעד"
+    },
+    {
+      "sourceUnit": "BEL 1:28",
+      "sourcePage": 246,
+      "viewerPage": 591,
+      "printedPage": "574",
+      "printedLabel": "תקעד"
+    },
+    {
+      "sourceUnit": "BEL 1:28",
+      "sourcePage": 246,
+      "viewerPage": 591,
+      "printedPage": "574",
+      "printedLabel": "תקעד"
+    },
+    {
+      "sourceUnit": "BEL 1:28",
+      "sourcePage": 246,
+      "viewerPage": 591,
+      "printedPage": "574",
+      "printedLabel": "תקעד"
+    },
+    {
+      "sourceUnit": "BEL 1:28",
+      "sourcePage": 246,
+      "viewerPage": 591,
+      "printedPage": "574",
+      "printedLabel": "תקעד"
+    }
+  ],
+  "reviewedUnits": [
+    {
+      "chapter": 1,
+      "verse": 28,
+      "originalText": "ויְהִי כאֲשֶׁר שָׁמְעוּ אַנְשֵׁי בָבֶל ויִּרְגְּזוּ מְאֹד ויִּלּוֹנוּ עַל־הַמֶּלֶךְ ויֹּאמֵרוּ הַמֶּלֶךְ הִתְיַהֵד אֶת־הַבֵּל נָתַץ וְאֶת־הַתַּנִּין הָרַג וְאֶת־הַכֹּהֲנִים זָבַח׃",
+      "textSHA256": "c164cd569b1869b2c34878cc94d421ed3ec22bf369451fc1a2a6820ef105b501",
+      "sourcePages": [
+        246
+      ],
+      "allNoteIds": [
+        "bel-1-28-246-vayehi28-letter1-vowel",
+        "bel-1-28-246-vayirgezu-letter1-vowel",
+        "bel-1-28-246-vayilunu28-letter1-vowel",
+        "bel-1-28-246-vayomru28-letter1-vowel",
+        "bel-1-28-246-kaasher-letter1-vowel"
+      ]
+    }
+  ],
+  "sourceCaptures": [
+    {
+      "filename": "extension-volumeA-591-zoom6-lower-right.png",
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sha256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "originalCapturePath": "/Users/dk/.gemini/antigravity/brain/756793b3-a3f5-4148-b324-7785550a8ab8/scratch/prosary-hebrew-pass35-20261018/captures/extension-volumeA-591-zoom6-lower-right.png",
+      "captureType": "Authorized Chrome Psik reader screenshot",
+      "captureProvidedBy": "root integrator",
+      "screenshotSize": [
+        2636,
+        1974
+      ],
+      "mode": "RGB",
+      "rawPixelSHA256": "643d831dc084009aa4964046320309496630d3a92fe5b571fc2670cccaf72a7c",
+      "viewerPage": 591,
+      "internalPage": 606,
+      "printedPage": 574,
+      "printedLabel": "תקעד",
+      "canonicalLegacyPDFPage": 246
+    },
+    {
+      "filename": "extension-volumeA-591-zoom6-lower-left.png",
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-left.png",
+      "sha256": "24e384403ae7f7b6b5ce900eb308e1cabf104fc6c3703b3119d6b9f6ff0089e6",
+      "originalCapturePath": "/Users/dk/.gemini/antigravity/brain/756793b3-a3f5-4148-b324-7785550a8ab8/scratch/prosary-hebrew-pass35-20261018/captures/extension-volumeA-591-zoom6-lower-left.png",
+      "captureType": "Authorized Chrome Psik reader screenshot",
+      "captureProvidedBy": "root integrator",
+      "screenshotSize": [
+        2636,
+        1974
+      ],
+      "mode": "RGB",
+      "rawPixelSHA256": "84fc10a5e0a2f00219129cdd115fa77fb46b502fedc315ab91a422bb750d1e9f",
+      "viewerPage": 591,
+      "internalPage": 606,
+      "printedPage": 574,
+      "printedLabel": "תקעד",
+      "canonicalLegacyPDFPage": 246
+    }
+  ],
+  "crops": [
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-word-native.png",
+      "sha256": "4bfe70ff30e1c6275bb55255c72d1629f1df057a27145c33df07e3714fe33ce6",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        740,
+        840,
+        920,
+        940
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-word-4x.png",
+      "sha256": "d557c7aeb3db869a7dde5b9a7d02b75b7c987321578fd418c4319dd037f93124",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        740,
+        840,
+        920,
+        940
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-vav-patah-native.png",
+      "sha256": "a1e052f05068252722efb0f5f17307e7515a9c84d9e25629b50d71a22fbf7fff",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        870,
+        845,
+        920,
+        935
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-vav-patah-4x.png",
+      "sha256": "09cac2b9b32df5a6c0460404e6c7c950e1ff0321f3b6715d9f1a342a94658f7c",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        870,
+        845,
+        920,
+        935
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-word-native.png",
+      "sha256": "0c538470c651d4b272280eeb4ff1ddc5cbdb799e11b3ecc717264d2581ce2375",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        410,
+        840,
+        680,
+        940
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-word-4x.png",
+      "sha256": "7ec1f5aece9692de12f8f15db7e6f8ac2e874bf51ebefdcfd5ccf22557c10e30",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        410,
+        840,
+        680,
+        940
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-kaf-patah-native.png",
+      "sha256": "21197803c29279580f2eec5daa97d9a834375f404930921c9f008919a1d65bbb",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        610,
+        845,
+        675,
+        935
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-kaf-patah-4x.png",
+      "sha256": "38bfcc6acf09c5bfecffaa44ff9a03d9c613e05129384d96b4981914bc7d0828",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        610,
+        845,
+        675,
+        935
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-word-native.png",
+      "sha256": "ea9f77060e3099964397742455351660c5b459cfe5c5b9abf35ad0b9558101b3",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-left.png",
+      "sourceScreenshotSHA256": "24e384403ae7f7b6b5ce900eb308e1cabf104fc6c3703b3119d6b9f6ff0089e6",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        910,
+        840,
+        1170,
+        940
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-word-4x.png",
+      "sha256": "b7e2ff57b46a911780c280c2c914c43b509048b7ff19b92eeb4bc93a6bb423ae",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-left.png",
+      "sourceScreenshotSHA256": "24e384403ae7f7b6b5ce900eb308e1cabf104fc6c3703b3119d6b9f6ff0089e6",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        910,
+        840,
+        1170,
+        940
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-vav-patah-native.png",
+      "sha256": "cb0274729130a9474ac0793f03bb472fca5d80cffae4134eb488022bf2f559f5",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-left.png",
+      "sourceScreenshotSHA256": "24e384403ae7f7b6b5ce900eb308e1cabf104fc6c3703b3119d6b9f6ff0089e6",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        1115,
+        845,
+        1165,
+        935
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-vav-patah-4x.png",
+      "sha256": "ce025c12f3eecc697802d83b6611bd2f95c56db7cd0e2128c5284bc8f2d52b71",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-left.png",
+      "sourceScreenshotSHA256": "24e384403ae7f7b6b5ce900eb308e1cabf104fc6c3703b3119d6b9f6ff0089e6",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        1115,
+        845,
+        1165,
+        935
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-word-native.png",
+      "sha256": "62675a3d79ee2a178c8a5f41afc9fedde9b0dc66e28b50f58488dde1679e1fd3",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        1500,
+        1000,
+        1730,
+        1100
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-word-4x.png",
+      "sha256": "429e7a4ec151a728afa4d44f8131fe2e861d857eb95c0632efcb633660eb23c3",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        1500,
+        1000,
+        1730,
+        1100
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-vav-patah-native.png",
+      "sha256": "65626ec17b4111f36eb05d409f807b85701566f14ce232721a8a6f90157ddabb",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        1680,
+        1005,
+        1730,
+        1095
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-vav-patah-4x.png",
+      "sha256": "3a7a5ffcd2f902913600120ff22acedac0390ae00305683fc06d941c45fd36ff",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        1680,
+        1005,
+        1730,
+        1095
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-word-native.png",
+      "sha256": "8ab03836b336c8dd2d296b6bae63ec2f93279fae7abfe872f8b1a5682e6fc6d7",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        670,
+        1000,
+        950,
+        1100
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-word-4x.png",
+      "sha256": "22a270b624e188fdb343a3b7f54f89d3034da9fcbffa1cf7e0077a2ae1181e24",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        670,
+        1000,
+        950,
+        1100
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-vav-patah-native.png",
+      "sha256": "a5eb2886e573a255cb6e0098c1ee55b5a591fa507cd693d0e046ef3a1f906907",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        895,
+        1005,
+        950,
+        1095
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-vav-patah-4x.png",
+      "sha256": "006a6dd69bf53147d781d8533c2bdcaf145e4d4c4defca1b6f36b47b06b0a2ac",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        895,
+        1005,
+        950,
+        1095
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/c01-control-patah-rehash-native.png",
+      "sha256": "aa07fe13531ab91dbdf99af757142809e737e7c5ced3bbf375edfce62a0a0079",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        545,
+        565,
+        600,
+        655
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/c01-control-patah-rehash-4x.png",
+      "sha256": "5e0a5783a89cfc17596a94e0ab04cbaf3af0763bdb15a413c83c302b8ff85178",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+      "sourceScreenshotSHA256": "4d208529642fb193b81faaaf7bb626955c9a3a9b26ddb6bcebbfe1dad0fde4a4",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        545,
+        565,
+        600,
+        655
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/c02-control-competing-sheva-native.png",
+      "sha256": "29eef5202b217b713aeace0ddb3c95964771db51e3cfc1e4af7235070b5f7ba5",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-left.png",
+      "sourceScreenshotSHA256": "24e384403ae7f7b6b5ce900eb308e1cabf104fc6c3703b3119d6b9f6ff0089e6",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        620,
+        840,
+        750,
+        940
+      ],
+      "scale": 1,
+      "resampling": "native",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    },
+    {
+      "file": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/c02-control-competing-sheva-4x.png",
+      "sha256": "48bc250fd4fed636e8213f868c7523e87b535e40c6dababa10a04ebc4991357d",
+      "sourceScreenshot": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-left.png",
+      "sourceScreenshotSHA256": "24e384403ae7f7b6b5ce900eb308e1cabf104fc6c3703b3119d6b9f6ff0089e6",
+      "sourceSize": [
+        2636,
+        1974
+      ],
+      "nativeBounds": [
+        620,
+        840,
+        750,
+        940
+      ],
+      "scale": 4,
+      "resampling": "nearest-neighbor",
+      "sourceScreenshotPixelReplayPassed": true,
+      "fullyInsideSourceScreenshot": true
+    }
+  ],
+  "evidenceImages": [
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-right.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/extension-volumeA-591-zoom6-lower-left.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-word-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-word-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-vav-patah-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t01-vayehi-vav-patah-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-word-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-word-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-kaf-patah-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t02-kaasher-kaf-patah-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-word-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-word-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-vav-patah-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t03-vayirgezu-vav-patah-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-word-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-word-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-vav-patah-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t04-vayilunu-vav-patah-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-word-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-word-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-vav-patah-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/t05-vayomru-vav-patah-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/c01-control-patah-rehash-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/c01-control-patah-rehash-4x.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/c02-control-competing-sheva-native.png",
+    "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/c02-control-competing-sheva-4x.png"
+  ],
+  "nativeFrameCount": 14,
+  "evidenceFileCount": 26,
+  "freshOriginalPageCount": 0,
+  "freshChromeSourcePageCount": 1,
+  "independentReview": {
+    "status": "approved",
+    "reviewer": "Independent peer visual/pixel and 15-file mutation audit subagents"
+  },
+  "invariants": {
+    "allPriorScalarsAndCombiningOrderPreserved": true,
+    "allConsonantsPunctuationAndSourceBoundariesUnchanged": true,
+    "allRestoredLetterDisclosuresPreserved": true,
+    "onlyProposedCertifiedNotesRetired": true,
+    "zeroFinalSurvivorOccurrenceChanges": true,
+    "noOccurrenceChanges": true,
+    "allCropsStrictlyWithinScreenshotBounds": true,
+    "allPublishedCropsReplayedFromUnmodifiedExtensionCaptures": true,
+    "canonicalStillBaselineAtPublication": true,
+    "all18BaselinePinsMatchLiveAtPublication": true
+  },
+  "acceptedPacket": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/accepted.json",
+    "sha256": "14a4c2a242f6642c3dc0a922478fc8fc3440589e493d658fc029dd1fde42ae68"
+  },
+  "frameLedger": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/frame-ledger.json",
+    "sha256": "bb177e0b0e2a87cd285d55fb131c9466d4b594a534a493168af8376aa0a7f631"
+  },
+  "authorPixelReplay": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass35-BEL-1-28/author-screenshot-pixel-replay.json",
+    "sha256": "3ef892b729a7bdb45d191199a1ce7b0d5d7a5d7a468c197f52e17e53f231477a"
+  },
+  "sourceAcquisition": {
+    "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass35.json",
+    "sha256": "779c4cf52430c0a866bbecce599db7173e4aef5c3fd7c8aeba030b279b9ca93f"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 141,
+  "integrationPass": 141,
+  "preparationID": 178,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "SIR",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation178-SIR-4-24/source-provenance.json",
+    "sha256": "8cffc8d26b8d3e6b4ca6c474d2090e2bd2d411d2980a6b2456a5c963df084c3c"
+  },
+  "sourceNotesBefore": 21,
+  "sourceNotesAfter": 20,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "sir-4-24-dalet-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "2fe6fdb434aa7724f97567defa24a45c63edc3fbbf7310c864d803f316cb1739",
+  "contentSHA256After": "5eca498f1e7ce0239fe7222438ceaf256912c1f5f96b615c584c7393f39b8668",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "sir-4-24-dalet-vowel",
+      "book": "SIR",
+      "chapter": 4,
+      "verse": 24,
+      "anchorBefore": "נוֹדעַת",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "finding": "Own completeDalet1354px59x72 roof/rightstem ends661. Threeclearrows662..664 before independentlydetached308px28x15 shallowstamp[613,665,641,680]. Stampbroadbar667..674 andshorttaper675..679, no sustainednarrowlowerstem/node, entirelyclearbelow680through719. LiteralownAyin has separate187px25x8 shallowPatahplate[524,675,549,683] and no stem; followingcompleteחכמה initialHet has detached525px28x33 Qamats[316,667,344,700], upperplate667..679 then sustainednarrowdescendingstem680..699, directlydistinguishing ownshortplate. OwnVav carries detached84px10x11 Holam[656,572,666,583]. Exactownsavedstamp supportsPatahU05B7, not transferred from a parallelword or canonicalexpectation.",
+      "targetCapture": "extension-volumeB-459-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeB-459-zoom4-upper-right.png",
+      "inspectedBounds": [
+        577,
+        590,
+        636,
+        662
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        613,
+        665,
+        641,
+        680
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation178-SIR-4-24/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 4,
+      "verse": 24,
+      "before": "כִּי בְּאוֹמֵר נוֹדעַת חָכְמָה וּתְבוּנָה בְּמַעֲנֵה לָשׁוֹן׃",
+      "after": "כִּי בְּאוֹמֵר נוֹדַעַת חָכְמָה וּתְבוּנָה בְּמַעֲנֵה לָשׁוֹן׃"
+    }
+  ],
+  "scope": {
+    "chapter": 4,
+    "verse": 24,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation178-SIR-4-24/independent-review.json",
+    "sha256": "dc9ecc6ff9f2ecff2f56478a894e8252cc097697840028c72ee0c1943caef1f3"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation178-SIR-4-24/primary-preparation.json",
+    "sha256": "3743893a7fa3cf40fbe0dbd4f600558d3e1faa36517f0fc9d9a6f2681e2ed6ac"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass141-preparation178-SIR-4-24/consensus-preparation.json",
+    "sha256": "d46b9d5fbfe73f4f36543af27b561d99671cea30593b4525ac95d881175b7ce2"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Sirach 27:30; 28:1–7",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Sirach 39:6–14",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Sirach 45:1–6",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      },
+      {
+        "appointment": "daily|Sirach 51:13–17",
+        "frozenApprovalDigestWasStale": true,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

@@ -75,7 +75,14 @@ class PrayerReadingLayoutInstrumentedTest {
                             sessionPaused = true,
                             centralActionLabel = if (counter) "Count" else null,
                             wideAccessoryWidth = beadWideWidth(beads),
-                            accessory = { wide, single -> BeadProgressView(beads, wide, single) },
+                            accessory = { wide, single ->
+                                BeadProgressView(
+                                    layout = beads,
+                                    isWide = wide,
+                                    languageCode = if (rtl) "he" else "en",
+                                    hasRoomForSingleMinorColumn = single,
+                                )
+                            },
                         )
                     }
                 }

@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 152,
+  "integrationPass": 152,
+  "preparationID": 238,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "WIS",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 0 disclosures retired and 1 retained.",
+  "applicationState": "This preparation retains all disclosures and adds no canonical mutation; other batch units may change. Shared batch tests recorded separately.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation238-WIS-9-9/source-provenance.json",
+    "sha256": "6d2eba6c6399ff9310035da571fac6d2194efa3d5d1682e57a552f5bd8664e86"
+  },
+  "sourceNotesBefore": 106,
+  "sourceNotesAfter": 106,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 0,
+  "retainedInspectedSourceNoteCount": 1,
+  "retiredSourceNoteIds": [],
+  "retainedInspectedSourceNoteIds": [
+    "wis-9-9-tsadi"
+  ],
+  "contentSHA256Before": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "contentSHA256After": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+  "combiningMarksAdded": 0,
+  "decisions": [
+    {
+      "noteId": "wis-9-9-tsadi",
+      "book": "WIS",
+      "chapter": 9,
+      "verse": 9,
+      "anchorBefore": "מִצוֹתֶיךָ",
+      "letterIndex": 2,
+      "decision": "retainNote",
+      "finding": "Own Tsadi is997px8-connected component[687,1877,723,1935]. Lower leftward/broad foot1910..1918 and heavy downward tail1918..1934 attach to its body; native exact pixels do not independently delimit an exact vowel mark/count or certify absence. Blank rows below1934 do not prove absence. Complete physical unit15groups, full target/control words, own unique occurrence and index2, and actual prior/final word-sof plus following firstwholeword independently established. Retain original unreadable vowel disclosure and every original scalar.",
+      "targetCapture": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/19/19f6fd1c6c997173343e5c2f796ef75b2e0d1325e8d1bcb473e1ef6ab914d43e.bin",
+      "targetSourceIdentifier": "Shared/reports/hebrew-wikisource/source-note-evidence/20261022-inspections220-281-v2/objects/19/19f6fd1c6c997173343e5c2f796ef75b2e0d1325e8d1bcb473e1ef6ab914d43e.bin",
+      "inspectedBounds": [
+        687,
+        1877,
+        723,
+        1935
+      ],
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation238-WIS-9-9/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [],
+  "scope": {
+    "chapter": 9,
+    "verse": 9,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation238-WIS-9-9/independent-review.json",
+    "sha256": "1917fa5e75bf66cb1f80492e753ac35624283da8374a6a4f5e8a67b82f7fa31a"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation238-WIS-9-9/primary-preparation.json",
+    "sha256": "6c1e7d656339d3f028569cf89d8cac146d4c4315d159d154a01863348ca57919"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass152-preparation238-WIS-9-9/consensus-preparation.json",
+    "sha256": "f045ba8fdd393e1b09be96176423162bcca063744dd75f6d09d7ca3004791349"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": []
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

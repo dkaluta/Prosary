@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 31,
+  "book": "ESG",
+  "status": "Boundary-control name transcription correction only; no source decision, pixel, packet or canonical changes",
+  "supersedesOnly": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-point-comparison-20261017-pass31.json",
+      "sha256": "248ac9fb159aedb320b02705723b9e5b145946dd447540d2f7850e75fa90e2b1",
+      "jsonPointer": "/sourceAddressPolicy",
+      "before": "Source6:15 on A2 p223 starts והנה in the left portion of the row marked טו after previous unit ends המקודנים׃; continues through the full next row; ends חייהם׃ on the following row marked טז before והמה begins source6:16. All three rows and printed labels are preserved.",
+      "after": "Source6:15 on A2 p223 starts והנה in the left portion of the row marked טו after previous unit ends הַמַּקְדוֹנִים׃; continues through the full next row; ends חייהם׃ on the following row marked טז before והמה begins source6:16. All three rows and printed labels are preserved."
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass31-ESG-6-15/frame-ledger.json",
+      "sha256": "c282b74a1a21baaef7f10fd670f50f189e4059d12cae49c36db2ffd6ef9bfeb0",
+      "frameName": "ESG6-15-complete-numbered-unit",
+      "field": "literalLabel",
+      "before": "Full source6:15: starts והנה after source14 terminal המקודנים; wraps next row; ends חייהם before source16 והמה",
+      "after": "Full source6:15: starts והנה after source14 terminal הַמַּקְדוֹנִים; wraps next row; ends חייהם before source16 והמה"
+    }
+  ],
+  "reason": "The boundary-control word was mistyped in prose with vav before dalet. Original page223 and baseline source6:14 retain הַמַּקְדוֹנִים. This corrects only that prose quotation in the immutable report and frame ledger.",
+  "evidenceUnchanged": true,
+  "sourceDecisionsUnchanged": true,
+  "acceptedPacketSHA256": "9d7a75aa2bc2500c6b3b03e37fbbfbd7ac847f59becc76d5de5e1fd5f7471f51",
+  "canonicalFilesUnchanged": true
+}

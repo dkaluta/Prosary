@@ -7,7 +7,7 @@
         "roman1962"
       ],
       "sourceBook": "2MA",
-      "sourceContentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+      "sourceContentSHA256": "727ae06afba0f50ed7d20b333a0604344ab1d7227f1f61270e1f437e8d215f64",
       "selections": [
         {
           "chapter": 12,
@@ -24,13 +24,41 @@
       ],
       "includesWholeVerses": false,
       "openingText": "וְאַחֲרֵי־כֵן אָסַף נְדָבוֹת מֵאֲנָשִׁים יְחִידִים אֲשֶׁר עָלוּ לְאַלְפַּיִם אַדַרְכְּמוֹנִים כֶּסֶף וַיִּשְׁלַח יְרוּשָׁלִַם לְהָבִיא קָרְבַּן חַטָּאת וְטוֹב וְיָפֶה מְאֹד עָשָׂה בְּחָשְׁבוֹ עַל הַתְּחִיָּה׃",
-      "closingText": "וּמֵהַשִּׂיגוֹ בְּשִׂכְלוֹ כִּי הַמֵּתִים בְּיִרְאַת שָׁמַיִם מוּכָן לָהֶם הַגְּמוּל הַטּוֹב בְּיוֹתֵר וְהִיא מַחֲשֶׁבֶת קְדֻשָׁה וַחֲסִידוּת עַל־כֵּן הֵבִיא חַטָּאת בְּעַד הַמֵּתִים לְכַפֵּר עַל הַחֵטְא׃",
-      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
+      "closingText": "וּמֵהַשִּׂיגוֹ בְּשִׂכְלוֹ כִּי הַמֵּתִים בְּיִרְאַת שָׁמַיִם מוּכָן לָהֶם הַגְּמוּל הַטּוֹב בְּיוֹתֵר וְהִיא מַחֲשֶׁבֶת קְדֻשָּׁה וַחֲסִידוּת עַל־כֵּן הֵבִיא חַטָּאת בְּעַד הַמֵּתִים לְכַפֵּר עַל הַחֵטְא׃",
+      "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately. The fourth source-note pass adds only an independently certified printed point in an already selected whole source unit; clause coverage, selected units, order and appointment scope remain unchanged.",
       "excludedSourceBlocks": [],
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
           "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-patah-reinspection-20261017-pass6.json",
+          "sha256": "5b04d38ad39b773e422a584660ba3719d8bf65e2f61ce0a2d25032425473f76d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-compound-vowel-comparison-20261017-pass9.json",
+          "sha256": "6ca45806dce9f05ded758871a78f31e5563513893d539ee8292bf3d85e58d303"
         }
       ]
     },
@@ -40,7 +68,7 @@
         "roman1962"
       ],
       "sourceBook": "2MA",
-      "sourceContentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+      "sourceContentSHA256": "727ae06afba0f50ed7d20b333a0604344ab1d7227f1f61270e1f437e8d215f64",
       "selections": [
         {
           "chapter": 1,
@@ -72,6 +100,34 @@
         {
           "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
           "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-patah-reinspection-20261017-pass6.json",
+          "sha256": "5b04d38ad39b773e422a584660ba3719d8bf65e2f61ce0a2d25032425473f76d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-compound-vowel-comparison-20261017-pass9.json",
+          "sha256": "6ca45806dce9f05ded758871a78f31e5563513893d539ee8292bf3d85e58d303"
         }
       ]
     },
@@ -81,13 +137,21 @@
         "roman1962"
       ],
       "sourceBook": "SUS",
-      "sourceContentSHA256": "0989a562bb344ac75b6b469f5867d1c1c050b822e3847e36a8e4762e8fefbb03",
+      "sourceContentSHA256": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
       "reason": "Hard block for full appointed content: the escape action at13:39 has no corresponding Hebrew wording in the reviewed source. Other smaller omissions are listed rather than normalized away. Whole49–50 includes the elders’ invitation to sit and grant old-age honor. The actual Latin proper shortens that scene, keeping only the people’s return. Whole61 retains acting under Moses’s law; the Latin proper also shortens that closing detail. Printed label כ–כא on the editorially addressed40–41 unit must remain visible through its source presentation block. Never silently replace that printed label with a supposed matching Vulgate margin.",
       "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
           "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-point-comparison-20261017-pass11.json",
+          "sha256": "15e32b3d1add868acadd2338afa3245cfb2fca03d76a6f10e281cd063faf651e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-yod-comparison-20261017-pass12.json",
+          "sha256": "2d1a0db6300012c37fcb53a117d7ceb365417232a504a59f7e386433273ad90d"
         }
       ]
     },
@@ -97,13 +161,217 @@
         "roman1962"
       ],
       "sourceBook": "BEL",
-      "sourceContentSHA256": "d123f7fbcf093b48e868661e59060ea471e00442902650c4aa0bbd59541c8ea2",
+      "sourceContentSHA256": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
       "reason": "Hard block: do not expose Hebrew28–42 as complete appointed27–42, since the final whole Vulgate verse is absent. Canonical source is the reviewed lower Theodotion translation, not the upper alternative recension on the same pages. Whole28 contains the king’s conversion accusation and priests’ death; the proper abbreviates the opening. Preserve these if a future alternative-recension option is exposed.",
       "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
           "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass4.json",
+          "sha256": "9477c310d2e6674df9f26ce46d566e5f3c9b2588e883bac06fd53ae29cc934df"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass7.json",
+          "sha256": "d61f75c812cccc30a270a84820113d44bb15b11f06db3eeb45bd8cc4e4d6c211"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/PSIK-authenticated-source-inspection-20261017.json",
+          "sha256": "81347cbd0d2d8e38340b184d9a772e8c90b584696abc122b13e2e3a5f95f1663"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass8.json",
+          "sha256": "5f8c4e1a8c5d4ceb321f1d1cf7e34ee7fc3fbbb54b31aad374970277b7c08608"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass9.json",
+          "sha256": "1d8cabda7d3fe62c59909446e511ea0484ffc67e17db302e73d86103a2c57b84"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass10.json",
+          "sha256": "4bc011af7940037a816dda09e6c7047565561a9b299a8fb32de00ff359ab9d32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-comparison-20261017-pass10.json",
+          "sha256": "b56448dd803a3e59456954e9cb4dd8372dcc47702d7b86159e9458d139489074"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-prefix-vowel-comparison-20261017-pass11.json",
+          "sha256": "c645c2619090117242a78b588b2a5969ade95b840d3754aeac29cc1b76ca1779"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-yod-dagesh-comparison-20261017-pass12.json",
+          "sha256": "93f369f23e8ae8ebf1c9524119623a2ee18160e2a92cb4f466c417e4a3899e90"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-yod-dagesh-comparison-20261017-pass13.json",
+          "sha256": "008cff4074120c8820109e04700c5127fe5bd9f3f60df0273d60a902028ef50c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit15-source-address-correction-20261017-pass15.json",
+          "sha256": "050f1d7aee293f24ff89870a2c9e29eb828c20d17a119518a3738254f1f2bf6e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit15-point-comparison-20261017-pass15.json",
+          "sha256": "e29ea433a2186930e157a10f02bc270b69a176f3565c0e3252640e25eb8d636b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit27-point-comparison-20261017-pass15.json",
+          "sha256": "810ca74f0322cab9f9c00180c2d0a8b9c2f57a9d7c9ab76a48f9a85ec3b5cc00"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit16-point-comparison-20261017-pass16.json",
+          "sha256": "0835c99977c6758d1d7a632a8476a0a9b58a80b67ae80ecb418076d0705e4571"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit17-point-comparison-20261017-pass16.json",
+          "sha256": "dda9c9bb48fc7a16c787545dd35c1f3bf6d189702191da698cd5d686debe4eb8"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit21-point-comparison-20261017-pass16.json",
+          "sha256": "4395d940e8049be18defcb731ef179db3aa6df19b03922db4d8268ef91444b53"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit28-point-comparison-20261017-pass17.json",
+          "sha256": "5b279f649ac167bd86c56de4ed9485a1348d9177f658abbf4e6511b7931d2e38"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit41-point-comparison-20261017-pass17.json",
+          "sha256": "8f52cd55dea1853eaa2a290e42404970b5c049156b9787d702b6810a59ea60f0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit20-point-comparison-20261017-pass18.json",
+          "sha256": "531ed1bd1a91ff10ef255855cc8e3ccf448b88fdf74af8d5e5e7296a3e3a5a13"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit33-point-comparison-20261017-pass18.json",
+          "sha256": "7cfb82271818e4326fdb193d7aba29f966e7a98c25895e29c9066bf9774dbf4f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit36-point-comparison-20261017-pass18.json",
+          "sha256": "4329850b2b86804099b7ab30ed14c9485053da69ea801942b6f5a0d9ac18e89c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit3-point-comparison-20261017-pass20.json",
+          "sha256": "6ed0c459f01d7cf74f9529ecd99fbb832c05c5e08839793a61cccaff332c0c6a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit5-point-comparison-20261017-pass21.json",
+          "sha256": "4c099db6a8a4596794b8cbd860a646c246bbf35413a6fdf205fcee68721098d1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit8-point-comparison-20261017-pass21.json",
+          "sha256": "7b41f7791e51505c5098310a41a63465ba51d2c0fe633b5af4d121c1663268c7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit9-point-comparison-20261017-pass21.json",
+          "sha256": "61a48bf6a703e94b6c027ac376ff1578d5f9f09ecf063bede16b8f07bcfe55dd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit9-context-bounds-correction-20261017-pass21.json",
+          "sha256": "4912c78137229ee6376619c9c7655578de4d0fd4c7975c6660b0747cd1b713b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit23-point-comparison-20261017-pass22.json",
+          "sha256": "cfc3c2bde3e87be95ddf1a9f054ec3528d615567c37441a0b38edc891653910b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit29-point-comparison-20261017-pass22.json",
+          "sha256": "28308b2f99b03fb45c6c28ff290c57ba361603857e2b4787b307e92077b83ebc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit30-point-comparison-20261017-pass22.json",
+          "sha256": "d964695dc7b9489213a498fae2be348fafdccae12a8d458b161d43fb48c5dd00"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit37-point-comparison-20261017-pass23.json",
+          "sha256": "f8c9506ace1bc7525d9ce20e655f6281ac91da367e6b6bb74cfc0c7f54f7851e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit40-point-comparison-20261017-pass23.json",
+          "sha256": "9dd828361a9ba0c5e63911c68201e9616f7277cfbfb94bc6ff0252dde115199a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit42-point-comparison-20261017-pass23.json",
+          "sha256": "95782532f3da03921fb87d651d5387958e3cc1c1a696abb9282b22dbd38ac007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-point-comparison-20261017-pass25.json",
+          "sha256": "63ace011b5331ac0b6b788afc83ca9e4bb28dedfdc65ab7791ccd468fddae8c2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit10-point-comparison-20261017-pass25.json",
+          "sha256": "04080d3179556112161c34b79aea2be76feef2a4f17b03cd9d5bcfb12e4a6ad4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit19-point-comparison-20261017-pass25.json",
+          "sha256": "cb092b7a58bd21210169408c1cf440d578d909d3b1fef530a2bb35323aba3ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit22-point-comparison-20261017-pass26.json",
+          "sha256": "23e689c2d265aad32845780889b426cb39e6c5a47657bb77cc1cfb3a14750564"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit31-point-comparison-20261017-pass26.json",
+          "sha256": "f79c68a4621420c29561bf180dff1394bbde787015d64d10e083ab608997afa0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit39-point-comparison-20261017-pass26.json",
+          "sha256": "eeb4eec7e82db2a4a6663ee25cedd9306548eaaeb065a104bfdde7b662bb1d9d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit11-point-comparison-20261017-pass29.json",
+          "sha256": "b25fc3552f0084a13295ddc6ea2e1958ed148c4fe7c36690af24122f6a4685f0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-12-point-comparison-20261017-pass29.json",
+          "sha256": "153f5679c866945908179743d3c774805057e62e193796a7838e9ea649af10d2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-12-control-framing-supplement-20261017-pass29.json",
+          "sha256": "35abcd6cefbc039cda323a7bbf8f63edef1c8789afbafd91344ae6a3475712a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-25-point-comparison-20261017-pass30.json",
+          "sha256": "5621e8c58fca5ce0485dbbf3b5db5df1f618dffb402aa6b698063916d1c25ff5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit34-point-comparison-20261017-pass30.json",
+          "sha256": "b07031d404eb39917829f556805a56a3625f6b1452fb17e42133a936558dbbaa"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit35-point-comparison-20261017-pass30.json",
+          "sha256": "7ae1cca2b78c7531fa45e37e6e2b73056cb4ed7e0c290ec4ea633394d58f5648"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-27-point-comparison-20261017-pass35.json",
+          "sha256": "d0efe589acd63917055f30e664e45a78e502f178ed0c4d417c0a6130bdc00811"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-28-point-comparison-20261017-pass35.json",
+          "sha256": "b693a47259a04fd12a5d014956127219e9c119d5a838c49b9fca634e12ee8862"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-15-point-comparison-20261017-pass35.json",
+          "sha256": "fecd5296ffe9cca98472dac56d2263afef925e5c2413a952cbf63f2bcabaf66e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass35.json",
+          "sha256": "779c4cf52430c0a866bbecce599db7173e4aef5c3fd7c8aeba030b279b9ca93f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-41-point-comparison-20261017-pass37.json",
+          "sha256": "c5b0eda4c23b03e69aa934afadbd064c60da7bebe613ce9bfcd9bc3f14134b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-21-point-comparison-20261017-pass37.json",
+          "sha256": "ea037f14f8409d1cb6327e3f8aed82ecee1d20ef150c27bcce0aafa3e90fb7f8"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass37.json",
+          "sha256": "187d71863c91fec30d7fce12fcca45eff7075697ac534d72e81574332b9bb257"
         }
       ]
     },
@@ -113,7 +381,7 @@
         "roman1962"
       ],
       "sourceBook": "S3Y",
-      "sourceContentSHA256": "b751507a6c14858a24cd3e54923c7d03ee3cb684de82b89720bc515eced0580e",
+      "sourceContentSHA256": "881e1518540e87bdb9ec7a92fcb7b00457428a89c7a883c5a05d8e286a090977",
       "selections": [
         {
           "chapter": 1,
@@ -165,7 +433,7 @@
         }
       ],
       "includesWholeVerses": true,
-      "openingText": "ויָקָם עֲזַרְיָה ויִתְפַּלֵּל ויִפְתַּח אֶת־פִּיו ויוֹדֶה אֶת־יְיָ הוּא וַחֲבֵרָיו בְּתוֹךְ־הָאֵשׁ וְהַכַּשְׂדִּים הֵסִיקוּ אֶת־הַכִּבְשָׁן מְאֹד ויֹאמְרוּ׃",
+      "openingText": "וַיָּקָם עֲזַרְיָה וַיִּתְפַּלֵּל וַיִּפְתַּח אֶת־פִּיו וַיּוֹדֶה אֶת־יְיָ הוּא וַחֲבֵרָיו בְּתוֹךְ־הָאֵשׁ וְהַכַּשְׂדִּים הֵסִיקוּ אֶת־הַכִּבְשָׁן מְאֹד וַיֹּאמְרוּ׃",
       "closingText": "וְיֵדְעוּ כִּי אַתָּה יְיָ לְבַדְּךָ הָאֱלֹהִים וּמְהֻלָּל עַל־כָּל־[פְּנֵי] תֵבֵל׃",
       "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
       "excludedSourceBlocks": [],
@@ -173,6 +441,54 @@
         {
           "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
           "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-comparison-20261017-pass10.json",
+          "sha256": "b56448dd803a3e59456954e9cb4dd8372dcc47702d7b86159e9458d139489074"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-yod-dagesh-comparison-20261017-pass13.json",
+          "sha256": "b3ef5e550e2d09774359580e69cb2f99782c9703426f72a6cdcbe0902b6e96aa"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-daily-note-comparison-20261017-pass14.json",
+          "sha256": "5366baf5216d68bea3b657b7edae965ebeb5cb3d3e2d89420b423f30866155ee"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/DAILY-ESG-S3Y-point-comparison-20261017-pass14.json",
+          "sha256": "656b565bba83201baf956f4acfc1cac77ea17bdf7645b6cc52c3aae03a9e6611"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-closing-narrative-note-comparison-20261017-pass15.json",
+          "sha256": "20fdc8ba5e8670fe62945de0c0295f650e5b0d31c0f2aa5f5759693737f1a5e1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-point-comparison-20261017-pass19.json",
+          "sha256": "a18e2838f39f7e9c8e6c405f9f97dbd0f51acd6f5586830c68efa92c4f28d30e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit25-point-comparison-20261017-pass20.json",
+          "sha256": "74d43965144bbb3fe0c1f84991608150cbe83470ea4cdc40b6763a196d46532c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-tail-point-comparison-20261017-pass36.json",
+          "sha256": "db4583d25d27426e2da3866464f72d7479ad2135fa4b2e73695f034abff7cecf"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-4-point-comparison-20261017-pass36.json",
+          "sha256": "34ef9fe18fee874eb941dbcaece2a9a57b729103a8ca39dfbc178e8e90b0ee57"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass36.json",
+          "sha256": "a883359c54b723a766f545ba18cb171bee763647ef81a4107964e27b29e222cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-30-point-comparison-20261017-pass47.json",
+          "sha256": "a3b2d80ce045ef375d3ff0c5639f98b803dedb3851f3dbbef2922984b7addd41"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass47.json",
+          "sha256": "b83ab4aea7ae2485faa9462ecc4cb6960c74fd6320ed9a5f750ef047e77c897b"
         }
       ]
     },
@@ -182,7 +498,7 @@
         "roman1962"
       ],
       "sourceBook": "S3Y",
-      "sourceContentSHA256": "b751507a6c14858a24cd3e54923c7d03ee3cb684de82b89720bc515eced0580e",
+      "sourceContentSHA256": "881e1518540e87bdb9ec7a92fcb7b00457428a89c7a883c5a05d8e286a090977",
       "selections": [
         {
           "chapter": 1,
@@ -206,14 +522,62 @@
         }
       ],
       "includesWholeVerses": true,
-      "openingText": "ויַעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
-      "closingText": "ויַעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד ויְהַלְלוּ ויְשַׁבְּחוּ ויְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
+      "openingText": "וַיַּעַל הַלַּהַב מֵעַל הַכִּבְשָׁן כְּתֵשַׁע וְאַרְבָּעִים אַמָּה׃",
+      "closingText": "וַיַּעֲנוּ שְׁלָשְׁתָּם פֶּה אֶחָד וַיְהַלְלוּ וַיְשַׁבְּחוּ וַיְרוֹמְמוּ אֶת־הָאֱלֹהִים בְּתוֹךְ־הַכִּבְשָׁן לֵאמֹר׃",
       "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
       "excludedSourceBlocks": [],
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
           "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-comparison-20261017-pass10.json",
+          "sha256": "b56448dd803a3e59456954e9cb4dd8372dcc47702d7b86159e9458d139489074"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-yod-dagesh-comparison-20261017-pass13.json",
+          "sha256": "b3ef5e550e2d09774359580e69cb2f99782c9703426f72a6cdcbe0902b6e96aa"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-daily-note-comparison-20261017-pass14.json",
+          "sha256": "5366baf5216d68bea3b657b7edae965ebeb5cb3d3e2d89420b423f30866155ee"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/DAILY-ESG-S3Y-point-comparison-20261017-pass14.json",
+          "sha256": "656b565bba83201baf956f4acfc1cac77ea17bdf7645b6cc52c3aae03a9e6611"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-closing-narrative-note-comparison-20261017-pass15.json",
+          "sha256": "20fdc8ba5e8670fe62945de0c0295f650e5b0d31c0f2aa5f5759693737f1a5e1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-point-comparison-20261017-pass19.json",
+          "sha256": "a18e2838f39f7e9c8e6c405f9f97dbd0f51acd6f5586830c68efa92c4f28d30e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit25-point-comparison-20261017-pass20.json",
+          "sha256": "74d43965144bbb3fe0c1f84991608150cbe83470ea4cdc40b6763a196d46532c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-tail-point-comparison-20261017-pass36.json",
+          "sha256": "db4583d25d27426e2da3866464f72d7479ad2135fa4b2e73695f034abff7cecf"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-4-point-comparison-20261017-pass36.json",
+          "sha256": "34ef9fe18fee874eb941dbcaece2a9a57b729103a8ca39dfbc178e8e90b0ee57"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass36.json",
+          "sha256": "a883359c54b723a766f545ba18cb171bee763647ef81a4107964e27b29e222cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-30-point-comparison-20261017-pass47.json",
+          "sha256": "a3b2d80ce045ef375d3ff0c5639f98b803dedb3851f3dbbef2922984b7addd41"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass47.json",
+          "sha256": "b83ab4aea7ae2485faa9462ecc4cb6960c74fd6320ed9a5f750ef047e77c897b"
         }
       ]
     },
@@ -223,7 +587,7 @@
         "roman1962"
       ],
       "sourceBook": "ESG",
-      "sourceContentSHA256": "4bf7a5688d64abc064f226c2efbd3b21c58d83b95c49796ff4f5ab19a479f169",
+      "sourceContentSHA256": "d2aac037f718d868a10d3d3474385e6b9f74e7e7122c2e7536a762bf69e31430",
       "selections": [
         {
           "chapter": 3,
@@ -255,14 +619,46 @@
         }
       ],
       "includesWholeVerses": false,
-      "openingText": "וַיִּתְפַּלֵּל [מָרְדְּכי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃",
-      "closingText": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשׁבְּחֶךָ יְיָ׃",
+      "openingText": "וַיִּתְפַּלֵּל [מָרְדְּכַי] אֶל־יְיָ בְּזָכְרוֹ אֶת־כָּל־מַעַלְלֵי יְיָ וַיֹּאמַר׃",
+      "closingText": "שְׁמַע אֶת־תְּחִנָּתִי וּרְצֵה ב[עַם] גּוֹרָלְךָ וַהֲפֹךְ אֶבְלֵנוּ לְשָׂשׂוֹן לְמַעַן נִחְיֶה וּנְהַלֵּל אֶת־שִׁמְךָ יְיָ וְאַל־תַּכְרֵת אֶת־שְׂפָתַי מְשִׁבְּחֶךָ יְיָ׃",
       "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
       "excludedSourceBlocks": [],
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
           "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-SUS-ESG-note-reinspection-20261017-pass2.json",
+          "sha256": "c19efd3da1c73d3f19f998c33d06ba1be0da4fb21bb498209edba6f3266fdd6f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit2-3-point-comparison-20261017-pass19.json",
+          "sha256": "97644df6a5874e9b3394e596a1543b475256247d70a5e7c5fe07eb3a81273dd6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-colophon-point-comparison-20261017-pass19.json",
+          "sha256": "febf7a0a1367d0c59f2cbf1db93e9fbfd359486619b83912509ac8ae5ca01f41"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-3-point-comparison-20261017-pass24.json",
+          "sha256": "0fa0f2bfca15fb7b2106616643e940e21b36b97c2e3e513977f24fceea266317"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-point-comparison-20261017-pass31.json",
+          "sha256": "bfb74dc8e508e850ac30467f8ebef6ca89414a154b5b93110a0bd5028720522e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-point-comparison-20261017-pass31.json",
+          "sha256": "248ac9fb159aedb320b02705723b9e5b145946dd447540d2f7850e75fa90e2b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-boundary-label-supplement-20261017-pass31.json",
+          "sha256": "4f285db896e582fe073ddaa769e9f428a537e40b87a042dacb22fc7843074979"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-boundary-label-supplement-20261017-pass31.json",
+          "sha256": "d0239026b53bef42c754140837b80696ad0178e0528490a270a6de0ceffc4adb"
         }
       ]
     },
@@ -350,12 +746,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "Vulgate 24:16 and the inspected C10c/C10t proper end with a dwelling in the full assembly of saints. Hebrew 24:12 ends with the inheritance of the Lord and has no counterpart for that distinct final clause. The preceding creation/Zion/Jerusalem/root clauses correspond to Hebrew 24:9–12.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "reason": "Vulgate 24:16 and the inspected C10c/C10t proper end with a dwelling in the full assembly of saints. Hebrew 24:12 ends with the inheritance of the Lord and has no counterpart for that distinct final clause. The preceding creation/Zion/Jerusalem/root clauses correspond to Hebrew 24:9–12."
@@ -366,12 +798,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "The vine/fruit passage corresponds to Hebrew 24:17,19–22, but Vulgate 24:24–25 (mother of fair love and the grace/hope declarations), 24:28 (memory through generations) and 24:31 (life everlasting for interpreters) are absent. Printed Hebrew label18 is omitted in the approved source inventory. Do not relabel Hebrew24:23–31, which is different river/Torah material.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "reason": "The vine/fruit passage corresponds to Hebrew 24:17,19–22, but Vulgate 24:24–25 (mother of fair love and the grace/hope declarations), 24:28 (memory through generations) and 24:31 (life everlasting for interpreters) are absent. Printed Hebrew label18 is omitted in the approved source inventory. Do not relabel Hebrew24:23–31, which is different river/Torah material."
@@ -382,12 +850,48 @@
         "roman"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "The existing exact Roman appointment review establishes the NABRE envelope for 2026-09-13. Compared every clause with the pinned DRA counterpart: anger/fury27:33 corresponds to Hebrew27:30; revenge, forgiveness, anger and prayer28:1–5 correspond to Hebrew28:1–5; DRA28:6–7 cohere in Hebrew28:6, and DRA28:8–9 in Hebrew28:7. The Hebrew ending is covenant and forgiveness, before the separate avoid-quarrels unit28:8. All selected Hebrew units are present; the later printed28:12 lacuna is outside this excerpt.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "selections": [
@@ -435,12 +939,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "The rich/righteous-person paragraph corresponds at Hebrew31:8–11, but printed31:10 contains an explicit two-dash lacuna and multiple preserved witnesses. The appointed trial/glory wording cannot be fully certified from that damaged unit; no alternate line is selected to conceal the gap.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "reason": "The rich/righteous-person paragraph corresponds at Hebrew31:8–11, but printed31:10 contains an explicit two-dash lacuna and multiple preserved witnesses. The appointed trial/glory wording cannot be fully certified from that damaged unit; no alternate line is selected to conceal the gap."
@@ -451,12 +991,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "Latin Quad1-6 retains the full opening mercy/light/fear petitions in36:1–2, though its English body starts at the raise-your-hand clause. Hebrew36:1 compresses the saving/fear petitions, omits source label2, and has no light-of-mercies clause. Hebrew36:10 ends with who can ask what you do rather than the appointed final wonderful-works clause. Combined6–7 and8–9 remain intact; no numeric identity fallback. The different final wording alone would not block a secure recension correspondence; the separate opening light-of-mercies and wonders petitions have no full source counterpart. The Latin witness is section LectioL4.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "reason": "Latin Quad1-6 retains the full opening mercy/light/fear petitions in36:1–2, though its English body starts at the raise-your-hand clause. Hebrew36:1 compresses the saving/fear petitions, omits source label2, and has no light-of-mercies clause. Hebrew36:10 ends with who can ask what you do rather than the appointed final wonderful-works clause. Combined6–7 and8–9 remain intact; no numeric identity fallback. The different final wording alone would not block a secure recension correspondence; the separate opening light-of-mercies and wonders petitions have no full source counterpart. The Latin witness is section LectioL4."
@@ -467,12 +1043,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "Compared the complete pinned DRA envelope and the same-citation C4ap/C5ap proper. DRA39:6–7 are Hebrew39:5 (seeking the Maker and prayer for sins);8–9 are Hebrew39:6 (understanding/wisdom/thanks);10 is Hebrew39:7;11 is Hebrew39:8;12–13 are Hebrew39:9 (lasting praise and name);14 is Hebrew39:10 (nations and assembly). Hebrew39:11 starts a new longevity comparison and is excluded. All six primary units are whole, in print order.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "selections": [
@@ -512,12 +1124,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "The approved Hebrew source omits44:12. The appointed posterity/seed-standing-in-covenants unit in Vulgate44:12 has no complete counterpart between Hebrew44:11 and44:13. Bracketed supplied source words in14 are retained; they do not repair omitted12.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "reason": "The approved Hebrew source omits44:12. The appointed posterity/seed-standing-in-covenants unit in Vulgate44:12 has no complete counterpart between Hebrew44:11 and44:13. Bracketed supplied source words in14 are retained; they do not repair omitted12."
@@ -528,12 +1176,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "The printed citation is a broad envelope around a composite priestly proper. Its full Vulgate44:22–23 includes the dust/stars promise absent from Hebrew44:21; this is a distinct added proposition, not merely a differently worded parallel clause. The actual C4 proper does not itself recite that dust/stars promise, so this is a limitation of representing the full cited Bible envelope, not a claim that the proper includes it. Vulgate44:27 crosses into Hebrew45:1. The Moses/Aaron paragraph corresponds generally to Hebrew45:3–16, not3–20. Retain unavailability for this full exact citation; do not fabricate a continuous Hebrew translation of the composite priestly incipit or silently omit the cited source gap.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "reason": "The printed citation is a broad envelope around a composite priestly proper. Its full Vulgate44:22–23 includes the dust/stars promise absent from Hebrew44:21; this is a distinct added proposition, not merely a differently worded parallel clause. The actual C4 proper does not itself recite that dust/stars promise, so this is a limitation of representing the full cited Bible envelope, not a claim that the proper includes it. Vulgate44:27 crosses into Hebrew45:1. The Moses/Aaron paragraph corresponds generally to Hebrew45:3–16, not3–20. Retain unavailability for this full exact citation; do not fabricate a continuous Hebrew translation of the composite priestly incipit or silently omit the cited source gap."
@@ -544,12 +1228,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "The opening praise-of-ancestors sequence corresponds to Hebrew44:1–15 but the approved source omits44:12. The Vulgate covenant/posterity unit is not present; the excerpt cannot be marked complete by skipping that source gap.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "reason": "The opening praise-of-ancestors sequence corresponds to Hebrew44:1–15 but the approved source omits44:12. The Vulgate covenant/posterity unit is not present; the excerpt cannot be marked complete by skipping that source gap."
@@ -560,12 +1280,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "DRA45:1 corresponds to the Moses paragraph within Hebrew45:1; DRA45:2 spans Hebrew45:2 and the signs opening of45:3; DRA45:3 maps to the rest of45:3; DRA45:4 maps to45:4; DRA45:5–6 map to45:5. The strengthened-in-heights and signs phrases are recension readings at secure matching positions, not missing units. Complete Hebrew45:1 additionally includes the favor-in-eyes-of-all-flesh material corresponding to DRA44:27: disclose a whole-unit envelope. Preserve all printed brackets and the chapter partial flag. C4c corroborates the appointed paragraph but omits the final Jacob/Israel clause, already retained by whole45:5.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "selections": [
@@ -601,12 +1357,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
-      "method": "DRA51:13 corresponds to Hebrew51:9; DRA51:14 to51:10; DRA51:15 to51:11; DRA51:16–17 to51:12. Raise-voice versus exalted-dwelling and you-are-my-father versus father-of-my-lord are recension readings inside the same complete ordered prayer, not absent units. The closing rescue/thanks/blessing is explicit; stop at51:12 before the separately printed unnumbered thanksgiving psalm and wisdom poem. Preserve partial-chapter metadata without inventing words.",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+      "method": "DRA51:13 corresponds to Hebrew51:9; DRA51:14 to51:10; DRA51:15 to51:11; DRA51:16–17 to51:12. Raise-voice versus exalted-dwelling and you-are-my-father versus father-of-my-lord are recension readings inside the same complete ordered prayer, not absent units. The closing rescue/thanks/blessing is explicit; stop at51:12 before the separately printed unnumbered thanksgiving psalm and wisdom poem. Preserve partial-chapter metadata without inventing words. On 2026-10-17 primary Hebrew51:11 gains the independently source-verified alef segol in וְאֶזְכֶּרְךָ and retires only its exact unreadable-point note. The complete prayer, all unit boundaries, selection order, opening and closing remain unchanged.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "selections": [
@@ -638,12 +1430,48 @@
         "roman1962"
       ],
       "sourceBook": "SIR",
-      "sourceContentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "sourceContentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "method": "The rescue prayer corresponds broadly to Hebrew51:1–6 and8, but Hebrew51:2 retains an explicit lacuna, and the appointed unburnt-in-fire/unjust-king/praise-to-death clauses are absent or materially different (Hebrew6 describes reaching death/Sheol). The safe result is unavailable for this exact appointment, not silently skipping source gaps. The post12 unnumbered thanksgiving psalm is not part of this citation.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/SIR-daily-boundary-review-20261002.json",
           "sha256": "24f607595230802530157c8780cc2dea85fd44359ddd6c3a3412a0cc337f9185"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
         }
       ],
       "reason": "The rescue prayer corresponds broadly to Hebrew51:1–6 and8, but Hebrew51:2 retains an explicit lacuna, and the appointed unburnt-in-fire/unjust-king/praise-to-death clauses are absent or materially different (Hebrew6 describes reaching death/Sheol). The safe result is unavailable for this exact appointment, not silently skipping source gaps. The post12 unnumbered thanksgiving psalm is not part of this citation."
@@ -654,13 +1482,21 @@
         "roman1962"
       ],
       "sourceBook": "TOB",
-      "sourceContentSHA256": "e309bc3f06ad184197fb84d180a178f215355a13082208e621fd1add6f986f5d",
+      "sourceContentSHA256": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
       "reason": "Hard block: the entire appointed trial/temptation proposition in Vulgate12:13 is absent in this Hebrew recension. Other recensional differences: Hebrew14 does not specify release from the demon, Hebrew9 says fullness of life instead of expressly eternal life; Hebrew15 adds angels presenting prayers. Preserve wording; do not fill from another translation. Whole10–11 must remain combined; all source notes follow unchanged.",
       "method": "Direct clause comparison of the reviewed Hebrew source units with public-domain Douay-Rheims1899/Vulgate and the pinned Latin appointed proper; retain source wording, order and whole combined units. Distinct missing propositions are explicit blockers; ordinary lexical/numerical recension variants are recorded separately.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/hebrew-daily-mappings-2ma-jdt-tob-additions.json",
           "sha256": "b1bd7ac01cfbcafe91390cfaae9323ff15db4af096950761beca19e6f36746c6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017.json",
+          "sha256": "1424e8b769c2c8d4cac0261cf3778a4909df039510fde5c26e7164c782a2e4b0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017-pass3.json",
+          "sha256": "01d93083ca96971df5bef9995a5caa5c0850ecc73fab909986f7ea8b625be959"
         }
       ]
     },
@@ -669,7 +1505,7 @@
         "roman1962"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 10,
@@ -694,7 +1530,7 @@
       ],
       "includesWholeVerses": true,
       "openingText": "הִיא הוֹלִיכָה בְּדֶרֶךְ יָשָׁר אֶת־הַצַּדִּיק בְּבָרְחוֹ מִפְּנֵי חֲמַת אָחִיו וַתַּרְאֵהוּ מַמְלֶכֶת יְיָ וַתִּתֶּן־לוֹ דַּעַת קֹדֶשׁ וַתּוֹשַׁע לוֹ בְּתַלְאוֹתָיו וַתֶּרֶב אֶת־פְּרִי עֲמָלוֹ׃",
-      "closingText": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
+      "closingText": "וַתֵּרֶד עִמּוֹ אֶל־הַבּוֹר וּבְמַאֲסָר לֹא תִטְּשׁהוּ עַד־תָּבִיא לוֹ שֵׁבֶט מַלְכוּת וּמִמְשָׁל בְּלוֹחֲצָיו וַתְּגַל שֶׁקֶר מַלְשִׁינָיו וַתִּתֶּן־לוֹ שֵׁם עוֹלָם׃",
       "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
       "excludedSourceBlocks": [],
       "status": "complete",
@@ -702,6 +1538,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     },
@@ -710,7 +1694,7 @@
         "roman1962"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 10,
@@ -739,6 +1723,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     },
@@ -747,7 +1879,7 @@
         "roman1962"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 3,
@@ -792,6 +1924,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     },
@@ -800,7 +2080,7 @@
         "roman"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 3,
@@ -849,6 +2129,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     },
@@ -857,7 +2285,7 @@
         "ugcc-gregorian"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 4,
@@ -906,6 +2334,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     },
@@ -914,7 +2490,7 @@
         "maronite"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 5,
@@ -959,6 +2535,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     },
@@ -967,7 +2691,7 @@
         "roman1962"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 5,
@@ -992,7 +2716,7 @@
       ],
       "includesWholeVerses": true,
       "openingText": "אָז יַעמֹד הַצַּדִּיק הָכֵן וְקוֹמְמִיוּת בִּפְנֵי צוֹרְרָיו וּבוֹזֵי מַעֲשָׂיו׃",
-      "closingText": "איככָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
+      "closingText": "איכָכָה נֶחֱשַׁב בֵּין בְּנֵי אֱלֹהִים וּבֵין קְדוֹשִׁים חֶלְקוֹ׃",
       "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
       "excludedSourceBlocks": [],
       "status": "complete",
@@ -1000,6 +2724,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     },
@@ -1008,7 +2880,7 @@
         "roman"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 6,
@@ -1033,7 +2905,7 @@
       ],
       "includesWholeVerses": true,
       "openingText": "בָּרָה הִיא הַחָכְמָה וְלֹא תִבֹּל תִּוָּדַע עַל־נְקַלָּה לְאוֹהֲבֶיהָ [וְתִמָּצֵא לִמְבַקְשֶׁיהָ]׃",
-      "closingText": "כִּי הִיא תְסוֹבֵב וּתְחַפֵּשׂ אֶת־אֲשֶׁר יָקְרוּ לָהּ וּבִנְתִיבוֹת בְּרָצוֹן תוֹפִיעַ לָמוֹ וּבכָל־זְמָמָם תִּתְמְכֵם׃",
+      "closingText": "כִּי הִיא תְסוֹבֵב וּתְחַפֵּשׂ אֶת־אֲשֶׁר יָקְרוּ לָהּ וּבִנְתִיבוֹת בְּרָצוֹן תוֹפִיעַ לָמוֹ וּבְכָל־זְמָמָם תִּתְמְכֵם׃",
       "method": "Direct clause/end-point comparison with the named edition/calendar witnesses; whole printed Hebrew source units only. Numeric labels are locators, not evidence of equivalence.",
       "excludedSourceBlocks": [],
       "status": "complete",
@@ -1041,6 +2913,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     },
@@ -1049,7 +3069,7 @@
         "maronite"
       ],
       "sourceBook": "WIS",
-      "sourceContentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "sourceContentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "selections": [
         {
           "chapter": 7,
@@ -1094,6 +3114,154 @@
         {
           "path": "Shared/reports/hebrew-wikisource/WIS-daily-boundary-review-20261002.json",
           "sha256": "5139a670ebc9c84bb4b6a6f9e2b8ed656c7e79802a0d4717cbbbe38f2aa84eae"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass48.json",
+          "sha256": "81822ac868c16389f46985c7321abfccde678e8c98a3cbba13e87d374b59abbd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass48.json",
+          "sha256": "b8926c60a5a462b1ceb8aaa96f418d71dfa5d3bddb6591e3ad67542a471009ca"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass49.json",
+          "sha256": "f36a5d20b54c919e5925e09d4645a76d5316f25399f3b7529425af3e3786699d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass49.json",
+          "sha256": "0e05f25865e0801ad9eeaa83c865f9202ca987eb3e0dc14af1d31e53c895153a"
         }
       ]
     }

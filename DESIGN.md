@@ -77,6 +77,17 @@ use the same heading and controls, changing the visible content rather than the 
 Each visible card supports expansion independently of its order. The event month grid is
 Monday-first civil Gregorian, mirrors naturally in RTL, and marks every published date.
 
+Wide Bible readers open as two facing pages with restrained native surfaces and a clear
+center gutter. Justified Scripture paragraphs place small verse indicators inline, using
+the existing Scripture typefaces and complete source blocks;
+the current source block anchors repagination and transitions to a narrow continuous reader.
+Page order and horizontal turns follow the Scripture's inline direction, independently of
+the interface language. Native arrows provide the same actions without a swipe. Long source
+units and notes remain scrollable within their page rather than being clipped or rewritten.
+Flat Apple displays use native facing-page curls. Active folds retain native reserved-region
+placement; Android and Windows use directional page transitions. Motion respects platform
+animation preferences.
+
 ## Elevation & Depth
 
 Scrolling content uses opaque semantic card surfaces. System bars, toolbars, sheets, menus

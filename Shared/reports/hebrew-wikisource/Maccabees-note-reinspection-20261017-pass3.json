@@ -1,0 +1,3099 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "pass": 3,
+  "books": [
+    "1MA",
+    "2MA"
+  ],
+  "status": "All43 remaining note positions reinspected;12 exact note retirements independently approved and applied",
+  "notesInspected": 43,
+  "unreadablePointNotesInspected": 42,
+  "authorizedRestorationDisclosuresPreserved": 1,
+  "resolved": 12,
+  "restoredVisiblePoints": 8,
+  "retiredFalsePositiveNotesWithoutTextChanges": 4,
+  "retained": 31,
+  "remainingNotes": {
+    "1MA": 17,
+    "2MA": 14
+  },
+  "scope": "Fresh word and exact-glyph examination of every remaining First and Second Maccabees note; this does not claim a new whole-book author comparison. The separately authorized2MA14:4 restored consonant remains visibly disclosed.",
+  "method": "Extract original embedded scan images, locate unchanged prior word pixels in those source pages, inspect bounded native crops and5x/15x nearest-neighbor enlargements, and obtain root independent confirmation before applying any text or note change. Source geometry alone determines points or false positives. No OCR, grammar, expected spelling, smoothing, thresholding, sharpening, generated pixels or another translation supplies text.",
+  "sourceScans": [
+    {
+      "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+      "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e"
+    },
+    {
+      "path": "/private/tmp/prosary-maccabees-20261017/Apocrypha_Kahana_B_extra_scan.pdf",
+      "sha256": "b72eaf5d2d858fabb7c3438ac0436ccd64c394a7dd2fad609efabe628d5534c7"
+    }
+  ],
+  "canonical": {
+    "1MA": {
+      "inputFileSHA256": "ffa7d66b7242999190d2d4e5bc46ff472b977bb0eabf7f5c2bd390a83444bee8",
+      "outputFileSHA256": "b3cc5762e9fb7ac4785ded238d9c0a791ddc426df6fa8bf9c8408339b095b444",
+      "inputContentSHA256": "c100b9140cf324ecaca6ce7bbef4cedc1bc357e49ece18bbcae21888fcda631b",
+      "outputContentSHA256": "05e8897fbeb509871c5ab01c6020613a42af57b431fdfe126dd5baa4af68b5ab"
+    },
+    "2MA": {
+      "inputFileSHA256": "cc29b41473585dcaa62a92aa34ced18d2ede4dcd7b2ff75f56ceb070c8a5a5b4",
+      "outputFileSHA256": "b3e4ebc304210a4027ccd7a68e2a398bf1fc31405845c93d73a8612384e10d6e",
+      "inputContentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+      "outputContentSHA256": "62846afbd2fc06d63961c8a46130a6863952e880a1a7dde18d00e92c628edba8"
+    }
+  },
+  "resolutions": [
+    {
+      "book": "1MA",
+      "noteID": "1ma-4-10-yod-dagesh",
+      "chapter": 4,
+      "verse": 10,
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "beforeAnchor": "הַיוֹם",
+      "afterAnchor": "הַיּוֹם",
+      "action": "restoreVisiblePointAndRetireNote",
+      "addedScalar": "U+05BC",
+      "finding": "Detached seven-pixel yod interior dot in companion; continuous white clearance from stem/head and separation from the lower vowel baseline. Primary remains solid.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "1MA-4-10-extra",
+        "1MA-4-10-primary"
+      ],
+      "tightEvidence": [
+        "1MA-4-10-yod-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-5-4-bet-dagesh",
+      "chapter": 5,
+      "verse": 4,
+      "letterIndex": 1,
+      "markCategory": "dagesh",
+      "beforeAnchor": "בְעוֹן",
+      "afterAnchor": "בְעוֹן",
+      "action": "retireFalsePositiveWithoutTextChange",
+      "addedScalar": null,
+      "finding": "False-positive note: primary bet has a broad clean middle cavity, with no interior dot or ambiguous ink; ordinary saturated baseline lies below the dagesh position.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "1MA-5-4-primary"
+      ],
+      "tightEvidence": [
+        "1MA-5-4-bet-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-5-26-samekh-vowel",
+      "chapter": 5,
+      "verse": 26,
+      "letterIndex": 2,
+      "markCategory": "vowel",
+      "beforeAnchor": "כִספָן",
+      "afterAnchor": "כִסְפָן",
+      "action": "restoreVisiblePointAndRetireNote",
+      "addedScalar": "U+05B0",
+      "finding": "Two distinct vertically separated dots below samekh in companion, clear of the foot. Primary upper point joins foot but the lower dot remains visible.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "1MA-5-26-extra",
+        "1MA-5-26-primary"
+      ],
+      "tightEvidence": [
+        "1MA-5-26-samekh-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-6-11-bet-dagesh",
+      "chapter": 6,
+      "verse": 11,
+      "letterIndex": 1,
+      "markCategory": "dagesh",
+      "beforeAnchor": "בְתָקְפִּי",
+      "afterAnchor": "בְתָקְפִּי",
+      "action": "retireFalsePositiveWithoutTextChange",
+      "addedScalar": null,
+      "finding": "False-positive note: both bet cavities are open and white in the middle; dark baseline is below the dagesh position, with no interior point. Preserve the printed sheva.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "1MA-6-11-primary",
+        "1MA-6-11-extra"
+      ],
+      "tightEvidence": [
+        "1MA-6-11-bet-primary",
+        "1MA-6-11-bet-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-12-25-het-vowel",
+      "chapter": 12,
+      "verse": 25,
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "beforeAnchor": "חמָת",
+      "afterAnchor": "חֲמָת",
+      "action": "restoreVisiblePointAndRetireNote",
+      "addedScalar": "U+05B2",
+      "finding": "Separate elongated left horizontal component beside two vertically separated right components below het, each clear of both legs. A perforation in the bar does not obscure its horizontal class.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "1MA-12-25-extra",
+        "1MA-12-25-primary"
+      ],
+      "tightEvidence": [
+        "1MA-12-25-het-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-13-41-42-shin-dagesh",
+      "chapter": 13,
+      "verse": 41,
+      "letterIndex": 3,
+      "markCategory": "dagesh",
+      "beforeAnchor": "וּבַשְׁטָרוֹת",
+      "afterAnchor": "וּבַשְׁטָרוֹת",
+      "action": "retireFalsePositiveWithoutTextChange",
+      "addedScalar": null,
+      "finding": "False-positive note: companion and primary show open shin cavities and an ordinary thin middle diagonal, without a separate dot or ambiguous interior cluster.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "1MA-13-41-extra",
+        "1MA-13-41-primary"
+      ],
+      "tightEvidence": [
+        "1MA-13-41-shin-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-13-51-yod-dagesh",
+      "chapter": 13,
+      "verse": 51,
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "beforeAnchor": "מִיִשְׂרָאֵל",
+      "afterAnchor": "מִיִּשְׂרָאֵל",
+      "action": "restoreVisiblePointAndRetireNote",
+      "addedScalar": "U+05BC",
+      "finding": "Detached seven-pixel yod interior dot in companion, separate from the head/stem and from the existing lower hiriq. Primary is joined.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "1MA-13-51-extra",
+        "1MA-13-51-primary"
+      ],
+      "tightEvidence": [
+        "1MA-13-51-yod-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-14-43-shin-dagesh",
+      "chapter": 14,
+      "verse": 43,
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "beforeAnchor": "הַשְׁטָרוֹת",
+      "afterAnchor": "הַשְׁטָרוֹת",
+      "action": "retireFalsePositiveWithoutTextChange",
+      "addedScalar": null,
+      "finding": "False-positive note: both shin cavities are open; the middle diagonal has normal width and no candidate dagesh. Preserve shin dot and lower sheva.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "1MA-14-43-extra",
+        "1MA-14-43-primary"
+      ],
+      "tightEvidence": [
+        "1MA-14-43-shin-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-1-16-vav-1-vowel-second-word",
+      "chapter": 1,
+      "verse": 16,
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "beforeAnchor": "ופִצְפְּצוּהוּ",
+      "afterAnchor": "וּפִצְפְּצוּהוּ",
+      "action": "restoreVisiblePointAndRetireNote",
+      "addedScalar": "U+05BC",
+      "finding": "Detached side dot left of initial vav at shuruq height; it is distinct from both head/stem and the lower baseline. The target is the initial vav of the second scoped word, ופצפצוהו; primary context corroborates the exact word.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "2MA-1-16-extra",
+        "2MA-1-16-primary"
+      ],
+      "tightEvidence": [
+        "2MA-1-16-vav-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-5-16-tav-2-vowel",
+      "chapter": 5,
+      "verse": 16,
+      "letterIndex": 2,
+      "markCategory": "vowel",
+      "beforeAnchor": "נִתּן",
+      "afterAnchor": "נִתַּן",
+      "action": "restoreVisiblePointAndRetireNote",
+      "addedScalar": "U+05B7",
+      "finding": "Detached flat horizontal lower bar, eight native pixels wide and two high, with no central downward stem. Companion supports patah while primary is thicker. Preserve tav dagesh.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "2MA-5-16-primary",
+        "2MA-5-16-extra"
+      ],
+      "tightEvidence": [
+        "2MA-5-16-tav-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-6-13-shin-2-dagesh",
+      "chapter": 6,
+      "verse": 13,
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "beforeAnchor": "הִשָׁאֵר",
+      "afterAnchor": "הִשָּׁאֵר",
+      "action": "restoreVisiblePointAndRetireNote",
+      "addedScalar": "U+05BC",
+      "finding": "Detached interior rectangle has continuous white around every side in companion, including a native white column from the middle diagonal. Primary is more joined.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "2MA-6-13-primary",
+        "2MA-6-13-extra"
+      ],
+      "tightEvidence": [
+        "2MA-6-13-shin-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-15-10-dalet-5-vowel",
+      "chapter": 15,
+      "verse": 10,
+      "letterIndex": 5,
+      "markCategory": "vowel",
+      "beforeAnchor": "וַיְעוֹדדֵם",
+      "afterAnchor": "וַיְעוֹדֲדֵם",
+      "action": "restoreVisiblePointAndRetireNote",
+      "addedScalar": "U+05B2",
+      "finding": "Elongated left horizontal component and two separated right vertical dots form hataf-patah below the first dalet, clear of its shaft. Fresh primary word also preserves the compound arrangement. Retain this printed distribution under a non-guttural.",
+      "independentReviewer": "root: independently inspected exact crops and approved before canonical changes, 2026-10-17",
+      "wordEvidence": [
+        "2MA-15-10-extra",
+        "2MA-15-10-primary"
+      ],
+      "tightEvidence": [
+        "2MA-15-10-dalet-extra"
+      ]
+    }
+  ],
+  "retainedDisclosures": [
+    {
+      "book": "2MA",
+      "noteID": "2ma-1-10-he-1-vowel",
+      "chapter": 1,
+      "verse": 10,
+      "anchor": "המְּשׁוּחִים",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "He lower horizontal cluster has an irregular two-lobed underside; no precise vowel class is certified.",
+      "wordEvidence": [
+        "2MA-1-10-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-2-28-yod-2-dagesh",
+      "chapter": 2,
+      "verse": 28,
+      "anchor": "דִיוּקֵי",
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Yod interior material remains joined to its descending stroke; tight pixels do not isolate a dot.",
+      "wordEvidence": [
+        "2MA-2-28-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-3-26-dalet-3-vowel",
+      "chapter": 3,
+      "verse": 26,
+      "anchor": "וּמַדהִירֵי",
+      "letterIndex": 3,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "The targeted dalet lower region remains incomplete or compact in the full original-pixel word crop; no exact vowel is supplied.",
+      "wordEvidence": [
+        "2MA-3-26-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-5-22-lamed-3-vowel",
+      "chapter": 5,
+      "verse": 22,
+      "anchor": "פִּילפּוֹס",
+      "letterIndex": 3,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Lamed tip and lower mark are contiguous; no independently classifiable vowel geometry is recovered.",
+      "wordEvidence": [
+        "2MA-5-22-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-6-11-he-2-vowel",
+      "chapter": 6,
+      "verse": 11,
+      "anchor": "מִהרוּ",
+      "letterIndex": 2,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "The upper right component remains joined to the horizontal bar, preventing secure distinction of the full compound vowel; retain the prior independently rejected hypothesis.",
+      "wordEvidence": [
+        "2MA-6-11-primary",
+        "2MA-6-11-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-7-40-bet-1-vowel",
+      "chapter": 7,
+      "verse": 40,
+      "anchor": "בּיָי",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Bet lower mark remains a joined compact cluster with irregular lower lobes.",
+      "wordEvidence": [
+        "2MA-7-40-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-8-4-yod-2-dagesh",
+      "chapter": 8,
+      "verse": 4,
+      "anchor": "הַיְלָדִים",
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "The tiny yod is fragmented; its short stem and remaining head do not establish a separate dagesh or safe absence.",
+      "wordEvidence": [
+        "2MA-8-4-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-9-29-pe-1-dagesh",
+      "chapter": 9,
+      "verse": 29,
+      "anchor": "פִילפּוֹס",
+      "letterIndex": 1,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "The first pe has a connected natural interior tongue and heavy foot; a distinct dagesh or safe absence is unproven.",
+      "wordEvidence": [
+        "2MA-9-29-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-9-29-lamed-3-vowel",
+      "chapter": 9,
+      "verse": 29,
+      "anchor": "פִילפּוֹס",
+      "letterIndex": 3,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Lamed lower ink remains joined at its tip, with no secure complete vowel shape.",
+      "wordEvidence": [
+        "2MA-9-29-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-11-4-bet-3-vowel",
+      "chapter": 11,
+      "verse": 4,
+      "anchor": "מֵרִבבוֹת",
+      "letterIndex": 3,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Lower left and right material is still connected by a narrow bar; the full point configuration cannot safely be assigned.",
+      "wordEvidence": [
+        "2MA-11-4-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-11-25-samekh-2-vowel",
+      "chapter": 11,
+      "verse": 25,
+      "anchor": "נַסיעַם",
+      "letterIndex": 2,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "False-positive hypothesis rejected independently: target foot is thicker than ordinary same-page final-samekh baselines in Lysias. White below alone does not establish absence of joined vowel ink.",
+      "wordEvidence": [
+        "2MA-11-25-extra",
+        "2MA-11-25-primary"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-12-45-shin-3-dagesh",
+      "chapter": 12,
+      "verse": 45,
+      "anchor": "קְדֻשָׁה",
+      "letterIndex": 3,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Interior candidate dot retains an original-pixel bridge to the middle diagonal; no detached dagesh is certified.",
+      "wordEvidence": [
+        "2MA-12-45-primary",
+        "2MA-12-45-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-14-4-het-3-restored-letter",
+      "chapter": 14,
+      "verse": 4,
+      "anchor": "וְאֶחָת",
+      "letterIndex": 3,
+      "markCategory": "consonant",
+      "decision": "retainEditorialRestorationDisclosure",
+      "finding": "The third consonant frame is still lost in both scans. Retain the exact user-approved editorial restoration and visible surviving qamats; do not claim source-certified het.",
+      "wordEvidence": [
+        "2MA-14-4-primary",
+        "2MA-14-4-extra"
+      ]
+    },
+    {
+      "book": "2MA",
+      "noteID": "2ma-15-34-het-2-vowel",
+      "chapter": 15,
+      "verse": 34,
+      "anchor": "מֵחלְלוֹ",
+      "letterIndex": 2,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Het lower bar has ambiguous lower protrusions and primary lower ink is compact; no exact point class is certified.",
+      "wordEvidence": [
+        "2MA-15-34-extra",
+        "2MA-15-34-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-4-18-yod-dagesh",
+      "chapter": 4,
+      "verse": 18,
+      "anchor": "קוֹמְמִיוֹת",
+      "letterIndex": 5,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "The apparently separate yod spur has an original-pixel bridge to the stem; a tight crop confirms one connected glyph mass, not a detached dot.",
+      "wordEvidence": [
+        "1MA-4-18-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-5-34-yod-dagesh",
+      "chapter": 5,
+      "verse": 34,
+      "anchor": "בַּיוֹם",
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Primary yod remains saturated and solid; no separate interior dot or clean absence is established.",
+      "wordEvidence": [
+        "1MA-5-34-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-6-10-yod-dagesh",
+      "chapter": 6,
+      "verse": 10,
+      "anchor": "מִיָגוֹן",
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Yod interior is a saturated short stroke; its lower qamats stays separate but does not identify an interior dot.",
+      "wordEvidence": [
+        "1MA-6-10-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-6-26-yod-dagesh",
+      "chapter": 6,
+      "verse": 26,
+      "anchor": "הַיוֹם",
+      "letterIndex": 2,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "The candidate yod projection remains joined to the stem in tight original pixels.",
+      "wordEvidence": [
+        "1MA-6-26-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-6-38-kaf-vowel",
+      "chapter": 6,
+      "verse": 38,
+      "anchor": "וּמְכסִּים",
+      "letterIndex": 3,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Kaf lower material is a joined or lobed compact cluster whose exact vowel class is unresolved.",
+      "wordEvidence": [
+        "1MA-6-38-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-9-1-bet-vowel",
+      "chapter": 9,
+      "verse": 1,
+      "anchor": "בּקְחִידֵס",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Bet lower mark has a compact horizontal cluster with split lower lobes; its exact full point geometry remains unsafe to classify.",
+      "wordEvidence": [
+        "1MA-9-1-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-9-56-resh-vowel",
+      "chapter": 9,
+      "verse": 56,
+      "anchor": "בְּרגְזָה",
+      "letterIndex": 2,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "A lower bar and rounded lower component remain ambiguous; the primary lower region is joined. No exact vowel is supplied.",
+      "wordEvidence": [
+        "1MA-9-56-primary",
+        "1MA-9-56-extra",
+        "1MA-9-56-primary-expanded"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-10-46-vav-vowel",
+      "chapter": 10,
+      "verse": 46,
+      "anchor": "וכִשְׁמֹעַ",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Initial vav lower material joins its stem and foot; exact vowel class remains unresolved.",
+      "wordEvidence": [
+        "1MA-10-46-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-10-57-pe-dagesh",
+      "chapter": 10,
+      "verse": 57,
+      "anchor": "וּקְלֵיאָפַטְרָה",
+      "letterIndex": 6,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Pe interior material joins the natural tongue/inner stroke, so a separate dagesh cannot be certified.",
+      "wordEvidence": [
+        "1MA-10-57-primary",
+        "1MA-10-57-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-14-32-mem-vowel",
+      "chapter": 14,
+      "verse": 32,
+      "anchor": "וַיַּחֲמשׁ",
+      "letterIndex": 4,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Mem lower mark joins its foot; the complete vowel configuration is not visible.",
+      "wordEvidence": [
+        "1MA-14-32-extra",
+        "1MA-14-32-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-14-34-tav-vowel",
+      "chapter": 14,
+      "verse": 34,
+      "anchor": "לְתקֵּן",
+      "letterIndex": 2,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "Tav lower contour is incomplete or joined to its foot; neither precise point nor clean absence is established.",
+      "wordEvidence": [
+        "1MA-14-34-primary",
+        "1MA-14-34-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-15-14-bet-dagesh",
+      "chapter": 15,
+      "verse": 14,
+      "anchor": "וַיָּסֹבוּ",
+      "letterIndex": 4,
+      "markCategory": "dagesh",
+      "decision": "retainUnreadablePointNote",
+      "finding": "The candidate interior point joins the bet inner stroke/foot in both scans.",
+      "wordEvidence": [
+        "1MA-15-14-extra",
+        "1MA-15-14-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-15-37-qof-vowel",
+      "chapter": 15,
+      "verse": 37,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "This occurrence was read separately. Qof lower material remains incomplete or joined to its descending/returning stroke; another occurrence cannot supply its vowel.",
+      "wordEvidence": [
+        "1MA-15-37-extra"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-15-40-qof-vowel",
+      "chapter": 15,
+      "verse": 40,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "This occurrence was read separately. Qof lower material remains incomplete or joined to its descending/returning stroke; another occurrence cannot supply its vowel.",
+      "wordEvidence": [
+        "1MA-15-40-extra",
+        "1MA-15-40-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-16-1-qof-vowel",
+      "chapter": 16,
+      "verse": 1,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "This occurrence was read separately. Qof lower material remains incomplete or joined to its descending/returning stroke; another occurrence cannot supply its vowel.",
+      "wordEvidence": [
+        "1MA-16-1-extra",
+        "1MA-16-1-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-16-4-qof-vowel",
+      "chapter": 16,
+      "verse": 4,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "This occurrence was read separately. Qof lower material remains incomplete or joined to its descending/returning stroke; another occurrence cannot supply its vowel.",
+      "wordEvidence": [
+        "1MA-16-4-extra",
+        "1MA-16-4-primary"
+      ]
+    },
+    {
+      "book": "1MA",
+      "noteID": "1ma-16-8-qof-vowel",
+      "chapter": 16,
+      "verse": 8,
+      "anchor": "קנְדֶּבִּיוֹס",
+      "letterIndex": 1,
+      "markCategory": "vowel",
+      "decision": "retainUnreadablePointNote",
+      "finding": "This occurrence was read separately. Qof lower material remains incomplete or joined to its descending/returning stroke; another occurrence cannot supply its vowel.",
+      "wordEvidence": [
+        "1MA-16-8-extra",
+        "1MA-16-8-primary"
+      ]
+    }
+  ],
+  "wordEvidence": {
+    "1MA-4-10-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 60,
+      "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+      "nativeBounds": [
+        2420,
+        365,
+        2590,
+        425
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-10-extra-native.png",
+          "sha256": "1e3fe702588927863cf5749b77d8c2d8b43aba1efd1ce06e9d65f1423b3fa180",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-10-extra-5x.png",
+          "sha256": "dd66cb2c226da424a0ffa6fc4947268bee0a1968604476cbe9f640314c644d3f",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-4-18-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 60,
+      "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+      "nativeBounds": [
+        860,
+        245,
+        1030,
+        310
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-18-extra-native.png",
+          "sha256": "630bb92bf1c74e4231829db8b75a435ad29a4c30deb9b1d6f1dd7603580b05b5",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-18-extra-5x.png",
+          "sha256": "136ffc5b58cc4912942daad3b06d096b969c15a6a7b1a09eb08da4761adbb538",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-5-4-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 120,
+      "sourceImageSHA256": "59f7c93034c21bb9243b24904e0baac5c5814f0c59bed12adde3b63f8ac08d82",
+      "nativeBounds": [
+        780,
+        1210,
+        925,
+        1290
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-4-primary-native.png",
+          "sha256": "8e1c6fb63df284f0c02181c7eec9d03918c9f5556e5983b254dcc83682d6682f",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-4-primary-5x.png",
+          "sha256": "0363ca53367ca9b515caeef1a1198e223f6c04a39cd9fe23a31126a37514cea7",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-5-26-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 63,
+      "sourceImageSHA256": "ba20ee9c535889a19b7e091b82556528cf86c8aef233362e26b3f599955ada26",
+      "nativeBounds": [
+        520,
+        165,
+        735,
+        225
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-26-extra-native.png",
+          "sha256": "0318f5d6e64d17d162a090a66ade6ccab42b404bf39af2dcf07440bff980b4f0",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-26-extra-5x.png",
+          "sha256": "67b2e6e582147f540fd677d6398dd55494b90e8c436248c9dd8df6be83fc6a0f",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-5-34-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 124,
+      "sourceImageSHA256": "f603b1a5fbe8b0f3b6bc13a28db40e156c866d4f6f4cf4b6334948aa424f6753",
+      "nativeBounds": [
+        1030,
+        370,
+        1150,
+        435
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-34-primary-native.png",
+          "sha256": "2fdf15febea5ab2500cb89b1df79925ead403ca3c91ed91fb204a99d03391346",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-34-primary-5x.png",
+          "sha256": "ebfa62abf7ced40aa468c6cd56ff8b86a70c6a38c3a5215682f41a907a06c90f",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-6-10-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 128,
+      "sourceImageSHA256": "e4a601de453d1523a2f0b8679bb175bf270c7a2f4848b8841018504a4eef2802",
+      "nativeBounds": [
+        410,
+        305,
+        535,
+        370
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-10-primary-native.png",
+          "sha256": "c0c23697503df8d1f9988c950dd9b54b994b69eef9f83fbb35ea27430859f10a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-10-primary-5x.png",
+          "sha256": "01339cbdfd2e27bc450f8bc2834ca9eac6ab144894c332685739cf814a358a25",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-6-11-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 128,
+      "sourceImageSHA256": "e4a601de453d1523a2f0b8679bb175bf270c7a2f4848b8841018504a4eef2802",
+      "nativeBounds": [
+        790,
+        425,
+        940,
+        500
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-11-primary-native.png",
+          "sha256": "736af414fcd68091f6cf838fa493ad13e0cbfd4defff3cad897c84227151cdc3",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-11-primary-5x.png",
+          "sha256": "77e8ea5471eb6721fed338053d26c3094dce8dc2006fc498df6e50a205444136",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-6-11-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 66,
+      "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+      "nativeBounds": [
+        2160,
+        245,
+        2320,
+        300
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-11-extra-native.png",
+          "sha256": "4fbb0b259c69b962b98fe9369a454c97319f2f191f9d8e3c7b2ae4791c4770ce",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-11-extra-5x.png",
+          "sha256": "6bd1e80d16bbdc73101f65257e1191a587d15352d0bd12179d234ed4cf80819d",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-6-26-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 66,
+      "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+      "nativeBounds": [
+        1150,
+        255,
+        1290,
+        315
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-26-extra-native.png",
+          "sha256": "4bfe6a9a89d69f642f1bde86eecd01b9974ae692825403d0ef000b6ffd0ee942",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-26-extra-5x.png",
+          "sha256": "9a08555377090ebe21daaa6834b988c663c6d85ea8b7076d6e3a3e7d3fe161f9",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-6-38-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 67,
+      "sourceImageSHA256": "82f6d712f11091f6e3a64fdd0c1d2fe1505585c927cb57d91eacc2a2697b68d1",
+      "nativeBounds": [
+        2460,
+        325,
+        2610,
+        390
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-38-extra-native.png",
+          "sha256": "9789d4f70d188dd8a27532696afdff1e5532c7811b4c3088085a03d70491af43",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-38-extra-5x.png",
+          "sha256": "edda4d3734e4ee572ce61ebe68e7d7e446be801f1b3705918bc04a0a13d68e80",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-9-1-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 72,
+      "sourceImageSHA256": "2b1b92b6415b5a5e613e367dc50af730ed52e5a89b2da6f5e562323b98a79520",
+      "nativeBounds": [
+        2420,
+        710,
+        2600,
+        785
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-1-extra-native.png",
+          "sha256": "95f03c26efeeac2a31d099dadd4949c5c7d3fa06027ab1458688b71ce09e51be",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-1-extra-5x.png",
+          "sha256": "16164031d0288d096ec8011595f409ba371a8623610a6b769084d8b6b1ed2a8f",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-9-56-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 144,
+      "sourceImageSHA256": "ee1621a3765b5e4a2a8a0fecb04b76f5fa01fc5398b86f4b7a657548fc4c18bb",
+      "nativeBounds": [
+        610,
+        785,
+        795,
+        855
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-56-primary-native.png",
+          "sha256": "5274aee4c2cb7f62b9bc2f7213561912229979651be7546097c2ace6b476f8c6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-56-primary-5x.png",
+          "sha256": "1cbae82a86549ca0d1cc238c4966261c03fd0e11fb25351e7f486c1e6e5a6fe8",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-9-56-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 74,
+      "sourceImageSHA256": "471831cb3eb83d3619df2372eef5def67c235b918e9a5edf0ef52ab3a0e1c0a2",
+      "nativeBounds": [
+        2325,
+        710,
+        2460,
+        775
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-56-extra-native.png",
+          "sha256": "d2f02a9953fd35e1a4010f0a1fea04f37e7c859c2e94747c9ef33d57fe1302e9",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-56-extra-5x.png",
+          "sha256": "5cfc1f83e648d21363da5d67d794275a170606433e8cfcf2412b043c9e87a604",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-10-46-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 76,
+      "sourceImageSHA256": "2af12b7dfbd4547ce6619d6ab3b785fc91ee9b13a9a1f99e56d706612d61b445",
+      "nativeBounds": [
+        1210,
+        805,
+        1370,
+        880
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-10-46-extra-native.png",
+          "sha256": "aa8afa9c48a746a905420bb59f937ac7e26235d09e8b468bb484d38333508efe",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-10-46-extra-5x.png",
+          "sha256": "dc417c6bd7b04ddefa50c9dab8b2cd06901fb6b2d363c2496740c34daa7811bd",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-14-34-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 171,
+      "sourceImageSHA256": "efcabf37194d35281ae44d4b59247ab69e08324195fb9f938e934f022c4f5c5c",
+      "nativeBounds": [
+        1200,
+        390,
+        1340,
+        450
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-34-primary-native.png",
+          "sha256": "20d0c56a6a36a2887595aa7c9e7fe21ec30448e8367cfba91dce44adf0231581",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-34-primary-5x.png",
+          "sha256": "ab6ef7cd8fda2b46ed78bb8e2d0522e1c819662ed5a9df42a25ece1ea0581bdf",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-14-34-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 87,
+      "sourceImageSHA256": "d8c0b482a79a74c1079fc15b8a133a9f27fbb30f02806e24b19eda9e48c57352",
+      "nativeBounds": [
+        1235,
+        210,
+        1350,
+        275
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-34-extra-native.png",
+          "sha256": "aac2964cf26859656faaab616d2ac5446da6009a852f19ac3dc6b3bbe9b015ea",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-34-extra-5x.png",
+          "sha256": "66dcddb5d333b5dc7396fb3488ed4368744c56569efb91ad6e99800662c27031",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-15-37-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 89,
+      "sourceImageSHA256": "9f069dfd4f3eb4b6d5608ba0d34bc2ad7708e967518d170b72a06db134d67186",
+      "nativeBounds": [
+        475,
+        770,
+        670,
+        835
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-37-extra-native.png",
+          "sha256": "3c2315aebcbea74cb15adfa5ee96523fc9fc440a090225b1aa4c4430125eb7b2",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-37-extra-5x.png",
+          "sha256": "7201ca16c02632e3eb43b24c49c55962bfcbe0f19d111a523876067bf30b8839",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-1-10-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 92,
+      "sourceImageSHA256": "5482e13d0f0ca187b6030b163dcc4536418b0153cc5e7ab4a04f86badc3500d6",
+      "nativeBounds": [
+        1670,
+        500,
+        1830,
+        560
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-10-extra-native.png",
+          "sha256": "955c77ffa4708e90e2359d351ff421b896db97a20dc2ba387b6fbe80a6d4e731",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-10-extra-5x.png",
+          "sha256": "c3aa2281adf7a7ab5699dcad219419356c6ebe14b07d7de959630eb1bf9c2463",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-1-16-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 92,
+      "sourceImageSHA256": "5482e13d0f0ca187b6030b163dcc4536418b0153cc5e7ab4a04f86badc3500d6",
+      "nativeBounds": [
+        1110,
+        585,
+        1410,
+        650
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-16-extra-native.png",
+          "sha256": "6003fc026f0d9de8d6bd1c6cd1ec17f62edef52940c4c12660ceb802b884620e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-16-extra-5x.png",
+          "sha256": "3218efb52a12c1c6187df7264a8cb50fcdc165486a69bb1028dfa70721436f9a",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-2-28-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 95,
+      "sourceImageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+      "nativeBounds": [
+        1980,
+        680,
+        2080,
+        745
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-2-28-extra-native.png",
+          "sha256": "ed7a9c13e2502717084ebca978293097ce6758c00a3f54cf4adcb48f4a4fa188",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-2-28-extra-5x.png",
+          "sha256": "fdf702d3cdd84801f5020551795782519bccbaa1e76f5c280af956acc8ce72c6",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-3-26-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 96,
+      "sourceImageSHA256": "893035bed135f9fa5def18cac8144c1e72b67e2c6919f4dfef328abd1b4a0051",
+      "nativeBounds": [
+        700,
+        1240,
+        900,
+        1300
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-3-26-extra-native.png",
+          "sha256": "9378687f251600e454524c2b2d3de9c3eebaf2fce0359729cac2694ce0cf6737",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-3-26-extra-5x.png",
+          "sha256": "3fcb3ab697ee28bc131bdf5a49040c2c75deafa60dad1339205c990e3dc66571",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-5-16-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 196,
+      "sourceImageSHA256": "dfa926699032f037a32c91c513a4148cae70cbe68505d46f3c6cef16ad2bd840",
+      "nativeBounds": [
+        555,
+        1520,
+        665,
+        1600
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-5-16-primary-native.png",
+          "sha256": "c60659b0dbf6bb2a706669c3ad25f7a847b286e2d14fd8e3a0bf38e235b13e4e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-5-16-primary-5x.png",
+          "sha256": "49c73c0a1219d0cbe02d921ec42096f3d1997496103829a371aac47f128093cc",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-5-16-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 100,
+      "sourceImageSHA256": "8335be40b4c6e3fd8d93b923e57500eb1c7448072ed3d41ea6bea4fdbcc289a8",
+      "nativeBounds": [
+        1970,
+        1045,
+        2060,
+        1110
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-5-16-extra-native.png",
+          "sha256": "bcae742ba3e11b2a86fc02efb56bd343aa753c3a8e0e0543fc1cfed55497fa95",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-5-16-extra-5x.png",
+          "sha256": "ae670f1987e23ee4d9058b41b64afd68c61e8f7dc3d8b8a6714d1e9ba0d3036f",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-5-22-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 100,
+      "sourceImageSHA256": "8335be40b4c6e3fd8d93b923e57500eb1c7448072ed3d41ea6bea4fdbcc289a8",
+      "nativeBounds": [
+        510,
+        680,
+        670,
+        740
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-5-22-extra-native.png",
+          "sha256": "057a1f291230ce571b02a82ae19b33fc281dbfe6868df6363859a5661ee40aa4",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-5-22-extra-5x.png",
+          "sha256": "4e1a23d5be630e9f4b31579efef25a3d39c9b9eacfd0923078214973d553bdfd",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-6-11-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 199,
+      "sourceImageSHA256": "a174e0879e99d021ffd2d258fa53108a4dee1c9a25dcc1544e3971aac38dda5a",
+      "nativeBounds": [
+        200,
+        630,
+        330,
+        705
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-11-primary-native.png",
+          "sha256": "0818a97953a3356c9b4fd685a277d05fc805c2665cc4d86e104f4253fb7175ab",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-11-primary-5x.png",
+          "sha256": "858730873cc904c0c8b7932c788d37f369cf3f018316e7c04ccc2652360657a2",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-6-11-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 101,
+      "sourceImageSHA256": "0a4f383ac41c39e12db2d37c4fa446abfc1ab1fe086aeef9f12ae4a3859b571f",
+      "nativeBounds": [
+        560,
+        405,
+        700,
+        470
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-11-extra-native.png",
+          "sha256": "9606b5f51bcde1c52c8b0688c7b61ce16acdb7dfc54e139bbd3ea51db954976b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-11-extra-5x.png",
+          "sha256": "9220137d14707383ec0e2757532b5caaa8404c9fe5576e08998baf3ce6ccc610",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-6-13-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 199,
+      "sourceImageSHA256": "a174e0879e99d021ffd2d258fa53108a4dee1c9a25dcc1544e3971aac38dda5a",
+      "nativeBounds": [
+        670,
+        1010,
+        825,
+        1080
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-13-primary-native.png",
+          "sha256": "8015fe084434c89d615ff1ad3deb4560dbfc66c863cef0681a005cfd47642c99",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-13-primary-5x.png",
+          "sha256": "ad7c4dacd6196f844d00853b364ec356fc46243a49d4beb6f2a38fdbdac2ea35",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-6-13-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 101,
+      "sourceImageSHA256": "0a4f383ac41c39e12db2d37c4fa446abfc1ab1fe086aeef9f12ae4a3859b571f",
+      "nativeBounds": [
+        900,
+        685,
+        1070,
+        755
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-13-extra-native.png",
+          "sha256": "c61de4cb0963e30d2206f1e8aea6e7558dc87888c1ae5abe6e9a53ae55a04832",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-13-extra-5x.png",
+          "sha256": "2dd9625743a325b8ce8d160557a38afa0dddf23e72d6283ac6cc73d37fc14abf",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-7-40-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 104,
+      "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+      "nativeBounds": [
+        2050,
+        265,
+        2140,
+        320
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-7-40-extra-native.png",
+          "sha256": "7e936d6f01e32c1f4b06e6d0682d16ae1bbdc9fc46efb263ee492dd8cd74adfe",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-7-40-extra-5x.png",
+          "sha256": "bf48dbefda3ada08c49fb87308569d6e405f3417e0c6643bb4a3a60b32f7d4e1",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-8-4-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 104,
+      "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+      "nativeBounds": [
+        1795,
+        600,
+        1940,
+        655
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-8-4-extra-native.png",
+          "sha256": "94e6d51971742924eee2bd75f80346ad6bba06fa713eff941382567b0d218d70",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-8-4-extra-5x.png",
+          "sha256": "0f889af63af38fbb5b1889222013ea2d1dbdc5bf59f6ea7e490a4cedf599e6b7",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-9-29-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 108,
+      "sourceImageSHA256": "361f8eea23e04a024797e4bbf8c132bebbd8345b61b86ec9e369562e34f836a6",
+      "nativeBounds": [
+        2240,
+        680,
+        2380,
+        740
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-9-29-extra-native.png",
+          "sha256": "1688059b01da4d4ae90fa9d42b3cb1017d610fd426d1ad299cde365d7cd3491e",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-9-29-extra-5x.png",
+          "sha256": "f6f4eda37fa34919ac0b10a7c68c40297b32928a0fbfe0243f95cf32f0195c85",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-11-4-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 110,
+      "sourceImageSHA256": "73f52ce25e3e8b47421f55c5a8688f7eb1e2dde01ddce90a452d9bbd4ba60e18",
+      "nativeBounds": [
+        730,
+        430,
+        885,
+        490
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-4-extra-native.png",
+          "sha256": "cddc6cd2d4f3ac7d84f71fa235623ff5783aa25ce8b380f7a13550851548e67c",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-4-extra-5x.png",
+          "sha256": "afad151f247f046b5dd89043ddd00cbe27eeed4f9731d166a1ae1475357239d9",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-11-25-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 111,
+      "sourceImageSHA256": "9439b24061684b385db5cde9cd810235681914e68f07c75a29ab1a8fe7f59663",
+      "nativeBounds": [
+        1790,
+        895,
+        1900,
+        955
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-25-extra-native.png",
+          "sha256": "3493b09b906f994b85107398ea80848914713aaf3f36b7c15b546e1a02868ae6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-25-extra-5x.png",
+          "sha256": "2784274e0869d1f48614052455d527537796a0bf911bef8742ae01bec3707bae",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-12-45-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 224,
+      "sourceImageSHA256": "0e7c07f659e0d3a19b88e2ba1be8cf737c4ceb6da675d6216f1e8846a20a50a2",
+      "nativeBounds": [
+        440,
+        1140,
+        585,
+        1210
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-12-45-primary-native.png",
+          "sha256": "077c965137372d18ee57d29c38b0712e79f3206e0d651c1eeaa50bfcd820b469",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-12-45-primary-5x.png",
+          "sha256": "ecc750177353bbd7df16009a9a3dc3709fe4ee4d18af1f23da084b7c4e843232",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-12-45-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 114,
+      "sourceImageSHA256": "8a54ba88ccc607d001d170194232c1d91851d927dd7d56e42e054451eecf890a",
+      "nativeBounds": [
+        1870,
+        780,
+        2005,
+        840
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-12-45-extra-native.png",
+          "sha256": "c5af6a282eb83bd408f5a4d4ab95faf0cccae7792aff57c87a1b395943a60c5a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-12-45-extra-5x.png",
+          "sha256": "e8d1652d0c0147cac954079b95e1c392e523739c1f3f938973e5f5ce61fb249a",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-15-10-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 117,
+      "sourceImageSHA256": "266c01948f67a1c58a794c706f19404f12591899ad79006f6a7e8990fbcc11ab",
+      "nativeBounds": [
+        780,
+        710,
+        945,
+        770
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-10-extra-native.png",
+          "sha256": "3eaf1143667fabb32d9a94f3cfc157936454bf66e03500b3e5064b0cb0c8f31c",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-10-extra-5x.png",
+          "sha256": "649a2509fabab23699bbd1fcc192e1fa3e2bf5897aabbaab0d46a19832d34f10",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-15-34-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 118,
+      "sourceImageSHA256": "6b01b017167f4960561060e9389262eadea9cd28f1a905ec113c61b8eead6a21",
+      "nativeBounds": [
+        1930,
+        1340,
+        2095,
+        1420
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-34-extra-native.png",
+          "sha256": "73dc0814f14100e0de57c764f0d22acc20527ae811cd443542e9257615ab1e61",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-34-extra-5x.png",
+          "sha256": "2d7e3941e6717fad66672bffb54f29b171836fd6e8dc49a056e50f9aa16d947b",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-10-57-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 150,
+      "sourceImageSHA256": "767c11120769fcfbefbd81238d5ab06186f4e449ffa9ef9c17a73cfd455116d8",
+      "nativeBounds": [
+        480,
+        1226,
+        800,
+        1295
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-10-57-primary-native.png",
+          "sha256": "5cb206c42e745c9a2ce7e470f24a5057dabb7c71aff2b700184a101780f6f33a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-10-57-primary-5x.png",
+          "sha256": "177403cf24822b641ff79f3b912ed76f7f7607bb5eb5eef0e2b3bdeef5fb3d7e",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-10-57-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 77,
+      "sourceImageSHA256": "fd0adf4d196bfb357a03811631ba09da2fb705466bac546b6b444a3ad82c2288",
+      "nativeBounds": [
+        2080,
+        811,
+        2160,
+        872
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-10-57-extra-native.png",
+          "sha256": "dd829973255dde44b5ce8fa5e5bec56ad4818bce358acbb1ed34a2a89350fade",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-10-57-extra-5x.png",
+          "sha256": "d62280c83672e4490e380e396035e5b4b92df84e1de8d94b8314f16022485743",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-12-25-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 82,
+      "sourceImageSHA256": "17c263a807584b017e030928451e23073bdc2ce75ada15206de146c469a9af90",
+      "nativeBounds": [
+        1840,
+        1073,
+        1960,
+        1127
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-12-25-extra-native.png",
+          "sha256": "3b0de4f1b9fed0ce41c9f10a40063119fb6891170e5dec2c881fed9bc8bc9691",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-12-25-extra-5x.png",
+          "sha256": "5352310834b06127774e9cba11a0d961262a117606a94ba6cd3956e467806c6b",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-12-25-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 160,
+      "sourceImageSHA256": "3c5e537815116710aaed999864874ff785a0639ed1e5eaac2db3fa907ebd6001",
+      "nativeBounds": [
+        350,
+        1518,
+        500,
+        1588
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-12-25-primary-native.png",
+          "sha256": "85bffeab784086d23ab445b234693907a53a11e89293c8e46a8a4eb018cdac61",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-12-25-primary-5x.png",
+          "sha256": "99a52186350d30971bb10554751cdfcb63c6e0a1aa9e57802c8d92762241c06d",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-13-41-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 85,
+      "sourceImageSHA256": "a6f34c214570d6042d57efbbd40278046a1603487467706e0e1ab60b1e1f6260",
+      "nativeBounds": [
+        2100,
+        673,
+        2310,
+        727
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-41-extra-native.png",
+          "sha256": "66db2caf48e9a063c68e6116f3a3d1f8cbe808293da06c6faa058537072441ae",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-41-extra-5x.png",
+          "sha256": "046faad1a016fcc6438c59e988c7708a6e3a327bb7a49b3fd43b14a7cd1c50d3",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-13-41-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 166,
+      "sourceImageSHA256": "7051eef86a188a188f9a2ac8d6751d65855eb23cc1b9c8063afa7a03cf9c952e",
+      "nativeBounds": [
+        690,
+        1004,
+        900,
+        1070
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-41-primary-native.png",
+          "sha256": "4cd3862a11d33858299b64f469e5678f0bda22f7159ea7c90fb2967cad59e858",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-41-primary-5x.png",
+          "sha256": "065fa2f17d01b30afabd347fd9e173e52d5b747a68b55da8a9deb27ac3ff6b7b",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-13-51-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 85,
+      "sourceImageSHA256": "a6f34c214570d6042d57efbbd40278046a1603487467706e0e1ab60b1e1f6260",
+      "nativeBounds": [
+        680,
+        785,
+        865,
+        838
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-51-extra-native.png",
+          "sha256": "848c84f7c068b7f7b6d97c21761638b5ea063a501f2ebba3f808ef18d63a3208",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-51-extra-5x.png",
+          "sha256": "b49f683ddc4a2d958e2ea2348f220db6bc495126c9f9f454b5f4ea1fc8219b25",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-13-51-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 167,
+      "sourceImageSHA256": "a496513d680037342d3af9e7578c547f7eeb841a4373275870cf62fd4da0a234",
+      "nativeBounds": [
+        470,
+        1142,
+        670,
+        1213
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-51-primary-native.png",
+          "sha256": "6c01e0b38ddfcdf592db5c7e13e963bff6e6b15d0d4b009dc0797782031442f4",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-51-primary-5x.png",
+          "sha256": "1b933dbf831bfc115d4223adba181a23330d7782143c6f4408b621f56c4f24ef",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-14-32-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 87,
+      "sourceImageSHA256": "d8c0b482a79a74c1079fc15b8a133a9f27fbb30f02806e24b19eda9e48c57352",
+      "nativeBounds": [
+        2010,
+        1004,
+        2130,
+        1059
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-32-extra-native.png",
+          "sha256": "3db8292aed2492a5093a95cfa53d58ef797a34d3c2495234d61c54241aa24284",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-32-extra-5x.png",
+          "sha256": "0abc06b22604964ad5a7dcb4fa486f45c92f58ad029468e1a22c53b61bc37a6a",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-14-32-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 170,
+      "sourceImageSHA256": "6a7c60a780954851cc65bc6cac8a92bb41a05eedfdcdfde69a66575ef130b0e6",
+      "nativeBounds": [
+        635,
+        1457,
+        775,
+        1510
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-32-primary-native.png",
+          "sha256": "05fdb64bee4b765918fc57a57dd7d4c63245d9fd49edf4ec35d091f302e5ea3f",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-32-primary-5x.png",
+          "sha256": "f0e213a01f027ef7c2ed0c5f318a1631563240abc7a1022e1930f397b2db9699",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-14-43-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 87,
+      "sourceImageSHA256": "d8c0b482a79a74c1079fc15b8a133a9f27fbb30f02806e24b19eda9e48c57352",
+      "nativeBounds": [
+        1140,
+        876,
+        1350,
+        927
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-43-extra-native.png",
+          "sha256": "ed25a51a073d2e6ea09fa8d3e9d9e824850b0334aee045d410147f1f556a2594",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-43-extra-5x.png",
+          "sha256": "21919d77187759c4914422cdf8c9c74202457f11d458d86fb2f43661f4482db4",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-14-43-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 171,
+      "sourceImageSHA256": "efcabf37194d35281ae44d4b59247ab69e08324195fb9f938e934f022c4f5c5c",
+      "nativeBounds": [
+        1100,
+        1272,
+        1380,
+        1335
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-43-primary-native.png",
+          "sha256": "389e603d85b064f9239d8476871671439f71e7d259a738c30a3e7688c325539d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-43-primary-5x.png",
+          "sha256": "25b906760990c73a8e9593dff03e6bb067c3b62de5c1b55c142ab90f85a6952d",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-15-14-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 88,
+      "sourceImageSHA256": "9d868c392cd87dc182442a26d04cf518fca0b62a3036f1a19a39a5546d463c8e",
+      "nativeBounds": [
+        490,
+        348,
+        605,
+        392
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-14-extra-native.png",
+          "sha256": "6b442fcda92dfb7647dd3a364add99d3c3c82cfc521349f9104e167e9f2c93f8",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-14-extra-5x.png",
+          "sha256": "616429e80ea4ad70b06333301e6741ab1bb86d5934989ae7e164877a8abfbdae",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-15-14-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 173,
+      "sourceImageSHA256": "242c6c6b25dcd05e811737b568cc280bd5e35ee65f14a432fc9a647bd8515db6",
+      "nativeBounds": [
+        205,
+        562,
+        335,
+        623
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-14-primary-native.png",
+          "sha256": "91045263d46136081529dc36d88b1a09caa737de70b94a64a48e01b341062075",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-14-primary-5x.png",
+          "sha256": "9286d7bf69e8028db9fa83bf7142e5cc6c5985482510d3c602823523b26f0277",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-15-40-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 89,
+      "sourceImageSHA256": "9f069dfd4f3eb4b6d5608ba0d34bc2ad7708e967518d170b72a06db134d67186",
+      "nativeBounds": [
+        1200,
+        972,
+        1420,
+        1025
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-40-extra-native.png",
+          "sha256": "b245e0074b43eafa0966260bfeaacf2133a1f004ba806f203c3fa7a1ea4a77f1",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-40-extra-5x.png",
+          "sha256": "b5343749d8ba092c7e129d331f808651af00e901f87b44611ff4efe561c4670a",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-15-40-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 175,
+      "sourceImageSHA256": "3d5cd3e2ff29236f3082e68bbe2e38c77b96498e0379488fbe6f2e850ea2330b",
+      "nativeBounds": [
+        1195,
+        1415,
+        1420,
+        1485
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-40-primary-native.png",
+          "sha256": "fe2a6a4c0af93a8f4320ed3454c57f64815853c3632ae5006999c5e6f1101b5b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-15-40-primary-5x.png",
+          "sha256": "42dd21c2ec5720625f639e080d56493dc23ea3f21dc053ec2743269a13b730ce",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-16-1-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 89,
+      "sourceImageSHA256": "9f069dfd4f3eb4b6d5608ba0d34bc2ad7708e967518d170b72a06db134d67186",
+      "nativeBounds": [
+        420,
+        1113,
+        675,
+        1166
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-1-extra-native.png",
+          "sha256": "7fc3ef61c743ceaddc5808e19ed6c43dc3f3b5a490eb88e796d467456a9df1b1",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-1-extra-5x.png",
+          "sha256": "701055ed565960f66c5b4892def4b5a953a2e2aaa52352d229d4ba8e9274424c",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-16-1-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 175,
+      "sourceImageSHA256": "3d5cd3e2ff29236f3082e68bbe2e38c77b96498e0379488fbe6f2e850ea2330b",
+      "nativeBounds": [
+        220,
+        1602,
+        450,
+        1670
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-1-primary-native.png",
+          "sha256": "3c6723981d5f8e84604a158b173aeb97d03cd5d6c82f05cc388ea5a1472af01a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-1-primary-5x.png",
+          "sha256": "bf2b44f5b6b01b8784294d0701bde81e7c62d2e990f15e43d478f59153887012",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-16-4-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 90,
+      "sourceImageSHA256": "d3d0cadeab0c2a4d024903102447fad3c2b74240213f8194112e2fae70ec00ca",
+      "nativeBounds": [
+        1730,
+        346,
+        1945,
+        402
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-4-extra-native.png",
+          "sha256": "21b381bef9a5cf9e0ca3997add94eb127c0170f58faad917b035cff9593e4b42",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-4-extra-5x.png",
+          "sha256": "7950960fdcb5a1dbf9ad27fbf1f4670dae07b6aff389d5caf502545e3eb8d103",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-16-4-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 176,
+      "sourceImageSHA256": "a24978a04d2a4abf5284b78b4b3cc5f6865472fe61ca5b0e1eb691d2d9c11751",
+      "nativeBounds": [
+        160,
+        581,
+        390,
+        653
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-4-primary-native.png",
+          "sha256": "08c9d87c6af68f733c145ec78da68fd41f07cd5fa255b085fa44beb77238cc55",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-4-primary-5x.png",
+          "sha256": "da1d46fe6d6d8d995c82c069431bd94f97667e26335e055f643db1479da45b19",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-16-8-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 90,
+      "sourceImageSHA256": "d3d0cadeab0c2a4d024903102447fad3c2b74240213f8194112e2fae70ec00ca",
+      "nativeBounds": [
+        1870,
+        581,
+        2090,
+        636
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-8-extra-native.png",
+          "sha256": "ae150c93b479142c28d09a4efb9f60567c23ec609e3aa4f11527ed2a2fd69a7f",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-8-extra-5x.png",
+          "sha256": "d12453cc99bfc99b38b86a0f6efe3487e984cc12496206b240dd017c736e7bf8",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-16-8-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 176,
+      "sourceImageSHA256": "a24978a04d2a4abf5284b78b4b3cc5f6865472fe61ca5b0e1eb691d2d9c11751",
+      "nativeBounds": [
+        400,
+        895,
+        645,
+        963
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-8-primary-native.png",
+          "sha256": "2a738bf57adc8e072acf035091428b0713b623ae04b617871e875969a519d193",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-16-8-primary-5x.png",
+          "sha256": "abdb780a42ffb6f29d221eb7de0438a7507dc31f306c3850099df20c816587aa",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-5-26-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 123,
+      "sourceImageSHA256": "38d7a164fc342bb5ee94441627728b17de9fb001ed675e62c5541e6ea1a0577e",
+      "nativeBounds": [
+        200,
+        295,
+        460,
+        350
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-26-primary-native.png",
+          "sha256": "8f8aff6236824d48e2838890dc0bbf7c0234b153a62cf34f847c4ff93cff72e7",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-26-primary-5x.png",
+          "sha256": "27af44818e8aa720d5092c4ea67da014b75594647f7772dc8041adb1bfa4a0d9",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-14-4-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 227,
+      "sourceImageSHA256": "7ec8823cf1f46772d4c1073b21a8603c278bf248235828efac4406bda8dc052b",
+      "nativeBounds": [
+        1100,
+        970,
+        1193,
+        1015
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-14-4-primary-native.png",
+          "sha256": "f91adb23f498ea66735fcb39e7ea01af782e56995c7bba6ddf77909b8e1d505d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-14-4-primary-5x.png",
+          "sha256": "9c2b08a596122ad69d27e593bea91638d0dfd05cddb23cfed32e9cd14b07bf5a",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-14-4-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 115,
+      "sourceImageSHA256": "3e9dfc4bd673c5e07332224327a9094a3946ec4e5cbd727596f49183d59dbceb",
+      "nativeBounds": [
+        1205,
+        663,
+        1275,
+        701
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-14-4-extra-native.png",
+          "sha256": "3efb802c89b166cfaaba7c44fc7ae6c624ac9e5dd07ac4226c3c1ce611fe95fb",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-14-4-extra-5x.png",
+          "sha256": "b561669f88fa3b14f6cb92d90d028a14e84fb761372d1281c18c9a576ef86772",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-4-10-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 116,
+      "sourceImageSHA256": "1758187584a6538895a170263f3616666ebc1de097dd54315e1c7ddfbe4d73d3",
+      "nativeBounds": [
+        1190,
+        630,
+        1380,
+        720
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-10-primary-native.png",
+          "sha256": "d1c5f3ffbd1c2d4fa1e1137e096d675143a4ab77ad0f059d1c4413b0b8da975d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-10-primary-5x.png",
+          "sha256": "31d97e660dab2bab4e1e50624dc6a16216cd2b00eb7d3f75eca6552d49ed4edc",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-9-56-primary-expanded": {
+      "sourceKind": "primary",
+      "sourcePage": 144,
+      "sourceImageSHA256": "ee1621a3765b5e4a2a8a0fecb04b76f5fa01fc5398b86f4b7a657548fc4c18bb",
+      "nativeBounds": [
+        580,
+        785,
+        815,
+        925
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-56-primary-expanded-native.png",
+          "sha256": "c633898415b5a18dd4e80aae89518ff99e02d046d607971da37cb35b543cf4a1",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-56-primary-expanded-5x.png",
+          "sha256": "fe569f50945106647b5fd3507473eb6e731c2c91a44c256b6a7e21aa010c9ee8",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-11-25-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 218,
+      "sourceImageSHA256": "50c6fd9234e5b3e9e8756a862dc10e2320ab10a298446b9da332554f52f2bea5",
+      "nativeBounds": [
+        280,
+        1270,
+        500,
+        1360
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-25-primary-native.png",
+          "sha256": "f89c759344fcf12ce4d0742ef5b4a7ce3cdf0bac8e443201ad78809ff4d13cc8",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-25-primary-5x.png",
+          "sha256": "25a9e8e8a1fdba028312d88239b169bca3237ce81c98588ab57756c209a17250",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-1-16-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 181,
+      "sourceImageSHA256": "8e18416ad342e1ab8d6e49a6dfd60fb54aeab625b8f47bc998abe75484a79cc5",
+      "nativeBounds": [
+        1080,
+        875,
+        1380,
+        960
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-16-primary-native.png",
+          "sha256": "2e9829ec35ff2609eef5c6ceac5d68a1b3583ee2333f0a17f3a5a9bafa41e3b4",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-16-primary-5x.png",
+          "sha256": "d1d124a0c355b67c1402d08b7df9ed0663e9a012fcac292c113ba42c0de31d9d",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-15-10-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 231,
+      "sourceImageSHA256": "9ec59a97a809ceee3ce742fd3ac008a8bd23b9e24c049566e310532177cf5590",
+      "nativeBounds": [
+        540,
+        990,
+        735,
+        1068
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-10-primary-native.png",
+          "sha256": "ac7630a3a9d1b298353a20b33d13e1173169a6a86f981208d2a5139c8f8e5f5a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-10-primary-5x.png",
+          "sha256": "6328f76a41a7f463a14729ca1910adb4eb7e184f272e1ad35fa311746378f296",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-15-34-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 232,
+      "sourceImageSHA256": "2c00aad78769f13764748c0b989872dcc227f1a2c86b1f19620e7f19ee221645",
+      "nativeBounds": [
+        540,
+        1890,
+        710,
+        1965
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-34-primary-native.png",
+          "sha256": "1bf6af31d6eaff71f4ff0844b2c2bfd5fe29139811fb608067360ad95e332ea8",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-34-primary-5x.png",
+          "sha256": "ab8ad86fcc1012251e3fd34949daa7374e9955fc2c2dee5c5b32596e24b37cb2",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    }
+  },
+  "tightEvidence": {
+    "1MA-6-11-bet-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 128,
+      "sourceImageSHA256": "e4a601de453d1523a2f0b8679bb175bf270c7a2f4848b8841018504a4eef2802",
+      "nativeBounds": [
+        885,
+        445,
+        915,
+        482
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-11-bet-primary-native.png",
+          "sha256": "cb2b69fd89f70decec7270ecb2a2d0f63652f4ef84f405c2bf94d7558a033e5d",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-11-bet-primary-15x.png",
+          "sha256": "31a351a04b0236c0030ac7c09eafd50826aa303359098f54efbfdb506ae7efd6",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-6-11-bet-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 66,
+      "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+      "nativeBounds": [
+        2238,
+        260,
+        2258,
+        287
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-11-bet-extra-native.png",
+          "sha256": "e04c48fb38127eca5f7b10e9383525099770fe0adaeb9846dc52b6edd9a81f55",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-11-bet-extra-15x.png",
+          "sha256": "7d45f4701e1c34117eef8c7edc167a3303acd074807c9ce1b5527242d96feec8",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-5-4-bet-primary": {
+      "sourceKind": "primary",
+      "sourcePage": 120,
+      "sourceImageSHA256": "59f7c93034c21bb9243b24904e0baac5c5814f0c59bed12adde3b63f8ac08d82",
+      "nativeBounds": [
+        838,
+        1235,
+        865,
+        1268
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-4-bet-primary-native.png",
+          "sha256": "7d081a8aca68d10aa3e71f320cfefaa70078a06b64ed09fb7349afa4e349b94b",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-4-bet-primary-15x.png",
+          "sha256": "ceb92171bd1a7855ada372408fe4c4b23aed21bb973372506bfb45ea1682f892",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-6-13-shin-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 101,
+      "sourceImageSHA256": "0a4f383ac41c39e12db2d37c4fa446abfc1ab1fe086aeef9f12ae4a3859b571f",
+      "nativeBounds": [
+        950,
+        710,
+        976,
+        735
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-13-shin-extra-native.png",
+          "sha256": "b1e6602111f7976485497e3c522221d349d0315eee81c94a3c091aa88533fdd2",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-13-shin-extra-15x.png",
+          "sha256": "a625fcb39a8e8a2fd3ed14ed9dc17eb8bc1d819441a1915b08b51ec13ea95732",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-12-45-shin-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 114,
+      "sourceImageSHA256": "8a54ba88ccc607d001d170194232c1d91851d927dd7d56e42e054451eecf890a",
+      "nativeBounds": [
+        1930,
+        805,
+        1956,
+        832
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-12-45-shin-extra-native.png",
+          "sha256": "96a7742d0a827b611ca72688fa7db710f2d80aa8cbc0db569305399f6cf48365",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-12-45-shin-extra-15x.png",
+          "sha256": "30b0c9713b2c13188dca8e5e912350d4385aa5a1dd90ca11f100e02beff8a49b",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-5-26-samekh-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 63,
+      "sourceImageSHA256": "ba20ee9c535889a19b7e091b82556528cf86c8aef233362e26b3f599955ada26",
+      "nativeBounds": [
+        570,
+        190,
+        590,
+        225
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-26-samekh-extra-native.png",
+          "sha256": "77e39f7304524ab6a2a95ad081c59303db71a802814d647efb9435196881d11f",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-5-26-samekh-extra-15x.png",
+          "sha256": "1621509fed7be00148107f032fb5a8f97c359c5e706aaabb09d8e5b3f36bced4",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-12-25-het-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 82,
+      "sourceImageSHA256": "17c263a807584b017e030928451e23073bdc2ce75ada15206de146c469a9af90",
+      "nativeBounds": [
+        1888,
+        1085,
+        1910,
+        1120
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-12-25-het-extra-native.png",
+          "sha256": "36f6de46b641bc53e7e1e92af8d1097f596b95c9cc2c65364e56df91a4fd0417",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-12-25-het-extra-15x.png",
+          "sha256": "9f0afd55ce799336c5bef86c45542cd09266c9bc98b1a0d4b6497ce25a13971d",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-13-41-shin-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 85,
+      "sourceImageSHA256": "a6f34c214570d6042d57efbbd40278046a1603487467706e0e1ab60b1e1f6260",
+      "nativeBounds": [
+        2220,
+        687,
+        2245,
+        718
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-41-shin-extra-native.png",
+          "sha256": "c9ebedfc283d4dc39988f1d4458b628a97d9156e581bc21cb276c2c8abfc2bd0",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-41-shin-extra-15x.png",
+          "sha256": "2b3f05fa822832c3ce0091d30390e6fc882cf8d2b48b133c9f94b72ca2dd46b7",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-14-43-shin-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 87,
+      "sourceImageSHA256": "d8c0b482a79a74c1079fc15b8a133a9f27fbb30f02806e24b19eda9e48c57352",
+      "nativeBounds": [
+        1280,
+        888,
+        1305,
+        920
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-43-shin-extra-native.png",
+          "sha256": "7642bdbe859fbb8a1cfd73a9ad6537901f8ee60074be7608d6e45472030bd098",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-14-43-shin-extra-15x.png",
+          "sha256": "d9122848e29528e6eaafcf8448456beadb5626677be21837035a86e4a125aa02",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-9-1-bet-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 72,
+      "sourceImageSHA256": "2b1b92b6415b5a5e613e367dc50af730ed52e5a89b2da6f5e562323b98a79520",
+      "nativeBounds": [
+        2518,
+        748,
+        2542,
+        780
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-1-bet-extra-native.png",
+          "sha256": "4a08473f0390a7688ee4f1849fdc9e66465ad7fe204739ea6056d6341a6ea148",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-1-bet-extra-15x.png",
+          "sha256": "753d1e515bc50778e0fea7035fd0d308244d50ae4edcbf12ca7b924f2d77c1b5",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-9-56-resh-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 74,
+      "sourceImageSHA256": "471831cb3eb83d3619df2372eef5def67c235b918e9a5edf0ef52ab3a0e1c0a2",
+      "nativeBounds": [
+        2408,
+        730,
+        2430,
+        765
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-56-resh-extra-native.png",
+          "sha256": "d179922bc2288e13e0c348197225f398620e6a5bc165a3f1eee36f04227a4b43",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-9-56-resh-extra-15x.png",
+          "sha256": "e3f478c9b18a0efce763bcad6e00b38a8d0131f63708d3106d17b98060917378",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-13-51-yod-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 85,
+      "sourceImageSHA256": "a6f34c214570d6042d57efbbd40278046a1603487467706e0e1ab60b1e1f6260",
+      "nativeBounds": [
+        760,
+        798,
+        779,
+        825
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-51-yod-extra-native.png",
+          "sha256": "ec9c660342ee2c2a05995e81764803477cf91b67a8921cf342d76a244a9e2a43",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-13-51-yod-extra-15x.png",
+          "sha256": "dcabad23242112ec55684305581cfe5ff83b7235f4c60c1c229ade697461f3aa",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-4-10-yod-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 60,
+      "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+      "nativeBounds": [
+        2540,
+        389,
+        2560,
+        416
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-10-yod-extra-native.png",
+          "sha256": "18f24470a13900f2544dcf5b4a7add65c134cf26a8820aaaf1ac83064711d4b6",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-10-yod-extra-15x.png",
+          "sha256": "079acc471c97f706381e289101424d75b45d2774c2cb2cf1eedb3f34fac7664f",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-4-18-yod-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 60,
+      "sourceImageSHA256": "9b0dca5e7fb436a9cd996d6d080bdb79824dc764bb2cf1ca544abda9e5181f00",
+      "nativeBounds": [
+        920,
+        270,
+        934,
+        293
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-18-yod-extra-native.png",
+          "sha256": "b155c753d33ecca294d9160f369666df4b0a306495c788200cd8bf5ed29a1180",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-4-18-yod-extra-15x.png",
+          "sha256": "72135465b0f879b6760370057561d0b2b80d6052cd266a80a35e2bd074a7aaeb",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-1-16-vav-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 92,
+      "sourceImageSHA256": "5482e13d0f0ca187b6030b163dcc4536418b0153cc5e7ab4a04f86badc3500d6",
+      "nativeBounds": [
+        1350,
+        605,
+        1368,
+        632
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-16-vav-extra-native.png",
+          "sha256": "e681806570f5295f7d9dd622e5cb80bb81faba95f25c85d90837587bedaa76e1",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-16-vav-extra-15x.png",
+          "sha256": "f4064eeee6129949e9eaf7cac47f00fe692ec7c42eb65a0bffd346aeb2f7b96a",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-2-28-yod-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 95,
+      "sourceImageSHA256": "e25f0e9ab7dec174f2856c8532ed84e62fc9acd5c15a3ab3d0cf690d495d95c9",
+      "nativeBounds": [
+        2036,
+        708,
+        2045,
+        724
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-2-28-yod-extra-native.png",
+          "sha256": "fb97a7216f9ce31ec20ce1aebd05366e533e46dcdce3302a869637f99d3426fb",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-2-28-yod-extra-15x.png",
+          "sha256": "9b7161578e1091d23be352814b9739a9f5e071f35236861d469ad00e52a4b141",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-5-16-tav-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 100,
+      "sourceImageSHA256": "8335be40b4c6e3fd8d93b923e57500eb1c7448072ed3d41ea6bea4fdbcc289a8",
+      "nativeBounds": [
+        2006,
+        1062,
+        2026,
+        1092
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-5-16-tav-extra-native.png",
+          "sha256": "c2abfb7fbe73636583423b26a09b46b2a7527ca15d84f56777e132f74b539429",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-5-16-tav-extra-15x.png",
+          "sha256": "2df36c4eba6a2abd1046fbbdfc19962ad28a1d2d9cbaa92659df8b50069db2c6",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-6-11-he-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 101,
+      "sourceImageSHA256": "0a4f383ac41c39e12db2d37c4fa446abfc1ab1fe086aeef9f12ae4a3859b571f",
+      "nativeBounds": [
+        614,
+        428,
+        632,
+        458
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-11-he-extra-native.png",
+          "sha256": "f395c1600f090501152babbba0b12643d71ab95e525e25bab2b1ba1aa981f596",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-6-11-he-extra-15x.png",
+          "sha256": "33b1683dc2781df92bfb3ae0f66641df86a82a991c08f32abb517931c16e6c7c",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-11-25-samekh-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 111,
+      "sourceImageSHA256": "9439b24061684b385db5cde9cd810235681914e68f07c75a29ab1a8fe7f59663",
+      "nativeBounds": [
+        1846,
+        917,
+        1866,
+        950
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-25-samekh-extra-native.png",
+          "sha256": "04cd825bd823423bcc474cc94da7bcc244fac5061ea95e85fc967689197ae248",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-25-samekh-extra-15x.png",
+          "sha256": "d7858be7de8adec441133b48fe8b5adf4a76005cbcc3b4be3a87e372da0bdde5",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-1-10-he-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 92,
+      "sourceImageSHA256": "5482e13d0f0ca187b6030b163dcc4536418b0153cc5e7ab4a04f86badc3500d6",
+      "nativeBounds": [
+        1785,
+        516,
+        1805,
+        550
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-10-he-extra-native.png",
+          "sha256": "427e3052aa393933589934f3619a0f538274bf1e39be907e8d3f4002396cec61",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-1-10-he-extra-15x.png",
+          "sha256": "d2865cefbfe55961c62ab750a24cc0834f5feade4b1f07baa0e5a4bbb2ca4434",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-7-40-bet-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 104,
+      "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+      "nativeBounds": [
+        2073,
+        282,
+        2094,
+        316
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-7-40-bet-extra-native.png",
+          "sha256": "f3e1785e247d0ccd3b3440b442aa4346db4c557067cb0412efcc3f8a8844d5bd",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-7-40-bet-extra-15x.png",
+          "sha256": "e38b3061cfca3a30307b71ff4c90d80abeb19ef526092293a6461168392f5730",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-9-29-pe-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 108,
+      "sourceImageSHA256": "361f8eea23e04a024797e4bbf8c132bebbd8345b61b86ec9e369562e34f836a6",
+      "nativeBounds": [
+        2358,
+        701,
+        2378,
+        727
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-9-29-pe-extra-native.png",
+          "sha256": "2d43ddef701bc090943d0593b885df0b0d4ba98848fd68fbf99c266478a1b8d2",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-9-29-pe-extra-15x.png",
+          "sha256": "eb90d778c07979f589da837ff02d9cfe0ed27a9478dfa3896969a7b684d637e4",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-11-4-bet-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 110,
+      "sourceImageSHA256": "73f52ce25e3e8b47421f55c5a8688f7eb1e2dde01ddce90a452d9bbd4ba60e18",
+      "nativeBounds": [
+        792,
+        444,
+        814,
+        477
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-4-bet-extra-native.png",
+          "sha256": "e70ecfe8f2ad4fd5a189f3d1dacfa185cce266ca2d9d2a9713731a1aa8f358ba",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-4-bet-extra-15x.png",
+          "sha256": "43178357eebaba0967254d838809430b50074cb27a9f682e3da4bbdf5e9a092a",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-15-10-dalet-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 117,
+      "sourceImageSHA256": "266c01948f67a1c58a794c706f19404f12591899ad79006f6a7e8990fbcc11ab",
+      "nativeBounds": [
+        832,
+        728,
+        856,
+        766
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-10-dalet-extra-native.png",
+          "sha256": "5095416a44f2c68303abbc39f6052bccc01b73ea11013a27fb8978e4042270c7",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-10-dalet-extra-15x.png",
+          "sha256": "433de12269b5f6f432753e054356116e36346bc98d8842bbf6594a77f21eb929",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-15-34-het-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 118,
+      "sourceImageSHA256": "6b01b017167f4960561060e9389262eadea9cd28f1a905ec113c61b8eead6a21",
+      "nativeBounds": [
+        2032,
+        1370,
+        2055,
+        1408
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-34-het-extra-native.png",
+          "sha256": "689fdc81d05c82fc881c9eb1dda50b47a543eaccacd73bf2ec5cf83be3e1c87a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-15-34-het-extra-15x.png",
+          "sha256": "de49f48e54ca8798c5d50c826272ad82d3f55ea8b03b3392e4ff7e1e0e0eb14a",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "1MA-6-26-yod-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 66,
+      "sourceImageSHA256": "8771c6f1f5d736cc9dc0f844b96a79cce5c91404dc8d1a76ac6628ff7e6aeb70",
+      "nativeBounds": [
+        1178,
+        275,
+        1192,
+        300
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-26-yod-extra-native.png",
+          "sha256": "475d977301f7e9790b938afbe45a3ca9982e5f448be6d5c51d5ad374418b1f50",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/1MA-6-26-yod-extra-15x.png",
+          "sha256": "793a464b4a9b4eaa0ca6cf9c12c2618bce7db72def6aa040aa8cc9acfd7a6e00",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    "2MA-8-4-yod-expanded-extra": {
+      "sourceKind": "extra",
+      "sourcePage": 104,
+      "sourceImageSHA256": "e2ba648a287c669f9eeef10391d4994398fe0fd0b7bb2b215de43ed7a8ba203e",
+      "nativeBounds": [
+        1880,
+        616,
+        1900,
+        648
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-8-4-yod-expanded-extra-native.png",
+          "sha256": "fa75840b697e2b3a24eac6a98b69bc7bc0bbcde3cb9fd055963ba039b0ba1d1a",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-8-4-yod-expanded-extra-15x.png",
+          "sha256": "73dd78adc0f1127da9fb1d4bd74ee0daaf0b2f61125583b1f9562e9d94b8a2d1",
+          "scale": 15
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    }
+  },
+  "samekhAbsenceComparatorEvidence": [
+    {
+      "name": "2MA-11-17-lysias-primary",
+      "sourceKind": "primary",
+      "sourcePage": 218,
+      "sourceImageSHA256": "50c6fd9234e5b3e9e8756a862dc10e2320ab10a298446b9da332554f52f2bea5",
+      "nativeBounds": [
+        1020,
+        520,
+        1380,
+        595
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-17-lysias-primary-native.png",
+          "sha256": "c65e1e59e686a1816ac543c22d56b4d712f455b4f074eb5e8348b4c8dbd2239c",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-17-lysias-primary-5x.png",
+          "sha256": "ca49f7446610101e98fc974fe6f34ebe1abdddc184419637b10658f5c96241e4",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    },
+    {
+      "name": "2MA-11-17-lysias-extra",
+      "sourceKind": "extra",
+      "sourcePage": 111,
+      "sourceImageSHA256": "9439b24061684b385db5cde9cd810235681914e68f07c75a29ab1a8fe7f59663",
+      "nativeBounds": [
+        2340,
+        300,
+        2660,
+        385
+      ],
+      "files": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-17-lysias-extra-native.png",
+          "sha256": "84cae13c9a957dae218975b264dc6d8bfb3a0bdecf7bbf7b6a0ceadfafe31cb3",
+          "scale": 1
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass3-Maccabees/2MA-11-17-lysias-extra-5x.png",
+          "sha256": "a5561467f849b00d5e7fe3cd65dc3150891b627da73523fbeb4ac4864856d53c",
+          "scale": 5
+        }
+      ],
+      "transformation": "Original embedded-image crop and integer nearest-neighbor enlargement only; no filtering, thresholding or reconstruction."
+    }
+  ],
+  "verification": {
+    "all43InputNotesAccountedForExactlyOnce": true,
+    "all12ResolutionsIndependentlyApprovedBeforeEdits": true,
+    "eightPointAdditionsAndFourTextUnchangedRetirementsOnly": true,
+    "allConsonantsWordsSourceUnitsLabelsAndPagesPreserved": true,
+    "allUnrelatedReadableMarksPreserved": true,
+    "allSourceCropsRecreatedFromRecordedOriginalPixelBounds": true,
+    "allEnlargementsVerifiedNearestNeighbor": true,
+    "acceptedSourceNoteIdsMatchRemainingCanonicalNotes": true,
+    "noCentralDailyOrGeneratedDataEdited": true
+  }
+}

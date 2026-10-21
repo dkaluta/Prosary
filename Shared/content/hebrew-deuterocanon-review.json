@@ -1979,7 +1979,7 @@
       "method": "Independent reader inspected all printed margin labels, combined units and five page continuations in enlarged source images; root checked that separately recorded inventory against the finished word/point/punctuation review. Source record: BAR-print-inventory.json."
     },
     "SUS": {
-      "contentSHA256": "0989a562bb344ac75b6b469f5867d1c1c050b822e3847e36a8e4762e8fefbb03",
+      "contentSHA256": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         237,
@@ -1989,34 +1989,16 @@
         241,
         242
       ],
-      "method": "Read actual lower-body margins at enlarged resolution, separating combined labels from adjacent single labels. Read minimal neighboring text to establish the physical continuation when a label shares a row with the preceding unit ending. Headers, titles and commentary are not counted as units. Positional address40–41 is explicitly reconciled with the apparent source misprint in SUS-label-disposition.json, while the original independent inventory remains unchanged. Full point/word comparison is recorded in six SUS-page*-second-pass reports.",
+      "method": "Read actual lower-body margins at enlarged resolution, separating combined labels from adjacent single labels. Read minimal neighboring text to establish the physical continuation when a label shares a row with the preceding unit ending. Headers, titles and commentary are not counted as units. Positional address40–41 is explicitly reconciled with the apparent source misprint in SUS-label-disposition.json, while the original independent inventory remains unchanged. Full point/word comparison is recorded in six SUS-page*-second-pass reports. On 2026-10-17 the fourth source-note review certified 0 additional marks in this book; 25 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 a eleventh focused glyph-comparison pass independently retired 3 exact notes;22 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 a twelfth focused glyph-comparison pass independently retired 4 exact notes; 18 remain. This bounded comparison targets reported annotation sites.",
       "hasIntroduction": false,
       "sourceGaps": {},
       "sourceNoteIds": [
         "sus-1-14-letter-1-vowel",
-        "sus-1-14-letter-2-dagesh",
         "sus-1-17-letter-1-vowel",
-        "sus-1-18-letter-1-vowel",
-        "sus-1-18-letter-4-vowel",
-        "sus-1-18-tsadi-vowel",
-        "sus-1-22-letter-1-vowel",
-        "sus-1-22-letter-3-vowel",
-        "sus-1-23-letter-1-vowel",
-        "sus-1-23-letter-3-vowel",
         "sus-1-27-letter-1-vowel",
-        "sus-1-27-letter-2-dagesh",
-        "sus-1-38-letter-2-vowel",
-        "sus-1-38-letter-3-vowel",
-        "sus-1-4-letter-2-vowel",
         "sus-1-40-letter-1-vowel",
         "sus-1-47-letter-1-vowel",
-        "sus-1-47-letter-2-dagesh",
-        "sus-1-48-letter-2-vowel",
         "sus-1-5-letter-1-vowel",
-        "sus-1-6-letter-2-dagesh",
-        "sus-1-62-letter-1-vowel",
-        "sus-1-62-letter-2-dagesh",
-        "sus-1-62-letter-3-dagesh",
         "sus-1-9-letter-1-vowel"
       ],
       "chapters": [
@@ -2328,10 +2310,40 @@
           ]
         }
       ],
-      "addressRoutes": []
+      "addressRoutes": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+          "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-upper-vowel-reinspection-20261017-pass4.json",
+          "sha256": "708680ec471354f183f2b17bd9a2dba0c7d43a062e14f0606ef646cc0d9532a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-point-comparison-20261017-pass11.json",
+          "sha256": "15e32b3d1add868acadd2338afa3245cfb2fca03d76a6f10e281cd063faf651e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-yod-comparison-20261017-pass12.json",
+          "sha256": "2d1a0db6300012c37fcb53a117d7ceb365417232a504a59f7e386433273ad90d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-unit1-18-point-comparison-20261017-pass31.json",
+          "sha256": "8921d8db48c76d989719f1492860703c8a90d79bd2fb2b332c7326b5c79679ed"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-unit1-18-point-comparison-20261017-pass61.json",
+          "sha256": "1717e361fbf7a24f44d123a97b1314015e65b1d4112913de611016e52ffc0a89"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SUS-chrome-acquisition-20261018-pass61.json",
+          "sha256": "3e2bd8c80a6ebbe0e43e881c768f4ed0fa21dd3d8819eb6b7e1d09ca85bab11e"
+        }
+      ]
     },
     "S3Y": {
-      "contentSHA256": "b751507a6c14858a24cd3e54923c7d03ee3cb684de82b89720bc515eced0580e",
+      "contentSHA256": "881e1518540e87bdb9ec7a92fcb7b00457428a89c7a883c5a05d8e286a090977",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         233,
@@ -2339,74 +2351,12 @@
         235,
         236
       ],
-      "method": "Independent pre-transcription S3Y-print-inventory.json plus S3Y-final-closure-audit.json; four complete physical-page second-pass reports. Printed Septuagint source order and individual unreadable-mark dispositions checked. No OCR output is treated as approval.",
+      "method": "Independent pre-transcription S3Y-print-inventory.json plus S3Y-final-closure-audit.json; four complete physical-page second-pass reports. Printed Septuagint source order and individual unreadable-mark dispositions checked. No OCR output is treated as approval. On 2026-10-17 the fourth source-note review certified 0 additional marks in this book; 65 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 a tenth focused glyph-comparison pass independently retired 1 exact notes;64 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 a thirteenth focused glyph-comparison pass independently retired 10 exact notes; 54 remain. This bounded comparison targets reported annotation sites. On 2026-10-17 a fourteenth focused glyph-comparison pass independently retired 2 exact notes; 52 remain. Daily passages with disclosures receive priority. On 2026-10-17 a fifteenth focused glyph-comparison pass independently retired 2 exact notes; 50 remain. Daily passages with disclosures receive priority. On 2026-10-17 a nineteenth focused glyph-comparison pass independently retired 1 exact notes; 49 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twentieth focused glyph-comparison pass independently retired 1 exact notes; 48 remain. Daily passages with disclosures receive priority. On 2026-10-18 a thirty-sixth focused glyph-comparison pass independently retired 15 exact notes; 33 remain. Daily passages with disclosures receive priority. On 2026-10-20 a fortieth focused glyph-comparison pass independently retired 5 exact notes on printed page 234 / רלד (viewer page 579, internal 594); 28 remain. Daily passages with disclosures receive priority. On 2026-10-20 a forty-seventh focused glyph-comparison pass independently retired 4 exact notes on printed page 235 / רלה (viewer page 580, internal 595); 24 remain. Daily passages with disclosures receive priority.",
       "hasIntroduction": false,
       "sourceNoteIds": [
-        "s3y-1-1-word1-letter1-vowel",
-        "s3y-1-1-word12-letter1-dagesh",
-        "s3y-1-1-word14-letter2-dagesh",
-        "s3y-1-1-word14-letter3-vowel",
-        "s3y-1-1-word15-letter1-vowel",
-        "s3y-1-1-word17-letter1-vowel",
-        "s3y-1-1-word17-letter2-dagesh",
         "s3y-1-11-word1-letter1-vowel",
-        "s3y-1-16-word5-letter1-vowel",
-        "s3y-1-19-word10-letter1-vowel",
         "s3y-1-19-word5-letter2-vowel",
-        "s3y-1-2-word1-letter1-vowel",
-        "s3y-1-2-word10-letter1-vowel",
-        "s3y-1-22-word7-letter1-vowel",
-        "s3y-1-25-word10-letter1-dagesh",
-        "s3y-1-25-word10-letter2-vowel",
-        "s3y-1-25-word10-letter3-vowel",
-        "s3y-1-25-word21-letter1-vowel",
-        "s3y-1-25-word21-letter2-dagesh",
-        "s3y-1-25-word25-letter1-vowel",
-        "s3y-1-25-word28-letter1-vowel",
-        "s3y-1-26-word1-letter1-vowel",
-        "s3y-1-26-word1-letter2-dagesh",
-        "s3y-1-27-word1-letter1-vowel",
-        "s3y-1-27-word1-letter2-dagesh",
-        "s3y-1-27-word2-letter1-vowel",
-        "s3y-1-27-word2-letter2-dagesh",
-        "s3y-1-28-word5-letter1-vowel",
-        "s3y-1-28-word7-letter1-vowel",
-        "s3y-1-28-word7-letter2-dagesh",
-        "s3y-1-29-word1-letter1-vowel",
-        "s3y-1-29-word1-letter2-dagesh",
-        "s3y-1-3-word1-letter1-vowel",
-        "s3y-1-3-word1-letter2-dagesh",
-        "s3y-1-3-word5-letter1-vowel",
-        "s3y-1-30-vayaanu-vav-vowel",
-        "s3y-1-30-vayaanu-yod-dagesh",
-        "s3y-1-30-vayhalelu-vav-vowel",
-        "s3y-1-30-vayromemu-vav-vowel",
-        "s3y-1-30-vayshabehu-vav-vowel",
-        "s3y-1-35-rakiya-resh-vowel",
-        "s3y-1-4-word1-letter1-vowel",
-        "s3y-1-4-word1-letter2-dagesh",
-        "s3y-1-4-word15-letter1-vowel",
-        "s3y-1-4-word15-letter2-dagesh",
-        "s3y-1-4-word3-letter1-vowel",
-        "s3y-1-4-word3-letter2-dagesh",
-        "s3y-1-4-word4-letter1-vowel",
-        "s3y-1-4-word4-letter2-dagesh",
-        "s3y-1-4-word6-letter1-vowel",
-        "s3y-1-4-word6-letter2-dagesh",
-        "s3y-1-52-word1-letter1-vowel",
-        "s3y-1-60-word2-letter1-vowel",
-        "s3y-1-60-word2-letter3-dagesh",
-        "s3y-1-68-word3-letter2-dagesh",
-        "s3y-1-tail-word4-letter1-vowel",
-        "s3y-1-tail-word5-letter1-vowel",
-        "s3y-1-tail-word5-letter2-dagesh",
-        "s3y-1-tail-word6-letter1-vowel",
-        "s3y-1-tail-word6-letter2-dagesh",
-        "s3y-1-tail-word7-letter1-vowel",
-        "s3y-1-tail-word7-letter2-dagesh",
-        "s3y-1-tail-word8-letter1-vowel",
-        "s3y-1-tail-word9-letter1-vowel",
-        "s3y-1-tail-word9-letter2-dagesh"
+        "s3y-1-35-rakiya-resh-vowel"
       ],
       "chapters": [
         {
@@ -2768,10 +2718,88 @@
           ]
         }
       ],
-      "addressRoutes": []
+      "addressRoutes": [],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+          "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-upper-vowel-reinspection-20261017-pass4.json",
+          "sha256": "708680ec471354f183f2b17bd9a2dba0c7d43a062e14f0606ef646cc0d9532a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/RESH-vowel-retentions-20261017-pass8.json",
+          "sha256": "04747ca6236f3baced787e463ee1797b514a070befc9fea5c2146f498739a733"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-comparison-20261017-pass10.json",
+          "sha256": "b56448dd803a3e59456954e9cb4dd8372dcc47702d7b86159e9458d139489074"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-yod-dagesh-comparison-20261017-pass13.json",
+          "sha256": "b3ef5e550e2d09774359580e69cb2f99782c9703426f72a6cdcbe0902b6e96aa"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-daily-note-comparison-20261017-pass14.json",
+          "sha256": "5366baf5216d68bea3b657b7edae965ebeb5cb3d3e2d89420b423f30866155ee"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/DAILY-ESG-S3Y-point-comparison-20261017-pass14.json",
+          "sha256": "656b565bba83201baf956f4acfc1cac77ea17bdf7645b6cc52c3aae03a9e6611"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-closing-narrative-note-comparison-20261017-pass15.json",
+          "sha256": "20fdc8ba5e8670fe62945de0c0295f650e5b0d31c0f2aa5f5759693737f1a5e1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-point-comparison-20261017-pass19.json",
+          "sha256": "a18e2838f39f7e9c8e6c405f9f97dbd0f51acd6f5586830c68efa92c4f28d30e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit25-point-comparison-20261017-pass20.json",
+          "sha256": "74d43965144bbb3fe0c1f84991608150cbe83470ea4cdc40b6763a196d46532c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-tail-point-comparison-20261017-pass36.json",
+          "sha256": "db4583d25d27426e2da3866464f72d7479ad2135fa4b2e73695f034abff7cecf"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-4-point-comparison-20261017-pass36.json",
+          "sha256": "34ef9fe18fee874eb941dbcaece2a9a57b729103a8ca39dfbc178e8e90b0ee57"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass36.json",
+          "sha256": "a883359c54b723a766f545ba18cb171bee763647ef81a4107964e27b29e222cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-25-point-comparison-20261017-pass40.json",
+          "sha256": "e62eb992b4a35187f973a53393f24d011a29c05b0808d1a23c23d695eb1d9a47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass40.json",
+          "sha256": "7eaabecccf95c6be336a1c5e568680592fcf9d7237f78fb53b3433db01b3c907"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-1-point-comparison-20261017-pass53.json",
+          "sha256": "261baba692282fb586b4a870c14af7fe0cfbd73a6a0128601cc238e340871c4d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass53.json",
+          "sha256": "5cd2f6ebf4f77ce7d828456ec7fad483e05e22bed0f264b3faf3b2f56c5a32ab"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-2-point-comparison-20261017-pass80.json",
+          "sha256": "c5c5b22d8774e1ff14c9e150ee32fb176d0e54794023c462f05ebd984a8623ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass80.json",
+          "sha256": "61d6a6dc5643415e5c1e221821ebcac1ddf1ed65cb9f8851d8e186c972fea29c"
+        }
+      ]
     },
     "LJE": {
-      "contentSHA256": "d2bb4d07c7885ca9a0f5c07710e01f617faf960161494cfdd622c2b140635f14",
+      "contentSHA256": "4c2f83f2f964625ca8c211eeed6c2953b810ad466f8799041e760d286662583f",
       "scanSHA256": "e67bcdad0d6d8e528f79bf8e5ed403c13c1cd220a19cc75038728a0572136345",
       "textPages": [
         113,
@@ -3080,16 +3108,24 @@
           ]
         }
       ],
-      "sourceNoteIds": [
-        "frenkel-lje-f33-nun-dagesh"
-      ],
-      "method": "Frenkel 1863 scan pages 113–116: every body word and readable point independently compared in two reviewer pairs; 79 printed sections and three page joins inventoried. Brenton Greek-English print pages 127–130 supplies an independently checked 73-unit target inventory. All 73 Hebrew target boundaries semantically compared after assembly; all source character spans conserved in order. One isolated unreadable dagesh is explicitly omitted with a source note. Hartom text, boundaries and approval were not used.",
+      "sourceNoteIds": [],
+      "method": "Frenkel 1863 scan pages 113–116: every body word and readable point independently compared in two reviewer pairs; 79 printed sections and three page joins inventoried. Brenton Greek-English print pages 127–130 supplies an independently checked 73-unit target inventory. All 73 Hebrew target boundaries semantically compared after assembly; all source character spans conserved in order. The formerly disclosed first-nun dagesh is now resolved directly from native source pixels; no unreadable-point notes remain. Hartom text, boundaries and approval were not used. On 2026-10-17 the third focused source-note pass independently resolved 1 further positions; 0 notes remain. Exact allowed text/note changes were asserted against the completed second-pass snapshot. Source letters, punctuation, page/unit/witness inventories, source order and all other marks remain intact. See ADDITIONS-note-reinspection-20261017-pass3.json.",
       "sourceInventory": "Shared/reports/hebrew-wikisource/LJE-frenkel-source-inventory.json",
       "boundaryInventory": "Shared/reports/hebrew-wikisource/LJE-brenton-boundary-source.json",
-      "sourceCrosswalk": "Shared/reports/hebrew-wikisource/LJE-frenkel-pointed-crosswalk.json"
+      "sourceCrosswalk": "Shared/reports/hebrew-wikisource/LJE-frenkel-pointed-crosswalk.json",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass3.json",
+          "sha256": "8af0dd5b77f341158e1b2c15c73459cb7ddccabb9c82cf1e810c425f169bf540"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/LJE-frenkel-pointed-crosswalk.json",
+          "sha256": "e5682e9d448edacf9d2011b8044f1e9ddbd9345debe6f03818be8cb261241ab1"
+        }
+      ]
     },
     "BEL": {
-      "contentSHA256": "d123f7fbcf093b48e868661e59060ea471e00442902650c4aa0bbd59541c8ea2",
+      "contentSHA256": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         242,
@@ -3102,230 +3138,12 @@
       "hasIntroduction": false,
       "sourceGaps": {},
       "sourceNoteIds": [
-        "bel-1-1-242-name-letter6-vowel",
-        "bel-1-1-242-vayeasef-letter1-vowel",
-        "bel-1-1-242-vayeasef-letter2-dagesh",
-        "bel-1-1-242-vayeasef-letter4-vowel",
-        "bel-1-1-242-vayirash-full-letter1-vowel",
-        "bel-1-1-242-vayirash-full-letter2-dagesh",
-        "bel-1-1-243-mamlkhetu-letter4-vowel",
-        "bel-1-10-244-daniel10a-letter3-dagesh",
-        "bel-1-10-244-daniel10b-letter3-dagesh",
-        "bel-1-10-244-vayomer10-letter1-vowel",
-        "bel-1-10-244-vayomer10-letter2-dagesh",
-        "bel-1-11-244-daniel11-letter4-dagesh",
         "bel-1-11-244-vayelekh11-letter1-vowel",
-        "bel-1-11-244-vayelekh11-letter2-dagesh",
         "bel-1-12-244-vayomru12-letter1-vowel",
-        "bel-1-12-244-vayomru12-letter2-dagesh",
-        "bel-1-12-244-vayomru12-letter6-dagesh",
         "bel-1-13-244-daniel13-letter3-dagesh",
         "bel-1-14-244-vayehi14-letter1-vowel",
-        "bel-1-15-244-daniel15-letter4-dagesh",
-        "bel-1-15-244-vayahtemu15-letter1-vowel",
-        "bel-1-15-244-vayahtemu15-letter2-dagesh",
-        "bel-1-15-244-vayasem15-letter1-vowel",
-        "bel-1-15-244-vayasem15-letter2-dagesh",
-        "bel-1-15-244-vayaviu15-letter1-vowel",
-        "bel-1-15-244-vayaviu15-letter2-dagesh",
-        "bel-1-15-244-vayehi15-letter1-vowel",
-        "bel-1-15-244-vayelkhu15-letter1-vowel",
-        "bel-1-15-244-vayelkhu15-letter2-dagesh",
-        "bel-1-15-244-vayelkhu15-letter5-dagesh",
-        "bel-1-15-244-vayetseu15-letter1-vowel",
-        "bel-1-15-244-vayetseu15-letter2-dagesh",
-        "bel-1-15-244-vayetseu15-letter5-dagesh",
-        "bel-1-15-244-vayisgeru15-letter1-vowel",
-        "bel-1-15-244-vayisgeru15-letter2-dagesh",
-        "bel-1-15-244-vayizreu15-letter1-vowel",
-        "bel-1-15-244-vayizreu15-letter2-dagesh",
-        "bel-1-16-244-vayavou16-letter1-vowel",
-        "bel-1-16-244-vayavou16-letter2-dagesh",
-        "bel-1-16-244-vayavou16-letter5-dagesh",
-        "bel-1-16-244-vayishtu16-letter1-vowel",
-        "bel-1-16-244-vayishtu16-letter2-dagesh",
-        "bel-1-16-244-vayokhelu16-letter1-vowel",
-        "bel-1-16-244-vayokhelu16-letter2-dagesh",
-        "bel-1-16-244-vayokhelu16-letter6-dagesh",
-        "bel-1-17-244-daniel17-fixed-letter4-dagesh",
-        "bel-1-17-244-vayashkem-wide-letter1-vowel",
-        "bel-1-17-244-vayashkem-wide-letter2-dagesh",
-        "bel-1-17-244-vayashkem-wide-letter4-vowel",
-        "bel-1-17-244-vayomer17-letter1-vowel",
-        "bel-1-17-244-vayomer17-letter2-dagesh",
-        "bel-1-17-245-daniel17-letter3-dagesh",
-        "bel-1-17-245-vayomer17-letter1-vowel",
-        "bel-1-17-245-vayomer17-letter2-dagesh",
-        "bel-1-19-245-vayabet19-letter1-vowel",
-        "bel-1-19-245-vayabet19-letter2-dagesh",
-        "bel-1-19-245-vayabet19-letter3-vowel",
-        "bel-1-19-245-vayehi19-letter1-vowel",
-        "bel-1-19-245-vayikra19-letter1-vowel",
-        "bel-1-19-245-vayikra19-letter2-dagesh",
-        "bel-1-20-245-daniel20-letter3-dagesh",
-        "bel-1-20-245-vayahazek20-letter1-vowel",
-        "bel-1-20-245-vayahazek20-letter2-dagesh",
-        "bel-1-20-245-vayitzhak20-letter1-vowel",
-        "bel-1-20-245-vayitzhak20-letter2-dagesh",
-        "bel-1-20-245-vayomer20-letter1-vowel",
-        "bel-1-20-245-vayomer20-letter2-dagesh",
-        "bel-1-20-245-vayomer20-letter4-vowel",
-        "bel-1-21-245-vayarehu-wide-letter1-vowel",
-        "bel-1-21-245-vayarehu-wide-letter2-dagesh",
-        "bel-1-21-245-vayeesof-wide-letter1-vowel",
-        "bel-1-21-245-vayeesof-wide-letter2-dagesh",
-        "bel-1-21-245-vayeesof-wide-letter2-vowel",
-        "bel-1-21-245-vayeesof-wide-letter4-vowel",
-        "bel-1-21-245-vayiktzof21-letter1-vowel",
-        "bel-1-21-245-vayiktzof21-letter2-dagesh",
-        "bel-1-21-245-vayomer21-letter1-vowel",
-        "bel-1-21-245-vayomer21-letter2-dagesh",
-        "bel-1-22-245-daniel22-letter4-dagesh",
-        "bel-1-22-245-vayiten22-letter1-vowel",
-        "bel-1-22-245-vayiten22-letter2-dagesh",
-        "bel-1-22-245-vaymitem22-letter1-vowel",
-        "bel-1-23-245-daniel23-letter4-dagesh",
-        "bel-1-23-245-vayaavduhu23-letter1-vowel",
-        "bel-1-23-245-vayaavduhu23-letter2-dagesh",
-        "bel-1-23-245-vayaavduhu23-letter5-vowel",
-        "bel-1-23-245-vayehi23-letter1-vowel",
-        "bel-1-23-245-vayomer23-letter1-vowel",
-        "bel-1-23-245-vayomer23-letter2-dagesh",
-        "bel-1-25-245-daniel25-letter3-dagesh",
         "bel-1-25-245-vayomer25-letter1-vowel",
-        "bel-1-25-245-vayomer25-letter2-dagesh",
-        "bel-1-26-245-vayomer26-letter1-vowel",
-        "bel-1-26-245-vayomer26-letter2-dagesh",
-        "bel-1-27-246-daniel-letter3-dagesh",
-        "bel-1-27-246-vayaas27-letter1-vowel",
-        "bel-1-27-246-vayaas27-letter2-dagesh",
-        "bel-1-27-246-vayibaka-letter1-vowel",
-        "bel-1-27-246-vayibaka-letter2-dagesh",
-        "bel-1-27-246-vayibaka-letter4-vowel",
-        "bel-1-27-246-vayikah-letter1-vowel",
-        "bel-1-27-246-vayikah-letter2-dagesh",
-        "bel-1-27-246-vayikah-letter3-vowel",
-        "bel-1-27-246-vayiten27-letter1-vowel",
-        "bel-1-27-246-vayiten27-letter2-dagesh",
-        "bel-1-27-246-vayokhal-letter1-vowel",
-        "bel-1-27-246-vayokhal-letter2-dagesh",
-        "bel-1-27-246-vayokhal-letter4-vowel",
-        "bel-1-27-246-vayomer27-letter1-vowel",
-        "bel-1-27-246-vayomer27-letter2-dagesh",
-        "bel-1-27-246-vayvashelm-letter1-vowel",
-        "bel-1-27-246-vayvashelm-letter3-vowel",
-        "bel-1-27-246-vayvashelm-letter4-dagesh",
-        "bel-1-28-246-kaasher-letter1-vowel",
-        "bel-1-28-246-vayehi28-letter1-vowel",
-        "bel-1-28-246-vayilunu28-letter1-vowel",
-        "bel-1-28-246-vayilunu28-letter2-dagesh",
-        "bel-1-28-246-vayirgezu-letter1-vowel",
-        "bel-1-28-246-vayirgezu-letter2-dagesh",
-        "bel-1-28-246-vayirgezu-letter4-dagesh",
-        "bel-1-28-246-vayomru-letter4-vowel",
-        "bel-1-28-246-vayomru28-letter1-vowel",
-        "bel-1-28-246-vayomru28-letter2-dagesh",
-        "bel-1-29-246-daniel-letter3-dagesh",
-        "bel-1-29-246-vayavou29-letter1-vowel",
-        "bel-1-29-246-vayavou29-letter2-dagesh",
-        "bel-1-29-246-vayomru-letter4-vowel",
-        "bel-1-29-246-vayomru29-letter1-vowel",
-        "bel-1-29-246-vayomru29-letter2-dagesh",
-        "bel-1-3-243-vayehi-first-letter1-vowel",
-        "bel-1-3-243-vayehi-second-letter1-vowel",
-        "bel-1-3-243-vayotziu-letter1-vowel",
-        "bel-1-3-243-vayotziu-letter2-dagesh",
-        "bel-1-3-243-venikhbad-letter1-vowel",
-        "bel-1-30-246-daniel-letter3-dagesh",
-        "bel-1-30-246-vayar30-letter1-vowel",
-        "bel-1-30-246-vayar30-letter2-dagesh",
-        "bel-1-30-246-vayiten30-letter1-vowel",
-        "bel-1-30-246-vayiten30-letter2-dagesh",
-        "bel-1-31-246-daniel-letter3-dagesh",
-        "bel-1-31-246-vayashlikhu31-letter1-vowel",
-        "bel-1-31-246-vayashlikhu31-letter2-dagesh",
-        "bel-1-31-246-vayehi31-letter1-vowel",
-        "bel-1-33-246-bishel-letter2-dagesh",
-        "bel-1-33-246-bishel-letter2-vowel",
-        "bel-1-33-246-laset-letter2-vowel",
-        "bel-1-33-246-vayabel-bet-vowel",
-        "bel-1-33-246-vayabel33-letter1-vowel",
-        "bel-1-33-246-vayabel33-letter2-dagesh",
-        "bel-1-33-246-vayetse-letter3-vowel",
-        "bel-1-33-246-vayetse33-letter1-vowel",
-        "bel-1-33-246-vayetse33-letter2-dagesh",
-        "bel-1-34-246-daniel-letter3-dagesh",
-        "bel-1-34-246-vayomer34-letter1-vowel",
-        "bel-1-34-246-vayomer34-letter2-dagesh",
-        "bel-1-35-246-vayomer35-letter1-vowel",
-        "bel-1-35-246-vayomer35-letter2-dagesh",
-        "bel-1-35-246-veeneni-letter5-dagesh",
-        "bel-1-36-247-baseara36-letter4-vowel",
-        "bel-1-36-247-vayahazek36-letter1-vowel",
-        "bel-1-36-247-vayahazek36-letter2-dagesh",
-        "bel-1-36-247-vayatsigehu36-letter1-vowel",
-        "bel-1-36-247-vayisaehu36-letter1-vowel",
-        "bel-1-36-247-vayisaehu36-letter2-dagesh",
-        "bel-1-36-247-vayisaehu36-letter3-dagesh",
-        "bel-1-36-247-vayohez36-letter1-vowel",
-        "bel-1-37-247-daniel37a-letter3-dagesh",
-        "bel-1-37-247-daniel37b-letter3-dagesh",
-        "bel-1-37-247-vayikra37-letter1-vowel",
-        "bel-1-37-247-vayomer37-letter1-vowel",
-        "bel-1-37-247-vayomer37-letter2-dagesh",
-        "bel-1-37-247-vayomer37-letter4-vowel",
-        "bel-1-38-247-daniel38a-letter3-dagesh",
-        "bel-1-38-247-vayomer38-letter1-vowel",
-        "bel-1-38-247-vayomer38-letter4-vowel",
-        "bel-1-38-247-zakhor38-letter2-vowel",
-        "bel-1-39-247-daniel39a-letter3-dagesh",
-        "bel-1-39-247-vayakam39-letter1-vowel",
-        "bel-1-39-247-vayakam39-letter2-dagesh",
-        "bel-1-39-247-vayokhal39-letter1-vowel",
-        "bel-1-39-247-vayokhal39-letter2-dagesh",
-        "bel-1-39-247-vayokhal39-letter4-vowel",
-        "bel-1-40-247-bayom40-letter1-vowel",
-        "bel-1-40-247-bayom40-letter2-dagesh",
-        "bel-1-40-247-daniel40b-letter3-dagesh",
-        "bel-1-40-247-vayar40-letter1-vowel",
-        "bel-1-40-247-vayar40-letter2-dagesh",
-        "bel-1-40-247-vayavo40-letter1-vowel",
-        "bel-1-41-247-daniel41a-letter3-dagesh",
-        "bel-1-41-247-milvadekha41-letter3-vowel",
-        "bel-1-41-247-milvadekha41-letter4-vowel",
-        "bel-1-41-247-vayikra41-letter1-vowel",
-        "bel-1-41-247-vayikra41-letter2-dagesh",
-        "bel-1-41-247-vayomer41-letter1-vowel",
-        "bel-1-41-247-vayomer41-letter2-dagesh",
-        "bel-1-41-247-veein41-letter1-vowel",
-        "bel-1-42-247-kherega42-letter2-vowel",
-        "bel-1-42-247-vayaalehu42-letter1-vowel",
-        "bel-1-42-247-vayaalehu42-letter2-dagesh",
-        "bel-1-42-247-vayashlekh42-letter1-vowel",
-        "bel-1-42-247-vayashlekh42-letter4-vowel",
-        "bel-1-42-247-vayitarfu42-letter1-vowel",
-        "bel-1-42-247-vayitarfu42-letter2-dagesh",
-        "bel-1-42-247-vayitarfu42-letter4-vowel",
-        "bel-1-5-243-daniel5-letter4-dagesh",
-        "bel-1-5-243-vayavo-letter1-vowel",
-        "bel-1-5-243-vayavo-letter2-dagesh",
-        "bel-1-5-243-vayomer5-fixed-letter1-vowel",
-        "bel-1-5-243-vayomer5-fixed-letter2-dagesh",
-        "bel-1-6-243-vayomer6-letter1-vowel",
-        "bel-1-6-243-vayomer6-letter2-dagesh",
-        "bel-1-7-243-vayomer7-letter1-vowel",
-        "bel-1-7-243-vayomer7-letter2-dagesh",
-        "bel-1-8-243-vayitzhak-letter1-vowel",
-        "bel-1-8-243-vayitzhak-letter2-dagesh",
-        "bel-1-8-243-vayomer8-letter1-vowel",
-        "bel-1-8-243-vayomer8-letter2-dagesh",
-        "bel-1-8-243-vayomer8-letter4-vowel",
-        "bel-1-9-243-vayiktzof-letter1-vowel",
-        "bel-1-9-243-vayiktzof-letter2-dagesh",
-        "bel-1-9-244-vayikra9-letter1-vowel",
-        "bel-1-9-244-vayikra9-letter2-dagesh",
-        "bel-1-9-244-vayomer9-letter1-vowel",
-        "bel-1-9-244-vayomer9-letter2-dagesh"
+        "bel-1-35-246-vayomer35-letter1-vowel"
       ],
       "chapters": [
         {
@@ -3482,7 +3300,7 @@
           ]
         }
       ],
-      "method": "Every word, readable point, punctuation and source boundary in all61 lower Theodotion body lines independently compared across A2 pages242–247. Final independent 37-unit inventory and74 opening/closing anchors reconciled with the print, including all five page joins and combined labels. Exact source notes disclose224 locally unreadable points; no words, consonants or boundaries remain unresolved.",
+      "method": "Every word, readable point, punctuation and source boundary in all61 lower Theodotion body lines independently compared across A2 pages242–247. Final independent 37-unit inventory and74 opening/closing anchors reconciled with the print, including all five page joins and combined labels. Exact source notes disclose118 locally unreadable points; no words, consonants or boundaries remain unresolved. On 2026-10-17 the fourth source-note review certified 2 additional marks in this book; 222 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 a seventh focused glyph-comparison pass independently retired 1 exact notes;221 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 an eighth focused glyph-comparison pass independently retired 5 exact point notes; 216 remain. This is a bounded comparison of annotated sites, not a new whole-book collation. On 2026-10-17 a ninth focused glyph-comparison pass independently retired 7 exact notes;209 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 a tenth focused glyph-comparison pass independently retired 9 exact notes;200 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 a eleventh focused glyph-comparison pass independently retired 1 exact notes;199 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 a twelfth focused glyph-comparison pass independently retired 4 exact notes; 195 remain. This bounded comparison targets reported annotation sites. On 2026-10-17 a thirteenth focused glyph-comparison pass independently retired 9 exact notes; 186 remain. This bounded comparison targets reported annotation sites. On 2026-10-17 a fifteenth focused glyph-comparison pass independently retired 11 exact notes; 175 remain. Daily passages with disclosures receive priority. On 2026-10-17 a sixteenth focused glyph-comparison pass independently retired 10 exact notes; 165 remain. Daily passages with disclosures receive priority. On 2026-10-17 a seventeenth focused glyph-comparison pass independently retired 4 exact notes; 161 remain. Daily passages with disclosures receive priority. On 2026-10-17 an eighteenth focused glyph-comparison pass independently retired 7 exact notes; 154 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twentieth focused glyph-comparison pass independently retired 1 exact notes; 153 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-first focused glyph-comparison pass independently retired 7 exact notes; 146 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-second focused glyph-comparison pass independently retired 8 exact notes; 138 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-third focused glyph-comparison pass independently retired 6 exact notes; 132 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-fifth focused glyph-comparison pass independently retired 5 exact notes; 127 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-sixth focused glyph-comparison pass independently retired 4 exact notes; 123 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-ninth focused glyph-comparison pass independently retired 2 exact notes; 121 remain. Daily passages with disclosures receive priority. On 2026-10-17 a thirtieth focused glyph-comparison pass independently retired 3 exact notes; 118 remain. Daily passages with disclosures receive priority. On 2026-10-18 a thirty-fifth focused glyph-comparison pass independently retired 25 exact notes; 93 remain. Daily passages with disclosures receive priority. On 2026-10-18 a thirty-seventh focused glyph-comparison pass independently retired 11 exact notes; 82 remain. Daily passages with disclosures receive priority. On 2026-10-19 a thirty-ninth focused glyph-comparison pass independently retired 5 exact notes across the printed page boundary (pages 244-245 / 572-573); 77 remain. Daily passages with disclosures receive priority.",
       "sourceInventory": "Shared/reports/hebrew-wikisource/BEL-print-inventory-second-review.json",
       "pageReviews": [
         "Shared/reports/hebrew-wikisource/BEL-page242-second-pass.json",
@@ -3492,10 +3310,288 @@
         "Shared/reports/hebrew-wikisource/BEL-page246-second-review.json",
         "Shared/reports/hebrew-wikisource/BEL-page247-second-review.json",
         "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261003.json"
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass4.json",
+          "sha256": "9477c310d2e6674df9f26ce46d566e5f3c9b2588e883bac06fd53ae29cc934df"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass7.json",
+          "sha256": "d61f75c812cccc30a270a84820113d44bb15b11f06db3eeb45bd8cc4e4d6c211"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/PSIK-authenticated-source-inspection-20261017.json",
+          "sha256": "81347cbd0d2d8e38340b184d9a772e8c90b584696abc122b13e2e3a5f95f1663"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass8.json",
+          "sha256": "5f8c4e1a8c5d4ceb321f1d1cf7e34ee7fc3fbbb54b31aad374970277b7c08608"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass9.json",
+          "sha256": "1d8cabda7d3fe62c59909446e511ea0484ffc67e17db302e73d86103a2c57b84"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass10.json",
+          "sha256": "4bc011af7940037a816dda09e6c7047565561a9b299a8fb32de00ff359ab9d32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-comparison-20261017-pass10.json",
+          "sha256": "b56448dd803a3e59456954e9cb4dd8372dcc47702d7b86159e9458d139489074"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-prefix-vowel-comparison-20261017-pass11.json",
+          "sha256": "c645c2619090117242a78b588b2a5969ade95b840d3754aeac29cc1b76ca1779"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-yod-dagesh-comparison-20261017-pass12.json",
+          "sha256": "93f369f23e8ae8ebf1c9524119623a2ee18160e2a92cb4f466c417e4a3899e90"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-yod-dagesh-comparison-20261017-pass13.json",
+          "sha256": "008cff4074120c8820109e04700c5127fe5bd9f3f60df0273d60a902028ef50c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit15-source-address-correction-20261017-pass15.json",
+          "sha256": "050f1d7aee293f24ff89870a2c9e29eb828c20d17a119518a3738254f1f2bf6e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit15-point-comparison-20261017-pass15.json",
+          "sha256": "e29ea433a2186930e157a10f02bc270b69a176f3565c0e3252640e25eb8d636b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit27-point-comparison-20261017-pass15.json",
+          "sha256": "810ca74f0322cab9f9c00180c2d0a8b9c2f57a9d7c9ab76a48f9a85ec3b5cc00"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit16-point-comparison-20261017-pass16.json",
+          "sha256": "0835c99977c6758d1d7a632a8476a0a9b58a80b67ae80ecb418076d0705e4571"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit17-point-comparison-20261017-pass16.json",
+          "sha256": "dda9c9bb48fc7a16c787545dd35c1f3bf6d189702191da698cd5d686debe4eb8"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit21-point-comparison-20261017-pass16.json",
+          "sha256": "4395d940e8049be18defcb731ef179db3aa6df19b03922db4d8268ef91444b53"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit28-point-comparison-20261017-pass17.json",
+          "sha256": "5b279f649ac167bd86c56de4ed9485a1348d9177f658abbf4e6511b7931d2e38"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit41-point-comparison-20261017-pass17.json",
+          "sha256": "8f52cd55dea1853eaa2a290e42404970b5c049156b9787d702b6810a59ea60f0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit20-point-comparison-20261017-pass18.json",
+          "sha256": "531ed1bd1a91ff10ef255855cc8e3ccf448b88fdf74af8d5e5e7296a3e3a5a13"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit33-point-comparison-20261017-pass18.json",
+          "sha256": "7cfb82271818e4326fdb193d7aba29f966e7a98c25895e29c9066bf9774dbf4f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit36-point-comparison-20261017-pass18.json",
+          "sha256": "4329850b2b86804099b7ab30ed14c9485053da69ea801942b6f5a0d9ac18e89c"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit3-point-comparison-20261017-pass20.json",
+          "sha256": "6ed0c459f01d7cf74f9529ecd99fbb832c05c5e08839793a61cccaff332c0c6a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit5-point-comparison-20261017-pass21.json",
+          "sha256": "4c099db6a8a4596794b8cbd860a646c246bbf35413a6fdf205fcee68721098d1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit8-point-comparison-20261017-pass21.json",
+          "sha256": "7b41f7791e51505c5098310a41a63465ba51d2c0fe633b5af4d121c1663268c7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit9-point-comparison-20261017-pass21.json",
+          "sha256": "61a48bf6a703e94b6c027ac376ff1578d5f9f09ecf063bede16b8f07bcfe55dd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit9-context-bounds-correction-20261017-pass21.json",
+          "sha256": "4912c78137229ee6376619c9c7655578de4d0fd4c7975c6660b0747cd1b713b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit23-point-comparison-20261017-pass22.json",
+          "sha256": "cfc3c2bde3e87be95ddf1a9f054ec3528d615567c37441a0b38edc891653910b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit29-point-comparison-20261017-pass22.json",
+          "sha256": "28308b2f99b03fb45c6c28ff290c57ba361603857e2b4787b307e92077b83ebc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit30-point-comparison-20261017-pass22.json",
+          "sha256": "d964695dc7b9489213a498fae2be348fafdccae12a8d458b161d43fb48c5dd00"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit37-point-comparison-20261017-pass23.json",
+          "sha256": "f8c9506ace1bc7525d9ce20e655f6281ac91da367e6b6bb74cfc0c7f54f7851e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit40-point-comparison-20261017-pass23.json",
+          "sha256": "9dd828361a9ba0c5e63911c68201e9616f7277cfbfb94bc6ff0252dde115199a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit42-point-comparison-20261017-pass23.json",
+          "sha256": "95782532f3da03921fb87d651d5387958e3cc1c1a696abb9282b22dbd38ac007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-point-comparison-20261017-pass25.json",
+          "sha256": "63ace011b5331ac0b6b788afc83ca9e4bb28dedfdc65ab7791ccd468fddae8c2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit10-point-comparison-20261017-pass25.json",
+          "sha256": "04080d3179556112161c34b79aea2be76feef2a4f17b03cd9d5bcfb12e4a6ad4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit19-point-comparison-20261017-pass25.json",
+          "sha256": "cb092b7a58bd21210169408c1cf440d578d909d3b1fef530a2bb35323aba3ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit22-point-comparison-20261017-pass26.json",
+          "sha256": "23e689c2d265aad32845780889b426cb39e6c5a47657bb77cc1cfb3a14750564"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit31-point-comparison-20261017-pass26.json",
+          "sha256": "f79c68a4621420c29561bf180dff1394bbde787015d64d10e083ab608997afa0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit39-point-comparison-20261017-pass26.json",
+          "sha256": "eeb4eec7e82db2a4a6663ee25cedd9306548eaaeb065a104bfdde7b662bb1d9d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit11-point-comparison-20261017-pass29.json",
+          "sha256": "b25fc3552f0084a13295ddc6ea2e1958ed148c4fe7c36690af24122f6a4685f0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-12-point-comparison-20261017-pass29.json",
+          "sha256": "153f5679c866945908179743d3c774805057e62e193796a7838e9ea649af10d2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-12-control-framing-supplement-20261017-pass29.json",
+          "sha256": "35abcd6cefbc039cda323a7bbf8f63edef1c8789afbafd91344ae6a3475712a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-25-point-comparison-20261017-pass30.json",
+          "sha256": "5621e8c58fca5ce0485dbbf3b5db5df1f618dffb402aa6b698063916d1c25ff5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit34-point-comparison-20261017-pass30.json",
+          "sha256": "b07031d404eb39917829f556805a56a3625f6b1452fb17e42133a936558dbbaa"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit35-point-comparison-20261017-pass30.json",
+          "sha256": "7ae1cca2b78c7531fa45e37e6e2b73056cb4ed7e0c290ec4ea633394d58f5648"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-27-point-comparison-20261017-pass35.json",
+          "sha256": "d0efe589acd63917055f30e664e45a78e502f178ed0c4d417c0a6130bdc00811"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-28-point-comparison-20261017-pass35.json",
+          "sha256": "b693a47259a04fd12a5d014956127219e9c119d5a838c49b9fca634e12ee8862"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-15-point-comparison-20261017-pass35.json",
+          "sha256": "fecd5296ffe9cca98472dac56d2263afef925e5c2413a952cbf63f2bcabaf66e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass35.json",
+          "sha256": "779c4cf52430c0a866bbecce599db7173e4aef5c3fd7c8aeba030b279b9ca93f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-41-point-comparison-20261017-pass37.json",
+          "sha256": "c5b0eda4c23b03e69aa934afadbd064c60da7bebe613ce9bfcd9bc3f14134b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-21-point-comparison-20261017-pass37.json",
+          "sha256": "ea037f14f8409d1cb6327e3f8aed82ecee1d20ef150c27bcce0aafa3e90fb7f8"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass37.json",
+          "sha256": "187d71863c91fec30d7fce12fcca45eff7075697ac534d72e81574332b9bb257"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-17-point-comparison-20261017-pass39.json",
+          "sha256": "aa7ef0e1b4a5d417f0e6f3f44f1ec82a92b6f2472b8fa92b876c55c48c935a30"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass39.json",
+          "sha256": "e3c13dd956735d7dbd45590c81cd5ebaa19897957b0e053b059b9671f4d2378b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-3-point-comparison-20261017-pass41.json",
+          "sha256": "bcb68255c444a9408d6461a1afdc77f547939d0089fa81b09cdf78c5fa4877f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass41.json",
+          "sha256": "2469db129726ed63d0f4894b4140edef09374fbaf9f041f174a6d9f75b330e00"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-8-point-comparison-20261017-pass54.json",
+          "sha256": "7873b09b34a13c55e546815f9537d639bfcf0171e4b6676726315ce893655c69"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass54.json",
+          "sha256": "b90f5a7e0ca16901998b6876321a3c933e0fbe15babf5eab3529da160e6a3395"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-9-point-comparison-20261017-pass55.json",
+          "sha256": "f1ba2de983e8d79e4f5bbae094667749a3f8fdaad4f38ed31e38d9e437eeda3d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass55.json",
+          "sha256": "ed093a51ebe35e2ac2cb647c28b42d020c6270f91c6191fcd8bf577ebd41127b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-16-point-comparison-20261017-pass56.json",
+          "sha256": "80737b6b83b8a05ff31f1883a2817fb111ba57b83fb9c457a12b6ed2039ddc98"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass56.json",
+          "sha256": "1a4d912706e821a35d803e71337d240b64b810ccd4b95393e8ea6722e7f0ee7d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-19-point-comparison-20261017-pass57.json",
+          "sha256": "7d0f3f3b80f898a73f3fc91a38be80e5e2151f7968acf0a2a97fcbf8c0211903"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass57.json",
+          "sha256": "691e0fb004236445cf44a0a3bbe922bf56f550e68fc537bfd874f21461c534e6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-20-point-comparison-20261017-pass58.json",
+          "sha256": "f0e984371a0fb1926f14a5c8cdf6a9fc88c223b7337ba1f159eaef0db95380f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass58.json",
+          "sha256": "1eaa5f2fac3e641481272d0d67c50ec4414f6cfb056c5cbde2e728181f8d45c8"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-23-point-comparison-20261017-pass59.json",
+          "sha256": "ad0f735608dfe77b92a5e945b49f6c3fe97186cd5b60e92d3fc8cddd4897c2b4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass59.json",
+          "sha256": "2bf001a6e5fd8926e91d06caf4b0b2b2d99e428ccd84b9ae538d3bc5ec55087a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-40-point-comparison-20261017-pass60.json",
+          "sha256": "11185964ef5bedae1a1077f520332902f8f1dc259996ac2bf7c17c6da364aa74"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass60.json",
+          "sha256": "4bdd34634488ce20d592e1d047d91e86da3bf1543f390ac6b050e557d4141673"
+        }
       ]
     },
     "SIR": {
-      "contentSHA256": "363ab4b410ed35f108e598844d43add1f30473951180bc4f70432c9ffd4fc4ce",
+      "contentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
       "textPages": [
         449,
@@ -3815,72 +3911,25 @@
         }
       },
       "sourceNoteIds": [
-        "sir-1-25-1-dagesh",
         "sir-1-3-1-dagesh",
-        "sir-1-5-2-dagesh",
-        "sir-10-28-yod-dagesh",
         "sir-11-10-qof-vowel",
-        "sir-11-12-ayin-vowel",
         "sir-11-12-nun-vowel",
-        "sir-11-28-shin-dagesh",
-        "sir-11-32-nun-dagesh",
-        "sir-11-32-nun-vowel",
-        "sir-11-34-resh-vowel",
         "sir-11-34-vav-vowel",
-        "sir-12-16-first-mem-vowel",
         "sir-13-18-alef-vowel",
-        "sir-14-16-vav-vowel",
-        "sir-15-10-mem-dagesh",
-        "sir-15-13-alef-vowel",
-        "sir-15-18-gimel-dagesh",
-        "sir-15-5-first-mem-vowel",
-        "sir-15-5-second-mem-vowel",
-        "sir-15-9-alef-vowel",
         "sir-16-26-nun-dagesh",
-        "sir-17-13-gimel-dagesh",
-        "sir-17-8-gimel-dagesh",
-        "sir-18-10-gimel-dagesh",
-        "sir-18-4-gimel-dagesh",
-        "sir-2-2-het-vowel",
         "sir-2-2-vav-vowel",
-        "sir-22-18-ayin-vowel",
-        "sir-23-12-dalet-dagesh",
-        "sir-23-12-tsadi-dagesh",
-        "sir-23-6-mem-vowel",
         "sir-24-17-nun-dagesh",
-        "sir-24-32-resh-vowel",
-        "sir-26-14-yod-vowel",
         "sir-29-19-bet-vowel",
-        "sir-29-3-kaf-dagesh",
         "sir-3-18-ayin-vowel",
-        "sir-3-22-he-vowel",
-        "sir-3-8-sin-dagesh",
         "sir-30-16-resh-vowel",
-        "sir-30-16-shin-vowel",
-        "sir-30-18-tsadi-dagesh",
         "sir-30-19-yod-vowel",
-        "sir-31-21-vav-vowel",
         "sir-31-6-lamed-vowel",
-        "sir-31-7-qof-vowel",
-        "sir-31-7-vav-vowel",
-        "sir-31-7-yod-vowel",
         "sir-32-12-tet-vowel",
-        "sir-32-4-mem-vowel",
-        "sir-36-8-ayin-vowel",
-        "sir-37-12-alef-vowel",
-        "sir-37-31-ayin-vowel",
         "sir-39-14-bet-vowel",
-        "sir-39-14-resh-vowel",
         "sir-39-35-qof-vowel",
-        "sir-4-24-dalet-vowel",
-        "sir-47-23-mem-vowel",
-        "sir-49-10-shin-vowel",
         "sir-49-10-yod-dagesh",
-        "sir-51-11-alef-vowel",
         "sir-51-4-resh-vowel",
-        "sir-6-29-lamed-vowel",
-        "sir-6-3-nun-dagesh",
-        "sir-6-3-tav-dagesh"
+        "sir-6-3-nun-dagesh"
       ],
       "chapters": [
         {
@@ -9805,7 +9854,7 @@
           "blockId": "sir-11-34"
         }
       ],
-      "method": "All82 selected main-text pages independently compared word by word, with readable printed niqqud, punctuation, source brackets, repeated witnesses and unnumbered text preserved. Separate native-scan inventory checked all51 chapter sequences,1333 primary units,11 combined units,15 self-contained blocks, source gaps, page joins and the cross-chapter route. Sixty-six exact notes disclose isolated unreadable points; no words or boundaries remain unresolved.",
+      "method": "All82 selected main-text pages independently compared word by word, with readable printed niqqud, punctuation, source brackets, repeated witnesses and unnumbered text preserved. Separate native-scan inventory checked all51 chapter sequences,1333 primary units,11 combined units,15 self-contained blocks, source gaps, page joins and the cross-chapter route. 25 exact notes disclose isolated unreadable points; no words or boundaries remain unresolved. On 2026-10-17 a second focused source-image pass with independent root corroboration retired 19 further notes. The source-unit boundaries, labels, pages, witnesses and reading order remain unchanged. See SIR-note-reinspection-20261017-pass2.json. On 2026-10-17 the third focused source-note pass independently resolved 10 further positions; 37 notes remain. Exact allowed text/note changes were asserted against the completed second-pass snapshot. Source letters, punctuation, page/unit/witness inventories, source order and all other marks remain intact. See SIR-note-reinspection-20261017-pass3.json. On 2026-10-17 the fourth source-note review certified 7 additional marks in this book; 30 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 the fifth focused source-note pass independently certified 1 yod dageshes from their literal low-left source geometry and same-font controls. 29 notes remain; all words, other marks and source units stay literal. On 2026-10-17 an eighth focused glyph-comparison pass independently retired 4 exact point notes; 25 remain. This is a bounded comparison of annotated sites, not a new whole-book collation. On 2026-10-17 a twelfth focused glyph-comparison pass independently retired 1 exact notes; 24 remain. This bounded comparison targets reported annotation sites. On 2026-10-17 a thirteenth focused glyph-comparison pass independently retired 1 exact notes; 23 remain. This bounded comparison targets reported annotation sites.",
       "sourceInventory": "Shared/reports/hebrew-wikisource/SIR-print-inventory-final-reconciliation.json",
       "sourceInventorySHA256": "158414850fbe7da00a003f7e609a654d2ba9b9d6f0bb012f1d99dfc7d721601c",
       "pageReviews": [
@@ -9891,10 +9940,48 @@
         "Shared/reports/hebrew-wikisource/SIR-page528-second-pass.json",
         "Shared/reports/hebrew-wikisource/SIR-page529-second-pass.json",
         "Shared/reports/hebrew-wikisource/SIR-page530-second-pass.json"
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass2.json",
+          "sha256": "2011a0ee243a249e2defeebffcf1f7516cdd0cb6505843dcb2533199f88b0856"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-note-reinspection-20261017-pass3.json",
+          "sha256": "e68e4b5fb296c600fde9323cb8c37e8e9249fbac7371b384b367fe11676cfd04"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-joined-vowel-comparison-20261017-pass8.json",
+          "sha256": "66c13c20e0b44a16b78f82f68fe7b68ccd189c7d0d6e67cbd888645a20e6a0fe"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-compound-vowel-comparison-20261017-pass12.json",
+          "sha256": "0b23e2650843ea17ba8f133f2dde63ef27d34c2b7164b7a847e7e15172baf4cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/SIR-dagesh-comparison-20261017-pass13.json",
+          "sha256": "9720a017466243556fc6399fba319f39edaef241a14a29ee9666081e2a28cd28"
+        }
       ]
     },
     "ESG": {
-      "contentSHA256": "4bf7a5688d64abc064f226c2efbd3b21c58d83b95c49796ff4f5ab19a479f169",
+      "contentSHA256": "d2aac037f718d868a10d3d3474385e6b9f74e7e7122c2e7536a762bf69e31430",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         215,
@@ -9909,7 +9996,7 @@
         224,
         225
       ],
-      "method": "Independent full native-image word/point/boundary comparison by frenkel_source of164 main-body rows plus3 closing-colophon rows; root separately corroborated focused literal and isolated-point dispositions. Exact reports preserve input drafts, corrected readings and crop hashes.",
+      "method": "Independent full native-image word/point/boundary comparison by frenkel_source of164 main-body rows plus3 closing-colophon rows; root separately corroborated focused literal and isolated-point dispositions. Exact reports preserve input drafts, corrected readings and crop hashes. On 2026-10-17 a second focused source-image pass with independent root corroboration retired 1 further notes. The source-unit boundaries, labels, pages, witnesses and reading order remain unchanged. Esther 4:17 corrects one misread square bracket and removes the spurious vav; the retained ayin note follows the corrected anchor. See S3Y-SUS-ESG-note-reinspection-20261017-pass2.json. On 2026-10-17 the fourth source-note review certified 0 additional marks in this book; 50 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 a nineteenth focused glyph-comparison pass independently retired 3 exact notes; 47 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-fourth focused glyph-comparison pass independently retired 1 exact notes; 46 remain. Daily passages with disclosures receive priority. On 2026-10-17 a thirty-first focused glyph-comparison pass independently retired 2 exact notes; 44 remain. Daily passages with disclosures receive priority.",
       "hasIntroduction": false,
       "chapters": [
         {
@@ -10371,61 +10458,79 @@
       ],
       "addressRoutes": [],
       "sourceNoteIds": [
-        "esg-1-1-1-vowel",
-        "esg-1-1-2-vowel",
         "esg-1-11-1-vowel",
-        "esg-1-12-1-vowel",
-        "esg-1-13-1-vowel",
-        "esg-1-14-1-vowel",
-        "esg-1-14-2-vowel",
-        "esg-1-15-1-vowel",
         "esg-1-16-1-vowel",
-        "esg-1-17-1-vowel",
-        "esg-2-3-1-vowel",
-        "esg-2-3-2-vowel",
-        "esg-2-3-3-vowel",
-        "esg-2-3-4-vowel",
-        "esg-2-3-5-vowel",
-        "esg-2-3-6-vowel",
-        "esg-3-1-1-vowel",
-        "esg-3-10-1-vowel",
-        "esg-3-10-2-vowel",
-        "esg-3-10-3-dagesh",
-        "esg-4-17-1-vowel",
         "esg-4-17-2-vowel",
-        "esg-5-3-1-vowel",
-        "esg-5-3-2-vowel",
-        "esg-5-3-3-vowel",
-        "esg-5-3-4-vowel",
-        "esg-5-3-5-vowel",
-        "esg-5-4-1-vowel",
-        "esg-5-7-1-vowel",
-        "esg-5-7-2-vowel",
-        "esg-5-7-3-dagesh",
-        "esg-6-11-1-vowel",
-        "esg-6-13-1-vowel",
         "esg-6-14-1-vowel",
-        "esg-6-15-1-vowel",
-        "esg-6-15-2-vowel",
-        "esg-6-15-3-dagesh",
         "esg-6-23-1-vowel",
-        "esg-6-5-1-vowel",
-        "esg-7-1-1-vowel",
-        "esg-7-2-1-vowel",
         "esg-7-3-1-vowel",
-        "esg-7-6-1-dagesh",
-        "esg-7-6-2-vowel",
-        "esg-7-9-1-vowel",
-        "esg-colophon-1-vowel",
-        "esg-colophon-2-dagesh",
-        "esg-colophon-3-vowel",
-        "esg-colophon-4-shuruq",
-        "esg-colophon-5-vowel",
-        "esg-colophon-6-dagesh"
+        "esg-7-6-2-vowel"
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/S3Y-SUS-ESG-note-reinspection-20261017-pass2.json",
+          "sha256": "c19efd3da1c73d3f19f998c33d06ba1be0da4fb21bb498209edba6f3266fdd6f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-note-reinspection-20261017-pass4.json",
+          "sha256": "41fe480a7f5ca1edbebccc4d6452498c7d5086f9d23ae291b3bbbfccb0b534cd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-upper-vowel-reinspection-20261017-pass4.json",
+          "sha256": "708680ec471354f183f2b17bd9a2dba0c7d43a062e14f0606ef646cc0d9532a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ADDITIONS-dagesh-comparison-20261017-pass10.json",
+          "sha256": "b56448dd803a3e59456954e9cb4dd8372dcc47702d7b86159e9458d139489074"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-kaf-vowel-retentions-20261017-pass12.json",
+          "sha256": "74980452858636278939b0914a96e6bc1ac829e4988fdcdad55686c8b5b51517"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/DAILY-ESG-S3Y-point-comparison-20261017-pass14.json",
+          "sha256": "656b565bba83201baf956f4acfc1cac77ea17bdf7645b6cc52c3aae03a9e6611"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit2-3-point-comparison-20261017-pass19.json",
+          "sha256": "97644df6a5874e9b3394e596a1543b475256247d70a5e7c5fe07eb3a81273dd6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-colophon-point-comparison-20261017-pass19.json",
+          "sha256": "febf7a0a1367d0c59f2cbf1db93e9fbfd359486619b83912509ac8ae5ca01f41"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-3-point-comparison-20261017-pass24.json",
+          "sha256": "0fa0f2bfca15fb7b2106616643e940e21b36b97c2e3e513977f24fceea266317"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-point-comparison-20261017-pass31.json",
+          "sha256": "bfb74dc8e508e850ac30467f8ebef6ca89414a154b5b93110a0bd5028720522e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-point-comparison-20261017-pass31.json",
+          "sha256": "248ac9fb159aedb320b02705723b9e5b145946dd447540d2f7850e75fa90e2b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit5-7-boundary-label-supplement-20261017-pass31.json",
+          "sha256": "4f285db896e582fe073ddaa769e9f428a537e40b87a042dacb22fc7843074979"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-unit6-15-boundary-label-supplement-20261017-pass31.json",
+          "sha256": "d0239026b53bef42c754140837b80696ad0178e0528490a270a6de0ceffc4adb"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-colophon-point-comparison-20261017-pass52.json",
+          "sha256": "34e238a0360f2beb9199f9eca55977f78a13020eee4d7ed234c7bc7a1602f514"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/ESG-chrome-acquisition-20261018-pass52.json",
+          "sha256": "4db21c754e16fb3175673712b6d215348b5e3d4ff93f08ebdc2a54080c4dac8e"
+        }
       ]
     },
     "TOB": {
-      "contentSHA256": "e309bc3f06ad184197fb84d180a178f215355a13082208e621fd1add6f986f5d",
+      "contentSHA256": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
       "textPages": [
         312,
@@ -11454,32 +11559,49 @@
       "sourceNoteIds": [
         "tob-1-1-gimel-vowel",
         "tob-2-3-mem-vowel",
-        "tob-5-1-second-vav-vowel",
         "tob-5-1-vav-vowel",
         "tob-5-10-ayin-vowel",
         "tob-5-12-first-vav-vowel",
-        "tob-5-15-dalet-vowel",
-        "tob-5-17-ayin-vowel",
         "tob-5-17-said-vav-vowel",
-        "tob-5-18-said-vav-vowel",
         "tob-5-21-said-vav-vowel",
-        "tob-5-3-dalet-vowel",
         "tob-5-3-initial-vav-vowel",
-        "tob-5-5-dalet-vowel",
-        "tob-5-7-het-vowel",
         "tob-6-8-gimel-vowel",
         "tob-9-5-second-gabael-gimel-vowel"
       ],
-      "method": "Independent source-first printed-label/page inventory checked against final full upper-short-recension text. Complete author/independent comparisons and root paired-crop reconciliation cover every source page and exact note. See TOB-final-reconciliation.json for historical findings and pinned evidence;7:12 is an explicitly reasoned unpunctuated editorial boundary.",
+      "method": "Independent source-first printed-label/page inventory checked against final full upper-short-recension text. Complete author/independent comparisons and root paired-crop reconciliation cover every source page and exact note. See TOB-final-reconciliation.json for historical findings and pinned evidence;7:12 is an explicitly reasoned unpunctuated editorial boundary. On 2026-10-17 native-pixel comparison with the additional scan and separate root review resolved three vowels in chapter 5. All source boundaries, pages, consonants and other units remain unchanged. See TOB-note-reinspection-20261017.json. On 2026-10-17 the third focused source-note pass independently resolved 2 further positions; 12 notes remain. Exact allowed text/note changes were asserted against the completed second-pass snapshot. Source letters, punctuation, page/unit/witness inventories, source order and all other marks remain intact. See TOB-note-reinspection-20261017-pass3.json. On 2026-10-17 the fourth source-note review certified 0 additional marks in this book; 12 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 a focused fifth-pass comparison of six connected initial-vav vowel sites retained all six omissions: their feet remain insufficient to distinguish the exact vowel. This is a six-target check, not a fresh complete-book comparison.",
       "evidence": [
         {
           "path": "Shared/reports/hebrew-wikisource/TOB-final-reconciliation.json",
           "sha256": "c14ce9c331e532a253734c99dec85f6a295c79628b661d499937703b1bc3c42f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017.json",
+          "sha256": "1424e8b769c2c8d4cac0261cf3778a4909df039510fde5c26e7164c782a2e4b0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-note-reinspection-20261017-pass3.json",
+          "sha256": "01d93083ca96971df5bef9995a5caa5c0850ecc73fab909986f7ea8b625be959"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-connected-vowel-reinspection-20261017-pass5.json",
+          "sha256": "0558be19cf521c1189ad43f5572a0af6e33ed3610ace9ce89010ab8fd742494b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/TOB-compound-independent-comparison-20261017-pass10.json",
+          "sha256": "bbfd175d5397e1f087ec6dd3e1cca5b3ea69ffb32aac672e9525e60db6254ac4"
         }
       ]
     },
     "1MA": {
-      "contentSHA256": "2f8f59e375019a3a710ebcd3c24d8b61469e8dd7d1f35c50f2aa4dcf36230e57",
+      "contentSHA256": "2329c1c9993adcd6031eb2d0e59615957a22423fb92896e7b1c345572c013f2f",
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
       "textPages": [
         97,
@@ -15110,37 +15232,14 @@
           ]
         }
       ],
-      "method": "Recorded full author first/separate second word, point, punctuation and boundary comparisons across all 81 source pages; root/peer corroboration is limited to the exact focused queries documented in the page reports. Whole-book label, page, source-note and hash reconciliation completed. This inventory does not claim an independent full-book visual pass.",
+      "method": "Recorded full author first/separate second word, point, punctuation and boundary comparisons across all 81 source pages; root/peer corroboration is limited to the exact focused queries documented in the page reports. Whole-book label, page, source-note and hash reconciliation completed. This inventory does not claim an independent full-book visual pass. On 2026-10-17 the focused native-pixel reinspection and separate root review retired 3 source notes; source boundaries, pages, consonants and all other units remain unchanged. See 1MA-note-reinspection-20261017.json. On 2026-10-17 the third focused source-note pass independently resolved 8 further positions; 17 notes remain. Exact allowed text/note changes were asserted against the completed second-pass snapshot. Source letters, punctuation, page/unit/witness inventories, source order and all other marks remain intact. See Maccabees-note-reinspection-20261017-pass3.json. On 2026-10-17 the fourth source-note review certified 1 additional marks in this book; 16 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 the fifth focused source-note pass independently certified 4 yod dageshes from their literal low-left source geometry and same-font controls. 12 notes remain; all words, other marks and source units stay literal. On 2026-10-17 a seventh focused glyph-comparison pass independently retired 4 exact notes;8 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation.",
       "hasIntroduction": false,
       "sourceNoteIds": [
-        "1ma-10-37-ayin-vowel",
         "1ma-10-46-vav-vowel",
-        "1ma-10-57-pe-dagesh",
-        "1ma-12-25-het-vowel",
-        "1ma-13-41-42-shin-dagesh",
-        "1ma-13-51-yod-dagesh",
         "1ma-14-32-mem-vowel",
-        "1ma-14-34-tav-vowel",
-        "1ma-14-43-shin-dagesh",
-        "1ma-15-14-bet-dagesh",
-        "1ma-15-37-qof-vowel",
         "1ma-15-40-qof-vowel",
         "1ma-16-1-qof-vowel",
-        "1ma-16-4-qof-vowel",
-        "1ma-16-8-qof-vowel",
-        "1ma-4-10-yod-dagesh",
-        "1ma-4-18-yod-dagesh",
-        "1ma-5-26-qoph-dagesh",
-        "1ma-5-26-samekh-vowel",
-        "1ma-5-34-yod-dagesh",
-        "1ma-5-36-qoph-dagesh",
-        "1ma-5-4-bet-dagesh",
-        "1ma-6-10-yod-dagesh",
-        "1ma-6-11-bet-dagesh",
-        "1ma-6-26-yod-dagesh",
-        "1ma-6-38-kaf-vowel",
-        "1ma-9-1-bet-vowel",
-        "1ma-9-56-resh-vowel"
+        "1ma-16-4-qof-vowel"
       ],
       "sourceGaps": {
         "1": {
@@ -15151,10 +15250,44 @@
           "omittedLabels": [],
           "reason": "Kahana prints the bracketed lacuna [ אִם־ — — — ] at 2:13. It is transcribed literally; the chapter remains explicitly partial rather than represented as gap-free."
         }
-      }
+      },
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/1MA-note-reinspection-20261017.json",
+          "sha256": "c053e9a0eec08a1f48b947da9bfbdfba6f52a2bb36f48f85c260398cccefee65"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-vowel-comparison-20261017-pass7.json",
+          "sha256": "2e6876aca9d634a68a526dfc4147cc4c033298fde604e3a15f103aa6ab9046df"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-compound-vowel-comparison-20261017-pass9.json",
+          "sha256": "6ca45806dce9f05ded758871a78f31e5563513893d539ee8292bf3d85e58d303"
+        }
+      ]
     },
     "WIS": {
-      "contentSHA256": "600a31cb9a69c9f9d56ae2851613fdb1ba766df247e93e303f969b635a8d17d2",
+      "contentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         145,
@@ -15200,7 +15333,7 @@
         185,
         186
       ],
-      "method": "Independent full visual comparison of every printed source row, word, point, bracket, unit start and page join, recorded in nineteen pinned chapter reports and final restoration reconciliation. Explicitly authorized restorations are disclosed separately from visible print. Final inventory preserves all eleven printed combined ranges; no draft-derived labels or inferred missing verses.",
+      "method": "Independent full visual comparison of every printed source row, word, point, bracket, unit start and page join, recorded in nineteen pinned chapter reports and final restoration reconciliation. Explicitly authorized restorations are disclosed separately from visible print. Final inventory preserves all eleven printed combined ranges; no draft-derived labels or inferred missing verses. On 2026-10-17 the focused native-pixel reinspection and separate root review retired 2 source notes; source boundaries, pages, consonants and all other units remain unchanged. See WIS-source-note-review-20261017.json. On 2026-10-17 a second focused source-image pass with independent root corroboration retired 2 further notes. The source-unit boundaries, labels, pages, witnesses and reading order remain unchanged. See WIS-note-reinspection-20261017-pass2.json. On 2026-10-17 the third focused source-note pass independently resolved 2 further positions; 206 notes remain. Exact allowed text/note changes were asserted against the completed second-pass snapshot. Source letters, punctuation, page/unit/witness inventories, source order and all other marks remain intact. See WIS-note-reinspection-20261017-pass3.json. On 2026-10-17 the fourth source-note review certified 3 additional marks in this book; 203 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 a seventh focused glyph-comparison pass independently retired 5 exact notes;198 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 a ninth focused glyph-comparison pass independently retired 3 exact notes;195 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 a eleventh focused glyph-comparison pass independently retired 3 exact notes;192 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation. On 2026-10-17 a fourteenth focused glyph-comparison pass independently retired 1 exact notes; 191 remain. Daily passages with disclosures receive priority. On 2026-10-17 a seventeenth focused glyph-comparison pass independently retired 1 exact notes; 190 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twentieth focused glyph-comparison pass independently retired 1 exact notes; 189 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-fourth focused glyph-comparison pass independently retired 2 exact notes; 187 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-seventh focused glyph-comparison pass independently retired 1 exact notes; 186 remain. Daily passages with disclosures receive priority. On 2026-10-17 a twenty-eighth focused glyph-comparison pass independently retired 2 exact notes; 184 remain. Daily passages with disclosures receive priority. On 2026-10-18 a thirty-second focused glyph-comparison pass independently retired 8 exact notes; 176 remain. Daily passages with disclosures receive priority. On 2026-10-18 a thirty-third focused glyph-comparison pass independently retired 6 exact notes; 170 remain. Daily passages with disclosures receive priority. On 2026-10-18 a thirty-fourth focused glyph-comparison pass independently retired 5 exact notes; 165 remain. Daily passages with disclosures receive priority. On 2026-10-19 a thirty-eighth focused glyph-comparison pass independently retired 5 exact notes; 160 remain. Daily passages with disclosures receive priority. On 2026-10-20 a forty-eighth focused glyph-comparison pass independently retired 4 exact notes on printed page 158 / קנח (viewer page 503, internal 518); 156 remain. Daily passages with disclosures receive priority. On 2026-10-20 a forty-ninth focused glyph-comparison pass independently retired 4 exact notes on printed page 179 / קעט (viewer page 524, internal 539); 152 remain. Daily passages with disclosures receive priority.",
       "hasIntroduction": false,
       "chapters": [
         {
@@ -17010,24 +17143,17 @@
         "wis-1-2-kichashu-het",
         "wis-1-2-nirah-alef",
         "wis-1-3-mahshavot-het",
-        "wis-1-7-male-mem",
         "wis-10-14-shin",
-        "wis-10-14-tet",
         "wis-10-20-first-kaf",
         "wis-10-20-vav",
         "wis-10-21-vav",
         "wis-10-5-kaf",
         "wis-10-7-het",
-        "wis-10-8-ayin",
         "wis-10-8-zayin",
-        "wis-11-18-het",
         "wis-11-18-tsadi",
         "wis-11-2-vav",
         "wis-11-21-ayin",
-        "wis-11-6-kaf",
         "wis-11-6-zayin",
-        "wis-11-8-bet",
-        "wis-11-8-het",
         "wis-11-8-kaf",
         "wis-12-10-pe",
         "wis-12-15-kaf",
@@ -17035,27 +17161,11 @@
         "wis-12-2-bet",
         "wis-12-24-resh",
         "wis-12-26-tsadi",
-        "wis-12-5-he",
-        "wis-12-5-resh",
-        "wis-12-5-vav",
         "wis-12-8-kaf",
-        "wis-12-8-lamed",
-        "wis-12-8-tsadi",
-        "wis-12-9-resh",
         "wis-13-1-kaf-2-vowel",
-        "wis-13-1-pe-1-dagesh",
-        "wis-13-11-bet-1-vowel",
-        "wis-13-11-mem-2-vowel",
-        "wis-13-11-pe-3-vowel",
-        "wis-13-11-tsadi-4-vowel",
-        "wis-13-11-vav-1-vowel",
-        "wis-13-11-yod-2-vowel",
         "wis-13-13-ayin-6-vowel",
         "wis-13-13-tsadi-4-vowel",
-        "wis-14-1-ayin-5-vowel",
         "wis-14-1-vav-1-vowel",
-        "wis-14-11-pe-1-dagesh",
-        "wis-14-11-qof-2-vowel",
         "wis-14-18-nun-2-vowel",
         "wis-14-25-kaf-2-vowel",
         "wis-14-5-bet-1-vowel",
@@ -17063,14 +17173,9 @@
         "wis-15-1-kaf-2-vowel",
         "wis-15-18-mem-1-vowel",
         "wis-15-19-het-2-vowel",
-        "wis-15-8-lamed-1-vowel",
-        "wis-15-8-shin-2-dagesh",
         "wis-16-1-bet-1-vowel",
         "wis-16-16-nun-1-vowel",
         "wis-16-18-tet-3-vowel",
-        "wis-16-19-lamed-3-vowel",
-        "wis-16-19-pe-4-vowel",
-        "wis-16-19-qof-4-vowel",
         "wis-16-20-kaf-3-vowel",
         "wis-16-22-qof-3-vowel",
         "wis-16-23-alef-1-vowel",
@@ -17078,124 +17183,52 @@
         "wis-16-29-mem-2-vowel",
         "wis-16-6-lamed-1-vowel",
         "wis-17-1-ayin-3-vowel",
-        "wis-17-11-gimel-3-vowel",
-        "wis-17-11-het-2-vowel",
-        "wis-17-11-zayin-3-vowel",
         "wis-17-14-het-1-vowel",
-        "wis-17-17-nun-1-vowel",
-        "wis-17-17-pe-2-vowel",
         "wis-17-18-pe-2-vowel",
         "wis-17-21-ayin-2-vowel",
-        "wis-17-3-bet-1-vowel",
-        "wis-17-3-nun-1-vowel",
-        "wis-17-3-pe-2-vowel",
-        "wis-17-3-zayin-3-vowel",
         "wis-17-5-mem-1-vowel",
         "wis-17-7-dalet-2-vowel",
-        "wis-18-1-word1-dalet-6-vowel",
         "wis-18-1-word1-het-3-vowel",
-        "wis-18-1-word1-lamed-2-vowel",
-        "wis-18-1-word1-samekh-4-vowel",
         "wis-18-1-word1-vav-1-vowel",
-        "wis-18-1-word2-alef-3-vowel",
-        "wis-18-1-word2-shin-4-dagesh",
-        "wis-18-1-word2-vav-1-vowel",
         "wis-18-14-word10-lamed-3-vowel",
         "wis-18-18-word11-lamed-1-vowel",
-        "wis-18-23-word12-ayin-3-vowel",
-        "wis-18-23-word12-nun-2-vowel",
-        "wis-18-23-word12-vav-1-vowel",
         "wis-18-24-word13-alef-3-vowel",
-        "wis-18-25-word14-ayin-2-vowel",
-        "wis-18-25-word14-zayin-1-vowel",
-        "wis-18-25-word15-bet-2-vowel",
-        "wis-18-25-word15-lamed-1-vowel",
-        "wis-18-25-word16-pe-2-vowel",
-        "wis-18-25-word16-sin-1-vowel",
-        "wis-18-3-word3-tav-2-vowel",
-        "wis-18-3-word3-tav-4-vowel",
-        "wis-18-3-word3-vav-1-vowel",
-        "wis-18-3-word4-he-1-vowel",
-        "wis-18-3-word4-kaf-2-vowel",
-        "wis-18-4-word5-bet-1-vowel",
-        "wis-18-4-word5-dalet-3-vowel",
-        "wis-18-4-word5-tsadi-2-vowel",
-        "wis-18-5-word6-resh-3-vowel",
-        "wis-18-5-word6-samekh-2-vowel",
-        "wis-18-5-word7-bet-3-vowel",
-        "wis-18-5-word8-kaf-1-vowel",
-        "wis-18-9-word9-het-3-vowel",
         "wis-18-9-word9-vav-1-vowel",
         "wis-19-1-word1-alef-2-vowel",
         "wis-19-1-word1-vav-1-vowel",
-        "wis-19-10-word10-mem-2-vowel",
         "wis-19-13-word11-ayin-1-vowel",
         "wis-19-17-word12-he-1-vowel",
-        "wis-19-18-word13-lamed-2-vowel",
-        "wis-19-18-word13-lamed-4-vowel",
-        "wis-19-18-word13-tsadi-1-vowel",
-        "wis-19-18-word14-kaf-1-vowel",
         "wis-19-22-word15-ayin-6-vowel",
         "wis-19-22-word15-mem-1-vowel",
         "wis-19-3-word2-gimel-1-vowel",
         "wis-19-4-word3-alef-2-vowel",
-        "wis-19-4-word3-samekh-1-vowel",
         "wis-19-5-word4-nun-3-vowel",
-        "wis-19-5-word4-shin-2-vowel",
-        "wis-19-6-word5-qof-3-vowel",
-        "wis-19-6-word6-shin-2-dagesh",
         "wis-19-6-word6-shin-2-vowel",
-        "wis-19-7-word7-kaf-2-vowel",
-        "wis-19-9-word8-vav-1-vowel",
-        "wis-19-9-word9-vav-1-vowel",
         "wis-2-23-lamed",
         "wis-2-24-vav",
         "wis-2-4-mechumato-het",
-        "wis-3-12-mem",
         "wis-3-17-alef",
         "wis-4-1-letter-1-vowel",
         "wis-4-10-letter-3-vowel",
         "wis-4-2-letter-6-vowel",
         "wis-4-3-letter-3-vowel",
-        "wis-4-4-letter-3-vowel",
         "wis-5-1-ayin",
-        "wis-5-11-bet",
-        "wis-5-11-gimel",
-        "wis-5-11-pe",
-        "wis-5-11-vav",
         "wis-5-12-kaf",
-        "wis-5-14-dalet",
-        "wis-5-14-first-kaf",
-        "wis-5-14-pe-tiddefenu",
-        "wis-5-14-pe-yefazrehu",
-        "wis-5-14-zayin",
         "wis-5-15-bet",
         "wis-5-17-kaf",
         "wis-5-2-mem",
-        "wis-5-21-mem",
-        "wis-5-21-resh",
-        "wis-5-22-lamed",
         "wis-5-23-ayin",
-        "wis-5-23-middle-vav",
         "wis-5-3-vav",
-        "wis-5-3-yod",
         "wis-5-5-alef",
-        "wis-5-5-first-kaf",
         "wis-5-8-gimel",
         "wis-5-8-initial-vav",
         "wis-6-1-tsadi",
-        "wis-6-1-vav",
-        "wis-6-10-dalet-biqdusha",
-        "wis-6-10-dalet-yikadeshu",
-        "wis-6-16-bet",
         "wis-6-17-bet",
         "wis-6-17-qoph",
         "wis-6-18-bet",
         "wis-6-18-resh",
         "wis-6-2-alef-restored",
-        "wis-6-2-alef-vowel",
         "wis-6-2-yod-restored",
-        "wis-6-2-zayin-vowel",
         "wis-6-22-mem",
         "wis-6-3-zayin",
         "wis-6-4-resh",
@@ -17203,15 +17236,9 @@
         "wis-6-9-shin",
         "wis-7-1-first-tsadi",
         "wis-7-14-tav-atek",
-        "wis-7-15-first-nun",
-        "wis-7-15-kaf-kahagut",
-        "wis-7-15-kaf-kiyaut",
-        "wis-7-15-second-nun",
         "wis-7-2-pe",
         "wis-7-9-mem",
         "wis-8-1-first-kaf",
-        "wis-8-20-gimel-dagesh",
-        "wis-8-3-first-yod-dagesh",
         "wis-8-3-het",
         "wis-8-6-tsadi",
         "wis-9-12-qof",
@@ -17219,11 +17246,194 @@
       ],
       "contentBlocks": [],
       "addressRoutes": [],
-      "sourceGaps": {}
+      "sourceGaps": {},
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-source-note-review-20261017.json",
+          "sha256": "7a0d48a112c0f69d20cb7591b2555041751f51df17f54938295943a8df8c152e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass2.json",
+          "sha256": "b2011eee7ed06ed9c454bd657c80424d95ccdf5cb5c3bd282792846e2c7fd47e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass3.json",
+          "sha256": "27d5dcafbf2ebee464de88e0657e90e65563ce146d867b2bae18dfe45023e1f9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-note-reinspection-20261017-pass4.json",
+          "sha256": "ead5da06670a256edf325f61c731807f11916bd23a2b00f640af3c4a2fb54b14"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-dagesh-reinspection-20261017-pass7.json",
+          "sha256": "a1e2248ab65c3f9e67f1f9f964d7a98bbec400a717b6ee87c76947cb19d60ca0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/RESH-vowel-retentions-20261017-pass8.json",
+          "sha256": "04747ca6236f3baced787e463ee1797b514a070befc9fea5c2146f498739a733"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass9.json",
+          "sha256": "e80c14b6f05d484c7ac520f244fa426b0467b5258f4d54bea6f31c6200511007"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-retentions-20261017-pass10.json",
+          "sha256": "1da74ae9e4c34e1e953c811f7b7ac3dfde39bd947d2c33bbc2da242c1bd12da6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-vowel-comparison-20261017-pass11.json",
+          "sha256": "32a25b9341385272d8479499e61144a7263ed2ec337c0b2044bc5b871c7cc5e0"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-daily-vowel-comparison-20261017-pass14.json",
+          "sha256": "0332bd02385a2aa0d80d81d92d76e92f6c7af6e1015935d96a02c37820410e8e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass17.json",
+          "sha256": "7b5279a67f89e1d6d3f45b6483733a43517b71cee284657fdbe581740289fde2"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass20.json",
+          "sha256": "171f7a40337d5fe204a023f3caa23ec5c78552b75b7e92b50c9fecf4084326a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-digest-correction-20261017-pass20.json",
+          "sha256": "ef58aca2e5ec5de5bb85988aeb2f4782c7e8b5287c566d637df39429e629f41a"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-14-point-comparison-20261017-pass24.json",
+          "sha256": "a14052ecfa9e2d4cc16d8b3443d57a8938a599f5f13d354661bc2b19d16149e9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-13-11-point-comparison-20261017-pass24.json",
+          "sha256": "0f790f047cdae6fce2524e6d403654f613f23e1aafcccab8be19ab47adb063ba"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass27.json",
+          "sha256": "31611cefa96e041016637a978b804ce6e1ba4b4278d5d0ff8f5e50d7230730f5"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit6-2-point-comparison-20261017-pass27.json",
+          "sha256": "47cc85b86c0c9e9e6eca2b494a02c8979033dd7b51fb792c19f16e997f1e02f6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit7-15-point-comparison-20261017-pass27.json",
+          "sha256": "08b9dbc8b53422f3914235310e459b912b15eeb7870400c740dd639656df63d6"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-3-point-comparison-20261017-pass28.json",
+          "sha256": "c5c3188823f5c45c687f79ba5a7e23a7de3bdaa0dc69ccd3ec90a57c1ffb64b1"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-point-comparison-20261017-pass28.json",
+          "sha256": "d744a2c961e166112a2db3556f9db8e61b9fa0c29a2a3f3636956f5a13f21d2f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-point-comparison-20261017-pass28.json",
+          "sha256": "f6568c03acca018109f25fa4e71dad6581f1d1e0d708fcaf1ea3e7fc1de9834b"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-framing-supplement-20261017-pass28.json",
+          "sha256": "6fdd826fb75bf32f7eaf4f01013dfb97d70d57a2149e0967bb0d33f814f7238f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-5-control-frame-supplement-20261017-pass28.json",
+          "sha256": "d01b27e8537ca973352738da51572d957644478772d1bced3cf8a29d328bfaac"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-3-control-label-correction-20261017-pass28.json",
+          "sha256": "6e6e208433ebee69cfebafb6557e0b66277b38ef6029e5f80980f2ced1671ca4"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit19-18-point-comparison-20261017-pass29.json",
+          "sha256": "b176468b262ed39f344cebba61d3828616aaeaddc19ae748651acf4c67770eab"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit19-18-control-framing-supplement-20261017-pass29.json",
+          "sha256": "6b0682106cc2e2f55bf37c14480e445f6283962b6f5552ccbdcf48cdadd9fafb"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit11-8-point-comparison-20261017-pass32.json",
+          "sha256": "7a5d86e7c24c1d89e3ff465a25bde53599122176a265e7bdfc0da2a13d306fb9"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit12-5-point-comparison-20261017-pass32.json",
+          "sha256": "e92011b86d44fdb81094d44279f077c23f7f1be14ba1a8663c3bc6df4745c5ec"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit16-19-point-comparison-20261017-pass32.json",
+          "sha256": "0a4411f56074ab6aab5da8a3f074a6162f2c626f22a4241906ec0fad9414e1e7"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass32.json",
+          "sha256": "4b6c5f0f1bc6c4968ec4bf68de7b98f1337e1821ff47540c2abf69a6667dec47"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit17-11-point-comparison-20261017-pass33.json",
+          "sha256": "762c1fc7bd9bd1e6a09bab9340e8b200c79bd5e4203b49683852befdb9878a83"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-4-point-comparison-20261017-pass33.json",
+          "sha256": "2be8907338823cd69ac98c434a194bd8d78deff4ac6696760682f957bf24f425"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-23-point-comparison-20261017-pass33.json",
+          "sha256": "3b3a9a5adc221ec9d4a6136530e11c7b468f6e53f34840a281b5ffad487baf32"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass33.json",
+          "sha256": "4c8365ec1267630efce0b4638302a107fa64d1df6a51182967aed426ba39240d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-1-point-comparison-20261017-pass34.json",
+          "sha256": "816b1c7447aa711771953a343478d6d79a35a2f213c90fb87ce13afadd94fe73"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass34.json",
+          "sha256": "0d423e213c26254e89ce1ce21a2afa9d08714bb0dad8f903f14ab73a2978d75f"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass34.json",
+          "sha256": "45f775250c451f80a1008fb1dcac0ab169d4c86e390986b31868b254cc1685bd"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit13-11-point-comparison-20261017-pass38.json",
+          "sha256": "07ed34b8f66361c0b607d31678c29eb03c3ed2674502c94a1314e36b0a4645cc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass38.json",
+          "sha256": "8b2ca70a85ecbae7ca0d1973449fcc0d64c52fcb3682dacb742be6ffebd65f88"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass50.json",
+          "sha256": "eef0ef5917232de07bef3d92cb150538a8a2cc75241765f377f46803dad85221"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass50.json",
+          "sha256": "253da100c3bf14d7af7841bff7acda6544756d6bdaa258fadc5501e710e98520"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit19-18-point-comparison-20261017-pass51.json",
+          "sha256": "ecea6fb4eec06ad2677b1b2d3fa44fea12383004a9b9e2188d575ded7efee07e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass51.json",
+          "sha256": "67341913f2fc69d7c59bc2c308642a45d09333c7a2d12048fffd3c9f750649bc"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-unit5-11-point-comparison-20261017-pass62.json",
+          "sha256": "89804c7c5251716d00f59149c970327811709ec2d2a5e467d848c2c10aae5f18"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass62.json",
+          "sha256": "9142af81bfa9da4f3adf015c341bca5dcd94482c60b528b2c2613b3cb704c3da"
+        }
+      ],
+      "acceptedSourceNoteIds": []
     },
     "2MA": {
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
-      "contentSHA256": "b026d27eea5c6bcaf7f774a03d1a18eddaccc85f1859591e95880cbb0bd43953",
+      "contentSHA256": "727ae06afba0f50ed7d20b333a0604344ab1d7227f1f61270e1f437e8d215f64",
       "textPages": [
         178,
         179,
@@ -19576,23 +19786,11 @@
       "addressRoutes": [],
       "sourceNoteIds": [
         "2ma-1-10-he-1-vowel",
-        "2ma-1-16-vav-1-vowel-second-word",
         "2ma-11-25-samekh-2-vowel",
-        "2ma-11-4-bet-3-vowel",
-        "2ma-12-45-shin-3-dagesh",
         "2ma-14-4-het-3-restored-letter",
-        "2ma-15-10-dalet-5-vowel",
-        "2ma-15-34-het-2-vowel",
-        "2ma-2-28-yod-2-dagesh",
         "2ma-3-26-dalet-3-vowel",
-        "2ma-5-16-tav-2-vowel",
-        "2ma-5-22-lamed-3-vowel",
-        "2ma-6-11-he-2-vowel",
-        "2ma-6-13-shin-2-dagesh",
         "2ma-7-40-bet-1-vowel",
-        "2ma-8-4-yod-2-dagesh",
-        "2ma-9-29-lamed-3-vowel",
-        "2ma-9-29-pe-1-dagesh"
+        "2ma-8-4-yod-2-dagesh"
       ],
       "hasIntroduction": false,
       "sourceGaps": {
@@ -19601,7 +19799,115 @@
           "reason": "Printed 1:9 on source page180 contains a bracketed three-dash lacuna after כסלו. The source gap is retained literally; no verse labels are omitted and no text was supplied to fill it."
         }
       },
-      "method": "Reconciled against the full printed-source inventory made before canonical transcription: all56 pages,15 chapters,542 primary units and556 labels, including14 combined labels and a separate closing colophon. Each chapter also has a separate complete author pass and a full independent word/point/label comparison. Every final unit was reassembled from the reviewed physical-row evidence and every unit-to-page assignment matched the pre-transcription inventory. The sole consonant restoration at14:4 has explicit user approval and a precise source note;17 isolated unreadable-point notes are independently scoped. All readable points and the original1:9 lacuna remain literal."
+      "method": "Reconciled against the full printed-source inventory made before canonical transcription: all56 pages,15 chapters,542 primary units and556 labels, including14 combined labels and a separate closing colophon. Each chapter also has a separate complete author pass and a full independent word/point/label comparison. Every final unit was reassembled from the reviewed physical-row evidence and every unit-to-page assignment matched the pre-transcription inventory. The sole consonant restoration at14:4 has explicit user approval and a precise source note;9 isolated unreadable-point notes are independently scoped. All readable points and the original1:9 lacuna remain literal. On 2026-10-17 the third focused source-note pass independently resolved 4 further positions; 14 notes remain. Exact allowed text/note changes were asserted against the completed second-pass snapshot. Source letters, punctuation, page/unit/witness inventories, source order and all other marks remain intact. See Maccabees-note-reinspection-20261017-pass3.json. On 2026-10-17 the fourth source-note review certified 1 additional marks in this book; 13 notes remain. Native pixels, above-letter vowels, comparative source glyphs and independent challenges are recorded in the newly pinned evidence; no new words or editorial consonants are supplied. On 2026-10-17 the fifth focused source-note pass independently certified 1 yod dageshes from their literal low-left source geometry and same-font controls. 12 notes remain; all words, other marks and source units stay literal. On 2026-10-17 the sixth focused review certified one additional het patah from the original companion scan and same-page controls;11 notes remain. The auxiliary PSIK excerpt led to the comparison but does not supply an unverified new source witness. On 2026-10-17 a ninth focused glyph-comparison pass independently retired 1 exact notes;10 remain. This is a bounded comparison of reported annotation sites, not a new whole-book collation.",
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-independent-challenge-20261017-pass4.json",
+          "sha256": "6affced8369cfd4454f57a9d7e29e6963c967c5150b0dbc84cc2600a740c66a3"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-dagesh-reinspection-20261017-pass5.json",
+          "sha256": "e8ab3df7a4e7f2867e8b08ea8c374585064adeac7037352533ff5d2872a8ed35"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/YOD-independent-challenge-20261017-pass5.json",
+          "sha256": "2362b93de4abcc677a2cccc6e822d7680948efef12f74f269160155d1501881e"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-patah-reinspection-20261017-pass6.json",
+          "sha256": "5b04d38ad39b773e422a584660ba3719d8bf65e2f61ce0a2d25032425473f76d"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-vowel-comparison-20261017-pass7.json",
+          "sha256": "2e6876aca9d634a68a526dfc4147cc4c033298fde604e3a15f103aa6ab9046df"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/MACCABEES-compound-vowel-comparison-20261017-pass9.json",
+          "sha256": "6ca45806dce9f05ded758871a78f31e5563513893d539ee8292bf3d85e58d303"
+        }
+      ]
     }
-  }
+  },
+  "evidence": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-33-point-comparison-20261017-pass42.json",
+      "sha256": "f49085426422463f95b982a20dd67a327fa51609c6c4385f8b727f448f8f4835"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass42.json",
+      "sha256": "a65d082cde40f63a2dc0af0386560611ac61040840f62882357066506a5718b9"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-36-point-comparison-20261017-pass43.json",
+      "sha256": "0913cfb0932f544c67b378b4da1209fa42498d809cf7209b2a105fded68787cc"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass43.json",
+      "sha256": "0c88914c9f9f338e216aa71c38d1fa87d9288cffc7540f5837a410e81f078887"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-42-point-comparison-20261017-pass44.json",
+      "sha256": "1bceff2a40b695425763e16ce1977b41345d9cf4795e8d83dbba34c57df26f92"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass44.json",
+      "sha256": "dfe9806fb907d77e4fbd524c4a7a8c6adafe8c19260265370a47a5e509311f88"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit2-3-point-comparison-20261017-pass45.json",
+      "sha256": "38e7b0e2a5cdaa14eb88ea4af51e992f839e8aa7be05a9caa2e624fdc15de851"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-chrome-acquisition-20261018-pass45.json",
+      "sha256": "1a3bff1f79158650b63bc9ef861134536936de1e70ca3158c47d1f659864e6ce"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-unit5-3-point-comparison-20261017-pass46.json",
+      "sha256": "0f38c36c358e95973f51245e28624e426d60cb10e7be3941298cf07f712c3a3f"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-chrome-acquisition-20261018-pass46.json",
+      "sha256": "53c8c490a83672b22276374265f868954d3536a85586c5029bfc3e1871be04d0"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-unit18-25-point-comparison-20261017-pass50.json",
+      "sha256": "eef0ef5917232de07bef3d92cb150538a8a2cc75241765f377f46803dad85221"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass50.json",
+      "sha256": "253da100c3bf14d7af7841bff7acda6544756d6bdaa258fadc5501e710e98520"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-unit19-18-point-comparison-20261017-pass51.json",
+      "sha256": "ecea6fb4eec06ad2677b1b2d3fa44fea12383004a9b9e2188d575ded7efee07e"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/WIS-chrome-acquisition-20261018-pass51.json",
+      "sha256": "67341913f2fc69d7c59bc2c308642a45d09333c7a2d12048fffd3c9f750649bc"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-colophon-point-comparison-20261017-pass52.json",
+      "sha256": "34e238a0360f2beb9199f9eca55977f78a13020eee4d7ed234c7bc7a1602f514"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/ESG-chrome-acquisition-20261018-pass52.json",
+      "sha256": "4db21c754e16fb3175673712b6d215348b5e3d4ff93f08ebdc2a54080c4dac8e"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-unit1-1-point-comparison-20261017-pass53.json",
+      "sha256": "261baba692282fb586b4a870c14af7fe0cfbd73a6a0128601cc238e340871c4d"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/S3Y-chrome-acquisition-20261018-pass53.json",
+      "sha256": "5cd2f6ebf4f77ce7d828456ec7fad483e05e22bed0f264b3faf3b2f56c5a32ab"
+    }
+  ]
 }

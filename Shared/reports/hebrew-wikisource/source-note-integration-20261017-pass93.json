@@ -1,0 +1,317 @@
+{
+  "date": "2026-10-21",
+  "pass": 93,
+  "startingNoteCount": 232,
+  "removedNoteCount": 1,
+  "remainingNoteCount": 231,
+  "reviewedSourceNoteCount": 2,
+  "retainedInspectedSourceNoteCount": 1,
+  "books": [
+    {
+      "book": "BEL",
+      "beforeNoteCount": 9,
+      "afterNoteCount": 8,
+      "removedNoteIds": [
+        "bel-1-35-246-vayomer35-letter2-dagesh"
+      ],
+      "retainedInspectedNoteIds": [
+        "bel-1-35-246-vayomer35-letter1-vowel"
+      ],
+      "beforeDigest": "b7ad61c875aed351129aab24f211d463b73c9c9d4dba0bb1d97cfb58064aa4d2",
+      "afterDigest": "2f5a6389ab0da252456a251142ce8992bfa389c970cd0f286309d5bb4de1c1e8",
+      "sourceChanges": [
+        {
+          "book": "BEL",
+          "chapter": 1,
+          "verse": 35,
+          "before": "ויֹאמֶר חֲבַקּוּק יְיָ לֹא רָאִיתִי אֶת־בָּבֶל וְאֵינֶנִּי יוֹדֵעַ אֶת־הַבּוֹר׃",
+          "after": "ויֹּאמֶר חֲבַקּוּק יְיָ לֹא רָאִיתִי אֶת־בָּבֶל וְאֵינֶנִּי יוֹדֵעַ אֶת־הַבּוֹר׃",
+          "addedCombiningMarks": [
+            {
+              "offset": 3,
+              "mark": "ּ",
+              "codePoint": "U+05BC"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-unit1-35-point-comparison-20261017-pass93.json",
+          "sha256": "84a22d8ad6f67d1a8220bc096ac3842e5894b7569828f939c3e34ddac479d872"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass93.json",
+          "sha256": "abe01241b37e6b061e89eb2ab3a151f2ab4e1f0b1522ea1cdb2fc272cc56b8cb"
+        }
+      ]
+    }
+  ],
+  "metadataCorrections": [
+    {
+      "kind": "priorityReportPriorTargetCorrection",
+      "report": "Shared/reports/hebrew-wikisource/source-note-priority-20261017-after-pass93.json",
+      "field": "priorPriority",
+      "before": {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 11
+      },
+      "after": {
+        "book": "BEL",
+        "chapter": 1,
+        "verse": 35
+      },
+      "basis": "Actual first unreviewed unreadable unit in frozen preceding queue; root-authorized report-only correction.",
+      "frozenPrecedingQueue": "/private/tmp/prosary-report-corrections-20261021/source-note-priority-20261017-after-pass92.json",
+      "frozenPrecedingQueueSHA256": "4c92e6d6b2bffb0c74fe7dd7effadfc78a4b484d151b1cc2a7597a6b7f1b72c8",
+      "freezeTiming": "Published preceding queue captured before report-only correction; original old helper did not freeze the preceding queue.",
+      "sourceOrCountChanges": false,
+      "persistentPrecedingQueue": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261021-report-metadata-corrections/source-note-priority-20261017-after-pass92.json",
+        "sha256": "4c92e6d6b2bffb0c74fe7dd7effadfc78a4b484d151b1cc2a7597a6b7f1b72c8"
+      }
+    }
+  ],
+  "retainedAnchorUpdates": 1,
+  "retainedAnchorUpdateDetails": [
+    {
+      "noteId": "bel-1-35-246-vayomer35-letter1-vowel",
+      "before": "ויֹאמֶר",
+      "after": "ויֹּאמֶר"
+    }
+  ],
+  "dailyWholeBookPinsUpdated": 1,
+  "completeDailyAppointmentsChecked": 20,
+  "completeDailyAppointmentsByteUnchanged": 20,
+  "dailyReviewMetadataUnchangedCount": 20,
+  "dailyAppointmentsChangedOnlyByApprovedPoints": [],
+  "dailySelectedPointChanges": [],
+  "dailyBoundaryTextUpdates": [],
+  "catholicPresentation": {
+    "fileByteUnchanged": true,
+    "allUnitPinsUnchanged": true,
+    "allOrderDecisionsUnchanged": true
+  },
+  "unchangedSourceBooks": [
+    "1MA",
+    "2MA",
+    "BAR",
+    "ESG",
+    "JDT",
+    "LJE",
+    "S3Y",
+    "SIR",
+    "SUS",
+    "TOB",
+    "WIS"
+  ],
+  "reports": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-unit1-35-point-comparison-20261017-pass93.json",
+      "sha256": "84a22d8ad6f67d1a8220bc096ac3842e5894b7569828f939c3e34ddac479d872"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/BEL-chrome-acquisition-20261018-pass93.json",
+      "sha256": "abe01241b37e6b061e89eb2ab3a151f2ab4e1f0b1522ea1cdb2fc272cc56b8cb"
+    }
+  ],
+  "state": "Applied, regenerated and audited. Recorded Shared, Android and Apple checks passed. Windows runtime tests were not run on macOS.",
+  "validation": {
+    "delivery": {
+      "remainingNotes": 231,
+      "removedNotes": 1,
+      "changedArchiveChapters": 1,
+      "changedArchiveMembers": [
+        "chapters/BEL/1.json",
+        "manifest.json"
+      ],
+      "preservedArchiveMembers": 1335,
+      "addedArchiveMembers": [],
+      "removedArchiveMembers": [],
+      "unchangedOtherEditions": 9,
+      "unchangedBookAndChapterPresentationOrder": true,
+      "newArchive": "Shared/dist/bibles/masoretic-delitzsch-b4be6df47f24b240fb47557aa1da41a7d9838790ba40b589de4a649bcdc71638.zip",
+      "archiveSHA256": "0298ff66e3d527b2516cbd159128aa4feb4e66b147d1a08d8dadf1e8aa0b3227",
+      "archiveBytes": 3108775,
+      "baselineArchive": "Shared/dist/bibles/masoretic-delitzsch-acce4e04a1eabbea1d4b3fdcb18512ed6cb5ab73ff93d92cb755f90923c45f31.zip",
+      "catholicPresentationFileByteUnchanged": true,
+      "dailyReadingPayloadOnlyApprovedPointChanges": [],
+      "dailyChangedRowCount": 0,
+      "dailyChangedAppointmentCount": 0,
+      "matchingNativeDataCopies": 3,
+      "nativeDataCopyMatches": {
+        "Apple": true,
+        "Android": true,
+        "Windows": true
+      }
+    },
+    "verification": {
+      "build-bible-library": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass93-20261021/build-bible-library.log",
+        "durationSeconds": 10.5,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/build-bible-library.py",
+          "--sync"
+        ],
+        "logSHA256": "202cb40c94bf3fecdd3c763dd7d727eab5dde6b560d558935cb514be92bc07e9",
+        "passed": true
+      },
+      "fetch-readings": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass93-20261021/fetch-readings.log",
+        "durationSeconds": 0.35,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/fetch-readings.py",
+          "--localize-only",
+          "--sync"
+        ],
+        "logSHA256": "e992955842d03ea87d10df8bc777939feb45672843f43b92a7c14d9e31efc8fd",
+        "passed": true
+      },
+      "hebrew-deuterocanon": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass93-20261021/hebrew-deuterocanon.log",
+        "durationSeconds": 0.07,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/hebrew_deuterocanon.py"
+        ],
+        "logSHA256": "42bbf7608e36afd3779d18752c0f99f576ce13b6c0e3e576275d87c963610f0e",
+        "passed": true
+      },
+      "asset-deduplication": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass93-20261021/asset-deduplication.log",
+        "durationSeconds": 0.17,
+        "command": [
+          "/Users/dk/.local/bin/uv",
+          "run",
+          "--offline",
+          "--script",
+          "Shared/tools/test-asset-deduplication.py"
+        ],
+        "logSHA256": "ef86bea90e26a5d58506ed3dc0943d23de67bc89de67a92b129d82db5041e42e",
+        "passed": true
+      },
+      "android": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass93-20261021/android.log",
+        "durationSeconds": 0.73,
+        "command": [
+          "./gradlew",
+          "--offline",
+          "testDebugUnitTest"
+        ],
+        "successMarker": "BUILD SUCCESSFUL",
+        "logSHA256": "dc6b66e0dd096ebb580ab92dc27d937b67edb152d90d044f3740bf9242ae2c43",
+        "passed": true
+      },
+      "apple": {
+        "exitCode": 0,
+        "completed": true,
+        "log": "/private/tmp/prosary-pass93-20261021/apple.log",
+        "durationSeconds": 47.75,
+        "command": [
+          "xcodebuild",
+          "test",
+          "-scheme",
+          "Prosary",
+          "-destination",
+          "platform=macOS",
+          "-parallel-testing-enabled",
+          "NO",
+          "-only-testing:ProsaryTests"
+        ],
+        "successMarker": "** TEST SUCCEEDED **",
+        "logSHA256": "bbe0c8140b1686f1b2cd2e739d864626edfcaf36c26fff1d3869b53802ba7e82",
+        "passed": true
+      }
+    },
+    "sourceMutationApplied": true,
+    "requiredChecksApplicable": true,
+    "requiredChecksMissingOrFailed": [],
+    "checksNotRunOrFailed": [],
+    "protectedRestoredLetterDisclosuresUnchanged": true,
+    "unrelatedTrackedSourceFilesByteUnchanged": true,
+    "unrelatedTrackedSourceFilesChecked": 2274,
+    "cumulativeSincePass4": {
+      "startingNoteCount": 650,
+      "removedNoteCount": 419,
+      "remainingNoteCount": 231
+    },
+    "preexistingStaleDailyReviewPins": [
+      "daily|Daniel 3:25, 34–45",
+      "daily|Daniel 3:47–51",
+      "daily|Esther 13:8–11; 15–17",
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17",
+      "daily|Wisdom 10:10–14",
+      "daily|Wisdom 10:17–20",
+      "daily|Wisdom 3:1–8",
+      "daily|Wisdom 3:1–9",
+      "daily|Wisdom 4:7–15",
+      "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+      "daily|Wisdom 5:1–5",
+      "daily|Wisdom 6:12–16",
+      "daily|Wisdom 7:7–14"
+    ],
+    "remainingStaleDailyReviewPins": [
+      "daily|Daniel 3:25, 34–45",
+      "daily|Daniel 3:47–51",
+      "daily|Esther 13:8–11; 15–17",
+      "daily|Sirach 27:30; 28:1–7",
+      "daily|Sirach 39:6–14",
+      "daily|Sirach 45:1–6",
+      "daily|Sirach 51:13–17",
+      "daily|Wisdom 10:10–14",
+      "daily|Wisdom 10:17–20",
+      "daily|Wisdom 3:1–8",
+      "daily|Wisdom 3:1–9",
+      "daily|Wisdom 4:7–15",
+      "daily|Wisdom 5:1–1; 5:3–6; 5:8–8; 5:15–16",
+      "daily|Wisdom 5:1–5",
+      "daily|Wisdom 6:12–16",
+      "daily|Wisdom 7:7–14"
+    ],
+    "preexistingStalePresentationPins": [],
+    "remainingStalePresentationPins": [],
+    "secondGenerationByteStability": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass93-BEL-1-35/byte-stability.json",
+      "sha256": "8ae9a37f96bb497c667faf0e99e72e38ef10e3073b092d287af074b2fdf14e63",
+      "checkedFiles": 113,
+      "passed": true
+    },
+    "verificationRecord": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass93-BEL-1-35/verification.json",
+      "sha256": "0c29db100428d6972f630d4b0d20e81a38ce4dbf328e256dfab5e0da7258eb35"
+    },
+    "integrationAudit": {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass93-BEL-1-35/integration-audit.json",
+      "sha256": "ccd921d6b34b0c4dfaf9a0ff31f88cb92a46001b93dc5c9da90dcbc7b8696ccf"
+    },
+    "androidCommandExecution": {
+      "taskLine": "> Task :app:testDebugUnitTest UP-TO-DATE",
+      "mode": "reused up-to-date result"
+    }
+  }
+}

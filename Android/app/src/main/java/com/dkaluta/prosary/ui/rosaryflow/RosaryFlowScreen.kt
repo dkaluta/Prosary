@@ -301,6 +301,7 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
                 BeadProgressView(
                     layout = beadLayout,
                     isWide = isWide,
+                    languageCode = languageCode,
                     hasRoomForSingleMinorColumn = hasRoomForSingleMinorColumn,
                 )
                 InterfaceNavigation {

@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-17",
+  "purpose": "Successful ordinary authenticated PSIK reader inspection and preservation of user-saved PDF excerpts; separate from earlier unauthenticated public-source recovery.",
+  "accessMethod": "User logged into university access, then explicitly stated both source editions were open. Existing Chrome tabs were inspected through ordinary reader UI. No credentials, account details, session tokens, hidden endpoints or access-control workarounds are recorded or used.",
+  "editionObservedInReader": {
+    "title": "הספרים החיצונים — לתורה לנביאים לכתובים ושאר ספרים חיצונים",
+    "collectionEditor": "אברהם כהנא",
+    "publisherYearObserved": 2025,
+    "publisherObserved": "כרמל • ירושלים מקבוצת ידיעות ספרים",
+    "photographicReprintStatementObserved": "הספר צולם ממהדורת מסדה, תשט״ז",
+    "limitation": "Edition credits were read in the ordinary reader frontmatter; saved excerpts do not include those credit pages. The A2 target plate and recension identity are separately checked from the saved pages."
+  },
+  "readers": [
+    {
+      "volume": "A",
+      "visibleURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewerGlance/12306",
+      "totalPhysicalPagesObserved": 685,
+      "tabPreserved": true
+    },
+    {
+      "volume": "B",
+      "visibleURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewerGlance/12307",
+      "totalPhysicalPagesObserved": 534,
+      "tabPreserved": true
+    }
+  ],
+  "userDestination": "/Users/dk/Downloads/prosary",
+  "savedPDFs": [
+    {
+      "volume": "A",
+      "path": "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך א.pdf",
+      "sha256": "0eff6d1f4a1789eac24e66e72619c5cd102cb7e2dac3155e763efdf17da3028f",
+      "bytes": 4106663,
+      "pageCount": 10,
+      "preservedNameAndContent": true,
+      "nativeStructure": "One1003×1417RGB image per page, lossless extracted pixels; grayscale-valued RGB with256 observed colors.",
+      "role": "Discovery and same-typesetting comparison, not a proven independent physical scan."
+    },
+    {
+      "volume": "B",
+      "path": "/Users/dk/Downloads/prosary/פסיק - הספרייה הדיגיטלית _ הספרים החיצונים _ לתורה לנביאים לכתובים ושאר ספרים חיצונים _ כרך ב.pdf",
+      "sha256": "e895bdda9cbdf293b2ba52c8f7380a558db0cbccad4fcfed8ab7142e65426ce2",
+      "bytes": 3741088,
+      "pageCount": 10,
+      "preservedNameAndContent": true,
+      "inspectionOwner": "Maccabees/additions agent; see MACCABEES-patah-reinspection-20261017-pass6.json for its detailed page inventory."
+    }
+  ],
+  "printBehavior": "The reader normal Print action generated a10-page bundle from the selected start. A custom1–6 Chrome page range was considered to limit the A save, but the actual preserved user-saved A PDF has10 pages. Only its first6 BEL pages enter point review. A subsequent B print displayed the explicit reader per-session print limit; no workaround or session reset was attempted.",
+  "scopeRestriction": "Only remaining annotated chapters receive point review. The A excerpt begins at BEL chapter1; first6 pages match oldA2242–247. Page7 title establishes the Ezra-introduction boundary, and7–10 are excluded from point review. The preserved PDFs are not modified to remove bundled pages.",
+  "AExcerptPageInventory": [
+    {
+      "excerptPage": 1,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "4ad3393067a6d12247070a1094a5324012504a35b931f37cee61db5bb38a2fb2",
+      "nativeRGBSHA256": "a85c25f5a676576a6a4a2143a5b5662bfd9380081d623da4970568669fa04f14",
+      "pointReviewScope": "BEL chapter1 lower Theodotion body only; no upper recension or preceding Susanna point review.",
+      "originalA2PDFPage": 242,
+      "printedPageNumber": 570,
+      "readerPhysicalPage": 602,
+      "readerPageLabel": 587,
+      "identityCheck": "Same printed header, consonants, linewrap and upper/lower recension layout as original A2; only lower Theodotion BEL reviewed.",
+      "headerEvidence": {
+        "excerptPage": 1,
+        "nativeBounds": [
+          70,
+          75,
+          930,
+          150
+        ],
+        "sourceImageSHA256": "4ad3393067a6d12247070a1094a5324012504a35b931f37cee61db5bb38a2fb2",
+        "file": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/psik-a-page01-header-native.png",
+          "sha256": "5937f1e5a7e814ae9999d536e23e4bab4964a2467cbf28e40b2f4f6d15bc7ce2",
+          "scale": 1,
+          "nativePixelReplay": true
+        }
+      }
+    },
+    {
+      "excerptPage": 2,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "2c462f2a02d9238293e000d5dc73f131f7a64cc6c767fa3c94d4019322a79a36",
+      "nativeRGBSHA256": "0a8b72d9f855ef2718bd32009e3e34075e57a4ea01b654abc184d0fca5f65599",
+      "pointReviewScope": "BEL chapter1 lower Theodotion body only; no upper recension or preceding Susanna point review.",
+      "originalA2PDFPage": 243,
+      "printedPageNumber": 571,
+      "readerPhysicalPage": 603,
+      "readerPageLabel": 588,
+      "identityCheck": "Same printed header, consonants, linewrap and upper/lower recension layout as original A2; only lower Theodotion BEL reviewed.",
+      "headerEvidence": {
+        "excerptPage": 2,
+        "nativeBounds": [
+          70,
+          75,
+          930,
+          150
+        ],
+        "sourceImageSHA256": "2c462f2a02d9238293e000d5dc73f131f7a64cc6c767fa3c94d4019322a79a36",
+        "file": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/psik-a-page02-header-native.png",
+          "sha256": "a7cb7fa0905427231c3cdcc5a192b690bb4b2ab07630ad31d5f8ad2b8e0a3836",
+          "scale": 1,
+          "nativePixelReplay": true
+        }
+      }
+    },
+    {
+      "excerptPage": 3,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "56d4bf3825d50e0a617529e34b186783eaf2ab2b064f8896275eb588f9c9ae74",
+      "nativeRGBSHA256": "284ac62b2eab00c9ebf9c7d313932abb62f5142044d9f0af7a2067bf6399d394",
+      "pointReviewScope": "BEL chapter1 lower Theodotion body only; no upper recension or preceding Susanna point review.",
+      "originalA2PDFPage": 244,
+      "printedPageNumber": 572,
+      "readerPhysicalPage": 604,
+      "readerPageLabel": 589,
+      "identityCheck": "Same printed header, consonants, linewrap and upper/lower recension layout as original A2; only lower Theodotion BEL reviewed.",
+      "headerEvidence": {
+        "excerptPage": 3,
+        "nativeBounds": [
+          70,
+          75,
+          930,
+          150
+        ],
+        "sourceImageSHA256": "56d4bf3825d50e0a617529e34b186783eaf2ab2b064f8896275eb588f9c9ae74",
+        "file": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/psik-a-page03-header-native.png",
+          "sha256": "b030c3bd6d39efecc33a9b99775633dda18acdea4d1d161f08bc85838dfaaf5c",
+          "scale": 1,
+          "nativePixelReplay": true
+        }
+      }
+    },
+    {
+      "excerptPage": 4,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "8574a67fc8a6fe8b4da7f937af37c1111b54cba2fbc96e9a5d882d8757e87a1b",
+      "nativeRGBSHA256": "66b67486d2a47d137891bcb954c01557b5e554e127f44eaeac44869db5db175e",
+      "pointReviewScope": "BEL chapter1 lower Theodotion body only; no upper recension or preceding Susanna point review.",
+      "originalA2PDFPage": 245,
+      "printedPageNumber": 573,
+      "readerPhysicalPage": 605,
+      "readerPageLabel": 590,
+      "identityCheck": "Same printed header, consonants, linewrap and upper/lower recension layout as original A2; only lower Theodotion BEL reviewed.",
+      "headerEvidence": {
+        "excerptPage": 4,
+        "nativeBounds": [
+          70,
+          75,
+          930,
+          150
+        ],
+        "sourceImageSHA256": "8574a67fc8a6fe8b4da7f937af37c1111b54cba2fbc96e9a5d882d8757e87a1b",
+        "file": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/psik-a-page04-header-native.png",
+          "sha256": "14674f2ce097b6e9b5cbedccd3b55433aa1685677b4a3736ac9d73aaac5b4f3d",
+          "scale": 1,
+          "nativePixelReplay": true
+        }
+      }
+    },
+    {
+      "excerptPage": 5,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "fcfee5fd3f897c2353dbd6588ae434e69dde58f1bbbec98eea896f3c547314ae",
+      "nativeRGBSHA256": "59cf6f6dd9f4bda32388e4b6e8c4fe06b9a05bd51c12dd70bae7296729ae9cb6",
+      "pointReviewScope": "BEL chapter1 lower Theodotion body only; no upper recension or preceding Susanna point review.",
+      "originalA2PDFPage": 246,
+      "printedPageNumber": 574,
+      "readerPhysicalPage": 606,
+      "readerPageLabel": 591,
+      "identityCheck": "Same printed header, consonants, linewrap and upper/lower recension layout as original A2; only lower Theodotion BEL reviewed.",
+      "headerEvidence": {
+        "excerptPage": 5,
+        "nativeBounds": [
+          70,
+          75,
+          930,
+          150
+        ],
+        "sourceImageSHA256": "fcfee5fd3f897c2353dbd6588ae434e69dde58f1bbbec98eea896f3c547314ae",
+        "file": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/psik-a-page05-header-native.png",
+          "sha256": "69c068cb509882fc8a1372bdeb13b0948424eb4ff2ea574b937c4b75abe5e44f",
+          "scale": 1,
+          "nativePixelReplay": true
+        }
+      }
+    },
+    {
+      "excerptPage": 6,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81",
+      "nativeRGBSHA256": "1cbdbf594c26279c746d502bdab606550644dda48b82fd6bc6b544ab2b87d0c7",
+      "pointReviewScope": "BEL chapter1 lower Theodotion body only; no upper recension or preceding Susanna point review.",
+      "originalA2PDFPage": 247,
+      "printedPageNumber": 575,
+      "readerPhysicalPage": 607,
+      "readerPageLabel": 592,
+      "identityCheck": "Same printed header, consonants, linewrap and upper/lower recension layout as original A2; only lower Theodotion BEL reviewed.",
+      "headerEvidence": {
+        "excerptPage": 6,
+        "nativeBounds": [
+          70,
+          75,
+          930,
+          150
+        ],
+        "sourceImageSHA256": "6b4fb9a0f67c1546560072ef84638ce3e25854aa9c6a7cfeabc61e87d87abc81",
+        "file": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/psik-a-page06-header-native.png",
+          "sha256": "769b3a29fc12b2f7c364194201c0c81716ec2f83c4f2c0b9d7d8174202cb1fe0",
+          "scale": 1,
+          "nativePixelReplay": true
+        }
+      }
+    },
+    {
+      "excerptPage": 7,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "1e2f6300c95dc2988ae56cb42fcef0c8d36478bc7bd149158ac590a7e2fdf521",
+      "nativeRGBSHA256": "490147b9e31b48b4befa6cc2c5c47618eb76056d1b37452c136a2b16e80472cd",
+      "pointReviewScope": "Excluded from point review",
+      "contents": "עזרא החיצוני — מבוא",
+      "identityCheck": "Title boundary only; unannotated Ezra introduction excluded.",
+      "headerEvidence": {
+        "excerptPage": 7,
+        "nativeBounds": [
+          330,
+          75,
+          700,
+          145
+        ],
+        "sourceImageSHA256": "1e2f6300c95dc2988ae56cb42fcef0c8d36478bc7bd149158ac590a7e2fdf521",
+        "file": {
+          "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass7-BEL/psik-a-page07-header-native.png",
+          "sha256": "6c572f47d61d58efba48ea9f7dde6e9c3dcfdc1dc46fd773cade3fcc270b9c61",
+          "scale": 1,
+          "nativePixelReplay": true
+        }
+      }
+    },
+    {
+      "excerptPage": 8,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "fa2e03be18ec49f1453ef44ced05f87510e62822bf0d1dc7332af57e1e864759",
+      "nativeRGBSHA256": "35072772453f847c95041e08baae0061159ed5999d124d0a3d6ac5cee22fc07e",
+      "pointReviewScope": "Excluded from point review",
+      "contents": "Following excerpt pages; metadata extraction only, no content or point review."
+    },
+    {
+      "excerptPage": 9,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "ee59e61cb732b5c5fe4580c26041eb1a61347673d6b781d65c2738048a4499d3",
+      "nativeRGBSHA256": "ba6b6643d8ac87569e5fc23c378b78f3de12ac37344a5c559c8ac7ca14eb2696",
+      "pointReviewScope": "Excluded from point review",
+      "contents": "Following excerpt pages; metadata extraction only, no content or point review."
+    },
+    {
+      "excerptPage": 10,
+      "nativeDimensions": [
+        1003,
+        1417
+      ],
+      "embeddedImageCount": 1,
+      "nativePNGFileSHA256": "175edba07bd0c3424b82a39fa7f0fa8cc4265c60ebbca51c4c0ce15b2bee20b9",
+      "nativeRGBSHA256": "0212e40d5bb7e8781fec207bcdd1b43ddde1722c75a72074694f891a675544ba",
+      "pointReviewScope": "Excluded from point review",
+      "contents": "Following excerpt pages; metadata extraction only, no content or point review."
+    }
+  ],
+  "independenceAssessment": "Unproven. Different page framing, color depth and rendered raster hashes do not alone show independent photographic information. No accepted point depends on assuming PSIK is an independent scan. The one BEL resolution is certified against original A2 native pixels and same-page controls.",
+  "relatedBELReport": "Shared/reports/hebrew-wikisource/BEL-note-reinspection-20261017-pass7.json",
+  "historicalPublicRecoveryReportPreserved": {
+    "path": "Shared/reports/hebrew-wikisource/Kahana-public-scan-recovery-20261017.json",
+    "sha256": "d60d430d3220e89132cc0e0aaffb4dc6bc4c6e6d9d7fc68dcbcee2b28205c83b"
+  },
+  "evidencePrivacy": "No account, credential or encrypted PDF-query values saved. Only stable visible volume paths and source-page pixels required for comparisons.",
+  "canonicalMutations": false
+}

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 137,
+  "integrationPass": 137,
+  "preparationID": 157,
+  "validationScope": "One full validation cycle covers the complete integration batch; no per-unit test run is claimed.",
+  "book": "ESG",
+  "status": "Offline complete source unit reviewed by primary and independent peer; 1 disclosures retired and 0 retained.",
+  "applicationState": "Consensus source-unit changes are included in the applied batch; shared generation/tests are recorded in the batch integration.",
+  "method": "Primary and independent peer consensus; exact native pixel crops and integer nearest4x only. No OCR, enhancement, grammar, normalization, expected pointing or alternate witness supplies marks.",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation157-ESG-5-4/source-provenance.json",
+    "sha256": "21f780d7e11023a4460e72a04c9317da0aea683a8909b24b4f4fb9e2704c2524"
+  },
+  "sourceNotesBefore": 15,
+  "sourceNotesAfter": 14,
+  "reviewedSourceNoteCount": 1,
+  "resolvedSourceNoteCount": 1,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "esg-5-4-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "contentSHA256Before": "d09096b0ed396e0e863eef574f6b90c47025dfde4edeb445618b3a91f706d860",
+  "contentSHA256After": "a1b1be7d251557123dbe9c08bfb45edb4df92c85568cc4454ce62e592fbbadfc",
+  "combiningMarksAdded": 1,
+  "decisions": [
+    {
+      "noteId": "esg-5-4-1-vowel",
+      "book": "ESG",
+      "chapter": 5,
+      "verse": 4,
+      "anchorBefore": "מזְהִירָה",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "finding": null,
+      "targetCapture": "extension-volumeA-566-zoom4-upper-right.png",
+      "targetSourceIdentifier": "extension-volumeA-566-zoom4-upper-right.png",
+      "inspectedBounds": [
+        1166,
+        160,
+        1230,
+        234
+      ],
+      "markProposed": "Patah",
+      "codePoint": "U+05B7",
+      "pointBounds": [
+        1182,
+        236,
+        1210,
+        244
+      ],
+      "markClassification": "Vowel",
+      "independentPreparation": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation157-ESG-5-4/consensus-preparation.json"
+    }
+  ],
+  "changedUnits": [
+    {
+      "chapter": 5,
+      "verse": 4,
+      "before": "וְהִיא מזְהִירָה בִּמְלֹא יִפְעָתָהּ וּפָנֶיהָ מְאִירִים כִּמְפִיקִים אַהֲבָה אַךְ לִבָּהּ יָחִיל מִפָּחַד׃",
+      "after": "וְהִיא מַזְהִירָה בִּמְלֹא יִפְעָתָהּ וּפָנֶיהָ מְאִירִים כִּמְפִיקִים אַהֲבָה אַךְ לִבָּהּ יָחִיל מִפָּחַד׃"
+    }
+  ],
+  "scope": {
+    "chapter": 5,
+    "verse": 4,
+    "allUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "retainedNoteAnchorUpdates": [],
+  "independentReview": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation157-ESG-5-4/independent-review.json",
+    "sha256": "a4a182d8b64deb892d5fd2d29c0424ff7a782228ac976266b7084650dcf47669"
+  },
+  "primaryPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation157-ESG-5-4/primary-preparation.json",
+    "sha256": "90d7dd46cadf862ffe78abbf5771d65f35e78f3c6d086cc4e9357b8c81236f05"
+  },
+  "consensusPreparation": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass137-preparation157-ESG-5-4/consensus-preparation.json",
+    "sha256": "c452e16670d88bf1d3684d22060f5dd58057dcd370415b4ed3e82811ca302fb7"
+  },
+  "dailyProjectionProof": {
+    "dailyBoundaryTextUpdates": [],
+    "dailyRowNoteUpdates": [],
+    "changedRows": [],
+    "appointmentsCompared": [
+      {
+        "appointment": "daily|Esther 13:8–11; 15–17",
+        "frozenApprovalDigestWasStale": false,
+        "oldRowsExactlyCanonical": true,
+        "newRowsExactlyCanonical": true,
+        "allSelectionsAndNonpointMetadataPreserved": true
+      }
+    ],
+    "metadataCorrections": [],
+    "historicalCatchupPointCount": 0,
+    "historicalCatchupRetiredIdCount": 0
+  },
+  "metadataCorrections": [],
+  "invariants": {
+    "fiveRestoredLetterDisclosuresPreserved": true,
+    "existingScalarsAndOrderPreserved": true,
+    "allCropsReplayedFromPinnedCaptures": true,
+    "noOpPreparationAddsNoCanonicalMutation": true
+  }
+}

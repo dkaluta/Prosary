@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "batchDate": "20261017",
+  "pass": 65,
+  "book": "WIS",
+  "status": "Three 18:5 source points certified from authorized Psik scan; all unit disclosures resolved and retired.",
+  "applicationState": "Verified by author and independent source/pixel/mutation audit; applied in Pass 65.",
+  "sourceType": "authenticatedPsikScanViaAuthorizedChromeSession",
+  "sourceURL": "https://ebooks-psik-io.eu1.proxy.openathens.net/pdfViewer/12306",
+  "sourceProvenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass65-WIS-18-5/source-provenance.json",
+    "sha256": "89c8c9c8e77e3eb9b70a361e68c005a51e66b85e6bd66b5f715558e81fc141c4"
+  },
+  "sourceAuthorization": "User explicitly confirmed use of the open Kahana volumes in the signed-in Psik library session on localhost:9222.",
+  "method": "Primary evidence consists solely of unmodified Chrome captures of the user-authorized Psik scan on page 181. Pixels were cropped and analyzed offline using integer nearest-neighbor sampling. No OCR, guessing, or grammatical reconstructions were used.",
+  "baselineGlobalSourceNoteCount": 293,
+  "sourceNotesBefore": 135,
+  "sourceNotesAfter": 132,
+  "reviewedSourceNoteCount": 3,
+  "resolvedSourceNoteCount": 3,
+  "retainedInspectedSourceNoteCount": 0,
+  "retiredSourceNoteIds": [
+    "wis-18-5-word6-samekh-2-vowel",
+    "wis-18-5-word7-bet-3-vowel",
+    "wis-18-5-word8-kaf-1-vowel"
+  ],
+  "retainedInspectedSourceNoteIds": [],
+  "combiningMarksAdded": 1,
+  "addedCombiningMarks": {
+    "wis-18-5-word6-samekh-2-vowel": {
+      "combiningMark": "\u05b7",
+      "codePoint": "U+05B7",
+      "name": "HEBREW POINT PATAH"
+    }
+  },
+  "retainedNoteAnchorUpdates": [],
+  "physicalAnchorEvents": [],
+  "changedUnits": [
+    {
+      "chapter": 18,
+      "verse": 5,
+      "before": "הֵם זָמְמוּ לְהָמִית עוֹלְלֵי חֲסִידִים [וְרַק] אֶחָד מִן־הַיְלוּדִים הַמֻּשְׁלָכִים נִמְלָט וְהִנֵּה יִסּרְתָּם וַתִּקַּח מֵהֶם בָּנִים לָרֹב וְאִבּדְתָּ כלָּם יַחַד בְּמַיִם עַזִּים׃",
+      "after": "הֵם זָמְמוּ לְהָמִית עוֹלְלֵי חֲסִידִים [וְרַק] אֶחָד מִן־הַיְלוּדִים הַמֻּשְׁלָכִים נִמְלָט וְהִנֵּה יִסַּרְתָּם וַתִּקַּח מֵהֶם בָּנִים לָרֹב וְאִבּדְתָּ כלָּם יַחַד בְּמַיִם עַזִּים׃"
+    }
+  ],
+  "scope": {
+    "chapter": 18,
+    "verse": 5,
+    "allThreeUnitDisclosuresReviewed": true,
+    "notAWholeBookAssertion": true
+  },
+  "sourceAddressPolicy": "Printed source verse 5 on page קפא / 181 (viewer page 526) in Kahana Volume A, Wisdom of Solomon.",
+  "decisions": [
+    {
+      "noteId": "wis-18-5-word6-samekh-2-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "anchor": "יִסּרְתָּם",
+      "letterIndex": 2,
+      "decision": "retireNote",
+      "markProposed": "patah",
+      "codePoint": "U+05B7",
+      "markClassification": "Patah",
+      "finding": "Medial Samekh with Dagesh (סּ) exhibits an unmistakable horizontal ink stroke stamped directly beneath its base loop at rows 68..92 of extension-volumeA-526-zoom6-lower-right.png, measuring 24 rows in thickness and 50 columns in width (spanning cols 195..245). This mark aligns perfectly in vertical register with the Qamats under Tav and the Hiriq under Yod, and matches the control Patah dimensions exactly. In negative control (Samekh of חֲסִידִים in line 1), the Samekh loop terminates cleanly with no such stroke. Restores Patah under Samekh to form יִסַּרְתָּם.",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass65-WIS-18-5/wis-18-5-samekh-target-native.png",
+        "sha256": "ec4d894a5a317da18fba1f3732fc7cff605f0caa87a551df04162f852b9a8965"
+      }
+    },
+    {
+      "noteId": "wis-18-5-word7-bet-3-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "anchor": "וְאִבּדְתָּ",
+      "letterIndex": 3,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Medial Bet contains a clear Dagesh dot inside its enclosure. Its base horizontal stroke terminates cleanly at row 192 (cols 105..125 of extension-volumeA-526-zoom6-lower-mid.png), followed by over 30 rows of pure unprinted white paper beneath its base (rows 194..225). There is no vowel mark stamped (no Patah, Qamats, or Sheva). Confirmed unpointed consonant with Dagesh (בּ).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass65-WIS-18-5/wis-18-5-bet-target-native.png",
+        "sha256": "db2e1af2dc42d3657bd0f98894e087f5c3a2988493b09d1a6b2adda398af736f"
+      }
+    },
+    {
+      "noteId": "wis-18-5-word8-kaf-1-vowel",
+      "book": "WIS",
+      "chapter": 18,
+      "verse": 5,
+      "anchor": "כלָּם",
+      "letterIndex": 1,
+      "decision": "retireNote",
+      "markProposed": "unpointedConsonant",
+      "codePoint": null,
+      "markClassification": "UnpointedConsonant",
+      "finding": "Initial Kaf consists of a top bar, right vertical stem, and left foot matching the typeface letterform seen in Pass 64 (הֲכינוֹתָ). Its base terminates cleanly at row 196, followed by over 30 consecutive rows of pure white paper (rows 198..230) beneath the consonant. There is no vowel mark (no Qibbuts, Patah, or Qamats). Confirmed unpointed consonant (כ).",
+      "targetEvidence": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass65-WIS-18-5/wis-18-5-kaf-target-native.png",
+        "sha256": "399dc0ff2b393a492ca003535ec903f3c8311a153dddf80e42e757403bc7f587"
+      }
+    }
+  ]
+}

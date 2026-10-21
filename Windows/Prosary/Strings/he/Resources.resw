@@ -167,13 +167,13 @@
   <data name="EdWhichMysteries.Text" xml:space="preserve"><value>אילו רזים?</value></data>
   <data name="EdOpeningHeader.Text" xml:space="preserve"><value>תפילות הפתיחה והרזים</value></data>
   <data name="EdApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
-  <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>“אבינו שבשמים” ו־3 “שלום לך” בפתיחה</value></data>
-  <data name="EdFatima.Text" xml:space="preserve"><value>“הו ישוע שלי” בסוף כל רז</value></data>
-  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי תפילת “שבח לאב” הפותחת</value></data>
+  <data name="EdOpeningPrayers.Text" xml:space="preserve"><value>תפילות פתיחה</value></data>
+  <data name="EdFatima.Text" xml:space="preserve"><value>תפילת פאטימה בסוף כל רז</value></data>
+  <data name="EdOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה הנוספת בפתיחה</value></data>
   <data name="EdDisplayHeader.Text" xml:space="preserve"><value>תצוגה</value></data>
   <data name="EdMysteryArtwork.Header" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="EdPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
-  <data name="EdPresenterHint.Text" xml:space="preserve"><value>איחוד עשר ה“שלום לך” וה“שבח לאב” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</value></data>
+  <data name="EdPresenterHint.Text" xml:space="preserve"><value>איחוד התפילות החוזרות בכל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</value></data>
   <data name="EdClosingHeader.Text" xml:space="preserve"><value>תפילות סיום</value></data>
   <data name="EdClosingIntentions.Text" xml:space="preserve"><value>כוונות הסיום</value></data>
   <data name="EdStMichael.Text" xml:space="preserve"><value>תפילת המלאך מיכאל</value></data>
@@ -341,9 +341,9 @@
   <data name="PickerAntiphon.Header" xml:space="preserve"><value>אנטיפון מריאני</value></data>
   <data name="PickerMysteryArtwork.Header" xml:space="preserve"><value>איורי הרזים</value></data>
   <data name="PickerApostlesCreed.Text" xml:space="preserve"><value>אני מאמין</value></data>
-  <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>אבינו ושלוש פעמים שלום לך מרים בפתיחה</value></data>
+  <data name="PickerOpeningPrayers.Text" xml:space="preserve"><value>תפילות פתיחה</value></data>
   <data name="PickerFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי כל עשור</value></data>
-  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה אחרי תפילת “שבח לאב” הפותחת</value></data>
+  <data name="PickerOpeningFatima.Text" xml:space="preserve"><value>תפילת פאטימה הנוספת בפתיחה</value></data>
   <data name="PickerPresenterMode.Text" xml:space="preserve"><value>מצב מנחה</value></data>
   <data name="PickerClosingIntentions.Text" xml:space="preserve"><value>כוונות הסיום</value></data>
   <data name="PickerStMichael.Text" xml:space="preserve"><value>תפילת המלאך מיכאל</value></data>
@@ -682,6 +682,9 @@
   <data name="about_source_ukrainian_nicene" xml:space="preserve"><value>אני מאמין של ניקיאה באוקראינית: הכנסייה היוונית־קתולית האוקראינית, Christ – Our Pascha (2012), עמ׳ 10. הפיליוקווה נשמר בסוגריים כבמקור.</value></data>
   <data name="about_ukrainian_nicene_link" xml:space="preserve"><value>הקטכיזם של הכנסייה היוונית־קתולית האוקראינית — אני מאמין של ניקיאה</value></data>
   <data name="favorite_editor_nicene_creed" xml:space="preserve"><value>אני מאמין של ניקיאה</value></data>
+  <data name="bible_previous_page" xml:space="preserve"><value>העמוד הקודם</value></data>
+  <data name="bible_next_page" xml:space="preserve"><value>העמוד הבא</value></data>
+  <data name="bible_page_count" xml:space="preserve"><value>עמודים {0}–{1} מתוך {2}</value></data>
   <data name="home_widgets_torah" xml:space="preserve"><value>פרשת השבוע וההפטרות</value></data>
   <data name="home_widgets_no_torah" xml:space="preserve"><value>אין פרשת שבוע או הפטרה זמינה לתאריך זה.</value></data>
   <data name="readings_type_haftarah" xml:space="preserve"><value>הפטרה · אשכנז</value></data>
@@ -689,4 +692,9 @@
   <data name="home_widgets_color" xml:space="preserve"><value>צבע התא</value></data>
   <data name="home_widgets_set_accent_color" xml:space="preserve"><value>הגדרת צבע הדגשה…</value></data>
   <data name="home_widgets_remove_accent_color" xml:space="preserve"><value>הסרת צבע ההדגשה</value></data>
+  <data name="rosary_opening_prayers_format" xml:space="preserve"><value>“{0}” ו־3 “{1}” בפתיחה</value></data>
+  <data name="rosary_opening_fatima_format" xml:space="preserve"><value>“{0}” אחרי תפילת “{1}” הפותחת</value></data>
+  <data name="rosary_fatima_each_decade_format" xml:space="preserve"><value>“{0}” בסוף כל רז</value></data>
+  <data name="rosary_presenter_hint_format" xml:space="preserve"><value>איחוד עשר תפילות “{0}” ותפילת “{1}” של כל רז למסך אחד — שימושי למי שמוביל תפילה בציבור בעל־פה.</value></data>
+  <data name="rosary_final_sign_format" xml:space="preserve"><value>{0} בסיום</value></data>
 </root>

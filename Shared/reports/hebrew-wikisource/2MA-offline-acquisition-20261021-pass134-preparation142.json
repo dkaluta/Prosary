@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "pass": 134,
+  "integrationPass": 134,
+  "preparationID": 142,
+  "mode": "offlineReuse",
+  "sourceAcquisition": "Offline reuse of historical embedded primary PDF rasters and authorized saved Chrome captures, with exact per-image identities and provenance retained.",
+  "additionalSourceProvenance": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-2MA-offline-originals/source-provenance.json",
+      "sha256": "a53216888f767f14f5dfbfbb2ce338dd3e22b15536a57a1e86768d8b79cfba08"
+    }
+  ],
+  "sourceAddressArchives": [],
+  "supplementalHistoricalFrames": [],
+  "sourceAcquisitionDetail": "Existing saved offline Chrome overview plus exact historical primary KahanaB embedded PDF raster, now directly rebound to recorded PDF bytes and completeRGB pixels. No new browser/network acquisition or rendered replacement.",
+  "sourceDocument": "Kahana Volume B",
+  "networkAccessPerformed": false,
+  "browserAccessPerformed": false,
+  "canonicalLegacyPDFPages": [
+    204
+  ],
+  "savedCaptureViewerPageLabels": [
+    206
+  ],
+  "frames": [
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/preemptive-captures/volumeB-page204/extension-volumeB-206-page-overview.png",
+      "sha256": "46a3f649dcc1004913ae27e1be85b6218f5665a0796fccc204ea7bfc8c9cabd4",
+      "resolution": [
+        2636,
+        1862
+      ],
+      "sourceKind": "authorizedSavedChromeCapture"
+    },
+    {
+      "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-2MA-offline-originals/primary-204-native.png",
+      "sha256": "d8d5393500cbb505c2982e1609f22b6907f91d56f10540fe962d7667f3460ae8",
+      "resolution": [
+        1650,
+        2550
+      ],
+      "sourceKind": "historicalEmbeddedPDFRaster",
+      "historicalSourceProvenance": {
+        "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass142-2MA-offline-originals/source-provenance.json",
+        "sha256": "a53216888f767f14f5dfbfbb2ce338dd3e22b15536a57a1e86768d8b79cfba08"
+      },
+      "originalPDF": {
+        "path": "/Users/dk/Downloads/Apocrypha_Kahana_B.pdf",
+        "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+        "sha256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
+        "sha256VerifiedInCurrentSession": true
+      },
+      "sourceCredit": {
+        "translator": "אברהם כהנא",
+        "collectionEditor": "אברהם כהנא",
+        "sourceURL": "https://he.wikisource.org/w/index.php?oldid=3084666",
+        "attribution": "ספר המקבים ב, תרגום אברהם כהנא, בתוך הספרים החיצונים בעריכת אברהם כהנא. תעתיק מן הדפוס שסופק."
+      },
+      "sourceURL": "https://he.wikisource.org/wiki/קובץ:Apocrypha_Kahana_B.pdf",
+      "historicalReports": [
+        {
+          "path": "Shared/reports/hebrew-wikisource/Maccabees-note-reinspection-20261017-pass3.json",
+          "sha256": "81418307400830de94ba9e94a779f4b0b7607568496de93307567f9567b7eb40"
+        },
+        {
+          "path": "Shared/reports/hebrew-wikisource/REMAINDER-note-reinspection-20261017-pass4.json",
+          "sha256": "db7ccce1012725156ce38bcf4e1ecd9f6d4c7ecf1974d901eb208b624ec91d77"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "path": "Shared/reports/hebrew-wikisource/source-note-evidence/20261017-pass134-preparation142-2MA-7-40/source-provenance.json",
+    "sha256": "281b21d663911b13f1ca90e29fde4137fa8380972081e3303da7f73e3cfd81b5"
+  }
+}
