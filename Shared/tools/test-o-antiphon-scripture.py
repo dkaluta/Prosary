@@ -54,6 +54,9 @@ assert "ישעיהו ט׳ 1 (נוסח המסורה)" in he["prayers"]["oOriensLe
 assert "לוקס א׳ 46–55 (דליטש, 1901)" in he["prayers"]["magnificatBody"]
 for key in importer.PASSAGES:
     assert not re.search(r"י[\u0591-\u05c7]+ה[\u0591-\u05c7]*ו[\u0591-\u05c7]*ה", he["prayers"][key])
-assert len(he["$prayerTraditionByKey"]) == 7
+assert set(he["$prayerTraditionByKey"]) == {
+    "gloriaPatriTitle", "oSapientiaBody", "oAdonaiBody", "oRadixIesseBody",
+    "oClavisDavidBody", "oOriensBody", "oRexGentiumBody", "oEmmanuelBody",
+}
 assert set(he["$prayerTraditionByKey"].values()) == {"vicariate"}
 print("O Antiphon source numbering, verse boundaries, source pins and Hebrew tradition preservation passed.")

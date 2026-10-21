@@ -30,7 +30,8 @@ package version is 0.23.0.0.
 - Localized content, translation completeness, supplied contributor corrections,
   and all seven Nicene Creed tests pass. A stale device-test argument list and the
   exact rite-metadata expectation were repaired before the successful reruns.
-- Windows runtime/package validation requires Windows; remote CI is authoritative.
+- Windows runtime tests passed in GitHub CI run `39687947041` at `a249a0f6`.
+  Building and publishing an MSIX still requires Windows and has not been done here.
 
 The documented iPhone 17 Pro simulator is absent locally. An existing iOS 27.0
 simulator could not launch the test host; the successful test assertions use the
