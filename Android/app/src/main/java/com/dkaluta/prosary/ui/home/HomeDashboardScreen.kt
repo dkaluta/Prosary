@@ -63,6 +63,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.Color
@@ -391,7 +393,8 @@ private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, sum
     val accent = Color(if (MaterialTheme.colorScheme.surface.luminance() < 0.5f) palette.dark else palette.light)
     val containerColor = if (color == "default") defaultColors.containerColor
         else accent.copy(alpha = 0.12f).compositeOver(defaultColors.containerColor)
-    Card(Modifier.fillMaxWidth().testTag("homeWidget.${widget.id}").then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier),
+    Card(Modifier.fillMaxWidth().testTag("homeWidget.${widget.id}").then(if (onClick != null)
+        Modifier.clickable(onClick = onClick).pointerHoverIcon(PointerIcon.Hand) else Modifier),
         colors = CardDefaults.cardColors(containerColor = containerColor, contentColor = MaterialTheme.colorScheme.onSurface)) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {

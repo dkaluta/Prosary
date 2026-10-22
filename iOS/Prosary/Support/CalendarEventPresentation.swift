@@ -20,7 +20,7 @@ struct CalendarEvent: Identifiable {
 enum CalendarEventPresentation {
   static func dateLabel(_ date: Date, template: String = "yMMMMd") -> String {
     let formatter = DateFormatter(); formatter.locale = UILanguage.locale
-    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.calendar = .autoupdatingCurrent
     formatter.setLocalizedDateFormatFromTemplate(template)
     return formatter.string(from: date)
   }
@@ -33,11 +33,11 @@ enum CalendarEventPresentation {
     return observances.enumerated().map { CalendarEvent(date: date, feast: feast, observance: $0.element, index: $0.offset) }
   }
 
-  /// Monday-first Gregorian civil dates, independent of the selected feast calendar/RTL.
-  static func monthCells(for date: Date, calendar: Calendar = Calendar(identifier: .gregorian)) -> [Date?] {
-    guard let start = calendar.date(from: calendar.dateComponents([.year, .month], from: date)),
+  /// Display the system month/week while retaining absolute dates for civil event lookup.
+  static func monthCells(for date: Date, calendar: Calendar = .autoupdatingCurrent) -> [Date?] {
+    guard let start = calendar.dateInterval(of: .month, for: date)?.start,
           let range = calendar.range(of: .day, in: .month, for: date) else { return [] }
-    let leading = (calendar.component(.weekday, from: start) + 5) % 7
+    let leading = (calendar.component(.weekday, from: start) - calendar.firstWeekday + 7) % 7
     var cells = Array<Date?>(repeating: nil, count: leading)
     cells += range.compactMap { calendar.date(byAdding: .day, value: $0 - 1, to: start) }.map { Optional($0) }
     while cells.count % 7 != 0 { cells.append(nil) }

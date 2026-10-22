@@ -70,6 +70,7 @@ public sealed partial class DesktopTodayPage : Page
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
+        Prosary.Controls.SystemCalendarPreferences.Apply(TodayCalendar);
         ViewModel.PropertyChanged += OnTodayChanged;
         AppSettings.ReadingsEditionChanged += OnReadingEditionChanged;
         AppSettings.ReadingsOrderChanged += OnReadingEditionChanged;

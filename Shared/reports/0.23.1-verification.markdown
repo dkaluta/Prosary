@@ -1,0 +1,54 @@
+# Prosary 0.23.1 release verification
+
+Prepared on 2026-10-22 from `feature/bible-calendar-home-layout`, based on
+`f8597a1930dafcf2719ec218d79d8a4cc9346ad3`. Android is 0.23.1 (61), Apple is
+0.23.1 (local build 2301; Xcode Cloud assigns its own number), and Windows is 0.23.1.0.
+
+## Changes
+
+Holy Scripture opens full-screen on iPhone/iPad. Calendar grids follow the system calendar
+and regional first weekday while retaining civil event identities. Home cards fill the
+shortest available column. Tablet date pickers fit resized windows with reachable Today/Done
+controls. Native pointer feedback and text-selection input are preserved, and Android reader
+anchors no longer drift into scroll padding during resizing. Shared source text is unchanged.
+
+## Local validation
+
+- Signed Android release bundle and release vital lint passed; 585 JVM tests passed.
+- Apple macOS unit run completed successfully: 719 XCTest cases, zero failures, one expected
+  isolated external-scripting skip; two Swift Testing cases also passed.
+- iPad full-window Bible opening, facing-page advance/back, verse jumps and dismissal passed.
+  US/UK weekday-header checks and English/Hebrew Home packing/accessibility checks passed.
+- Native iPad corner-drag resizing to 375 by 486 points passed, including the calendar's
+  reachable controls and restoration to full screen. iPhone portrait and short-landscape
+  tests scrolled to the final date and retained Done access.
+- Android tablet: two native system-calendar tests and five reader input/resize tests passed.
+  These include Hebrew leap months, mouse versus touch, RTL, large text, verse navigation
+  and narrow/wide anchor retention.
+- Strict UI audit, design-context lint and whitespace checks passed. Eight Play release-note
+  locales and the Apple English release notes were updated using existing UI vocabulary.
+
+The focused records are [Bible/calendar/Home](bible-calendar-home-verification-20261022.markdown)
+and [tablet windows/pointers](tablet-window-pointer-verification-20261022.markdown).
+
+## Artifacts and distribution boundaries
+
+Signed Android bundle SHA-256:
+`ccd446c3d49b76550d550268f0fcd664adcdb66288dbde9b68f4d70d3cac7a03`.
+
+Full local test evidence is preserved separately as
+`prosary-0.23.1-test-evidence.tar.zst`: 6,176 files, 398,345,284 uncompressed bytes,
+253,360,021 archive bytes. SHA-256:
+`6ba04572700fc613446efda270746e0ed2c62275e87c6a76462834b4f63dd415`.
+Every archived member was read back and rehashed; the complete per-file manifest is inside
+the archive. The older lossless Hebrew source archive remains attached to `v0.23.0`.
+
+Publishing targets the existing Play closed-alpha track and Apple TestFlight workflow/groups.
+CI, upload, archive, processing, internal availability and external review must be verified
+separately. The release asset `prosary-0.23.1-release-verification.json` records the final
+delivery receipts. This is a beta release, not the 1.0 public App Store launch.
+
+Windows source/tests are included; building/publishing an MSIX requires a Windows host.
+No physical iPad pointer or visionOS runtime verification is asserted. The older broad Android
+Home test harness remains outside this task's successful isolated reader tests. No web source
+changed, so this release does not require a Repository deployment or database/blob cleanup.

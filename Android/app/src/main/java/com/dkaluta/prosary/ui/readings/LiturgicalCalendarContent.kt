@@ -17,6 +17,8 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -32,11 +34,8 @@ import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.today.*
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.ui.shared.TodayBrowsingDate
-import java.time.DayOfWeek
+import android.content.res.Resources
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.time.format.TextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -80,25 +79,27 @@ fun LiturgicalCalendarContent(browsingDate: TodayBrowsingDate, onSelectDate: () 
 @Composable
 internal fun CalendarMonthGrid(date: LocalDate, onSelectDate: (LocalDate) -> Unit) {
     val locale = LocalConfiguration.current.locales[0]
-    val start = date.withDayOfMonth(1)
-    val days = remember(start) { CalendarEvents.monthCells(start) }
-    val counts = remember(start, TodayInfoStore.selectedCalendarId, AppSettings.easternPaschaStyle) {
+    val systemLocale = Resources.getSystem().configuration.locales[0]
+    val month = remember(date, locale, systemLocale) { SystemCalendarMonth(date, systemLocale, locale) }
+    val start = month.start
+    val days = month.days
+    val counts = remember(days, TodayInfoStore.selectedCalendarId, AppSettings.easternPaschaStyle) {
         days.filterNotNull().associateWith { CalendarEvents.events(it, TodayInfoStore.feast(TodayDateSelection.lookupDate(it))).size }
     }
     val formatter = remember(locale) { java.text.NumberFormat.getIntegerInstance(locale) }
     Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = { onSelectDate(start.minusMonths(1)) }, enabled = start > TodayDateSelection.earliest.withDayOfMonth(1)) {
+            IconButton(onClick = { onSelectDate(month.adjacentMonth(-1).coerceIn(TodayDateSelection.earliest, TodayDateSelection.latest)) }, enabled = start > TodayDateSelection.earliest) {
                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.calendar_previous_month))
             }
-            Text(start.format(DateTimeFormatter.ofPattern("LLLL yyyy", locale)), Modifier.weight(1f), textAlign = TextAlign.Center,
+            Text(month.title, Modifier.weight(1f), textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleMedium)
-            IconButton(onClick = { onSelectDate(start.plusMonths(1)) }, enabled = start < TodayDateSelection.latest.withDayOfMonth(1)) {
+            IconButton(onClick = { onSelectDate(month.adjacentMonth(1).coerceIn(TodayDateSelection.earliest, TodayDateSelection.latest)) }, enabled = month.adjacentMonth(1) <= TodayDateSelection.latest) {
                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.calendar_next_month))
             }
         }
         Row(Modifier.fillMaxWidth()) {
-            DayOfWeek.entries.forEach { day -> Text(day.getDisplayName(TextStyle.NARROW_STANDALONE, locale), Modifier.weight(1f),
+            month.weekdays.forEach { (shortName, fullName) -> Text(shortName, Modifier.weight(1f).semantics { contentDescription = fullName },
                 textAlign = TextAlign.Center, style = MaterialTheme.typography.labelMedium) }
         }
         days.chunked(7).forEach { week ->
@@ -109,14 +110,15 @@ internal fun CalendarMonthGrid(date: LocalDate, onSelectDate: (LocalDate) -> Uni
                         val count = counts[day] ?: 0
                         val isSelected = day == date
                         val tint = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary
-                        val label = day.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale)) +
+                        val label = month.format(day, "yMMMMEEEEd") +
                             ", " + stringResource(R.string.calendar_event_count, count)
                         Column(Modifier.weight(1f).height(52.dp).clip(MaterialTheme.shapes.medium)
                             .background(if (isSelected) MaterialTheme.colorScheme.primary else androidx.compose.ui.graphics.Color.Transparent)
-                            .clickable { onSelectDate(day) }.testTag("calendarDate.$day")
+                            .clickable(enabled = day in TodayDateSelection.earliest..TodayDateSelection.latest) { onSelectDate(day) }.testTag("calendarDate.$day")
+                            .pointerHoverIcon(if (day in TodayDateSelection.earliest..TodayDateSelection.latest) PointerIcon.Hand else PointerIcon.Default)
                             .semantics { contentDescription = label; selected = isSelected }, horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center) {
-                            Text(formatter.format(day.dayOfMonth), color = if (isSelected) tint else MaterialTheme.colorScheme.onSurface,
+                            Text(formatter.format(month.dayOfMonth(day)), color = if (isSelected) tint else MaterialTheme.colorScheme.onSurface,
                                 style = MaterialTheme.typography.bodyMedium)
                             Row(Modifier.height(8.dp), horizontalArrangement = Arrangement.spacedBy(3.dp), verticalAlignment = Alignment.CenterVertically) {
                                 repeat(count.coerceAtMost(3)) { Spacer(Modifier.size(4.dp).clip(CircleShape).background(tint)) }
@@ -133,7 +135,7 @@ internal fun CalendarMonthGrid(date: LocalDate, onSelectDate: (LocalDate) -> Uni
 internal fun CalendarEventRow(event: CalendarEvent, language: String, onClick: () -> Unit) {
     val context = LocalContext.current
     val description = event.description(language)
-    Card(onClick = onClick, modifier = Modifier.fillMaxWidth().testTag("calendarEvent.${event.id}")) {
+    Card(onClick = onClick, modifier = Modifier.fillMaxWidth().pointerHoverIcon(PointerIcon.Hand).testTag("calendarEvent.${event.id}")) {
         Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(event.title(language), style = MaterialTheme.typography.titleMedium)
@@ -150,11 +152,13 @@ internal fun CalendarEventRow(event: CalendarEvent, language: String, onClick: (
 internal fun CalendarEventDialog(event: CalendarEvent, language: String, onDismiss: () -> Unit, onOpenReadings: () -> Unit) {
     val description = event.description(language)
     val locale = LocalConfiguration.current.locales[0]
+    val systemLocale = Resources.getSystem().configuration.locales[0]
+    val month = remember(event.date, locale, systemLocale) { SystemCalendarMonth(event.date, systemLocale, locale) }
     val uri = LocalUriHandler.current
     AlertDialog(onDismissRequest = onDismiss,
         title = { Text(event.title(language)) }, text = {
             Column(Modifier.heightIn(max = 420.dp).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(event.date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale)))
+                Text(month.format(event.date, "yMMMMd"))
                 Text(stringResource(R.string.calendar_event_details), style = MaterialTheme.typography.labelLarge)
                 SelectionContainer {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {

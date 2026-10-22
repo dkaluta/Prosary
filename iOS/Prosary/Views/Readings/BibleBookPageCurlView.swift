@@ -40,6 +40,10 @@ struct BibleBookPageCurlView<Leaf: View>: UIViewControllerRepresentable {
     for gesture in controller.gestureRecognizers where gesture is UITapGestureRecognizer {
       gesture.isEnabled = false
     }
+    for gesture in controller.gestureRecognizers where gesture is UIPanGestureRecognizer {
+      // A mouse drag selects Scripture; touch and Pencil retain native page curls.
+      gesture.allowedTouchTypes = [UITouch.TouchType.direct, .pencil].map { NSNumber(value: $0.rawValue) }
+    }
     return controller
   }
 

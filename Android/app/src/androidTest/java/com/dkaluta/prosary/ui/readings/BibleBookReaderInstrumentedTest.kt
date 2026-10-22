@@ -18,12 +18,13 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToIndex
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.performMouseInput
 import androidx.compose.ui.test.swipeLeft
 import androidx.compose.ui.test.swipeRight
 import androidx.compose.ui.text.TextLayoutResult
@@ -87,6 +88,8 @@ class BibleBookReaderInstrumentedTest {
         compose.runOnIdle { width = 400.dp }
         compose.onNodeWithTag("bookRow.${selected.substringAfter('.')}").assertIsDisplayed()
         compose.onNodeWithTag("bibleVerses").performScrollToIndex(8)
+        // The v2 test clock queues snapshot-flow delivery rather than running it inline.
+        compose.waitUntil(5_000) { anchor == "row.8" }
         compose.runOnIdle { assertEquals("row.8", anchor); width = 900.dp }
         compose.onNodeWithTag("bookRow.8").assertIsDisplayed()
     }
@@ -103,6 +106,20 @@ class BibleBookReaderInstrumentedTest {
         compose.runOnIdle { assertNotEquals("row.0", anchor) }
         compose.onNodeWithTag("bibleBook").performTouchInput { swipeLeft() }
         compose.runOnIdle { assertEquals("row.0", anchor) }
+    }
+
+    @Test fun mouseDragDoesNotTurnPagesWhileTouchSwipeStillDoes() {
+        showReader(LayoutDirection.Ltr)
+        compose.onNodeWithTag("bibleBook").performMouseInput {
+            enter(centerRight)
+            press()
+            moveTo(centerLeft, delayMillis = 300)
+            release()
+            exit()
+        }
+        compose.runOnIdle { assertEquals("row.0", anchor) }
+        compose.onNodeWithTag("bibleBook").performTouchInput { swipeLeft() }
+        compose.runOnIdle { assertNotEquals("row.0", anchor) }
     }
 
     @Test fun verseTargetOpensItsPhysicalPageAndLargeTextIsNeverTruncated() {

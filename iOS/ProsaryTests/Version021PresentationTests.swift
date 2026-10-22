@@ -31,6 +31,7 @@ final class Version021PresentationTests: XCTestCase {
 
   func testCivilMonthStartsWithMondayAndRetainsLeapDay() throws {
     var calendar = Calendar(identifier: .gregorian); calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+    calendar.firstWeekday = 2
     let date = try XCTUnwrap(calendar.date(from: DateComponents(year: 2024, month: 2, day: 15)))
     let cells = CalendarEventPresentation.monthCells(for: date, calendar: calendar)
     XCTAssertEqual(cells.prefix(3).compactMap { $0 }.count, 0, "February 2024 begins Thursday, after three Monday-first blanks")

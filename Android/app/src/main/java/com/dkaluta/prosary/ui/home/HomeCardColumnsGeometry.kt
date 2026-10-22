@@ -6,8 +6,9 @@ internal data class HomeCardColumnPlacement(
 
 internal data class HomeCardColumnArrangement(val placements: List<HomeCardColumnPlacement>, val height: Int)
 
-/** Saved order runs across columns; each column then advances only by its own card heights. */
+/** Saved cards fill the shortest column, with ties resolved from the logical leading edge. */
 internal object HomeCardColumnsGeometry {
+    fun shortestColumn(heights: IntArray): Int = heights.indices.minBy { heights[it] }
     fun columnWidths(width: Int, minimumWidth: Int, gap: Int, maximumColumns: Int = 3): List<Int> {
         require(width >= 0 && minimumWidth > 0 && gap >= 0 && maximumColumns > 0)
         val count = ((width + gap) / (minimumWidth + gap)).coerceIn(1, maximumColumns)
@@ -20,7 +21,7 @@ internal object HomeCardColumnsGeometry {
         val nextY = IntArray(widths.size)
         val positionsX = widths.runningFold(0) { position, width -> position + width + gap }
         val placements = heights.mapIndexed { index, height ->
-            val column = index % widths.size
+            val column = shortestColumn(nextY)
             HomeCardColumnPlacement(index, column, positionsX[column], nextY[column], widths[column], height)
                 .also { nextY[column] += height + gap }
         }

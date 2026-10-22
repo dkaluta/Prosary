@@ -70,14 +70,14 @@ labels and source punctuation keep the existing content typography contracts.
 
 ## Layout
 
-Home includes the weekly Torah portion and haftarot as a default card. Wide panes use one to three independent vertical columns with readable 340-point/dp minimum cards and native desktop/tablet navigation. Saved order runs across the columns, while cards stack at their natural heights within each column. One scrolling page contains the columns; narrow panes keep one column.
+Home includes the weekly Torah portion and haftarot as a default card. Wide panes use one to three independent vertical columns with readable 340-point/dp minimum cards and native desktop/tablet navigation. Cards fill the shortest column in saved order, with leading columns winning ties. Adding a card preserves earlier placements and minimizes its added page height. One scrolling page contains the columns; narrow panes keep one column.
 Apple retains its 20-point page / 18-point card rhythm; Android retains 16-dp card padding
 and 12-dp card gaps; Windows keeps its existing native resource spacing. Small and large cards
 use the same heading and controls, changing the visible content rather than the navigation.
 Each visible card supports expansion independently of its order. The event month grid is
-Monday-first civil Gregorian, mirrors naturally in RTL, and marks every published date.
+based on the system calendar and regional first weekday, mirrors naturally in RTL, and marks every published date.
 
-Wide Bible readers open as two facing pages with restrained native surfaces and a clear
+Holy Scripture opens full-screen on iPhone/iPad, with Done returning Home. Calendar retains its native sheet. Wide Bible readers open as two facing pages with restrained native surfaces and a clear
 center gutter. Justified Scripture paragraphs place small verse indicators inline, using
 the existing Scripture typefaces and complete source blocks;
 the current source block anchors repagination and transitions to a narrow continuous reader.
@@ -129,6 +129,10 @@ as Scripture of the Day, reusing the existing offline passage reader and edition
 
 Color and image selection use maintained native pickers. Events use native sheets/dialogs,
 with standard dismissal, scrolling and focus behavior. Small screens retain reachable actions.
+Tablet date pickers fit the offered window width and scroll their calendar body in short
+windows, keeping Today and Done visible. Plain actionable Apple surfaces use native pointer
+highlights; Android custom clickable surfaces use the system hand pointer. Scripture retains
+native text selection, with mouse drags excluded from touch page-turn gestures.
 The shared month-grid owner supplies source-aware dates and event markers to its consumers.
 
 ### Iconography
@@ -155,4 +159,4 @@ belong to the effective authored content's internal metadata, with no user toggl
 - Keep icons, custom accent, liturgical colors and authored images as separate choices.
 - Preserve the Mac library/Today workflow instead of adding a phone dashboard for parity.
 
-Home cards offer Set Accent Color… with Blue, Green, Gold and Rose through native palette menus. Remove Accent Color appears only when a card has an override and restores its native appearance independently of other cards. Tints composite over opaque native surfaces and retain readable semantic foregrounds in light, dark and high contrast. Available pane width chooses columns; active fold and camera regions constrain the safe content pane. Each column grows independently, so expanding one card moves only later cards in that column. Saved order runs across columns from the native leading edge. Accessibility follows saved order within each safe pane. Side-by-side Apple fold panes each host one column with alternating cards; vertically stacked panes retain contiguous top-to-bottom groups. Apple’s existing iCloud preferences sync an atomic card arrangement, size and color snapshot after explicit edits. Photos, dates and responsive columns stay device-local.
+Home cards offer Set Accent Color… with Blue, Green, Gold and Rose through native palette menus. Remove Accent Color appears only when a card has an override and restores its native appearance independently of other cards. Tints composite over opaque native surfaces and retain readable semantic foregrounds in light, dark and high contrast. Available pane width chooses columns; active fold and camera regions constrain the safe content pane. Each column grows independently. Cards fill the shortest column in saved order; expansion and resizing may reflow later cards. Ties start at the native leading edge. Accessibility follows saved order within each safe pane. Side-by-side Apple fold panes each host one column with alternating cards; vertically stacked panes retain contiguous top-to-bottom groups. Apple’s existing iCloud preferences sync an atomic card arrangement, size and color snapshot after explicit edits. Photos, dates and responsive columns stay device-local.

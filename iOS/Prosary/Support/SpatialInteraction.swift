@@ -14,11 +14,11 @@ extension View {
     #endif
   }
 
-  /// Plain content buttons opt back into the system's private, gaze-driven feedback.
+  /// Plain content buttons opt into native pointer/gaze feedback.
   /// Keep its rounded highlight on the actionable surface, never the reading text.
   @ViewBuilder
   func prosarySpatialHoverEffect<S: Shape>(in shape: S) -> some View {
-    #if os(visionOS)
+    #if os(iOS) || os(visionOS)
     self
       .contentShape(.hoverEffect, shape)
       .hoverEffect(.highlight)

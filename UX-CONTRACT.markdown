@@ -1,5 +1,9 @@
 # Native workflow contract
 
+Tablet window resizing uses available content dimensions. Date-picker calendar bodies scroll
+within short windows while Today/Done remain reachable. Pointer feedback belongs to actionable
+controls; Scripture retains native text selection. Mouse drags do not trigger touch page turns.
+
 Authoritative business and data sources are [AGENTS.md](AGENTS.md),
 [Shared/ARCHITECTURE.markdown](Shared/ARCHITECTURE.markdown),
 [Shared/schema/domain-model.json](Shared/schema/domain-model.json),
@@ -23,7 +27,7 @@ date, images, settings and the prayer session. Removing a card is independent of
 content. Image replacement installs a validated private copy before discarding the previous
 copy; failure keeps the old image. It never modifies the user's original photo.
 
-Calendar markers count individual supplied observances, falling back to one parent event when
+Calendar grids follow the system calendar and regional first weekday, independently of the interface language and selected liturgical dataset. Event lookup retains Gregorian civil identity. Calendar markers count individual supplied observances, falling back to one parent event when
 no components are supplied. No recurrence or ranked-event filter fabricates or hides published
 dates. Details show exact normalized interface-language source prose, a short source excerpt
 where available, and matching credits. Missing descriptions remain explicit. Choosing Readings
@@ -44,6 +48,6 @@ Arabic use actual RTL; prayer language, interface language, Bible edition and ca
 independent. Device-specific photos and paths never synchronize. Preset, cloud and downloaded
 prayer deletion retain their existing architecture contracts, including exact-ID retirement.
 
-Home Torah and haftarot reuse TodayInfoStore and the canonical Hebcal table. Readings owns daily appointments and enabled Torah/haftarah passages; Home Calendar and full Scripture open separate native reference surfaces. Feast explanations reuse source section owners and exclude reflection sections only after complete prose coverage is verified and the separate exact-language reflection copy matches all combined reflection-section text after whitespace normalization. Otherwise the complete source explanation remains visible. The feast card has no image picker. Explicit Android palette selection removes accent overrides so the chosen color is visible.
+Home Torah and haftarot reuse TodayInfoStore and the canonical Hebcal table. Readings owns daily appointments and enabled Torah/haftarah passages; Home Calendar and full Scripture open separate native reference surfaces. iPhone/iPad Scripture uses the full window with Done returning Home; Calendar retains a native sheet. Feast explanations reuse source section owners and exclude reflection sections only after complete prose coverage is verified and the separate exact-language reflection copy matches all combined reflection-section text after whitespace normalization. Otherwise the complete source explanation remains visible. The feast card has no image picker. Explicit Android palette selection removes accent overrides so the chosen color is visible.
 
-Per-card colors use homeWidgetColors and the existing Today palette, independently of app accent and source liturgical colors. Home uses independent vertical columns selected from actual safe pane width. Saved order runs across columns, with each card assigned by its index modulo column count, and natural heights stack independently in each column. Each safe pane has one outer scroll, stable card identity and saved accessibility order within its native accessibility container; native RTL mirrors the leading column. Side-by-side Apple fold panes each host one column with alternating cards, while vertically stacked panes retain contiguous top-to-bottom groups. Apple HomeLayoutCloud reuses CloudSyncedList for an atomic versioned layout snapshot; initial defaults and migrations never publish over an incoming account layout.
+Per-card colors use homeWidgetColors and the existing Today palette, independently of app accent and source liturgical colors. Home uses independent vertical columns selected from actual safe pane width. Cards fill the shortest column in saved order, with ties resolved from the logical leading edge. Adding a card preserves earlier placements and minimizes its added page height. Expansion or resizing may reflow later cards. Each safe pane has one outer scroll, stable card identity and saved accessibility order within its native accessibility container; native RTL mirrors the leading column. Side-by-side Apple fold panes each host one column with alternating cards, while vertically stacked panes retain contiguous top-to-bottom groups. Apple HomeLayoutCloud reuses CloudSyncedList for an atomic versioned layout snapshot; initial defaults and migrations never publish over an incoming account layout.

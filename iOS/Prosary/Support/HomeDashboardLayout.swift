@@ -29,13 +29,13 @@ enum HomeDashboardLayout {
     return paneIndex == 0 ? Array(ordered.prefix(split)) : Array(ordered.dropFirst(split))
   }
 
-  /// Keep source order across columns; only the assigned column advances vertically.
+  /// Place each saved card at the shortest column, breaking ties from the leading edge.
   static func cardFrames(heights: [CGFloat], contentWidth: CGFloat, columnCount: Int) -> [CGRect] {
     let count = max(1, columnCount)
     let width = cardWidth(contentWidth: contentWidth, columnCount: count)
     var nextY = Array(repeating: CGFloat.zero, count: count)
-    return heights.enumerated().map { index, height in
-      let column = index % count
+    return heights.map { height in
+      let column = nextY.indices.min { nextY[$0] < nextY[$1] } ?? 0
       let frame = CGRect(x: CGFloat(column) * (width + spacing), y: nextY[column],
         width: width, height: max(0, height))
       nextY[column] = frame.maxY + spacing

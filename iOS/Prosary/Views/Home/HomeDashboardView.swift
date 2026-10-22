@@ -204,6 +204,7 @@ struct HomeDashboardView: View {
           }.frame(minHeight: 44).contentShape(Rectangle())
         }
         .buttonStyle(.plain)
+        .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 8))
         .accessibilityLabel("\(widget.title), \(label(isCollapsed ? "expand" : "collapse"))")
         .accessibilityIdentifier("homeWidgets.size.\(widget.rawValue)")
         Menu { cardAccentActions(widget) } label: {

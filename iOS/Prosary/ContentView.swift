@@ -114,27 +114,18 @@ struct ContentView: View {
         Task<Void, Never> { await RecentPrayers.shared.refresh() }
       }
       #else
-      .sheet(isPresented: Binding(get: { referenceMode != nil }, set: { if !$0 { referenceMode = nil } })) {
-        NavigationStack {
-          Group {
-            if referenceMode == "bible" { BibleView(dateSelection: $dateSelection) }
-            else {
-              FeastsAndSolemnitiesView(dateSelection: $dateSelection) {
-                referenceMode = nil
-                readingsPath = []
-                selectedTab = .readings
-              }
-            }
-          }
-          .accessibilityIdentifier("homeReference.\(referenceMode ?? "calendar")")
-          .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
-              Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { referenceMode = nil }
-                .accessibilityIdentifier("homeReference.done")
-            }
-          }
-        }
+      #if os(iOS)
+      .fullScreenCover(isPresented: Binding(get: { referenceMode == "bible" }, set: { if !$0 && referenceMode == "bible" { referenceMode = nil } })) {
+        homeReference(mode: "bible")
       }
+      .sheet(isPresented: Binding(get: { referenceMode == "calendar" }, set: { if !$0 && referenceMode == "calendar" { referenceMode = nil } })) {
+        homeReference(mode: "calendar")
+      }
+      #else
+      .sheet(isPresented: Binding(get: { referenceMode != nil }, set: { if !$0 { referenceMode = nil } })) {
+        homeReference(mode: referenceMode ?? "calendar")
+      }
+      #endif
       .task { activateWindow() }
       .onChange(of: scenePhase) { _, phase in
         if phase == .active { activateWindow() }
@@ -145,6 +136,30 @@ struct ContentView: View {
         await completePendingRouteLanding(generation: routeLandingGeneration)
       }
   }
+
+  #if !os(macOS)
+  private func homeReference(mode: String) -> some View {
+    NavigationStack {
+      Group {
+        if mode == "bible" { BibleView(dateSelection: $dateSelection) }
+        else {
+          FeastsAndSolemnitiesView(dateSelection: $dateSelection) {
+            referenceMode = nil
+            readingsPath = []
+            selectedTab = .readings
+          }
+        }
+      }
+      .accessibilityIdentifier("homeReference.\(mode)")
+      .toolbar {
+        ToolbarItem(placement: .confirmationAction) {
+          Button(String(localized: "common.done", defaultValue: "Done", bundle: UILanguage.bundle, locale: UILanguage.locale)) { referenceMode = nil }
+            .accessibilityIdentifier("homeReference.done")
+        }
+      }
+    }
+  }
+  #endif
 
   @ViewBuilder
   private var shell: some View {
