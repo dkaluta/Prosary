@@ -2,9 +2,6 @@ import SwiftUI
 
 /// Give the native calendar room for all seven columns and its larger spatial day targets.
 struct ReadingDatePickerPopover: View {
-  #if os(iOS)
-  @Environment(\.verticalSizeClass) private var verticalSizeClass
-  #endif
   @Binding var selection: Date
   var range: ClosedRange<Date> = Date.distantPast...Date.distantFuture
   var pickerIdentifier: String
@@ -15,12 +12,11 @@ struct ReadingDatePickerPopover: View {
   var body: some View {
     VStack(spacing: 16) {
       #if os(iOS)
-      if verticalSizeClass == .compact {
-        ScrollView { calendar }
-          .scrollBounceBehavior(.basedOnSize)
-      } else {
-        calendar
-      }
+      // iPad window height can change without a compact vertical size class.
+      // Only the calendar scrolls; Today and Done remain outside its clipped viewport.
+      ScrollView { calendar }
+        .scrollBounceBehavior(.basedOnSize)
+        .frame(idealHeight: 420)
       #else
       calendar
       #endif
@@ -44,7 +40,7 @@ struct ReadingDatePickerPopover: View {
     #endif
     .padding(padding)
     #if os(iOS)
-    .fixedSize(horizontal: true, vertical: verticalSizeClass != .compact)
+    .frame(idealWidth: calendarWidth + 2 * padding)
     #else
     .fixedSize(horizontal: true, vertical: true)
     #endif
@@ -55,7 +51,11 @@ struct ReadingDatePickerPopover: View {
   private var calendar: some View {
     CalendarMonthGrid(dateSelection: Binding(get: { MacTodayDateSelection(now: selection) },
       set: { selection = min(max($0.localDate(), range.lowerBound), range.upperBound) }), showsToday: false)
+      #if os(iOS)
+      .frame(maxWidth: calendarWidth)
+      #else
       .frame(width: calendarWidth)
+      #endif
       .fixedSize(horizontal: false, vertical: true)
       .accessibilityIdentifier(pickerIdentifier)
   }

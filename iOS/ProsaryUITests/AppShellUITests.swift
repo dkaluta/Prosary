@@ -375,7 +375,7 @@ final class AppShellUITests: XCTestCase {
   @MainActor
   func testDateChoosersKeepCalendarAndControlsWithinBounds() throws {
     let app = XCUIApplication()
-    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en"]
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-AppleLocale", "en_US@calendar=gregorian", "-interfaceLanguageCode", "en"]
     app.launch()
     let readingsTab = app.buttons["Readings"].firstMatch
     if readingsTab.exists { readingsTab.tap() }
@@ -410,7 +410,19 @@ final class AppShellUITests: XCTestCase {
       let popover = app.descendants(matching: .any)[row.3 + ".popover"].firstMatch
       XCTAssertTrue(popover.exists)
       let calendar = picker
-      XCTAssertGreaterThanOrEqual(picker.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'calendar.day.'")).count, 28)
+      let mountedDays = picker.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'calendar.day.'"))
+      XCTAssertGreaterThanOrEqual(mountedDays.count, 7)
+      // Short windows virtualize offscreen weeks. Verify the final date can actually be
+      // reached by scrolling, rather than requiring the entire month to be mounted at once.
+      let civil = mountedDays.element(boundBy: 0).identifier.dropFirst("calendar.day.".count).split(separator: "-")
+      XCTAssertEqual(civil.count, 3)
+      let gregorian = Calendar(identifier: .gregorian)
+      let month = try XCTUnwrap(gregorian.date(from: DateComponents(year: Int(civil[0]), month: Int(civil[1]), day: 1)))
+      let last = try XCTUnwrap(gregorian.range(of: .day, in: .month, for: month)?.last)
+      let finalDay = picker.buttons["calendar.day.\(civil[0])-\(civil[1])-\(String(format: "%02d", last))"]
+      for _ in 0..<5 where !finalDay.isHittable { popover.scrollViews.firstMatch.swipeUp() }
+      XCTAssertTrue(finalDay.isHittable, "Every date stays reachable in short windows")
+      XCTAssertTrue(app.buttons[row.4].isHittable, "Done stays outside the scrolling calendar")
       XCTAssertGreaterThanOrEqual(calendar.frame.minX, popover.frame.minX - 1)
       XCTAssertLessThanOrEqual(calendar.frame.maxX, popover.frame.maxX + 1, "All seven calendar columns fit in the popover")
       let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
@@ -464,7 +476,7 @@ final class AppShellUITests: XCTestCase {
   }
 
   @MainActor
-  func testHomeColumnsKeepIndependentHeightsAndAcrossOrder() throws {
+  func testHomeColumnsPackByHeightAndKeepSavedAccessibilityOrder() throws {
     XCUIDevice.shared.orientation = .landscapeLeft
     defer { XCUIDevice.shared.orientation = .portrait }
     for language in ["en", "he"] {
@@ -485,8 +497,6 @@ final class AppShellUITests: XCTestCase {
       XCTAssertTrue(reminders.waitForExistence(timeout: 5))
       XCTAssertTrue(feast.waitForExistence(timeout: 5))
       XCTAssertEqual(calendar.frame.minY, readings.frame.minY, accuracy: 2)
-      XCTAssertEqual(calendar.frame.minX, reminders.frame.minX, accuracy: 2)
-      XCTAssertEqual(readings.frame.minX, feast.frame.minX, accuracy: 2)
       if language == "he" { XCTAssertGreaterThan(calendar.frame.minX, readings.frame.minX) }
       else { XCTAssertLessThan(calendar.frame.minX, readings.frame.minX) }
       let orderedHeaders = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'homeWidgets.size.'"))
@@ -500,15 +510,16 @@ final class AppShellUITests: XCTestCase {
       XCTAssertFalse(cardGroup.buttons["homeWidgets.add"].exists)
       XCTAssertLessThanOrEqual(app.buttons["homeWidgets.date"].frame.maxY, cardGroup.frame.minY)
       XCTAssertGreaterThanOrEqual(app.buttons["homeWidgets.add"].frame.minY, cardGroup.frame.maxY)
-      let followingCardY = reminders.frame.minY
-      let neighboringColumnY = feast.frame.minY
       calendar.tap()
-      let growsOnlyItsColumn = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
-        reminders.frame.minY > followingCardY + 100
+      let fillsShortColumn = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+        abs(reminders.frame.minX - readings.frame.minX) < 2
+          && abs(feast.frame.minX - readings.frame.minX) < 2
+          && feast.frame.minY > reminders.frame.minY
       }, object: nil)
-      XCTAssertEqual(XCTWaiter.wait(for: [growsOnlyItsColumn], timeout: 5), .completed)
-      XCTAssertEqual(feast.frame.minY, neighboringColumnY, accuracy: 2,
-        "Expanding the calendar does not create a gap in the neighboring column")
+      XCTAssertEqual(XCTWaiter.wait(for: [fillsShortColumn], timeout: 5), .completed,
+        "Later compact cards fill beside the tall calendar in both LTR and RTL")
+      XCTAssertEqual(orderedHeaders.allElementsBoundByIndex.map(\.identifier), headerIDs,
+        "Height-based placement preserves saved accessibility order")
       let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
       screenshot.name = "home-independent-columns-" + language
       screenshot.lifetime = .keepAlways

@@ -14,18 +14,18 @@ class HomeCardColumnsGeometryTest {
     @Test fun tallCardDoesNotPushDownFollowersInTheAdjacentColumn() {
         val widths = HomeCardColumnsGeometry.columnWidths(720, 340, 12)
         val result = HomeCardColumnsGeometry.arrange(widths, 12, listOf(240, 60, 80, 90, 50))
-        assertEquals(listOf(0, 1, 0, 1, 0), result.placements.map { it.column })
-        assertEquals(listOf(0, 0, 252, 72, 344), result.placements.map { it.y })
-        assertEquals(listOf(0, 366, 0, 366, 0), result.placements.map { it.x })
-        assertEquals(394, result.height)
+        assertEquals(listOf(0, 1, 1, 1, 0), result.placements.map { it.column })
+        assertEquals(listOf(0, 0, 72, 164, 252), result.placements.map { it.y })
+        assertEquals(listOf(0, 366, 366, 366, 0), result.placements.map { it.x })
+        assertEquals(302, result.height)
     }
 
-    @Test fun threeColumnsDistributeSavedOrderAcrossWithoutChoosingTheShortestColumn() {
+    @Test fun threeColumnsFillTheShortestColumnInSavedOrder() {
         val widths = HomeCardColumnsGeometry.columnWidths(1044, 340, 12)
         val result = HomeCardColumnsGeometry.arrange(widths, 12, listOf(100, 50, 70, 90, 10, 5, 20))
         assertEquals((0..6).toList(), result.placements.map { it.index })
-        assertEquals(listOf(0, 1, 2, 0, 1, 2, 0), result.placements.map { it.column })
-        assertEquals(listOf(0, 0, 0, 112, 62, 82, 214), result.placements.map { it.y })
+        assertEquals(listOf(0, 1, 2, 1, 2, 2, 0), result.placements.map { it.column })
+        assertEquals(listOf(0, 0, 0, 62, 82, 104, 112), result.placements.map { it.y })
     }
 
     @Test fun reflowRetainsSourceOrderAndUsesNaturalSingleColumnHeights() {
@@ -47,5 +47,13 @@ class HomeCardColumnsGeometryTest {
         val result = HomeCardColumnsGeometry.arrange(listOf(340, 340), 12, emptyList())
         assertTrue(result.placements.isEmpty())
         assertEquals(0, result.height)
+    }
+
+    @Test fun addingACardKeepsEarlierPlacementsAndMinimizesTheNewHeight() {
+        val before = HomeCardColumnsGeometry.arrange(listOf(340, 340), 12, listOf(400, 100, 80))
+        val after = HomeCardColumnsGeometry.arrange(listOf(340, 340), 12, listOf(400, 100, 80, 90))
+        assertEquals(before.placements, after.placements.take(3))
+        assertEquals(400, after.height)
+        assertEquals(204, after.placements.last().y)
     }
 }

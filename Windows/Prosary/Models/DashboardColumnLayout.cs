@@ -2,8 +2,8 @@ namespace Prosary.Models;
 
 public readonly record struct DashboardCardPlacement(double X, double Y, double Width, double Height);
 
-/// <summary>Saved index selects the column. A tall card advances only that column, without
-/// sorting cards by height or changing the source/accessibility order.</summary>
+/// <summary>Saved cards fill the shortest column; leading columns win ties.
+/// The flat child collection preserves source and accessibility order.</summary>
 public sealed record DashboardColumnLayout(double Width, double Height, int ColumnCount,
     IReadOnlyList<DashboardCardPlacement> Cards)
 {
@@ -32,7 +32,9 @@ public sealed record DashboardColumnLayout(double Width, double Height, int Colu
         var cards = new DashboardCardPlacement[heights.Count];
         for (var index = 0; index < heights.Count; index++)
         {
-            var column = index % columns;
+            var column = 0;
+            for (var candidate = 1; candidate < columns; candidate++)
+                if (nextTop[candidate] < nextTop[column]) column = candidate;
             var height = Math.Max(0, heights[index]);
             cards[index] = new(column * (cardWidth + Gap), nextTop[column], cardWidth, height);
             nextTop[column] += height + Gap;

@@ -114,7 +114,7 @@
                                             FlowDirection="{x:Bind ViewModel.TodayIsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}">
                                     <Button x:Uid="HomeResetToday" Content="Today" HorizontalAlignment="Stretch"
                                             Click="OnSelectToday" AutomationProperties.AutomationId="todayReset" />
-                                    <CalendarView x:Name="TodayCalendar" SelectionMode="Single" CalendarIdentifier="GregorianCalendar" FirstDayOfWeek="Monday" Background="Transparent"
+                                    <CalendarView x:Name="TodayCalendar" SelectionMode="Single" Background="Transparent"
                                                   CalendarViewDayItemChanging="OnDayItemChanging"
                                                   MinDate="{x:Bind ViewModel.MinimumTodayDate}" MaxDate="{x:Bind ViewModel.MaximumTodayDate}"
                                                   SelectedDatesChanged="OnTodayCalendarDateChanged"

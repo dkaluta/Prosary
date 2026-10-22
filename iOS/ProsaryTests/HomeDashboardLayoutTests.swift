@@ -16,14 +16,22 @@ final class HomeDashboardLayoutTests: XCTestCase {
     XCTAssertEqual(HomeDashboardLayout.columnCount(availableWidth: 1024 / 2), 1)
   }
 
-  func testSavedOrderRunsAcrossColumnsWithoutSharingRowHeights() {
+  func testSavedCardsFillShortestColumnWithoutSharingRowHeights() {
     let frames = HomeDashboardLayout.cardFrames(heights: [100, 300, 50, 60, 70, 80, 90],
       contentWidth: 1052, columnCount: 3)
-    XCTAssertEqual(frames.map(\.minX), [0, 356, 712, 0, 356, 712, 0])
+    XCTAssertEqual(frames.map(\.minX), [0, 356, 712, 712, 0, 712, 0])
     XCTAssertEqual(frames.map(\.width), Array(repeating: 340, count: 7))
-    XCTAssertEqual(frames.map(\.minY), [0, 0, 0, 116, 316, 66, 192])
+    XCTAssertEqual(frames.map(\.minY), [0, 0, 0, 66, 116, 142, 202])
     XCTAssertLessThan(frames[3].minY, frames[1].maxY, "A tall neighboring card does not delay the next card")
-    XCTAssertEqual(frames.map(\.maxY).max(), 386)
+    XCTAssertEqual(frames.map(\.maxY).max(), 300)
+  }
+
+  func testAddingCardKeepsEarlierFramesAndUsesTheLeastAdditionalHeight() {
+    let before = HomeDashboardLayout.cardFrames(heights: [400, 100, 80], contentWidth: 696, columnCount: 2)
+    let after = HomeDashboardLayout.cardFrames(heights: [400, 100, 80, 90], contentWidth: 696, columnCount: 2)
+    XCTAssertEqual(Array(after.prefix(3)), before)
+    XCTAssertEqual(after.last?.minY, 212)
+    XCTAssertEqual(after.map(\.maxY).max(), 400, "The new card fits beside the tall card without growing Home")
   }
 
   func testOneColumnKeepsNaturalHeightsAndEmptyLayoutsStayEmpty() {

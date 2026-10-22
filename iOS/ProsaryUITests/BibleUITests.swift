@@ -73,6 +73,36 @@ final class BibleUITests: XCTestCase {
     XCTAssertFalse(app.buttons["calendar.list"].exists)
   }
 
+  @MainActor func testHolyScriptureUsesFullWindowAndDoneReturnsHome() throws {
+    let app = launch()
+    openHomeBible(app)
+    let bible = app.navigationBars["Bible"]
+    let window = app.windows.firstMatch
+    XCTAssertGreaterThan(bible.frame.width, window.frame.width * 0.9,
+      "Holy Scripture must use the full window, including on iPad")
+    let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    capture.name = "bible-full-window"; capture.lifetime = .keepAlways; add(capture)
+    app.buttons["homeReference.done"].tap()
+    XCTAssertTrue(app.buttons["homeWidgets.open.scripture"].waitForExistence(timeout: 5))
+  }
+
+  @MainActor func testCalendarWeekdayHeadersFollowSystemRegion() throws {
+    for (region, first, last) in [("en_US", "Sunday", "Saturday"), ("en_GB", "Monday", "Sunday")] {
+      let app = XCUIApplication()
+      app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-AppleLocale", region,
+        "-interfaceLanguageCode", "en", "-homeWidgetOrder", "calendar", "-homeWidgetLayoutVersion", "1",
+        "-homeWidgetCollapsedIds", ""]
+      app.launch()
+      selectSection("Home", in: app)
+      let grid = app.descendants(matching: .any).matching(identifier: "calendar.monthPicker").firstMatch
+      XCTAssertTrue(grid.waitForExistence(timeout: 10))
+      let firstDay = grid.staticTexts[first], lastDay = grid.staticTexts[last]
+      XCTAssertTrue(firstDay.exists && lastDay.exists)
+      XCTAssertLessThan(firstDay.frame.minX, lastDay.frame.minX, "Calendar week follows \(region), independently of English UI")
+      app.terminate()
+    }
+  }
+
   /// Before running locally, copy the verified catalog's Douay archive into the disposable
   /// simulator's Application Support/Prosary/Bibles/<edition>/<revision>.zip. Store tests
   /// validate all archive/install paths; this test never needs a public network or real account.

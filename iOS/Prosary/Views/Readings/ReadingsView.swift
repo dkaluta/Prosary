@@ -39,7 +39,7 @@ struct DailyReadingsView: View {
   private var dateLabel: String {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: language == "tl" ? "fil" : language)
-    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.calendar = .autoupdatingCurrent
     formatter.setLocalizedDateFormatFromTemplate("yMMMd")
     return formatter.string(from: selectedDate)
   }

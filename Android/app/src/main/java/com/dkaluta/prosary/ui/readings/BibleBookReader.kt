@@ -9,7 +9,10 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.awaitHorizontalTouchSlopOrCancellation
+import androidx.compose.foundation.gestures.horizontalDrag
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -43,6 +46,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.PointerType
+import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.testTag
@@ -86,7 +91,9 @@ internal fun BibleAdaptiveChapterReader(
             if (!bookMode) scroll.scrollToItem(keys.indexOf(anchor).coerceAtLeast(0))
         }
         LaunchedEffect(bookMode, scroll, keys) {
-            if (!bookMode) snapshotFlow { scroll.layoutInfo.visibleItemsInfo.firstOrNull()?.key as? String }
+            // visibleItemsInfo can include the preceding row inside content padding.
+            // firstVisibleItemIndex names the reading viewport rather than that extra row.
+            if (!bookMode) snapshotFlow { keys.getOrNull(scroll.firstVisibleItemIndex) }
                 .distinctUntilChanged().collect { it?.let(onAnchorChange) }
         }
         SelectionContainer {
@@ -112,10 +119,22 @@ internal fun BibleAdaptiveChapterReader(
                 }
                 val threshold = with(density) { 64.dp.toPx() }
                 Column(Modifier.fillMaxSize().testTag("bibleBook").pointerInput(direction, start, pages, threshold) {
-                    var distance = 0f
-                    detectHorizontalDragGestures(onDragStart = { distance = 0f }, onDragEnd = {
-                        if (abs(distance) >= threshold) turn(BibleBookPagination.forwardDrag(distance, direction == LayoutDirection.Rtl))
-                    }, onHorizontalDrag = { change, amount -> change.consume(); distance += amount })
+                    awaitEachGesture {
+                        val down = awaitFirstDown(requireUnconsumed = false)
+                        // Mouse drags belong to SelectionContainer, not page navigation.
+                        if (down.type == PointerType.Mouse) return@awaitEachGesture
+                        var distance = 0f
+                        val drag = awaitHorizontalTouchSlopOrCancellation(down.id) { change, over ->
+                            change.consume()
+                            distance = over
+                        } ?: return@awaitEachGesture
+                        val completed = horizontalDrag(drag.id) { change ->
+                            distance += change.positionChange().x
+                            change.consume()
+                        }
+                        if (completed && abs(distance) >= threshold)
+                            turn(BibleBookPagination.forwardDrag(distance, direction == LayoutDirection.Rtl))
+                    }
                 }) {
                     CompositionLocalProvider(LocalLayoutDirection provides direction) {
                         // Compose's animation clock observes the system animator-duration

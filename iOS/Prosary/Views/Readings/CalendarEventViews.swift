@@ -6,9 +6,10 @@ struct CalendarMonthGrid: View {
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
   @Environment(\.colorScheme) private var colorScheme
-  private var calendar: Calendar { Calendar(identifier: .gregorian) }
+  @State private var localeRevision = 0
+  private var calendar: Calendar { .autoupdatingCurrent }
   private var date: Date { dateSelection.localDate() }
-  private var cells: [Date?] { CalendarEventPresentation.monthCells(for: date) }
+  private var cells: [Date?] { CalendarEventPresentation.monthCells(for: date, calendar: calendar) }
   private var formatter: DateFormatter {
     let value = DateFormatter(); value.locale = UILanguage.locale; value.calendar = calendar
     return value
@@ -19,18 +20,18 @@ struct CalendarMonthGrid: View {
       HStack {
         Button { moveMonth(-1) } label: { Image(systemName: "chevron.backward") }
           .accessibilityLabel(calendarLabel("previousMonth", "Previous Month"))
-          .disabled(dateSelection.day.year == MacTodayDateSelection.minimumDay.year && dateSelection.day.month == MacTodayDateSelection.minimumDay.month)
+          .disabled(!canMoveMonth(-1))
         Spacer()
         Text(monthTitle).font(.headline)
         Spacer()
         Button { moveMonth(1) } label: { Image(systemName: "chevron.forward") }
           .accessibilityLabel(calendarLabel("nextMonth", "Next Month"))
-          .disabled(dateSelection.day.year == MacTodayDateSelection.maximumDay.year && dateSelection.day.month == MacTodayDateSelection.maximumDay.month)
+          .disabled(!canMoveMonth(1))
       }.buttonStyle(.borderless).frame(minHeight: 44)
       LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 2), count: 7), spacing: 4) {
         ForEach(0..<7, id: \.self) { index in
-          Text(formatter.veryShortStandaloneWeekdaySymbols[(index + 1) % 7]).font(.caption).foregroundStyle(.secondary)
-            .accessibilityLabel(formatter.standaloneWeekdaySymbols[(index + 1) % 7])
+          Text(formatter.veryShortStandaloneWeekdaySymbols[(index + calendar.firstWeekday - 1) % 7]).font(.caption).foregroundStyle(.secondary)
+            .accessibilityLabel(formatter.standaloneWeekdaySymbols[(index + calendar.firstWeekday - 1) % 7])
         }
         ForEach(cells.indices, id: \.self) { index in
           if let day = cells[index] { dayCell(day) }
@@ -43,9 +44,11 @@ struct CalendarMonthGrid: View {
     }
     .accessibilityElement(children: .contain)
     .accessibilityIdentifier("calendar.monthPicker")
+    .onReceive(NotificationCenter.default.publisher(for: NSLocale.currentLocaleDidChangeNotification)) { _ in localeRevision += 1 }
   }
 
   private var monthTitle: String {
+    let _ = localeRevision
     let value = formatter; value.setLocalizedDateFormatFromTemplate("yMMMM"); return value.string(from: date)
   }
 
@@ -70,13 +73,23 @@ struct CalendarMonthGrid: View {
       .contentShape(Rectangle())
     }
     .buttonStyle(.plain)
+    .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 9))
     .accessibilityLabel("\(fullDate.string(from: day)), \(eventCount)")
     .accessibilityAddTraits(selected ? .isSelected : [])
-    .accessibilityIdentifier("calendar.day.\(PrayerRunProgress.localDateString(for: day, calendar: calendar))")
+    .disabled(!MacTodayDateSelection.pickerRange().contains(day))
+    .accessibilityIdentifier("calendar.day.\(PrayerRunProgress.localDateString(for: day, calendar: Calendar(identifier: .gregorian)))")
+  }
+
+  private func canMoveMonth(_ offset: Int) -> Bool {
+    guard let current = calendar.dateInterval(of: .month, for: date),
+          let next = calendar.date(byAdding: .month, value: offset, to: current.start),
+          let interval = calendar.dateInterval(of: .month, for: next) else { return false }
+    let range = MacTodayDateSelection.pickerRange()
+    return interval.end > range.lowerBound && interval.start <= range.upperBound
   }
 
   private func moveMonth(_ offset: Int) {
-    guard let first = calendar.date(from: calendar.dateComponents([.year, .month], from: date)),
+    guard canMoveMonth(offset), let first = calendar.dateInterval(of: .month, for: date)?.start,
           let next = calendar.date(byAdding: .month, value: offset, to: first) else { return }
     dateSelection.select(next)
   }
@@ -98,6 +111,7 @@ struct CalendarDayEvents: View {
       if events.isEmpty { Text(calendarLabel("noEventsOnDate", "No published events are available for this date.")).foregroundStyle(.secondary) }
       ForEach(events) { event in
         Button { selectedEvent = event } label: { CalendarEventRow(event: event) }.buttonStyle(.plain)
+          .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 8))
           .accessibilityIdentifier("calendar.event.\(event.index)")
       }
     }

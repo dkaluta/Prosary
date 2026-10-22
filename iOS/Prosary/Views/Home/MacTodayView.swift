@@ -47,7 +47,7 @@ struct MacTodayView: View {
   private func formattedDate(template: String) -> String {
     let formatter = DateFormatter()
     formatter.locale = Locale(identifier: language)
-    formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.calendar = .autoupdatingCurrent
     formatter.setLocalizedDateFormatFromTemplate(template)
     return formatter.string(from: selectedDate)
   }

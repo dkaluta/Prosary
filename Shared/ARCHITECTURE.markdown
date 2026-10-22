@@ -375,7 +375,7 @@ browsed day; choosing a Home shortcut changes Readings mode without resetting th
 
 Readings has a date picker above complete citations, with previous/next day and Today actions.
 Readings contains only daily appointed readings and enabled Torah/haftarah passages, without a full Bible selector or Calendar action. Home opens full Holy Scripture and Calendar in separate native reference surfaces. The **Event Calendar** shows every published date for the selected calendar,
-with a Monday-first civil Gregorian month grid and up to three event dots under each date.
+with a month grid following the system calendar and regional first weekday, preserving Gregorian civil dates for event lookup and up to three event dots under each date.
 Accessibility retains the full event count. Supplied observances are independently clickable;
 older datasets without components use the parent event. Details use exact interface-language
 source prose, short source excerpts and matching credits, with explicit unavailable text.
@@ -385,6 +385,12 @@ On iPhone, date navigation and Settings live in the native top toolbar; Today st
 the calendar popover. iPad keeps its date row below the adaptive top tabs to avoid toolbar
 overflow. Short iPhone landscape windows present the calendar in a sheet with a scrolling
 calendar and reachable Today/Done controls.
+On iPhone/iPad the calendar body always accepts the offered presentation width and height;
+it scrolls independently of Today/Done, including short tablet windows whose vertical size
+class remains regular. Plain custom action surfaces use the shared native pointer-hover
+owner. Bible mouse drags remain text-selection input; touch/Pencil retain native page turns.
+Android custom clickable cards/dates expose the platform hand pointer, while mouse drags in
+the Bible bypass touch page-turn recognition. Windows retains native control hover and selection.
 It shares the existing calendar, Pascha and optional Torah settings with Today, while its
 browsed date remains independent of prayer sessions and widget activation. Missing dates show
 an explicit empty state. Each appointment can expand to the selected Bible edition's text;
@@ -1875,7 +1881,7 @@ See [calendar research and coverage](calendar-research.markdown) for source rule
 
 ### Offline Bible passages
 
-Home opens a separate Bible reference that browses the selected edition's
+On iPhone/iPad Home opens Bible full-screen with Done returning Home; Calendar retains its native sheet. Home opens a separate Bible reference that browses the selected edition's
 available books and chapters, with verse navigation, paired scripts, source credit, and
 explicit partial-chapter notices. It shares `readingsEditionId` with daily passages; Bible position is
 window-local and independent of the prayer date. Only `bible-catalog.json` is bundled.
@@ -2300,6 +2306,6 @@ Readings shows the daily appointments and enabled Torah/haftarah passages. Full 
 
 ### Per-card colors, adaptive columns and Apple layout sync
 
-`homeWidgetColors` is a JSON string mapping known Home card IDs to `blue`, `green`, `gold` or `rose`; Remove Accent Color removes the override. Set Accent Color… opens Blue, Green, Gold and Rose choices using existing localized Today color names; Default is not a selectable item. Remove Accent Color is shown only for an active override. Native opaque surfaces retain semantic foregrounds and high-contrast behavior. Cards stack at natural heights in independent vertical columns, from one column in narrow safe panes up to three on wide displays, with a 340-point/dp readable minimum. Saved order runs across columns: source index modulo column count chooses the column, and each column tracks its own height. No shortest-column rebalancing occurs. Each safe pane has one outer vertical scroll; expanding a card moves only later cards in that column. Flat keyed children retain card identity, source and accessibility order within each safe pane, and native RTL leading-edge placement. The native Apple split arrangement axis chooses fold assignment: side-by-side panes each host one column and alternate saved indices; stacked panes use contiguous top-to-bottom groups. Native separate scroll panes retain their own accessibility containers. Card order and content state survive width/posture changes; column counts are computed locally.
+`homeWidgetColors` is a JSON string mapping known Home card IDs to `blue`, `green`, `gold` or `rose`; Remove Accent Color removes the override. Set Accent Color… opens Blue, Green, Gold and Rose choices using existing localized Today color names; Default is not a selectable item. Remove Accent Color is shown only for an active override. Native opaque surfaces retain semantic foregrounds and high-contrast behavior. Cards stack at natural heights in independent vertical columns, from one column in narrow safe panes up to three on wide displays, with a 340-point/dp readable minimum. Saved order runs across columns: cards fill the shortest column in saved order, with leading columns winning ties. Adding a card preserves earlier frames and minimizes the added page height. Each safe pane has one outer vertical scroll; expanding or resizing a card may reflow later cards. Flat keyed children retain card identity, source and accessibility order within each safe pane, and native RTL leading-edge placement. The native Apple split arrangement axis chooses fold assignment: side-by-side panes each host one column and alternate saved indices; stacked panes use contiguous top-to-bottom groups. Native separate scroll panes retain their own accessibility containers. Card order and content state survive width/posture changes; column counts are computed locally.
 
 Apple layouts reuse the existing iCloud key-value preference store through `HomeLayoutCloud`, rather than adding a new CloudKit schema. One versioned `homeWidgetLayout` Data value carries normalized order, collapsed IDs and colors atomically. It is applied on entry and external preference notifications; only explicit user edits publish, so initial defaults/migrations cannot overwrite an incoming layout. Empty layouts stay empty. Photos, private paths, browsed dates and responsive column counts remain device-local. SwiftData’s existing CloudKit preset mirroring is unchanged. Local payload/isolation tests do not certify signed multi-device propagation.

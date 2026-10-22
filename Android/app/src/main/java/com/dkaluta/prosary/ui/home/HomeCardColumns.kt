@@ -28,9 +28,13 @@ internal fun HomeCardColumns(widgets: List<HomeWidget>, modifier: Modifier = Mod
     }, modifier = modifier.semantics { isTraversalGroup = true }) { measurables, constraints ->
         val gap = 12.dp.roundToPx()
         val widths = HomeCardColumnsGeometry.columnWidths(constraints.maxWidth, 340.dp.roundToPx(), gap)
-        val children = measurables.mapIndexed { index, measurable ->
-            val width = widths[index % widths.size]
-            measurable.measure(Constraints(minWidth = width, maxWidth = width))
+        val nextY = IntArray(widths.size)
+        val children = measurables.map { measurable ->
+            val column = HomeCardColumnsGeometry.shortestColumn(nextY)
+            val width = widths[column]
+            measurable.measure(Constraints(minWidth = width, maxWidth = width)).also {
+                nextY[column] += it.height + gap
+            }
         }
         val arrangement = HomeCardColumnsGeometry.arrange(widths, gap, children.map { it.height })
         layout(constraints.maxWidth, arrangement.height) {

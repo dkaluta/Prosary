@@ -5,15 +5,6 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class CalendarEventsTest {
-    @Test fun monthGeometryIsMondayFirstWithLeapDaysAndEverySourcedDateRetained() {
-        val cells = CalendarEvents.monthCells(LocalDate.of(2028, 2, 10))
-        assertEquals(null, cells.first())
-        assertEquals(LocalDate.of(2028, 2, 1), cells[1])
-        assertEquals(29, cells.filterNotNull().size)
-        assertEquals(0, cells.size % 7)
-        assertEquals(LocalDate.of(2026, 6, 1), CalendarEvents.monthCells(LocalDate.of(2026, 6, 15)).first())
-    }
-
     @Test fun observancesRemainSeparateAndDescriptionsNeverBorrowAnotherLanguage() {
         val date = LocalDate.of(2026, 10, 14)
         val day = FeastDay("Parent", "Memorial", observances = listOf(

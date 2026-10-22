@@ -160,6 +160,15 @@ final class BibleBookUITests: XCTestCase {
     XCTAssertTrue(element("bible.page.0", in: app).textViews.firstMatch.isHittable,
                   "The containing spread exposes the selected source paragraph")
     capture("bible-book-verse-jump")
+    // A full-screen reader must retain a way home after descending into a chapter.
+    for _ in 0..<3 where !app.buttons["homeReference.done"].isHittable {
+      let back = app.navigationBars.buttons.element(boundBy: 0)
+      XCTAssertTrue(back.isHittable)
+      back.tap()
+    }
+    XCTAssertTrue(app.buttons["homeReference.done"].isHittable)
+    app.buttons["homeReference.done"].tap()
+    XCTAssertTrue(app.buttons["homeWidgets.open.scripture"].waitForExistence(timeout: 5))
   }
 
   @MainActor

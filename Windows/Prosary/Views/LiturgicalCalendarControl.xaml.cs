@@ -18,7 +18,11 @@ public sealed partial class LiturgicalCalendarControl : UserControl
         InitializeComponent();
         MonthPicker.MinDate = new DateTimeOffset(new DateTime(1900, 1, 1));
         MonthPicker.MaxDate = new DateTimeOffset(new DateTime(2100, 12, 31));
-        Loaded += (_, _) => FocusOnDate(_focusDate ?? DateOnly.FromDateTime(DateTime.Today));
+        Loaded += (_, _) =>
+        {
+            SystemCalendarPreferences.Apply(MonthPicker);
+            FocusOnDate(_focusDate ?? DateOnly.FromDateTime(DateTime.Today));
+        };
     }
     private void OnLayoutSizeChanged(object sender, Microsoft.UI.Xaml.SizeChangedEventArgs args)
     {

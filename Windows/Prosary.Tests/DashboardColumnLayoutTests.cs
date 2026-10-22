@@ -6,35 +6,35 @@ namespace Prosary.Tests;
 public class DashboardColumnLayoutTests
 {
     [Fact]
-    public void TwoColumnsAdvanceIndependentlyWithoutShortestColumnReordering()
+    public void TwoColumnsFillTheShortestColumnInSavedOrder()
     {
         var layout = DashboardColumnLayout.Create(700, [400, 100, 80, 90]);
         Assert.Equal(2, layout.ColumnCount);
-        Assert.Equal(new[] { 0d, 356, 0, 356 }, layout.Cards.Select(card => card.X));
-        Assert.Equal(new[] { 0d, 0, 412, 112 }, layout.Cards.Select(card => card.Y));
+        Assert.Equal(new[] { 0d, 356, 356, 356 }, layout.Cards.Select(card => card.X));
+        Assert.Equal(new[] { 0d, 0, 112, 204 }, layout.Cards.Select(card => card.Y));
         Assert.Equal(new[] { 400d, 100, 80, 90 }, layout.Cards.Select(card => card.Height));
-        Assert.Equal(492, layout.Height);
+        Assert.Equal(400, layout.Height);
     }
 
     [Fact]
-    public void ThreeColumnsKeepSavedRoundRobinOrderAndNaturalHeights()
+    public void ThreeColumnsKeepNaturalHeightsAndChooseTheShortestColumn()
     {
         var layout = DashboardColumnLayout.Create(1100, [300, 40, 90, 20, 200, 80, 70]);
         Assert.Equal(3, layout.ColumnCount);
-        Assert.Equal(new[] { 0d, 0, 0, 312, 52, 102, 344 }, layout.Cards.Select(card => card.Y));
-        Assert.Equal(414, layout.Height);
-        for (var index = 0; index < layout.Cards.Count; index++)
-            Assert.Equal(index % 3 * (layout.Cards[index].Width + DashboardColumnLayout.Gap), layout.Cards[index].X);
+        Assert.Equal(new[] { 0d, 0, 0, 52, 84, 102, 194 }, layout.Cards.Select(card => card.Y));
+        Assert.Equal(300, layout.Height);
+        Assert.Equal(new[] { 0, 1, 2, 1, 1, 2, 2 }, layout.Cards.Select(card =>
+            (int)Math.Round(card.X / (card.Width + DashboardColumnLayout.Gap))));
     }
 
     [Fact]
-    public void ExpandingACardOnlyMovesLaterCardsInItsOwnColumn()
+    public void AddingACardKeepsEarlierFramesAndMinimizesTheNewHeight()
     {
-        var compact = DashboardColumnLayout.Create(700, [40, 100, 80, 90]);
-        var expanded = DashboardColumnLayout.Create(700, [400, 100, 80, 90]);
-        Assert.Equal(compact.Cards[1], expanded.Cards[1]);
-        Assert.Equal(compact.Cards[3], expanded.Cards[3]);
-        Assert.Equal(360, expanded.Cards[2].Y - compact.Cards[2].Y);
+        var before = DashboardColumnLayout.Create(700, [400, 100, 80]);
+        var after = DashboardColumnLayout.Create(700, [400, 100, 80, 90]);
+        Assert.Equal(before.Cards, after.Cards.Take(3));
+        Assert.Equal(204, after.Cards[3].Y);
+        Assert.Equal(400, after.Height);
     }
 
     [Theory]
