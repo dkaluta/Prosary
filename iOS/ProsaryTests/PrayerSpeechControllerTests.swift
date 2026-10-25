@@ -27,4 +27,21 @@ final class PrayerSpeechControllerTests: XCTestCase {
     XCTAssertFalse(track.isNarration)
     XCTAssertNil(track.chapters.first?.stepIndex)
   }
+
+  func testHebrewDivineNamesAreSpokenAsAdonaiOrElohim() {
+    XCTAssertEqual(PrayerSpeechController.spokenText("ה׳ לְעֶזְרָתִי חוּשָׁה", languageCode: "he"), "אֲדֹנָי לְעֶזְרָתִי חוּשָׁה")
+    XCTAssertEqual(PrayerSpeechController.spokenText("שִׁפְחַת ה׳", languageCode: "he"), "שִׁפְחַת אֲדֹנָי")
+    XCTAssertEqual(PrayerSpeechController.spokenText("הִנֵּה יָמִים בָּאִים נְאֻם־יהוה", languageCode: "he"), "הִנֵּה יָמִים בָּאִים נְאֻם־אֲדֹנָי")
+    XCTAssertEqual(PrayerSpeechController.spokenText("כֹּה אָמַר אֲדֹנָי יהוה", languageCode: "he"), "כֹּה אָמַר אֲדֹנָי אֱלֹהִים")
+    XCTAssertEqual(PrayerSpeechController.spokenText("אדני יהוה", languageCode: "he"), "אדני אֱלֹהִים")
+    XCTAssertEqual(PrayerSpeechController.spokenText("אֲדֹנָי וַיהוה", languageCode: "he"), "אֲדֹנָי וֵאלֹהִים")
+    XCTAssertEqual(PrayerSpeechController.spokenText("לַיהוה הָאָרֶץ", languageCode: "he"), "לַאדֹנָי הָאָרֶץ")
+    XCTAssertEqual(PrayerSpeechController.spokenText("בַּיהוה חָסִיתִי", languageCode: "he"), "בַּאדֹנָי חָסִיתִי")
+    XCTAssertEqual(PrayerSpeechController.spokenText("וַיהוה צִוָּה", languageCode: "he"), "וַאדֹנָי צִוָּה")
+    XCTAssertEqual(PrayerSpeechController.spokenText("מֵיהוה", languageCode: "he"), "מֵאדֹנָי")
+    XCTAssertEqual(PrayerSpeechController.spokenText("לַה׳", languageCode: "he"), "לַאדֹנָי")
+    XCTAssertEqual(PrayerSpeechController.spokenText("יי", languageCode: "he"), "אֲדֹנָי")
+    XCTAssertEqual(PrayerSpeechController.spokenText("וַיי", languageCode: "he"), "וַאדֹנָי")
+    XCTAssertEqual(PrayerSpeechController.spokenText("הוֹדוּ לַיהוָה כִּי־טוֹב", languageCode: "he"), "הוֹדוּ לַאדֹנָי כִּי־טוֹב")
+  }
 }

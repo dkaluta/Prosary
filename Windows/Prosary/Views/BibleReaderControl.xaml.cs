@@ -72,11 +72,14 @@ public sealed partial class BibleReaderControl : UserControl
         AppSettings.TypographyChanged += OnTypographyChanged;
         BibleLibraryStore.Default.Changed += OnLibraryChanged;
         await ViewModel.RefreshAsync();
+        if (!IsLoaded) return;
         AttachVerseScroller();
         QueueBookLayout();
+        DispatcherQueue.TryEnqueue(RestoreScrollAnchor);
     }
     private void OnUnloaded(object sender, RoutedEventArgs args)
     {
+        CaptureScrollAnchor();
         StopBookTransition();
         ViewModel.ConfirmRemoval = null;
         ViewModel.VerseRequested -= OnVerseRequested;

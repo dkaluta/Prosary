@@ -33,4 +33,23 @@ public class PrayerSpeechTests
         Assert.False(music.IsNarration);
         Assert.Null(music.Chapters![0].StepIndex);
     }
+
+    [Fact]
+    public void HebrewDivineNamesAreSpokenAsAdonaiOrElohim()
+    {
+        Assert.Equal("אֲדֹנָי לְעֶזְרָתִי חוּשָׁה", PrayerSpeechService.SpokenText("ה׳ לְעֶזְרָתִי חוּשָׁה", "he"));
+        Assert.Equal("שִׁפְחַת אֲדֹנָי", PrayerSpeechService.SpokenText("שִׁפְחַת ה׳", "he"));
+        Assert.Equal("הִנֵּה יָמִים בָּאִים נְאֻם־אֲדֹנָי", PrayerSpeechService.SpokenText("הִנֵּה יָמִים בָּאִים נְאֻם־יהוה", "he"));
+        Assert.Equal("כֹּה אָמַר אֲדֹנָי אֱלֹהִים", PrayerSpeechService.SpokenText("כֹּה אָמַר אֲדֹנָי יהוה", "he"));
+        Assert.Equal("אדני אֱלֹהִים", PrayerSpeechService.SpokenText("אדני יהוה", "he"));
+        Assert.Equal("אֲדֹנָי וֵאלֹהִים", PrayerSpeechService.SpokenText("אֲדֹנָי וַיהוה", "he"));
+        Assert.Equal("לַאדֹנָי הָאָרֶץ", PrayerSpeechService.SpokenText("לַיהוה הָאָרֶץ", "he"));
+        Assert.Equal("בַּאדֹנָי חָסִיתִי", PrayerSpeechService.SpokenText("בַּיהוה חָסִיתִי", "he"));
+        Assert.Equal("וַאדֹנָי צִוָּה", PrayerSpeechService.SpokenText("וַיהוה צִוָּה", "he"));
+        Assert.Equal("מֵאדֹנָי", PrayerSpeechService.SpokenText("מֵיהוה", "he"));
+        Assert.Equal("לַאדֹנָי", PrayerSpeechService.SpokenText("לַה׳", "he"));
+        Assert.Equal("אֲדֹנָי", PrayerSpeechService.SpokenText("יי", "he"));
+        Assert.Equal("וַאדֹנָי", PrayerSpeechService.SpokenText("וַיי", "he"));
+        Assert.Equal("הוֹדוּ לַאדֹנָי כִּי־טוֹב", PrayerSpeechService.SpokenText("הוֹדוּ לַיהוָה כִּי־טוֹב", "he"));
+    }
 }

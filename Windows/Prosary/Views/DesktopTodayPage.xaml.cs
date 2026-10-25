@@ -25,6 +25,7 @@ public sealed partial class DesktopTodayPage : Page
     public SettingsViewModel Options { get; }
     public DesktopReadingsViewModel Readings { get; } = new();
     public string Title => _readingsOnly ? Loc.Tr("bible_daily_readings", "Daily Readings") : Loc.Tr("desktop_today", "Today");
+    public bool ShowsPageTitle => !_readingsOnly;
     public bool ShowsReadingOptions => !_readingsOnly;
     public bool ShowsDailySection => _readingsOnly || ViewModel.ShowsTodayDay
         || ShowsDailyReadings || ViewModel.ShowsTodayTorahPortion;

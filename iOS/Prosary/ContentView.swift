@@ -7,9 +7,9 @@ struct ContentView: View {
   @State private var reminderActivation = ReminderActivation.shared
   @State private var prayPath: [AppRoute]
   @State private var homePath: [AppRoute] = []
-  @State private var readingsPath: [AppRoute] = []
+  @State private var biblePath: [AppRoute] = []
   @State private var referenceMode: String?
-  // Civil-date browsing belongs to this window and is shared by Home, Pray and Readings.
+  // Home, the calendar and the readings sheet share this window's civil-date selection.
   @State private var dateSelection = MacTodayDateSelection()
   @State private var searchPath: [AppRoute] = []
   @State private var routeLandingGeneration = 0
@@ -114,18 +114,9 @@ struct ContentView: View {
         Task<Void, Never> { await RecentPrayers.shared.refresh() }
       }
       #else
-      #if os(iOS)
-      .fullScreenCover(isPresented: Binding(get: { referenceMode == "bible" }, set: { if !$0 && referenceMode == "bible" { referenceMode = nil } })) {
-        homeReference(mode: "bible")
-      }
-      .sheet(isPresented: Binding(get: { referenceMode == "calendar" }, set: { if !$0 && referenceMode == "calendar" { referenceMode = nil } })) {
-        homeReference(mode: "calendar")
-      }
-      #else
       .sheet(isPresented: Binding(get: { referenceMode != nil }, set: { if !$0 { referenceMode = nil } })) {
-        homeReference(mode: referenceMode ?? "calendar")
+        homeReference(mode: referenceMode ?? "daily")
       }
-      #endif
       .task { activateWindow() }
       .onChange(of: scenePhase) { _, phase in
         if phase == .active { activateWindow() }
@@ -141,12 +132,11 @@ struct ContentView: View {
   private func homeReference(mode: String) -> some View {
     NavigationStack {
       Group {
-        if mode == "bible" { BibleView(dateSelection: $dateSelection) }
+        if mode == "daily" { DailyReadingsView(dateSelection: $dateSelection) }
         else {
           FeastsAndSolemnitiesView(dateSelection: $dateSelection) {
-            referenceMode = nil
-            readingsPath = []
-            selectedTab = .readings
+            // Reuse the attached reference sheet rather than stacking another modal.
+            referenceMode = "daily"
           }
         }
       }
@@ -199,10 +189,8 @@ struct ContentView: View {
         MacTodayView().appRouteDestinations(path: $homePath)
         #else
         HomeDashboardView(dateSelection: $dateSelection) { mode in
-          if mode == "daily" {
-            readingsPath = []
-            selectedTab = .readings
-          } else { referenceMode = mode }
+          if mode == "bible" { selectedTab = .bible }
+          else { referenceMode = mode }
         }
         .appRouteDestinations(path: $homePath)
         #endif
@@ -214,15 +202,10 @@ struct ContentView: View {
       }
       // A replaced stack needs a new identity so AppKit's Back control and the path agree.
       .id(routeLandingGeneration)
-    case .readings:
-      NavigationStack(path: $readingsPath) {
-        #if os(macOS)
-        MacTodayView()
-          .appRouteDestinations(path: $readingsPath)
-        #else
-        ReadingsView(dateSelection: $dateSelection)
-          .appRouteDestinations(path: $readingsPath)
-        #endif
+    case .bible:
+      NavigationStack(path: $biblePath) {
+        BibleView(dateSelection: $dateSelection)
+          .appRouteDestinations(path: $biblePath)
       }
     case .search:
       NavigationStack(path: $searchPath) {
@@ -236,7 +219,7 @@ struct ContentView: View {
     switch selectedTab {
     case .home: $homePath
     case .pray: $prayPath
-    case .readings: $readingsPath
+    case .bible: $biblePath
     case .search: $searchPath
     }
   }
@@ -273,17 +256,18 @@ struct ContentView: View {
     case .calendar, .readings:
       dateSelection = MacTodayDateSelection()
       #if os(macOS)
-      selectedTab = .readings
-      readingsPath = []
+      selectedTab = .home
+      homePath = []
       #else
-      if link == .calendar { referenceMode = "calendar" }
-      else { referenceMode = nil; selectedTab = .readings; readingsPath = [] }
+      referenceMode = link == .calendar ? "calendar" : "daily"
       #endif
     case .today:
+      referenceMode = nil
       dateSelection.select(Date())
       selectedTab = .home
       homePath = []
     case .library:
+      referenceMode = nil
       routeLandingGeneration += 1
       pendingLandingRoute = nil
       selectedTab = .pray
@@ -324,6 +308,7 @@ struct ContentView: View {
 
   /// An external request starts one clean stack in this window, never in a sibling window.
   private func land(_ route: AppRoute) {
+    referenceMode = nil
     routeLandingGeneration += 1
     pendingLandingRoute = route
     selectedTab = .pray

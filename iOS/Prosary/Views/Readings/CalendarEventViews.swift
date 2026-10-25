@@ -99,6 +99,7 @@ struct CalendarDayEvents: View {
   let date: Date
   var openReadings: () -> Void = {}
   @State private var selectedEvent: CalendarEvent?
+  @State private var opensReadingsAfterDismissal = false
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
   private var events: [CalendarEvent] {
@@ -115,8 +116,12 @@ struct CalendarDayEvents: View {
           .accessibilityIdentifier("calendar.event.\(event.index)")
       }
     }
-    .sheet(item: $selectedEvent) { event in
-      CalendarEventDetail(event: event) { selectedEvent = nil; openReadings() }
+    .sheet(item: $selectedEvent, onDismiss: {
+      guard opensReadingsAfterDismissal else { return }
+      opensReadingsAfterDismissal = false
+      openReadings()
+    }) { event in
+      CalendarEventDetail(event: event) { opensReadingsAfterDismissal = true; selectedEvent = nil }
     }
     .onChange(of: calendarID) { _, _ in selectedEvent = nil }
     .onChange(of: date) { _, _ in selectedEvent = nil }
@@ -150,6 +155,7 @@ struct CalendarEventDetail: View {
         VStack(alignment: .leading, spacing: 16) {
           Text(event.title(UILanguage.current)).font(.title2.weight(.semibold))
           Text(CalendarEventPresentation.dateLabel(event.date)).font(.subheadline).foregroundStyle(.secondary)
+            .accessibilityIdentifier("calendar.eventDate")
           Text(event.feast.localizedRank(UILanguage.current)).font(.caption).foregroundStyle(.secondary)
           if let description = event.description(UILanguage.current) {
             Text(verbatim: description.text).textSelection(.enabled).fixedSize(horizontal: false, vertical: true)
@@ -159,6 +165,7 @@ struct CalendarEventDetail: View {
             }
           } else { Text(calendarLabel("noEventDescription", "No description is available for this event.")).foregroundStyle(.secondary) }
           Button(calendarLabel("readings", "Readings")) { openReadings() }.buttonStyle(.bordered)
+            .accessibilityIdentifier("calendar.openReadings")
         }.frame(maxWidth: 640, alignment: .leading).frame(maxWidth: .infinity).padding(20)
       }
       .navigationTitle(calendarLabel("eventDetails", "Event Details"))

@@ -71,7 +71,6 @@ public partial class App : Application
         if (destination.PrayerId is { } id) await DesktopWindowManager.OpenPrayerAsync(id);
         else if (destination.Section is { } section)
         {
-            DesktopWindowManager.ShowLibrary(section);
             DesktopWindowManager.ShowTodayReadings(section == "readings");
         }
     }

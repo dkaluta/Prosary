@@ -254,6 +254,7 @@ struct HomeDashboardView: View {
     case .readings:
       Text(collapsedReadingsSummary).font(.subheadline)
       Button(widget.title) { openReadings("daily") }.buttonStyle(.bordered)
+        .accessibilityIdentifier("homeWidgets.open.readings")
     case .torah:
       Text(torah?.localizedTitle(language) ?? label("noTorah")).font(.subheadline)
     case .calendar:
@@ -297,6 +298,7 @@ struct HomeDashboardView: View {
           .accessibilityIdentifier("homeWidgets.reading.\(reading.type)")
       }
       Button(HomeWidget.readings.title) { openReadings("daily") }.buttonStyle(.bordered)
+        .accessibilityIdentifier("homeWidgets.open.readings")
     case .torah:
       if let torah {
         Text(verbatim: torah.localizedTitle(language)).font(.subheadline.weight(.semibold))

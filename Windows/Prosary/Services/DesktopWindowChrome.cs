@@ -91,7 +91,7 @@ internal static class DesktopWindowChrome
         view.Items.Add(Item("home_widgets_title", "Home", () => DesktopWindowManager.ShowLibrary("home")));
         view.Items.Add(Item("desktop_show_library", "Show Library", () => DesktopWindowManager.ShowLibrary(), VirtualKey.L));
         view.Items.Add(Item("desktop_today", "Today", () => DesktopWindowManager.ShowLibrary("today")));
-        view.Items.Add(Item("readings_title", "Readings", () => DesktopWindowManager.ShowLibrary("readings")));
+        view.Items.Add(Item("bible_title", "Bible", () => DesktopWindowManager.ShowLibrary("bible")));
         view.Items.Add(Item("desktop_gallery", "Gallery", () => DesktopWindowManager.ShowLibrary("gallery")));
         view.Items.Add(Item("BasicPrayersTitle/Text", "Basic Prayers", () => DesktopWindowManager.ShowLibrary("basic")));
         view.Items.Add(Item("SearchTitle/Text", "Search", () => DesktopWindowManager.ShowLibrary("search"), VirtualKey.F));

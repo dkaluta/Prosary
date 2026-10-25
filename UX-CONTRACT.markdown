@@ -9,7 +9,7 @@ Authoritative business and data sources are [AGENTS.md](AGENTS.md),
 [Shared/schema/domain-model.json](Shared/schema/domain-model.json),
 [Shared/schema/home-widgets.json](Shared/schema/home-widgets.json), and the canonical
 `Shared/content` / `Shared/data` records. [DESIGN.md](DESIGN.md) documents visual intent.
-This contract covers the 0.21 native changes; existing architecture continues to govern other flows.
+This contract covers the touched native workflows; existing architecture continues to govern other flows.
 
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |
 |---|---|---|---|---|
@@ -20,6 +20,7 @@ This contract covers the 0.21 native changes; existing architecture continues to
 | CRUD | Home widget preferences and app-private photo store | Shared home-widgets schema | Add/change/remove image; add/remove/reorder card | Existing photo tests and new card-state tests |
 | Toast | Existing native inline error/alert owners | Platform sibling flows | Recoverable import or passage error | Focused failure-path tests |
 | Bible pagination | Native Bible chapter readers and whole-source-block paginators | Shared/BIBLE-VIEWER.markdown and source block order | Wide justified facing pages with inline verse indicators and directional turns / narrow continuous reading | Pagination, typography, canonical verse jump, resize and RTL checks |
+| Bible and daily readings navigation | Native tab/sidebar shell and existing reference sheet/dialog owners | Shared/schema/screens.json and Shared/schema/home-widgets.json | Bible primary destination; Daily Readings sheet from Home, calendar events and reading reminders/widgets; Mac native Bible/Today | Primary-destination, shared-date, dismissal and deep-link tests |
 | Prayer labels | Existing pack title resolvers and native Rosary label helpers | Shared/ARCHITECTURE.markdown and canonical prayer title provenance | Selected Hebrew rite for Hebrew options and spoken bead progress; descriptive Hebrew labels for other prayer languages; established non-Hebrew interface labels | Both rites, reversed global fallback/default, live selection changes and accessible progress tests |
 
 Home expansion changes only that card's size. It preserves widget order, the selected civil
@@ -48,6 +49,19 @@ Arabic use actual RTL; prayer language, interface language, Bible edition and ca
 independent. Device-specific photos and paths never synchronize. Preset, cloud and downloaded
 prayer deletion retain their existing architecture contracts, including exact-ID retirement.
 
-Home Torah and haftarot reuse TodayInfoStore and the canonical Hebcal table. Readings owns daily appointments and enabled Torah/haftarah passages; Home Calendar and full Scripture open separate native reference surfaces. iPhone/iPad Scripture uses the full window with Done returning Home; Calendar retains a native sheet. Feast explanations reuse source section owners and exclude reflection sections only after complete prose coverage is verified and the separate exact-language reflection copy matches all combined reflection-section text after whitespace normalization. Otherwise the complete source explanation remains visible. The feast card has no image picker. Explicit Android palette selection removes accent overrides so the chosen color is visible.
+Home Torah and haftarot reuse TodayInfoStore and the canonical Hebcal table. Bible replaces the
+Readings tab and is also a Windows sidebar destination. The Scripture card selects that
+destination. The existing Home readings card opens daily appointments and enabled Torah/haftarah
+passages in a native sheet/dialog, preserving the window's selected date and offering Done/Close.
+Dismissal restores the underlying destination. Calendar remains a separate native sheet/dialog
+on phones/tablets and a reference window on Windows; Readings for this Date replaces its content
+or closes that window before opening daily readings, without stacking modals.
+Reading reminders and operating-system widgets still open daily readings for today. Mac retains
+its native Bible sidebar and Today workflow. Feast explanations reuse source section owners
+and exclude reflection sections only after complete prose coverage is verified and the separate
+exact-language reflection copy matches all combined reflection-section text after whitespace
+normalization. Otherwise the complete source explanation remains visible. The feast card has
+no image picker. Explicit Android palette selection removes accent overrides so the chosen color
+is visible.
 
 Per-card colors use homeWidgetColors and the existing Today palette, independently of app accent and source liturgical colors. Home uses independent vertical columns selected from actual safe pane width. Cards fill the shortest column in saved order, with ties resolved from the logical leading edge. Adding a card preserves earlier placements and minimizes its added page height. Expansion or resizing may reflow later cards. Each safe pane has one outer scroll, stable card identity and saved accessibility order within its native accessibility container; native RTL mirrors the leading column. Side-by-side Apple fold panes each host one column with alternating cards, while vertically stacked panes retain contiguous top-to-bottom groups. Apple HomeLayoutCloud reuses CloudSyncedList for an atomic versioned layout snapshot; initial defaults and migrations never publish over an incoming account layout.

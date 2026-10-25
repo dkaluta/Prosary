@@ -1,7 +1,7 @@
 # Prosary on Windows
 
 Windows uses a shared prayer library and separate native prayer windows. The library window
-starts on Home, with Library, Today, Readings, Gallery, Basic Prayers and Search destinations,
+starts on Home, with Library, Today, Bible, Gallery, Basic Prayers and Search destinations,
 and Settings and About in the sidebar footer. Search has a visible Community Prayers action
 for discovery and installation. Existing saved prayers remain in the same SQLite store.
 
@@ -16,7 +16,10 @@ empty list stays empty. Adding a card appends it without restoring removed cards
 duplicate identifiers are discarded.
 
 Readings and Pope's intention use the offline providers for the library window's selected
-date. Calendar opens Feasts and Solemnities; Holy Scripture opens Bible mode. Feast details
+date. Readings opens in an owner-window native dialog with Close, date controls, edition and
+reading options. Calendar opens Feasts and Solemnities in its existing native reference window;
+Readings for this Date closes it before opening Daily Readings. Holy Scripture selects the
+primary Bible sidebar destination, preserving its reader position. Feast details
 show only sourced explanations in the exact interface language, with credit and source links,
 or an explicit unavailable message. The reflection card stays empty until the mission text
 is supplied. Home card visibility is independent of the existing Today visibility settings.
@@ -93,15 +96,15 @@ spacing. Back and Next share a baseline; Next keeps the native accent treatment.
 section jumps use FontIcon glyphs with interface-direction ordering and localized action
 names. The native templates retain focus, disabled and high-contrast states.
 
-All Pivot tab rows share compact 14-pixel semibold labels and padding. Readings uses this
-style for Daily Readings, Feasts and Solemnities, and Bible. Headers can grow for wrapped
+All Pivot tab rows share compact 14-pixel semibold labels and padding. Bible, Daily Readings
+and Calendar have separate native destinations rather than modes within Readings. Headers can grow for wrapped
 translations or Windows text scaling, and native keyboard navigation, selection indicators
 and header overflow remain available.
 
 | Menu | Commands |
 | --- | --- |
 | File | Import Prayer Packs… (Ctrl+O), Close Window (Ctrl+W) |
-| View | Home, Show Library (Ctrl+L), Today, Readings, Gallery, Basic Prayers, Search (Ctrl+F), Full Screen (F11) |
+| View | Home, Show Library (Ctrl+L), Today, Bible, Gallery, Basic Prayers, Search (Ctrl+F), Full Screen (F11) |
 | Prayer | Previous Step (Ctrl+Left), Next Step (Ctrl+Right), Prayer Settings… |
 | Help | Settings, About |
 
@@ -151,9 +154,9 @@ day when displaying today, while a deliberately browsed date remains selected. C
 names and chapter/verse citations are displayed directly, without a shorthand toggle.
 Readings occupy their own tinted card, with an independent Today Card Color setting.
 The feast/saints and sourced biographies have a separate card; the Pope's monthly intention
-has its own card marked by crossed keys. Readings also exposes the selected calendar's
-complete chronological Feasts and Solemnities list. Clicking an entry sets the shared date
-and opens Daily Readings.
+has its own card marked by crossed keys. Home's Calendar card exposes the selected calendar's
+published observances. Readings for this Date sets the shared date and opens the Daily Readings
+dialog. Reading reminders also open that dialog for today; the Bible sidebar remains independent.
 
 Each daily or Torah citation can expand independently to selectable Bible text with chapter
 and verse numbers. The displayed edition name, attribution and source link distinguish this

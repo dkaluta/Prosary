@@ -24,6 +24,17 @@ final class BibleBookUITests: XCTestCase {
     return matches.firstMatch
   }
 
+  @MainActor
+  private func selectSection(_ title: String, in app: XCUIApplication) {
+    let button = app.buttons[title].firstMatch
+    if button.exists { button.tap() }
+    else {
+      let row = app.cells[title].firstMatch
+      XCTAssertTrue(row.waitForExistence(timeout: 5))
+      row.tap()
+    }
+  }
+
   /// Seed the verified Douay archive in the disposable simulator before running. These
   /// tests browse that local installation and never download or remove a Bible.
   @MainActor
@@ -160,15 +171,39 @@ final class BibleBookUITests: XCTestCase {
     XCTAssertTrue(element("bible.page.0", in: app).textViews.firstMatch.isHittable,
                   "The containing spread exposes the selected source paragraph")
     capture("bible-book-verse-jump")
-    // A full-screen reader must retain a way home after descending into a chapter.
-    for _ in 0..<3 where !app.buttons["homeReference.done"].isHittable {
+    // Bible's native stack returns to its library and Home remains a primary section.
+    for _ in 0..<3 where !app.buttons["bible.book.GEN"].isHittable {
       let back = app.navigationBars.buttons.element(boundBy: 0)
       XCTAssertTrue(back.isHittable)
       back.tap()
     }
-    XCTAssertTrue(app.buttons["homeReference.done"].isHittable)
-    app.buttons["homeReference.done"].tap()
+    selectSection("Home", in: app)
     XCTAssertTrue(app.buttons["homeWidgets.open.scripture"].waitForExistence(timeout: 5))
+  }
+
+  @MainActor
+  func testBibleTabRetainsTheCurrentSourceBlockAfterVisitingHome() throws {
+    let app = try openGenesis()
+    defer { app.terminate() }
+    let initial = spreadText(in: app)
+    let next = app.buttons["bible.nextPage"]
+    XCTAssertTrue(next.isHittable && next.isEnabled)
+    next.tap()
+    let changed = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+      self.spreadText(in: app) != initial
+    }, object: nil)
+    XCTAssertEqual(XCTWaiter.wait(for: [changed], timeout: 10), .completed)
+    waitForSettledSpread(in: app)
+    let retainedText = spreadText(in: app)
+    let retainedCount = element("bible.pageCount", in: app).label
+    selectSection("Home", in: app)
+    XCTAssertTrue(app.buttons["homeWidgets.open.scripture"].waitForExistence(timeout: 5))
+    selectSection("Bible", in: app)
+    XCTAssertTrue(element("bible.bookReader", in: app).waitForExistence(timeout: 10))
+    waitForSettledSpread(in: app)
+    waitForSpread(retainedText, in: app)
+    XCTAssertEqual(element("bible.pageCount", in: app).label, retainedCount)
+    capture("bible-tab-retained-source-block")
   }
 
   @MainActor

@@ -72,15 +72,21 @@ final class StoreScreenshotTests: XCTestCase {
     snap("03-stations")
     app.navigationBars.buttons.element(boundBy: 0).tap()
 
-    // 4 — Browse (live catalog; give the fetch room).
-    let browseTab = app.tabBars.buttons["Browse"]
-    XCTAssertTrue(browseTab.waitForExistence(timeout: 5))
-    browseTab.tap()
+    // 4 — Community catalogue, opened from Search.
+    app.tabBars.buttons["Search"].tap()
+    let community = app.buttons["search.community"]
+    XCTAssertTrue(community.waitForExistence(timeout: 5))
+    community.tap()
     _ = app.staticTexts["Kyrie"].waitForExistence(timeout: 15)
     snap("04-browse")
+    app.buttons["Done"].tap()
 
-    // 5 — Readings.
-    app.tabBars.buttons["Readings"].tap()
+    // 5 — Daily readings, opened from its Home widget.
+    app.tabBars.buttons["Home"].tap()
+    let readings = app.buttons["homeWidgets.open.readings"]
+    for _ in 0..<6 where !readings.isHittable { app.swipeUp() }
+    XCTAssertTrue(readings.isHittable)
+    readings.tap()
     XCTAssertTrue(app.buttons["readings.chooseDate"].waitForExistence(timeout: 5))
     snap("05-readings")
   }

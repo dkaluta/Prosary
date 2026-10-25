@@ -297,6 +297,47 @@ public class TodayNavigationTests
         }
     }
 
+    [Fact]
+    public void ReopeningDailyReadingsKeepsTheWindowDateAndEnabledTorahPassages()
+    {
+        var previousReadings = AppSettings.ShowTodayReadings;
+        var previousTorah = AppSettings.ShowTodayTorahPortion;
+        var previousCalendar = TodayInfoStore.SelectedCalendarId;
+        try
+        {
+            TodayInfoStore.SelectedCalendarId = "roman";
+            AppSettings.SetShowTodayReadings(false);
+            AppSettings.SetShowTodayTorahPortion(true);
+            var today = new HomeViewModel(new EmptyPresetStore(), new LiturgicalCalendarService());
+            today.SelectedTodayDate = new DateTimeOffset(2026, 9, 10, 0, 0, 0, TimeSpan.Zero);
+            var reader = new DesktopReadingsViewModel(new ReadingsTextStore(() => "{\"schemaVersion\":1,\"editions\":[],\"passages\":{}}"));
+            reader.Open(today, showsAllDailyReadings: true);
+            Assert.Equal(new DateOnly(2026, 9, 10), today.SelectedDate);
+            Assert.NotEmpty(reader.Daily);
+            Assert.NotEmpty(reader.Torah);
+
+            today.TomorrowCommand.Execute(null);
+            // Dismissing and reopening the modal constructs a new reader, using the same
+            // window date rather than selecting today's date or the Bible's current book.
+            var reopened = new DesktopReadingsViewModel(new ReadingsTextStore(() => "{\"schemaVersion\":1,\"editions\":[],\"passages\":{}}"));
+            reopened.Open(today, showsAllDailyReadings: true);
+            Assert.Equal(new DateOnly(2026, 9, 11), today.SelectedDate);
+            Assert.Equal(ReadingCitation.DisplayOrder(TodayInfoStore.Readings(today.SelectedDate), AppSettings.ReverseReadingsOrder)
+                    .Select(citation => citation.LocalizedFull(today.TodayLanguage)),
+                reopened.Daily.Select(row => row.Citation));
+            Assert.Equal(today.TodayTorahPortion!.AllReadings.Select(citation => citation.LocalizedFull(today.TodayLanguage)),
+                reopened.Torah.Select(row => row.Citation));
+            Assert.All(reopened.Daily.Concat(reopened.Torah), row => Assert.StartsWith("2026-09-11|", row.ContextKey));
+            Assert.False(AppSettings.ShowTodayReadings);
+        }
+        finally
+        {
+            AppSettings.SetShowTodayReadings(previousReadings);
+            AppSettings.SetShowTodayTorahPortion(previousTorah);
+            TodayInfoStore.SelectedCalendarId = previousCalendar;
+        }
+    }
+
     private sealed class EmptyPresetStore : IPresetStore
     {
         public Task<List<Prayer>> GetAllAsync() => Task.FromResult(new List<Prayer>());

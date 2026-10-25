@@ -1,6 +1,8 @@
 package com.dkaluta.prosary.ui.readings
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,12 +33,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
@@ -51,6 +55,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -93,30 +105,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-/** A reference reader sharing Pray's date without changing prayer sessions or widget dates. */
-@OptIn(ExperimentalMaterial3Api::class)
+/** Daily appointments share Home's date and keep their own settings inside the sheet. */
 @Composable
 fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate(),
-    calendarRequest: Long = 0, readingsRequest: Long = 0, homeRequest: Long = 0,
-    homeMode: HomeReadingsMode = HomeReadingsMode.Daily,
-    onOpenReference: (HomeReadingsMode) -> Unit = {}) {
+    onDismiss: (() -> Unit)? = null) {
     var showsReadingSettings by rememberSaveable { mutableStateOf(false) }
     if (showsReadingSettings) ReadingSettingsSheet { showsReadingSettings = false }
-    var handledOpenRequest by rememberSaveable { mutableStateOf(0L) }
-    LaunchedEffect(calendarRequest, readingsRequest, homeRequest, homeMode) {
-        val request = ReadingsOpenRequest.latest(calendarRequest, readingsRequest, homeRequest, homeMode)
-        if (request != null && request.sequence != handledOpenRequest) {
-            request.applyTo(browsingDate)
-            onOpenReference(request.mode)
-            handledOpenRequest = request.sequence
-        }
-    }
     Scaffold(topBar = {
-        TopAppBar(title = { Text(stringResource(R.string.tab_readings)) }, actions = {
-            IconButton(onClick = { showsReadingSettings = true }, modifier = Modifier.testTag("readingsSettingsButton")) {
-                Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.reading_settings))
-            }
-        })
+        ScriptureToolbar(R.string.tab_readings, onOpenSettings = { showsReadingSettings = true }, onDismiss = onDismiss)
     }) { padding ->
         Column(Modifier.padding(padding).fillMaxSize()) {
             DailyReadingsContent(browsingDate)
@@ -124,11 +120,58 @@ fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()
     }
 }
 
-/** Home reference tools have their own surface instead of becoming modes of Readings. */
+/** The full Bible retains its reader and offline-download state as a primary destination. */
+@Composable
+internal fun BibleTabScreen() {
+    var showsReadingSettings by rememberSaveable { mutableStateOf(false) }
+    if (showsReadingSettings) ReadingSettingsSheet { showsReadingSettings = false }
+    Scaffold(topBar = {
+        ScriptureToolbar(R.string.bible_title, onOpenSettings = { showsReadingSettings = true })
+    }) { padding ->
+        Box(Modifier.fillMaxSize().padding(padding)) { BibleScreen() }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ScriptureToolbar(@StringRes title: Int, onOpenSettings: () -> Unit, onDismiss: (() -> Unit)? = null) {
+    TopAppBar(title = { Text(stringResource(title)) }, actions = {
+        IconButton(onClick = onOpenSettings, modifier = Modifier.testTag("readingsSettingsButton")) {
+            Icon(Icons.Filled.Settings, contentDescription = stringResource(R.string.reading_settings))
+        }
+        if (onDismiss != null) TextButton(onClick = onDismiss, modifier = Modifier.testTag("readingsDone")) {
+            Text(stringResource(R.string.common_done))
+        }
+    })
+}
+
+/** The same modal owner replaces Calendar with Daily Readings without stacking references. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun HomeReferenceSheet(mode: HomeReadingsMode, browsingDate: TodayBrowsingDate,
     onDismiss: () -> Unit, onOpenReadings: () -> Unit) {
+    if (mode == HomeReadingsMode.Daily) {
+        val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        ModalBottomSheet(onDismissRequest = onDismiss,
+            sheetState = sheetState, modifier = Modifier.testTag("homeReference.daily")) {
+            val focusRequester = remember { FocusRequester() }
+            var hasContentFocus by remember { mutableStateOf(false) }
+            LaunchedEffect(sheetState.isVisible) {
+                if (sheetState.isVisible && !hasContentFocus) focusRequester.requestFocus()
+            }
+            Box(Modifier.fillMaxSize().focusRequester(focusRequester)
+                .onFocusChanged { hasContentFocus = it.hasFocus }
+                .onPreviewKeyEvent { event ->
+                    if (event.key == Key.Escape) {
+                        if (event.type == KeyEventType.KeyUp) onDismiss()
+                        true
+                    } else false
+                }.focusable()) {
+                ReadingsScreen(browsingDate, onDismiss)
+            }
+        }
+        return
+    }
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false)) {
         Scaffold(modifier = Modifier.fillMaxSize().testTag("homeReference.${mode.id}"), topBar = {
             TopAppBar(title = { Text(stringResource(if (mode == HomeReadingsMode.Bible) R.string.bible_title else R.string.calendar_event_calendar)) },

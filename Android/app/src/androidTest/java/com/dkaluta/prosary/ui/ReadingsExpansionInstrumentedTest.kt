@@ -2,10 +2,11 @@ package com.dkaluta.prosary.ui
 
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
@@ -52,7 +53,7 @@ class ReadingsExpansionInstrumentedTest {
                     AppSettings.expandReadingsByDefault = false
                     AppSettings.showTodayReadings = true
                 }
-                compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
+                compose.onNodeWithTag("homeWidget.readings").performScrollTo().performClick()
                 assertExpansion("daily", false)
                 assertExpansion("torah", false)
                 toggle("daily")
@@ -79,13 +80,15 @@ class ReadingsExpansionInstrumentedTest {
                 assertExpansion("daily", true)
                 toggle("daily")
                 toggle("torah")
-                compose.onNodeWithText(context.getString(R.string.tab_pray)).performClick()
+                compose.onNodeWithTag("readingsDone").performClick()
+                compose.onNodeWithTag("tab.pray").performClick()
                 compose.onNodeWithTag("todayReadings").assertDoesNotExist()
                 scenario.onActivity { AppSettings.showTodayReadings = false }
                 compose.onNodeWithTag("todayReadings").assertDoesNotExist()
                 scenario.onActivity { AppSettings.showTodayReadings = true }
                 compose.onNodeWithTag("todayReadings").assertDoesNotExist()
-                compose.onNodeWithText(context.getString(R.string.tab_readings)).performClick()
+                compose.onNodeWithTag("tab.home").performClick()
+                compose.onNodeWithTag("homeWidget.readings").performScrollTo().performClick()
                 assertExpansion("daily", true)
                 assertExpansion("torah", true)
             } finally {
@@ -106,14 +109,14 @@ class ReadingsExpansionInstrumentedTest {
         val tag = "readingExpand.$kind.Genesis 1:1"
         compose.onNodeWithTag("readingsList").performScrollToNode(hasTestTag(tag))
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        compose.onNodeWithTag(tag).assertTextContains(context.getString(
+        compose.onNode(hasTestTag(tag) and hasAnyAncestor(hasTestTag("readingsList"))).assertTextContains(context.getString(
             if (expanded) R.string.readings_hide_text else R.string.readings_show_text))
     }
 
     private fun toggle(kind: String) {
         val tag = "readingExpand.$kind.Genesis 1:1"
         compose.onNodeWithTag("readingsList").performScrollToNode(hasTestTag(tag))
-        compose.onNodeWithTag(tag).performClick()
+        compose.onNode(hasTestTag(tag) and hasAnyAncestor(hasTestTag("readingsList"))).performClick()
     }
 
     private fun navigateDate(tag: String) {

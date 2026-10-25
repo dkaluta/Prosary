@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.UI.Dispatching;
 using Prosary.ViewModels;
 using Windows.Media.Core;
@@ -35,7 +36,84 @@ public sealed class PrayerSpeechService
     }
     public static bool VoiceMatches(string voiceLanguage, string prayerLanguage) =>
         !string.IsNullOrEmpty(BaseLanguage(prayerLanguage)) && BaseLanguage(voiceLanguage) == BaseLanguage(prayerLanguage);
-    public static string SpokenText(string text) => text.Replace("**", string.Empty).Trim();
+
+    public static string NormalizeHebrewSpeech(string text)
+    {
+        const string diacritics = @"[\u0591-\u05bd\u05bf-\u05c2\u05c4\u05c5\u05c7]*";
+        var divine = $@"(?:י{diacritics}ה{diacritics}ו{diacritics}ה{diacritics}|ה{diacritics}[׳\u0027]|י{diacritics}י{diacritics})";
+        var adonai = $@"א{diacritics}ד{diacritics}נָ?{diacritics}[יי]{diacritics}";
+        var prefix = $@"([בלמכשו]{diacritics})";
+        const string boundary = @"(?:^|[^\u0591-\u05bd\u05bf-\u05c2\u05c4-\u05c5\u05c7\u05d0-\u05ea])";
+        const string lookahead = @"(?=$|[^\u0591-\u05bd\u05bf-\u05c2\u05c4-\u05c5\u05c7\u05d0-\u05ea])";
+
+        var elohimPattern = $@"({boundary})(\S*{adonai}\S*)(\s+){prefix}?{divine}{lookahead}";
+        var result = Regex.Replace(text, elohimPattern, match =>
+        {
+            var pre = match.Groups[1].Value;
+            var adonaiWord = match.Groups[2].Value;
+            var between = match.Groups[3].Value;
+            string elohim;
+            if (match.Groups[4].Success && match.Groups[4].Length > 0)
+            {
+                var first = match.Groups[4].Value[0];
+                var p = first switch
+                {
+                    'ו' => "וֵ",
+                    'ל' => "לֵ",
+                    'ב' => "בֵּ",
+                    'מ' => "מֵ",
+                    _ => first.ToString()
+                };
+                elohim = $"{p}אלֹהִים";
+            }
+            else
+            {
+                elohim = "אֱלֹהִים";
+            }
+            return $"{pre}{adonaiWord}{between}{elohim}";
+        });
+
+        var divinePattern = $@"({boundary}){prefix}?{divine}{lookahead}";
+        result = Regex.Replace(result, divinePattern, match =>
+        {
+            var pre = match.Groups[1].Value;
+            string word;
+            if (match.Groups[2].Success && match.Groups[2].Length > 0)
+            {
+                var first = match.Groups[2].Value[0];
+                word = first switch
+                {
+                    'ל' => "לַאדֹנָי",
+                    'ב' => "בַּאדֹנָי",
+                    'ו' => "וַאדֹנָי",
+                    'מ' => "מֵאדֹנָי",
+                    'כ' => "כַּאדֹנָי",
+                    'ש' => "שֶׁאֲדֹנָי",
+                    _ => $"{first}אֲדֹנָי"
+                };
+            }
+            else
+            {
+                word = "אֲדֹנָי";
+            }
+            return $"{pre}{word}";
+        });
+
+        return result;
+    }
+
+    public static string SpokenText(string text, string? languageCode = null)
+    {
+        var body = text.Replace("**", string.Empty).Trim();
+        var isHebrew = languageCode != null
+            ? BaseLanguage(languageCode) == "he"
+            : body.Any(c => c >= '\u0590' && c <= '\u05FF');
+        if (isHebrew)
+        {
+            body = NormalizeHebrewSpeech(body);
+        }
+        return body;
+    }
 
     public async Task<bool> SpeakAsync(IPrayerStepFlowViewModel owner)
     {
@@ -48,7 +126,7 @@ public sealed class PrayerSpeechService
                 .Where(v => VoiceMatches(v.Language, owner.SpeechLanguageCode))
                 .OrderByDescending(v => v.Language.Equals(System.Globalization.CultureInfo.CurrentCulture.Name,
                     StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-            var text = SpokenText(owner.SpeechBody);
+            var text = SpokenText(owner.SpeechBody, owner.SpeechLanguageCode);
             if (voice is null || string.IsNullOrEmpty(text)) return false;
             StopFor(owner);
             _synthesizer = new SpeechSynthesizer { Voice = voice };

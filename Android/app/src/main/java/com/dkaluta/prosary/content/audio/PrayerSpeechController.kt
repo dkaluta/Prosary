@@ -73,7 +73,7 @@ class PrayerSpeechController(context: Context) {
         failed = false
         val tts = engine ?: return false
         val selected = languageCode?.let(::voice) ?: return false
-        val chunks = PrayerSpeechText.chunks(text, TextToSpeech.getMaxSpeechInputLength())
+        val chunks = PrayerSpeechText.chunks(text, TextToSpeech.getMaxSpeechInputLength(), languageCode)
         if (!isReady || chunks.isEmpty() || tts.setVoice(selected) != TextToSpeech.SUCCESS) return false
         if (audioManager.requestAudioFocus(focus) != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) return false
         generation++
@@ -116,9 +116,71 @@ object PrayerSpeechText {
     fun voiceMatches(voiceLanguage: String, prayerLanguage: String): Boolean =
         baseLanguage(prayerLanguage).let { it.isNotEmpty() && baseLanguage(voiceLanguage) == it }
 
-    fun chunks(text: String, limit: Int): List<String> {
+    fun normalizeHebrewSpeech(text: String): String {
+        val diacritics = "[\\u0591-\\u05bd\\u05bf-\\u05c2\\u05c4\\u05c5\\u05c7]*"
+        val divine = "(?:י${diacritics}ה${diacritics}ו${diacritics}ה${diacritics}|ה${diacritics}[׳\\u0027]|י${diacritics}י${diacritics})"
+        val adonai = "א${diacritics}ד${diacritics}נָ?${diacritics}[יי]${diacritics}"
+        val prefix = "([בלמכשו]${diacritics})"
+        val boundary = "(?:^|[^\\u0591-\\u05bd\\u05bf-\\u05c2\\u05c4-\\u05c5\\u05c7\\u05d0-\\u05ea])"
+        val lookahead = "(?=$|[^\\u0591-\\u05bd\\u05bf-\\u05c2\\u05c4-\\u05c5\\u05c7\\u05d0-\\u05ea])"
+
+        val elohimRegex = Regex("($boundary)(\\S*$adonai\\S*)(\\s+)$prefix?$divine$lookahead")
+        var result = elohimRegex.replace(text) { match ->
+            val pre = match.groupValues[1]
+            val adonaiWord = match.groupValues[2]
+            val between = match.groupValues[3]
+            val rawPrefix = match.groupValues[4]
+            val elohim = if (rawPrefix.isNotEmpty()) {
+                val p = when (rawPrefix.first()) {
+                    'ו' -> "וֵ"
+                    'ל' -> "לֵ"
+                    'ב' -> "בֵּ"
+                    'מ' -> "מֵ"
+                    else -> rawPrefix.first().toString()
+                }
+                "${p}אלֹהִים"
+            } else {
+                "אֱלֹהִים"
+            }
+            "$pre$adonaiWord$between$elohim"
+        }
+
+        val divineRegex = Regex("($boundary)$prefix?$divine$lookahead")
+        result = divineRegex.replace(result) { match ->
+            val pre = match.groupValues[1]
+            val rawPrefix = match.groupValues[2]
+            val word = if (rawPrefix.isNotEmpty()) {
+                when (rawPrefix.first()) {
+                    'ל' -> "לַאדֹנָי"
+                    'ב' -> "בַּאדֹנָי"
+                    'ו' -> "וַאדֹנָי"
+                    'מ' -> "מֵאדֹנָי"
+                    'כ' -> "כַּאדֹנָי"
+                    'ש' -> "שֶׁאֲדֹנָי"
+                    else -> "${rawPrefix.first()}אֲדֹנָי"
+                }
+            } else {
+                "אֲדֹנָי"
+            }
+            "$pre$word"
+        }
+
+        return result
+    }
+
+    fun spokenText(text: String, languageCode: String? = null): String {
+        var body = text.replace("**", "").trim()
+        val isHebrew = languageCode?.let { baseLanguage(it) == "he" }
+            ?: body.any { it in '\u0590'..'\u05FF' }
+        if (isHebrew) {
+            body = normalizeHebrewSpeech(body)
+        }
+        return body
+    }
+
+    fun chunks(text: String, limit: Int, languageCode: String? = null): List<String> {
         require(limit >= 2)
-        var remaining = text.replace("**", "").trim()
+        var remaining = spokenText(text, languageCode)
         val result = mutableListOf<String>()
         while (remaining.length > limit) {
             var end = remaining.lastIndexOfAny(charArrayOf(' ', '\n'), startIndex = limit)
