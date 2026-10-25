@@ -1,10 +1,13 @@
 # Bible viewer
 
-Readings contains two native modes, Daily Readings and Bible. They share the existing
-`readingsEditionId` preference. Mode, book, chapter and verse position belong to the
-current window; they do not change the selected prayer date. Terminal has no reader.
+Bible is a primary phone/tablet tab and Windows sidebar destination. The Home Scripture card
+selects that destination. Daily Readings opens separately in a native sheet/dialog from the
+Home readings card, calendar events and reading reminders/widgets. Mac retains its native
+Bible sidebar and Today reading workflow. Both readers share the existing `readingsEditionId`
+preference. Book, chapter and verse position belong to the current window; they do not change
+the selected prayer date. Terminal has no reader.
 
-The Bible mode offers book, chapter and verse navigation in the selected edition's
+The Bible reader offers book, chapter and verse navigation in the selected edition's
 language and numbering, previous/next available chapter, selectable text, source
 credit, and the existing paired-script control. Hebrew chapter numbers use gematria.
 Missing content never falls back to another edition. Partial chapters carry a visible

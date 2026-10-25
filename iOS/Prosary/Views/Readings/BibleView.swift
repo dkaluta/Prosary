@@ -58,17 +58,6 @@ func bibleChapterLabel(_ number: Int, book: BibleBook, edition: ReadingTextEditi
   }
 }
 
-/// Appointed readings have one workspace; Home reference tools open independently.
-#if !os(macOS)
-struct ReadingsView: View {
-  @Binding var dateSelection: MacTodayDateSelection
-
-  var body: some View {
-    DailyReadingsView(dateSelection: $dateSelection)
-  }
-}
-#endif
-
 struct BibleView: View {
   var dateSelection: Binding<MacTodayDateSelection>? = nil
   @AppStorage(ReadingEditionSelection.defaultsKey) private var preference = ""
@@ -211,6 +200,7 @@ struct BibleChapterView: View {
   @State private var bookOverride: String?
   @State private var jumpGeneration = 0
   @State private var chapter: BibleDisplayChapter?
+  @State private var displayedChapterIdentity: String?
   @State private var unavailable = false
   @State private var jumpBlockID: String?
   @State private var pendingJumpBlockID: String?
@@ -222,6 +212,7 @@ struct BibleChapterView: View {
   }
   private var activeBook: BibleBook { edition.books.first { $0.id == bookOverride } ?? book }
   private var position: BiblePosition { BiblePosition(book: activeBook.id, chapter: number) }
+  private var chapterIdentity: String { "\(edition.id)|\(edition.revision)|\(activeBook.id)|\(number)" }
 
   var body: some View {
     VStack(spacing: 0) {
@@ -290,7 +281,7 @@ struct BibleChapterView: View {
         .accessibilityIdentifier("bible.verseMenu")
       }
     }
-    .task(id: "\(activeBook.id)|\(number)") { await load() }
+    .task(id: chapterIdentity) { await load() }
     .onReceive(NotificationCenter.default.publisher(for: .bibleDownloadsChanged)) { _ in Task { await load() } }
   }
 
@@ -315,18 +306,27 @@ struct BibleChapterView: View {
   }
   private func load() async {
     let requested = position
-    readingAnchorID = pendingJumpBlockID
-    chapter = nil; unavailable = false; jumpBlockID = nil
+    let requestedIdentity = chapterIdentity
+    // A persistent tab can reappear without changing chapter. Keep its live reader and
+    // source-block anchor while refreshing the same edition and position.
+    if displayedChapterIdentity != requestedIdentity {
+      readingAnchorID = pendingJumpBlockID
+      chapter = nil
+    }
+    unavailable = false; jumpBlockID = nil
     do {
       let value = try await BibleStore.shared.displayChapter(edition: edition, book: requested.book, number: requested.chapter)
-      guard !Task.isCancelled, position == requested else { return }
+      guard !Task.isCancelled, chapterIdentity == requestedIdentity else { return }
       chapter = value
+      displayedChapterIdentity = requestedIdentity
       if let pendingJumpBlockID {
         jumpBlockID = pendingJumpBlockID
         self.pendingJumpBlockID = nil
         jumpGeneration += 1
       }
-    } catch { if !Task.isCancelled, position == requested { unavailable = true } }
+    } catch {
+      if !Task.isCancelled, chapterIdentity == requestedIdentity { chapter = nil; unavailable = true }
+    }
   }
 }
 

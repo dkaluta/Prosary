@@ -31,7 +31,9 @@ public static class DesktopWindowManager
     /// <summary>Reminder taps open the actual local day even after calendar browsing.</summary>
     public static void ShowTodayReadings(bool readingsOnly)
     {
+        if (_library is null) ShowLibrary(readingsOnly ? "home" : "today");
         if (_library is not { } library) return;
+        library.Activate();
         library.ShowTodayReadings(readingsOnly);
     }
 

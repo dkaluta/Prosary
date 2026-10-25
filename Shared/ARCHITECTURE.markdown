@@ -337,10 +337,11 @@ Rosary option editors; every selected mystery group contains all five decades.
 ## Navigation shell
 
 The phone/tablet apps use four sections: **Home** (the customizable dashboard and initial
-landing), **Pray** (Rosary, pinned devotions, Jesus Prayer and Basic Prayers), **Readings**
-(date-based appointed citations and expandable Bible passages), and **Search** (built-in and
-installed prayers with category browsing). Readings replaces the former Categories tab. Search
-derives category choices from those local manifests' `tags`, including arbitrary
+landing), **Pray** (Rosary, pinned devotions, Jesus Prayer and Basic Prayers), **Bible**
+(the full Scripture library and reader), and **Search** (built-in and installed prayers with
+category browsing). Bible replaces the former Readings tab. Daily Readings opens in a native
+sheet from the existing Home readings card, calendar events, or a reading reminder/widget.
+Search derives category choices from those local manifests' `tags`, including arbitrary
 downloaded tags, with All Categories and Other for untagged prayers. A selected category and
 the text query both constrain local results; an empty query browses the selected
 category. Search works offline and has a visible Community Prayers entry for the online
@@ -370,20 +371,27 @@ prose. Native cards render them as dedicated sections, so rites can use differen
 names and orders without a new screen or a hard-coded rite switch. Full source prose remains
 the fallback when sections are incomplete or do not cover it; foreign-language sections are
 never borrowed. Reflection widgets consume only the reflection, not the entire biography.
-Home and Readings share the same window's civil-date selection, including a deliberately
-browsed day; choosing a Home shortcut changes Readings mode without resetting that date.
+Home and the Readings sheet share the same window's civil-date selection, including a
+deliberately browsed day; opening the sheet from Home preserves that date. The Scripture
+card selects the Bible destination, whose book/chapter position is independent of this date.
 
-Readings has a date picker above complete citations, with previous/next day and Today actions.
-Readings contains only daily appointed readings and enabled Torah/haftarah passages, without a full Bible selector or Calendar action. Home opens full Holy Scripture and Calendar in separate native reference surfaces. The **Event Calendar** shows every published date for the selected calendar,
+The Readings sheet has a date picker above complete citations, with previous/next day, Today,
+reading options and a native Done/Close action. Dismissal returns to the underlying destination.
+It contains only daily appointed readings and enabled Torah/haftarah passages, without a full
+Bible selector or Calendar action. Home opens Calendar in a native sheet/dialog on phones and
+tablets, and in a separate native reference window on Windows.
+Calendar-to-readings navigation replaces the attached reference surface or closes the reference
+window before opening readings, rather than stacking modals. The **Event Calendar** shows
+every published date for the selected calendar,
 with a month grid following the system calendar and regional first weekday, preserving Gregorian civil dates for event lookup and up to three event dots under each date.
 Accessibility retains the full event count. Supplied observances are independently clickable;
 older datasets without components use the parent event. Details use exact interface-language
 source prose, short source excerpts and matching credits, with explicit unavailable text.
 Readings for this Date updates the shared date and opens Daily Readings. Published dates
 are never restricted to high liturgical ranks, and uncovered dates remain absent.
-On iPhone, date navigation and Settings live in the native top toolbar; Today stays inside
-the calendar popover. iPad keeps its date row below the adaptive top tabs to avoid toolbar
-overflow. Short iPhone landscape windows present the calendar in a sheet with a scrolling
+On iPhone/iPad, the Readings sheet keeps date navigation in a fixed row above its scrolling
+content, with Settings and Done in the native toolbar. Today stays inside the calendar
+popover. Short iPhone landscape windows present the calendar in a sheet with a scrolling
 calendar and reachable Today/Done controls.
 On iPhone/iPad the calendar body always accepts the offered presentation width and height;
 it scrolls independently of Today/Done, including short tablet windows whose vertical size
@@ -406,7 +414,7 @@ Do not bypass Activity recreation in the manifest to mask missing state restorat
 
 ### Native Windows experience
 
-Windows has a Home, Library, Today, Gallery, Basic Prayers and Search sidebar, with Settings
+Windows has a Home, Library, Today, Bible, Gallery, Basic Prayers and Search sidebar, with Settings
 and About in its footer. Initial launch opens Home; Search provides community catalog access.
 Saved prayers remain in the existing SQLite store. Gallery Add
 creates a saved copy; Library offers search, list/grid selection, Open, Prayer Settings,
@@ -1627,7 +1635,10 @@ and existing prayer continuation rules. The Apple extension reads a small App Gr
 for settings and saved-prayer summaries; Android reads its existing local stores. Widget taps
 open the current local day, month calendar, or normal prayer flow. Android's compact 1×1
 shortcut can select a saved copy, installed devotion or basic prayer. Apple Shortcuts exposes
-every installed/basic template as well as saved configurations. Readings shows the daily appointments. Home opens full Bible and Event Calendar as separate reference surfaces; selecting an observance can open its daily readings. Mac uses a native calendar sheet in Today. See [WIDGETS.markdown](WIDGETS.markdown)
+every installed/basic template as well as saved configurations. Daily Readings opens in a native
+sheet/dialog; Home's Scripture card selects the Bible destination, and Event Calendar remains
+a separate reference surface. Selecting an observance can open its daily readings. Mac retains
+its native Bible sidebar and Today reading workflow. See [WIDGETS.markdown](WIDGETS.markdown)
 and [schema/widgets.json](schema/widgets.json) for configuration, refresh, signing, and testing.
 
 Dev-time-generated datasets back Home, Readings and native desktop Today (per-platform physical
@@ -1788,7 +1799,7 @@ copies, same convention as the bundles; per-platform `TodayInfoStore` providers)
   selected date drives every Today row and is shared between Home and Readings within the
   same window. Explicit browsing retains that civil date; Today resumes local-day following.
   The `showTodayReadings` preference (default `true`) remains for native Windows Today;
-  dedicated Readings remains available independently. The reader starts collapsed unless `expandReadingsByDefault` (default
+  the Daily Readings sheet remains available independently. The reader starts collapsed unless `expandReadingsByDefault` (default
   `false`) is enabled. Chapter transitions use the selected Bible edition's language, independent
   of interface and prayer language. Chapter numbers are regular, never italic: Hebrew uses
   traditional gematria (including ט״ו/ט״ז), Arabic uses Eastern Arabic digits, and Aramaic
@@ -1881,7 +1892,9 @@ See [calendar research and coverage](calendar-research.markdown) for source rule
 
 ### Offline Bible passages
 
-On iPhone/iPad Home opens Bible full-screen with Done returning Home; Calendar retains its native sheet. Home opens a separate Bible reference that browses the selected edition's
+Bible is a primary phone/tablet tab and Windows sidebar destination; the Home Scripture card
+selects it. Daily Readings and Calendar retain native sheets/dialogs, while Mac retains its
+desktop Bible and Today workflow. The Bible destination browses the selected edition's
 available books and chapters, with verse navigation, paired scripts, source credit, and
 explicit partial-chapter notices. It shares `readingsEditionId` with daily passages; Bible position is
 window-local and independent of the prayer date. Only `bible-catalog.json` is bundled.

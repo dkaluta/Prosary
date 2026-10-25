@@ -34,7 +34,8 @@ Saint or Feast shows the selected calendar's daily title and an available source
 Descriptions come from the selected calendar's credited observances, in the selected interface language;
 they are never translated, borrowed from another rite, or replaced with invented biographies.
 When none is available, the widget says so. The available credit appears where space allows;
-tapping opens today's readings and full description/source links. These dedicated widgets
+tapping opens today's Daily Readings sheet and full description/source links on phones/tablets.
+Mac retains its native Today reading destination. These dedicated widgets
 show the feast independently of the optional Home feast row.
 
 Android widgets use the system wallpaper palette on Android 12 and later, with blue light

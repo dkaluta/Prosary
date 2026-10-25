@@ -7,6 +7,11 @@ import XCTest
 @testable import Prosary
 
 final class AppNavigationTests: XCTestCase {
+  func testPrimaryNavigationGivesTheBibleItsOwnSection() {
+    XCTAssertEqual(AppSection.allCases.map(\.rawValue), ["home", "pray", "bible", "search"])
+    XCTAssertEqual(AppSection.bible.systemImage, "book")
+  }
+
   @MainActor
   func testOnlyTheActiveWindowConsumesAnExternalPrayerRequest() {
     let coordinator = NavigationCoordinator()

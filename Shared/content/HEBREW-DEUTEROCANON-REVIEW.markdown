@@ -7,6 +7,25 @@ not imply that Kahana translated every book. The parsed contributor catalog is
 OCR layer exists. The files below are transcriptions of user-supplied sources; no blanket
 public-domain statement is inferred for all contributors or editions.
 
+## Copyright status under Israeli Copyright Act 5768-2007 (§ 38)
+
+The Kahana-edited translations are used in accordance with Section 38 of the Israeli Copyright Act 5768-2007 (*חוק זכויות יוצרים, תשס״ח-2007*):
+
+> **תקופת זכות יוצרים**
+>
+> 38. זכות יוצרים ביצירה תהא למשך חייו של היוצר וכן שבעים שנים לאחר מותו, בכפוף להוראות פרק זה.
+
+In accordance with Section 38 and Section 43 (under which copyright runs through the end of the 70th calendar year following the creator's death), works whose authors passed away in 1955 or earlier entered the public domain on January 1, 2026.
+
+All deuterocanonical translations edited by Kahana and selected for Prosary satisfy this term:
+- **Abraham Kahana** (אברהם כהנא, 1874–1946): General editor; translator of 1 Maccabees (`1MA`), 2 Maccabees (`2MA`), Baruch (`BAR`), and Sirach (`SIR`). Public domain since January 1, 2017.
+- **Menachem (Edmund) Stein** (מנחם שטיין, 1893–1943): Translator of Wisdom of Solomon (`WIS`) and Additions to Esther (`ESG`). Public domain since January 1, 2014.
+- **Bernard (Dov) Heller** (דב היליר, 1867–1955): Translator of Tobit (`TOB`, short recension) and Additions to Daniel (`DAG`: `S3Y`, `SUS`, `BEL`). Public domain since January 1, 2026.
+- **Maurice (Moshe) Simon** (משה סימון, 1874–1955): Translator of Judith (`JDT`). Public domain since January 1, 2026.
+
+**Excluded from Kahana — Letter of Jeremiah (`LJE`)**:
+In Kahana's edition, Letter of Jeremiah was translated by **Elia Samuele Artom** (אליהו ש' הרטום, 1887–1965). Because Artom passed away in 1965, his translation remains protected until December 31, 2035 under Section 38. Prosary therefore did not use Kahana/Artom for Letter of Jeremiah, and instead transcribed the public-domain Hebrew translation of **Yitzchak Seckel Fränkel** (יצחק זעקיל פרענקל, 1765–1866; *Ketuvim Aharonim*, Warsaw 1863), segmented against Brenton's Septuagint versification.
+
 ## Working and source contract
 
 Each book has a separate canonical file in `hebrew-deuterocanon/<BOOK>.json`, with this

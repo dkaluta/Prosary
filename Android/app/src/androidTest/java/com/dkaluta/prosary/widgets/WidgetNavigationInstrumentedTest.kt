@@ -1,6 +1,7 @@
 package com.dkaluta.prosary.widgets
 
 import androidx.compose.ui.test.assertTextContains
+import androidx.compose.ui.test.assertIsSelected
 
 import android.content.Intent
 import android.net.Uri
@@ -10,8 +11,13 @@ import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
+import androidx.compose.ui.test.performKeyInput
+import androidx.compose.ui.test.pressKey
+import androidx.compose.ui.input.key.Key
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import androidx.test.runner.lifecycle.Stage
@@ -34,6 +40,40 @@ import java.time.format.FormatStyle
 @RunWith(AndroidJUnit4::class)
 class WidgetNavigationInstrumentedTest {
     @get:Rule val compose = createEmptyComposeRule()
+
+    @Test fun readingsAndCalendarLinksOpenTheirSheetsWhileBibleRemainsAPrimaryDestination() {
+        val app = InstrumentationRegistry.getInstrumentation().targetContext
+        val dates = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(app.resources.configuration.locales[0])
+        ActivityScenario.launch<MainActivity>(Intent(app, MainActivity::class.java)
+            .setAction(Intent.ACTION_VIEW).setData(Uri.parse("prosary://widget/readings")))
+        try {
+            compose.waitUntil(20_000) { compose.onAllNodes(hasTestTag("homeReference.daily")).fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag("readingsChooseDate").assertTextContains(LocalDate.now().format(dates))
+            compose.onNodeWithTag("readingsPrevious").performClick()
+            compose.onNodeWithTag("readingsChooseDate").assertTextContains(LocalDate.now().minusDays(1).format(dates))
+            WidgetUpdates.launchIntent(app, "calendar").send()
+            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeReference.calendar")).fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag("homeReference.daily").assertDoesNotExist()
+            pressBack()
+            compose.onNodeWithTag("tab.home").assertIsSelected()
+            compose.onNodeWithTag("tab.bible").performClick().assertIsSelected()
+            compose.onNodeWithTag("bibleScreen").assertExists()
+            compose.onNodeWithTag("tab.readings").assertDoesNotExist()
+            WidgetUpdates.launchIntent(app, "readings").send()
+            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeReference.daily")).fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag("readingsChooseDate").assertTextContains(LocalDate.now().format(dates))
+            compose.onNodeWithTag("readingsDone").performClick()
+            compose.onNodeWithTag("tab.home").assertIsSelected()
+            compose.onNodeWithTag("homeReference.calendar").assertDoesNotExist()
+            WidgetUpdates.launchIntent(app, "readings").send()
+            compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeReference.daily")).fetchSemanticsNodes().isNotEmpty() }
+            compose.onNodeWithTag("readingsList").performKeyInput { pressKey(Key.Escape) }
+            compose.onNodeWithTag("homeReference.daily").assertDoesNotExist()
+            compose.onNodeWithTag("tab.home").assertIsSelected()
+        } finally {
+            closeAppActivities()
+        }
+    }
 
     @Test fun coldRosaryWarmSavedResumeAndDeletedPrayerFallback() {
         val app = InstrumentationRegistry.getInstrumentation().targetContext
@@ -63,30 +103,36 @@ class WidgetNavigationInstrumentedTest {
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithTag("prayerProgress").assertDoesNotExist()
             val dates = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(app.resources.configuration.locales[0])
-            compose.onNodeWithTag("tab.readings").performClick()
+            compose.onNodeWithTag("homeWidget.readings").performScrollTo().performClick()
             compose.onNodeWithTag("readingsPrevious").performClick()
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(LocalDate.now().minusDays(1).format(dates))
             WidgetUpdates.launchIntent(app, "today").send()
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithTag("homeDate").assertTextContains(LocalDate.now().format(
                 DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(app.resources.configuration.locales[0])))
-            compose.onNodeWithTag("tab.readings").performClick()
+            compose.onNodeWithTag("homeReference.daily").assertDoesNotExist()
+            compose.onNodeWithTag("homeWidget.readings").performScrollTo().performClick()
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(LocalDate.now().format(dates))
             runBlocking { services.presetStore.delete(prayer) }
             WidgetUpdates.launchIntent(app, "prayer/${prayer.id}").send()
             compose.waitForIdle()
             compose.onNodeWithTag("prayerProgress").assertDoesNotExist()
+            compose.onNodeWithTag("homeReference.daily").assertDoesNotExist()
         } finally {
             PrayerRunProgressStore.clear(app, PrayerRunKeys.rosary(prayer.id))
             runBlocking { services.presetStore.delete(prayer) }
             // PendingIntent activation can replace ActivityScenario's tracked Activity.
             // Close every app Activity explicitly before releasing the original scenario.
-            InstrumentationRegistry.getInstrumentation().runOnMainSync {
-                listOf(Stage.RESUMED, Stage.STARTED, Stage.CREATED, Stage.STOPPED).flatMap {
-                    ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(it)
-                }.filterIsInstance<MainActivity>().forEach { it.finish() }
-            }
-            InstrumentationRegistry.getInstrumentation().waitForIdleSync()
+            closeAppActivities()
         }
+    }
+
+    private fun closeAppActivities() {
+        InstrumentationRegistry.getInstrumentation().runOnMainSync {
+            listOf(Stage.RESUMED, Stage.STARTED, Stage.CREATED, Stage.STOPPED).flatMap {
+                ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(it)
+            }.filterIsInstance<MainActivity>().forEach { it.finish() }
+        }
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync()
     }
 }

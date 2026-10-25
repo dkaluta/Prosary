@@ -3,6 +3,7 @@ package com.dkaluta.prosary.ui
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -24,7 +25,7 @@ import org.junit.Test
 class ReadingsSearchInstrumentedTest {
     @get:Rule val compose = createEmptyComposeRule()
 
-    @Test fun readingsDateAndSearchCategorySurviveTabsAndActivityRecreation() {
+    @Test fun readingsSheetDateAndSearchCategorySurviveNavigationAndActivityRecreation() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeDashboard")).fetchSemanticsNodes().isNotEmpty() }
@@ -32,23 +33,29 @@ class ReadingsSearchInstrumentedTest {
             compose.onNodeWithTag("prayCards").assertExists()
             compose.onNodeWithTag("todayChooseDate").assertDoesNotExist()
             compose.onNodeWithTag("todayReadings").assertDoesNotExist()
-            compose.onNodeWithTag("tab.readings").performClick()
+            openReadings()
             compose.onNodeWithTag("readingsPrevious").performClick()
             val date = LocalDate.now().minusDays(1).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(date)
             assertDateControlHeights("readingsPrevious", "readingsChooseDate", "readingsNext")
+            compose.onNodeWithTag("readingsDone").performClick()
             compose.onNodeWithTag("tab.pray").performClick()
             compose.onNodeWithTag("todayChooseDate").assertDoesNotExist()
             compose.onNodeWithTag("tab.home").performClick()
             compose.onNodeWithTag("homeDate").assertTextContains(LocalDate.now().minusDays(1)
                 .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(context.resources.configuration.locales[0])))
-            compose.onNodeWithTag("tab.readings").performClick()
+            openReadings()
             compose.onNodeWithTag("readingsPrevious").performClick()
             val earlierDate = LocalDate.now().minusDays(2).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
-            compose.onNodeWithTag("tab.readings").performClick()
+            scenario.recreate()
+            compose.onNodeWithTag("homeReference.daily").assertExists()
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(earlierDate)
+            compose.onNodeWithTag("readingsDone").performClick()
+            compose.onNodeWithTag("tab.bible").performClick().assertIsSelected()
+            compose.onNodeWithTag("bibleScreen").assertExists()
+            compose.onNodeWithTag("tab.readings").assertDoesNotExist()
             compose.onNodeWithTag("tab.search").performClick()
             compose.onNodeWithTag("searchCategory.eastern").performScrollTo().performClick().assertIsSelected()
             compose.onNodeWithTag("searchQuery").performTextInput("___No matching prayer___")
@@ -57,23 +64,31 @@ class ReadingsSearchInstrumentedTest {
             compose.onNodeWithTag("searchCategory.eastern").performScrollTo().assertIsSelected()
             compose.onNodeWithText(context.getString(R.string.search_no_device_match)).performScrollTo().assertExists()
             compose.onNodeWithTag("searchCategoryAll").performScrollTo().performClick().assertIsSelected()
-            compose.onNodeWithTag("tab.readings").performClick()
+            openReadings()
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(earlierDate)
             compose.onNodeWithTag("readingsChooseDate").performClick()
             compose.onNodeWithTag("readingsDatePicker").assertExists()
-            compose.onNodeWithTag("calendarDate.${LocalDate.now().minusDays(2)}", useUnmergedTree = true).assertExists()
+            compose.onNode(hasTestTag("calendarDate.${LocalDate.now().minusDays(2)}") and
+                hasAnyAncestor(hasTestTag("readingsDatePicker")), useUnmergedTree = true).assertExists()
             captureDateChooser()
             compose.onNodeWithTag("readingsReset").performClick()
             val today = LocalDate.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
                 .withLocale(context.resources.configuration.locales[0]))
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(today)
             // Home and Readings keep their shared date; Pray has no date content.
-            compose.onNodeWithTag("tab.home").performClick()
+            compose.onNodeWithTag("readingsDone").performClick()
+            compose.onNodeWithTag("tab.home").assertIsSelected()
             compose.onNodeWithTag("homeDate").assertTextContains(LocalDate.now()
                 .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(context.resources.configuration.locales[0])))
             compose.onNodeWithTag("tab.pray").performClick()
             compose.onNodeWithTag("todayChooseDate").assertDoesNotExist()
         }
+    }
+
+    private fun openReadings() {
+        compose.onNodeWithTag("tab.home").performClick()
+        compose.onNodeWithTag("homeWidget.readings").performScrollTo().performClick()
+        compose.onNodeWithTag("homeReference.daily").assertExists()
     }
 
     private fun assertDateControlHeights(previous: String, date: String, next: String) {

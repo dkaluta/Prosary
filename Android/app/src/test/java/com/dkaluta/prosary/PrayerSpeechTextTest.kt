@@ -37,4 +37,21 @@ class PrayerSpeechTextTest {
         assertFalse(music.isNarration)
         assertNull(music.chapters.first().stepIndex)
     }
+
+    @Test fun hebrewDivineNamesAreSpokenAsAdonaiOrElohim() {
+        assertEquals("אֲדֹנָי לְעֶזְרָתִי חוּשָׁה", PrayerSpeechText.spokenText("ה׳ לְעֶזְרָתִי חוּשָׁה", "he"))
+        assertEquals("שִׁפְחַת אֲדֹנָי", PrayerSpeechText.spokenText("שִׁפְחַת ה׳", "he"))
+        assertEquals("הִנֵּה יָמִים בָּאִים נְאֻם־אֲדֹנָי", PrayerSpeechText.spokenText("הִנֵּה יָמִים בָּאִים נְאֻם־יהוה", "he"))
+        assertEquals("כֹּה אָמַר אֲדֹנָי אֱלֹהִים", PrayerSpeechText.spokenText("כֹּה אָמַר אֲדֹנָי יהוה", "he"))
+        assertEquals("אדני אֱלֹהִים", PrayerSpeechText.spokenText("אדני יהוה", "he"))
+        assertEquals("אֲדֹנָי וֵאלֹהִים", PrayerSpeechText.spokenText("אֲדֹנָי וַיהוה", "he"))
+        assertEquals("לַאדֹנָי הָאָרֶץ", PrayerSpeechText.spokenText("לַיהוה הָאָרֶץ", "he"))
+        assertEquals("בַּאדֹנָי חָסִיתִי", PrayerSpeechText.spokenText("בַּיהוה חָסִיתִי", "he"))
+        assertEquals("וַאדֹנָי צִוָּה", PrayerSpeechText.spokenText("וַיהוה צִוָּה", "he"))
+        assertEquals("מֵאדֹנָי", PrayerSpeechText.spokenText("מֵיהוה", "he"))
+        assertEquals("לַאדֹנָי", PrayerSpeechText.spokenText("לַה׳", "he"))
+        assertEquals("אֲדֹנָי", PrayerSpeechText.spokenText("יי", "he"))
+        assertEquals("וַאדֹנָי", PrayerSpeechText.spokenText("וַיי", "he"))
+        assertEquals("הוֹדוּ לַאדֹנָי כִּי־טוֹב", PrayerSpeechText.spokenText("הוֹדוּ לַיהוָה כִּי־טוֹב", "he"))
+    }
 }

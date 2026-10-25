@@ -2,14 +2,15 @@
   "$comment": "Windows desktop workflow and ownership contract; see ../WINDOWS-EXPERIENCE.markdown. Uses the existing shared Prayer shape and SQLite database.",
   "platform": "windows",
   "root": "windowsLibrary",
-  "sections": ["home", "library", "today", "readings", "gallery", "basic", "search", "settings", "about"],
+  "sections": ["home", "library", "today", "bible", "gallery", "basic", "search", "settings", "about"],
   "initialSection": "home",
   "home": {
     "cards": ["readings", "popeIntention", "calendar", "photo", "reminders", "scripture", "reflection", "feast"],
     "defaultCards": ["readings", "popeIntention", "calendar", "reminders", "scripture", "feast"],
     "order": "homeWidgetOrder stores newline-separated known unique identifiers. Absent uses defaultCards; an explicit empty value stays empty. Add appends, Remove preserves the remaining order, and Customize Home offers native drag reorder plus Move Up and Move Down controls.",
     "date": "Window-local Today selected date; follow the local clock only while Today is selected. Home visibility is independent of the legacy Today visibility preferences.",
-    "destinations": {"readings":"dailyReadings", "calendar":"feastsAndSolemnities", "scripture":"bible", "reminders":"exactSavedPrayerReminderEditorOrTodaySettings"},
+    "destinations": {"readings":"dailyReadingsSheet", "calendar":"feastsAndSolemnities", "scripture":"bible", "reminders":"exactSavedPrayerReminderEditorOrTodaySettings"},
+    "referencePresentation": "Daily Readings opens in an owner-window ContentDialog with native Close, shared civil date, date navigation, edition and reading options. Calendar keeps its existing independent native reference window and closes before Readings for this Date opens the readings dialog. Scripture selects the primary Bible sidebar destination; dismissal restores the underlying page.",
     "reminders": "Show enabled reminders from the existing saved-prayer store and Today settings. Manage Reminders selects any saved prayer, including one with no existing reminder, or Today settings.",
     "photo": "Native picture picker, decode validation, private LocalFolder/HomePhotos copy, persisted homePhotoPath. Replacement/removal deletes the previous private file. Cancellation and owner/page closure do not replace the selected photo.",
     "reflection": "Empty until the supplied mission text is available; no freeform editor.",
@@ -48,7 +49,7 @@
   "menus": {
     "placement": "Native WinUI MenuBar inside each window, with CommandBars for frequent page actions.",
     "file": ["importPrayerPacks", "closeWindow"],
-    "view": ["home", "showLibrary", "today", "readings", "gallery", "basicPrayers", "search", "fullScreen"],
+    "view": ["home", "showLibrary", "today", "bible", "gallery", "basicPrayers", "search", "fullScreen"],
     "prayer": ["previousStep", "nextStep", "prayerSettings"],
     "help": ["settings", "about"],
     "shortcuts": {"importPrayerPacks":"Ctrl+O", "closeWindow":"Ctrl+W", "showLibrary":"Ctrl+L", "search":"Ctrl+F", "fullScreen":"F11", "previousStep":"Ctrl+Left", "nextStep":"Ctrl+Right", "rename":"F2", "delete":"Delete", "open":"Enter"},
@@ -68,5 +69,5 @@
       "state": "Changing date, calendar/Pascha setting, language or edition refreshes the appropriate rows. Ordinary refreshes and edition changes preserve individual collapses; reopening the view expands all passages. Typeface changes refresh displayed Scripture without replacing source text; Arabic/Hebrew passages use RTL."
     }
   },
-  "sources": ["MainWindow.xaml.cs", "PrayerWindow.xaml.cs", "Navigation/Router.cs", "Services/DesktopWindowManager.cs", "Services/DesktopWindowChrome.cs", "Services/DesktopPrayerIdentity.cs", "Models/DesktopPrayerLibrary.cs", "Models/HomeWidgets.cs", "Persistence/DesktopPresetStore.cs", "ViewModels/DashboardViewModel.cs", "Views/DashboardPage.xaml", "ViewModels/DesktopLibraryViewModel.cs", "Views/DesktopLibraryPage.xaml", "Views/DesktopGalleryPage.xaml", "Views/DesktopTodayPage.xaml", "Views/SearchPage.xaml", "ViewModels/SearchViewModel.cs", "Services/SearchCategoryFilter.cs", "ViewModels/DesktopReadingsViewModel.cs", "Services/ReadingsTextStore.cs"]
+  "sources": ["MainWindow.xaml.cs", "PrayerWindow.xaml.cs", "Navigation/Router.cs", "Services/DesktopWindowManager.cs", "Services/DesktopWindowChrome.cs", "Services/DesktopPrayerIdentity.cs", "Models/DesktopPrayerLibrary.cs", "Models/HomeWidgets.cs", "Persistence/DesktopPresetStore.cs", "ViewModels/DashboardViewModel.cs", "Views/DashboardPage.xaml", "ViewModels/DesktopLibraryViewModel.cs", "Views/DesktopLibraryPage.xaml", "Views/DesktopGalleryPage.xaml", "Views/DesktopBiblePage.xaml", "Views/BibleReaderControl.xaml", "Views/DesktopTodayPage.xaml", "Views/SearchPage.xaml", "ViewModels/SearchViewModel.cs", "Services/SearchCategoryFilter.cs", "ViewModels/DesktopReadingsViewModel.cs", "Services/ReadingsTextStore.cs"]
 }

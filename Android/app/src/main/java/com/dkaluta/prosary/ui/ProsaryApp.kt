@@ -43,9 +43,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
-import com.dkaluta.prosary.ui.readings.ReadingsScreen
+import com.dkaluta.prosary.ui.readings.BibleTabScreen
 import com.dkaluta.prosary.ui.readings.HomeReadingsMode
 import com.dkaluta.prosary.ui.readings.HomeReferenceSheet
+import com.dkaluta.prosary.ui.readings.ReadingsOpenRequest
 import com.dkaluta.prosary.ui.search.SearchScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayerFlowScreen
 import com.dkaluta.prosary.ui.shared.BasicPrayersScreen
@@ -86,7 +87,7 @@ private object AdHocRosaryHolder {
 private object Routes {
     const val Home = "home"
     const val Pray = "pray"
-    const val Readings = "readings"
+    const val Bible = "bible"
     const val Search = "search"
     const val RepositoryBrowser = "favorites/repository"
     // `kind` seeds a brand-new favorite's type when prayerId is absent (Android has no
@@ -145,7 +146,7 @@ internal fun NavHostController.navigateSingleTop(route: String) {
     navigate(route, singleTopNavOptions())
 }
 
-/** The app's tab shell: Home, Pray, Readings, Search —
+/** The app's tab shell: Home, Pray, Bible, Search —
  * bottom NavigationBar on phones, NavigationRail on wide layouts ("bottom on phone, side on
  * computer"). The phone bar shows only on the four top-level tab destinations; inner screens
  * (flows, editors) keep the full height so a prayer owns the screen and a stray tap can't
@@ -160,11 +161,13 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
     var todayWidgetRequest by rememberSaveable { mutableLongStateOf(0L) }
     var calendarWidgetRequest by rememberSaveable { mutableLongStateOf(0L) }
     var readingsWidgetRequest by rememberSaveable { mutableLongStateOf(0L) }
+    var widgetLaunchSequence by rememberSaveable { mutableLongStateOf(0L) }
     LaunchedEffect(widgetLaunchRequest) {
         val request = widgetLaunchRequest ?: return@LaunchedEffect
         // The adaptive shell subcomposes its NavHost. On a cold start the outer effect can
         // run first, so wait for the graph's first entry before applying the widget route.
         navController.currentBackStackEntryFlow.first()
+        widgetLaunchSequence = request.sequence
         val route = when (val destination = request.destination) {
             WidgetDestination.Today -> {
                 todayWidgetRequest = request.sequence
@@ -174,12 +177,12 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
             WidgetDestination.Calendar -> {
                 calendarWidgetRequest = request.sequence
                 readingsWidgetRequest = 0L
-                Routes.Readings
+                Routes.Home
             }
             WidgetDestination.Readings -> {
                 readingsWidgetRequest = request.sequence
                 calendarWidgetRequest = 0L
-                Routes.Readings
+                Routes.Home
             }
             is WidgetDestination.SavedPrayer -> if (services.presetStore.get(destination.id) != null) {
                 Routes.prayer(destination.id)
@@ -210,7 +213,7 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
     val tabs = listOf(
         TabSpec(Routes.Home, R.string.home_widgets_title, Icons.Filled.Home),
         TabSpec(Routes.Pray, R.string.tab_pray, Icons.Filled.Favorite),
-        TabSpec(Routes.Readings, R.string.tab_readings, Icons.AutoMirrored.Filled.MenuBook),
+        TabSpec(Routes.Bible, R.string.bible_title, Icons.AutoMirrored.Filled.MenuBook),
         TabSpec(Routes.Search, R.string.tab_search, Icons.Filled.Search),
     )
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -253,7 +256,7 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
                 }
             }
         },
-    ) { modifier -> AppNavHost(navController, modifier, todayWidgetRequest, calendarWidgetRequest, readingsWidgetRequest) }
+    ) { modifier -> AppNavHost(navController, modifier, todayWidgetRequest, calendarWidgetRequest, readingsWidgetRequest, widgetLaunchSequence) }
 }
 
 /** The navigation host has one composition identity at every width. Only the surrounding
@@ -310,20 +313,25 @@ private fun NavHostController.launch(target: LaunchTarget) {
 
 @Composable
 private fun AppNavHost(navController: NavHostController, modifier: Modifier = Modifier, todayWidgetRequest: Long = 0,
-    calendarWidgetRequest: Long = 0, readingsWidgetRequest: Long = 0) {
+    calendarWidgetRequest: Long = 0, readingsWidgetRequest: Long = 0, widgetLaunchSequence: Long = 0) {
     val browsingDate = rememberTodayBrowsingDate()
-    var homeReadingsRequest by rememberSaveable { mutableLongStateOf(0L) }
-    var homeReadingsMode by rememberSaveable { androidx.compose.runtime.mutableStateOf(HomeReadingsMode.Daily) }
     var referenceMode by rememberSaveable { androidx.compose.runtime.mutableStateOf<HomeReadingsMode?>(null) }
-    val openDailyReadings: () -> Unit = {
-        referenceMode = null
-        homeReadingsMode = HomeReadingsMode.Daily
-        homeReadingsRequest = System.nanoTime()
-        navController.navigate(Routes.Readings) {
-            popUpTo(Routes.Home) { saveState = true }
-            launchSingleTop = true
-            restoreState = true
+    var handledWidgetRequest by rememberSaveable { mutableLongStateOf(0L) }
+    LaunchedEffect(widgetLaunchSequence) {
+        if (widgetLaunchSequence != 0L && widgetLaunchSequence != handledWidgetRequest) {
+            val request = ReadingsOpenRequest.latest(calendarWidgetRequest, readingsWidgetRequest, 0, HomeReadingsMode.Daily)
+            if (request?.sequence == widgetLaunchSequence) {
+                request.applyTo(browsingDate)
+                referenceMode = request.mode
+            } else {
+                referenceMode = null
+                if (widgetLaunchSequence == todayWidgetRequest) browsingDate.selectedEpochDay = null
+            }
+            handledWidgetRequest = widgetLaunchSequence
         }
+    }
+    val openDailyReadings: () -> Unit = {
+        referenceMode = HomeReadingsMode.Daily
     }
     NavHost(navController = navController, startDestination = Routes.Home, modifier = modifier) {
         composable(Routes.Home) {
@@ -331,15 +339,19 @@ private fun AppNavHost(navController: NavHostController, modifier: Modifier = Mo
                 onOpenSettings = { navController.navigateSingleTop(Routes.Settings) },
                 onOpenReminders = { id -> navController.navigateSingleTop(Routes.remindersOnlyEditor(id)) },
                 onOpenReadings = { mode ->
-                    if (mode == HomeReadingsMode.Daily) openDailyReadings()
-                    else referenceMode = mode
+                    when (mode) {
+                        HomeReadingsMode.Daily -> openDailyReadings()
+                        HomeReadingsMode.Calendar -> referenceMode = mode
+                        HomeReadingsMode.Bible -> navController.navigate(Routes.Bible) {
+                            popUpTo(Routes.Home) { saveState = true }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
                 })
         }
-        composable(Routes.Readings) {
-            ReadingsScreen(browsingDate = browsingDate,
-                calendarRequest = calendarWidgetRequest, readingsRequest = readingsWidgetRequest,
-                homeRequest = homeReadingsRequest, homeMode = homeReadingsMode,
-                onOpenReference = { referenceMode = it.takeUnless { mode -> mode == HomeReadingsMode.Daily } })
+        composable(Routes.Bible) {
+            BibleTabScreen()
         }
         composable(Routes.Search) {
             SearchScreen(onLaunch = { target -> navController.launch(target) },

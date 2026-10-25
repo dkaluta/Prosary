@@ -5,6 +5,7 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.hasTestTag
+import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -222,7 +223,8 @@ class HomeDashboardInstrumentedTest {
                 val date = LocalDate.now()
                 val events = com.dkaluta.prosary.content.today.CalendarEvents.events(date, TodayInfoStore.feast())
                 assertTrue(events.isNotEmpty())
-                compose.onNodeWithTag("calendarDate.$date", useUnmergedTree = true).assertExists()
+                compose.onNode(hasTestTag("calendarDate.$date") and
+                    hasAnyAncestor(hasTestTag("homeReference.calendar")), useUnmergedTree = true).assertExists()
                 captureScreenshot("calendar-events")
                 compose.onNodeWithTag("calendar.monthPicker").performScrollToNode(hasTestTag("calendarEvent.${events.first().id}"))
                 compose.onNodeWithTag("calendarEvent.${events.first().id}").performClick()
@@ -230,7 +232,11 @@ class HomeDashboardInstrumentedTest {
                 captureScreenshot("event-details")
                 compose.onNodeWithTag("calendarEventReadings").performClick()
                 compose.onNodeWithTag("readingsList").assertExists()
+                compose.onNodeWithTag("homeReference.calendar").assertDoesNotExist()
                 compose.onNodeWithTag("readingsMode.daily").assertDoesNotExist()
+                pressBack()
+                compose.onNodeWithTag("homeReference.daily").assertDoesNotExist()
+                compose.onNodeWithTag("tab.home").assertIsSelected()
             } finally {
                 scenario.onActivity { AppSettings.feastCalendarId = oldCalendar; AppSettings.calendarViewMode = oldMode }
             }
@@ -262,16 +268,18 @@ class HomeDashboardInstrumentedTest {
     @Test fun scriptureAndCalendarShortcutsKeepTheChosenDateAndCommunityLivesInSearch() = withFreshHome {
         ActivityScenario.launch(MainActivity::class.java).use {
             awaitHome()
-            compose.onNodeWithTag("tab.readings").performClick()
+            compose.onNodeWithTag("homeWidget.readings").performScrollTo().performClick()
+            captureScreenshot("daily-readings-sheet")
             compose.onNodeWithTag("readingsPrevious").performClick()
-            compose.onNodeWithTag("tab.home").performClick()
+            compose.onNodeWithTag("readingsDone").performClick()
             val selected = LocalDate.now().minusDays(1)
             val locale = app.resources.configuration.locales[0]
             compose.onNodeWithTag("homeDate").assertTextContains(selected.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale)))
             compose.onNodeWithTag("homeWidget.scripture").performScrollTo()
             compose.onNodeWithTag("homeWidget.scripture").performClick()
-            compose.onNodeWithTag("homeReference.bible").assertExists()
+            compose.onNodeWithTag("tab.bible").assertIsSelected()
             compose.onNodeWithTag("bibleScreen").assertExists()
+            captureScreenshot("bible-primary-tab")
             pressBack()
             compose.onNodeWithTag("tab.home").assertIsSelected()
             compose.onNodeWithTag("homeOpenCalendar").performScrollTo()
@@ -279,9 +287,10 @@ class HomeDashboardInstrumentedTest {
             compose.onNodeWithTag("homeReference.calendar").assertExists()
             pressBack()
             compose.onNodeWithTag("tab.home").assertIsSelected()
-            compose.onNodeWithTag("tab.readings").performClick()
+            compose.onNodeWithTag("homeWidget.readings").performScrollTo().performClick()
             compose.onNodeWithTag("readingsMode.bible").assertDoesNotExist()
             compose.onNodeWithTag("readingsChooseDate").assertTextContains(selected.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale)))
+            compose.onNodeWithTag("readingsDone").performClick()
             compose.onNodeWithTag("tab.search").performClick()
             compose.onNodeWithTag("searchCommunity").performClick()
             compose.onNodeWithTag("searchQuery").assertDoesNotExist()

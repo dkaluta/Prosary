@@ -22,7 +22,8 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{x:Bind Title}" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                    <TextBlock Text="{x:Bind Title}" Style="{StaticResource HeadlineTextStyle}" VerticalAlignment="Center" TextWrapping="Wrap"
+                               Visibility="{x:Bind ShowsPageTitle, Converter={StaticResource BoolToVisibility}}" />
                     <Button Grid.Column="1" Background="Transparent" Width="44" Height="44"
                             AutomationProperties.Name="{x:Bind OptionsLabel}" ToolTipService.ToolTip="{x:Bind OptionsLabel}">
                         <FontIcon Glyph="&#xE713;" />

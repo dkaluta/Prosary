@@ -8,12 +8,12 @@ using Prosary.Views;
 
 namespace Prosary;
 
-/// <summary>Home's calendar and full Bible are independent native reference windows.</summary>
+/// <summary>Home's calendar is an independent native reference window.</summary>
 public sealed class ReferenceWindow : Window
 {
-    public ReferenceWindow(string mode, HomeViewModel? today, Action<DateOnly> openReadings)
+    public ReferenceWindow(HomeViewModel? today, Action<DateOnly> openReadings)
     {
-        Title = mode == "bible" ? Loc.Tr("bible_title", "Bible") : Loc.Tr("calendar_events_title", "Event Calendar");
+        Title = Loc.Tr("calendar_events_title", "Event Calendar");
         var root = new Grid();
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
         root.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
@@ -38,14 +38,10 @@ public sealed class ReferenceWindow : Window
         DesktopWindowChrome.Configure(this, root, titleBar, leftInset, rightInset, 620);
         Router.Register(frame, this);
         DesktopWindowChrome.Populate(menus, this, frame);
-        if (mode == "bible") frame.Content = new Page { Content = new BibleReaderControl() };
-        else
-        {
-            var calendar = new LiturgicalCalendarControl();
-            calendar.FocusOnDate(today?.SelectedDate ?? DateOnly.FromDateTime(DateTime.Today));
-            calendar.SelectDate = date => { Close(); openReadings(date); };
-            frame.Content = new Page { Content = calendar };
-        }
+        var calendar = new LiturgicalCalendarControl();
+        calendar.FocusOnDate(today?.SelectedDate ?? DateOnly.FromDateTime(DateTime.Today));
+        calendar.SelectDate = date => { Close(); openReadings(date); };
+        frame.Content = new Page { Content = calendar };
         Closed += (_, _) => { Router.Unregister(frame); frame.Content = null; };
     }
 }

@@ -1,13 +1,13 @@
 import SwiftUI
 
 enum AppSection: String, CaseIterable, Hashable {
-  case home, pray, readings, search
+  case home, pray, bible, search
 
   var title: String {
     switch self {
     case .home: UILanguage.text("homeWidgets.title", language: UILanguage.current, fallback: "Home")
     case .pray: String(localized: "tabs.pray", defaultValue: "Pray", bundle: UILanguage.bundle, locale: UILanguage.locale)
-    case .readings: String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale)
+    case .bible: bibleLabel("title", "Bible")
     case .search: String(localized: "tabs.search", defaultValue: "Search", bundle: UILanguage.bundle, locale: UILanguage.locale)
     }
   }
@@ -16,7 +16,7 @@ enum AppSection: String, CaseIterable, Hashable {
     switch self {
     case .home: "house"
     case .pray: "hands.and.sparkles"
-    case .readings: "book"
+    case .bible: "book"
     case .search: "magnifyingglass"
     }
   }

@@ -77,7 +77,13 @@ use the same heading and controls, changing the visible content rather than the 
 Each visible card supports expansion independently of its order. The event month grid is
 based on the system calendar and regional first weekday, mirrors naturally in RTL, and marks every published date.
 
-Holy Scripture opens full-screen on iPhone/iPad, with Done returning Home. Calendar retains its native sheet. Wide Bible readers open as two facing pages with restrained native surfaces and a clear
+Bible is a primary tab on iPhone/iPad and Android and a Windows sidebar destination. The Home
+Scripture card selects it. The Home readings card opens Daily Readings in a native sheet with
+Done/Close. Apple sheets keep a fixed date row above scrolling readings and Settings/Done in
+the native toolbar. Calendar retains its native sheet/dialog on phones/tablets and separate native
+reference window on Windows. It can open readings for the selected date after dismissing its
+detail surface. Mac retains its native Bible sidebar and Today workflow.
+Wide Bible readers open as two facing pages with restrained native surfaces and a clear
 center gutter. Justified Scripture paragraphs place small verse indicators inline, using
 the existing Scripture typefaces and complete source blocks;
 the current source block anchors repagination and transitions to a narrow continuous reader.

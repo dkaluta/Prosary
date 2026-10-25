@@ -10,7 +10,7 @@ import androidx.compose.runtime.setValue
 import com.dkaluta.prosary.content.today.TodayDateSelection
 import java.time.LocalDate
 
-/** One window's browsing date, shared by Pray and Readings. Null keeps following today. */
+/** One window's browsing date, shared by Home, Calendar and Readings. Null follows today. */
 @Stable
 class TodayBrowsingDate(epochDay: Long? = null) {
     var selectedEpochDay by mutableStateOf(epochDay)

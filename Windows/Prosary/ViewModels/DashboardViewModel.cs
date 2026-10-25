@@ -266,7 +266,6 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
         {
             var mode = card.Id switch { "calendar" => "calendar", "scripture" => "bible", _ => "daily" };
             if (Navigation.OwnerWindow is MainWindow library) library.ShowReadingsMode(mode);
-            else Navigation.Navigate<DesktopReadingsPage>(mode);
             return;
         }
         switch (card.Id)

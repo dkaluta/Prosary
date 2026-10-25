@@ -9,7 +9,6 @@ final class BibleUITests: XCTestCase {
                            "-homeWidgetLayoutVersion", "1", "-homeWidgetCollapsedIds", "scripture\\ncalendar\\nreadings",
                            "-expandReadingsByDefault", "NO"]
     app.launch()
-    selectSection("Readings", in: app)
     return app
   }
 
@@ -32,34 +31,53 @@ final class BibleUITests: XCTestCase {
     XCTAssertTrue(app.buttons["bible.book.GEN"].waitForExistence(timeout: 10))
   }
 
-  @MainActor func testHomeBiblePreservesDailyDateAndReadingsHasNoReferenceModes() throws {
+  @MainActor private func openDailyReadings(_ app: XCUIApplication) {
+    selectSection("Home", in: app)
+    let open = app.buttons["homeWidgets.open.readings"]
+    XCTAssertTrue(open.waitForExistence(timeout: 5))
+    for _ in 0..<4 where !open.isHittable { app.swipeUp() }
+    open.tap()
+    XCTAssertTrue(app.buttons["readings.chooseDate"].waitForExistence(timeout: 5))
+    let done = app.buttons["homeReference.done"]
+    let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: done)
+    XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 5), .completed)
+  }
+
+  @MainActor func testReadingsSheetPreservesDailyDateAcrossTheBibleTab() throws {
     let app = launch()
+    openDailyReadings(app)
     XCTAssertTrue(app.navigationBars["Readings"].staticTexts["Readings"].waitForExistence(timeout: 5))
     let previous = app.buttons["readings.previousDay"]
     XCTAssertTrue(previous.waitForExistence(timeout: 5))
+    let before = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    before.name = "daily-readings-presented"; before.lifetime = .keepAlways; add(before)
     previous.tap()
+    let after = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    after.name = "daily-readings-previous-day"; after.lifetime = .keepAlways; add(after)
     let date = app.buttons["readings.chooseDate"].label
     XCTAssertFalse(app.segmentedControls["readings.mode"].exists)
     XCTAssertFalse(app.buttons["calendar.list"].exists)
+    app.buttons["homeReference.done"].tap()
     openHomeBible(app)
     XCTAssertTrue(app.navigationBars["Bible"].staticTexts["Bible"].waitForExistence(timeout: 5))
     XCTAssertFalse(app.segmentedControls["readings.mode"].exists)
     XCTAssertFalse(app.buttons["bible.scriptureDate"].exists)
     XCTAssertFalse(app.buttons["readings.chooseDate"].exists)
+    XCTAssertFalse(app.buttons["homeReference.done"].exists)
     let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     capture.name = "bible-edition-and-books"; capture.lifetime = .keepAlways; add(capture)
-    app.buttons["homeReference.done"].tap()
-    selectSection("Readings", in: app)
+    openDailyReadings(app)
     XCTAssertTrue(app.navigationBars["Readings"].staticTexts["Readings"].waitForExistence(timeout: 5))
     XCTAssertEqual(app.buttons["readings.chooseDate"].label, date)
     let dailyCapture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     dailyCapture.name = "daily-readings-restored-title"; dailyCapture.lifetime = .keepAlways; add(dailyCapture)
   }
 
-  @MainActor func testCalendarOpensFromHomeOutsideReadings() throws {
+  @MainActor func testCalendarEventReplacesItsSheetWithReadingsForTheSelectedDate() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
-      "-homeWidgetOrder", "calendar", "-homeWidgetLayoutVersion", "1", "-homeWidgetCollapsedIds", "calendar"]
+      "-homeWidgetOrder", "calendar", "-homeWidgetLayoutVersion", "1", "-homeWidgetCollapsedIds", "calendar",
+      "-calendarViewMode", "list", "-feastCalendarId", "roman"]
     app.launch()
     selectSection("Home", in: app)
     let calendar = app.buttons["homeWidgets.open.calendar"]
@@ -67,13 +85,31 @@ final class BibleUITests: XCTestCase {
     XCTAssertTrue(calendar.waitForExistence(timeout: 5), app.debugDescription)
     calendar.tap()
     XCTAssertTrue(app.navigationBars["Event Calendar"].waitForExistence(timeout: 5))
+    let events = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'calendar.listEvent.'"))
+    XCTAssertTrue(events.firstMatch.waitForExistence(timeout: 5))
+    let event = events.allElementsBoundByIndex.first { $0.isHittable } ?? events.firstMatch
+    event.tap()
+    let selectedDate = app.staticTexts["calendar.eventDate"]
+    XCTAssertTrue(selectedDate.waitForExistence(timeout: 5))
+    let date = selectedDate.label
+    let readings = app.buttons["calendar.openReadings"]
+    for _ in 0..<6 where !readings.isHittable { app.swipeUp() }
+    XCTAssertTrue(readings.isHittable)
+    readings.tap()
+    XCTAssertTrue(app.buttons["readings.chooseDate"].waitForExistence(timeout: 5))
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US")
+    dateFormatter.dateStyle = .long
+    let eventDay = try XCTUnwrap(dateFormatter.date(from: date))
+    dateFormatter.dateStyle = .medium
+    let readingsDay = try XCTUnwrap(dateFormatter.date(from: app.buttons["readings.chooseDate"].label))
+    XCTAssertTrue(Calendar(identifier: .gregorian).isDate(eventDay, inSameDayAs: readingsDay))
+    XCTAssertFalse(app.navigationBars["Event Details"].exists)
     app.buttons["homeReference.done"].tap()
-    selectSection("Readings", in: app)
-    XCTAssertTrue(app.navigationBars["Readings"].waitForExistence(timeout: 5))
-    XCTAssertFalse(app.buttons["calendar.list"].exists)
+    XCTAssertTrue(calendar.waitForExistence(timeout: 5), "One Done returns to Home")
   }
 
-  @MainActor func testHolyScriptureUsesFullWindowAndDoneReturnsHome() throws {
+  @MainActor func testHolyScriptureShortcutSelectsTheFullWindowBibleTab() throws {
     let app = launch()
     openHomeBible(app)
     let bible = app.navigationBars["Bible"]
@@ -82,8 +118,11 @@ final class BibleUITests: XCTestCase {
       "Holy Scripture must use the full window, including on iPad")
     let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     capture.name = "bible-full-window"; capture.lifetime = .keepAlways; add(capture)
-    app.buttons["homeReference.done"].tap()
+    XCTAssertFalse(app.buttons["homeReference.done"].exists)
+    selectSection("Home", in: app)
     XCTAssertTrue(app.buttons["homeWidgets.open.scripture"].waitForExistence(timeout: 5))
+    selectSection("Bible", in: app)
+    XCTAssertTrue(app.buttons["bible.book.GEN"].waitForExistence(timeout: 5))
   }
 
   @MainActor func testCalendarWeekdayHeadersFollowSystemRegion() throws {

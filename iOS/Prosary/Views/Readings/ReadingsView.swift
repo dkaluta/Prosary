@@ -4,8 +4,6 @@ import SwiftUI
 /// Browsing civil dates leaves prayer mysteries and continuation unchanged.
 struct DailyReadingsView: View {
   @Environment(\.scenePhase) private var scenePhase
-  @Environment(\.horizontalSizeClass) private var horizontalSizeClass
-  @Environment(\.self) private var environment
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
   @AppStorage("showTodayFeast") private var showsFeast = true
@@ -21,16 +19,6 @@ struct DailyReadingsView: View {
 
   private var language: String { UILanguage.current }
   private var displayedReadings: [ReadingDisplayOrder.Row<ReadingCitation>] { ReadingDisplayOrder.indexed(readings, reverse: reverseReadingsOrder) }
-  private var usesDateToolbar: Bool {
-    #if os(iOS)
-    // Regular horizontal bars share space with adaptive tabs; compact and vertical bars
-    // have their own native date controls, regardless of which device supplies the window.
-    if #available(iOS 27.1, *), environment.toolbarVerticalEdge != nil { return true }
-    return horizontalSizeClass == .compact
-    #else
-    false
-    #endif
-  }
   private var selectedDate: Date { dateSelection.localDate() }
   private var passageContext: String { "\(dateSelection.day)|\(calendarID)|\(paschaStyle)" }
   private var calendarName: String {
@@ -45,75 +33,59 @@ struct DailyReadingsView: View {
   }
 
   var body: some View {
-    ScrollView {
-      VStack(alignment: .leading, spacing: 24) {
-        if usesDateToolbar {
-          Text(calendarName)
-            .font(.caption)
-            .foregroundStyle(.secondary)
-        }
-        if let feast {
-          Text(feast.localizedTitle(language))
-            .font(.title3.weight(.semibold)).accessibilityAddTraits(.isHeader)
-        }
-        if let feast {
-          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
-            .id("\(passageContext)|\(language)")
-        }
-        ReadingEditionPicker()
-        VStack(alignment: .leading, spacing: 14) {
-          Text(String(localized: "home.today.selectedReadings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
-            .font(.headline).accessibilityAddTraits(.isHeader)
-          if readings.isEmpty {
-            Text(String(localized: "readings.noReadings", defaultValue: "No readings are available for this date in the selected calendar.", bundle: UILanguage.bundle, locale: UILanguage.locale))
-              .foregroundStyle(.secondary)
-              .accessibilityIdentifier("readings.empty")
+    VStack(spacing: 0) {
+      dateNavigation
+      ScrollView {
+        VStack(alignment: .leading, spacing: 24) {
+          if let feast {
+            Text(feast.localizedTitle(language))
+              .font(.title3.weight(.semibold)).accessibilityAddTraits(.isHeader)
           }
-          ForEach(Array(displayedReadings.enumerated()), id: \.element.id) { index, row in
-            let reading = row.value
-            if let group = reading.sourceGroup, !group.isEmpty,
-               index == 0 || displayedReadings[index - 1].value.sourceGroup != group {
-              Text(group).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
-            }
-            ScripturePassageView(reading: reading, interfaceLanguage: language)
-              .id(passageContext)
+          if let feast {
+            SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
+              .id("\(passageContext)|\(language)")
           }
-        }
-        if let torah {
+          ReadingEditionPicker()
           VStack(alignment: .leading, spacing: 14) {
-            Text(torah.isHoliday
-                 ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading", bundle: UILanguage.bundle, locale: UILanguage.locale)
-                 : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale))
+            Text(String(localized: "home.today.selectedReadings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
               .font(.headline).accessibilityAddTraits(.isHeader)
-            Text(torah.localizedTitle(language))
-            ForEach(Array(torah.allReadings.enumerated()), id: \.offset) { _, reading in
-              ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
+            if readings.isEmpty {
+              Text(String(localized: "readings.noReadings", defaultValue: "No readings are available for this date in the selected calendar.", bundle: UILanguage.bundle, locale: UILanguage.locale))
+                .foregroundStyle(.secondary)
+                .accessibilityIdentifier("readings.empty")
+            }
+            ForEach(Array(displayedReadings.enumerated()), id: \.element.id) { index, row in
+              let reading = row.value
+              if let group = reading.sourceGroup, !group.isEmpty,
+                 index == 0 || displayedReadings[index - 1].value.sourceGroup != group {
+                Text(group).font(.subheadline.weight(.semibold)).accessibilityAddTraits(.isHeader)
+              }
+              ScripturePassageView(reading: reading, interfaceLanguage: language)
                 .id(passageContext)
             }
           }
-          .accessibilityIdentifier("readings.torah")
+          if let torah {
+            VStack(alignment: .leading, spacing: 14) {
+              Text(torah.isHoliday
+                   ? String(localized: "home.today.festivalTorahReading", defaultValue: "Festival Torah reading", bundle: UILanguage.bundle, locale: UILanguage.locale)
+                   : String(localized: "home.today.torahPortion", defaultValue: "Weekly Torah portion", bundle: UILanguage.bundle, locale: UILanguage.locale))
+                .font(.headline).accessibilityAddTraits(.isHeader)
+              Text(torah.localizedTitle(language))
+              ForEach(Array(torah.allReadings.enumerated()), id: \.offset) { _, reading in
+                ScripturePassageView(reading: reading, isTorah: true, interfaceLanguage: language)
+                  .id(passageContext)
+              }
+            }
+            .accessibilityIdentifier("readings.torah")
+          }
         }
+        .frame(maxWidth: 720, alignment: .leading)
+        .frame(maxWidth: .infinity)
+        .padding(20)
       }
-      .frame(maxWidth: 720, alignment: .leading)
-      .frame(maxWidth: .infinity)
-      .padding(20)
-    }
-    .prosaryNavigationBar(edge: .top) {
-      if !usesDateToolbar { dateNavigation }
     }
     .navigationTitle(String(localized: "tabs.readings", defaultValue: "Readings", bundle: UILanguage.bundle, locale: UILanguage.locale))
     .toolbar {
-      #if os(iOS)
-      if usesDateToolbar {
-        ToolbarItemGroup(placement: .topBarLeading) {
-          previousDayButton
-          dateButton
-          nextDayButton
-        }
-        // The date controls own the compact bar; keep the large title above the content.
-        ToolbarItem(placement: .principal) { Color.clear.frame(width: 0, height: 0) }
-      }
-      #endif
       ToolbarItem(placement: .topBarTrailing) {
         Button { showsOptions = true } label: {
           Label(String(localized: "settings.title", defaultValue: "Settings", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "slider.horizontal.3")
@@ -170,28 +142,20 @@ struct DailyReadingsView: View {
 
   private var previousDayButton: some View {
     Button { dateSelection.move(by: -1) } label: {
-      let label = Label(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
-      if usesDateToolbar { label } else { label.prosaryDateControlLabel() }
+      Label(String(localized: "home.today.previousDay", defaultValue: "Previous Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.backward")
+        .prosaryDateControlLabel()
     }
     .labelStyle(.iconOnly)
-    #if os(iOS)
-    .buttonBorderShape(usesDateToolbar ? .circle : .automatic)
-    #endif
     .disabled(!dateSelection.canMoveBackward)
     .accessibilityIdentifier("readings.previousDay")
   }
 
   private var dateButton: some View {
     Button { showsDatePicker = true } label: {
-      let label = Text(dateLabel).font(.subheadline.weight(.semibold))
-      if usesDateToolbar {
-        Label { label.lineLimit(1) } icon: { Image(systemName: "calendar") }
-          .labelStyle(.automatic)
-      } else {
-        label.multilineTextAlignment(.center)
-          .fixedSize(horizontal: false, vertical: true)
-          .prosaryDateControlLabel()
-      }
+      Text(dateLabel).font(.subheadline.weight(.semibold))
+        .multilineTextAlignment(.center)
+        .fixedSize(horizontal: false, vertical: true)
+        .prosaryDateControlLabel()
     }
     #if os(iOS)
     .buttonBorderShape(.capsule)
@@ -203,13 +167,10 @@ struct DailyReadingsView: View {
 
   private var nextDayButton: some View {
     Button { dateSelection.move(by: 1) } label: {
-      let label = Label(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.forward")
-      if usesDateToolbar { label } else { label.prosaryDateControlLabel() }
+      Label(String(localized: "home.today.nextDay", defaultValue: "Next Day", bundle: UILanguage.bundle, locale: UILanguage.locale), systemImage: "chevron.forward")
+        .prosaryDateControlLabel()
     }
     .labelStyle(.iconOnly)
-    #if os(iOS)
-    .buttonBorderShape(usesDateToolbar ? .circle : .automatic)
-    #endif
     .disabled(!dateSelection.canMoveForward)
     .accessibilityIdentifier("readings.nextDay")
   }
