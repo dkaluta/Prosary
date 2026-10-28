@@ -83,16 +83,19 @@ Done/Close. Apple sheets keep a fixed date row above scrolling readings and Sett
 the native toolbar. Calendar retains its native sheet/dialog on phones/tablets and separate native
 reference window on Windows. It can open readings for the selected date after dismissing its
 detail surface. Mac retains its native Bible sidebar and Today workflow.
-Wide Bible readers open as two facing pages with restrained native surfaces and a clear
-center gutter. Justified Scripture paragraphs place small verse indicators inline, using
-the existing Scripture typefaces and complete source blocks;
-the current source block anchors repagination and transitions to a narrow continuous reader.
-Page order and horizontal turns follow the Scripture's inline direction, independently of
-the interface language. Native arrows provide the same actions without a swipe. Long source
-units and notes remain scrollable within their page rather than being clipped or rewritten.
-Flat Apple displays use native facing-page curls. Active folds retain native reserved-region
-placement; Android and Windows use directional page transitions. Motion respects platform
-animation preferences.
+Bible readers show one page on phones and two facing pages on wider displays, with a
+restrained native surface and clear gutter. Adjacent ordinary verses form justified prose
+with small inline verse markers, using the existing Scripture typefaces and complete source
+units. Page turns continue through the whole available edition in catalog order; book,
+chapter and verse controls provide direct lookup. The whole edition loads once, with a
+global page count and slider; page turns reuse the prepared document. Source-block anchors preserve position
+through reflow and verse jumps. Notes, printed labels and exceptional source structure
+retain their separate treatment; long units flow across pages without truncation.
+Page order follows Scripture direction independently of interface language. Native arrows
+provide the same actions without a swipe and use compact desktop sizing. A touch tap on
+plain text hides all application chrome; another tap restores it. Visible Apple chrome
+retains native glass. Notes, links and text selection keep their own interactions. The
+shared offline text document uses each platform's WebView and existing Scripture fonts.
 
 ## Elevation & Depth
 

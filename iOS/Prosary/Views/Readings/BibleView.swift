@@ -1,4 +1,7 @@
 import SwiftUI
+#if os(iOS)
+import UIKit
+#endif
 
 func bibleLabel(_ key: String, _ fallback: String) -> String {
   UILanguage.text("bible." + key, language: UILanguage.current, fallback: fallback)
@@ -68,6 +71,8 @@ struct BibleView: View {
   @State private var showsScriptureDatePicker = false
   @State private var model = BibleLibraryModel.shared
   @State private var removal: BibleEdition?
+  @State private var opensReader = false
+  @State private var automaticEditionIdentity: String?
 
   private var selected: BibleEdition? {
     guard let chosen = ReadingEditionSelection.selected(preference, interfaceLanguage: UILanguage.current,
@@ -134,7 +139,7 @@ struct BibleView: View {
         Section(bibleLabel("books", "Books")) {
           ForEach(edition.books) { book in
             NavigationLink {
-              BibleChaptersView(edition: edition, book: book)
+              BibleChapterView(edition: edition, book: book, initialChapter: book.chapters.first?.number ?? 1)
             } label: {
               Text(book.displayedName(script: defaultScript))
                 .environment(\.layoutDirection, edition.readingEdition.isBibleRightToLeft ? .rightToLeft : .leftToRight)
@@ -152,7 +157,15 @@ struct BibleView: View {
     }
     .navigationTitle(bibleLabel("title", "Bible"))
     .accessibilityIdentifier("bible.screen")
-    .task { await model.refresh() }
+    .navigationDestination(isPresented: $opensReader) {
+      if let edition = selected, let first = edition.books.first {
+        BibleChapterView(edition: edition, book: first, initialChapter: first.chapters.first?.number ?? 1)
+          .id("\(edition.id)|\(edition.revision)")
+      }
+    }
+    .task { await model.refresh(); openInstalledEditionIfNeeded() }
+    .onChange(of: selected?.id) { _, _ in openInstalledEditionIfNeeded() }
+    .onChange(of: model.installed) { _, _ in openInstalledEditionIfNeeded() }
     .onReceive(NotificationCenter.default.publisher(for: .bibleDownloadsChanged)) { _ in
       Task { await model.refresh() }
     }
@@ -166,27 +179,16 @@ struct BibleView: View {
       }
     } message: { Text(bibleLabel("removeNotice", "You can download this Bible again. Daily Readings will remain available.")) }
   }
-}
 
-private struct BibleChaptersView: View {
-  let edition: BibleEdition
-  let book: BibleBook
-  @AppStorage(PrayerTranslations.aramaicDefaultScriptKey) private var script = "Hebr"
-
-  var body: some View {
-    List(book.chapters, id: \.number) { chapter in
-      NavigationLink {
-        BibleChapterView(edition: edition, book: book, initialChapter: chapter.number)
-      } label: {
-        VStack(alignment: .leading, spacing: 4) {
-          Text(bibleChapterLabel(chapter.number, book: book, edition: edition.readingEdition, script: script))
-          if !chapter.isComplete { Text(bibleLabel("partial", "Only part of this chapter is available")).font(.caption).foregroundStyle(.secondary) }
-        }
-        .environment(\.layoutDirection, edition.readingEdition.isBibleRightToLeft ? .rightToLeft : .leftToRight)
-      }
-      .accessibilityIdentifier("bible.chapter.\(chapter.number)")
+  private func openInstalledEditionIfNeeded() {
+    guard let edition = selected, model.installed.contains(edition.id) else {
+      automaticEditionIdentity = nil
+      return
     }
-    .navigationTitle(book.displayedName(script: script))
+    let identity = "\(edition.id)|\(edition.revision)"
+    guard automaticEditionIdentity != identity else { return }
+    automaticEditionIdentity = identity
+    opensReader = true
   }
 }
 
@@ -200,6 +202,8 @@ struct BibleChapterView: View {
   @State private var bookOverride: String?
   @State private var jumpGeneration = 0
   @State private var chapter: BibleDisplayChapter?
+  @State private var readerSections: [BibleReaderSection] = []
+  @State private var chromeHidden = false
   @State private var displayedChapterIdentity: String?
   @State private var unavailable = false
   @State private var jumpBlockID: String?
@@ -216,12 +220,19 @@ struct BibleChapterView: View {
 
   var body: some View {
     VStack(spacing: 0) {
-      if edition.readingEdition.supportsAramaicScriptChoice {
+      if !chromeHidden && edition.readingEdition.supportsAramaicScriptChoice {
         BibleScriptPicker(script: script).padding(.horizontal, 20).padding(.vertical, 8)
       }
       if let chapter {
-        BibleChapterReader(edition: edition, book: activeBook, display: chapter,
-          script: script.wrappedValue, jumpGeneration: jumpGeneration, anchorID: $readingAnchorID)
+        BibleEditionReader(edition: edition, sections: readerSections, script: script.wrappedValue,
+          jumpGeneration: jumpGeneration, anchor: $readingAnchorID, onPosition: { bookID, chapter in
+            guard let section = readerSections.first(where: { $0.book.id == bookID && $0.display.chapter.chapter == chapter }) else { return }
+            bookOverride = bookID; chapterNumber = chapter; self.chapter = section.display
+          }, chromeHidden: chromeHidden, onChromeChange: { requested in
+            #if os(iOS)
+            withAnimation { chromeHidden = requested ?? !chromeHidden }
+            #endif
+          })
       } else {
       ScrollView {
         VStack(alignment: .leading, spacing: 20) {
@@ -236,9 +247,26 @@ struct BibleChapterView: View {
       }
       }
     }
-    .onChange(of: jumpGeneration) { _, _ in if let block = jumpBlockID { readingAnchorID = block } }
+
     .navigationTitle(activeBook.displayedName(script: script.wrappedValue))
+    #if os(iOS)
+    .toolbar(chromeHidden ? .hidden : .automatic, for: .navigationBar, .tabBar)
+    .statusBarHidden(chromeHidden)
+    .persistentSystemOverlays(chromeHidden ? .hidden : .automatic)
+    .background(BibleReaderSidebarVisibility(hidden: chromeHidden).frame(width: 0, height: 0))
+    .onDisappear { chromeHidden = false }
+    #endif
     .toolbar {
+      ToolbarItem(id: "bible.bookMenu", placement: .automatic) {
+        Menu {
+          ForEach(edition.books) { selectedBook in
+            Button(selectedBook.displayedName(script: script.wrappedValue)) {
+              select(BiblePosition(book: selectedBook.id, chapter: selectedBook.chapters.first?.number ?? 1))
+            }
+          }
+        } label: { Label(bibleLabel("books", "Books"), systemImage: "books.vertical") }
+        .accessibilityIdentifier("bible.bookMenu")
+      }
       ToolbarItem(id: "bible.previousChapter", placement: .automatic) {
         Button { move(-1) } label: { Label(bibleLabel("previous", "Previous Chapter"), systemImage: "chevron.backward") }
           .disabled(position.moving(by: -1, in: edition) == nil).accessibilityIdentifier("bible.previousChapter")
@@ -247,7 +275,7 @@ struct BibleChapterView: View {
         Menu {
           ForEach(activeBook.chapters, id: \.number) { item in
             Button(bibleChapterLabel(item.number, book: activeBook, edition: edition.readingEdition, script: script.wrappedValue)) {
-              chapterNumber = item.number
+              select(BiblePosition(book: activeBook.id, chapter: item.number))
             }
           }
         } label: {
@@ -270,7 +298,7 @@ struct BibleChapterView: View {
                 if let unit = block.unit {
                   Task { await jump(chapter: unit.chapter, verse: unit.verse) }
                 } else {
-                  jumpBlockID = block.id
+                  readingAnchorID = "\(activeBook.id)/\(number)/\(block.id)"
                   jumpGeneration += 1
                 }
               }
@@ -281,7 +309,7 @@ struct BibleChapterView: View {
         .accessibilityIdentifier("bible.verseMenu")
       }
     }
-    .task(id: chapterIdentity) { await load() }
+    .task(id: "\(edition.id)|\(edition.revision)") { await load() }
     .onReceive(NotificationCenter.default.publisher(for: .bibleDownloadsChanged)) { _ in Task { await load() } }
   }
 
@@ -289,45 +317,28 @@ struct BibleChapterView: View {
     let requestedBook = activeBook.id
     guard let target = try? await BibleStore.shared.verseTarget(edition: edition, book: requestedBook, chapter: sourceChapter, verse: verse),
           requestedBook == activeBook.id else { return }
-    if target.displayChapter == number {
-      jumpBlockID = target.blockId
-      jumpGeneration += 1
-    } else {
-      pendingJumpBlockID = target.blockId
-      chapterNumber = target.displayChapter
-    }
+    select(BiblePosition(book: requestedBook, chapter: target.displayChapter), block: target.blockId)
   }
-
-  private func move(_ delta: Int) {
-    if let target = position.moving(by: delta, in: edition) {
-      bookOverride = target.book
-      chapterNumber = target.chapter
-    }
+  private func select(_ target: BiblePosition, block: String? = nil) {
+    guard let section = readerSections.first(where: { $0.book.id == target.book && $0.display.chapter.chapter == target.chapter }) else { return }
+    bookOverride = target.book; chapterNumber = target.chapter; chapter = section.display
+    readingAnchorID = section.id + (block.map { "/" + $0 } ?? "")
+    jumpGeneration += 1
+  }
+  private func move(_ delta: Int, atEnd: Bool = false) {
+    if let target = position.moving(by: delta, in: edition) { select(target) }
   }
   private func load() async {
-    let requested = position
-    let requestedIdentity = chapterIdentity
-    // A persistent tab can reappear without changing chapter. Keep its live reader and
-    // source-block anchor while refreshing the same edition and position.
-    if displayedChapterIdentity != requestedIdentity {
-      readingAnchorID = pendingJumpBlockID
-      chapter = nil
-    }
-    unavailable = false; jumpBlockID = nil
+    guard readerSections.isEmpty else { return }
+    unavailable = false
     do {
-      let value = try await BibleStore.shared.displayChapter(edition: edition, book: requested.book, number: requested.chapter)
-      guard !Task.isCancelled, chapterIdentity == requestedIdentity else { return }
-      chapter = value
-      displayedChapterIdentity = requestedIdentity
-      if let pendingJumpBlockID {
-        jumpBlockID = pendingJumpBlockID
-        self.pendingJumpBlockID = nil
-        jumpGeneration += 1
-      }
-    } catch {
-      if !Task.isCancelled, chapterIdentity == requestedIdentity { chapter = nil; unavailable = true }
-    }
+      let sections = try await BibleStore.shared.readerEdition(edition)
+      guard !Task.isCancelled else { return }
+      readerSections = sections
+      select(position)
+    } catch { if !Task.isCancelled { unavailable = true } }
   }
+
 }
 
 struct BibleScriptPicker: View {
@@ -399,3 +410,31 @@ struct ScriptureVerseList: View {
     .accessibilityIdentifier("readings.verses")
   }
 }
+
+#if os(iOS)
+/// The system tab sidebar remains the owner of its glass, layout and saved visibility.
+private struct BibleReaderSidebarVisibility: UIViewControllerRepresentable {
+  let hidden: Bool
+  func makeUIViewController(context: Context) -> Controller { Controller() }
+  func updateUIViewController(_ controller: Controller, context: Context) {
+    controller.hidden = hidden; controller.apply()
+  }
+  static func dismantleUIViewController(_ controller: Controller, coordinator: ()) { controller.restore() }
+  final class Controller: UIViewController {
+    var hidden = false
+    var previous: Bool?
+    override func viewDidAppear(_ animated: Bool) { super.viewDidAppear(animated); apply() }
+    func apply() {
+      guard #available(iOS 18.0, *), let tabs = tabBarController else { return }
+      if hidden {
+        if previous == nil { previous = tabs.sidebar.isHidden }
+        tabs.sidebar.isHidden = true
+      } else { restore() }
+    }
+    func restore() {
+      if #available(iOS 18.0, *), let previous, let tabs = tabBarController { tabs.sidebar.isHidden = previous }
+      previous = nil
+    }
+  }
+}
+#endif

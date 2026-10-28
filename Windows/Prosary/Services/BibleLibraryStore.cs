@@ -42,6 +42,11 @@ public sealed record BibleChapterText(int SchemaVersion, string EditionId, strin
     public List<BibleContentBlock>? ContentBlocks { get => _contentBlocks; init { _contentBlocks = value; HasContentBlocks = true; } }
 }
 
+public sealed record BibleReaderSection(BibleBook Book, BibleDisplayChapter Display)
+{
+    public string Id => $"{Book.Id}/{Display.Chapter.Chapter}";
+}
+
 /// <summary>Optional Bible archives, independent of prayer packs and bundled daily passages.</summary>
 public sealed class BibleLibraryStore
 {
@@ -339,6 +344,35 @@ public sealed class BibleLibraryStore
             }
             return new BibleDisplayChapter(display, BibleSourceStructure.Resolve(display, primary));
         }, cancellationToken);
+
+    /// <summary>Prepare the installed reader once; bounded daily-reading APIs are unchanged.</summary>
+    public async Task<IReadOnlyList<BibleReaderSection>> LoadReaderEditionAsync(string id, CancellationToken cancellationToken = default)
+    {
+        var edition = Edition(id);
+        await _files.WaitAsync(cancellationToken);
+        try
+        {
+            return await Task.Run<IReadOnlyList<BibleReaderSection>>(() =>
+            {
+                using var archive = ZipFile.OpenRead(ArchivePath(id));
+                var result = new List<BibleReaderSection>();
+                foreach (var entry in edition.Books)
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+                    var book = ReadBook(archive, edition, entry.Id);
+                    var chapters = book.Chapters.ToDictionary(info => info.Number,
+                        info => ReadChapter(archive, edition, book, info.Number));
+                    foreach (var info in book.Chapters)
+                    {
+                        var chapter = chapters[info.Number];
+                        result.Add(new(book, new(chapter, BibleSourceStructure.Resolve(chapter, chapters))));
+                    }
+                }
+                return result;
+            }, cancellationToken);
+        }
+        finally { _files.Release(); }
+    }
 
     public Task<BibleAddressTarget?> ResolveAddressAsync(string id, string book, int chapter, int verse, CancellationToken cancellationToken = default) =>
         ReadInstalledAsync<BibleAddressTarget?>(id, book, (archive, edition, metadata) =>

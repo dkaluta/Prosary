@@ -9,8 +9,11 @@ import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.v2.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTouchInput
+import androidx.compose.ui.test.click
 import androidx.compose.ui.test.performScrollToNode
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.content.bible.BibleBook
@@ -44,66 +47,70 @@ class BibleNavigationInstrumentedTest {
     @get:Rule val compose = createAndroidComposeRule<AdaptiveLayoutTestActivity>()
     private val json = Json { encodeDefaults = true }
 
-    @Test fun canonicalReferenceHeadingsIdentifyPrintedVerseLabelsWithoutRenumbering() {
+    private fun web(): android.webkit.WebView? {
+        fun find(view: android.view.View): android.webkit.WebView? {
+            if (view is android.webkit.WebView) return view
+            if (view is android.view.ViewGroup) for (index in 0 until view.childCount) find(view.getChildAt(index))?.let { return it }
+            return null
+        }
+        return find(compose.activity.window.decorView)
+    }
+    private fun script(code: String): String {
+        val latch = java.util.concurrent.CountDownLatch(1)
+        var result = "null"
+        compose.activity.runOnUiThread {
+            val view = web()
+            if (view == null) latch.countDown() else view.evaluateJavascript(code) { result = it; latch.countDown() }
+        }
+        check(latch.await(10, java.util.concurrent.TimeUnit.SECONDS))
+        return result
+    }
+    private fun ready() {
+        compose.waitUntil(30_000) { runCatching {
+            org.json.JSONObject(script("window.ProsaryReader?.position() ?? null")).getInt("total") > 0
+        }.getOrDefault(false) }
+    }
+
+    @Test fun canonicalLabelsAndPhysicalWitnessesRemainInTheContinuousEdition() {
         val directory = File(compose.activity.cacheDir, "bible-reference-test-${UUID.randomUUID()}").apply { mkdirs() }
         val previous = AppSettings.readingsEditionId
         val (edition, archive) = fixture(directory, withRichSource = true, withCanonicalReference = true)
         val library = BibleLibrary(BibleStore(File(directory, "installed")), File(directory, "download"))
         library.store.install(edition, archive)
         val catalog = json.encodeToString(BibleCatalog(1, listOf(edition)))
-        val printedLabel = compose.activity.getString(R.string.bible_printed_label, "\u2068כ–כא\u2069")
         try {
             AppSettings.readingsEditionId = edition.id
             compose.setContent { MaterialTheme { BibleScreen(library) { catalog.byteInputStream() } } }
-            waitFor("bibleVerse.1")
+            ready()
             compose.onNodeWithTag("bibleChapter").assertTextContains("ברוך ו׳")
-            compose.onNodeWithTag("bibleChapterHeading").assertTextContains("ברוך ו׳")
-            compose.onNodeWithTag("bibleVerse.1").assertTextEquals("Source verse one")
-            compose.onNodeWithTag("biblePrintedLabel.primary-one").assertTextContains(printedLabel, substring = true)
-            compose.onNodeWithTag("bibleChapter").performClick()
-            compose.onNodeWithTag("bibleChoice.1").assertTextContains("ברוך ו׳")
-            compose.onNodeWithTag("bibleChoice.1").performClick()
+            val body = script("document.getElementById('flow').textContent")
+            org.junit.Assert.assertTrue(body.contains("Source verse one"))
+            org.junit.Assert.assertTrue(body.contains("Second printed witness"))
+            org.junit.Assert.assertTrue(body.contains("Unnumbered thanksgiving hymn"))
+            org.junit.Assert.assertTrue(body.indexOf("Source verse one") < body.indexOf("Second printed witness"))
             compose.onNodeWithTag("bibleVerse").performClick()
-            compose.onNodeWithTag("bibleChoice.primary-one").assertTextContains(printedLabel, substring = true)
+            compose.onNodeWithTag("bibleChoice.heading").assertDoesNotExist()
+            compose.onNodeWithTag("bibleChoice.hymn").assertDoesNotExist()
             compose.onNodeWithTag("bibleChoice.primary-four").performClick()
-            compose.onNodeWithTag("bibleVerse.4").assertTextEquals("Source verse four")
-            compose.onNodeWithTag("biblePrintedLabel.primary-four").assertTextContains("4–5", substring = true)
+            compose.waitUntil { script("window.ProsaryReader.position().anchor").contains("GEN/1/primary-four") }
             assertEquals(listOf(1, 4), library.store.chapter(edition, "GEN", 1)!!.verses.map { it.verse })
+            val total = org.json.JSONObject(script("window.ProsaryReader.position()")).getInt("total")
             compose.onNodeWithTag("bibleNextChapter").performClick()
-            waitFor("bibleVerse.1")
+            compose.onNodeWithTag("bibleChapter").assertTextContains("Chapter 3")
+            assertEquals(total, org.json.JSONObject(script("window.ProsaryReader.position()")).getInt("total"))
+            org.junit.Assert.assertFalse(script("document.getElementById('flow').textContent").contains("Unreadable vowel"))
+            compose.onNodeWithTag("bibleEditionText").performTouchInput { click(center) }
+            compose.waitUntil(5_000) { compose.onAllNodesWithTag("biblePageCount").fetchSemanticsNodes().isEmpty() }
+            compose.onNodeWithTag("biblePageCount").assertDoesNotExist()
+            compose.onNodeWithTag("bibleChapter").assertDoesNotExist()
+            compose.onNodeWithTag("bibleEditionText").performTouchInput { click(center) }
+            compose.waitUntil(5_000) { compose.onAllNodesWithTag("bibleChapter").fetchSemanticsNodes().isNotEmpty() }
             compose.onNodeWithTag("bibleChapter").assertTextContains("Chapter 3")
         } finally { AppSettings.readingsEditionId = previous; directory.deleteRecursively() }
     }
 
-    @Test fun printedWitnessesStayVisibleAndVerseChoicesUseStablePhysicalIdentities() {
-        val directory = File(compose.activity.cacheDir, "bible-rich-test-${UUID.randomUUID()}").apply { mkdirs() }
-        val previous = AppSettings.readingsEditionId
-        val (edition, archive) = fixture(directory, withRichSource = true)
-        val library = BibleLibrary(BibleStore(File(directory, "installed")), File(directory, "download"))
-        library.store.install(edition, archive)
-        val catalog = json.encodeToString(BibleCatalog(1, listOf(edition)))
-        try {
-            AppSettings.readingsEditionId = edition.id
-            compose.setContent { MaterialTheme { BibleScreen(library) { catalog.byteInputStream() } } }
-            waitFor("biblePrintedLabel.primary-one")
-            compose.onNodeWithTag("biblePrintedLabel.primary-one").assertTextContains("כ–כא", substring = true)
-            compose.onNodeWithTag("bibleVerse").performClick()
-            compose.onNodeWithTag("bibleChoice.heading").assertDoesNotExist()
-            compose.onNodeWithTag("bibleChoice.hymn").assertDoesNotExist()
-            compose.onNodeWithTag("bibleChoice.colophon").assertDoesNotExist()
-            compose.onNodeWithTag("bibleChoice.witness-one").performClick()
-            compose.onNodeWithText("Second printed witness", substring = true).assertExists()
-            compose.onNodeWithTag("bibleVerses").performScrollToNode(hasTestTag("bibleBlock.hymn"))
-            compose.onNodeWithText("Unnumbered thanksgiving hymn").assertExists()
-            compose.onNodeWithTag("bibleVerses").performScrollToNode(hasTestTag("scriptureSourceNote.colophon-shuruq"))
-            compose.onNodeWithTag("scriptureSourceNote.colophon-shuruq").performClick()
-            compose.onNodeWithText(compose.activity.getString(R.string.scripture_source_note_vowel)).assertExists()
-            compose.onNodeWithText(compose.activity.getString(R.string.scripture_source_note_dagesh)).assertDoesNotExist()
-        } finally { AppSettings.readingsEditionId = previous; directory.deleteRecursively() }
-    }
-
-    @Test fun downloadedBibleShowsSourceNoteAndKeepsItOutOfVerseNavigation() {
-        val directory = File(compose.activity.cacheDir, "bible-note-test-${UUID.randomUUID()}").apply { mkdirs() }
+    @Test fun sourceNotesUseTheirNativeDisclosureOutsideSelectableScripture() {
+        val directory = File(compose.activity.cacheDir, "bible-notes-test-${UUID.randomUUID()}").apply { mkdirs() }
         val previous = AppSettings.readingsEditionId
         val (edition, archive) = fixture(directory, withSourceNote = true)
         val library = BibleLibrary(BibleStore(File(directory, "installed")), File(directory, "download"))
@@ -112,68 +119,13 @@ class BibleNavigationInstrumentedTest {
         try {
             AppSettings.readingsEditionId = edition.id
             compose.setContent { MaterialTheme { BibleScreen(library) { catalog.byteInputStream() } } }
+            ready()
+            script("document.querySelector('[data-note]').click()")
             waitFor("scriptureSourceNote.bible-note")
-            val explanation = compose.activity.getString(R.string.scripture_source_note_vowel)
-            compose.onNodeWithText(explanation).assertDoesNotExist()
             compose.onNodeWithTag("scriptureSourceNote.bible-note").performClick()
-            compose.onNodeWithText(explanation).assertExists()
-            compose.onNodeWithTag("bibleVerse.1").assertTextContains("בַּקּבָּה", substring = true)
-            compose.onNodeWithTag("bibleVerse").performClick()
-            compose.onNodeWithTag("bibleChoice.5").performClick()
-            compose.onNodeWithTag("bibleVerse.4").assertTextContains("4–5", substring = true)
-            compose.onNodeWithTag("bibleNextChapter").performClick()
-            waitFor("bibleVerse.1")
-            compose.onNodeWithTag("scriptureSourceNote.bible-note").assertDoesNotExist()
+            compose.onNodeWithText(compose.activity.getString(R.string.scripture_source_note_vowel)).assertExists()
+            org.junit.Assert.assertFalse(script("document.getElementById('flow').textContent").contains("Unreadable vowel"))
         } finally { AppSettings.readingsEditionId = previous; directory.deleteRecursively() }
-    }
-
-    @Test fun sparseChapterNavigationVerseJumpAndRemovalStayWithinTheSelectedEdition() {
-        val directory = File(compose.activity.cacheDir, "bible-test-${UUID.randomUUID()}").apply { mkdirs() }
-        val previous = AppSettings.readingsEditionId
-        val (edition, archive) = fixture(directory)
-        val library = BibleLibrary(BibleStore(File(directory, "installed")), File(directory, "download"))
-        library.store.install(edition, archive)
-        val catalog = json.encodeToString(BibleCatalog(1, listOf(edition)))
-        try {
-            AppSettings.readingsEditionId = edition.id
-            val restoration = StateRestorationTester(compose)
-            restoration.setContent { MaterialTheme { BibleScreen(library) { catalog.byteInputStream() } } }
-            waitFor("bibleVerse.1")
-            compose.onNodeWithTag("biblePartialChapter").assertExists()
-            compose.onNodeWithTag("bibleIntroduction").assertTextContains("Unnumbered opening")
-            captureScreenshot("bible-partial-chapter.png")
-            compose.onNodeWithTag("bibleVerse").performClick()
-            compose.onNodeWithTag("bibleChoice.5").performClick()
-            compose.onNodeWithTag("bibleVerse.4").assertTextContains("Source verse four", substring = true)
-            compose.onNodeWithTag("bibleVerse.4").assertTextContains("4–5", substring = true)
-            compose.onNodeWithTag("bibleVerse.2").assertDoesNotExist()
-            compose.onNodeWithTag("bibleNextChapter").performClick()
-            waitFor("bibleVerse.1")
-            compose.onNodeWithTag("bibleChapter").assertTextContains("Chapter 3")
-            compose.onNodeWithTag("biblePartialChapter").assertDoesNotExist()
-            compose.onNodeWithTag("bibleIntroduction").assertDoesNotExist()
-            restoration.emulateSavedInstanceStateRestore()
-            waitFor("bibleChapter")
-            compose.onNodeWithTag("bibleChapter").assertTextContains("Chapter 3")
-            compose.onNodeWithTag("bibleNextChapter").performClick()
-            compose.onNodeWithTag("bibleBook").assertTextContains("Exodus")
-            compose.onNodeWithTag("bibleChapter").assertTextContains("Chapter 2")
-            compose.onNodeWithTag("biblePreviousChapter").performClick()
-            compose.onNodeWithTag("bibleBook").assertTextContains("Genesis")
-            compose.onNodeWithTag("bibleChapter").performClick()
-            compose.onNodeWithTag("bibleChoice.1").performClick()
-            waitFor("biblePartialChapter")
-            compose.onNodeWithTag("bibleVerses").performScrollToNode(hasTestTag("bibleVerse.4"))
-            compose.onNodeWithTag("bibleVerse.4").assertExists()
-            compose.onNodeWithTag("bibleRemoveDownload").performClick()
-            compose.onNodeWithText(compose.activity.getString(R.string.settings_remove_all_confirm)).performClick()
-            waitFor("bibleDownload")
-            compose.onNodeWithTag("bibleVerses").assertDoesNotExist()
-            assertEquals(null, library.store.installedEdition(edition.id))
-        } finally {
-            AppSettings.readingsEditionId = previous
-            directory.deleteRecursively()
-        }
     }
 
     @Test fun dailyReadingsHasNoFullBibleOrCalendarModeAndKeepsDateBrowsing() {

@@ -62,7 +62,8 @@ class BibleBookReaderInstrumentedTest {
                             texts.mapIndexed { index, text -> BiblePageMeasurement(listOf(
                                 (if (usesBookTypography) BibleBookTypography.body(text, (index + 1).toString()) else AnnotatedString(text)) to
                                     style.copy(textAlign = if (usesBookTypography) TextAlign.Justify else TextAlign.Unspecified))) }, rememberLazyListState(),
-                            scriptureDirection, anchor, { anchor = it }, jumpSerial, jump) { index ->
+                            scriptureDirection, anchor, { anchor = it }, jumpSerial, jump,
+                            paragraphContent = { range -> Text(range.joinToString(" ") { texts[it] }, style = style) }) { index ->
                             val book = usesBookTypography && LocalBibleBookMode.current
                             Text(if (book) BibleBookTypography.body(texts[index], (index + 1).toString()) else AnnotatedString(texts[index]),
                                 style = style, textAlign = if (book) TextAlign.Justify else TextAlign.Unspecified,
@@ -72,6 +73,41 @@ class BibleBookReaderInstrumentedTest {
                 }
             }
         }
+    }
+
+    @Test fun narrowPagesJoinVersesAndContinueAtEditionSectionBoundaries() {
+        var forward = 0
+        var backward = 0
+        compose.setContent {
+            MaterialTheme {
+                val style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Justify)
+                val parts = listOf(BibleBookTypography.body("In the beginning.", "1"),
+                    BibleBookTypography.body("And the earth.", "2"))
+                Box(Modifier.size(400.dp, 600.dp)) {
+                    BibleAdaptiveChapterReader(listOf("first", "second"),
+                        parts.map { BiblePageMeasurement(listOf(it to style), flowing = true) },
+                        rememberLazyListState(), LayoutDirection.Ltr, "first", {}, 0, null,
+                        previousSection = { backward++ }, nextSection = { forward++ },
+                        paragraphContent = { range ->
+                            Text(androidx.compose.ui.text.buildAnnotatedString {
+                                range.forEachIndexed { index, value ->
+                                    if (index > 0) append(" ")
+                                    append(parts[value])
+                                }
+                            }, style = style, modifier = Modifier.fillMaxWidth().testTag("joinedVerses"))
+                        }, rowContent = { Text(parts[it], style = style) })
+                }
+            }
+        }
+        compose.onNodeWithTag("joinedVerses").assertIsDisplayed()
+        val layouts = mutableListOf<TextLayoutResult>()
+        compose.onNodeWithTag("joinedVerses").performSemanticsAction(SemanticsActions.GetTextLayoutResult) { it(layouts) }
+        assertEquals(TextAlign.Justify, layouts.single().layoutInput.style.textAlign)
+        assertEquals(2, layouts.single().layoutInput.text.spanStyles.size)
+        assertTrue(layouts.single().layoutInput.text.text.contains("And the earth."))
+        compose.onNodeWithTag("bibleNextPage").performClick()
+        compose.onNodeWithTag("biblePreviousPage").performClick()
+        compose.runOnIdle { assertEquals(1, forward); assertEquals(1, backward) }
     }
 
     @Test fun scriptureOrdersPagesAndControlsAndKeepsItsBlockAcrossNarrowWideChanges() {
@@ -87,9 +123,8 @@ class BibleBookReaderInstrumentedTest {
         assertNotEquals("row.0", selected)
         compose.runOnIdle { width = 400.dp }
         compose.onNodeWithTag("bookRow.${selected.substringAfter('.')}").assertIsDisplayed()
-        compose.onNodeWithTag("bibleVerses").performScrollToIndex(8)
-        // The v2 test clock queues snapshot-flow delivery rather than running it inline.
-        compose.waitUntil(5_000) { anchor == "row.8" }
+        compose.runOnIdle { anchor = "row.8"; jump = "row.8"; jumpSerial++ }
+        compose.onNodeWithTag("bookRow.8").assertIsDisplayed()
         compose.runOnIdle { assertEquals("row.8", anchor); width = 900.dp }
         compose.onNodeWithTag("bookRow.8").assertIsDisplayed()
     }
@@ -147,8 +182,8 @@ class BibleBookReaderInstrumentedTest {
         assertTrue(book.layoutInput.text.text.startsWith("\u20681\u2069\u00a0"))
         compose.runOnIdle { width = 400.dp }
         val narrow = layout()
-        assertNotEquals(TextAlign.Justify, narrow.layoutInput.style.textAlign)
-        assertTrue(narrow.layoutInput.text.spanStyles.isEmpty())
-        assertTrue(narrow.layoutInput.text.text.startsWith("0 Source text"))
+        assertEquals(TextAlign.Justify, narrow.layoutInput.style.textAlign)
+        assertEquals(1, narrow.layoutInput.text.spanStyles.size)
+        assertTrue(narrow.layoutInput.text.text.startsWith("\u20681\u2069\u00a0"))
     }
 }

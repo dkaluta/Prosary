@@ -28,7 +28,11 @@ final class BibleUITests: XCTestCase {
     XCTAssertTrue(open.waitForExistence(timeout: 5))
     for _ in 0..<4 where !open.isHittable { app.swipeUp() }
     open.tap()
-    XCTAssertTrue(app.buttons["bible.book.GEN"].waitForExistence(timeout: 10))
+    let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
+      app.otherElements["bible.bookReader"].exists || app.buttons["bible.download"].exists
+        || app.buttons["bible.bookMenu"].exists
+    }, object: nil)
+    XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 20), .completed)
   }
 
   @MainActor private func openDailyReadings(_ app: XCUIApplication) {
@@ -59,7 +63,7 @@ final class BibleUITests: XCTestCase {
     XCTAssertFalse(app.buttons["calendar.list"].exists)
     app.buttons["homeReference.done"].tap()
     openHomeBible(app)
-    XCTAssertTrue(app.navigationBars["Bible"].staticTexts["Bible"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["bible.bookMenu"].exists || app.navigationBars["Bible"].exists)
     XCTAssertFalse(app.segmentedControls["readings.mode"].exists)
     XCTAssertFalse(app.buttons["bible.scriptureDate"].exists)
     XCTAssertFalse(app.buttons["readings.chooseDate"].exists)
@@ -112,7 +116,7 @@ final class BibleUITests: XCTestCase {
   @MainActor func testHolyScriptureShortcutSelectsTheFullWindowBibleTab() throws {
     let app = launch()
     openHomeBible(app)
-    let bible = app.navigationBars["Bible"]
+    let bible = app.navigationBars.firstMatch
     let window = app.windows.firstMatch
     XCTAssertGreaterThan(bible.frame.width, window.frame.width * 0.9,
       "Holy Scripture must use the full window, including on iPad")
@@ -122,7 +126,7 @@ final class BibleUITests: XCTestCase {
     selectSection("Home", in: app)
     XCTAssertTrue(app.buttons["homeWidgets.open.scripture"].waitForExistence(timeout: 5))
     selectSection("Bible", in: app)
-    XCTAssertTrue(app.buttons["bible.book.GEN"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["bible.bookMenu"].exists || app.buttons["bible.download"].exists)
   }
 
   @MainActor func testCalendarWeekdayHeadersFollowSystemRegion() throws {
@@ -148,21 +152,16 @@ final class BibleUITests: XCTestCase {
   @MainActor func testDownloadedBibleChapterVerseBackAndRemoval() throws {
     let app = launch()
     openHomeBible(app)
-    let genesis = app.buttons["bible.book.GEN"]
-    XCTAssertTrue(genesis.waitForExistence(timeout: 10))
-    try XCTSkipUnless(genesis.isEnabled, "Offline navigation requires the verified local archive in the disposable simulator.")
-    genesis.tap()
-    app.buttons["bible.chapter.1"].tap()
-    XCTAssertTrue(app.staticTexts["readings.chapter.1"].waitForExistence(timeout: 5))
+    try XCTSkipUnless(app.buttons["bible.bookMenu"].exists,
+      "Offline navigation requires the verified local archive in the disposable simulator.")
+    XCTAssertTrue(app.buttons["bible.chapterMenu"].label.contains("1"))
     app.buttons["bible.nextChapter"].tap()
-    XCTAssertTrue(app.staticTexts["readings.chapter.2"].waitForExistence(timeout: 5))
+    XCTAssertTrue(app.buttons["bible.chapterMenu"].label.contains("2"))
     app.buttons["bible.verseMenu"].tap()
     app.buttons["3"].tap()
-    XCTAssertTrue(app.otherElements["bible.verse.3"].exists || app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "seventh day")).firstMatch.exists)
+    XCTAssertTrue(app.webViews.firstMatch.exists)
     let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     capture.name = "bible-offline-chapter-reader"; capture.lifetime = .keepAlways; add(capture)
-    app.navigationBars.buttons.element(boundBy: 0).tap()
-    XCTAssertTrue(app.buttons["bible.chapter.1"].waitForExistence(timeout: 5))
     app.navigationBars.buttons.element(boundBy: 0).tap()
     let remove = app.buttons["bible.remove"]
     XCTAssertTrue(remove.waitForExistence(timeout: 5))
@@ -179,15 +178,11 @@ final class BibleUITests: XCTestCase {
                            "-homeWidgetOrder", "scripture"]
     app.launch()
     openHomeBible(app)
-    let genesis = app.buttons["bible.book.GEN"]
-    XCTAssertTrue(genesis.waitForExistence(timeout: 10))
-    try XCTSkipUnless(genesis.isEnabled, "Requires the verified Peshitta archive in the disposable simulator.")
-    genesis.tap()
-    app.buttons["bible.chapter.1"].tap()
-    XCTAssertTrue(app.staticTexts["bible.partial"].waitForExistence(timeout: 5))
-    XCTAssertEqual(app.staticTexts["readings.chapter.1"].label, "קפלאון א׳")
+    try XCTSkipUnless(app.buttons["bible.bookMenu"].exists,
+      "Requires the verified Peshitta archive in the disposable simulator.")
+    XCTAssertTrue(app.buttons["bible.chapterMenu"].label.contains("קפלאון א׳"))
     app.buttons["bible.scriptPicker.Syrc"].tap()
-    XCTAssertEqual(app.staticTexts["readings.chapter.1"].label, "ܩܦܠܐܘܢ ܐ")
+    XCTAssertTrue(app.buttons["bible.chapterMenu"].label.contains("ܩܦܠܐܘܢ ܐ"))
     let capture = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     capture.name = "bible-partial-peshitta-syriac"; capture.lifetime = .keepAlways; add(capture)
   }

@@ -117,7 +117,7 @@ struct BibleSourceBlockRow: View {
     let label = canonicalReference == nil ? block.unit.map {
       biblePrimaryLabel($0, displayChapter: displayChapter, edition: edition, script: script)
     } ?? block.printedLabel : nil
-    #if os(iOS)
+    #if os(iOS) || os(macOS)
     if bookTypography {
       BibleBookVerseText(text: text, label: label, languageCode: edition.languageCode,
         isRightToLeft: edition.isBibleRightToLeft, typefaces: typography.typefaces)

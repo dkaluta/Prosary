@@ -13,34 +13,43 @@ credit, and the existing paired-script control. Hebrew chapter numbers use gemat
 Missing content never falls back to another edition. Partial chapters carry a visible
 “Only part of this chapter is available” notice; gaps retain their source verse labels.
 
-## Facing pages
+## Continuous edition pages
 
-The mobile/tablet and Windows Bible readers use two facing pages when the reader has at
-least 720 points/dp/logical pixels of width and 360 of height. Narrower readers retain the
-continuous chapter view. Mac retains its existing desktop reader. This is presentation,
-with no new saved setting or archive fields.
+The installed edition opens as a paged reader on Apple, Android and Windows. A narrow
+reader shows one page; at least 720 points/dp/logical pixels of width and 360 of height
+shows two facing pages. Book, chapter and verse controls jump anywhere in the available
+edition. Page turns continue through available chapters and into the next book in catalog
+order, with the reverse turn returning to the preceding chapter's final page.
 
-Pages group contiguous, complete source blocks using the current typeface, script and page
-geometry. Verse ranges, repeated witnesses, source headings, introductions, printed labels,
-notes and colophons retain their supplied order and meaning. A unit larger than a page
-stays whole and remains vertically scrollable. Edition and source credits and partial-chapter
-notices remain accessible. Page numbers describe this layout, never a printed source page.
+The entire installed edition is prepared once as an offline text document. The page counter
+and slider cover every page in the edition; normal page turns and cross-book jumps reuse
+that document without loading a chapter or showing a preparation spinner. Page numbers
+describe the current font and window geometry, rather than the printed source pagination.
+This presentation adds no saved setting or archive field. The Apple library remains
+available through Back for changing or removing a download.
 
-Book Scripture paragraphs use justified text and smaller inline verse indicators. Their
-typeface, Dynamic Type/text scaling and writing direction still follow the selected source.
-Headings, source notes and explicit printed-label disclosures keep their existing treatment;
-canonical placements never acquire an implied canonical verse mapping.
+Adjacent ordinary verse units share a justified paragraph, with small inline verse markers.
+The shared local HTML renderer uses the selected Scripture typeface, script and text scale
+inside WKWebView, Android WebView and WebView2. CSS columns flow through chapter and book
+boundaries without artificial page breaks. Headings,
+introductions, verse ranges, repeated witnesses, explicit printed-label disclosures, source
+notes and colophons retain their supplied order and treatment. Canonical placements never
+acquire an implied canonical verse mapping. Long units continue across pages without
+truncation. Credits and partial-chapter notices remain accessible. Source notes open in
+native disclosure surfaces and remain outside the selectable Scripture prose.
 
-The current source block anchors width and typography changes and transitions between
-continuous reading and facing pages. Go to Verse opens the spread containing the resolved
-source block, including reviewed address routes. Chapter navigation remains independent.
-Page turns use native Previous Page and Next Page actions and horizontal gestures. Inline
-start/end follow the Scripture direction, independently of the interface: English reads
-left to right, while Hebrew, Arabic and Syriac read right to left. No gesture is required.
-Flat Apple displays use the public native two-page curl interaction; a partially folded Duo
-uses reserved-region page placement and native paging instead. Android and Windows use
-directional page transitions. Programmatic motion follows each platform's reduced-animation
-setting.
+The current source block anchors repagination between one and two pages and changes of
+font or script. Go to Verse opens the page containing the resolved source block, including
+reviewed address routes. Native Previous Page and Next Page controls and horizontal touch
+gestures follow the Scripture's inline direction independently of the interface. English
+reads left to right; Hebrew, Arabic and Syriac read right to left. Mouse text selection does
+not turn pages. Native compact desktop arrows and keyboard navigation control the same
+document. A touch tap on plain text hides the reader controls and application navigation;
+another tap restores them. Notes, links and text selection do not toggle this mode. Apple
+retains the native glass toolbars and tab bar when visible. Escape or Android Back restores
+the controls. Apple page gestures take
+priority over content-area Back inside Scripture; the Back button and screen-edge Back
+gesture remain available.
 
 On iPhone Duo, native arrangement containers keep facing pages and prayer panes clear of
 the live folding region. Native toolbars manage vertical control placement and overflow.

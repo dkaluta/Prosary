@@ -84,6 +84,21 @@ public sealed class BibleLibraryStoreTests : IDisposable
         store.InstallAsync(fixture.Edition.Id, new MemoryStream(fixture.Bytes, false), cancellationToken: cancellation);
 
     [Fact]
+    public async Task WholeEditionRetainsCatalogOrderAndExactSourceUnits()
+    {
+        var fixture = Make(paired: true);
+        var store = Store(fixture);
+        await Install(store, fixture);
+        var sections = await store.LoadReaderEditionAsync(fixture.Edition.Id);
+        Assert.Equal(new[] { "GEN/1", "GEN/3", "EXO/2" }, sections.Select(section => section.Id));
+        foreach (var section in sections)
+        {
+            var original = await store.LoadDisplayChapterAsync(fixture.Edition.Id, section.Book.Id, section.Display.Chapter.Chapter);
+            Assert.Equal(original.Units, section.Display.Units);
+        }
+    }
+
+    [Fact]
     public async Task DailyPassageUsesExactInstalledUnitsAndKeepsBundledTextAfterRemoval()
     {
         var fixture = Make(paired: true);

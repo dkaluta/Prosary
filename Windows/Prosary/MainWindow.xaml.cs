@@ -11,6 +11,23 @@ namespace Prosary;
 /// <summary>The library is one native window; opening a prayer preserves its selection and sidebar.</summary>
 public sealed partial class MainWindow : Window
 {
+    private (bool Visible, bool Open)? _biblePane;
+    public void SetBibleReadingFocus(bool hidden)
+    {
+        if (hidden)
+        {
+            _biblePane ??= (AppNav.IsPaneVisible, AppNav.IsPaneOpen);
+            AppNav.IsPaneVisible = false;
+            WindowMenus.Visibility = Visibility.Collapsed;
+        }
+        else if (_biblePane is { } pane)
+        {
+            AppNav.IsPaneVisible = pane.Visible;
+            AppNav.IsPaneOpen = pane.Open;
+            WindowMenus.Visibility = Visibility.Visible;
+            _biblePane = null;
+        }
+    }
     private readonly Dictionary<string, ReferenceWindow> _referenceWindows = new();
     private ContentDialog? _readingsDialog;
     private bool _showingReadings;

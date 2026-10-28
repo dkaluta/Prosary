@@ -53,4 +53,13 @@ public class BibleBookPaginationTests
     [InlineData(20, false, 0)][InlineData(-20, true, 0)]
     public void PageTurnsFollowScriptureDirection(double translation, bool scriptureRightToLeft, int expected) =>
         Assert.Equal(expected, BibleBookPagination.SwipeDirection(translation, scriptureRightToLeft));
+    [Fact]
+    public void FlowingParagraphsPreserveSourceOrderAndStopAtExceptionalUnits()
+    {
+        Assert.Equal(new[] { new BibleBookPage(0, 2), new(2, 1), new(3, 2), new(5, 1) },
+            BibleBookPagination.Paragraphs(0, 6, [true, true, false, true, true, false]));
+        var pages = BibleBookPagination.FlowPages(7, 100, (_, count) => ((count + 1) / 2) * 40);
+        Assert.Equal(new[] { new BibleBookPage(0, 4), new(4, 3) }, pages);
+        Assert.Equal(Enumerable.Range(0, 7), pages.SelectMany(page => Enumerable.Range(page.Start, page.Count)));
+    }
 }

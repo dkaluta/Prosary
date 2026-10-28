@@ -39,10 +39,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.produceState
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import com.dkaluta.prosary.R
 import com.dkaluta.prosary.ui.shared.rememberTodayBrowsingDate
+import com.dkaluta.prosary.ui.readings.LocalBibleReadingChrome
+import androidx.compose.runtime.CompositionLocalProvider
 import com.dkaluta.prosary.ui.readings.BibleTabScreen
 import com.dkaluta.prosary.ui.readings.HomeReadingsMode
 import com.dkaluta.prosary.ui.readings.HomeReferenceSheet
@@ -219,6 +222,7 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
     val showsTabs = tabs.any { it.route == currentRoute }
+    val bibleChrome = remember { androidx.compose.runtime.mutableStateOf(false) }
 
     fun selectTab(route: String) {
         navController.navigate(route) {
@@ -228,8 +232,10 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
         }
     }
 
+    CompositionLocalProvider(LocalBibleReadingChrome provides bibleChrome) {
     AdaptiveNavigationShell(
         showsTabs = showsTabs,
+        hideNavigation = currentRoute == Routes.Bible && bibleChrome.value,
         rail = {
             NavigationRail {
                 for (tab in tabs) {
@@ -257,6 +263,7 @@ fun ProsaryApp(widgetLaunchRequest: WidgetLaunchRequest? = null, onWidgetLaunchC
             }
         },
     ) { modifier -> AppNavHost(navController, modifier, todayWidgetRequest, calendarWidgetRequest, readingsWidgetRequest, widgetLaunchSequence) }
+    }
 }
 
 /** The navigation host has one composition identity at every width. Only the surrounding
@@ -267,6 +274,7 @@ internal fun AdaptiveNavigationShell(
     rail: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
+    hideNavigation: Boolean = false,
     content: @Composable (Modifier) -> Unit,
 ) {
     BoxWithConstraints(modifier) {
@@ -279,11 +287,11 @@ internal fun AdaptiveNavigationShell(
             // handles its own bottom inset internally).
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
             bottomBar = {
-                if (!wide && showsTabs) bottomBar()
+                if (!wide && showsTabs && !hideNavigation) bottomBar()
             },
         ) { paddingValues ->
             Row(Modifier.fillMaxSize().padding(paddingValues)) {
-                if (wide) rail()
+                if (wide && !hideNavigation) rail()
                 content(
                     Modifier.weight(1f)
                         // The tab bar already spans the gesture-nav inset, so tab screens'

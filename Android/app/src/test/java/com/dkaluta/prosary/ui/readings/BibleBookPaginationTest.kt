@@ -42,4 +42,12 @@ class BibleBookPaginationTest {
         assertTrue(BibleBookPagination.forwardDrag(100f, rightToLeft = true))
         assertFalse(BibleBookPagination.forwardDrag(-100f, rightToLeft = true))
     }
+    @org.junit.Test fun flowingParagraphsNeverJoinAcrossNotesOrHeadings() {
+        val flags = listOf(true, true, false, true, true, false)
+        org.junit.Assert.assertEquals(listOf(0..1, 2..2, 3..4, 5..5), BibleBookPagination.groups(0..5, flags))
+        val pages = BibleBookPagination.flowPages(7, 100) { range -> ((range.count() + 1) / 2) * 40 }
+        org.junit.Assert.assertEquals(listOf(0..3, 4..6), pages)
+        org.junit.Assert.assertEquals((0..6).toList(), pages.flatMap { it.toList() })
+        org.junit.Assert.assertEquals(2, BibleBookPagination.spreadStart(listOf(0..1, 2..3, 4..5), 4, 1))
+    }
 }

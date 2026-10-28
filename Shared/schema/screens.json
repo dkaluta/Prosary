@@ -21,9 +21,9 @@
     "presentation": "Use compact native tabs or segmented controls across screens, with localized labels, visible selection, native focus and keyboard behavior, interface-direction ordering and reachable overflow. Windows Pivots share compact header typography and padding."
   },
   "bibleBookPresentation": {
-    "scope": "Bible chapter readers on iOS, Android and Windows; Mac retains continuous desktop reading.",
-    "layout": "Two facing pages when content width is at least 720 and height at least 360 native logical units; narrower readers use continuous reading. Book Scripture uses justified paragraphs and small inline verse indicators. Whole source blocks are measured at the selected Scripture font and script, with bounded vertical scrolling for an oversized unit. Headings, source notes and explicit printed-label disclosures keep their existing treatment.",
-    "navigation": "Previous Page, Next Page and horizontal paging follow Scripture inline-start/end independently of interface language. Flat Apple displays use native two-page curls; active Duo folds use reserved-region placement and native paging. Android and Windows use directional transitions. Programmatic motion respects system animation preferences. Page labels describe the current layout, not printed source pages. Chapter navigation and canonical verse routing remain independent.",
+    "scope": "Paged Bible edition readers on Apple, Android and Windows.",
+    "layout": "One page on narrow screens; two facing pages at least 720 wide and 360 high in native logical units. The shared offline HTML document uses the selected Scripture font in each platform's WebView. Adjacent ordinary verses share justified paragraphs with small inline verse indicators. Text flows across chapter and book boundaries. Headings, native notes and explicit printed-label disclosures remain distinct.",
+    "navigation": "Previous Page, Next Page and horizontal touch paging follow Scripture direction independently of interface language. Global book, chapter and verse controls jump directly to the resolved source unit. The entire edition loads once, with a global page count and slider; normal page turns perform no chapter loading. Page totals reflect font and window geometry. Desktop page buttons are compact. Touch taps on plain text hide application navigation and reader chrome; another tap restores them. Visible Apple chrome retains native glass. Notes, links and text selection do not toggle chrome. Escape and Android Back restore it.",
     "continuity": "Retain the current source block across page turns, verse jumps, script/font changes and wide/narrow reflow. Preserve exact source order, complete verse ranges, introductions, witnesses, printed labels, source notes, colophons, partial notices and attribution.",
     "duo": "Build with the Duo SDK; native bars adapt automatically. Custom prayer controls read the vertical toolbar environment. Active reserved regions and native arrangements protect prayer panes and facing Bible pages without identifying the device by name."
   },
@@ -435,7 +435,7 @@
         "catalog": "bible-catalog.json",
         "editionPreference": "readingsEditionId",
         "position": "Window-local book, chapter and verse; independent of selected prayer date.",
-        "navigation": "Source-native book/chapter lists, verse jump, previous/next available chapter, paired script selection and selectable text.",
+        "navigation": "Continuous paged reading across all available books and chapters, global source-native book/chapter selectors and exact verse jump, previous/next chapter, paired scripts and selectable text.",
         "downloads": "Explicit optional per-edition download with progress, cancellation/retry and removal. Verify size, SHA-256, manifest and all chapter contents before atomic installation. Daily passages do not depend on downloaded Bibles.",
         "coverage": "Display only declared books/chapters and visibly mark partial chapters. Never silently replace an unavailable edition, chapter, verse or language.",
         "credits": "Selected edition credit and source link, plus optional per-book translator attribution and source link."
