@@ -65,7 +65,7 @@ final class BibleEditionUITests: XCTestCase {
     }, object: nil)
     XCTAssertEqual(XCTWaiter.wait(for: [nearEnd], timeout: 10), .completed, count.label)
     // XCTest's normalized slider drag can stop a few physical pixels short of the end.
-    for _ in 0..<20 where app.buttons["bible.nextPage"].isEnabled {
+    for _ in 0..<40 where app.buttons["bible.nextPage"].isEnabled {
       app.buttons["bible.nextPage"].tap()
     }
     let atEnd = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in

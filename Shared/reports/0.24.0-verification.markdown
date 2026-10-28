@@ -27,8 +27,12 @@ CI checks those copies.
   15 store tests.
 - iPhone: full edition pagination, cross-book navigation, verse lookup, cached page turns,
   hiding/restoring controls and reaching the final page passed.
+- iPad: the same whole-edition flow passed with facing pages, including hiding every
+  application bar, restoring native glass, verse lookup and reaching the final page.
 - Android: native continuous-reader navigation, exact source ordering, source-note
   disclosure and hiding/restoring controls passed on a disposable Android 16 emulator.
+- The final signed Android build passed all 587 JVM tests. Its bundle SHA-256 is
+  `9594385471b3d473888e691f0fd8c50409e09a0d7ac399e37ad9464b0a9e1298`.
 - Full English and Hebrew editions were exercised in native WebKit at desktop and phone
   widths, including mixed-chapter pages, global jumps, facing-page turns, the final page
   and reflow. This does not establish Windows WebView2 runtime behavior.
