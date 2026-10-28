@@ -9,24 +9,31 @@ struct BibleBookPageCurlView<Leaf: View>: UIViewControllerRepresentable {
   @Binding var selection: Int
   let isRightToLeft: Bool
   let revision: AnyHashable
+  let leaves: Int
+  let previousSection: (() -> Void)?
+  let nextSection: (() -> Void)?
   let leaf: (Int, Int, Bool) -> Leaf
 
-  init(pageCount: Int, selection: Binding<Int>, isRightToLeft: Bool, revision: AnyHashable,
+  init(pageCount: Int, selection: Binding<Int>, isRightToLeft: Bool, revision: AnyHashable, leaves: Int = 2,
+       previousSection: (() -> Void)? = nil, nextSection: (() -> Void)? = nil,
        @ViewBuilder leaf: @escaping (Int, Int, Bool) -> Leaf) {
     self.pageCount = pageCount
     _selection = selection
     self.isRightToLeft = isRightToLeft
     self.revision = revision
+    self.leaves = leaves
+    self.previousSection = previousSection
+    self.nextSection = nextSection
     self.leaf = leaf
   }
 
   func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
 
   func makeUIViewController(context: Context) -> UIPageViewController {
-    let controller = UIPageViewController(transitionStyle: .pageCurl,
+    let controller = BibleBookPageController(transitionStyle: .pageCurl,
       navigationOrientation: .horizontal,
-      options: [.spineLocation: UIPageViewController.SpineLocation.mid.rawValue])
-    controller.isDoubleSided = true
+      options: [.spineLocation: (leaves == 2 ? UIPageViewController.SpineLocation.mid : .min).rawValue])
+    controller.isDoubleSided = leaves == 2
     controller.dataSource = context.coordinator
     controller.delegate = context.coordinator
     controller.view.backgroundColor = .systemBackground
@@ -44,6 +51,12 @@ struct BibleBookPageCurlView<Leaf: View>: UIViewControllerRepresentable {
       // A mouse drag selects Scripture; touch and Pencil retain native page curls.
       gesture.allowedTouchTypes = [UITouch.TouchType.direct, .pencil].map { NSNumber(value: $0.rawValue) }
     }
+    let boundary = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.boundaryTurn(_:)))
+    boundary.allowedTouchTypes = [UITouch.TouchType.direct, .pencil].map { NSNumber(value: $0.rawValue) }
+    boundary.cancelsTouchesInView = false
+    boundary.delegate = context.coordinator
+    controller.view.addGestureRecognizer(boundary)
+    controller.pagePan = boundary
     return controller
   }
 
@@ -61,7 +74,7 @@ struct BibleBookPageCurlView<Leaf: View>: UIViewControllerRepresentable {
   }
 
   @MainActor
-  final class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+  final class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate {
     var parent: BibleBookPageCurlView
     var environment = EnvironmentValues()
     var isDetached = false
@@ -70,14 +83,15 @@ struct BibleBookPageCurlView<Leaf: View>: UIViewControllerRepresentable {
     private var renderedRevision: AnyHashable?
     private var renderedRightToLeft: Bool?
     private var gestureRevision: AnyHashable?
+    private var boundaryStart = 0
 
     init(parent: BibleBookPageCurlView) { self.parent = parent }
 
-    private var paddedPageCount: Int { max(2, ((max(0, parent.pageCount) + 1) / 2) * 2) }
-    private var desiredSpread: Int { min(max(0, parent.selection), paddedPageCount / 2 - 1) }
+    private var paddedPageCount: Int { parent.leaves == 2 ? max(2, ((max(0, parent.pageCount) + 1) / 2) * 2) : max(1, parent.pageCount) }
+    private var desiredSpread: Int { min(max(0, parent.selection), paddedPageCount / parent.leaves - 1) }
 
     private func rootView(number: Int, activeSpread: Int) -> AnyView {
-      AnyView(parent.leaf(number, number % 2, number / 2 == activeSpread)
+      AnyView(parent.leaf(number, number % parent.leaves, number / parent.leaves == activeSpread)
         .environment(\.self, environment)
         .environment(\.layoutDirection, parent.isRightToLeft ? .rightToLeft : .leftToRight))
     }
@@ -99,7 +113,7 @@ struct BibleBookPageCurlView<Leaf: View>: UIViewControllerRepresentable {
 
     private func visibleSpread(in controller: UIPageViewController) -> Int? {
       let numbers = controller.viewControllers?.compactMap { ($0 as? BibleBookCurlLeafController)?.pageNumber }
-      return numbers?.min().map { $0 / 2 }
+      return numbers?.min().map { $0 / parent.leaves }
     }
 
     func synchronize(_ controller: UIPageViewController, animated: Bool) {
@@ -108,13 +122,13 @@ struct BibleBookPageCurlView<Leaf: View>: UIViewControllerRepresentable {
       let oldSpread = visibleSpread(in: controller)
       let changed = renderedRevision != parent.revision || renderedRightToLeft != parent.isRightToLeft
       refreshContent(activeSpread: spread)
-      let orderedNumbers = parent.isRightToLeft ? [spread * 2 + 1, spread * 2] : [spread * 2, spread * 2 + 1]
+      let orderedNumbers = parent.leaves == 1 ? [spread] : parent.isRightToLeft ? [spread * 2 + 1, spread * 2] : [spread * 2, spread * 2 + 1]
       let currentNumbers = controller.viewControllers?.compactMap { ($0 as? BibleBookCurlLeafController)?.pageNumber }
       guard changed || currentNumbers != orderedNumbers else { return }
       let leaves = orderedNumbers.compactMap { self.controller(number: $0, activeSpread: spread) }
       // A center spine always requires two controllers, including a blank final leaf when
       // the chapter has an odd page count.
-      guard leaves.count == 2 else { return }
+      guard leaves.count == parent.leaves else { return }
       let advancing = spread > (oldSpread ?? spread)
       let direction: UIPageViewController.NavigationDirection = advancing != parent.isRightToLeft ? .forward : .reverse
       let shouldAnimate = animated && !changed && oldSpread != nil && oldSpread != spread
@@ -163,10 +177,36 @@ struct BibleBookPageCurlView<Leaf: View>: UIViewControllerRepresentable {
       refreshContent(activeSpread: spread)
     }
 
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool { true }
+
+    @objc func boundaryTurn(_ gesture: UIPanGestureRecognizer) {
+      if gesture.state == .began { boundaryStart = desiredSpread }
+      guard gesture.state == .ended, !isDetached else { return }
+      let translation = gesture.translation(in: gesture.view)
+      guard abs(translation.x) > 70, abs(translation.x) > abs(translation.y) * 1.5 else { return }
+      let forward = parent.isRightToLeft ? translation.x > 0 : translation.x < 0
+      if forward, boundaryStart == paddedPageCount / parent.leaves - 1 { parent.nextSection?() }
+      else if !forward, boundaryStart == 0 { parent.previousSection?() }
+    }
+
     func pageViewController(_ pageViewController: UIPageViewController,
                             spineLocationFor orientation: UIInterfaceOrientation) -> UIPageViewController.SpineLocation {
-      pageViewController.isDoubleSided = true
-      return .mid
+      pageViewController.isDoubleSided = parent.leaves == 2
+      return parent.leaves == 2 ? .mid : .min
+    }
+  }
+}
+
+/// Page turns own horizontal drags inside Scripture. The navigation controller's
+/// screen-edge Back gesture remains available, alongside the native Back button.
+@MainActor
+private final class BibleBookPageController: UIPageViewController {
+  var pagePan: UIPanGestureRecognizer?
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    if #available(iOS 26.0, *), let pagePan {
+      navigationController?.interactiveContentPopGestureRecognizer?.require(toFail: pagePan)
     }
   }
 }

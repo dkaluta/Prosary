@@ -19,7 +19,7 @@
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="BibleBookBlockTemplate" x:DataType="vm:BibleVerseRow">
-            <ContentControl Content="{x:Bind}" ContentTemplate="{StaticResource BibleBlockTemplate}" Loaded="OnBookBlockLoaded"
+            <ContentControl Content="{x:Bind}" ContentTemplate="{StaticResource BibleBlockTemplate}"
                             Padding="0" HorizontalContentAlignment="Stretch" />
         </DataTemplate>
     </UserControl.Resources>
@@ -79,55 +79,15 @@
                                                        Visibility="{x:Bind ViewModel.HasScriptToggle, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
                         <TextBlock Text="{x:Bind ViewModel.PartialNotice}" TextWrapping="Wrap" FontWeight="SemiBold"
                                    Visibility="{x:Bind ViewModel.IsPartial, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                        <TextBlock Text="{x:Bind ViewModel.ChapterHeading, Mode=OneWay}" FontWeight="Bold" FontSize="22"
+                        <TextBlock Text="{x:Bind ViewModel.ChapterHeading, Mode=OneWay}" FontSize="14"
                                    TextWrapping="Wrap"
                                    FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}" />
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
-        <Grid x:Name="BibleTextViewport" Grid.Row="1" SizeChanged="OnBibleTextViewportSizeChanged">
-            <ListView x:Name="VerseList" ItemsSource="{x:Bind ViewModel.Verses, Mode=OneWay}" ItemTemplate="{StaticResource BibleBlockTemplate}" SelectionMode="None" IsItemClickEnabled="False"
-                      ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      FontFamily="{x:Bind ViewModel.BodyFontFamily, Mode=OneWay}" FontSize="{x:Bind ViewModel.BodyFontSize, Mode=OneWay}"
-                      FlowDirection="{x:Bind ViewModel.IsRightToLeft, Mode=OneWay, Converter={StaticResource BoolToFlowDirection}}"
-                      AutomationProperties.Name="{x:Bind ViewModel.ChapterHeading, Mode=OneWay}" AutomationProperties.AutomationId="bibleVerses">
-                <ListView.Header>
-                    <TextBlock Text="{x:Bind ViewModel.Introduction, Mode=OneWay}" TextWrapping="Wrap" IsTextSelectionEnabled="True" Margin="8,8,8,16"
-                               Visibility="{x:Bind ViewModel.HasIntroduction, Mode=OneWay, Converter={StaticResource BoolToVisibility}}" />
-                </ListView.Header>
-                <ListView.ItemContainerStyle><Style TargetType="ListViewItem"><Setter Property="HorizontalContentAlignment" Value="Stretch"/><Setter Property="Padding" Value="0"/></Style></ListView.ItemContainerStyle>
-            </ListView>
-            <Grid x:Name="BookReader" Visibility="Collapsed" RowSpacing="12">
-                <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                <Grid x:Name="FacingPageSpread" ColumnSpacing="24" ManipulationMode="TranslateX"
-                      ManipulationCompleted="OnBookManipulationCompleted" PointerWheelChanged="OnBookPointerWheelChanged">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                    <ScrollViewer x:Name="FirstPageScroll" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled"
-                                  PointerPressed="OnBookPagePointerPressed" PointerWheelChanged="OnBookPagePointerWheelChanged" ViewChanged="OnBookPageViewChanged"
-                                  VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl x:Name="FirstPageBlocks" ItemTemplate="{StaticResource BibleBookBlockTemplate}" />
-                    </ScrollViewer>
-                    <ScrollViewer x:Name="SecondPageScroll" Grid.Column="1" HorizontalContentAlignment="Stretch" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled"
-                                  PointerPressed="OnBookPagePointerPressed" PointerWheelChanged="OnBookPagePointerWheelChanged" ViewChanged="OnBookPageViewChanged"
-                                  VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl x:Name="SecondPageBlocks" ItemTemplate="{StaticResource BibleBookBlockTemplate}" />
-                    </ScrollViewer>
-                </Grid>
-                <Grid x:Name="BookPageNavigation" Grid.Row="1" ColumnSpacing="12">
-                    <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                    <Button x:Name="PreviousPageButton" Click="OnPreviousPage" MinHeight="48" MinWidth="48" AutomationProperties.AutomationId="biblePreviousPage">
-                        <SymbolIcon x:Name="PreviousPageIcon" Symbol="Back" FlowDirection="LeftToRight" />
-                    </Button>
-                    <TextBlock x:Name="BookPageCount" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"
-                               AutomationProperties.LiveSetting="Polite" AutomationProperties.AutomationId="biblePageCount" />
-                    <Button x:Name="NextPageButton" Grid.Column="2" Click="OnNextPage" MinHeight="48" MinWidth="48" AutomationProperties.AutomationId="bibleNextPage">
-                        <SymbolIcon x:Name="NextPageIcon" Symbol="Forward" FlowDirection="LeftToRight" />
-                    </Button>
-                </Grid>
-            </Grid>
-            <Canvas x:Name="BookMeasurementHost" Width="0" Height="0" Opacity="0" IsHitTestVisible="False"
-                    AutomationProperties.AccessibilityView="Raw" />
+        <Grid x:Name="BibleTextViewport" Grid.Row="1">
+            <controls:BibleEditionTextControl x:Name="EditionReader" />
             <ProgressRing IsActive="{x:Bind ViewModel.IsLoading, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
     </Grid>

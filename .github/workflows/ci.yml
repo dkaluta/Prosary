@@ -131,6 +131,8 @@ jobs:
           key: scripture-sources-${{ hashFiles('Shared/tools/reading-text-sources.json') }}
       - name: Fetch pinned sources and reproduce shipped Bible archives
         run: uv run --script Shared/tools/build-bible-library.py --fetch --check
+      - name: Verify the shared edition renderer copies
+        run: uv run --script Shared/tools/sync-edition-reader.py --check
       - name: Verify every permitted source verse and native catalog
         run: uv run --script Shared/tools/test-bible-library.py
 

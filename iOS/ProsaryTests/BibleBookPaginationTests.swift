@@ -24,6 +24,17 @@ final class BibleBookPaginationTests: XCTestCase {
     }
   }
 
+  func testFlowMeasuresJoinedParagraphsAndPreservesEverySourceBlock() {
+    let pages = BibleBookPagination.flowPages(count: 7, availableHeight: 100) { range in
+      // Joining the second unit continues the same line instead of adding another paragraph.
+      CGFloat((range.count + 1) / 2) * 40
+    }
+    XCTAssertEqual(pages, [0..<4, 4..<7])
+    XCTAssertEqual(pages.flatMap { Array($0) }, Array(0..<7))
+    let oversized = BibleBookPagination.flowPages(count: 3, availableHeight: 10) { _ in 400 }
+    XCTAssertEqual(oversized, [0..<1, 1..<2, 2..<3])
+  }
+
   func testEmptyAndTransientViewportSizesRemainBounded() {
     XCTAssertTrue(BibleBookPagination.pages(heights: [], availableHeight: 0).isEmpty)
     XCTAssertEqual(BibleBookPagination.pages(heights: [0, .infinity, 10], availableHeight: 0), [0..<1, 1..<2, 2..<3])

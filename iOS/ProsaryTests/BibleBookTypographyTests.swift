@@ -23,6 +23,14 @@ final class BibleBookTypographyTests: XCTestCase {
     }
   }
 
+  func testJoinedVersesKeepSourceTextAndIndependentInlineMarkers() {
+    let parts = [BibleBookTextPart(text: "First exact verse.", label: "1"), BibleBookTextPart(text: "Second exact verse!", label: "2–3")]
+    let value = BibleJustifiedParagraph(text: "", label: nil, font: .systemFont(ofSize: 19),
+      isRightToLeft: false, parts: parts).attributedText
+    XCTAssertEqual(value.string, "\u{2068}1\u{2069}\u{00A0}First exact verse. \u{2068}2–3\u{2069}\u{00A0}Second exact verse!")
+    XCTAssertFalse(value.string.contains("\n"))
+  }
+
   func testUnnumberedScriptureDoesNotAcquireAnInventedMarker() {
     let source = "Unnumbered fixture."
     let content = BibleJustifiedParagraph(text: source, label: nil,

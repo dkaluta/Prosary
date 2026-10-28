@@ -1,4 +1,9 @@
 import SwiftUI
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 
 /// Pages contain complete source units in their original order. A unit taller than a leaf
 /// remains alone on a vertically scrollable page, preserving every word and source note.
@@ -22,6 +27,21 @@ enum BibleBookPagination {
     return pages
   }
 
+  /// Measure the flowing candidate, not the sum of isolated verse paragraphs.
+  static func flowPages(count: Int, availableHeight: CGFloat, measure: (Range<Int>) -> CGFloat) -> [Range<Int>] {
+    guard count > 0 else { return [] }
+    var result: [Range<Int>] = []
+    var start = 0
+    for end in 1...count {
+      if end > start + 1, measure(start..<end) > max(1, availableHeight) {
+        result.append(start..<(end - 1))
+        start = end - 1
+      }
+    }
+    result.append(start..<count)
+    return result
+  }
+
   static func spread(containing item: Int, pages: [Range<Int>]) -> Int {
     (pages.firstIndex { $0.contains(item) } ?? 0) / 2
   }
@@ -35,8 +55,11 @@ struct BibleChapterReader: View {
   let script: String
   let jumpGeneration: Int
   @Binding var anchorID: String?
+  var previousChapter: (() -> Void)? = nil
+  var nextChapter: (() -> Void)? = nil
   @Environment(\.layoutDirection) private var interfaceDirection
   @ObservedObject private var typography = PrayerTypographyMonitor.shared
+  @ScaledMetric(relativeTo: .body) private var bodyScale = 1.0
   @State private var heights: [String: CGFloat] = [:]
   @State private var leafSizes: [Int: CGSize] = [:]
 
@@ -59,10 +82,8 @@ struct BibleChapterReader: View {
 
   var body: some View {
     GeometryReader { geometry in
-      #if os(iOS)
-      if geometry.size.width >= 720, geometry.size.height >= 360 {
-        bookContent(size: geometry.size)
-      } else { continuousContent }
+      #if os(iOS) || os(macOS)
+      bookContent(size: geometry.size)
       #else
       continuousContent
       #endif
@@ -91,36 +112,59 @@ struct BibleChapterReader: View {
     }
   }
 
-  #if os(iOS)
+  #if os(iOS) || os(macOS)
   private func bookContent(size: CGSize) -> some View {
-    let width = max(1, leafSizes.values.map(\.width).min() ?? (size.width - 72) / 2)
+    let leaves = size.width >= 720 && size.height >= 360 ? 2 : 1
+    let width = max(1, leafSizes.values.map(\.width).min() ?? (size.width - 40) / CGFloat(leaves) - 32)
     let height = max(1, leafSizes.values.map(\.height).min() ?? size.height - 100)
-    let pages = BibleBookPagination.pages(heights: ids.map { heights[$0] ?? height }, availableHeight: height)
-    let spreadCount = max(1, (pages.count + 1) / 2)
-    let selected = BibleBookPagination.spread(containing: ids.firstIndex(of: anchorID ?? "") ?? 0, pages: pages)
+    let pages = BibleBookPagination.flowPages(count: ids.count, availableHeight: height) { range in
+      measuredHeight(range.map { ids[$0] }, width: width, fallback: height)
+    }
+    let spreadCount = max(1, (pages.count + leaves - 1) / leaves)
+    let index = anchorID == "edition.previous.end" ? max(0, ids.count - 1) : ids.firstIndex(of: anchorID ?? "") ?? 0
+    let selected = (pages.firstIndex { $0.contains(index) } ?? 0) / leaves
     let selection = Binding(get: { min(selected, spreadCount - 1) }, set: { spread in
-      guard pages.indices.contains(spread * 2) else { return }
-      anchorID = ids[pages[spread * 2].lowerBound]
+      guard pages.indices.contains(spread * leaves) else { return }
+      anchorID = ids[pages[spread * leaves].lowerBound]
     })
 
     return VStack(spacing: 12) {
-      turningPages(pages: pages, selection: selection, selected: selected, spreadCount: spreadCount)
+      Group {
+        if leaves == 2 {
+          turningPages(pages: pages, selection: selection, selected: selected, spreadCount: spreadCount)
+        } else {
+          #if os(iOS)
+          BibleBookPageCurlView(pageCount: pages.count, selection: selection,
+            isRightToLeft: direction == .rightToLeft,
+            revision: AnyHashable("\(pages)|\(script)|\(typography.typefaces)|\(jumpGeneration)"), leaves: 1,
+            previousSection: previousChapter, nextSection: nextChapter) { number, slot, active in
+              page(number, slot: slot, pages: pages, active: active)
+            }.padding(.horizontal, 20)
+          #else
+          page(selected, slot: 0, pages: pages, active: true).padding(.horizontal, 20)
+          #endif
+        }
+      }.id("\(display.chapter.book)|\(display.chapter.chapter)|\(leaves)")
       HStack {
-        Button { selection.wrappedValue -= 1 } label: {
+        Button { if selected == 0 { previousChapter?() } else { selection.wrappedValue -= 1 } } label: {
           Label(bibleLabel("previousPage", "Previous Page"), systemImage: direction == .rightToLeft ? "chevron.right" : "chevron.left")
         }
-        .disabled(selected == 0)
+        .disabled(selected == 0 && previousChapter == nil)
         .accessibilityIdentifier("bible.previousPage")
         Spacer()
-        Text(String(format: bibleLabel("pageCount", "Pages %1$d–%2$d of %3$d"), locale: UILanguage.locale,
-          selected * 2 + 1, min(selected * 2 + 2, pages.count), pages.count))
-          .font(.caption).monospacedDigit()
-          .accessibilityIdentifier("bible.pageCount")
+        VStack(spacing: 2) {
+          Text(bibleChapterLabel(display.chapter.chapter, book: book, edition: edition.readingEdition, script: script))
+            .font(.caption2).foregroundStyle(.secondary)
+          Text(String(format: bibleLabel("pageCount", "Pages %1$d–%2$d of %3$d"), locale: UILanguage.locale,
+            selected * leaves + 1, min(selected * leaves + leaves, pages.count), pages.count))
+            .font(.caption).monospacedDigit()
+            .accessibilityIdentifier("bible.pageCount")
+        }
         Spacer()
-        Button { selection.wrappedValue += 1 } label: {
+        Button { if selected >= spreadCount - 1 { nextChapter?() } else { selection.wrappedValue += 1 } } label: {
           Label(bibleLabel("nextPage", "Next Page"), systemImage: direction == .rightToLeft ? "chevron.left" : "chevron.right")
         }
-        .disabled(selected >= spreadCount - 1)
+        .disabled(selected >= spreadCount - 1 && nextChapter == nil)
         .accessibilityIdentifier("bible.nextPage")
       }
       .labelStyle(.iconOnly)
@@ -149,6 +193,7 @@ struct BibleChapterReader: View {
 
   @ViewBuilder
   private func turningPages(pages: [Range<Int>], selection: Binding<Int>, selected: Int, spreadCount: Int) -> some View {
+    #if os(iOS)
     if #available(iOS 27.1, *) {
       GeometryReader { geometry in
         let bounds = CGRect(origin: .zero, size: geometry.size)
@@ -179,22 +224,75 @@ struct BibleChapterReader: View {
     } else {
       curlingPages(pages: pages, selection: selection)
     }
+    #else
+    HStack(spacing: 24) {
+      page(selected * 2, slot: 0, pages: pages, active: true)
+      page(selected * 2 + 1, slot: 1, pages: pages, active: true)
+    }.padding(.horizontal, 20).environment(\.layoutDirection, direction)
+    #endif
   }
 
+  #if os(iOS)
   private func curlingPages(pages: [Range<Int>], selection: Binding<Int>) -> some View {
     BibleBookPageCurlView(pageCount: pages.count, selection: selection,
       isRightToLeft: direction == .rightToLeft,
-      revision: AnyHashable("\(pages)|\(script)|\(typography.typefaces)|\(jumpGeneration)")) { number, slot, active in
+      revision: AnyHashable("\(pages)|\(script)|\(typography.typefaces)|\(jumpGeneration)"),
+      previousSection: previousChapter, nextSection: nextChapter) { number, slot, active in
       page(number, slot: slot, pages: pages, active: active)
     }
     .padding(.horizontal, 20)
     .environment(\.layoutDirection, direction)
   }
 
+  #endif
+
+  private func textParts(_ group: [String]) -> [BibleBookTextPart] {
+    group.compactMap { id in
+      guard let block = display.blocks.first(where: { $0.id == id }), let unit = block.unit else { return nil }
+      return BibleBookTextPart(text: unit.displayedText(script: script, edition: edition.readingEdition),
+        label: biblePrimaryLabel(unit, displayChapter: display.chapter.chapter, edition: edition.readingEdition, script: script))
+    }
+  }
+
+  private func measuredHeight(_ values: [String], width: CGFloat, fallback: CGFloat) -> CGFloat {
+    let groups = paragraphGroups(values)
+    return groups.reduce(CGFloat(max(0, groups.count - 1)) * 16) { total, group in
+      guard group.count > 1 else { return total + (heights[group[0]] ?? fallback) }
+      let parts = textParts(group)
+      let text = parts.map(\.text).joined(separator: " ")
+      let face = PrayerTypography.scriptureFace(script: PrayerTypography.resolvedScript(text: text, languageCode: edition.languageCode), typefaces: typography.typefaces)
+      let font = BibleParagraphFont(name: face.name, size: face.size * bodyScale) ?? .systemFont(ofSize: face.size * bodyScale)
+      let paragraph = BibleJustifiedParagraph(text: text, label: nil, font: font, isRightToLeft: direction == .rightToLeft, parts: parts)
+      let bounds = paragraph.attributedText.boundingRect(with: CGSize(width: max(1, width), height: .greatestFiniteMagnitude),
+        options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+      return total + ceil(bounds.height) + 2
+    }
+  }
+
+  private func paragraphGroups(_ values: [String]) -> [[String]] {
+    var result: [[String]] = []
+    var flowing = false
+    for id in values {
+      let block = display.blocks.first { $0.id == id }
+      let joins = canonicalReference == nil && block?.kind == .verse && block?.printedLabel == nil && block?.sourceNotes.isEmpty == true
+      if joins, flowing { result[result.count - 1].append(id) }
+      else { result.append([id]) }
+      flowing = joins
+    }
+    return result
+  }
+
   private func page(_ number: Int, slot: Int, pages: [Range<Int>], active: Bool) -> some View {
     GeometryReader { geometry in
-      BibleBookLeaf(ids: pages.indices.contains(number) ? pages[number].map { ids[$0] } : [],
-        active: active, anchorID: $anchorID, jumpGeneration: jumpGeneration) { item($0, bookTypography: true) }
+      BibleBookLeaf(groups: paragraphGroups(pages.indices.contains(number) ? pages[number].map { ids[$0] } : []),
+        active: active, anchorID: $anchorID, jumpGeneration: jumpGeneration) { group in
+          if group.count > 1 {
+            let parts = textParts(group)
+            BibleBookVerseText(text: parts.map(\.text).joined(separator: " "), label: nil, languageCode: edition.languageCode,
+              isRightToLeft: direction == .rightToLeft, typefaces: typography.typefaces, parts: parts)
+              .accessibilityIdentifier("bible.paragraph.\(group[0])")
+          } else if let id = group.first { item(id, bookTypography: true) }
+        }
       .id(number)
       .onGeometryChange(for: CGSize.self) { $0.size } action: {
         leafSizes[slot] = CGSize(width: max(1, $0.width - 32), height: max(1, $0.height - 32))
@@ -205,6 +303,7 @@ struct BibleChapterReader: View {
     .overlay { RoundedRectangle(cornerRadius: 4).strokeBorder(.secondary.opacity(0.2), lineWidth: 1).allowsHitTesting(false) }
     .accessibilityElement(children: .contain)
     .accessibilityIdentifier("bible.page.\(slot)")
+    .accessibilityHidden(!active)
   }
   #endif
 
@@ -217,7 +316,7 @@ struct BibleChapterReader: View {
         .environment(\.layoutDirection, interfaceDirection)
     case "chapter.introduction":
       if let introduction = book.introduction(for: display.chapter.chapter) {
-        #if os(iOS)
+        #if os(iOS) || os(macOS)
         if bookTypography {
           BibleBookVerseText(text: introduction, label: nil, languageCode: edition.languageCode,
             isRightToLeft: edition.readingEdition.isBibleRightToLeft, typefaces: typography.typefaces)
@@ -230,8 +329,9 @@ struct BibleChapterReader: View {
         #endif
       }
     case "chapter.heading":
-      BibleSourceChapterHeading(edition: edition.readingEdition, chapter: display.chapter.chapter,
-        script: script, canonicalReference: canonicalReference)
+      Text(bibleChapterLabel(display.chapter.chapter, book: book, edition: edition.readingEdition, script: script))
+        .font(.caption).foregroundStyle(.secondary)
+        .accessibilityAddTraits(.isHeader).accessibilityIdentifier("readings.chapter.\(display.chapter.chapter)")
     case "chapter.credits":
       BibleCredits(edition: edition.readingEdition, book: book)
         .environment(\.layoutDirection, interfaceDirection)
@@ -244,13 +344,14 @@ struct BibleChapterReader: View {
   }
 }
 
-#if os(iOS)
+#if os(iOS) || os(macOS)
 private struct BibleBookLeaf<Content: View>: View {
-  let ids: [String]
+  let groups: [[String]]
+  private var ids: [String] { groups.flatMap { $0 } }
   let active: Bool
   @Binding var anchorID: String?
   let jumpGeneration: Int
-  @ViewBuilder let content: (String) -> Content
+  @ViewBuilder let content: ([String]) -> Content
   @State private var visibleID: String?
   @State private var isScrolling = false
 
@@ -259,7 +360,7 @@ private struct BibleBookLeaf<Content: View>: View {
       trackedScroll {
         ScrollView {
           LazyVStack(alignment: .leading, spacing: 16) {
-            ForEach(ids, id: \.self) { id in content(id).id(id) }
+            ForEach(groups, id: \.first) { group in content(group).id(group.first!) }
           }
           .scrollTargetLayout()
           .frame(maxWidth: .infinity, alignment: .leading)
@@ -281,12 +382,12 @@ private struct BibleBookLeaf<Content: View>: View {
   }
 
   private func scrollToAnchor(_ proxy: ScrollViewProxy) {
-    if let anchorID, ids.contains(anchorID) { proxy.scrollTo(anchorID, anchor: .top) }
+    if let anchorID, let group = groups.first(where: { $0.contains(anchorID) }) { proxy.scrollTo(group.first!, anchor: .top) }
   }
 
   @ViewBuilder
   private func trackedScroll<ScrollContent: View>(@ViewBuilder _ content: () -> ScrollContent) -> some View {
-    if #available(iOS 18.0, *) {
+    if #available(iOS 18.0, macOS 15.0, *) {
       content().onScrollPhaseChange { _, phase in
         let wasScrolling = isScrolling
         isScrolling = phase == .interacting || phase == .decelerating

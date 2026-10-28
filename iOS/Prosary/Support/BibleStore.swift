@@ -395,6 +395,18 @@ actor BibleStore {
     return try BibleDisplayChapter.resolve(selected, primaryChapters: primary)
   }
 
+  /// Materialize an installed edition once, in catalog order. Daily passage APIs stay bounded.
+  func readerEdition(_ edition: BibleEdition) throws -> [BibleReaderSection] {
+    var result: [BibleReaderSection] = []
+    for book in edition.books {
+      for chapter in book.chapters {
+        try Task.checkCancellation()
+        result.append(BibleReaderSection(book: book, display: try displayChapter(edition: edition, book: book.id, number: chapter.number)))
+      }
+    }
+    return result
+  }
+
   func verseTarget(edition: BibleEdition, book: String, chapter number: Int, verse: Int) throws -> BibleVerseTarget? {
     guard let metadata = edition.books.first(where: { $0.id == book }) else { throw BibleStoreError.invalidArchive }
     let primary = try chapter(edition: edition, book: book, number: number)

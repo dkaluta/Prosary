@@ -87,6 +87,9 @@ public partial class BibleViewModel : ObservableObject
     private CancellationTokenSource? _downloadCancellation;
     private BibleManifest? _installed;
     private BibleDisplayChapter? _sourceChapter;
+    private bool _readerPositionChange;
+    private string? _readerRevision;
+    public IReadOnlyList<BibleReaderSection> ReaderSections { get; private set; } = [];
     private string? _selectedBlockId;
     private enum RetryOperation { Chapter, Download, Remove }
     private RetryOperation _retryOperation;
@@ -161,7 +164,7 @@ public partial class BibleViewModel : ObservableObject
     partial void OnIsLoadingChanged(bool value) => OnPropertyChanged(nameof(CanNavigate));
     partial void OnSelectedVerseChanged(BibleVerseRow? value)
     {
-        if (value is null) return;
+        if (value is null || _readerPositionChange) return;
         _selectedBlockId = value.Id;
         VerseRequested?.Invoke(value);
     }
@@ -222,6 +225,24 @@ public partial class BibleViewModel : ObservableObject
         _installed = installed;
         IsInstalled = _installed is not null;
         UpdateAvailable = _installed is not null && _installed.Revision != edition?.Revision;
+        if (_installed is not null && edition is not null && _readerRevision != $"{edition.Id}|{_installed.Revision}")
+        {
+            ReaderSections = [];
+            OnPropertyChanged(nameof(ReaderSections));
+            IsLoading = true;
+            try
+            {
+                var sections = await _store.LoadReaderEditionAsync(edition.Id);
+                if (request != _request) return;
+                ReaderSections = sections;
+                _readerRevision = $"{edition.Id}|{_installed.Revision}";
+                OnPropertyChanged(nameof(ReaderSections));
+            }
+            catch (Exception error) when (error is IOException or UnauthorizedAccessException or System.Text.Json.JsonException)
+            { Error = Loc.Tr("bible_read_error", "This chapter could not be opened. Retry or download the edition again."); }
+            finally { IsLoading = false; }
+        }
+        if (_installed is null) { ReaderSections = []; _readerRevision = null; OnPropertyChanged(nameof(ReaderSections)); }
         RefreshChoices();
         NotifyDisplay();
         await LoadChapterAsync();
@@ -258,6 +279,14 @@ public partial class BibleViewModel : ObservableObject
     [RelayCommand]
     private async Task LoadChapterAsync()
     {
+        if (ReaderSections.FirstOrDefault(section => section.Book.Id == SelectedBook?.Book.Id
+            && section.Display.Chapter.Chapter == SelectedChapter?.Chapter.Number) is { } cached)
+        {
+            _sourceChapter = cached.Display;
+            IsPartial = SelectedChapter?.Chapter.IsComplete == false;
+            RefreshText();
+            return;
+        }
         _chapterCancellation?.Cancel();
         var cancellation = _chapterCancellation = new();
         var request = ++_request;
@@ -296,6 +325,25 @@ public partial class BibleViewModel : ObservableObject
         SelectedVerse = VerseChoices.FirstOrDefault(row => row.Id == _selectedBlockId) ?? VerseChoices.FirstOrDefault();
         NotifyDisplay();
     }
+    public void SelectReaderPosition(string book, int chapter, string anchor)
+    {
+        var section = ReaderSections.FirstOrDefault(item => item.Book.Id == book && item.Display.Chapter.Chapter == chapter);
+        if (section is null) return;
+        _readerPositionChange = true;
+        _synchronizing = true;
+        try
+        {
+            SelectedBook = Books.First(item => item.Book.Id == book);
+            RefreshChapters();
+            SelectedChapter = Chapters.First(item => item.Chapter.Number == chapter);
+            _sourceChapter = section.Display;
+            _selectedBlockId = anchor.StartsWith(section.Id + "/", StringComparison.Ordinal) ? anchor[(section.Id.Length + 1)..] : null;
+            IsPartial = !SelectedChapter.Chapter.IsComplete;
+            RefreshText();
+        }
+        finally { _synchronizing = false; _readerPositionChange = false; }
+    }
+
     public bool SelectVerse(int number)
     {
         var row = VerseChoices.FirstOrDefault(verse => verse.Chapter == SelectedChapter?.Chapter.Number && verse.ContainsVerse(number));

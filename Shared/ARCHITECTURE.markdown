@@ -1907,12 +1907,19 @@ keeps the same edition's reviewed bundled passage available offline. Native read
 parse citation text or widen an appointment to unreviewed chapters. Terminal has no readings
 or download features.
 
-Wide iOS, Android and Windows Bible readers paginate complete source blocks into facing
-pages with justified paragraphs and inline verse indicators. Native page turns follow the
-Scripture's inline direction independently of the interface, and source-block anchors connect
-verse jumps and narrow/wide reflow. Long units
-remain scrollable without truncation. These are layout pages, not printed-source pagination;
-the archive and saved-preference shapes do not change. Mac retains continuous reading.
+Apple, Android and Windows Bible readers prepare the whole installed edition once in an
+offline WebView document, with one page on narrow screens or facing pages on wide screens.
+The byte-identical renderer lives in `Shared/reader/edition-reader.html`; run
+`uv run --script Shared/tools/sync-edition-reader.py` to copy it into all three ports.
+Adjacent ordinary verses share justified paragraphs with inline verse indicators. Page turns follow Scripture
+direction and continue across chapters and books throughout the available edition. Global
+book/chapter/verse controls retain exact reviewed address routing. Global page counts and
+the slider span the edition; normal turns perform no chapter I/O. Source-block anchors
+connect verse jumps and reflow; notes, printed labels and exceptional source units stay
+distinct. Long units flow across pages. Touch taps toggle application chrome, while native
+note disclosures, links and text selection retain their own interactions. Visible Apple
+chrome retains native glass; desktop page buttons are compact. Archive and saved-preference
+shapes do not change.
 
 Hebrew additions retain their independently reviewed source work IDs and addresses,
 while book and chapter `canonicalReference` metadata identifies their Catholic placement:

@@ -72,7 +72,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlin.math.abs
 
 internal data class BiblePageMeasurement(val texts: List<Pair<AnnotatedString, TextStyle>>,
-    val extraHeight: Dp = 0.dp, val horizontalInset: Dp = 0.dp)
+    val extraHeight: Dp = 0.dp, val horizontalInset: Dp = 0.dp, val flowing: Boolean = false)
 
 private data class BibleBookSpread(val firstPage: Int, val turn: Int)
 
@@ -82,11 +82,14 @@ private data class BibleBookSpread(val firstPage: Int, val turn: Int)
 internal fun BibleAdaptiveChapterReader(
     keys: List<String>, measurements: List<BiblePageMeasurement>, scroll: LazyListState,
     direction: LayoutDirection, anchor: String, onAnchorChange: (String) -> Unit,
-    jumpSerial: Int, jumpBlock: String?, rowContent: @Composable (Int) -> Unit,
+    jumpSerial: Int, jumpBlock: String?,
+    previousSection: (() -> Unit)? = null, nextSection: (() -> Unit)? = null,
+    paragraphContent: @Composable (IntRange) -> Unit, rowContent: @Composable (Int) -> Unit,
 ) {
     val interfaceDirection = LocalLayoutDirection.current
     BoxWithConstraints(Modifier.fillMaxSize()) {
-        val bookMode = maxWidth >= 720.dp && maxHeight >= 360.dp
+        val leaves = if (maxWidth >= 720.dp && maxHeight >= 360.dp) 2 else 1
+        val bookMode = maxHeight > 0.dp
         LaunchedEffect(bookMode, jumpSerial) {
             if (!bookMode) scroll.scrollToItem(keys.indexOf(anchor).coerceAtLeast(0))
         }
@@ -100,25 +103,38 @@ internal fun BibleAdaptiveChapterReader(
             if (bookMode) {
                 val density = LocalDensity.current
                 val textMeasurer = rememberTextMeasurer(cacheSize = 512)
-                val pageWidth = with(density) { ((maxWidth - 64.dp) / 2 - 32.dp).roundToPx().coerceAtLeast(1) }
+                val pageWidth = with(density) { ((maxWidth - 40.dp - (if (leaves == 2) 24.dp else 0.dp)) / leaves - 32.dp).roundToPx().coerceAtLeast(1) }
                 val pageHeight = with(density) { (maxHeight - 56.dp - 32.dp).roundToPx().coerceAtLeast(1) }
-                val heights = measurements.map { row ->
-                    with(density) { row.extraHeight.roundToPx() } + row.texts.sumOf { (text, style) ->
-                        textMeasurer.measure(text, style,
-                            constraints = Constraints(maxWidth = (pageWidth - with(density) {
+                val flowing = measurements.map { it.flowing }
+                fun measure(range: IntRange): Int {
+                    val groups = BibleBookPagination.groups(range, flowing)
+                    return with(density) { (12.dp * (groups.size - 1).coerceAtLeast(0)).roundToPx() } + groups.sumOf { group ->
+                        val row = measurements[group.first]
+                        val texts = if (group.count() > 1) listOf(androidx.compose.ui.text.buildAnnotatedString {
+                            group.forEachIndexed { index, item ->
+                                if (index > 0) append(" ")
+                                append(measurements[item].texts.first().first)
+                            }
+                        } to row.texts.first().second) else row.texts
+                        with(density) { row.extraHeight.roundToPx() } + texts.sumOf { (text, style) ->
+                            textMeasurer.measure(text, style, constraints = Constraints(maxWidth = (pageWidth - with(density) {
                                 row.horizontalInset.roundToPx() * 2
                             }).coerceAtLeast(1)), layoutDirection = direction).size.height
+                        }
                     }
                 }
-                val pages = BibleBookPagination.pages(heights, pageHeight, with(density) { 12.dp.roundToPx() })
-                val start = BibleBookPagination.spreadStart(pages, keys.indexOf(anchor))
+                val pages = BibleBookPagination.flowPages(keys.size, pageHeight, ::measure)
+                val start = BibleBookPagination.spreadStart(pages,
+                    if (anchor == "edition.previous.end") keys.lastIndex else keys.indexOf(anchor), leaves)
                 var turnSerial by remember { mutableIntStateOf(0) }
                 fun turn(forward: Boolean) {
-                    val target = start + if (forward) 2 else -2
-                    pages.getOrNull(target)?.first?.let { turnSerial++; onAnchorChange(keys[it]) }
+                    val target = start + if (forward) leaves else -leaves
+                    val item = pages.getOrNull(target)?.first
+                    if (item != null) { turnSerial++; onAnchorChange(keys[item]) }
+                    else if (forward) nextSection?.invoke() else previousSection?.invoke()
                 }
                 val threshold = with(density) { 64.dp.toPx() }
-                Column(Modifier.fillMaxSize().testTag("bibleBook").pointerInput(direction, start, pages, threshold) {
+                Column(Modifier.fillMaxSize().testTag("bibleBook").pointerInput(direction, start, pages, keys, threshold, previousSection, nextSection) {
                     awaitEachGesture {
                         val down = awaitFirstDown(requireUnconsumed = false)
                         // Mouse drags belong to SelectionContainer, not page navigation.
@@ -153,26 +169,29 @@ internal fun BibleAdaptiveChapterReader(
                             }, label = "biblePageTurn") { spread ->
                           Row(Modifier.fillMaxSize().padding(horizontal = 20.dp),
                               horizontalArrangement = Arrangement.spacedBy(24.dp)) {
-                            for (page in spread.firstPage..spread.firstPage + 1) {
+                            for (page in spread.firstPage until spread.firstPage + leaves) {
                                 Surface(Modifier.weight(1f).fillMaxSize(), color = MaterialTheme.colorScheme.surfaceContainerLow) {
                                     val range = pages.getOrNull(page)
                                     if (range != null) key(keys[range.first]) {
                                         val pageScroll = rememberLazyListState()
+                                        val groups = BibleBookPagination.groups(range, flowing)
                                         LaunchedEffect(jumpSerial, range) {
                                             val requested = keys.indexOf(jumpBlock.takeIf { it == anchor })
-                                            if (requested in range) pageScroll.scrollToItem(requested - range.first)
+                                            if (requested in range) pageScroll.scrollToItem(groups.indexOfFirst { requested in it }.coerceAtLeast(0))
                                         }
                                         LaunchedEffect(pageScroll, range) {
                                             snapshotFlow { pageScroll.isScrollInProgress to pageScroll.firstVisibleItemIndex }
                                                 .distinctUntilChanged().collect { (moving, index) ->
-                                                    if (moving) onAnchorChange(keys[(range.first + index).coerceAtMost(range.last)])
+                                                    if (moving) onAnchorChange(keys[groups[index.coerceAtMost(groups.lastIndex)].first])
                                                 }
                                         }
                                         CompositionLocalProvider(LocalLayoutDirection provides interfaceDirection,
                                             LocalBibleBookMode provides true) {
                                             LazyColumn(state = pageScroll, modifier = Modifier.fillMaxSize().testTag("biblePage.$page"),
                                                 contentPadding = PaddingValues(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                                                items(range.toList(), key = { keys[it] }) { rowContent(it) }
+                                                items(groups, key = { keys[it.first] }) { group ->
+                                                    if (group.count() > 1) paragraphContent(group) else rowContent(group.first)
+                                                }
                                             }
                                         }
                                     }
@@ -182,14 +201,14 @@ internal fun BibleAdaptiveChapterReader(
                         }
                         Row(Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(horizontal = 12.dp),
                             verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
-                            IconButton(onClick = { turn(false) }, enabled = start > 0,
+                            IconButton(onClick = { turn(false) }, enabled = start > 0 || previousSection != null,
                                 modifier = Modifier.testTag("biblePreviousPage")) {
                                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.bible_previous_page))
                             }
-                            Text(stringResource(R.string.bible_page_count, start + 1, minOf(start + 2, pages.size), pages.size),
+                            Text(stringResource(R.string.bible_page_count, start + 1, minOf(start + leaves, pages.size), pages.size),
                                 modifier = Modifier.weight(1f).testTag("biblePageCount"),
                                 style = MaterialTheme.typography.labelMedium, textAlign = TextAlign.Center)
-                            IconButton(onClick = { turn(true) }, enabled = start + 2 < pages.size,
+                            IconButton(onClick = { turn(true) }, enabled = start + leaves < pages.size || nextSection != null,
                                 modifier = Modifier.testTag("bibleNextPage")) {
                                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.bible_next_page))
                             }
@@ -220,7 +239,7 @@ internal fun biblePageMeasurements(chapter: BibleDisplayChapter, book: BibleBook
         val introduction = book.introduction?.takeIf { info.number == book.chapters.first().number }
         add(BiblePageMeasurement(buildList {
             if (introduction != null) add(AnnotatedString(introduction) to PrayerTypography.styleForText(introduction, true).copy(textAlign = TextAlign.Justify))
-            add(AnnotatedString(heading) to MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold))
+            add(AnnotatedString(heading) to MaterialTheme.typography.labelLarge)
         }, if (introduction != null) 12.dp else 0.dp))
         chapter.items.forEach { item ->
             val verse = item.primary
@@ -240,7 +259,9 @@ internal fun biblePageMeasurements(chapter: BibleDisplayChapter, book: BibleBook
             add(BiblePageMeasurement(buildList {
                 add(display to style)
                 if (printed != null) add(AnnotatedString(stringResource(R.string.bible_printed_label, "\u2068$printed\u2069")) to MaterialTheme.typography.labelMedium)
-            }, if (item.sourceNotes.isNullOrEmpty()) 0.dp else 56.dp))
+            }, if (item.sourceNotes.isNullOrEmpty()) 0.dp else 56.dp,
+                flowing = item.block.kind == "verse" && verse != null && !usesPrintedLabels
+                    && item.block.printedLabel == null && item.sourceNotes.isNullOrEmpty()))
         }
         add(BiblePageMeasurement(buildList {
             if (!book.attribution.isNullOrBlank()) add(AnnotatedString(book.attribution) to MaterialTheme.typography.bodySmall)

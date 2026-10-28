@@ -1,0 +1,44 @@
+# Prosary 0.24.0 verification
+
+Prepared on 2026-10-28 from `feature/continuous-bible-pages`, based on
+`fff927f154f3b2a0c350e14dd0d6eca5415b9177`. Android is 0.24.0 (63), Apple is
+0.24.0 (local build 2400; Xcode Cloud assigns its own build number), and Windows is
+0.24.0.0.
+
+## Reader behavior
+
+The whole installed edition forms one offline, justified document. Chapters and books
+flow into the available page space. The global counter and slider expose the entire
+edition; ordinary page turns reuse the prepared text without chapter loading spinners.
+Native book, chapter and verse lookup preserves reviewed source addresses. Source notes
+open separately from selectable Scripture. Source gaps, printed numbering and credits
+remain visible; no canonical Scripture content or archive was changed.
+
+Touch taps hide application navigation and reader controls on phones and tablets and
+restore them on the next tap. Apple retains native glass when the bars are visible.
+Desktop page buttons use compact sizing. Text selection, links and note disclosures retain
+their own interactions. The renderer is copied byte-for-byte into all three native ports;
+CI checks those copies.
+
+## Local validation
+
+- Apple unit suite: 722 XCTest cases, no failures, one existing skip; two Swift Testing
+  cases passed. The additional edition-order/source-block store test passed with all
+  15 store tests.
+- iPhone: full edition pagination, cross-book navigation, verse lookup, cached page turns,
+  hiding/restoring controls and reaching the final page passed.
+- Android: native continuous-reader navigation, exact source ordering, source-note
+  disclosure and hiding/restoring controls passed on a disposable Android 16 emulator.
+- Full English and Hebrew editions were exercised in native WebKit at desktop and phone
+  widths, including mixed-chapter pages, global jumps, facing-page turns, the final page
+  and reflow. This does not establish Windows WebView2 runtime behavior.
+- Translation completeness, identical renderer copies, strict UI audit and design-context
+  lint passed. Eight Play release-note locales and Apple English release notes are updated.
+
+## Distribution boundaries
+
+Publishing targets the existing Play closed-alpha track and Apple TestFlight workflow and
+groups. Upload, processing, internal availability and external review are separate states.
+The GitHub prerelease receipt records the delivered commits and distribution states.
+Windows requires its native CI checks; no Windows MSIX or physical fold qualification is
+claimed by local Mac and simulator validation.

@@ -77,6 +77,7 @@ import kotlinx.coroutines.withContext
 private data class BibleCatalogState(val loaded: Boolean = false, val catalog: BibleCatalog? = null)
 private data class InstalledBibleState(val loaded: Boolean = false, val edition: BibleEdition? = null)
 private data class BibleChapterState(val loaded: Boolean = false, val chapter: BibleDisplayChapter? = null)
+private data class BibleEditionState(val loaded: Boolean = false, val sections: List<BibleReaderSection>? = null)
 
 @Composable
 internal fun BibleScreen(
@@ -106,9 +107,12 @@ internal fun BibleScreen(
         }
     }
     var removeEdition by remember { mutableStateOf<BibleEdition?>(null) }
+    val chrome = LocalBibleReadingChrome.current ?: remember { mutableStateOf(false) }
+    androidx.compose.runtime.DisposableEffect(chrome) { onDispose { chrome.value = false } }
 
+    CompositionLocalProvider(LocalBibleReadingChrome provides chrome) {
     Column(Modifier.fillMaxSize().testTag("bibleScreen")) {
-        Box(Modifier.padding(horizontal = 16.dp)) {
+        if (!chrome.value) Box(Modifier.padding(horizontal = 16.dp)) {
             TextButton(onClick = { showEditions = true }, modifier = Modifier.testTag("bibleEdition")) {
                 Text("${stringResource(R.string.readings_edition)}: ${edition?.name ?: stringResource(R.string.readings_choose_edition)}")
             }
@@ -131,7 +135,7 @@ internal fun BibleScreen(
             else -> {
                 val installed = installation.edition
                 val download = downloads[edition.id]
-                Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                if (!chrome.value) Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     if (download != null && !download.failed) {
                         Text(stringResource(R.string.bible_downloading), style = MaterialTheme.typography.labelLarge)
                         LinearProgressIndicator(progress = { download.progress }, modifier = Modifier.fillMaxWidth().testTag("bibleDownloadProgress"))
@@ -160,6 +164,7 @@ internal fun BibleScreen(
             }
         }
     }
+    }
     removeEdition?.let { removing ->
         AlertDialog(onDismissRequest = { removeEdition = null },
             title = { Text(stringResource(R.string.download_remove_title)) },
@@ -187,26 +192,34 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
     val position = BibleNavigation.resolve(edition, selectedBook, selectedChapter)
     val book = edition.books.first { it.id == position.book }
     val info = book.chapters.first { it.number == position.chapter }
-    val chapterState by key(edition.id, edition.revision, position) {
-        produceState(BibleChapterState()) {
-            value = withContext(Dispatchers.IO) { BibleChapterState(true, library.store.displayChapter(edition, book.id, info.number)) }
+    val editionState by produceState(BibleEditionState(), edition.id, edition.revision) {
+        value = withContext(Dispatchers.IO) {
+            BibleEditionState(true, runCatching {
+                edition.books.flatMap { book -> book.chapters.map { info ->
+                    BibleReaderSection(book, requireNotNull(library.store.displayChapter(edition, book.id, info.number)))
+                } }
+            }.getOrNull())
         }
     }
+    val chapterState = BibleChapterState(editionState.loaded,
+        editionState.sections?.firstOrNull { it.book.id == book.id && it.display.chapter.chapter == info.number }?.display)
     val chapter = chapterState.chapter
     val scope = rememberCoroutineScope()
     val scroll = rememberLazyListState()
-    fun navigate(next: BibleNavigation.Position) {
+    fun navigate(next: BibleNavigation.Position, atEnd: Boolean = false) {
         selectedBook = next.book
         selectedChapter = next.chapter
         picker = null
-        readingAnchor = "notice"
+        readingAnchor = "${next.book}/${next.chapter}"
         verseJump = null
         jumpSerial++
         scope.launch { scroll.scrollToItem(0) }
     }
     val previous = BibleNavigation.neighbor(edition, position, -1)
     val next = BibleNavigation.neighbor(edition, position, 1)
+    val chromeHidden = LocalBibleReadingChrome.current?.value == true
     Column(modifier) {
+        if (!chromeHidden) {
         FlowRow(Modifier.fillMaxWidth().padding(horizontal = 8.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             TextButton(onClick = { picker = "book" }, modifier = Modifier.testTag("bibleBook")) { Text(book.displayedName(script)) }
             TextButton(onClick = { picker = "chapter" }, modifier = Modifier.testTag("bibleChapter")) {
@@ -217,62 +230,26 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
             }
         }
         Row(Modifier.fillMaxWidth().padding(horizontal = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = { previous?.let(::navigate) }, enabled = previous != null, modifier = Modifier.testTag("biblePreviousChapter")) {
+            IconButton(onClick = { previous?.let { navigate(it) } }, enabled = previous != null, modifier = Modifier.testTag("biblePreviousChapter")) {
                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.bible_previous_chapter))
             }
             if (readingEdition.hasAramaicScripts) {
                 AramaicScriptPicker(script, onSelect = { scriptOverride = it },
                     modifier = Modifier.weight(1f).testTag("bibleScript"))
             } else Box(Modifier.weight(1f))
-            IconButton(onClick = { next?.let(::navigate) }, enabled = next != null, modifier = Modifier.testTag("bibleNextChapter")) {
+            IconButton(onClick = { next?.let { navigate(it) } }, enabled = next != null, modifier = Modifier.testTag("bibleNextChapter")) {
                 Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.bible_next_chapter))
             }
+        }
         }
         when {
             !chapterState.loaded -> CircularProgressIndicator(Modifier.padding(16.dp))
             chapter == null -> Text(stringResource(R.string.bible_chapter_error), Modifier.padding(16.dp))
             else -> {
-                // Printed headings and colophons may use another language. Page order follows
-                // the Scripture actually shown, including the selected paired script.
-                val visibleScript = PrayerTypography.scriptOf((chapter.items.firstNotNullOfOrNull {
-                    it.primary?.displayedText(readingEdition, script)
-                } ?: chapter.items.firstNotNullOfOrNull {
-                    it.block.text.takeIf { _ -> it.block.kind in listOf("passage", "witness") }
-                }).orEmpty())
-                val direction = if (visibleScript in listOf(PrayerTypography.Script.Hebrew, PrayerTypography.Script.Arabic,
-                        PrayerTypography.Script.Syriac)) LayoutDirection.Rtl else LayoutDirection.Ltr
-                val rowKeys = listOf("notice", "heading") + chapter.items.map { "block.${it.id}" } + "source"
-                val rowContent: @Composable (Int) -> Unit = { index ->
-                    when (index) {
-                        0 -> if (!info.isComplete) Surface(color = MaterialTheme.colorScheme.secondaryContainer,
-                            shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth().testTag("biblePartialChapter")) {
-                            Text(stringResource(R.string.bible_partial_chapter), Modifier.padding(12.dp), style = MaterialTheme.typography.bodyMedium)
-                        }
-                        1 -> CompositionLocalProvider(LocalLayoutDirection provides direction) {
-                            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                                if (info.number == book.chapters.first().number) book.introduction?.let { introduction ->
-                                    Text(introduction, style = PrayerTypography.styleForText(introduction, isScripture = true),
-                                        textAlign = if (LocalBibleBookMode.current) TextAlign.Justify else TextAlign.Unspecified,
-                                        modifier = Modifier.fillMaxWidth().testTag("bibleIntroduction"))
-                                }
-                                DisableSelection { Text(info.canonicalReference ?: ReadingChapterHeading.label(context, info.number, edition.languageCode, script),
-                                    style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold,
-                                    fontStyle = FontStyle.Normal, modifier = Modifier.fillMaxWidth().testTag("bibleChapterHeading")) }
-                            }
-                        }
-                        rowKeys.lastIndex -> DisableSelection { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            if (!book.attribution.isNullOrBlank()) BibleSourceCredit(book.attribution, book.sourceURL)
-                            BibleSourceCredit(edition.attribution, edition.sourceURL)
-                        } }
-                        else -> BibleSourceBlock(chapter.items[index - 2], readingEdition, script, info, edition,
-                            direction, interfaceDirection)
-                    }
-                }
-                val measurements = biblePageMeasurements(chapter, book, info, edition, script)
-                BibleAdaptiveChapterReader(rowKeys, measurements, scroll, direction, readingAnchor,
-                    onAnchorChange = { readingAnchor = it }, jumpSerial = jumpSerial, jumpBlock = verseJump,
-                    rowContent = rowContent)
-
+                BibleEditionReader(edition, requireNotNull(editionState.sections), script, readingAnchor, jumpSerial,
+                    onPosition = { bookID, chapterNumber, block ->
+                        selectedBook = bookID; selectedChapter = chapterNumber; readingAnchor = block
+                    }, modifier = Modifier.weight(1f))
             }
         }
     }
@@ -291,7 +268,7 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
                 } == true } ?: -1
             } else chapter.items.indexOfFirst { it.id == choice }
             if (index >= 0) {
-                readingAnchor = "block.${requireNotNull(chapter).items[index].id}"
+                readingAnchor = "${book.id}/${info.number}/${requireNotNull(chapter).items[index].id}"
                 verseJump = readingAnchor
                 jumpSerial++
             }

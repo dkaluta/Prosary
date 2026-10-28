@@ -31,6 +31,38 @@ public static class BibleBookPagination
         return pages;
     }
 
+    public static IReadOnlyList<BibleBookPage> FlowPages(int count, double height, Func<int, int, double> measure)
+    {
+        if (count == 0) return [];
+        var pages = new List<BibleBookPage>();
+        var first = 0;
+        for (var last = 0; last < count; last++)
+        {
+            if (last > first && measure(first, last - first + 1) > Math.Max(1, height))
+            {
+                pages.Add(new(first, last - first));
+                first = last;
+            }
+        }
+        pages.Add(new(first, count - first));
+        return pages;
+    }
+
+    public static IReadOnlyList<BibleBookPage> Paragraphs(int start, int count, IReadOnlyList<bool> flowing)
+    {
+        if (count == 0) return [];
+        var result = new List<BibleBookPage>();
+        var first = start;
+        for (var index = start + 1; index < start + count; index++)
+            if (!flowing[index] || !flowing[index - 1])
+            {
+                result.Add(new(first, index - first));
+                first = index;
+            }
+        result.Add(new(first, start + count - first));
+        return result;
+    }
+
     public static int PageContaining(IReadOnlyList<BibleBookPage> pages, int blockIndex)
     {
         for (var index = 0; index < pages.Count; index++)

@@ -123,10 +123,25 @@ fun ReadingsScreen(browsingDate: TodayBrowsingDate = rememberTodayBrowsingDate()
 /** The full Bible retains its reader and offline-download state as a primary destination. */
 @Composable
 internal fun BibleTabScreen() {
+    val chrome = LocalBibleReadingChrome.current
+    val chromeHidden = chrome?.value == true
+    androidx.activity.compose.BackHandler(enabled = chromeHidden) { chrome?.value = false }
+    val owner = androidx.compose.ui.platform.LocalContext.current
+    androidx.compose.runtime.DisposableEffect(chromeHidden, owner) {
+        var candidate: android.content.Context? = owner
+        while (candidate is android.content.ContextWrapper && candidate !is android.app.Activity) candidate = candidate.baseContext
+        val activity = candidate as? android.app.Activity
+        val controller = activity?.let { androidx.core.view.WindowCompat.getInsetsController(it.window, it.window.decorView) }
+        if (chromeHidden) {
+            controller?.systemBarsBehavior = androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            controller?.hide(androidx.core.view.WindowInsetsCompat.Type.systemBars())
+        } else controller?.show(androidx.core.view.WindowInsetsCompat.Type.systemBars())
+        onDispose { controller?.show(androidx.core.view.WindowInsetsCompat.Type.systemBars()) }
+    }
     var showsReadingSettings by rememberSaveable { mutableStateOf(false) }
     if (showsReadingSettings) ReadingSettingsSheet { showsReadingSettings = false }
     Scaffold(topBar = {
-        ScriptureToolbar(R.string.bible_title, onOpenSettings = { showsReadingSettings = true })
+        if (!chromeHidden) ScriptureToolbar(R.string.bible_title, onOpenSettings = { showsReadingSettings = true })
     }) { padding ->
         Box(Modifier.fillMaxSize().padding(padding)) { BibleScreen() }
     }
