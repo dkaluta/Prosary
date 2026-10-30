@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "books": {
     "JDT": {
-      "contentSHA256": "b34d1bae000438799900061c71add7d673dad77e19d2e271946537a00c4736b1",
+      "contentSHA256": "cdb72d1d144c9a0571f38d4d95f9c2958bc4cf315942e82516c9b4bdd24455ad",
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
       "textPages": [
         354,
@@ -1441,10 +1441,11 @@
           ]
         }
       ],
-      "method": "Printed chapter endings, six combined labels and page continuations recorded separately in JDT-print-inventory.json; root checked final candidate against that source inventory after complete visual review and independent resolution of local glyph queries."
+      "method": "Printed chapter endings, six combined labels and page continuations recorded separately in JDT-print-inventory.json; root checked final candidate against that source inventory after complete visual review and independent resolution of local glyph queries.",
+      "sourceNoteIds": []
     },
     "BAR": {
-      "contentSHA256": "9d61e1b0fee193c83be4bbca417039d82a6dded7615a303d095be96baf01f87d",
+      "contentSHA256": "784eedcd60a05bd2f915284a6586298f9732a96520f9b3c457eab49ac2107b98",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         29,
@@ -1976,10 +1977,11 @@
           ]
         }
       ],
-      "method": "Independent reader inspected all printed margin labels, combined units and five page continuations in enlarged source images; root checked that separately recorded inventory against the finished word/point/punctuation review. Source record: BAR-print-inventory.json."
+      "method": "Independent reader inspected all printed margin labels, combined units and five page continuations in enlarged source images; root checked that separately recorded inventory against the finished word/point/punctuation review. Source record: BAR-print-inventory.json.",
+      "sourceNoteIds": []
     },
     "SUS": {
-      "contentSHA256": "c487a5546ac1b7ca805fd2316de6c7a1e464a0014f36f65ab9c04821d94fdd88",
+      "contentSHA256": "1bb219b323ca5654bfb4bb3e9188923c3102564cf57b4bd5ad27ffc195607cd9",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         237,
@@ -2343,7 +2345,7 @@
       ]
     },
     "S3Y": {
-      "contentSHA256": "881e1518540e87bdb9ec7a92fcb7b00457428a89c7a883c5a05d8e286a090977",
+      "contentSHA256": "e4d64e58ac9ea9ca6e96e1d7ef1d46b2d4e87226b9d7dac3286037705e4e00fe",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         233,
@@ -3125,7 +3127,7 @@
       ]
     },
     "BEL": {
-      "contentSHA256": "33db1b70d3433a11a44fc3f5376ab30f7d8e9f62d5dfac20bbf16535e541f047",
+      "contentSHA256": "6b5d4356b51bcd15aba400cfc4adb9cea70f395b362a3aaee566922d26b49731",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         242,
@@ -3591,7 +3593,7 @@
       ]
     },
     "SIR": {
-      "contentSHA256": "151738769342232ee5b38646f812ade95e6e626c901c34b07a7287e33a626c0a",
+      "contentSHA256": "b24a8fbafc36d9e5100d48757dc0269e27d573dbbc78387f2281fb5b4e273a44",
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
       "textPages": [
         449,
@@ -3916,7 +3918,6 @@
         "sir-11-12-nun-vowel",
         "sir-11-34-vav-vowel",
         "sir-13-18-alef-vowel",
-        "sir-16-26-nun-dagesh",
         "sir-2-2-vav-vowel",
         "sir-24-17-nun-dagesh",
         "sir-29-19-bet-vowel",
@@ -3927,7 +3928,6 @@
         "sir-32-12-tet-vowel",
         "sir-39-14-bet-vowel",
         "sir-39-35-qof-vowel",
-        "sir-49-10-yod-dagesh",
         "sir-51-4-resh-vowel",
         "sir-6-3-nun-dagesh"
       ],
@@ -9981,7 +9981,7 @@
       ]
     },
     "ESG": {
-      "contentSHA256": "d2aac037f718d868a10d3d3474385e6b9f74e7e7122c2e7536a762bf69e31430",
+      "contentSHA256": "30b18b101423b6f70ab738e1ae70c1ceeb825df19543830d464f3edac1949ba2",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         215,
@@ -10530,7 +10530,7 @@
       ]
     },
     "TOB": {
-      "contentSHA256": "4293648fcd800712001f928c4d76fa48cb6a45c29bab7b91f0783eff81f052f5",
+      "contentSHA256": "40cdcbde5f83c60449f512180f6ac388177e331bf836909290404143dc74df4a",
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
       "textPages": [
         312,
@@ -11601,7 +11601,7 @@
       ]
     },
     "1MA": {
-      "contentSHA256": "2329c1c9993adcd6031eb2d0e59615957a22423fb92896e7b1c345572c013f2f",
+      "contentSHA256": "67caea63cc33f8d9a075686ce7f9e111e79599c8673f3d2746a90c26483b3d06",
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
       "textPages": [
         97,
@@ -15287,7 +15287,7 @@
       ]
     },
     "WIS": {
-      "contentSHA256": "9858d4e20b9e1b5259bcedb193726820a98c9259e0587603b8d33110a16501ca",
+      "contentSHA256": "3f547ea40e91010075a8e53fbb650a5d29cd8c56513446d1946bf1ea261f417d",
       "scanSHA256": "d59349185a03a9436f70ee41d01c5c34c04c454f1d426f5a0bf3b4953ecb89a5",
       "textPages": [
         145,
@@ -17433,7 +17433,7 @@
     },
     "2MA": {
       "scanSHA256": "656891d377d2e3d4a9216723d94205488423907bf01df424b9f0b9de1560051e",
-      "contentSHA256": "727ae06afba0f50ed7d20b333a0604344ab1d7227f1f61270e1f437e8d215f64",
+      "contentSHA256": "7cceb0a684b71baec080690c89ef080791695e4a59519f86fb0392fad797e805",
       "textPages": [
         178,
         179,

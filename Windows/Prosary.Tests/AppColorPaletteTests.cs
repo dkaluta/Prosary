@@ -7,6 +7,37 @@ namespace Prosary.Tests;
 public class AppColorPaletteTests
 {
     [Fact]
+    public void DisplayModeAndGlobalPalettePreserveIconsAndExplicitCardColors()
+    {
+        var mode = AppSettings.AppThemeMode;
+        var palette = AppSettings.AppPalette;
+        var icon = AppSettings.AppColor;
+        var cardColors = AppSettings.HomeWidgetColors.ToDictionary(pair => pair.Key, pair => pair.Value);
+        try
+        {
+            AppSettings.SetHomeWidgetColor("readings", "rose");
+            var appearance = new AppearanceViewModel();
+            appearance.SelectedTheme = appearance.ThemeOptions.Single(option => option.Id == "dark");
+            appearance.SelectedPalette = appearance.PaletteOptions.Single(option => option.Id == "garden");
+            Assert.Equal("dark", new AppearanceViewModel().SelectedTheme!.Id);
+            Assert.Equal("garden", new AppearanceViewModel().SelectedPalette!.Id);
+            Assert.Equal(icon, AppSettings.AppColor);
+            Assert.Equal("rose", AppSettings.HomeWidgetColors["readings"]);
+            AppSettings.SetAppThemeMode("future-mode");
+            AppSettings.SetAppPalette("future-palette");
+            Assert.Equal("system", AppSettings.AppThemeMode);
+            Assert.Equal("native", AppSettings.AppPalette);
+        }
+        finally
+        {
+            AppSettings.SetAppThemeMode(mode);
+            AppSettings.SetAppPalette(palette);
+            foreach (var id in HomeWidgets.All)
+                AppSettings.SetHomeWidgetColor(id, cardColors.GetValueOrDefault(id) ?? "default");
+        }
+    }
+
+    [Fact]
     public void SharedPaletteDefaultsToBlueAndRejectsUnknownValues()
     {
         Assert.Equal(new[] { "blue", "green", "red", "purple", "rose", "white", "gold" },

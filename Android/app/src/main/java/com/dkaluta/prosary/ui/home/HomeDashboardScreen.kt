@@ -5,6 +5,8 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -91,6 +93,7 @@ import com.dkaluta.prosary.content.today.TodayDateSelection
 import com.dkaluta.prosary.content.today.TodayInfoStore
 import com.dkaluta.prosary.content.today.TodayTranslationLanguage
 import com.dkaluta.prosary.models.AppSettings
+import com.dkaluta.prosary.content.today.namedSections
 import com.dkaluta.prosary.models.AppColor
 import com.dkaluta.prosary.models.HomeWidget
 import com.dkaluta.prosary.models.Prayer
@@ -126,6 +129,8 @@ private val HomeWidget.title: Int
         HomeWidget.Reminders -> R.string.home_widgets_reminders
         HomeWidget.Scripture -> R.string.home_widgets_scripture
         HomeWidget.Reflection -> R.string.home_widgets_reflection
+        HomeWidget.Hymn -> R.string.home_widgets_hymn
+        HomeWidget.Tradition -> R.string.home_widgets_tradition
         HomeWidget.Feast -> R.string.home_widgets_feast
     }
 
@@ -179,8 +184,12 @@ fun HomeDashboardScreen(
     val feast = remember(date, generation, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) {
         TodayInfoStore.feast(lookupDate)
     }
+    val textLanguage = TodayInfoStore.homeTextLanguage(AppSettings.effectivePrayerLanguageCode, language)
+    val textFeast = remember(date, generation, AppSettings.effectivePrayerLanguageCode, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) {
+        TodayInfoStore.homeTextFeast(lookupDate, AppSettings.effectivePrayerLanguageCode)
+    }
     val intention = remember(date, generation) { TodayInfoStore.intention(lookupDate) }
-    val torah = remember(date, generation) { TodayInfoStore.torahPortion(lookupDate) }
+    val torah = remember(date, generation, AppSettings.feastCalendarId) { TodayInfoStore.torahPortion(lookupDate) }
     var selectedCalendarEvent by remember(date, AppSettings.feastCalendarId) { mutableStateOf<CalendarEvent?>(null) }
     val sourceReadings = remember(date, generation, AppSettings.feastCalendarId, AppSettings.easternPaschaStyle) {
         TodayInfoStore.readings(lookupDate)
@@ -323,9 +332,26 @@ fun HomeDashboardScreen(
                                 ?: stringResource(R.string.home_widgets_no_readings)) {
                             com.dkaluta.prosary.ui.readings.ScriptureOfDayCard(date, language)
                         }
-                        HomeWidget.Reflection -> DashboardCard(widget, summary = feast?.reflections(language)?.firstOrNull()?.title
-                            ?: stringResource(R.string.home_widgets_reflection_pending)) {
-                            val reflections = feast?.reflections(language).orEmpty()
+                        HomeWidget.Hymn, HomeWidget.Tradition -> DashboardCard(widget,
+                            summary = textFeast?.namedSections(widget.id, textLanguage)?.firstOrNull()?.text
+                                ?: stringResource(R.string.home_widgets_section_pending), contentLanguage = textLanguage) {
+                            val sections = textFeast?.namedSections(widget.id, textLanguage).orEmpty()
+                            if (sections.isEmpty()) Text(stringResource(R.string.home_widgets_section_pending))
+                            sections.forEach { section ->
+                                SelectionContainer { Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    if (com.dkaluta.prosary.typography.HebrewDisplayText.unpoint(section.title) != stringResource(widget.title))
+                                        Text(section.title, style = MaterialTheme.typography.titleSmall)
+                                    Text(section.text)
+                                    section.credit?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
+                                } }
+                                section.sourceURL?.let { url ->
+                                    TextButton(onClick = { uriHandler.openUri(url) }) { Text(stringResource(R.string.readings_source)) }
+                                }
+                            }
+                        }
+                        HomeWidget.Reflection -> DashboardCard(widget, summary = textFeast?.reflections(textLanguage)?.firstOrNull()?.title
+                            ?: stringResource(R.string.home_widgets_reflection_pending), contentLanguage = textLanguage) {
+                            val reflections = textFeast?.reflections(textLanguage).orEmpty()
                             if (reflections.isEmpty()) Text(stringResource(R.string.home_widgets_reflection_pending),
                                 color = MaterialTheme.colorScheme.onSurfaceVariant)
                             reflections.forEachIndexed { index, reflection ->
@@ -345,16 +371,17 @@ fun HomeDashboardScreen(
                                 }
                             }
                         }
-                        HomeWidget.Feast -> DashboardCard(widget, summary = feast?.localizedTitle(language) ?: stringResource(R.string.home_widgets_no_feast)) {
+                        HomeWidget.Feast -> DashboardCard(widget, summary = textFeast?.localizedTitle(textLanguage) ?: stringResource(R.string.home_widgets_no_feast), contentLanguage = textLanguage) {
+                            val feast = textFeast
                             if (feast == null) Text(stringResource(R.string.home_widgets_no_feast))
                             else {
-                                Text(feast.localizedTitle(language), style = MaterialTheme.typography.titleSmall)
-                                Text(feast.localizedRank(language, context), style = MaterialTheme.typography.bodyMedium)
-                                val descriptions = feast.saintDescriptions(TodayInfoStore.selectedCalendarId, language)
+                                Text(feast.localizedTitle(textLanguage), style = MaterialTheme.typography.titleSmall)
+                                Text(feast.localizedRank(textLanguage, context), style = MaterialTheme.typography.bodyMedium)
+                                val descriptions = feast.saintDescriptions(TodayInfoStore.selectedCalendarId, textLanguage)
                                 if (descriptions.isEmpty()) Text(stringResource(R.string.home_widgets_no_feast_description),
                                     color = MaterialTheme.colorScheme.onSurfaceVariant)
-                                else SaintDescriptionsCard(descriptions, "$date:${TodayInfoStore.selectedCalendarId}", language,
-                                    inCard = false, parentTitle = feast.localizedTitle(language))
+                                else SaintDescriptionsCard(descriptions, "$date:${TodayInfoStore.selectedCalendarId}:${AppSettings.effectivePrayerLanguageCode}", textLanguage,
+                                    inCard = false, parentTitle = feast.localizedTitle(textLanguage))
                             }
                         }
                     }
@@ -380,8 +407,10 @@ fun HomeDashboardScreen(
         confirmButton = { TextButton(onClick = { photoError = false }) { Text(stringResource(R.string.common_ok)) } })
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, summary: String = "", content: @Composable ColumnScope.() -> Unit) {
+private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, summary: String = "", contentLanguage: String? = null, content: @Composable ColumnScope.() -> Unit) {
+    var showsActions by rememberSaveable(widget.id) { mutableStateOf(false) }
     val expanded = !AppSettings.isHomeWidgetCollapsed(widget)
     val sizeLabel = stringResource(if (expanded) R.string.home_widget_large else R.string.home_widget_small)
     val actionLabel = stringResource(if (expanded) R.string.home_widget_collapse else R.string.home_widget_expand)
@@ -389,22 +418,27 @@ private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, sum
     val graphicPath = AppSettings.homeWidgetGraphicPath(widget)
     val color = AppSettings.homeWidgetColor(widget)
     val defaultColors = CardDefaults.cardColors()
-    val palette = AppColor.resolve(color)
+    val global = com.dkaluta.prosary.ui.theme.paletteColors(AppSettings.appPalette)
+    val palette = if (color == "default" && global.isNotEmpty()) global[widget.ordinal % global.size] else AppColor.resolve(color)
     val accent = Color(if (MaterialTheme.colorScheme.surface.luminance() < 0.5f) palette.dark else palette.light)
-    val containerColor = if (color == "default") defaultColors.containerColor
-        else accent.copy(alpha = 0.12f).compositeOver(defaultColors.containerColor)
-    Card(Modifier.fillMaxWidth().testTag("homeWidget.${widget.id}").then(if (onClick != null)
-        Modifier.clickable(onClick = onClick).pointerHoverIcon(PointerIcon.Hand) else Modifier),
+    val containerColor = if (color == "default" && global.isEmpty()) defaultColors.containerColor
+        else accent.copy(alpha = if (MaterialTheme.colorScheme.surface.luminance() < 0.5f) 0.28f else 0.18f).compositeOver(defaultColors.containerColor)
+    Card(Modifier.fillMaxWidth().testTag("homeWidget.${widget.id}")
+        .combinedClickable(onClick = { onClick?.invoke() },
+            onLongClickLabel = stringResource(R.string.home_widgets_customize), onLongClick = { showsActions = true }),
         colors = CardDefaults.cardColors(containerColor = containerColor, contentColor = MaterialTheme.colorScheme.onSurface)) {
+        androidx.compose.runtime.CompositionLocalProvider(androidx.compose.ui.platform.LocalLayoutDirection provides
+            (contentLanguage?.let { if (it in listOf("he", "ar")) androidx.compose.ui.unit.LayoutDirection.Rtl else androidx.compose.ui.unit.LayoutDirection.Ltr }
+                ?: androidx.compose.ui.platform.LocalLayoutDirection.current)) {
+        MaterialTheme(colorScheme = com.dkaluta.prosary.ui.theme.homeCardContentColors(
+            MaterialTheme.colorScheme, color != "default" || global.isNotEmpty())) {
         Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (widget == HomeWidget.PopeIntention) PapalKeysIcon(Modifier.padding(end = 8.dp))
                 Text(stringResource(widget.title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-                IconButton(onClick = { AppSettings.setHomeWidgetCollapsed(widget, expanded) },
-                    modifier = Modifier.testTag("homeWidgetSize.${widget.id}").semantics { stateDescription = sizeLabel }) {
-                    Icon(if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, contentDescription = actionLabel)
+                HomeCardColorMenu(widget, showsActions, { showsActions = false }, actionLabel) {
+                    AppSettings.setHomeWidgetCollapsed(widget, expanded)
                 }
-                HomeCardColorMenu(widget)
                 if (onClick != null) Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
             }
             if (expanded) {
@@ -422,19 +456,18 @@ private fun DashboardCard(widget: HomeWidget, onClick: (() -> Unit)? = null, sum
             } else if (summary.isNotBlank()) Text(summary, maxLines = 2, overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
+        }
+        }
     }
 }
 
 @Composable
-private fun HomeCardColorMenu(widget: HomeWidget) {
-    var expanded by rememberSaveable(widget.id) { mutableStateOf(false) }
+private fun HomeCardColorMenu(widget: HomeWidget, expanded: Boolean, dismiss: () -> Unit,
+    sizeAction: String, toggleSize: () -> Unit) {
     var choosingColor by rememberSaveable(widget.id) { mutableStateOf(false) }
     val selectedColor = AppSettings.homeWidgetColor(widget)
     Box {
-        IconButton(onClick = { choosingColor = false; expanded = true }, modifier = Modifier.testTag("homeWidgetColor.${widget.id}")) {
-            Icon(Icons.Filled.Palette, contentDescription = "${stringResource(R.string.home_widgets_set_accent_color)}: ${stringResource(widget.title)}")
-        }
-        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false; choosingColor = false }) {
+        DropdownMenu(expanded = expanded, onDismissRequest = { dismiss(); choosingColor = false }) {
             if (choosingColor) {
                 AppSettings.todayCardColors.filter { it != "default" }.forEach { color ->
                     val label = stringResource(AppColor.resolve(color).labelRes)
@@ -443,17 +476,19 @@ private fun HomeCardColorMenu(widget: HomeWidget) {
                             Text(label, modifier = Modifier.weight(1f))
                             if (selectedColor == color) Icon(Icons.Filled.Check, contentDescription = null)
                         }
-                    }, onClick = { AppSettings.setHomeWidgetColor(widget, color); expanded = false; choosingColor = false },
+                    }, onClick = { AppSettings.setHomeWidgetColor(widget, color); dismiss(); choosingColor = false },
                         modifier = Modifier.testTag("homeWidgetColor.${widget.id}.$color").semantics { selected = selectedColor == color })
                 }
             } else {
+                DropdownMenuItem(text = { Text(sizeAction) }, onClick = { toggleSize(); dismiss() },
+                    modifier = Modifier.testTag("homeWidgetSize.${widget.id}"))
                 DropdownMenuItem(text = { Text(stringResource(R.string.home_widgets_set_accent_color)) },
                     trailingIcon = { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null) },
                     onClick = { choosingColor = true }, modifier = Modifier.testTag("homeWidgetSetAccent.${widget.id}"))
                 if (selectedColor != "default") {
                     HorizontalDivider()
                     DropdownMenuItem(text = { Text(stringResource(R.string.home_widgets_remove_accent_color)) },
-                        onClick = { AppSettings.setHomeWidgetColor(widget, "default"); expanded = false },
+                        onClick = { AppSettings.setHomeWidgetColor(widget, "default"); dismiss() },
                         modifier = Modifier.testTag("homeWidgetRemoveAccent.${widget.id}"))
                 }
             }

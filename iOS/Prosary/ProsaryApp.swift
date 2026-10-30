@@ -24,7 +24,7 @@ struct ProsaryApp: App {
   private static func seedHomeLayoutForTesting(in defaults: UserDefaults) {
     let arguments = CommandLine.arguments
     let keys = [HomeWidgetOrder.key, HomeWidgetOrder.layoutVersionKey,
-      HomeWidgetDisplay.collapsedKey, HomeWidgetDisplay.colorsKey]
+      HomeWidgetDisplay.collapsedKey, HomeWidgetDisplay.colorsKey, "appThemeMode", AppPalette.key, LanguageCatalog.defaultsKey]
     var argumentDomain = defaults.volatileDomain(forName: UserDefaults.argumentDomain)
     var seededValues: [String: String] = [:]
     for key in keys {

@@ -16,6 +16,7 @@ struct MacTodayView: View {
   @AppStorage(ReadingDisplayOrder.defaultsKey) private var reverseReadingsOrder = false
   @AppStorage(TodayCardColor.defaultsKey) private var todayCardColor = TodayCardColor.default.rawValue
 
+  @ObservedObject private var prayerLanguage = PrayerLanguageMonitor.shared
   @State private var dateSelection = MacTodayDateSelection()
   @State private var showsDatePicker = false
   @State private var showsCalendar = false
@@ -27,6 +28,7 @@ struct MacTodayView: View {
   @State private var torah: TorahPortion?
 
   private var language: String { UILanguage.current }
+  private var textLanguage: String { TodayInfoStore.homeTextLanguage(prayerLanguageCode: prayerLanguage.code, interfaceLanguage: language) }
   private var displayedReadings: [ReadingDisplayOrder.Row<ReadingCitation>] { ReadingDisplayOrder.indexed(readings, reverse: reverseReadingsOrder) }
   private var selectedDate: Date { dateSelection.localDate() }
   private var passageContext: String { "\(dateSelection.day)|\(feastCalendarId)|\(easternPaschaStyle)" }
@@ -95,6 +97,7 @@ struct MacTodayView: View {
     .accessibilityIdentifier("macToday")
     .onAppear { refreshCurrentDay() }
     .onChange(of: dateSelection.day) { _, _ in load() }
+    .onChange(of: prayerLanguage.code) { _, _ in load() }
     .onChange(of: feastCalendarId) { _, _ in load() }
     .onChange(of: easternPaschaStyle) { _, _ in load() }
     .onChange(of: showsFeast) { _, _ in load() }
@@ -165,16 +168,17 @@ struct MacTodayView: View {
       }
       if let feast {
         VStack(alignment: .leading, spacing: 6) {
-          Text(verbatim: feast.localizedTitle(language))
+          Text(verbatim: feast.localizedTitle(textLanguage))
             .font(.title.weight(["Solemnity", "1st Class", "Great Feast"].contains(feast.rank) ? .bold : .semibold))
             .fixedSize(horizontal: false, vertical: true)
             .accessibilityAddTraits(.isHeader)
-          Text(verbatim: feast.localizedRank(language))
+          Text(verbatim: feast.localizedRank(textLanguage))
             .font(.subheadline).foregroundStyle(.secondary)
-          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
+          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: textLanguage)
             .padding(.top, 4)
-            .id("\(passageContext)|\(language)")
+            .id("\(passageContext)|\(textLanguage)|\(prayerLanguage.code)")
         }
+        .environment(\.layoutDirection, UILanguage.isRightToLeft(textLanguage) ? .rightToLeft : .leftToRight)
         .accessibilityIdentifier("macToday.feast")
       }
     }
@@ -303,7 +307,7 @@ struct MacTodayView: View {
 
   private func load() {
     // Disabled rows do not load. The selected calendar supplies its own feast and readings.
-    feast = showsFeast ? TodayInfoStore.feast(on: selectedDate) : nil
+    feast = showsFeast ? TodayInfoStore.homeTextFeast(on: selectedDate, prayerLanguageCode: prayerLanguage.code) : nil
     intention = showsIntention ? TodayInfoStore.intention(for: selectedDate) : nil
     dayInfo = TodayInfoStore.displayDayInfo(on: selectedDate)
     readings = TodayInfoStore.readings(on: selectedDate)

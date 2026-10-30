@@ -10,14 +10,17 @@ import kotlinx.serialization.json.Json
 /** Home cards have a separate order from the user's pinned prayer collection. */
 enum class HomeWidget(val id: String) {
     Readings("readings"), Torah("torah"), PopeIntention("popeIntention"), Calendar("calendar"), Photo("photo"),
-    Reminders("reminders"), Scripture("scripture"), Reflection("reflection"), Feast("feast");
+    Reminders("reminders"), Scripture("scripture"), Reflection("reflection"), Feast("feast"), Hymn("hymn"), Tradition("tradition");
 
     companion object {
-        val defaults = listOf(Readings, Torah, PopeIntention, Calendar, Reminders, Scripture, Feast, Reflection)
+        val defaults = listOf(Readings, Torah, PopeIntention, Calendar, Reminders, Scripture, Feast, Hymn, Tradition, Reflection)
 
         /** An absent preference uses defaults; a saved empty string deliberately means no cards. */
         fun decode(stored: String?): List<HomeWidget> = if (stored == null) defaults else
             stored.split('\n').mapNotNull { id -> entries.firstOrNull { it.id == id } }.distinct()
+
+        fun addingSourceCards(widgets: List<HomeWidget>): List<HomeWidget> =
+            if (widgets.isEmpty()) widgets else widgets + listOf(Hymn, Tradition).filter { it !in widgets }
 
         fun addingDailyCards(widgets: List<HomeWidget>): List<HomeWidget> =
             if (widgets.isEmpty()) widgets else widgets.toMutableList().apply {
@@ -59,10 +62,10 @@ internal class HomeWidgetPreferences {
     fun initialize(storage: SharedPreferences) {
         preferences = storage
         widgets = HomeWidget.decode(storage.getString(orderKey, null))
-        if (storage.getString(layoutVersionKey, null) != "1") {
-            widgets = HomeWidget.addingDailyCards(widgets)
+        if (storage.getString(layoutVersionKey, null) != "2") {
+            widgets = HomeWidget.addingSourceCards(if (storage.getString(layoutVersionKey, null) == "1") widgets else HomeWidget.addingDailyCards(widgets))
             storage.edit().putString(orderKey, widgets.joinToString("\n") { it.id })
-                .putString(layoutVersionKey, "1").apply()
+                .putString(layoutVersionKey, "2").apply()
         }
         photoPath = storage.getString(photoKey, "").orEmpty()
         collapsed = storage.getString(collapsedKey, "").orEmpty().split('\n')

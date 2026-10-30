@@ -130,7 +130,7 @@ public partial class RosaryPresetPickerViewModel : ObservableObject
         SelectedMode is MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery;
 
     public bool ShowsOrdinalPicker => SelectedMode is MysterySelectionMode.SingleMystery;
-    public bool ShowsMysteryCount => SelectedMode is MysterySelectionMode.SingleMystery or MysterySelectionMode.ChooseOnLaunch;
+    public bool ShowsMysteryCount => SelectedMode == MysterySelectionMode.SingleMystery;
     partial void OnSelectedModeChanged(MysterySelectionMode value)
     {
         OnPropertyChanged(nameof(MysteryCountOptions));

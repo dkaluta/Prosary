@@ -28,6 +28,10 @@
                       HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled">
             <Grid HorizontalAlignment="Stretch">
                 <StackPanel Padding="24" HorizontalAlignment="Stretch" Spacing="12">
+                    <ComboBox Header="{x:Bind ViewModel.ModeLabel}" ItemsSource="{x:Bind ViewModel.ThemeOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedTheme, Mode=TwoWay}" HorizontalAlignment="Stretch" AutomationProperties.AutomationId="appThemeMode" />
+                    <ComboBox Header="{x:Bind ViewModel.PaletteLabel}" ItemsSource="{x:Bind ViewModel.PaletteOptions}" DisplayMemberPath="Label"
+                              SelectedItem="{x:Bind ViewModel.SelectedPalette, Mode=TwoWay}" HorizontalAlignment="Stretch" AutomationProperties.AutomationId="appPalette" />
                     <TextBlock TextWrapping="Wrap" Text="{x:Bind ViewModel.ColorLabel}" Style="{StaticResource BaseTextBlockStyle}" />
                     <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"

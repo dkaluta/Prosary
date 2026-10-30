@@ -117,6 +117,17 @@ struct RosaryFlowView: View {
     .sheet(isPresented: $showsMysteryPicker) {
       NavigationStack {
         List {
+          if requiresMysteryChoice {
+            ForEach(MysteryGroup.allCases) { group in
+              Button { chooseEntireSet(group) } label: {
+                VStack(alignment: .leading, spacing: 4) {
+                  Text(group.displayName)
+                  Text(group.weekdayDescription(traditional: prayer.rosary.useTraditionalMysteries))
+                    .font(.caption).foregroundStyle(.secondary)
+                }
+              }.accessibilityIdentifier("chooseMystery.set.\(group.rawValue)")
+            }
+          } else {
           Picker(String(localized: "flow.mysterySet", defaultValue: "Mystery Set", bundle: UILanguage.bundle, locale: UILanguage.locale), selection: $pickerGroup) {
             Text(verbatim: "—").tag(Optional<MysteryGroup>.none)
             ForEach(MysteryGroup.allCases) { group in Text(group.displayName).tag(Optional(group)) }
@@ -132,6 +143,7 @@ struct RosaryFlowView: View {
                 languageCode: UILanguage.current, imageKey: mystery.imageKey).title)) { chooseMystery(mystery) }
                 .accessibilityIdentifier("chooseMystery.\(group.rawValue).\(mystery.order)")
             }
+          }
           }
         }
         .accessibilityIdentifier("mysteryPickerList")

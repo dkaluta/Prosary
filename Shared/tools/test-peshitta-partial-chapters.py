@@ -17,6 +17,35 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 class PartialChapterTests(unittest.TestCase):
+    def test_exact_reviewed_label_gaps_retain_source_numbers_without_relaxing_other_checks(self):
+        raw = ('<span class="verse" id="v1" data-ref="sirach.1.1">1 ܐܰܒܳܐ</span>'
+               '<span class="verse" id="v3" data-ref="sirach.1.3">3 ܐܰܒܳܐ</span>').encode()
+        with self.assertRaisesRegex(ValueError, 'verse labels'):
+            partial_chapter(raw, 'sirach', 1)
+        values, omitted = partial_chapter(raw, 'sirach', 1, missing_labels=[2])
+        self.assertEqual(list(values), [1, 3])
+        self.assertEqual(omitted, {})
+        for gaps in ([], [1], [2, 4], [2, 2]):
+            with self.assertRaises(ValueError):
+                partial_chapter(raw, 'sirach', 1, missing_labels=gaps)
+        with self.assertRaisesRegex(ValueError, 'wrong book/chapter'):
+            partial_chapter(raw, 'sirach', 2, missing_labels=[2])
+
+    def test_sirach_one_keeps_available_source_text_and_its_honest_gaps(self):
+        source = dict(book='SIR', chapter=1, slug='sirach',
+                      sha256=review()['partialChapters']['SIR:1']['sourceSHA256'])
+        catalog = json.loads((ROOT/'Shared/data/bible-catalog.json').read_text())
+        edition = next(row for row in catalog['editions'] if row['id'] == 'peshitta-1905')
+        archive = ROOT/'Shared/dist/bibles'/edition['downloadURL'].rsplit('/', 1)[1]
+        with zipfile.ZipFile(archive) as handle:
+            chapter = json.loads(handle.read('chapters/SIR/1.json'))
+        values = {row['verse'] for row in chapter['verses']}
+        self.assertEqual(len(values), 25)
+        self.assertIn(1, values)
+        self.assertIn(30, values)
+        self.assertFalse({5, 7, 20, 21, 22} & values)
+        self.assertEqual(review()['partialChapters']['SIR:1']['missingVerseLabels'], [20, 21, 22])
+
     def test_omission_is_not_scripture_and_valid_neighbours_keep_numbers(self):
         raw = ('<span class="verse" id="v1" data-ref="job.42.1">1 ܐܰܒܳܐ</span>'
                '<span class="verse" id="v2" data-ref="job.42.2">2 (ܠܝܬ)</span>'

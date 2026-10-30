@@ -91,6 +91,16 @@ fun AppearanceScreen(onBack: () -> Unit) {
                     .verticalScroll(rememberScrollState()).testTag("appearanceList").padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
+                com.dkaluta.prosary.ui.presets.OptionPickerField(
+                    label = stringResource(R.string.appearance_mode), options = listOf("system", "light", "dark"),
+                    selected = AppSettings.appThemeMode,
+                    optionLabel = { context.getString(when (it) { "dark" -> R.string.appearance_dark; "light" -> R.string.appearance_light; else -> R.string.appearance_system }) },
+                    onSelect = { AppSettings.appThemeMode = it }, modifier = Modifier.testTag("appThemeMode"))
+                com.dkaluta.prosary.ui.presets.OptionPickerField(
+                    label = stringResource(R.string.appearance_palette), options = listOf("native", "stainedGlass", "garden"),
+                    selected = AppSettings.appPalette,
+                    optionLabel = { context.getString(when (it) { "garden" -> R.string.appearance_garden; "stainedGlass" -> R.string.appearance_stained_glass; else -> R.string.appearance_native }) },
+                    onSelect = { AppSettings.appPalette = it }, modifier = Modifier.testTag("appPalette"))
                 Text(stringResource(R.string.settings_app_color_hint),
                     style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Surface(shape = MaterialTheme.shapes.extraLarge, color = MaterialTheme.colorScheme.surfaceContainerLow) {
@@ -132,7 +142,7 @@ fun AppearanceScreen(onBack: () -> Unit) {
                         }
                     }
                 }
-                if (Build.VERSION.SDK_INT >= 31) {
+                if (Build.VERSION.SDK_INT >= 31 && AppSettings.appPalette == "native") {
                     Surface(shape = MaterialTheme.shapes.extraLarge, color = MaterialTheme.colorScheme.surfaceContainerLow) {
                         ListItem(
                             headlineContent = { Text(stringResource(R.string.settings_use_system_colors)) },

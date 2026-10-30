@@ -327,7 +327,7 @@
           "default": 1,
           "min": 1,
           "max": 5,
-          "description": "SingleMystery persisted mode displays Selected Mysteries. Start at specificMysteryOrder, take consecutive mysteries within the selected group, clamp at fifth, never wrap. Also used for chooseOnLaunch; the launch chooser supplies its starting mystery."
+          "description": "SingleMystery persisted mode displays Selected Mysteries. Start at specificMysteryOrder, take consecutive mysteries within the selected group, clamp at fifth, never wrap. Legacy chooseOnLaunch values remain stored but the launch UI now offers complete groups only."
         }
       }
     },
@@ -368,7 +368,7 @@
         },
         {
           "value": "chooseOnLaunch",
-          "description": "Blank saved mystery choice, appended after all older enum cases. Engines return no steps until the launch chooser supplies group/order; uses specificMysteryCount consecutive mysteries. Chosen group/order remains session-local and never overwrites saved RosaryOptions."
+          "description": "Blank saved mystery choice, appended after older enum cases. Engines return no steps until a session-local group is chosen. Launch UI offers only the four complete groups with their customary weekday captions. Selecting a group starts its complete set with configured opening prayers. Legacy group/order continuation fields and specificMysteryCount remain decodable; no choice overwrites saved RosaryOptions."
         }
       ]
     },
@@ -1179,6 +1179,26 @@
           "type": "string",
           "default": "{}",
           "description": "Independent known Home-card IDs mapped to blue/green/gold/rose palette IDs. Default clears override. JSON normalizes unknown IDs/colors; does not alter order, size, content or app accent. Apple includes this string in its atomic iCloud Home layout snapshot."
+        },
+        "appThemeMode": {
+          "type": "string",
+          "enum": [
+            "system",
+            "light",
+            "dark"
+          ],
+          "default": "system",
+          "description": "Immediate persistent appearance on iOS/Android/Windows, independent of OS appearance. System follows the OS. Mac keeps its native desktop appearance."
+        },
+        "appPalette": {
+          "type": "string",
+          "enum": [
+            "native",
+            "stainedGlass",
+            "garden"
+          ],
+          "default": "native",
+          "description": "App-wide multicolor palette. Canonical hue roles: Shared/Branding/interface-palettes.json, adapted using existing AppColor contrast pairs. Native preserves existing appColor/custom accent and Android wallpaper choices. Other palettes change the control accent and assign default Home card hues without writing homeWidgetColors or changing icons. Explicit per-card colors win; removal restores the selected global palette. Custom accent overrides the primary control hue. Windows high contrast retains system brushes. Mac keeps native system colors."
         }
       },
       "rendering": "Body, acclamation and currently visible reading-aid text choose typography by dominant actual letters, ignoring combining marks, punctuation and numbers. Syriac custom bodies therefore obey syriacTypeface. Hebrew-square Aramaic keeps Hebrew choices; Greek is independent of the Latin-script preference. Setting changes invalidate open prayer renderings immediately, including other Mac scenes.",

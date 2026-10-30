@@ -54,6 +54,21 @@ object AppSettings {
     private const val KEY_FAVORITE_BASIC_PRAYERS_FIRST = "favoriteBasicPrayersFirst"
     private const val KEY_LANGUAGE_FALLBACK_ORDER = "languageFallbackOrder"
 
+    private var themeModeState by mutableStateOf("system")
+    var appThemeMode: String
+        get() = themeModeState
+        set(value) {
+            themeModeState = value.takeIf { it in listOf("system", "light", "dark") } ?: "system"
+            prefs?.edit()?.putString("appThemeMode", themeModeState)?.apply()
+        }
+    private var paletteState by mutableStateOf("native")
+    var appPalette: String
+        get() = paletteState
+        set(value) {
+            paletteState = value.takeIf { it in listOf("native", "stainedGlass", "garden") } ?: "native"
+            prefs?.edit()?.putString("appPalette", paletteState)?.apply()
+        }
+
     private var appColorState by mutableStateOf(AppColor.Blue.id)
     val appColor: String get() = appColorState
     val todayCardColors = listOf("default", "blue", "green", "gold", "rose")
@@ -337,6 +352,8 @@ object AppSettings {
         val resolved = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs = resolved
         homeWidgets.initialize(resolved)
+        themeModeState = resolved.getString("appThemeMode", "system").takeIf { it in listOf("system", "light", "dark") } ?: "system"
+        paletteState = resolved.getString("appPalette", "native").takeIf { it in listOf("native", "stainedGlass", "garden") } ?: "native"
         appColorState = AppColor.resolve(resolved.getString(KEY_APP_COLOR, null)).id
         useSystemColorsState = resolved.getBoolean(KEY_SYSTEM_COLORS, true)
         customAccentColorState = CustomAccentColor.normalize(resolved.getString("customAccentColorHex", ""))

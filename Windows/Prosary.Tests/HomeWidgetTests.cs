@@ -6,9 +6,17 @@ namespace Prosary.Tests;
 public class HomeWidgetTests
 {
     [Fact]
+    public void SourceCardsPreserveEarlierRemovalsAndEmptyLayouts()
+    {
+        Assert.Empty(HomeWidgets.AddingSourceCards([]));
+        Assert.Equal(["photo", "feast", "hymn", "tradition"], HomeWidgets.AddingSourceCards(["photo", "feast"]));
+        Assert.Equal(["hymn", "photo", "tradition"], HomeWidgets.AddingSourceCards(["hymn", "photo"]));
+    }
+
+    [Fact]
     public void MissingLayoutGetsDefaultsWhileAnIntentionallyEmptyHomeStaysEmpty()
     {
-        Assert.Equal(new[] { "readings", "torah", "popeIntention", "calendar", "reminders", "scripture", "feast", "reflection" }, HomeWidgets.Parse(null));
+        Assert.Equal(new[] { "readings", "torah", "popeIntention", "calendar", "reminders", "scripture", "feast", "hymn", "tradition", "reflection" }, HomeWidgets.Parse(null));
         Assert.Empty(HomeWidgets.Parse(""));
     }
 

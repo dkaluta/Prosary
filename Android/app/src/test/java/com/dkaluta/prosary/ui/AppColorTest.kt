@@ -2,13 +2,30 @@ package com.dkaluta.prosary.ui
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.graphics.compositeOver
 import com.dkaluta.prosary.models.AppColor
 import com.dkaluta.prosary.models.AppSettings
 import com.dkaluta.prosary.ui.theme.appColorScheme
+import com.dkaluta.prosary.ui.theme.homeCardContentColors
 import org.junit.Assert.*
 import org.junit.Test
 
 class AppColorTest {
+    @Test fun coloredCardActionsKeepTextContrastInBothThemes() {
+        for (dark in listOf(false, true)) {
+            val base = appColorScheme(AppColor.Blue, dark)
+            for (tint in listOf(AppColor.Blue, AppColor.Green, AppColor.Gold, AppColor.Rose)) {
+                val accent = Color(if (dark) tint.dark else tint.light)
+                val background = accent.copy(alpha = if (dark) 0.28f else 0.18f).compositeOver(base.surfaceContainerHighest)
+                val text = homeCardContentColors(base, tinted = true).primary
+                val a = text.luminance() + 0.05f
+                val b = background.luminance() + 0.05f
+                assertTrue("$tint, dark=$dark", maxOf(a, b) / minOf(a, b) >= 4.5f)
+            }
+            assertEquals(base, homeCardContentColors(base, tinted = false))
+        }
+    }
+
     @Test fun absentOrUnknownPaletteUsesBlueAndSelectionsAreStable() {
         assertEquals(AppColor.Blue, AppColor.resolve(null))
         assertEquals(AppColor.Blue, AppColor.resolve("old-color"))

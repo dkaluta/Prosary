@@ -266,7 +266,7 @@ public class RosarySessionNavigationTests : IClassFixture<PrayerPackLoaderFixtur
     }
 
     [Fact]
-    public async Task ChooseOnLaunchEditorsExposeFullCountWithoutSavedSetOrStartingMysteryControls()
+    public async Task ChooseOnLaunchEditorsHideCountAndStartingMysteryButPreserveLegacyValues()
     {
         var original = new Prayer { IsDefault = true, Rosary = new RosaryOptions
         {
@@ -276,14 +276,14 @@ public class RosarySessionNavigationTests : IClassFixture<PrayerPackLoaderFixtur
         var presets = new MemoryPresets(original);
         var editor = new FavoriteEditorViewModel(presets, new SilentReminders());
         await editor.LoadAsync(original.Id, PrayerKind.Rosary);
-        Assert.True(editor.ShowsMysteryCount);
+        Assert.False(editor.ShowsMysteryCount);
         Assert.False(editor.IsSpecificMysteryGroup);
         Assert.False(editor.IsSingleMystery);
         Assert.Equal(new[] { 1, 2, 3, 4, 5 }, editor.MysteryCountOptions);
         Assert.Equal(4, editor.SpecificMysteryCount);
         var picker = new RosaryPresetPickerViewModel(presets);
         await picker.LoadAsync();
-        Assert.True(picker.ShowsMysteryCount);
+        Assert.False(picker.ShowsMysteryCount);
         Assert.False(picker.ShowsGroupPicker);
         Assert.False(picker.ShowsOrdinalPicker);
         Assert.Equal(new[] { 1, 2, 3, 4, 5 }, picker.MysteryCountOptions);

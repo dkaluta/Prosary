@@ -25,6 +25,11 @@ enum MysteryGroup: String, Codable, CaseIterable, Identifiable {
     }
   }
 
+  func weekdayDescription(traditional: Bool) -> String {
+    let key = "mystery_days_" + (traditional ? "traditional_" : "") + rawValue
+    return UILanguage.text(key, language: UILanguage.current, fallback: rawValue)
+  }
+
   var color: Color {
     switch self {
     case .joyful:    return .adaptive(light: "#1565C0", dark: "#1976D2") // blue

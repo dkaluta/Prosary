@@ -121,7 +121,7 @@ owner as sibling import/read flows; no new toast or loading system is introduced
 
 ### Buttons and actions
 
-Expansion is a button separate from the card's open action. Image add/change/remove on cards other than feast explanations uses
+Expansion is a context-menu action separate from the card's open action. Image add/change/remove on cards other than feast explanations uses
 the existing native photo picker and private image-store recovery path. Changing or resetting
 the accent applies immediately in Appearance. Standard palette choices and custom colors
 remain visibly distinguishable from semantic liturgical status colors.
@@ -169,3 +169,18 @@ belong to the effective authored content's internal metadata, with no user toggl
 - Preserve the Mac library/Today workflow instead of adding a phone dashboard for parity.
 
 Home cards offer Set Accent Color… with Blue, Green, Gold and Rose through native palette menus. Remove Accent Color appears only when a card has an override and restores its native appearance independently of other cards. Tints composite over opaque native surfaces and retain readable semantic foregrounds in light, dark and high contrast. Available pane width chooses columns; active fold and camera regions constrain the safe content pane. Each column grows independently. Cards fill the shortest column in saved order; expansion and resizing may reflow later cards. Ties start at the native leading edge. Accessibility follows saved order within each safe pane. Side-by-side Apple fold panes each host one column with alternating cards; vertically stacked panes retain contiguous top-to-bottom groups. Apple’s existing iCloud preferences sync an atomic card arrangement, size and color snapshot after explicit edits. Photos, dates and responsive columns stay device-local.
+
+The optional Stained Glass palette assigns blue, green, gold and rose to distinct Home cards;
+Garden assigns green, rose, blue and gold. The canonical role inventory is
+`Shared/Branding/interface-palettes.json`; Apple AppPalette, Android paletteColors and Windows
+AppColorPalette adapt those roles through the existing AppColor light/dark contrast pairs.
+Global palettes provide default card colors without storing per-card overrides. Custom accents
+remain independent. Display Mode follows System, Light or Dark on phones and Windows; Mac
+retains system appearance. Card headings retain their content label, with size and palette
+actions in the native context menu. Dark tints carry enough color to distinguish the hues
+while keeping semantic text readable. Hymn and Syriac Tradition and the Feast are independent
+source-backed cards; missing source prose stays explicit.
+
+`uv run --script Shared/tools/sync-interface-palettes.py --check` verifies all three generated palette-role adapters against the shared inventory.
+
+Links and buttons inside colored cards use readable semantic foregrounds; the global accent remains on neutral surfaces. Source-section headings identical to their card title are not repeated.

@@ -156,43 +156,27 @@ class RosaryChooseOnLaunchInstrumentedTest {
     }
 
     private fun chooseGroup(group: MysteryGroup) {
-        compose.onNode(hasClickAction() and hasAnyAncestor(hasTestTag("mysterySetSelector"))).performClick()
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        for (candidate in MysteryGroup.entries) {
-            compose.onAllNodes(hasText(context.getString(candidate.displayNameRes))).onLast().assertIsDisplayed()
-        }
-        compose.onAllNodes(hasText(context.getString(group.displayNameRes)) and hasClickAction()).onLast().performClick()
+        compose.onNodeWithTag("chooseMystery.set.${group.name.lowercase()}").performClick()
     }
 
-    @Test fun mandatorySetSelectorShowsFiveChoicesThenStartsOpeningAndTwoSequentialMysteries() {
+    @Test fun mandatoryChoiceShowsOnlyGroupsWithDaysAndStartsAllFiveMysteries() {
         try {
             launch()
             compose.onAllNodes(mysteryChoice).assertCountEquals(0)
-            capture("picker-select-set-first")
             for (group in MysteryGroup.entries) {
-                chooseGroup(group)
-                compose.onNodeWithTag("chooseMystery.entireSet").assertIsDisplayed()
-                compose.onAllNodes(mysteryChoice).assertCountEquals(5)
-                for (mystery in MysteryCatalog.forGroup(group)) {
-                    compose.onNodeWithTag("chooseMystery.${group.name.lowercase()}.${mystery.order}").assertIsDisplayed()
-                }
-                MysteryGroup.entries.filter { it != group }.forEach { hidden ->
-                    MysteryCatalog.forGroup(hidden).forEach { mystery ->
-                        compose.onNodeWithTag("chooseMystery.${hidden.name.lowercase()}.${mystery.order}").assertDoesNotExist()
-                    }
-                }
-                capture("picker-${group.name.lowercase()}-five-choices")
+                compose.onNodeWithTag("chooseMystery.set.${group.name.lowercase()}").assertIsDisplayed()
             }
-            val first = MysteryCatalog.luminous[3]
-            val second = MysteryCatalog.luminous[4]
+            capture("picker-groups-with-weekdays")
+            val first = MysteryCatalog.luminous[0]
+            val second = MysteryCatalog.luminous[1]
             val firstTitle = MysteryTranslations.get("en", first.imageKey).title
-            compose.onNodeWithTag("chooseMystery.luminous.4").performClick()
+            chooseGroup(MysteryGroup.Luminous)
             compose.onNode(isDialog()).assertDoesNotExist()
             compose.onNodeWithTag("prayerParagraph:0")
                 .assertTextEquals(PrayerTranslations.get("en", PrayerKey.SignumCrucis)).assertIsDisplayed()
             compose.runOnIdle {
                 assertEquals(0, session.currentIndex.intValue)
-                assertEquals(listOf(first, second), session.steps.value.mapNotNull { it.mystery }.distinct())
+                assertEquals(MysteryCatalog.luminous, session.steps.value.mapNotNull { it.mystery }.distinct())
             }
             capture("opening-sign-of-cross")
             val nextMystery = InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.flow_next_mystery)
@@ -209,7 +193,6 @@ class RosaryChooseOnLaunchInstrumentedTest {
     @Test fun cancellingTheRequiredChoiceReturnsWithoutStartingPrayer() {
         try {
             launch()
-            chooseGroup(MysteryGroup.Joyful)
             compose.onNodeWithText(InstrumentationRegistry.getInstrumentation().targetContext.getString(R.string.common_cancel))
                 .assertIsDisplayed().performClick()
             compose.onNodeWithText("Returned to Pray").assertIsDisplayed()
@@ -222,9 +205,6 @@ class RosaryChooseOnLaunchInstrumentedTest {
         try {
             launch(savedPreset = true)
             chooseGroup(MysteryGroup.Glorious)
-            compose.onNodeWithTag("chooseMystery.entireSet").assertIsDisplayed()
-            capture("picker-glorious-entire-set-option")
-            compose.onNodeWithTag("chooseMystery.entireSet").performClick()
             compose.onNode(isDialog()).assertDoesNotExist()
             compose.onNodeWithTag("prayerParagraph:0")
                 .assertTextEquals(PrayerTranslations.get("en", PrayerKey.SignumCrucis)).assertIsDisplayed()

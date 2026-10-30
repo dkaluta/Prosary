@@ -2,6 +2,13 @@ import XCTest
 @testable import Prosary
 
 final class HomeWidgetOrderTests: XCTestCase {
+  func testSourceCardsUpgradeWithoutRestoringPreviouslyRemovedDailyCards() {
+    XCTAssertEqual(HomeWidgetOrder.addingSourceCards(to: []), [])
+    let updated = HomeWidgetOrder.addingSourceCards(to: [.photo, .feast])
+    XCTAssertEqual(updated, [.photo, .feast, .hymn, .tradition])
+    XCTAssertEqual(HomeWidgetOrder.addingSourceCards(to: updated), updated)
+  }
+
   func testNewInstallAndIntentionallyEmptyHomeRemainDistinct() {
     XCTAssertEqual(HomeWidgetOrder.decode(nil), HomeWidgetOrder.defaults)
     XCTAssertEqual(HomeWidgetOrder.decode(""), [])

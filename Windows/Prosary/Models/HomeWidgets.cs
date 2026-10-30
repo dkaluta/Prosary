@@ -5,9 +5,9 @@ namespace Prosary.Models;
 public static class HomeWidgets
 {
     public static IReadOnlyList<string> All { get; } =
-        ["readings", "torah", "popeIntention", "calendar", "photo", "reminders", "scripture", "reflection", "feast"];
+        ["readings", "torah", "popeIntention", "calendar", "photo", "reminders", "scripture", "reflection", "feast", "hymn", "tradition"];
     public static IReadOnlyList<string> Defaults { get; } =
-        ["readings", "torah", "popeIntention", "calendar", "reminders", "scripture", "feast", "reflection"];
+        ["readings", "torah", "popeIntention", "calendar", "reminders", "scripture", "feast", "hymn", "tradition", "reflection"];
     public static IReadOnlyList<string> ColorIds { get; } = ["default", "blue", "green", "gold", "rose"];
 
     public static IReadOnlyDictionary<string, string> ParseColors(string? stored)
@@ -31,6 +31,9 @@ public static class HomeWidgets
         if (!result.Contains("reflection")) result.Add("reflection");
         return result;
     }
+
+    public static IReadOnlyList<string> AddingSourceCards(IReadOnlyList<string> ids) =>
+        ids.Count == 0 ? ids : Normalize(ids.Concat(new[] { "hymn", "tradition" }));
 
     public static IReadOnlyList<string> Parse(string? stored) => stored is null
         ? Defaults.ToArray() : Normalize(stored.Split('\n', StringSplitOptions.RemoveEmptyEntries));

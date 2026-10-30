@@ -116,11 +116,6 @@ fun RosaryOptionsEditorScreen(
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
-                if (rosary.mysterySelectionMode == MysterySelectionMode.ChooseOnLaunch) {
-                    OptionPickerField(label = stringResource(R.string.ro_mystery_count), options = (1..5).toList(),
-                        selected = rosary.specificMysteryCount.coerceIn(1, 5), optionLabel = { it.toString() },
-                        onSelect = { onRosaryChange(rosary.copy(specificMysteryCount = it)) }, modifier = Modifier.fillMaxWidth())
-                }
                 if (rosary.mysterySelectionMode == MysterySelectionMode.SingleMystery) {
                     val mysteries = MysteryCatalog.forGroup(rosary.specificMysteryGroup)
                     val selectedMystery = mysteries.firstOrNull { it.order == rosary.specificMysteryOrder } ?: mysteries.first()

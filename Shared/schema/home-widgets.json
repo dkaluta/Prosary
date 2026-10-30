@@ -18,6 +18,8 @@
         "reminders",
         "scripture",
         "feast",
+        "hymn",
+        "tradition",
         "reflection"
       ],
       "explicitEmpty": "No cards. Keep Add Widget available; do not silently restore defaults.",
@@ -47,14 +49,14 @@
     },
     "homeWidgetLayoutVersion": {
       "type": "string",
-      "default": "1",
-      "behavior": "One-time migration adds torah after readings (or first when readings is absent) and appends reflection to nonempty existing layouts. The default layout places reflection after feast. Explicit empty layouts remain empty; subsequent removals stay removed."
+      "default": "2",
+      "behavior": "One-time v2 upgrade adds hymn and tradition to nonempty v1 layouts without restoring previously removed cards. Older layouts first receive the v1 Torah/reflection upgrade. Explicit empty layouts stay empty. Later removal remains respected."
     },
     "homeWidgetColors": {
       "type": "string",
       "default": "{}",
       "encoding": "JSON object of known widget ID to blue, green, gold or rose. Default removes the override; invalid IDs/colors are ignored.",
-      "behavior": "Independent per-card accent tint over an opaque native surface; preserve native light/dark and high-contrast foregrounds. Set Accent Color opens Blue, Green, Gold and Rose choices using existing Today color captions. Default is not a selectable item; Remove Accent Color appears only for an active override and clears that card alone."
+      "behavior": "Independent per-card accent tint over an opaque native surface; preserve native light/dark and high-contrast foregrounds. Set Accent Color opens Blue, Green, Gold and Rose choices using existing Today color captions. Default is not a selectable item; Remove Accent Color appears only for an active override and clears that card alone. Expand/Collapse, Set Accent Color and Remove Accent Color are native context-menu actions (long press/right click) with no persistent size or palette buttons on each card. A global appPalette supplies default hues when no explicit override exists. Stronger dark tints retain readable semantic foregrounds."
     }
   },
   "cards": {
@@ -64,9 +66,11 @@
     "photo": "A chosen gallery image, stored in app-private storage, with choose/replace/remove controls and recoverable errors.",
     "reminders": "Actual enabled saved-prayer and daily reading/saint reminders, formatted as local wall-clock times. Manage opens existing native reminder settings/editors.",
     "scripture": "Scripture of the Day: first Gospel appointment in canonical source order, else first appointment. Use existing exact citation mapping, selected edition and offline text loader; missing dates/text remain explicit. Select the primary Bible tab/sidebar destination, whose book/chapter/verse position is independent of the selected civil date. The Bible reader omits a duplicate Scripture-of-the-Day card.",
-    "reflection": "Exact-language, selected-calendar/date reflection sections from the separate provisional Mission source, retaining source credit. Missing source prose is explicit; no invented reflections.",
-    "feast": "Localized feast/rank plus exact-language sourced descriptions and credit where available. Repeated parent feast headings are omitted; source-supplied sections render as dedicated headed blocks in each rite's own order. Incomplete section coverage keeps the full source prose. Missing description/date has a localized explicit state. Remove reflection sections from this card only after complete source coverage is verified and the separate exact-language reflectionByLanguage copy matches all combined reflection-section text after whitespace normalization. Otherwise retain the complete source description. The title is About the Feast and Day. This card has no user image actions or images.",
-    "torah": "Weekly Eretz Israel Torah portion plus published Ashkenazi haftarah and any distinct Sephardic alternative for the coming Saturday, including Saturday itself. Uses the shared civil date and canonical Hebcal citations with source credit; does not depend on showTodayTorahPortion, which controls native Today/Readings. Missing source dates stay explicit."
+    "reflection": "Exact-language, selected-calendar/date reflection sections from the separate provisional Mission source, retaining source credit. Missing source prose is explicit; no invented reflections. The app-wide Hebrew Mission prayer variant applies textSourceSelection independently of calendar and interface language.",
+    "feast": "Localized feast/rank plus exact-language sourced descriptions and credit where available. Repeated parent feast headings are omitted; source-supplied sections render as dedicated headed blocks in each rite's own order. Incomplete section coverage keeps the full source prose. Missing description/date has a localized explicit state. Remove reflection sections from this card only after complete source coverage is verified and the separate exact-language reflectionByLanguage copy matches all combined reflection-section text after whitespace normalization. Otherwise retain the complete source description. The title is About the Feast and Day. This card has no user image actions or images. The app-wide Hebrew Mission prayer variant applies textSourceSelection independently of calendar and interface language.",
+    "torah": "Weekly Eretz Israel Torah portion plus published Ashkenazi haftarah and any distinct Sephardic alternative for the coming Saturday, including Saturday itself. Uses the shared civil date and canonical Hebcal citations with source credit; does not depend on showTodayTorahPortion, which controls native Today/Readings. Missing source dates stay explicit. On Sunday in syriac and mission-provisional calendars, look up the preceding Saturday; Monday through Saturday retain the upcoming/inclusive Saturday behavior. Other calendars remain unchanged.",
+    "hymn": "Exact-language hymn sections from selected-date/calendar observances, in source order with parent credit and link. Missing sections show a localized unavailable state. No prose, Scripture or translations are invented; full original feast explanations remain accessible. The app-wide Hebrew Mission prayer variant applies textSourceSelection independently of calendar and interface language.",
+    "tradition": "Exact-language tradition sections from selected-date/calendar observances, in source order with parent credit and link. Missing sections show a localized unavailable state. No prose, Scripture or translations are invented; full original feast explanations remain accessible. The app-wide Hebrew Mission prayer variant applies textSourceSelection independently of calendar and interface language."
   },
   "navigation": "Phone/tablet tabs are Home, Pray, Bible and Search. Windows opens Home in its library window and has a primary Bible sidebar destination. Daily Readings opens in a native sheet/dialog from its Home card, calendar events or reading reminder/widget links; Calendar-to-readings navigation replaces the reference surface without stacking modals. Community prayers are reached from Search, replacing the separate Browse/Community navigation destination.",
   "date": "Reuse the existing window-local civil selection and calendar/Pascha settings; follow the local day until browsing. Home shortcuts preserve the selected day. Operating-system Today/calendar widgets retain their documented current-day activation behavior.",
@@ -88,5 +92,11 @@
       "column count"
     ],
     "verification": "Pure payload validation and isolated test-store behavior; real signed multi-device sync remains unverified."
+  },
+  "textSourceSelection": {
+    "trigger": "App-wide defaultLanguageCode == he-x-gamliel (Hebrew — Mission variant)",
+    "behavior": "Hymn, tradition, feast explanation and reflection use the supplied Mission calendar prose for the same civil date. Render exact Hebrew prose in RTL, independently of interface language. Other prayer traditions retain selected-calendar/interface-language behavior.",
+    "calendarIndependence": "Never rewrite feastCalendarId or alter the calendar grid, readings, Torah/haftarah, Bible edition or selected date. Individual saved prayers do not change Home.",
+    "missingSource": "No substitute from another rite or year when Mission prose is absent. Retain unavailable states; current coverage ends 2026-12-31."
   }
 }

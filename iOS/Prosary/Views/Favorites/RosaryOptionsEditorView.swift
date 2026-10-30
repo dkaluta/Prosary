@@ -84,11 +84,6 @@ struct RosaryOptionsSections: View {
             }
           }
         }
-        if rosary.mysterySelectionMode == .chooseOnLaunch {
-          Picker("favoriteEditor.mysteryCount", selection: $rosary.specificMysteryCount) {
-            ForEach(1...5, id: \.self) { count in Text(count, format: .number).tag(count) }
-          }
-        }
       }
 
       Section("favoriteEditor.openingDecadePrayers") {

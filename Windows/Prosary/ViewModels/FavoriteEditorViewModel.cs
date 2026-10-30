@@ -193,7 +193,7 @@ public partial class FavoriteEditorViewModel : ObservableObject
     public bool IsJesusPrayer => Kind == PrayerKind.JesusPrayer;
     public bool IsSpecificMysteryGroup => MysterySelectionMode is MysterySelectionMode.Specific or MysterySelectionMode.SingleMystery;
     public bool IsSingleMystery => MysterySelectionMode == MysterySelectionMode.SingleMystery;
-    public bool ShowsMysteryCount => MysterySelectionMode is MysterySelectionMode.SingleMystery or MysterySelectionMode.ChooseOnLaunch;
+    public bool ShowsMysteryCount => MysterySelectionMode == MysterySelectionMode.SingleMystery;
 
     /// <summary>Preview text for the "Rosary Options" row that opens the submenu — mirrors
     /// <see cref="RosaryOptions.MysterySelectionSummary"/>, computed from this ViewModel's own

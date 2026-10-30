@@ -176,12 +176,30 @@ final class AppIconController: ObservableObject {
   }
 }
 
+enum AppPalette {
+  static let key = "appPalette"
+  static let ids = ["native", "stainedGlass", "garden"]
+  static func colors(_ id: String) -> [AppColor] {
+    switch id {
+    case "stainedGlass": [.blue, .green, .gold, .rose]
+    case "garden": [.green, .rose, .blue, .gold]
+    default: []
+    }
+  }
+  static func cardColor(_ id: String, index: Int) -> TodayCardColor {
+    let colors = colors(id)
+    return colors.isEmpty ? .default : TodayCardColor(rawValue: colors[index % colors.count].rawValue) ?? .default
+  }
+}
+
 private struct AppAppearanceModifier: ViewModifier {
   #if os(macOS)
   @State private var accentRevision = 0
   #else
-  @AppStorage(AppColor.defaultsKey) private var storedColor = AppColor.blue.rawValue
-  @AppStorage(CustomAccentColor.defaultsKey) private var customAccent = ""
+  @AppStorage(AppColor.defaultsKey, store: ProsaryRuntimeEnvironment.defaults) private var storedColor = AppColor.blue.rawValue
+  @AppStorage(CustomAccentColor.defaultsKey, store: ProsaryRuntimeEnvironment.defaults) private var customAccent = ""
+  @AppStorage("appThemeMode", store: ProsaryRuntimeEnvironment.defaults) private var themeMode = "system"
+  @AppStorage(AppPalette.key, store: ProsaryRuntimeEnvironment.defaults) private var palette = "native"
   #endif
   @Environment(\.scenePhase) private var scenePhase
 
@@ -197,15 +215,16 @@ private struct AppAppearanceModifier: ViewModifier {
         if phase == .active { AppIconController.shared.synchronize(.blue) }
       }
     #else
-    let color = AppColor.appearanceChoice(storedColor)
+    let color = AppPalette.colors(palette).first ?? AppColor.appearanceChoice(storedColor)
     let accent = CustomAccentColor.color(customAccent, fallback: color)
     content
+      .preferredColorScheme(themeMode == "dark" ? .dark : themeMode == "light" ? .light : nil)
       .tint(accent)
       .accentColor(accent)
-      .onAppear { AppIconController.shared.synchronize(color) }
-      .onChange(of: storedColor) { _, _ in AppIconController.shared.synchronize(color) }
+      .onAppear { AppIconController.shared.synchronize(AppColor.appearanceChoice(storedColor)) }
+      .onChange(of: storedColor) { _, _ in AppIconController.shared.synchronize(AppColor.appearanceChoice(storedColor)) }
       .onChange(of: scenePhase) { _, phase in
-        if phase == .active { AppIconController.shared.synchronize(color) }
+        if phase == .active { AppIconController.shared.synchronize(AppColor.appearanceChoice(storedColor)) }
       }
     #endif
   }

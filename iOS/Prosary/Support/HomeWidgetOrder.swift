@@ -2,9 +2,9 @@ import Foundation
 
 /// Home widgets are independent of the saved-prayer ordering on Pray.
 enum HomeWidget: String, CaseIterable, Identifiable {
-  case readings, torah, popeIntention, calendar, photo, reminders, scripture, reflection, feast
+  case readings, torah, popeIntention, calendar, photo, reminders, scripture, reflection, feast, hymn, tradition
   var id: String { rawValue }
-  var title: String { UILanguage.text("homeWidgets.\(rawValue)", language: UILanguage.current, fallback: rawValue) }
+  var title: String { if self == .hymn || self == .tradition { return UILanguage.text("home_widgets_" + rawValue, language: UILanguage.current, fallback: rawValue) }; return UILanguage.text("homeWidgets.\(rawValue)", language: UILanguage.current, fallback: rawValue) }
   var symbol: String {
     switch self {
     case .readings: "book.closed"
@@ -15,6 +15,8 @@ enum HomeWidget: String, CaseIterable, Identifiable {
     case .reminders: "bell"
     case .scripture: "books.vertical"
     case .reflection: "quote.bubble"
+    case .hymn: "music.note"
+    case .tradition: "sparkles"
     case .feast: "sun.max"
     }
   }
@@ -22,7 +24,7 @@ enum HomeWidget: String, CaseIterable, Identifiable {
 
 enum HomeWidgetOrder {
   static let key = "homeWidgetOrder"
-  static let defaults: [HomeWidget] = [.readings, .torah, .popeIntention, .calendar, .reminders, .scripture, .feast, .reflection]
+  static let defaults: [HomeWidget] = [.readings, .torah, .popeIntention, .calendar, .reminders, .scripture, .feast, .hymn, .tradition, .reflection]
   static let layoutVersionKey = "homeWidgetLayoutVersion"
 
   static func addingDailyCards(to widgets: [HomeWidget]) -> [HomeWidget] {
@@ -33,6 +35,11 @@ enum HomeWidgetOrder {
     }
     if !result.contains(.reflection) { result.append(.reflection) }
     return result
+  }
+
+  static func addingSourceCards(to widgets: [HomeWidget]) -> [HomeWidget] {
+    guard !widgets.isEmpty else { return widgets }
+    return widgets + [HomeWidget.hymn, .tradition].filter { !widgets.contains($0) }
   }
 
   static func decode(_ stored: String?) -> [HomeWidget] {

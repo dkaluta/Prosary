@@ -14,6 +14,40 @@ namespace Prosary.Tests;
 public class TodayInfoStoreTests
 {
     [Fact]
+    public void MissionPrayerVariantSelectsHebrewHomeTextWithoutChangingCalendarOrReadings()
+    {
+        var previous = TodayInfoStore.SelectedCalendarId;
+        try {
+            TodayInfoStore.SelectedCalendarId = "roman";
+            var date = new DateOnly(2026, 11, 1);
+            var selected = TodayInfoStore.Feast(date);
+            var readings = TodayInfoStore.Readings(date);
+            var mission = Assert.IsType<FeastDay>(TodayInfoStore.HomeTextFeast(date, "he-x-gamliel"));
+            Assert.NotEmpty(mission.NamedSections("hymn", "he"));
+            Assert.NotEmpty(mission.NamedSections("tradition", "he"));
+            Assert.NotEmpty(mission.Reflections("he"));
+            Assert.Equal("he", TodayInfoStore.HomeTextLanguage("he-x-gamliel", "en"));
+            Assert.Equal("en", TodayInfoStore.HomeTextLanguage("he", "en"));
+            Assert.Equal(selected, TodayInfoStore.HomeTextFeast(date, "he"));
+            Assert.Equal(selected, TodayInfoStore.HomeTextFeast(date, "arc"));
+            Assert.Equal("roman", TodayInfoStore.ResolvedCalendarId);
+            Assert.Equal(readings, TodayInfoStore.Readings(date));
+            Assert.Null(TodayInfoStore.HomeTextFeast(new DateOnly(2027, 11, 1), "he-x-gamliel"));
+        } finally { TodayInfoStore.SelectedCalendarId = previous; }
+    }
+
+    [Fact]
+    public void SyriacSundayRetainsPreviousSaturdayAcrossMonthBoundary()
+    {
+        var sunday = new DateOnly(2026, 11, 1);
+        foreach (var id in new[] { "syriac", "mission-provisional" }) {
+            Assert.Equal(new DateOnly(2026, 10, 31), TodayInfoStore.TorahLookupDate(sunday, id));
+            Assert.Equal(sunday.AddDays(1), TodayInfoStore.TorahLookupDate(sunday.AddDays(1), id));
+        }
+        Assert.Equal(sunday, TodayInfoStore.TorahLookupDate(sunday, "roman"));
+    }
+
+    [Fact]
     public void PopePublicationRequiresStablePrayerIdentityAndExplicitOptIn()
     {
         var intention = new PopeIntention("Published title", "English body", new() { ["he"] = "כותרת" },

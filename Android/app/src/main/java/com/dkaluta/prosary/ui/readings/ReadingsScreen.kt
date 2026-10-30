@@ -243,7 +243,7 @@ private fun DailyReadingsContent(browsingDate: TodayBrowsingDate) {
         if (AppSettings.showTodayFeast) TodayInfoStore.feast(lookupDate)?.saintDescriptions(calendarId, language).orEmpty()
         else emptyList()
     }
-    val torah = remember(lookupDate, AppSettings.showTodayTorahPortion, generation) {
+    val torah = remember(lookupDate, calendarId, AppSettings.showTodayTorahPortion, generation) {
         if (AppSettings.showTodayTorahPortion) TodayInfoStore.torahPortion(lookupDate) else null
     }
     val store = remember(context.applicationContext) {

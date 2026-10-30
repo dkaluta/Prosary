@@ -72,13 +72,16 @@ class VerseParser(HTMLParser):
         self.current = None
 
 
-def parsed_chapter(raw: bytes, slug: str, chapter: int, *, allow_partial=False):
+def parsed_chapter(raw: bytes, slug: str, chapter: int, *, allow_partial=False, missing_labels=()):
     parser = VerseParser(slug, chapter, allow_partial=allow_partial)
     parser.feed(raw.decode("utf-8-sig"))
     parser.close()
     if parser.current is not None or not parser.values:
         raise ValueError("Peshitta source has an unfinished or empty verse body")
-    if list(parser.values) != list(range(1, max(parser.values) + 1)):
+    expected = [number for number in range(1, max(parser.values) + 1) if number not in missing_labels]
+    missing = set(range(1, max(parser.values) + 1)) - set(parser.values)
+    if (list(missing_labels) != sorted(set(missing_labels))
+            or missing != set(missing_labels) or list(parser.values) != expected):
         raise ValueError("Peshitta source has missing or unordered verse labels")
     return parser.values, parser.defects
 
@@ -87,10 +90,10 @@ def parse_chapter(raw: bytes, slug: str, chapter: int) -> dict[int, str]:
     return parsed_chapter(raw, slug, chapter)[0]
 
 
-def partial_chapter(raw: bytes, slug: str, chapter: int):
+def partial_chapter(raw: bytes, slug: str, chapter: int, *, missing_labels=()):
     """Retain exact numbered valid verses, recording every omitted body independently."""
     from peshitta_reading_source import paired_text
-    values, defects = parsed_chapter(raw, slug, chapter, allow_partial=True)
+    values, defects = parsed_chapter(raw, slug, chapter, allow_partial=True, missing_labels=missing_labels)
     omitted = {}
     safe = {}
     for verse, text in values.items():
@@ -124,7 +127,7 @@ def load_verses(source, raw):
     if partial is not None:
         if partial.get("sourceSHA256") != source["sha256"]:
             raise ValueError("Peshitta partial chapter source differs from its pinned review")
-        values, observed = partial_chapter(raw, source["slug"], source["chapter"])
+        values, observed = partial_chapter(raw, source["slug"], source["chapter"], missing_labels=partial.get("missingVerseLabels", ()))
         if observed != partial["omittedVerses"]:
             raise ValueError("Peshitta partial chapter defects differ from their pinned review")
         if len(values) != partial.get("retainedVerses"):
