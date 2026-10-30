@@ -14,6 +14,8 @@ struct HomeDashboardView: View {
   @AppStorage(HomeWidgetDisplay.collapsedKey) private var storedCollapsed = ""
   @AppStorage(HomeWidgetDisplay.graphicsKey) private var storedGraphics = "{}"
   @AppStorage(HomeWidgetDisplay.colorsKey) private var storedColors = "{}"
+  @AppStorage(LanguageCatalog.defaultsKey) private var prayerLanguageCode = ""
+  @AppStorage(AppPalette.key) private var appPalette = "native"
   @Environment(\.accessibilityReduceMotion) private var reduceMotion
   @AppStorage(TodayInfoStore.calendarDefaultsKey) private var calendarID = ""
   @AppStorage(TodayInfoStore.paschaStyleDefaultsKey) private var paschaStyle = "julian"
@@ -40,6 +42,8 @@ struct HomeDashboardView: View {
   private var widgets: [HomeWidget] { HomeWidgetOrder.decode(storedOrder) }
   private var selectedDate: Date { dateSelection.localDate() }
   private var feast: FeastDay? { TodayInfoStore.feast(on: selectedDate) }
+  private var textLanguage: String { TodayInfoStore.homeTextLanguage(prayerLanguageCode: prayerLanguageCode, interfaceLanguage: language) }
+  private var textFeast: FeastDay? { TodayInfoStore.homeTextFeast(on: selectedDate, prayerLanguageCode: prayerLanguageCode) }
   private var sourceReadings: [ReadingCitation] { TodayInfoStore.readings(on: selectedDate) }
   private var readings: [ReadingDisplayOrder.Row<ReadingCitation>] {
     ReadingDisplayOrder.indexed(sourceReadings, reverse: reverseReadingsOrder)
@@ -88,8 +92,8 @@ struct HomeDashboardView: View {
     .alert(label("photoError"), isPresented: $showsPhotoError) { Button("common.ok", role: .cancel) {} }
     .photosPicker(isPresented: $showsGraphicPicker, selection: $selectedPhoto, matching: .images)
     .task {
-      if !applyCloudLayout(), layoutVersion != "1" {
-        storedOrder = HomeWidgetOrder.encode(HomeWidgetOrder.addingDailyCards(to: widgets)); layoutVersion = "1"
+      if !applyCloudLayout(), layoutVersion != "2" {
+        storedOrder = HomeWidgetOrder.encode(HomeWidgetOrder.addingSourceCards(to: layoutVersion == "1" ? widgets : HomeWidgetOrder.addingDailyCards(to: widgets))); layoutVersion = "2"
       }
       refreshDate(); await reloadPrayers(); photoImage = HomePhotoStore.image(photoPath); reloadGraphics()
     }
@@ -194,26 +198,8 @@ struct HomeDashboardView: View {
   private func card(_ widget: HomeWidget) -> some View {
     let isCollapsed = HomeWidgetDisplay.collapsed(storedCollapsed).contains(widget)
     return VStack(alignment: .leading, spacing: 12) {
-      HStack(spacing: 8) {
-        Button { toggleSize(widget) } label: {
-          HStack {
-            HomeWidgetLabel(widget: widget).font(.headline).accessibilityAddTraits(.isHeader)
-            Spacer(minLength: 12)
-            Image(systemName: isCollapsed ? "chevron.down" : "chevron.up").font(.caption.weight(.semibold))
-              .foregroundStyle(.secondary)
-          }.frame(minHeight: 44).contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .prosarySpatialHoverEffect(in: RoundedRectangle(cornerRadius: 8))
-        .accessibilityLabel("\(widget.title), \(label(isCollapsed ? "expand" : "collapse"))")
-        .accessibilityIdentifier("homeWidgets.size.\(widget.rawValue)")
-        Menu { cardAccentActions(widget) } label: {
-          Image(systemName: "paintpalette").frame(minWidth: 44, minHeight: 44)
-        }
-        .accessibilityLabel("\(widget.title), \(label("setAccentColor"))")
-        .accessibilityValue(cardColor(widget).title)
-        .accessibilityIdentifier("homeWidgets.color.\(widget.rawValue)")
-      }
+      HomeWidgetLabel(widget: widget).font(.headline).accessibilityAddTraits(.isHeader)
+        .accessibilityElement(children: .combine).accessibilityIdentifier("homeWidgets.header.\(widget.rawValue)")
       if isCollapsed { compactContent(widget) }
       else {
         if let image = graphicImages[widget], widget != .photo, widget != .feast {
@@ -227,8 +213,12 @@ struct HomeDashboardView: View {
     .padding(18)
     .background(cardColor(widget).tint, in: RoundedRectangle(cornerRadius: 14))
     .prosaryContentCardBackground()
+    .environment(\.layoutDirection, UILanguage.isRightToLeft(
+      [.hymn, .tradition, .reflection, .feast].contains(widget) ? textLanguage : language) ? .rightToLeft : .leftToRight)
+    .tint(cardColor(widget) == .default ? Color.appAccent : .primary)
     .contextMenu {
       Button(label(isCollapsed ? "expand" : "collapse"), systemImage: isCollapsed ? "arrow.up.left.and.arrow.down.right" : "arrow.down.right.and.arrow.up.left") { toggleSize(widget) }
+        .accessibilityIdentifier("homeWidgets.toggle.\(widget.rawValue)")
       cardAccentActions(widget)
       if widget != .feast {
         Button(label(graphicPath(widget).isEmpty ? "addGraphic" : "changeGraphic"), systemImage: "photo.badge.plus") {
@@ -277,11 +267,14 @@ struct HomeDashboardView: View {
         ?? (readingsReminderEnabled ? HomeWidget.readings.title : saintReminderEnabled ? HomeWidget.feast.title : label("noReminders")))
         .font(.subheadline)
       Button(label("manageReminders")) { showsReminders = true }.buttonStyle(.bordered)
+    case .hymn, .tradition:
+      Text(textFeast?.namedSections(widget.rawValue, language: textLanguage).first?.title
+        ?? UILanguage.text("home_widgets_section_pending", language: language, fallback: "No text is available."))
     case .reflection:
-      Text(feast?.reflections(language: language).first?.title ?? label("reflectionPending")).font(.subheadline)
+      Text(textFeast?.reflections(language: textLanguage).first?.title ?? label("reflectionPending")).font(.subheadline)
     case .feast:
-      Text(feast?.localizedTitle(language) ?? label("noFeast")).font(.subheadline)
-      if feast != nil { Button(label("feastDetails")) { openReadings("daily") }.buttonStyle(.bordered) }
+      Text(textFeast?.localizedTitle(textLanguage) ?? label("noFeast")).font(.subheadline)
+      if textFeast != nil { Button(label("feastDetails")) { openReadings("daily") }.buttonStyle(.bordered) }
     }
   }
 
@@ -354,8 +347,19 @@ struct HomeDashboardView: View {
           .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
       }.buttonStyle(.bordered)
         .accessibilityIdentifier("homeWidgets.open.scripture")
+    case .hymn, .tradition:
+      let sections = textFeast?.namedSections(widget.rawValue, language: textLanguage) ?? []
+      if sections.isEmpty { Text(UILanguage.text("home_widgets_section_pending", language: language, fallback: "No text is available.")).foregroundStyle(.secondary) }
+      ForEach(Array(sections.enumerated()), id: \.offset) { _, section in
+        if HebrewDisplayText.unpointed(section.title) != widget.title {
+          Text(verbatim: section.title).font(.subheadline.weight(.semibold))
+        }
+        Text(verbatim: section.text).textSelection(.enabled).fixedSize(horizontal: false, vertical: true)
+        if let credit = section.credit { Text(verbatim: credit).font(.caption).foregroundStyle(.secondary) }
+        if let url = section.sourceURL { Link(UILanguage.text("readings.source", language: language, fallback: "Text source"), destination: url) }
+      }
     case .reflection:
-      let reflections = feast?.reflections(language: language) ?? []
+      let reflections = textFeast?.reflections(language: textLanguage) ?? []
       if reflections.isEmpty { Text(label("reflectionPending")).foregroundStyle(.secondary) }
       ForEach(Array(reflections.enumerated()), id: \.offset) { index, reflection in
         VStack(alignment: .leading, spacing: 8) {
@@ -373,14 +377,15 @@ struct HomeDashboardView: View {
         }
       }
     case .feast:
-      if let feast {
-        Text(verbatim: feast.localizedTitle(language)).font(.subheadline.weight(.semibold))
-        Text(verbatim: feast.localizedRank(language)).font(.caption).foregroundStyle(.secondary)
-        if feast.saintDescriptions(calendarID: TodayInfoStore.selectedCalendarId, language: language).isEmpty {
+      if let feast = textFeast {
+        Text(verbatim: feast.localizedTitle(textLanguage)).font(.subheadline.weight(.semibold))
+          .accessibilityIdentifier("homeWidgets.feast.sourceTitle")
+        Text(verbatim: feast.localizedRank(textLanguage)).font(.caption).foregroundStyle(.secondary)
+        if feast.saintDescriptions(calendarID: TodayInfoStore.selectedCalendarId, language: textLanguage).isEmpty {
           Text(label("noFeastDescription")).foregroundStyle(.secondary)
         } else {
-          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: language)
-            .id("\(dateSelection.day)|\(calendarID)|\(paschaStyle)|\(language)")
+          SaintDescriptionsView(feast: feast, calendarID: TodayInfoStore.selectedCalendarId, language: textLanguage)
+            .id("\(dateSelection.day)|\(calendarID)|\(paschaStyle)|\(textLanguage)|\(prayerLanguageCode)")
         }
         Button(label("feastDetails")) { openReadings("daily") }.buttonStyle(.bordered)
       } else { Text(label("noFeast")).foregroundStyle(.secondary) }
@@ -452,7 +457,7 @@ struct HomeDashboardView: View {
   }
 
   private func cardColor(_ widget: HomeWidget) -> TodayCardColor {
-    HomeWidgetDisplay.colors(storedColors)[widget] ?? .default
+    HomeWidgetDisplay.colors(storedColors)[widget] ?? AppPalette.cardColor(appPalette, index: HomeWidget.allCases.firstIndex(of: widget) ?? 0)
   }
 
   private func setCardColor(_ color: TodayCardColor, for widget: HomeWidget) {
@@ -466,12 +471,12 @@ struct HomeDashboardView: View {
     Menu(label("setAccentColor"), systemImage: "paintpalette") {
       ForEach(TodayCardColor.allCases.filter { $0 != .default }) { color in
         Button { setCardColor(color, for: widget) } label: {
-          if cardColor(widget) == color { Label(color.title, systemImage: "checkmark") }
+          if HomeWidgetDisplay.colors(storedColors)[widget] == color { Label(color.title, systemImage: "checkmark") }
           else { Text(color.title) }
         }
       }
     }
-    if cardColor(widget) != .default {
+    if HomeWidgetDisplay.colors(storedColors)[widget] != nil {
       Button(label("removeAccentColor"), systemImage: "xmark") { setCardColor(.default, for: widget) }
         .accessibilityIdentifier("homeWidgets.removeAccentColor.\(widget.rawValue)")
     }
@@ -482,7 +487,7 @@ struct HomeDashboardView: View {
     storedOrder = layout.order
     storedCollapsed = layout.collapsed
     storedColors = layout.colors
-    layoutVersion = "1"
+    layoutVersion = "2"
     return true
   }
 

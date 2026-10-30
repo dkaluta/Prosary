@@ -22,10 +22,10 @@ enum TodayCardColor: String, CaseIterable, Identifiable {
   var tint: Color {
     switch self {
     case .default: .clear
-    case .blue: .blue.opacity(0.12)
-    case .green: .green.opacity(0.12)
-    case .gold: .yellow.opacity(0.14)
-    case .rose: .pink.opacity(0.12)
+    case .blue: .adaptive(light: "#1768AC", dark: "#3479AE").opacity(0.30)
+    case .green: .adaptive(light: "#287D49", dark: "#418D62").opacity(0.30)
+    case .gold: .adaptive(light: "#886419", dark: "#96742C").opacity(0.30)
+    case .rose: .adaptive(light: "#AD3F70", dark: "#A85078").opacity(0.30)
     }
   }
 }

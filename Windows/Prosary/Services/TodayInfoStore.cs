@@ -21,6 +21,15 @@ public sealed record FeastDay(
         (Observances ?? []).Select(observance => observance.Reflection(language))
             .OfType<SaintDescription>().ToList();
 
+    public IReadOnlyList<SaintDescription> NamedSections(string id, string language) =>
+        (Observances ?? []).SelectMany(observance => (observance.Sections ?? [])
+            .Where(section => section.Id == id).Select(section => section.Localized(language))
+            .OfType<LocalizedCalendarTextSection>().Select(section => {
+                var parent = observance.LocalizedDescription(language);
+                return new SaintDescription(observance.Identity, section.Title, section.Text,
+                    parent?.Credit ?? "", parent?.SourceUri, parent?.SourceLabel ?? "");
+            })).ToList();
+
     public string LocalizedTitle(string language) => HebrewDisplayText.WithoutMarks(
         UiLanguageCatalog.Localized(TitleByLanguage, language)
         ?? Title);
@@ -365,6 +374,17 @@ public static class TodayInfoStore
         }
     }
 
+    public static string HomeTextLanguage(string prayerLanguageCode, string interfaceLanguage) =>
+        prayerLanguageCode == "he-x-gamliel" ? "he" : interfaceLanguage;
+
+    private static Dictionary<string, FeastDay>? _missionHomeTextDays;
+    public static FeastDay? HomeTextFeast(DateOnly date, string prayerLanguageCode)
+    {
+        if (prayerLanguageCode != "he-x-gamliel") return Feast(date);
+        _missionHomeTextDays ??= LoadFile<FeastsFile>("feasts-mission-provisional")?.Days ?? new();
+        return _missionHomeTextDays.GetValueOrDefault(date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
+    }
+
     public static FeastDay? Feast(DateOnly date)
     {
         EnsureFeastsLoaded();
@@ -441,8 +461,13 @@ public static class TodayInfoStore
             _didLoadTorahPortions = true;
             _torahPortionsByDay = LoadFile<TorahPortionsFile>("torah-portions")?.Days ?? new();
         }
+        date = TorahLookupDate(date, ResolvedCalendarId);
         return _torahPortionsByDay.GetValueOrDefault(date.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture));
     }
+
+    public static DateOnly TorahLookupDate(DateOnly date, string calendarId) =>
+        calendarId is "syriac" or "mission-provisional" && date.DayOfWeek == DayOfWeek.Sunday
+            ? date.AddDays(-1) : date;
 
     private static string CalendarDateLabel(DateOnly date, string language) => LiturgicalDayInfo.CalendarDateLabel(date, language);
 

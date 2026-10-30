@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "reviewedOn": "2026-10-07",
+  "reviewedOn": "2026-10-29",
   "attribution": "Old Testament - publication of the Syriac Orthodox Patriarchate 2020",
   "sourceURL": "https://peshitta.eu/about.html",
   "rights": "Website credits the 2020 publication and has a copyright footer; no redistribution license is stated. User requested reader use on 2026-10-03. BFBS1905 NT licensing does not cover this OT.",
@@ -33,7 +33,6 @@
     "JOB:41": "Peshitta source verse has no vocalized Scripture wording",
     "PSA:89": "Peshitta source verse has no vocalized Scripture wording",
     "PSA:118": "Peshitta source verse has no vocalized Scripture wording",
-    "SIR:1": "Peshitta source has missing or unordered verse labels",
     "SIR:2": "Peshitta source verse has no vocalized Scripture wording",
     "SIR:3": "Peshitta source verse has no vocalized Scripture wording",
     "SIR:6": "Peshitta source verse has no vocalized Scripture wording",
@@ -19782,7 +19781,7 @@
   "sourceChapterCount": 1053,
   "sourceVerseCount": 26729,
   "sourcePinDigest": "e5e9853899d734faaa6ff2582508ca605224fa8414d6e5284fcad78c822b5c07",
-  "corpusSHA256": "ae5b334d22ebdb3818cf46cb7c0a2f0b40304836acfc6a84c453d19fd91bd8b7",
+  "corpusSHA256": "719d39b6399779b431ea0c5d5be5a8fcb2be913c6ab3477e9ea1d13d8bc61faa",
   "partialChapters": {
     "1CH:2": {
       "sourceSHA256": "204055255aac6ecba60e322911fd660af046bb8523a0f1a839c9519c0477fc9d",
@@ -20473,22 +20472,40 @@
           "reason": "Peshitta Hebrew projection retains an unsupported Syriac letter"
         }
       }
+    },
+    "SIR:1": {
+      "sourceSHA256": "f3aef5f51a199dd294c4891fcf04ab6a0db8cf4c8d5f1fd039d1dc0e2d6f91b9",
+      "retainedVerses": 25,
+      "omittedVerses": {
+        "5": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        },
+        "7": {
+          "sourceVerseSHA256": "1c7c6e24362457bc50efe8219d39281eaffa65f572b2402d3a35b7ecb2e235e2",
+          "reason": "Peshitta source verse has no vocalized Scripture wording"
+        }
+      },
+      "missingVerseLabels": [
+        20,
+        21,
+        22
+      ]
     }
   },
-  "partialChapterMethod": "2026-10-07: Source-native Bible browsing retains each unchanged vocalized verse with a valid existing paired-script projection. Individually defective verse bodies remain omitted with pinned hashes/reasons; chapter completeness is false even when the missing verse is last. Daily appointment mappings still require their independent reviewed coordinates. Copied chapters and invalid numbering remain entirely withheld.",
+  "partialChapterMethod": "2026-10-07: Source-native Bible browsing retains each unchanged vocalized verse with a valid existing paired-script projection. Individually defective verse bodies remain omitted with pinned hashes/reasons; chapter completeness is false even when the missing verse is last. Daily appointment mappings still require their independent reviewed coordinates. Copied chapters and invalid numbering remain entirely withheld. 2026-10-29: SIR 1 retains unchanged paired-script-compatible numbered source verses despite gaps in the published labels. missingVerseLabels pins the exact gaps independently of defective present bodies. Duplicate, reversed and incorrect references still fail. No numbering, Scripture wording or daily correspondence is inferred.",
   "sourceCompleteness": {
     "completeChapters": 1012,
-    "partialChapters": 41,
-    "omittedVerses": 111,
-    "retainedPartialVerses": 1325,
+    "partialChapters": 42,
+    "omittedVerses": 113,
+    "retainedPartialVerses": 1350,
     "withheldChapters": [
       "1SA:26",
       "1SA:27",
       "2CH:12",
       "2CH:28",
       "2KI:16",
-      "2KI:17",
-      "SIR:1"
+      "2KI:17"
     ]
   }
 }

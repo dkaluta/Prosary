@@ -32,6 +32,14 @@ enum class MysteryGroup {
             Luminous -> R.string.mystery_group_luminous
         }
 
+    @StringRes
+    fun weekdayDescriptionRes(traditional: Boolean): Int = when (this) {
+        Joyful -> if (traditional) R.string.mystery_days_traditional_joyful else R.string.mystery_days_joyful
+        Sorrowful -> if (traditional) R.string.mystery_days_traditional_sorrowful else R.string.mystery_days_sorrowful
+        Glorious -> if (traditional) R.string.mystery_days_traditional_glorious else R.string.mystery_days_glorious
+        Luminous -> if (traditional) R.string.mystery_days_traditional_luminous else R.string.mystery_days_luminous
+    }
+
     /** Accent color for the Pray tab's Rosary card — distinct per mystery group, not the
      * liturgical season color used inside the flow screen's top banner. */
     val color: Color

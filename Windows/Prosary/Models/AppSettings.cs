@@ -102,11 +102,11 @@ public static class AppSettings
         {
             if (_homeWidgetOrder is not null) return _homeWidgetOrder;
             _homeWidgetOrder = HomeWidgets.Parse(ReadLocalSetting("homeWidgetOrder") as string);
-            if (ReadLocalSetting("homeWidgetLayoutVersion") as string != "1")
+            if (ReadLocalSetting("homeWidgetLayoutVersion") as string != "2")
             {
-                _homeWidgetOrder = HomeWidgets.AddingDailyCards(_homeWidgetOrder);
+                _homeWidgetOrder = HomeWidgets.AddingSourceCards(ReadLocalSetting("homeWidgetLayoutVersion") as string == "1" ? _homeWidgetOrder : HomeWidgets.AddingDailyCards(_homeWidgetOrder));
                 WriteLocalSetting("homeWidgetOrder", string.Join('\n', _homeWidgetOrder));
-                WriteLocalSetting("homeWidgetLayoutVersion", "1");
+                WriteLocalSetting("homeWidgetLayoutVersion", "2");
             }
             return _homeWidgetOrder;
         }
@@ -173,6 +173,10 @@ public static class AppSettings
     public static string AppColor => _appColor ??=
         AppColorPalette.Resolve(ReadLocalSetting(KeyAppColor) as string).Id;
 
+    public static string AppThemeMode => ReadLocalSetting("appThemeMode") as string is "light" or "dark" ? (string)ReadLocalSetting("appThemeMode")! : "system";
+    public static string AppPalette => ReadLocalSetting("appPalette") as string is "stainedGlass" or "garden" ? (string)ReadLocalSetting("appPalette")! : "native";
+    public static void SetAppThemeMode(string value) { WriteLocalSetting("appThemeMode", value is "light" or "dark" ? value : "system"); AppColorChanged?.Invoke(); }
+    public static void SetAppPalette(string value) { WriteLocalSetting("appPalette", value is "stainedGlass" or "garden" ? value : "native"); AppColorChanged?.Invoke(); HomeWidgetsChanged?.Invoke(); }
     public static event Action? AppColorChanged;
 
     public static string CustomAccentColorHex => _customAccentColorHex ??=
@@ -245,10 +249,12 @@ public static class AppSettings
     public static string DefaultLanguageCode => string.IsNullOrEmpty(PrayerLanguageCode)
         ? UiLanguageCatalog.Current : PrayerLanguageCode;
 
+    public static event Action? DefaultPrayerLanguageChanged;
     public static void SetDefaultLanguageCode(string code)
     {
         _prayerLanguageCode = code == LanguageCatalog.VicariateContentCode ? "he" : code;
         WriteLocalSetting(KeyDefaultLanguage, _prayerLanguageCode);
+        DefaultPrayerLanguageChanged?.Invoke();
     }
 
     /// <summary>The basic-prayers list and flow share their own language selection. Empty

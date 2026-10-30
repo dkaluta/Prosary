@@ -9,6 +9,15 @@ namespace Prosary.ViewModels;
 /// <summary>The Appearance subpage uses the existing app-wide color preference.</summary>
 public partial class AppearanceViewModel : ObservableObject
 {
+    public record AppearanceChoice(string Id, string Label);
+    public string ModeLabel => Loc.Tr("appearance_mode", "Display Mode");
+    public string PaletteLabel => Loc.Tr("appearance_palette", "Color Palette");
+    public IReadOnlyList<AppearanceChoice> ThemeOptions { get; } = new[] { "system", "light", "dark" }.Select(id => new AppearanceChoice(id, Loc.Tr("appearance_" + id, id))).ToArray();
+    public IReadOnlyList<AppearanceChoice> PaletteOptions { get; } = new[] { "native", "stainedGlass", "garden" }.Select(id => new AppearanceChoice(id, Loc.Tr("appearance_" + id, id))).ToArray();
+    [ObservableProperty] private AppearanceChoice? _selectedTheme;
+    [ObservableProperty] private AppearanceChoice? _selectedPalette;
+    partial void OnSelectedThemeChanged(AppearanceChoice? value) { if (value is not null && value.Id != AppSettings.AppThemeMode) AppSettings.SetAppThemeMode(value.Id); }
+    partial void OnSelectedPaletteChanged(AppearanceChoice? value) { if (value is not null && value.Id != AppSettings.AppPalette) AppSettings.SetAppPalette(value.Id); }
     private bool _isActive;
     public WindowNavigation Navigation { get; set; } = WindowNavigation.Detached;
     public string Title => Loc.Tr("settings_appearance", "Appearance");
@@ -33,6 +42,8 @@ public partial class AppearanceViewModel : ObservableObject
 
     public AppearanceViewModel()
     {
+        _selectedTheme = ThemeOptions.First(option => option.Id == AppSettings.AppThemeMode);
+        _selectedPalette = PaletteOptions.First(option => option.Id == AppSettings.AppPalette);
         _selectedAppColor = AppColorOptions.First(option => option.Id == AppSettings.AppColor);
         _selectedAppColor.IsSelected = true;
         RefreshAccent();
@@ -55,6 +66,8 @@ public partial class AppearanceViewModel : ObservableObject
 
     private void RefreshSelection()
     {
+        SelectedTheme = ThemeOptions.First(option => option.Id == AppSettings.AppThemeMode);
+        SelectedPalette = PaletteOptions.First(option => option.Id == AppSettings.AppPalette);
         SelectedAppColor = AppColorOptions.First(option => option.Id == AppSettings.AppColor);
         RefreshAccent();
     }

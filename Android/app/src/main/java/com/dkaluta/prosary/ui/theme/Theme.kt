@@ -54,16 +54,35 @@ internal fun accentColorScheme(primary: Color, isDark: Boolean, inverse: Color =
     )
 }
 
+/** Colored cards retain semantic text for links/buttons, whose accent otherwise loses contrast. */
+internal fun homeCardContentColors(base: ColorScheme, tinted: Boolean): ColorScheme =
+    if (tinted) base.copy(primary = base.onSurface, onPrimary = base.surface) else base
+
 @Composable
 fun ProsaryTheme(content: @Composable () -> Unit) {
-    val isDark = isSystemInDarkTheme()
+    val isDark = when (AppSettings.appThemeMode) { "light" -> false; "dark" -> true; else -> isSystemInDarkTheme() }
+    val palette = paletteColors(AppSettings.appPalette)
     val custom = CustomAccentColor.color(AppSettings.customAccentColorHex)
-    val colorScheme = if (Build.VERSION.SDK_INT >= 31 && AppSettings.useSystemColors) {
+    val baseScheme = if (palette.isNotEmpty()) {
+        val color = palette.first()
+        if (custom != null) accentColorScheme(CustomAccentColor.readableAccent(custom, isDark), isDark) else appColorScheme(color, isDark)
+    } else if (Build.VERSION.SDK_INT >= 31 && AppSettings.useSystemColors) {
         val context = LocalContext.current
         if (isDark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     } else if (custom != null) accentColorScheme(CustomAccentColor.readableAccent(custom, isDark), isDark,
         CustomAccentColor.readableAccent(custom, !isDark))
     else appColorScheme(AppColor.resolve(AppSettings.appColor), isDark)
+    val colorScheme = if (palette.isEmpty()) baseScheme else baseScheme.copy(
+        secondary = appColorScheme(palette[1], isDark).primary,
+        onSecondary = appColorScheme(palette[1], isDark).onPrimary,
+        secondaryContainer = appColorScheme(palette[1], isDark).primaryContainer,
+        onSecondaryContainer = appColorScheme(palette[1], isDark).onPrimaryContainer,
+        tertiary = appColorScheme(palette[2], isDark).primary,
+        onTertiary = appColorScheme(palette[2], isDark).onPrimary,
+        tertiaryContainer = appColorScheme(palette[2], isDark).primaryContainer,
+        onTertiaryContainer = appColorScheme(palette[2], isDark).onPrimaryContainer,
+        surfaceContainerLow = lerp(baseScheme.surfaceContainerLow, baseScheme.primary, if (isDark) 0.10f else 0.06f),
+    )
     val extraColors = ProsaryExtraColors(
         headline = colorScheme.primary,
         beadCurrent = colorScheme.primary,
@@ -76,4 +95,10 @@ fun ProsaryTheme(content: @Composable () -> Unit) {
             content = content,
         )
     }
+}
+
+internal fun paletteColors(id: String): List<AppColor> = when (id) {
+    "stainedGlass" -> listOf(AppColor.Blue, AppColor.Green, AppColor.Gold, AppColor.Rose)
+    "garden" -> listOf(AppColor.Green, AppColor.Rose, AppColor.Blue, AppColor.Gold)
+    else -> emptyList()
 }

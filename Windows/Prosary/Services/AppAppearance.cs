@@ -25,6 +25,7 @@ internal static class AppAppearance
     {
         var appearance = new WindowAppearance(root, window);
         Windows.Add(appearance);
+        root.RequestedTheme = RequestedTheme;
         ApplyIcon(window);
         owner.Closed += (_, _) => Windows.Remove(appearance);
     }
@@ -36,7 +37,7 @@ internal static class AppAppearance
         {
             // Re-evaluate native ThemeResource references while retaining the user's OS theme.
             // Both assignments occur in one UI dispatch, without replacing the page or window.
-            var requested = appearance.Root.RequestedTheme;
+            var requested = RequestedTheme;
             appearance.Root.RequestedTheme = appearance.Root.ActualTheme == ElementTheme.Dark
                 ? ElementTheme.Light : ElementTheme.Dark;
             appearance.Root.RequestedTheme = requested;
@@ -44,13 +45,16 @@ internal static class AppAppearance
         }
     }
 
+    private static ElementTheme RequestedTheme => AppSettings.AppThemeMode switch {
+        "light" => ElementTheme.Light, "dark" => ElementTheme.Dark, _ => ElementTheme.Default };
+
     private static void ApplyResources()
     {
         var resources = Application.Current.Resources;
         foreach (var theme in new[] { "Light", "Dark" })
         {
             if (resources.ThemeDictionaries[theme] is not ResourceDictionary values) continue;
-            var accent = AppColorPalette.Accent(AppSettings.AppColor, AppSettings.CustomAccentColorHex, theme == "Dark");
+            var accent = AppColorPalette.Accent(AppColorPalette.PaletteColors(AppSettings.AppPalette).FirstOrDefault() ?? AppSettings.AppColor, AppSettings.CustomAccentColorHex, theme == "Dark");
             values["BrandPrimaryColor"] = accent;
             values["BrandHeadlineColor"] = accent;
             foreach (var key in new[] { "BrandPrimaryBrush", "BrandPrimaryFaintBrush", "BrandHeadlineBrush" })
@@ -60,8 +64,9 @@ internal static class AppAppearance
             // dark surfaces. Opacity states remain owned by its native control templates.
             foreach (var level in new[] { 1, 2, 3 })
             {
-                values[$"SystemAccentColorDark{level}"] = AppColorPalette.Accent(AppSettings.AppColor, AppSettings.CustomAccentColorHex, false);
-                values[$"SystemAccentColorLight{level}"] = AppColorPalette.Accent(AppSettings.AppColor, AppSettings.CustomAccentColorHex, true);
+                var palette = AppColorPalette.PaletteColors(AppSettings.AppPalette).FirstOrDefault() ?? AppSettings.AppColor;
+                values[$"SystemAccentColorDark{level}"] = AppColorPalette.Accent(palette, AppSettings.CustomAccentColorHex, false);
+                values[$"SystemAccentColorLight{level}"] = AppColorPalette.Accent(palette, AppSettings.CustomAccentColorHex, true);
             }
         }
         // HighContrast is deliberately untouched: its brushes resolve Windows system colors.

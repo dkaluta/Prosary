@@ -149,6 +149,43 @@ final class TodayInfoStoreTests: XCTestCase {
     XCTAssertEqual(TodayInfoStore.dateByMoving(1, from: date("2028-02-29")), date("2028-03-01"))
   }
 
+  func testMissionPrayerVariantSelectsHebrewHomeProseWithoutChangingCalendarOrReadings() throws {
+    let defaults = UserDefaults.standard
+    let previous = defaults.object(forKey: TodayInfoStore.calendarDefaultsKey)
+    defaults.set("roman", forKey: TodayInfoStore.calendarDefaultsKey)
+    defer { defaults.set(previous, forKey: TodayInfoStore.calendarDefaultsKey) }
+    let formatter = DateFormatter(); formatter.calendar = Calendar(identifier: .gregorian)
+    formatter.locale = Locale(identifier: "en_US_POSIX"); formatter.dateFormat = "yyyy-MM-dd"
+    let date = try XCTUnwrap(formatter.date(from: "2026-11-01"))
+    let selectedFeast = TodayInfoStore.feast(on: date)
+    let readings = TodayInfoStore.readings(on: date)
+    let mission = try XCTUnwrap(TodayInfoStore.homeTextFeast(on: date, prayerLanguageCode: "he-x-gamliel"))
+    XCTAssertFalse(mission.namedSections("hymn", language: "he").isEmpty)
+    XCTAssertFalse(mission.namedSections("tradition", language: "he").isEmpty)
+    XCTAssertFalse(mission.reflections(language: "he").isEmpty)
+    XCTAssertEqual(TodayInfoStore.homeTextLanguage(prayerLanguageCode: "he-x-gamliel", interfaceLanguage: "en"), "he")
+    XCTAssertEqual(TodayInfoStore.homeTextLanguage(prayerLanguageCode: "he", interfaceLanguage: "en"), "en")
+    XCTAssertEqual(TodayInfoStore.homeTextFeast(on: date, prayerLanguageCode: "he"), selectedFeast)
+    XCTAssertEqual(TodayInfoStore.homeTextFeast(on: date, prayerLanguageCode: "arc"), selectedFeast)
+    XCTAssertEqual(TodayInfoStore.selectedCalendarId, "roman")
+    XCTAssertEqual(TodayInfoStore.readings(on: date), readings)
+    let outsideSource = try XCTUnwrap(formatter.date(from: "2027-11-01"))
+    XCTAssertNil(TodayInfoStore.homeTextFeast(on: outsideSource, prayerLanguageCode: "he-x-gamliel"))
+  }
+
+  func testSyriacSundayKeepsThePrecedingSabbathAcrossMonthAndYearBoundaries() throws {
+    var calendar = Calendar(identifier: .gregorian); calendar.timeZone = .current
+    for (year, month, day) in [(2026, 11, 1), (2027, 1, 3)] {
+      let sunday = try XCTUnwrap(calendar.date(from: DateComponents(year: year, month: month, day: day, hour: 12)))
+      let saturday = try XCTUnwrap(calendar.date(byAdding: .day, value: -1, to: sunday))
+      for id in ["syriac", "mission-provisional"] {
+        XCTAssertEqual(TodayInfoStore.torahLookupDate(sunday, calendarID: id), saturday)
+        XCTAssertEqual(TodayInfoStore.torahLookupDate(saturday, calendarID: id), saturday)
+      }
+      XCTAssertEqual(TodayInfoStore.torahLookupDate(sunday, calendarID: "roman"), sunday)
+    }
+  }
+
   func testTorahReadingContractPreservesFestivalStatusAndLocalizedCitations() throws {
     let portion = try JSONDecoder().decode(TorahPortion.self, from: Data(#"{"saturday":"2026-09-12","title":"Rosh Hashana","titleByLanguage":{"he":"ראש השנה"},"isHoliday":true,"readings":[{"type":"torah","short":"Gen. 21","full":"Genesis 21:1–34","fullByLanguage":{"he":"בראשית כ״א 1–34"}}],"sourceUrl":"https://www.hebcal.com"}"#.utf8))
     XCTAssertTrue(portion.isHoliday)

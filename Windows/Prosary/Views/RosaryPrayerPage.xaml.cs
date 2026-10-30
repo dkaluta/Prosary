@@ -181,7 +181,7 @@ public sealed partial class RosaryPrayerPage : Page
                 SelectedIndex = -1 };
             var mysteries = new StackPanel { Spacing = 8, Visibility = Visibility.Collapsed };
             var content = new StackPanel { Spacing = 12 };
-            content.Children.Add(groups);
+            if (!mandatory) content.Children.Add(groups);
             content.Children.Add(new ScrollViewer { Content = mysteries, MaxHeight = 360,
                 VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
                 HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled });
@@ -206,6 +206,12 @@ public sealed partial class RosaryPrayerPage : Page
                     dialog.Hide();
                 };
                 return button;
+            }
+            if (mandatory)
+            {
+                foreach (var group in Enum.GetValues<MysteryGroup>())
+                    mysteries.Children.Add(ChoiceButton(group.UiName() + "\n" + group.WeekdayDescription(ViewModel.UseTraditionalMysteries), group, null));
+                mysteries.Visibility = Visibility.Visible;
             }
             groups.SelectionChanged += (_, _) =>
             {

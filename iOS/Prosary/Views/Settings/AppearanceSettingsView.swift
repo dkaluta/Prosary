@@ -4,10 +4,27 @@ import SwiftUI
 struct AppearanceSettingsView: View {
   @AppStorage(AppColor.defaultsKey) private var storedColor = AppColor.blue.rawValue
   @AppStorage(CustomAccentColor.defaultsKey) private var customAccent = ""
+  @AppStorage("appThemeMode") private var themeMode = "system"
+  @AppStorage(AppPalette.key) private var palette = "native"
   @ObservedObject private var iconController = AppIconController.shared
 
   var body: some View {
     Form {
+      Section {
+        Picker(UILanguage.text("appearance_mode", language: UILanguage.current, fallback: "Display Mode"), selection: $themeMode) {
+          ForEach(["system", "light", "dark"], id: \.self) { id in
+            Text(UILanguage.text("appearance_" + id, language: UILanguage.current, fallback: id)).tag(id)
+          }
+        }.accessibilityIdentifier("appThemeMode")
+        Picker(UILanguage.text("appearance_palette", language: UILanguage.current, fallback: "Color Palette"), selection: $palette) {
+          ForEach(AppPalette.ids, id: \.self) { id in
+            HStack {
+              ForEach(AppPalette.colors(id)) { color in Circle().fill(color.color).frame(width: 12, height: 12) }
+              Text(UILanguage.text("appearance_" + id, language: UILanguage.current, fallback: id))
+            }.tag(id)
+          }
+        }.accessibilityIdentifier("appPalette")
+      }
       Section {
         ColorPicker(UILanguage.text("settings.customAccentColor", language: UILanguage.current, fallback: "Custom Accent Color"),
           selection: Binding(get: { CustomAccentColor.normalized(customAccent).map { Color(hex: $0) } ?? AppColor.resolved(storedColor).color },

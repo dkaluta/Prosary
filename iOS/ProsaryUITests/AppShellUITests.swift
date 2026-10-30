@@ -19,6 +19,113 @@ final class AppShellUITests: XCTestCase {
     continueAfterFailure = false
   }
 
+  #if os(iOS)
+  @MainActor
+  func testMissionPrayerVariantSwitchesHomeTextsLiveWithoutChangingTheDate() throws {
+    try XCTSkipIf(Calendar.current.component(.year, from: Date()) != 2026, "The supplied Mission source covers 2026 only")
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+      "-defaultLanguageCode", "he", "-feastCalendarId", "roman", "-homeWidgetOrder", "feast",
+      "-homeWidgetLayoutVersion", "2", "-homeWidgetCollapsedIds", ""]
+    app.launch()
+    let date = app.buttons["homeWidgets.date"]
+    XCTAssertTrue(date.waitForExistence(timeout: 10))
+    let originalDate = date.label
+    func chooseTradition(_ name: String) {
+      app.buttons["Settings"].tap()
+      let picker = app.descendants(matching: .any).matching(identifier: "prayerTraditionPicker").firstMatch
+      for _ in 0..<5 where !picker.isHittable { app.swipeUp() }
+      XCTAssertTrue(picker.isHittable)
+      picker.tap()
+      app.buttons[name].tap()
+      app.buttons["Done"].tap()
+    }
+    chooseTradition("Mission of St. Gamaliel")
+    let title = app.staticTexts["homeWidgets.feast.sourceTitle"]
+    XCTAssertTrue(title.waitForExistence(timeout: 5), "The Mission variant supplies its own source despite the Roman calendar")
+    XCTAssertNotNil(title.label.range(of: "[א-ת]", options: .regularExpression), title.label)
+    XCTAssertEqual(date.label, originalDate)
+    let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    image.name = "mission-variant-hebrew-prose-english-interface"; image.lifetime = .keepAlways; add(image)
+    chooseTradition("Saint James Vicariate")
+    if title.exists { XCTAssertNil(title.label.range(of: "[א-ת]", options: .regularExpression), title.label) }
+    XCTAssertEqual(date.label, originalDate)
+  }
+
+  @MainActor
+  func testErezAppearanceAndHomeContextActions() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
+      "-homeWidgetOrder", "readings\\npopeIntention\\nfeast", "-homeWidgetLayoutVersion", "2", "-homeWidgetCollapsedIds", "readings\\npopeIntention\\nfeast"]
+    app.launch()
+    func capture(_ name: String) {
+      let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+      image.name = "erez-" + name; image.lifetime = .keepAlways; add(image)
+    }
+    XCTAssertTrue(app.buttons["Settings"].waitForExistence(timeout: 10))
+    app.buttons["Settings"].tap()
+    let link = app.buttons["appearanceSettingsLink"]
+    for _ in 0..<5 where !link.isHittable { app.swipeUp() }
+    link.tap()
+    let palette = app.descendants(matching: .any).matching(identifier: "appPalette").firstMatch
+    XCTAssertTrue(palette.waitForExistence(timeout: 5))
+    palette.tap()
+    app.buttons["Stained Glass"].tap()
+    let mode = app.descendants(matching: .any).matching(identifier: "appThemeMode").firstMatch
+    mode.tap()
+    app.buttons["Dark"].tap()
+    capture("appearance-dark")
+    app.navigationBars["Appearance"].buttons.element(boundBy: 0).tap()
+    app.buttons["Done"].tap()
+    let heading = app.descendants(matching: .any).matching(identifier: "homeWidgets.header.readings").firstMatch
+    XCTAssertTrue(heading.waitForExistence(timeout: 5))
+    XCTAssertFalse(app.buttons["homeWidgets.size.readings"].exists)
+    XCTAssertFalse(app.buttons["homeWidgets.color.readings"].exists)
+    let screenshot = app.screenshot().image.cgImage!
+    var pixel = [UInt8](repeating: 0, count: 4)
+    pixel.withUnsafeMutableBytes { bytes in
+      let context = CGContext(data: bytes.baseAddress, width: 1, height: 1, bitsPerComponent: 8,
+        bytesPerRow: 4, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+      context.draw(screenshot, in: CGRect(x: 0, y: 0, width: 1, height: 1))
+    }
+    XCTAssertLessThan(Int(pixel[0]) + Int(pixel[1]) + Int(pixel[2]), 384, "Dark must change the rendered page, not only the picker value")
+    capture("home-stained-glass-dark")
+    heading.press(forDuration: 1)
+    let expand = app.buttons["homeWidgets.toggle.readings"]
+    XCTAssertTrue(expand.waitForExistence(timeout: 5))
+    capture("home-long-press")
+    expand.tap()
+    XCTAssertTrue(app.buttons["homeWidgets.open.readings"].exists)
+    app.buttons["Settings"].tap()
+    for _ in 0..<5 where !link.isHittable { app.swipeUp() }
+    link.tap()
+    mode.tap()
+    app.buttons["Light"].tap()
+    capture("appearance-light")
+    app.navigationBars["Appearance"].buttons.element(boundBy: 0).tap()
+    app.buttons["Done"].tap()
+    XCTAssertTrue(heading.waitForExistence(timeout: 5))
+    capture("home-stained-glass-light")
+  }
+
+  @MainActor
+  func testErezHebrewSourceCardsAndDarkPalette() throws {
+    let app = XCUIApplication()
+    app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(he)", "-interfaceLanguageCode", "he",
+      "-homeWidgetOrder", "hymn\\ntradition", "-homeWidgetLayoutVersion", "2", "-homeWidgetCollapsedIds", "hymn",
+      "-feastCalendarId", "mission-provisional", "-appThemeMode", "dark", "-appPalette", "garden"]
+    app.launch()
+    let tradition = app.descendants(matching: .any).matching(identifier: "homeWidgets.header.tradition").firstMatch
+    XCTAssertTrue(tradition.waitForExistence(timeout: 10))
+    XCTAssertTrue(tradition.label.contains("המסורת הסורית"))
+    let hymn = app.descendants(matching: .any).matching(identifier: "homeWidgets.header.hymn").firstMatch
+    XCTAssertTrue(hymn.exists)
+    XCTAssertTrue(hymn.label.contains("פיוט"))
+    let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    image.name = "erez-hebrew-source-cards-dark"; image.lifetime = .keepAlways; add(image)
+  }
+  #endif
+
   @MainActor
   private func openPrayTab(in app: XCUIApplication, title: String = "Pray") {
     #if !os(macOS)
@@ -465,7 +572,7 @@ final class AppShellUITests: XCTestCase {
   func testHomeCardAccentsAreIndependentAndCanBeRemoved() throws {
     let app = XCUIApplication()
     app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(en)", "-interfaceLanguageCode", "en",
-      "-homeWidgetOrder", "readings\\nfeast", "-homeWidgetLayoutVersion", "1",
+      "-homeWidgetOrder", "readings\\nfeast", "-homeWidgetLayoutVersion", "2",
       "-homeWidgetCollapsedIds", "readings\\nfeast", "-homeWidgetColors", "{}"]
     app.launch()
     let home = app.buttons["Home"].firstMatch
@@ -506,14 +613,14 @@ final class AppShellUITests: XCTestCase {
     for language in ["en", "he"] {
       let app = XCUIApplication()
       app.launchArguments = ["-useInMemoryStore", "-AppleLanguages", "(\(language))", "-interfaceLanguageCode", language,
-        "-homeWidgetOrder", "calendar\\nreadings\\nreminders\\nfeast", "-homeWidgetLayoutVersion", "1",
+        "-homeWidgetOrder", "calendar\\nreadings\\nreminders\\nfeast", "-homeWidgetLayoutVersion", "2",
         "-homeWidgetCollapsedIds", "calendar\\nreadings\\nreminders\\nfeast", "-homeWidgetColors", "{}",
         "-feastCalendarId", "roman"]
       app.launch()
-      let calendar = app.buttons["homeWidgets.size.calendar"]
-      let readings = app.buttons["homeWidgets.size.readings"]
-      let reminders = app.buttons["homeWidgets.size.reminders"]
-      let feast = app.buttons["homeWidgets.size.feast"]
+      let calendar = app.descendants(matching: .any)["homeWidgets.header.calendar"]
+      let readings = app.descendants(matching: .any)["homeWidgets.header.readings"]
+      let reminders = app.descendants(matching: .any)["homeWidgets.header.reminders"]
+      let feast = app.descendants(matching: .any)["homeWidgets.header.feast"]
       XCTAssertTrue(calendar.waitForExistence(timeout: 10))
       try XCTSkipIf(app.windows.firstMatch.frame.width < 1000,
         "This check requires a wide tablet pane with two columns.")
@@ -523,18 +630,19 @@ final class AppShellUITests: XCTestCase {
       XCTAssertEqual(calendar.frame.minY, readings.frame.minY, accuracy: 2)
       if language == "he" { XCTAssertGreaterThan(calendar.frame.minX, readings.frame.minX) }
       else { XCTAssertLessThan(calendar.frame.minX, readings.frame.minX) }
-      let orderedHeaders = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'homeWidgets.size.'"))
-      let headerIDs = ["calendar", "readings", "reminders", "feast"].map { "homeWidgets.size." + $0 }
+      let orderedHeaders = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'homeWidgets.header.'"))
+      let headerIDs = ["calendar", "readings", "reminders", "feast"].map { "homeWidgets.header." + $0 }
       XCTAssertEqual(orderedHeaders.allElementsBoundByIndex.map(\.identifier), headerIDs)
       let cardGroup = app.otherElements["homeWidgets.cards"].firstMatch
       XCTAssertTrue(cardGroup.waitForExistence(timeout: 5))
-      XCTAssertEqual(cardGroup.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'homeWidgets.size.'"))
+      XCTAssertEqual(cardGroup.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'homeWidgets.header.'"))
         .allElementsBoundByIndex.map(\.identifier), headerIDs)
       XCTAssertFalse(cardGroup.buttons["homeWidgets.date"].exists)
       XCTAssertFalse(cardGroup.buttons["homeWidgets.add"].exists)
       XCTAssertLessThanOrEqual(app.buttons["homeWidgets.date"].frame.maxY, cardGroup.frame.minY)
       XCTAssertGreaterThanOrEqual(app.buttons["homeWidgets.add"].frame.minY, cardGroup.frame.maxY)
-      calendar.tap()
+      calendar.press(forDuration: 1)
+      app.buttons["homeWidgets.toggle.calendar"].tap()
       let fillsShortColumn = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
         abs(reminders.frame.minX - readings.frame.minX) < 2
           && abs(feast.frame.minX - readings.frame.minX) < 2
@@ -563,14 +671,15 @@ final class AppShellUITests: XCTestCase {
       let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
       attachment.name = "v021-" + name; attachment.lifetime = .keepAlways; add(attachment)
     }
-    let size = app.buttons["homeWidgets.size.calendar"]
+    let size = app.descendants(matching: .any)["homeWidgets.header.calendar"]
     XCTAssertTrue(size.waitForExistence(timeout: 10))
-    if size.label.contains("Expand") { size.tap() }
     capture("home-large")
-    size.tap()
+    size.press(forDuration: 1)
+    app.buttons["homeWidgets.toggle.calendar"].tap()
     capture("home-small")
-    XCTAssertTrue(size.label.contains("Expand"), size.label)
-    size.tap()
+    XCTAssertFalse(app.buttons["homeWidgets.size.calendar"].exists)
+    size.press(forDuration: 1)
+    app.buttons["homeWidgets.toggle.calendar"].tap()
     let day = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'calendar.day.'")).firstMatch
     XCTAssertTrue(day.waitForExistence(timeout: 5)); day.tap()
     let event = app.buttons["calendar.event.0"]

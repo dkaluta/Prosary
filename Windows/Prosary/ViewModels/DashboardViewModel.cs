@@ -24,11 +24,12 @@ public partial class HomeWidgetCard : ObservableObject
     public bool IsPopeIntention => Id == "popeIntention";
     public bool IsFeast => Id == "feast";
     public bool CanChooseGraphic => !IsFeast;
-    public bool IsReflection => Id == "reflection";
+    public bool IsReflection => Id is "reflection" or "hymn" or "tradition";
     public bool IsScripture => Id == "scripture";
     public bool HasScripturePassages => IsScripture || Id == "torah";
     public string ColorLabel => Loc.Tr("home_widgets_set_accent_color", "Set Accent Color…");
     public string RemoveAccentColorLabel => Loc.Tr("home_widgets_remove_accent_color", "Remove Accent Color");
+    [ObservableProperty] private Microsoft.UI.Xaml.FlowDirection _contentDirection;
     [ObservableProperty] private Brush? _cardBackground;
     public string AddGraphicLabel => HasGraphicChoice ? Loc.Tr("home_widgets_change_graphic", "Change Image") : Loc.Tr("home_widgets_add_graphic", "Add Image");
     public string RemoveGraphicLabel => Loc.Tr("home_widgets_remove_graphic", "Remove Image");
@@ -106,6 +107,8 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
             "photo" => Label("photo", "Photo"),
             "reminders" => Label("reminders", "Reminders"),
             "scripture" => Label("scripture", "Holy Scripture"),
+            "hymn" => Label("hymn", "Hymn"),
+            "tradition" => Label("tradition", "Syriac Tradition and the Feast"),
             "reflection" => Label("reflection", "Reflection"),
             _ => Label("feast", "About the Feast and Day"),
         },
@@ -167,11 +170,15 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
         var date = Today?.SelectedDate ?? DateOnly.FromDateTime(DateTime.Today);
         var language = UiLanguageCatalog.Current;
         var feast = TodayInfoStore.Feast(date);
+        var textLanguage = TodayInfoStore.HomeTextLanguage(AppSettings.DefaultLanguageCode, language);
+        var textFeast = TodayInfoStore.HomeTextFeast(date, AppSettings.DefaultLanguageCode);
         var culture = (CultureInfo)CultureInfo.GetCultureInfo(UiLanguageCatalog.ResourceTag(language)).Clone();
         culture.DateTimeFormat.Calendar = new GregorianCalendar();
         if (Today is not null) Scripture.Refresh(Today, showsAllDailyReadings: true);
         foreach (var card in Cards.Concat(AvailableCards))
         {
+            card.ContentDirection = UiLanguageCatalog.IsRightToLeft(card.Id is "hymn" or "tradition" or "feast" or "reflection" ? textLanguage : language)
+                ? Microsoft.UI.Xaml.FlowDirection.RightToLeft : Microsoft.UI.Xaml.FlowDirection.LeftToRight;
             var graphicPath = !card.CanChooseGraphic ? null : card.IsPhoto ? AppSettings.HomePhotoPath : AppSettings.HomeWidgetGraphicPaths.GetValueOrDefault(card.Id);
             card.HasGraphicChoice = !string.IsNullOrWhiteSpace(graphicPath);
             card.PhotoSource = !string.IsNullOrWhiteSpace(graphicPath) && File.Exists(graphicPath)
@@ -230,12 +237,17 @@ public partial class DashboardViewModel(IPresetStore presets) : ObservableObject
                     card.ScripturePassages = Scripture.ScriptureOfDay;
                     break;
                 case "feast":
-                    card.Body = feast is null ? Label("no_feast", "No feast information is available for this date.")
-                        : feast.LocalizedTitle(language) + Environment.NewLine + feast.LocalizedRank(language);
-                    card.Descriptions = feast?.LocalizedDescriptions(language, feast.LocalizedTitle(language)) ?? [];
+                    card.Body = textFeast is null ? Label("no_feast", "No feast information is available for this date.")
+                        : textFeast.LocalizedTitle(textLanguage) + Environment.NewLine + textFeast.LocalizedRank(textLanguage);
+                    card.Descriptions = textFeast?.LocalizedDescriptions(textLanguage, textFeast.LocalizedTitle(textLanguage)) ?? [];
+                    break;
+                case "hymn":
+                case "tradition":
+                    card.Descriptions = textFeast?.NamedSections(card.Id, textLanguage).Select(description => description.UnderHeading(card.Title)).ToList() ?? [];
+                    card.Body = card.Descriptions.Count == 0 ? Label("section_pending", "No text is available for this date in this language.") : "";
                     break;
                 case "reflection":
-                    card.Descriptions = feast?.Reflections(language) ?? [];
+                    card.Descriptions = textFeast?.Reflections(textLanguage) ?? [];
                     card.Body = card.Descriptions.Count == 0
                         ? Label("reflection_pending", "No reflection is available for this date in this language.") : "";
                     break;

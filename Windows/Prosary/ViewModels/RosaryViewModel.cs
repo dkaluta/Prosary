@@ -245,6 +245,8 @@ public partial class RosaryViewModel : ObservableObject, IPrayerStepFlowViewMode
 
     /// <summary>An ad-hoc, unsaved session from the preset picker's "Pray any Rosary" — the
     /// same build as a saved favorite, just without the store roundtrip.</summary>
+    public bool UseTraditionalMysteries => _initialPrayer?.Rosary.UseTraditionalMysteries ?? false;
+
     public void LoadAdHoc(Prayer prayer)
     {
         ResetContinuationState();

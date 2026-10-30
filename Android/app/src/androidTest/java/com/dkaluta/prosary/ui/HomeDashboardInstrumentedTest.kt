@@ -1,6 +1,8 @@
 package com.dkaluta.prosary.ui
 
 import android.content.Context
+import androidx.compose.ui.semantics.SemanticsActions
+import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertTextContains
@@ -33,6 +35,10 @@ import org.junit.Test
 class HomeDashboardInstrumentedTest {
     @get:Rule val compose = createEmptyComposeRule()
 
+    private fun openCardActions(id: String) {
+        compose.onNodeWithTag("homeWidget.$id").performSemanticsAction(SemanticsActions.OnLongClick) { it() }
+    }
+
     @Test fun homeReadingCardKeepsFullCitationsAndPrayHasNoTodayContent() = withFreshHome {
         ActivityScenario.launch(MainActivity::class.java).use {
             awaitHome()
@@ -56,6 +62,7 @@ class HomeDashboardInstrumentedTest {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             awaitHome()
             captureScreenshot("home-large")
+            openCardActions("readings")
             compose.onNodeWithTag("homeWidgetSize.readings").performClick()
             assertTrue(AppSettings.isHomeWidgetCollapsed(HomeWidget.Readings))
             compose.onNodeWithTag("homeReading.0").assertDoesNotExist()
@@ -64,6 +71,7 @@ class HomeDashboardInstrumentedTest {
             scenario.recreate()
             awaitHome()
             assertTrue(AppSettings.isHomeWidgetCollapsed(HomeWidget.Readings))
+            openCardActions("readings")
             compose.onNodeWithTag("homeWidgetSize.readings").performClick()
             assertFalse(AppSettings.isHomeWidgetCollapsed(HomeWidget.Readings))
             compose.onNodeWithTag("homeWidgetGraphic.readings").assertExists()
@@ -102,7 +110,7 @@ class HomeDashboardInstrumentedTest {
         ActivityScenario.launch(MainActivity::class.java).use { scenario ->
             awaitHome()
             val appColor = AppSettings.appColor
-            compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            openCardActions("readings")
             compose.onNodeWithTag("homeWidgetRemoveAccent.readings").assertDoesNotExist()
             compose.onNodeWithTag("homeWidgetSetAccent.readings").performClick()
             compose.onNodeWithTag("homeWidgetColor.readings.default").assertDoesNotExist()
@@ -115,18 +123,18 @@ class HomeDashboardInstrumentedTest {
             scenario.onActivity { AppSettings.setHomeWidgetColor(HomeWidget.Feast, "rose") }
             scenario.recreate()
             awaitHome()
-            compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            openCardActions("readings")
             compose.onNodeWithTag("homeWidgetRemoveAccent.readings").assertExists()
             compose.onNodeWithTag("homeWidgetSetAccent.readings").performClick()
             compose.onNodeWithTag("homeWidgetColor.readings.blue").assertIsSelected()
             pressBack()
-            compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            openCardActions("readings")
             compose.onNodeWithTag("homeWidgetRemoveAccent.readings").performClick()
             compose.runOnIdle {
                 assertEquals("default", AppSettings.homeWidgetColor(HomeWidget.Readings))
                 assertEquals("rose", AppSettings.homeWidgetColor(HomeWidget.Feast))
             }
-            compose.onNodeWithTag("homeWidgetColor.readings").performClick()
+            openCardActions("readings")
             compose.onNodeWithTag("homeWidgetRemoveAccent.readings").assertDoesNotExist()
         }
     }
@@ -156,9 +164,11 @@ class HomeDashboardInstrumentedTest {
                 scenario.onActivity { AppSettings.setHomeWidgetGraphicPath(HomeWidget.Readings, file.path) }
                 compose.waitUntil(15_000) { compose.onAllNodes(hasTestTag("homeWidgetGraphicImage.readings"), useUnmergedTree = true).fetchSemanticsNodes().isNotEmpty() }
                 captureScreenshot("card-graphic")
+                openCardActions("readings")
                 compose.onNodeWithTag("homeWidgetSize.readings").performClick()
                 compose.onNodeWithTag("homeWidgetGraphicImage.readings", useUnmergedTree = true).assertDoesNotExist()
                 assertTrue(file.exists())
+                openCardActions("readings")
                 compose.onNodeWithTag("homeWidgetSize.readings").performClick()
                 compose.onNodeWithTag("homeWidgetGraphicRemove.readings").performScrollTo().performClick()
                 compose.waitUntil(15_000) { !file.exists() && AppSettings.homeWidgetGraphicPath(HomeWidget.Readings).isEmpty() }

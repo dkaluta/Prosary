@@ -65,3 +65,16 @@ no image picker. Explicit Android palette selection removes accent overrides so 
 is visible.
 
 Per-card colors use homeWidgetColors and the existing Today palette, independently of app accent and source liturgical colors. Home uses independent vertical columns selected from actual safe pane width. Cards fill the shortest column in saved order, with ties resolved from the logical leading edge. Adding a card preserves earlier placements and minimizes its added page height. Expansion or resizing may reflow later cards. Each safe pane has one outer scroll, stable card identity and saved accessibility order within its native accessibility container; native RTL mirrors the leading column. Side-by-side Apple fold panes each host one column with alternating cards, while vertically stacked panes retain contiguous top-to-bottom groups. Apple HomeLayoutCloud reuses CloudSyncedList for an atomic versioned layout snapshot; initial defaults and migrations never publish over an incoming account layout.
+
+Appearance has separate persisted Display Mode and Color Palette controls. System follows
+the OS; Light/Dark override it immediately. Global palettes supply defaults without overwriting
+individual Home colors, source colors or installed icons. Mac retains its desktop appearance.
+Home card size and color actions live in long-press/right-click context menus, accessible by
+native assistive actions; the Home editor remains the visible route for card management.
+Source hymn/tradition cards preserve exact-language prose, provenance and missing-text states.
+
+App-wide Hebrew → Mission selects exact Hebrew Mission prose for Home's hymn, tradition,
+feast explanation and reflection. Source content renders RTL independently of the interface.
+Switching back restores selected-calendar source behavior immediately. Calendar preference,
+date, readings and Bible remain independent. Missing Mission text never borrows another rite,
+language or year. Mac uses its existing Today explanation area.

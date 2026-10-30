@@ -47,6 +47,17 @@ struct FeastDay: Decodable, Equatable {
     (observances ?? []).compactMap { $0.reflection(language: language) }
   }
 
+  func namedSections(_ id: String, language: String) -> [FeastSaintDescription] {
+    (observances ?? []).flatMap { observance in
+      (observance.sections ?? []).compactMap { section in
+        guard section.id == id, let localized = section.localized(language) else { return nil }
+        let parent = observance.saintDescription(language: language)
+        return FeastSaintDescription(title: localized.title, text: localized.text,
+          sourceURL: parent?.sourceURL, credit: parent?.credit)
+      }
+    }
+  }
+
   /// Captions follow Today's interface language, independently of prayer-language choices.
   /// Roman rank terms follow the Saint James Vicariate's 2025–2026 calendar, pp. 4, 6–7:
   /// https://s3-eu-west-1.amazonaws.com/catholic.co.il/12147_SJVLiturgicalCalendar202526.pdf
@@ -374,6 +385,21 @@ enum TodayInfoStore {
     return registry.default
   }
 
+  static func homeTextLanguage(prayerLanguageCode: String, interfaceLanguage: String) -> String {
+    prayerLanguageCode == "he-x-gamliel" ? "he" : interfaceLanguage
+  }
+
+  private static var missionHomeTextDays: [String: FeastDay]?
+
+  /// The Mission prayer tradition selects its authored Home prose without changing calendars.
+  static func homeTextFeast(on date: Date, prayerLanguageCode: String) -> FeastDay? {
+    guard prayerLanguageCode == "he-x-gamliel" else { return feast(on: date) }
+    if missionHomeTextDays == nil {
+      missionHomeTextDays = decode(FeastsFile.self, resource: "feasts-mission-provisional")?.days ?? [:]
+    }
+    return missionHomeTextDays?[key(for: date, format: "yyyy-MM-dd")]
+  }
+
   static func feast(on date: Date = Date()) -> FeastDay? {
     ensureFeastsLoaded()
     return feastsByDay[key(for: date, format: "yyyy-MM-dd")]
@@ -431,7 +457,15 @@ enum TodayInfoStore {
     if torahPortionsByDay == nil {
       torahPortionsByDay = decode(TorahPortionsFile.self, resource: "torah-portions")?.days ?? [:]
     }
-    return torahPortionsByDay?[key(for: date, format: "yyyy-MM-dd")]
+    let day = torahLookupDate(date, calendarID: selectedCalendarId)
+    return torahPortionsByDay?[key(for: day, format: "yyyy-MM-dd")]
+  }
+
+  static func torahLookupDate(_ date: Date, calendarID: String) -> Date {
+    var calendar = Calendar(identifier: .gregorian)
+    calendar.timeZone = .current
+    guard ["syriac", "mission-provisional"].contains(calendarID), calendar.component(.weekday, from: date) == 1 else { return date }
+    return calendar.date(byAdding: .day, value: -1, to: date) ?? date
   }
 
   /// Only modern Roman calendars use the computed Latin season heading. Other rites retain

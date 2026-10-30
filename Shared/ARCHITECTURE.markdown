@@ -2257,8 +2257,9 @@ recorded separately in the accessibility audit.
 
 
 The appended `chooseOnLaunch` mode keeps a saved Rosary's mysteries blank. The native
-launch chooser lists all four sets and their five mysteries; `specificMysteryCount`
-chooses one to five consecutive mysteries from that start, clamped at the fifth.
+launch chooser offers the four complete mystery groups with their usual weekday captions.
+Legacy `specificMysteryCount` and starting-mystery values remain decodable for continuation;
+the launch UI has no count or individual-mystery control.
 Configured opening prayers run first. A new session and Restart ask again; Continue
 reconstructs the chosen group/order from optional device-local `rosaryNavigationGroup`
 and `rosaryNavigationOrder` before validating the saved configuration signature and
@@ -2266,9 +2267,9 @@ step bounds. No choice is written back to the saved prayer. The in-session **Cho
 Mystery** control can reopen that chooser. Engines return no steps while this mode
 has no resolved session choice; no hidden Today assignment supplies a default.
 
-The mystery chooser places **Mystery Set** at the top, offering Joyful, Sorrowful,
-Glorious and Luminous, and shows only the selected set’s five mysteries underneath.
-A mandatory launch choice has no automatically selected set or starting mystery.
+The in-session mystery chooser places **Mystery Set** at the top, offering Joyful,
+Sorrowful, Glorious and Luminous, and shows the selected set's five mysteries underneath.
+A mandatory launch offers only group buttons, without an automatically selected group.
 
 **Entire Set** appears above the five individual mysteries once a set is selected.
 It prays all five from the beginning while retaining configured opening prayers and
@@ -2329,3 +2330,58 @@ Readings shows the daily appointments and enabled Torah/haftarah passages. Full 
 `homeWidgetColors` is a JSON string mapping known Home card IDs to `blue`, `green`, `gold` or `rose`; Remove Accent Color removes the override. Set Accent Color… opens Blue, Green, Gold and Rose choices using existing localized Today color names; Default is not a selectable item. Remove Accent Color is shown only for an active override. Native opaque surfaces retain semantic foregrounds and high-contrast behavior. Cards stack at natural heights in independent vertical columns, from one column in narrow safe panes up to three on wide displays, with a 340-point/dp readable minimum. Saved order runs across columns: cards fill the shortest column in saved order, with leading columns winning ties. Adding a card preserves earlier frames and minimizes the added page height. Each safe pane has one outer vertical scroll; expanding or resizing a card may reflow later cards. Flat keyed children retain card identity, source and accessibility order within each safe pane, and native RTL leading-edge placement. The native Apple split arrangement axis chooses fold assignment: side-by-side panes each host one column and alternate saved indices; stacked panes use contiguous top-to-bottom groups. Native separate scroll panes retain their own accessibility containers. Card order and content state survive width/posture changes; column counts are computed locally.
 
 Apple layouts reuse the existing iCloud key-value preference store through `HomeLayoutCloud`, rather than adding a new CloudKit schema. One versioned `homeWidgetLayout` Data value carries normalized order, collapsed IDs and colors atomically. It is applied on entry and external preference notifications; only explicit user edits publish, so initial defaults/migrations cannot overwrite an incoming layout. Empty layouts stay empty. Photos, private paths, browsed dates and responsive column counts remain device-local. SwiftData’s existing CloudKit preset mirroring is unchanged. Local payload/isolation tests do not certify signed multi-device propagation.
+
+## Erez appearance and daily content refinements (October 2026)
+
+`appThemeMode` persists `system` (default), `light` or `dark` on iOS, Android and Windows.
+Appearance applies the choice immediately to existing content and new windows. Mac retains
+its native system appearance. `appPalette` independently persists `native` (default),
+`stainedGlass` or `garden`. Shared/Branding/interface-palettes.json assigns existing canonical
+AppColor hues to palette roles. Native adapters apply a primary control accent and several
+default Home card hues. The app icon, private images, semantic liturgical colors and explicit
+homeWidgetColors are independent. Custom control accents still override the primary hue.
+Android wallpaper colors are available under Native. Windows high contrast uses system colors.
+Dark card tints are stronger while foregrounds retain native readable text roles.
+
+Home headings no longer contain size and color buttons. Long press (or right click on
+desktop) opens the native context menu with Expand/Collapse and color actions. Apple keeps
+its existing photo, reorder and removal actions there. The separate Home editor remains.
+
+New `hymn` and `tradition` cards render exact source sections with their credits and links.
+The existing feast card remains the complete explanation, retaining source-order prose.
+Missing source sections are explicit and never translated or filled in. Layout version 2 adds
+these two cards once to nonempty version-1 layouts, preserving earlier card removals. Older
+layouts first receive the version-1 migration. Deliberately empty layouts stay empty.
+
+For the Syriac and provisional Mission calendars, Sunday's Torah and haftarah lookup uses
+the preceding Saturday. Monday–Saturday keep the upcoming/inclusive Saturday; other calendars
+keep the existing schedule. Civil dates and the canonical Hebcal table are unchanged.
+
+Choose on Launch presents only the four complete mystery groups, with localized customary
+weekday captions that follow the saved 15/20-mystery cycle. It does not offer individual
+mysteries before the session. Existing in-session navigation remains available and saved
+configuration/continuation identity is unchanged.
+
+Peshitta source-native browsing now includes the 25 available verses of Sirach 1. The pinned
+page omits labels 20–22 and supplies absence markers at 5 and 7; these remain absent, and the
+chapter remains incomplete. A per-chapter `missingVerseLabels` review admits only the exact
+published gaps, retaining all prior label/reference/ordering/hash and paired-script checks.
+This does not create daily-reading correspondences or change any existing Scripture wording.
+
+`uv run --script Shared/tools/sync-interface-palettes.py --check` verifies all three generated palette-role adapters against the shared inventory.
+
+Links and buttons inside colored cards use readable semantic foregrounds; the global accent remains on neutral surfaces. Source-section headings identical to their card title are not repeated.
+
+### Mission prayer variant and Home source prose
+
+App-wide Hebrew → Mission (`defaultLanguageCode = he-x-gamliel`) selects the supplied
+`feasts-mission-provisional` prose for Home's hymn, tradition, feast explanation and
+reflection cards on the same civil date. Authored Hebrew prose renders RTL even in another
+interface language. Other prayer variants retain selected-calendar/interface-language
+behavior. Missing Mission dates/sections remain unavailable; the source covers 2026 only.
+
+This does not rewrite `feastCalendarId` or alter calendar navigation, reading appointments,
+Torah/haftarah or Bible edition. Individual saved prayers do not change Home. Each
+TodayInfoStore caches the Mission text table independently of the selected calendar.
+Native Home observes the global prayer-language preference; Windows supplies its change
+notification, and Mac reuses PrayerLanguageMonitor in the existing Today explanation area.

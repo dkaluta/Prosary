@@ -74,20 +74,12 @@ final class MacPrayerWindowUITests: XCTestCase {
     XCTAssertTrue(picker.waitForExistence(timeout: 10), "A blank saved choice must ask before praying")
     let mysteryList = element("mysteryPickerList", in: picker)
     XCTAssertTrue(mysteryList.waitForExistence(timeout: 5))
-    let setPicker = picker.popUpButtons["mysterySetSelector"]
-    XCTAssertTrue(setPicker.waitForExistence(timeout: 5))
-    XCTAssertFalse(picker.buttons["chooseMystery.joyful.1"].exists, "No set is selected before the person chooses")
-    for (group, title) in [("joyful", "Joyful"), ("sorrowful", "Sorrowful"), ("glorious", "Glorious"), ("luminous", "Luminous")] {
-      setPicker.click()
-      app.menuItems[title].click()
-      XCTAssertTrue(picker.buttons["chooseMystery.entireSet"].exists)
-      for order in 1...5 {
-        XCTAssertTrue(picker.buttons["chooseMystery.\(group).\(order)"].waitForExistence(timeout: 5))
-      }
+    XCTAssertFalse(picker.popUpButtons["mysterySetSelector"].exists)
+    XCTAssertFalse(picker.buttons["chooseMystery.joyful.1"].exists)
+    for group in ["joyful", "sorrowful", "glorious", "luminous"] {
+      XCTAssertTrue(picker.buttons["chooseMystery.set.\(group)"].exists)
     }
-    setPicker.click()
-    app.menuItems["Joyful"].click()
-    let selected = picker.buttons["chooseMystery.entireSet"]
+    let selected = picker.buttons["chooseMystery.set.joyful"]
     XCTAssertTrue(selected.waitForExistence(timeout: 5))
     selected.click()
     XCTAssertTrue(picker.waitForNonExistence(timeout: 5))

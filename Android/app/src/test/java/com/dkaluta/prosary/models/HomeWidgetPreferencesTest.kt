@@ -7,6 +7,14 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class HomeWidgetPreferencesTest {
+    @Test fun sourceCardUpgradePreservesEarlierRemovalsAndDoesNotRepeatAfterRestart() {
+        val storage = Preferences(mutableMapOf("homeWidgetOrder" to "photo\nfeast", "homeWidgetLayoutVersion" to "1"))
+        val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
+        assertEquals(listOf(HomeWidget.Photo, HomeWidget.Feast, HomeWidget.Hymn, HomeWidget.Tradition), settings.widgets)
+        settings.updateWidgets(listOf(HomeWidget.Photo))
+        assertEquals(listOf(HomeWidget.Photo), HomeWidgetPreferences().apply { initialize(storage.instance) }.widgets)
+    }
+
     @Test fun missingPreferenceUsesDefaultsButAnExplicitlyEmptyHomeSurvivesRestart() {
         val storage = Preferences()
         val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
@@ -17,7 +25,7 @@ class HomeWidgetPreferencesTest {
     }
 
     @Test fun unknownAndRepeatedIdsCannotCreateDuplicateCardsAndAddingAppends() {
-        val storage = Preferences(mutableMapOf("homeWidgetOrder" to "unknown\nphoto\nphoto\nreadings\ncalendar\nother", "homeWidgetLayoutVersion" to "1"))
+        val storage = Preferences(mutableMapOf("homeWidgetOrder" to "unknown\nphoto\nphoto\nreadings\ncalendar\nother", "homeWidgetLayoutVersion" to "2"))
         val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
         val observed = derivedStateOf { settings.widgets.map { it.id } }
         assertEquals(listOf("photo", "readings", "calendar"), observed.value)
@@ -37,9 +45,9 @@ class HomeWidgetPreferencesTest {
     @Test fun dailyCardsMigrateOnceAndLaterRemovalStaysRemoved() {
         val storage = Preferences(mutableMapOf("homeWidgetOrder" to "photo\nreadings\nfeast"))
         val settings = HomeWidgetPreferences().apply { initialize(storage.instance) }
-        assertEquals(listOf(HomeWidget.Photo, HomeWidget.Readings, HomeWidget.Torah, HomeWidget.Feast, HomeWidget.Reflection), settings.widgets)
-        assertEquals("1", storage.values["homeWidgetLayoutVersion"])
-        settings.updateWidgets(settings.widgets - HomeWidget.Torah - HomeWidget.Reflection)
+        assertEquals(listOf(HomeWidget.Photo, HomeWidget.Readings, HomeWidget.Torah, HomeWidget.Feast, HomeWidget.Reflection, HomeWidget.Hymn, HomeWidget.Tradition), settings.widgets)
+        assertEquals("2", storage.values["homeWidgetLayoutVersion"])
+        settings.updateWidgets(settings.widgets - HomeWidget.Torah - HomeWidget.Reflection - HomeWidget.Hymn - HomeWidget.Tradition)
         assertEquals(listOf(HomeWidget.Photo, HomeWidget.Readings, HomeWidget.Feast),
             HomeWidgetPreferences().apply { initialize(storage.instance) }.widgets)
         assertTrue(HomeWidget.addingDailyCards(emptyList()).isEmpty())

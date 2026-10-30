@@ -49,6 +49,7 @@ public sealed partial class DashboardPage : Page
     private async void OnLoaded(object sender, RoutedEventArgs e)
     {
         AppSettings.HomeWidgetsChanged += OnLayoutChanged;
+        AppSettings.DefaultPrayerLanguageChanged += OnReadingsOrderChanged;
         AppSettings.ReadingsOrderChanged += OnReadingsOrderChanged;
         AppSettings.ReadingsEditionChanged += OnReadingsOrderChanged;
         AppSettings.TypographyChanged += OnTypographyChanged;
@@ -67,6 +68,7 @@ public sealed partial class DashboardPage : Page
     {
         _clock.Stop();
         AppSettings.HomeWidgetsChanged -= OnLayoutChanged;
+        AppSettings.DefaultPrayerLanguageChanged -= OnReadingsOrderChanged;
         AppSettings.ReadingsOrderChanged -= OnReadingsOrderChanged;
         AppSettings.ReadingsEditionChanged -= OnReadingsOrderChanged;
         AppSettings.TypographyChanged -= OnTypographyChanged;
@@ -147,11 +149,15 @@ public sealed partial class DashboardPage : Page
     { if (sender is FrameworkElement { DataContext: HomeWidgetCard card }) ViewModel.MoveDownCommand.Execute(card); }
     private void OnToggleSize(object sender, RoutedEventArgs e)
     { if (sender is FrameworkElement { DataContext: HomeWidgetCard card }) ViewModel.ToggleSizeCommand.Execute(card); }
-    private void OnCardColor(object sender, RoutedEventArgs e)
+    private void OnCardContextRequested(Microsoft.UI.Xaml.UIElement sender, Microsoft.UI.Xaml.Input.ContextRequestedEventArgs e)
     {
-        if (sender is not Button { DataContext: HomeWidgetCard card } button) return;
+        if (sender is not FrameworkElement { DataContext: HomeWidgetCard card } target) return;
+        e.Handled = true;
         var selected = AppSettings.HomeWidgetColors.GetValueOrDefault(card.Id) ?? "default";
         var menu = new MenuFlyout();
+        var size = new MenuFlyoutItem { Text = card.SizeActionLabel };
+        size.Click += (_, _) => ViewModel.ToggleSizeCommand.Execute(card);
+        menu.Items.Add(size);
         var colors = new MenuFlyoutSubItem { Text = card.ColorLabel };
         foreach (var id in HomeWidgets.ColorIds.Where(id => id != "default"))
         {
@@ -171,7 +177,8 @@ public sealed partial class DashboardPage : Page
             remove.Click += (_, _) => AppSettings.SetHomeWidgetColor(card.Id, "default");
             menu.Items.Add(remove);
         }
-        menu.ShowAt(button);
+        if (e.TryGetPosition(target, out var point)) menu.ShowAt(target, point);
+        else menu.ShowAt(target);
     }
 
     private void RefreshCardColors()
@@ -186,6 +193,8 @@ public sealed partial class DashboardPage : Page
         foreach (var card in ViewModel.Cards)
         {
             var id = AppSettings.HomeWidgetColors.GetValueOrDefault(card.Id) ?? "default";
+            var palette = AppColorPalette.PaletteColors(AppSettings.AppPalette);
+            if (id == "default" && palette.Count > 0) id = palette[HomeWidgets.All.ToList().IndexOf(card.Id) % palette.Count];
             if (id == "default" || highContrast || normal is not SolidColorBrush surface)
             {
                 card.CardBackground = normal;

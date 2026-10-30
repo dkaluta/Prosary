@@ -20,6 +20,37 @@ import org.junit.Test
  * Roman Calendar), the switchable-calendar registry, the Pope's monthly intention, and the
  * graceful out-of-range null that hides the row. Mirrors iOS's TodayInfoStoreTests.swift. */
 class TodayInfoStoreTest {
+    @Test fun missionPrayerVariantSelectsHebrewHomeTextWithoutChangingCalendarOrReadings() {
+        AppSettings.feastCalendarId = "roman"
+        val date = date("2026-11-01")
+        val selected = TodayInfoStore.feast(date)
+        val readings = TodayInfoStore.readings(date)
+        val mission = requireNotNull(TodayInfoStore.homeTextFeast(date, "he-x-gamliel"))
+        assertTrue(mission.namedSections("hymn", "he").isNotEmpty())
+        assertTrue(mission.namedSections("tradition", "he").isNotEmpty())
+        assertTrue(mission.reflections("he").isNotEmpty())
+        assertEquals("he", TodayInfoStore.homeTextLanguage("he-x-gamliel", "en"))
+        assertEquals("en", TodayInfoStore.homeTextLanguage("he", "en"))
+        assertEquals(selected, TodayInfoStore.homeTextFeast(date, "he"))
+        assertEquals(selected, TodayInfoStore.homeTextFeast(date, "arc"))
+        assertEquals("roman", TodayInfoStore.selectedCalendarId)
+        assertEquals(readings, TodayInfoStore.readings(date))
+        assertNull(TodayInfoStore.homeTextFeast(date("2027-11-01"), "he-x-gamliel"))
+    }
+
+    @Test fun syriacSundayRetainsPreviousSaturdayButMondayAndRomanDatesStayUnchanged() {
+        val format = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT)
+        for ((sun, sat) in listOf("2026-11-01" to "2026-10-31", "2027-01-03" to "2027-01-02")) {
+            val sunday = format.parse(sun)!!
+            for (calendarId in listOf("syriac", "mission-provisional")) {
+                assertEquals(sat, format.format(TodayInfoStore.torahLookupDate(sunday, calendarId)))
+                val monday = java.util.Calendar.getInstance().apply { time = sunday; add(java.util.Calendar.DATE, 1) }.time
+                assertEquals(monday, TodayInfoStore.torahLookupDate(monday, calendarId))
+            }
+            assertEquals(sunday, TodayInfoStore.torahLookupDate(sunday, "roman"))
+        }
+    }
+
     @Test
     fun popePublicationRequiresStablePrayerIdentityAndExplicitOptIn() {
         val intention = PopeIntention("Published title", "English body", mapOf("he" to "כותרת"),

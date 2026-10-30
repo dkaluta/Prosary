@@ -14,6 +14,10 @@ public sealed record AppColorOption(string Id, string EnglishName, string LightH
 /// <summary>Shared appColor identifiers and accessible light/dark accent pairs.</summary>
 public static class AppColorPalette
 {
+    public static IReadOnlyList<string> PaletteColors(string id) => id switch {
+        "stainedGlass" => ["blue", "green", "gold", "rose"],
+        "garden" => ["green", "rose", "blue", "gold"],
+        _ => [] };
     public const string Default = "blue";
     public static IReadOnlyList<AppColorOption> All { get; } =
     [
@@ -41,11 +45,11 @@ public static class AppColorPalette
 
     /// <summary>Resolve the translucent native card surface before tinting it. Its RGB is
     /// white in both themes, so treating that RGB as opaque would erase dark-mode contrast.</summary>
-    public static Color TintedCardBackground(Color tint, Color surface, Color page, double surfaceOpacity = 1)
+    public static Color TintedCardBackground(Color tint, Color surface, Color page, double surfaceOpacity = 1, double strength = 0.24)
     {
         var alpha = Math.Clamp(surface.A / 255.0 * surfaceOpacity, 0, 1);
         byte channel(byte accent, byte foreground, byte underlying) =>
-            (byte)Math.Round(accent * 0.12 + (foreground * alpha + underlying * (1 - alpha)) * 0.88);
+            (byte)Math.Round(accent * strength + (foreground * alpha + underlying * (1 - alpha)) * (1 - strength));
         return Color.FromArgb(255, channel(tint.R, surface.R, page.R),
             channel(tint.G, surface.G, page.G), channel(tint.B, surface.B, page.B));
     }

@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.SkipPrevious
 import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.TextButton
 import androidx.compose.foundation.lazy.LazyColumn
@@ -162,10 +163,21 @@ fun RosaryFlowScreen(prayer: Prayer, onBack: () -> Unit) {
             text = {
                 val setLabel = stringResource(R.string.flow_mystery_set)
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    OptionPickerField<MysteryGroup?>(label = setLabel, options = MysteryGroup.entries,
+                    if (requiresMysteryChoice) {
+                        MysteryGroup.entries.forEach { group ->
+                            TextButton(onClick = { chooseEntireSet(group) },
+                                modifier = Modifier.testTag("chooseMystery.set.${group.name.lowercase(java.util.Locale.ROOT)}")) {
+                                Column {
+                                    Text(stringResource(group.displayNameRes))
+                                    Text(stringResource(group.weekdayDescriptionRes(prayer.rosary.useTraditionalMysteries)),
+                                        style = MaterialTheme.typography.bodySmall)
+                                }
+                            }
+                        }
+                    } else OptionPickerField<MysteryGroup?>(label = setLabel, options = MysteryGroup.entries,
                         selected = pickerGroup, optionLabel = { it?.let { group -> context.getString(group.displayNameRes) } ?: "—" },
                         onSelect = { pickerGroup = it }, modifier = Modifier.testTag("mysterySetSelector"))
-                    pickerGroup?.let { group ->
+                    pickerGroup?.takeUnless { requiresMysteryChoice }?.let { group ->
                         LazyColumn {
                             item {
                                 TextButton(onClick = { chooseEntireSet(group) }, modifier = Modifier.testTag("chooseMystery.entireSet")) {

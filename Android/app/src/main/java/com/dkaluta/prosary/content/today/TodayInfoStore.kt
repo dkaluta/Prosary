@@ -303,6 +303,7 @@ object TodayInfoStore {
     private val json = Json { ignoreUnknownKeys = true }
 
     private var openData: ((String) -> InputStream?)? = null
+    private var missionHomeTextDays: Map<String, FeastDay>? = null
     private var feastsByDay: Map<String, FeastDay> = emptyMap()
     private var intentionsByMonth: Map<String, PopeIntention> = emptyMap()
     private var readingsByDay: Map<String, ReadingDay> = emptyMap()
@@ -329,6 +330,16 @@ object TodayInfoStore {
             if (stored.isNotEmpty() && registry.calendars.any { it.id == stored }) return stored
             return registry.default
         }
+
+    fun homeTextLanguage(prayerLanguageCode: String, interfaceLanguage: String): String =
+        if (prayerLanguageCode == "he-x-gamliel") "he" else interfaceLanguage
+
+    fun homeTextFeast(date: Date, prayerLanguageCode: String): FeastDay? {
+        if (prayerLanguageCode != "he-x-gamliel") return feast(date)
+        val days = missionHomeTextDays ?: decode<FeastsFile>("feasts-mission-provisional")?.days.orEmpty()
+            .also { missionHomeTextDays = it }
+        return days[key(date, "yyyy-MM-dd")]
+    }
 
     fun feast(date: Date = Date()): FeastDay? {
         ensureFeastsLoaded()
@@ -366,7 +377,17 @@ object TodayInfoStore {
             didLoadTorah = true
             torahByDay = decode<TorahPortionsFile>("torah-portions")?.days.orEmpty()
         }
-        return torahByDay[key(date, "yyyy-MM-dd")]
+        val day = torahLookupDate(date, AppSettings.feastCalendarId)
+        return torahByDay[key(day, "yyyy-MM-dd")]
+    }
+
+    internal fun torahLookupDate(date: Date, calendarId: String): Date {
+        val calendar = java.util.Calendar.getInstance().apply { time = date }
+        if (calendarId in setOf("syriac", "mission-provisional") &&
+            calendar.get(java.util.Calendar.DAY_OF_WEEK) == java.util.Calendar.SUNDAY) {
+            calendar.add(java.util.Calendar.DAY_OF_MONTH, -1)
+        }
+        return calendar.time
     }
 
     fun shouldShowLiturgicalDay(date: Date = Date()): Boolean =
@@ -477,6 +498,7 @@ object TodayInfoStore {
     /** Gives plain JVM tests an isolated store for custom registries and missing-file cases. */
     internal fun resetForTesting() {
         openData = null
+        missionHomeTextDays = null
         feastsByDay = emptyMap()
         intentionsByMonth = emptyMap()
         readingsByDay = emptyMap()
@@ -523,4 +545,11 @@ object TodayInfoStore {
                 json.decodeFromString<T>(stream.readBytes().toString(Charsets.UTF_8))
             }.getOrNull()
         }
+}
+
+fun FeastDay.namedSections(id: String, language: String): List<SaintDescription> = observances.orEmpty().flatMap { observance ->
+    observance.sections.filter { it.id == id }.mapNotNull { it.localized(language) }.map { section ->
+        val parent = observance.description(language)
+        SaintDescription(observance.identity, section.title, section.text, parent?.sourceURL, parent?.credit)
+    }
 }
