@@ -55,8 +55,8 @@ android {
         applicationId = "com.dkaluta.prosary"
         minSdk = 24
         targetSdk = 36
-        versionCode = 64
-        versionName = "0.24.1"
+        versionCode = 65
+        versionName = "0.24.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
