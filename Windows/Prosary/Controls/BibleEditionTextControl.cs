@@ -17,18 +17,19 @@ public sealed class BibleEditionTextControl : UserControl
     private readonly Button _next = new() { MinWidth = 32, MinHeight = 32 };
     private readonly Grid _navigation = new();
     private bool _chromeHidden;
-    private int _total;
     public event Action<bool>? ChromeChanged;
     public void RestoreChrome() => SetChromeHidden(false);
     private void SetChromeHidden(bool hidden)
     {
         _chromeHidden = hidden;
         _navigation.Visibility = hidden ? Visibility.Collapsed : Visibility.Visible;
-        _slider.Visibility = !hidden && _total > 1 ? Visibility.Visible : Visibility.Collapsed;
         ChromeChanged?.Invoke(hidden);
     }
-    private readonly TextBlock _count = new() { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
-    private readonly Slider _slider = new() { Minimum = 1, Maximum = 2, Visibility = Visibility.Collapsed };
+    // The page count opens the book's chapters, the same choices as the chapter selector.
+    private readonly TextBlock _countText = new();
+    private readonly Button _count = new() { HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center,
+        Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Transparent), BorderThickness = new Thickness(0) };
+    public event Action? ChapterListRequested;
     private readonly ProgressRing _preparing = new() { IsActive = true, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center };
     private BibleViewModel? _model;
     private string? _identity;
@@ -39,7 +40,6 @@ public sealed class BibleEditionTextControl : UserControl
     private int _generation;
     private readonly string _documentDirectory = Path.Combine(global::Windows.Storage.ApplicationData.Current.LocalCacheFolder.Path,
         "BibleReader", Guid.NewGuid().ToString("N"));
-    private bool _updatingSlider;
     private bool _dialogOpen;
     private IReadOnlyDictionary<string, IReadOnlyList<ScriptureSourceNote>> _notes = new Dictionary<string, IReadOnlyList<ScriptureSourceNote>>();
 
@@ -48,7 +48,6 @@ public sealed class BibleEditionTextControl : UserControl
         var root = new Grid { RowSpacing = 8 };
         root.RowDefinitions.Add(new() { Height = new(1, GridUnitType.Star) });
         root.RowDefinitions.Add(new() { Height = GridLength.Auto });
-        root.RowDefinitions.Add(new() { Height = GridLength.Auto });
         var body = new Grid(); body.Children.Add(_web); body.Children.Add(_preparing); root.Children.Add(body);
         var navigation = _navigation;
         navigation.ColumnDefinitions.Add(new() { Width = GridLength.Auto });
@@ -56,13 +55,12 @@ public sealed class BibleEditionTextControl : UserControl
         navigation.ColumnDefinitions.Add(new() { Width = GridLength.Auto });
         navigation.Children.Add(_previous); navigation.Children.Add(_count); navigation.Children.Add(_next);
         Grid.SetColumn(_count, 1); Grid.SetColumn(_next, 2); Grid.SetRow(navigation, 1); root.Children.Add(navigation);
-        Grid.SetRow(_slider, 2); root.Children.Add(_slider); Content = root;
+        _count.Content = _countText; Content = root;
         _previous.Click += async (_, _) => await CommandAsync(new { type = "turn", delta = -1 });
         _next.Click += async (_, _) => await CommandAsync(new { type = "turn", delta = 1 });
-        _slider.ValueChanged += async (_, args) => { if (!_updatingSlider) await CommandAsync(new { type = "page", page = (int)args.NewValue - 1 }); };
+        _count.Click += (_, _) => ChapterListRequested?.Invoke();
         AutomationProperties.SetAutomationId(_web, "bibleEditionText");
         AutomationProperties.SetAutomationId(_count, "biblePageCount");
-        AutomationProperties.SetAutomationId(_slider, "biblePageSlider");
         AutomationProperties.SetAutomationId(_previous, "biblePreviousPage");
         AutomationProperties.SetAutomationId(_next, "bibleNextPage");
     }
@@ -174,16 +172,14 @@ public sealed class BibleEditionTextControl : UserControl
                     var page = message.GetProperty("page").GetInt32(); var total = message.GetProperty("total").GetInt32(); var leaves = message.GetProperty("leaves").GetInt32();
                     _anchor = message.GetProperty("anchor").GetString();
                     _model.SelectReaderPosition(message.GetProperty("book").GetString()!, message.GetProperty("chapter").GetInt32(), _anchor!);
-                    _count.Text = string.Format(Loc.Tr("bible_page_count", "Pages {0}–{1} of {2}"), page, Math.Min(page + leaves - 1, total), total);
+                    _countText.Text = string.Format(Loc.Tr("bible_page_count", "Pages {0}–{1} of {2}"), page, Math.Min(page + leaves - 1, total), total);
                     _previous.IsEnabled = page > 1 || _hasPrevious; _next.IsEnabled = page + leaves <= total || _hasNext;
                     _previous.Content = new SymbolIcon(_model.IsRightToLeft ? Symbol.Forward : Symbol.Back);
                     _next.Content = new SymbolIcon(_model.IsRightToLeft ? Symbol.Back : Symbol.Forward);
                     AutomationProperties.SetName(_previous, Loc.Tr("bible_previous_page", "Previous Page"));
                     AutomationProperties.SetName(_next, Loc.Tr("bible_next_page", "Next Page"));
-                    AutomationProperties.SetName(_slider, _count.Text);
-                    _total = total;
-                    _updatingSlider = true; _slider.Maximum = Math.Max(2, total); _slider.Value = page; _slider.Visibility = !_chromeHidden && total > 1 ? Visibility.Visible : Visibility.Collapsed;
-                    _slider.FlowDirection = _model.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight; _updatingSlider = false;
+                    AutomationProperties.SetName(_count, _countText.Text);
+                    AutomationProperties.SetHelpText(_count, Loc.Tr("bible_choose_chapter", "Choose a chapter"));
                     if (_pendingJump is { } jump) { _pendingJump = null; await CommandAsync(new { type = "jump", id = jump }); }
                     break;
                 case "boundary":

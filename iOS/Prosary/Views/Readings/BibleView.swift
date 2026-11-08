@@ -233,7 +233,10 @@ struct BibleChapterView: View {
             #if os(iOS)
             withAnimation { chromeHidden = requested ?? !chromeHidden }
             #endif
-          }, hasPrevious: neighbour(-1) != nil, hasNext: neighbour(1) != nil, onBoundary: turnBook)
+          }, hasPrevious: neighbour(-1) != nil, hasNext: neighbour(1) != nil, onBoundary: turnBook,
+          chapterChoices: activeBook.chapters.map { item in
+            (item.number, bibleChapterLabel(item.number, book: activeBook, edition: edition.readingEdition, script: script.wrappedValue))
+          }, onChapter: { number in select(BiblePosition(book: activeBook.id, chapter: number)) })
       } else {
       ScrollView {
         VStack(alignment: .leading, spacing: 20) {
@@ -251,6 +254,10 @@ struct BibleChapterView: View {
 
     .navigationTitle(activeBook.displayedName(script: script.wrappedValue))
     #if os(iOS)
+    // The book's own page carries its title: large on its first page, then a small running
+    // head. The navigation title stays for Back and accessibility but is not drawn again.
+    .navigationBarTitleDisplayMode(.inline)
+    .toolbar { ToolbarItem(placement: .principal) { Color.clear.frame(width: 1, height: 1).accessibilityHidden(true) } }
     .toolbar(chromeHidden ? .hidden : .automatic, for: .navigationBar, .tabBar)
     .statusBarHidden(chromeHidden)
     .persistentSystemOverlays(chromeHidden ? .hidden : .automatic)

@@ -1916,7 +1916,7 @@ direction and continue across chapters and books throughout the available editio
 book's last page opens the next book's document at its first page, and a turn back from the first
 page opens the preceding book at its last page (the renderer posts `boundary`; the `__end__` anchor
 opens a book at its end). Global book/chapter/verse controls retain exact reviewed address routing.
-Page counts and the slider span the current book; turns inside it perform no chapter I/O, and a
+Page counts span the current book, and the page count opens its chapter list (there is no page slider). The book title is large on its first page and a small running head on later pages, in a fixed strip; Masoretic פ/ס section marks render as paragraph breaks and gaps without the letters; turns inside it perform no chapter I/O, and a
 few recent and neighbouring books stay decoded. Source-block anchors
 connect verse jumps and reflow; notes, printed labels and exceptional source units stay
 distinct. Long units flow across pages. Touch taps toggle application chrome, while native

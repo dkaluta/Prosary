@@ -22,6 +22,9 @@ struct BibleEditionReader: View {
   var hasPrevious = false
   var hasNext = false
   var onBoundary: (Int) -> Void = { _ in }
+  /// The page count opens the book's chapters, the same choices as the toolbar's chapter menu.
+  var chapterChoices: [(number: Int, label: String)] = []
+  var onChapter: (Int) -> Void = { _ in }
   @ObservedObject private var typography = PrayerTypographyMonitor.shared
   @ScaledMetric(relativeTo: .body) private var bodyScale = 1.0
   @State private var html = ""
@@ -56,18 +59,22 @@ struct BibleEditionReader: View {
           Label(bibleLabel("previousPage", "Previous Page"), systemImage: direction == .rightToLeft ? "chevron.right" : "chevron.left")
         }.disabled(total == 0 || page <= 1 && !hasPrevious).accessibilityIdentifier("bible.previousPage")
         Spacer()
-        Text(countLabel).font(.caption).monospacedDigit().accessibilityIdentifier("bible.pageCount")
+        Menu {
+          ForEach(chapterChoices, id: \.number) { choice in
+            Button(choice.label) { onChapter(choice.number) }
+          }
+        } label: {
+          Text(countLabel).font(.caption).monospacedDigit()
+        }
+        .menuStyle(.button).buttonStyle(.borderless)
+        .disabled(chapterChoices.isEmpty)
+        .accessibilityHint(bibleLabel("chooseChapter", "Choose a chapter"))
+        .accessibilityIdentifier("bible.pageCount")
         Spacer()
         Button { send(["type": "turn", "delta": 1]) } label: {
           Label(bibleLabel("nextPage", "Next Page"), systemImage: direction == .rightToLeft ? "chevron.left" : "chevron.right")
         }.disabled(total == 0 || page + leaves > total && !hasNext).accessibilityIdentifier("bible.nextPage")
       }.labelStyle(.iconOnly).buttonStyle(.bordered).controlSize(pageControlSize).environment(\.layoutDirection, direction)
-      if total > 1 {
-        Slider(value: Binding(get: { Double(page) }, set: { send(["type": "page", "page": Int($0) - 1]) }),
-          in: 1...Double(total), step: 1)
-          .accessibilityLabel(countLabel).accessibilityIdentifier("bible.pageSlider")
-          .environment(\.layoutDirection, direction)
-      }
       }
     }
     .padding(.horizontal, 20).padding(.bottom, chromeHidden ? 0 : 8)
@@ -160,7 +167,7 @@ struct BibleEditionReader: View {
 #if os(macOS)
 private typealias BibleWebRepresentable = NSViewRepresentable
 #else
-private typealias BibleWebRepresentable = UIViewRepresentable
+private typealias BibleWebRepresentable = UIViewControllerRepresentable
 #endif
 
 private struct BibleEditionWebSurface: BibleWebRepresentable {
@@ -170,83 +177,86 @@ private struct BibleEditionWebSurface: BibleWebRepresentable {
   let rightToLeft: Bool
   var receive: (String) -> Void
   func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
-  private func create(_ context: Context) -> WKWebView {
+  private func configuration(_ context: Context) -> WKWebViewConfiguration {
     let configuration = WKWebViewConfiguration()
     configuration.userContentController.add(context.coordinator, name: "reader")
-    let view = WKWebView(frame: .zero, configuration: configuration)
-    view.navigationDelegate = context.coordinator
-    #if os(iOS)
-    let pan = UIPanGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.turn(_:)))
-    pan.allowedTouchTypes = [NSNumber(value: UITouch.TouchType.direct.rawValue), NSNumber(value: UITouch.TouchType.pencil.rawValue)]
-    pan.cancelsTouchesInView = false
-    pan.delegate = context.coordinator
-    view.addGestureRecognizer(pan)
-    let tap = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.toggleChrome(_:)))
-    tap.allowedTouchTypes = [NSNumber(value: UITouch.TouchType.direct.rawValue)]
-    tap.cancelsTouchesInView = false
-    tap.delegate = context.coordinator
-    tap.require(toFail: pan)
-    view.addGestureRecognizer(tap)
-    context.coordinator.pan = pan
-    #endif
-    context.coordinator.web = view
-    update(view, context)
-    return view
+    return configuration
   }
-  private func update(_ view: WKWebView, _ context: Context) {
+  private func update(_ context: Context) {
     let coordinator = context.coordinator; coordinator.parent = self
-    if coordinator.html != html { coordinator.html = html; coordinator.loaded = false; coordinator.navigation = view.loadHTMLString(html, baseURL: nil) }
-    if coordinator.serial != serial, !command.isEmpty { coordinator.serial = serial; coordinator.run(command) }
     #if os(iOS)
-    if #available(iOS 26.0, *), let pan = coordinator.pan {
-      // The containing navigation controller owns Back, but full-content Back must
-      // yield to Scripture's own horizontal page gestures. Edge Back is unchanged.
-      var ancestor: UIViewController? = view.next as? UIViewController
-      var responder: UIResponder? = view
-      while ancestor == nil, let next = responder?.next { ancestor = next as? UIViewController; responder = next }
-      ancestor?.navigationController?.interactiveContentPopGestureRecognizer?.require(toFail: pan)
-    }
+    coordinator.curl?.rightToLeft = rightToLeft
+    coordinator.curl?.curlEnabled = !context.environment.accessibilityReduceMotion
     #endif
+    if coordinator.html != html { coordinator.html = html; coordinator.loaded = false; coordinator.load(html) }
+    if coordinator.serial != serial, !command.isEmpty { coordinator.serial = serial; coordinator.run(command) }
   }
   #if os(macOS)
-  func makeNSView(context: Context) -> WKWebView { create(context) }
-  func updateNSView(_ view: WKWebView, context: Context) { update(view, context) }
+  func makeNSView(context: Context) -> WKWebView {
+    let view = WKWebView(frame: .zero, configuration: configuration(context))
+    view.navigationDelegate = context.coordinator
+    context.coordinator.web = view
+    update(context)
+    return view
+  }
+  func updateNSView(_ view: WKWebView, context: Context) { update(context) }
   #else
-  func makeUIView(context: Context) -> WKWebView { create(context) }
-  func updateUIView(_ view: WKWebView, context: Context) { update(view, context) }
+  func makeUIViewController(context: Context) -> BibleEditionCurlController {
+    let controller = BibleEditionCurlController(configuration: configuration(context))
+    let coordinator = context.coordinator
+    controller.web.navigationDelegate = coordinator
+    controller.documentTurn = { [weak coordinator] delta in coordinator?.evaluate("{type:'turn',delta:\(delta)}") }
+    controller.chromeTap = { [weak coordinator] in coordinator?.parent.receive("{\"type\":\"chrome\"}") }
+    coordinator.web = controller.web
+    coordinator.curl = controller
+    controller.loadViewIfNeeded()
+    update(context)
+    return controller
+  }
+  func updateUIViewController(_ controller: BibleEditionCurlController, context: Context) { update(context) }
   #endif
   final class Coordinator: NSObject, WKScriptMessageHandler, WKNavigationDelegate {
     var parent: BibleEditionWebSurface
     weak var web: WKWebView?
+    #if os(iOS)
+    weak var curl: BibleEditionCurlController?
+    #endif
     var html = ""; var serial = -1
     /// A command sent while a new document is still loading would reach the old page or none.
     /// Keep the latest one (a book or verse jump) for the reader's own first layout instead.
     var loaded = false; var pending: String?; var navigation: WKNavigation?
+    func load(_ html: String) {
+      #if os(iOS)
+      navigation = curl?.load(html)
+      #else
+      navigation = web?.loadHTMLString(html, baseURL: nil)
+      #endif
+    }
     func run(_ command: String) {
       guard loaded else { pending = command; return }
+      #if os(iOS)
+      // Page buttons curl the leaf when the neighbouring spread is ready.
+      if let curl, let data = command.data(using: .utf8),
+         let value = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+         value["type"] as? String == "turn", let delta = value["delta"] as? Int {
+        curl.turn(delta); return
+      }
+      #endif
+      evaluate(command)
+    }
+    func evaluate(_ command: String) {
       web?.evaluateJavaScript("window.ProsaryReader?.command(\(command))", completionHandler: nil)
     }
-    #if os(iOS)
-    var pan: UIPanGestureRecognizer?
-    @objc func toggleChrome(_ gesture: UITapGestureRecognizer) {
-      guard gesture.state == .ended, let web else { return }
-      let point = gesture.location(in: web)
-      let query = "window.getSelection().isCollapsed && !document.elementFromPoint(\(point.x),\(point.y))?.closest('a,[data-note]')"
-      web.evaluateJavaScript(query) { [weak self] value, _ in
-        if value as? Bool == true { self?.parent.receive("{\"type\":\"chrome\"}") }
-      }
-    }
-    @objc func turn(_ gesture: UIPanGestureRecognizer) {
-      guard gesture.state == .ended else { return }
-      let delta = gesture.translation(in: gesture.view)
-      guard abs(delta.x) > 64, abs(delta.x) > abs(delta.y) * 1.5 else { return }
-      let forward = (delta.x > 0) == parent.rightToLeft
-      web?.evaluateJavaScript("window.ProsaryReader?.command({type:'turn',delta:\(forward ? 1 : -1)})", completionHandler: nil)
-    }
-    #endif
     init(parent: BibleEditionWebSurface) { self.parent = parent }
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-      if message.name == "reader", let string = message.body as? String { parent.receive(string) }
+      guard message.name == "reader", let string = message.body as? String else { return }
+      #if os(iOS)
+      if let curl, let data = string.data(using: .utf8),
+         let value = try? JSONSerialization.jsonObject(with: data) as? [String: Any], value["type"] as? String == "state" {
+        curl.didReceiveState(page: value["page"] as? Int ?? 1, total: value["total"] as? Int ?? 0, leaves: value["leaves"] as? Int ?? 1)
+      }
+      #endif
+      parent.receive(string)
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
       guard navigation == nil || navigation === self.navigation else { return }
@@ -258,8 +268,3 @@ private struct BibleEditionWebSurface: BibleWebRepresentable {
     }
   }
 }
-#if os(iOS)
-extension BibleEditionWebSurface.Coordinator: UIGestureRecognizerDelegate {
-  func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool { true }
-}
-#endif

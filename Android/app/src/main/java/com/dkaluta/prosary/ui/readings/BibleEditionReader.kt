@@ -8,6 +8,7 @@ import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.webkit.WebResourceRequest
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -48,7 +49,8 @@ private class EditionMessages(private val receive: (String) -> Unit) {
 @Composable
 internal fun BibleEditionReader(edition: BibleEdition, sections: List<BibleReaderSection>, script: String,
     anchor: String, jumpSerial: Int, onPosition: (String, Int, String) -> Unit,
-    hasPrevious: Boolean = false, hasNext: Boolean = false, onBoundary: (Int) -> Unit = {}, modifier: Modifier = Modifier) {
+    hasPrevious: Boolean = false, hasNext: Boolean = false, onBoundary: (Int) -> Unit = {},
+    onChooseChapter: (() -> Unit)? = null, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val chrome = LocalBibleReadingChrome.current
     val openUri = LocalUriHandler.current
@@ -146,13 +148,14 @@ internal fun BibleEditionReader(edition: BibleEdition, sections: List<BibleReade
             Row(Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(horizontal = 12.dp), verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
                 IconButton(onClick = { command(JSONObject().put("type", "turn").put("delta", -1)) }, enabled = total > 0 && (page > 1 || hasPrevious),
                     modifier = Modifier.testTag("biblePreviousPage")) { Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.bible_previous_page)) }
-                Text(label, Modifier.weight(1f).testTag("biblePageCount"), style = MaterialTheme.typography.labelMedium,
+                // The page count opens the book's chapters, the same picker as the chapter button.
+                val chooseChapter = stringResource(R.string.bible_choose_chapter)
+                Text(label, Modifier.weight(1f).then(if (onChooseChapter != null) Modifier.clickable(onClickLabel = chooseChapter) { onChooseChapter() } else Modifier)
+                    .padding(vertical = 12.dp).testTag("biblePageCount"), style = MaterialTheme.typography.labelMedium,
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center)
                 IconButton(onClick = { command(JSONObject().put("type", "turn").put("delta", 1)) }, enabled = total > 0 && (page + leaves <= total || hasNext),
                     modifier = Modifier.testTag("bibleNextPage")) { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.bible_next_page)) }
             }
-            if (total > 1) Slider(page.toFloat(), { command(JSONObject().put("type", "page").put("page", it.toInt() - 1)) },
-                valueRange = 1f..total.toFloat(), modifier = Modifier.padding(horizontal = 20.dp).testTag("biblePageSlider"))
         }
     }
     }
