@@ -35,6 +35,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableIntStateOf
@@ -77,7 +78,8 @@ import kotlinx.coroutines.withContext
 private data class BibleCatalogState(val loaded: Boolean = false, val catalog: BibleCatalog? = null)
 private data class InstalledBibleState(val loaded: Boolean = false, val edition: BibleEdition? = null)
 private data class BibleChapterState(val loaded: Boolean = false, val chapter: BibleDisplayChapter? = null)
-private data class BibleEditionState(val loaded: Boolean = false, val sections: List<BibleReaderSection>? = null)
+/** One book's reader document; [failed] keeps the previous book visible only while it is still valid. */
+private data class BibleBookState(val book: String? = null, val sections: List<BibleReaderSection>? = null, val failed: Boolean = false)
 
 @Composable
 internal fun BibleScreen(
@@ -192,17 +194,26 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
     val position = BibleNavigation.resolve(edition, selectedBook, selectedChapter)
     val book = edition.books.first { it.id == position.book }
     val info = book.chapters.first { it.number == position.chapter }
-    val editionState by produceState(BibleEditionState(), edition.id, edition.revision) {
-        value = withContext(Dispatchers.IO) {
-            BibleEditionState(true, runCatching {
-                edition.books.flatMap { book -> book.chapters.map { info ->
-                    BibleReaderSection(book, requireNotNull(library.store.displayChapter(edition, book.id, info.number)))
-                } }
-            }.getOrNull())
-        }
+    // The reader holds one book. A few recent books stay decoded for turns across books.
+    val bookCache = remember(edition.id, edition.revision) { LinkedHashMap<String, List<BibleReaderSection>>(8, 0.75f, true) }
+    fun loadBook(id: String): List<BibleReaderSection>? = synchronized(bookCache) { bookCache[id] } ?: runCatching {
+        val target = edition.books.first { it.id == id }
+        target.chapters.map { info -> BibleReaderSection(target, requireNotNull(library.store.displayChapter(edition, id, info.number))) }
+    }.getOrNull()?.also { sections -> synchronized(bookCache) {
+        bookCache[id] = sections
+        while (bookCache.size > 6) bookCache.remove(bookCache.keys.first())
+    } }
+    var bookState by remember(edition.id, edition.revision) { mutableStateOf(BibleBookState()) }
+    LaunchedEffect(edition.id, edition.revision, book.id) {
+        val sections = withContext(Dispatchers.IO) { loadBook(book.id) }
+        bookState = if (sections != null) BibleBookState(book.id, sections) else bookState.copy(failed = true)
+        val index = edition.books.indexOfFirst { it.id == book.id }
+        withContext(Dispatchers.IO) { listOfNotNull(edition.books.getOrNull(index + 1), edition.books.getOrNull(index - 1)).forEach { loadBook(it.id) } }
     }
-    val chapterState = BibleChapterState(editionState.loaded,
-        editionState.sections?.firstOrNull { it.book.id == book.id && it.display.chapter.chapter == info.number }?.display)
+    // Until the selected book is decoded the previous one stays on screen, and no picker reads it.
+    val bookReady = bookState.book == book.id
+    val chapterState = BibleChapterState(bookState.sections != null || bookState.failed,
+        bookState.sections?.takeIf { bookReady }?.firstOrNull { it.display.chapter.chapter == info.number }?.display)
     val chapter = chapterState.chapter
     val scope = rememberCoroutineScope()
     val scroll = rememberLazyListState()
@@ -210,9 +221,10 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
         selectedBook = next.book
         selectedChapter = next.chapter
         picker = null
-        readingAnchor = "${next.book}/${next.chapter}"
+        readingAnchor = if (atEnd) "__end__" else "${next.book}/${next.chapter}"
         verseJump = null
-        jumpSerial++
+        // Another book arrives as a new document opened at this anchor; only the shown book takes a jump.
+        if (next.book == bookState.book) jumpSerial++
         scope.launch { scroll.scrollToItem(0) }
     }
     val previous = BibleNavigation.neighbor(edition, position, -1)
@@ -244,11 +256,21 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
         }
         when {
             !chapterState.loaded -> CircularProgressIndicator(Modifier.padding(16.dp))
-            chapter == null -> Text(stringResource(R.string.bible_chapter_error), Modifier.padding(16.dp))
+            bookState.failed && bookReady.not() || bookReady && chapter == null ->
+                Text(stringResource(R.string.bible_chapter_error), Modifier.padding(16.dp))
             else -> {
-                BibleEditionReader(edition, requireNotNull(editionState.sections), script, readingAnchor, jumpSerial,
+                val shown = requireNotNull(bookState.sections)
+                val shownIndex = edition.books.indexOfFirst { it.id == shown.first().book.id }
+                BibleEditionReader(edition, shown, script, readingAnchor, jumpSerial,
                     onPosition = { bookID, chapterNumber, block ->
-                        selectedBook = bookID; selectedChapter = chapterNumber; readingAnchor = block
+                        if (bookID == bookState.book) { selectedBook = bookID; selectedChapter = chapterNumber; readingAnchor = block }
+                    },
+                    hasPrevious = shownIndex > 0, hasNext = shownIndex in 0 until edition.books.lastIndex,
+                    onBoundary = { delta ->
+                        edition.books.getOrNull(shownIndex + delta)?.let { target ->
+                            val chapterInfo = if (delta < 0) target.chapters.last() else target.chapters.first()
+                            navigate(BibleNavigation.Position(target.id, chapterInfo.number), atEnd = delta < 0)
+                        }
                     }, modifier = Modifier.weight(1f))
             }
         }

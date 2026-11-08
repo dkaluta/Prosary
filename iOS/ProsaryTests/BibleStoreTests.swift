@@ -4,16 +4,20 @@ import XCTest
 @testable import Prosary
 
 final class BibleStoreTests: XCTestCase {
-  func testWholeEditionRetainsCatalogOrderAndExactDisplayBlocks() async throws {
+  func testReaderBooksRetainCatalogOrderAndExactDisplayBlocks() async throws {
     let (edition, data) = try fixture()
     let folder = FileManager.default.temporaryDirectory.appending(path: UUID().uuidString)
     defer { try? FileManager.default.removeItem(at: folder) }
     let store = BibleStore(catalogURL: nil, directory: folder)
     try await store.install(data, edition: edition)
-    let sections = try await store.readerEdition(edition)
-    XCTAssertEqual(sections.map(\.id), edition.books.flatMap { book in
-      book.chapters.map { "\(book.id)/\($0.number)" }
-    })
+    var sections: [BibleReaderSection] = []
+    for book in edition.books {
+      let loaded = try await store.readerBook(edition, book: book.id)
+      XCTAssertEqual(loaded.map(\.id), book.chapters.map { "\(book.id)/\($0.number)" })
+      let again = try await store.readerBook(edition, book: book.id)
+      XCTAssertEqual(again.map(\.id), loaded.map(\.id))
+      sections += loaded
+    }
     for section in sections {
       let original = try await store.displayChapter(edition: edition, book: section.book.id, number: section.display.chapter.chapter)
       XCTAssertEqual(section.display.blocks.map(\.id), original.blocks.map(\.id))

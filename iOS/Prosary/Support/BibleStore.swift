@@ -162,6 +162,9 @@ actor BibleStore {
   private let directory: URL
   private var cachedCatalog: [BibleEdition]?
   private var archives: [String: MinimalZipReader] = [:]
+  private var readerBooks: [String: [BibleReaderSection]] = [:]
+  private var readerBookOrder: [String] = []
+  nonisolated static let retainedReaderBooks = 6
 
   init(catalogURL: URL? = Bundle.main.url(forResource: "bible-catalog", withExtension: "json"),
        directory: URL = URL.applicationSupportDirectory.appending(path: "Prosary/Bibles")) {
@@ -263,6 +266,8 @@ actor BibleStore {
     let folder = directory.appending(path: edition.id)
     if FileManager.default.fileExists(atPath: folder.path) { try FileManager.default.removeItem(at: folder) }
     archives = archives.filter { !$0.key.hasPrefix(edition.id + "|") }
+    readerBooks = readerBooks.filter { !$0.key.hasPrefix(edition.id + "|") }
+    readerBookOrder.removeAll { $0.hasPrefix(edition.id + "|") }
     await Self.postDownloadsChanged()
   }
 
@@ -395,15 +400,32 @@ actor BibleStore {
     return try BibleDisplayChapter.resolve(selected, primaryChapters: primary)
   }
 
-  /// Materialize an installed edition once, in catalog order. Daily passage APIs stay bounded.
-  func readerEdition(_ edition: BibleEdition) throws -> [BibleReaderSection] {
-    var result: [BibleReaderSection] = []
-    for book in edition.books {
-      for chapter in book.chapters {
-        try Task.checkCancellation()
-        result.append(BibleReaderSection(book: book, display: try displayChapter(edition: edition, book: book.id, number: chapter.number)))
-      }
+  /// Materialize one installed book, in catalog order, decoding each chapter once.
+  /// The reader opens a book at a time; a few recent books stay ready for turns across books.
+  func readerBook(_ edition: BibleEdition, book id: String) throws -> [BibleReaderSection] {
+    let key = "\(edition.id)|\(edition.revision)|\(id)"
+    if let cached = readerBooks[key] {
+      readerBookOrder.removeAll { $0 == key }; readerBookOrder.append(key)
+      return cached
     }
+    guard let book = edition.books.first(where: { $0.id == id }) else { throw BibleStoreError.invalidArchive }
+    var chapters: [Int: BibleChapter] = [:]
+    for info in book.chapters {
+      try Task.checkCancellation()
+      chapters[info.number] = try chapter(edition: edition, book: id, number: info.number)
+    }
+    var result: [BibleReaderSection] = []
+    for info in book.chapters {
+      guard let selected = chapters[info.number] else { throw BibleStoreError.invalidArchive }
+      var primary = [info.number: selected]
+      for referenced in Set((selected.contentBlocks ?? []).compactMap { $0.kind == .verse ? $0.chapter : nil }) where referenced != info.number {
+        if let known = chapters[referenced] { primary[referenced] = known }
+        else { primary[referenced] = try chapter(edition: edition, book: id, number: referenced) }
+      }
+      result.append(BibleReaderSection(book: book, display: try BibleDisplayChapter.resolve(selected, primaryChapters: primary)))
+    }
+    readerBooks[key] = result; readerBookOrder.append(key)
+    while readerBookOrder.count > Self.retainedReaderBooks { readerBooks[readerBookOrder.removeFirst()] = nil }
     return result
   }
 

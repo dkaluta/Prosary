@@ -209,6 +209,7 @@ struct BibleChapterView: View {
   @State private var jumpBlockID: String?
   @State private var pendingJumpBlockID: String?
   @State private var readingAnchorID: String?
+  @State private var bookRequest = 0
 
   private var number: Int { chapterNumber == 0 ? initialChapter : chapterNumber }
   private var script: Binding<String> {
@@ -232,7 +233,7 @@ struct BibleChapterView: View {
             #if os(iOS)
             withAnimation { chromeHidden = requested ?? !chromeHidden }
             #endif
-          })
+          }, hasPrevious: neighbour(-1) != nil, hasNext: neighbour(1) != nil, onBoundary: turnBook)
       } else {
       ScrollView {
         VStack(alignment: .leading, spacing: 20) {
@@ -319,11 +320,48 @@ struct BibleChapterView: View {
           requestedBook == activeBook.id else { return }
     select(BiblePosition(book: requestedBook, chapter: target.displayChapter), block: target.blockId)
   }
-  private func select(_ target: BiblePosition, block: String? = nil) {
-    guard let section = readerSections.first(where: { $0.book.id == target.book && $0.display.chapter.chapter == target.chapter }) else { return }
-    bookOverride = target.book; chapterNumber = target.chapter; chapter = section.display
-    readingAnchorID = section.id + (block.map { "/" + $0 } ?? "")
-    jumpGeneration += 1
+  private func neighbour(_ delta: Int) -> BibleBook? {
+    guard let index = edition.books.firstIndex(where: { $0.id == activeBook.id }) else { return nil }
+    let target = index + delta
+    return edition.books.indices.contains(target) ? edition.books[target] : nil
+  }
+  /// Turning past a book's last page opens the next book at its start; turning back
+  /// from the first page opens the previous book at its last page.
+  private func turnBook(_ delta: Int) {
+    guard let book = neighbour(delta), let chapter = delta < 0 ? book.chapters.last : book.chapters.first else { return }
+    select(BiblePosition(book: book.id, chapter: chapter.number), atEnd: delta < 0)
+  }
+  private func select(_ target: BiblePosition, block: String? = nil, atEnd: Bool = false) {
+    let anchor = atEnd ? "__end__" : "\(target.book)/\(target.chapter)" + (block.map { "/" + $0 } ?? "")
+    if readerSections.first?.book.id == target.book {
+      guard let section = readerSections.first(where: { $0.display.chapter.chapter == target.chapter }) else { return }
+      bookRequest += 1
+      bookOverride = target.book; chapterNumber = target.chapter; chapter = section.display
+      readingAnchorID = anchor
+      jumpGeneration += 1
+      return
+    }
+    Task { await open(target, anchor: anchor) }
+  }
+  /// The reader holds one book. Another book replaces the document once it is decoded,
+  /// so the visible text, title and pickers never disagree while it loads.
+  private func open(_ target: BiblePosition, anchor: String) async {
+    bookRequest += 1
+    let request = bookRequest
+    do {
+      let sections = try await BibleStore.shared.readerBook(edition, book: target.book)
+      guard request == bookRequest, !Task.isCancelled else { return }
+      guard let section = sections.first(where: { $0.display.chapter.chapter == target.chapter }) else { unavailable = true; return }
+      unavailable = false
+      readingAnchorID = anchor
+      bookOverride = target.book; chapterNumber = target.chapter; chapter = section.display
+      readerSections = sections
+      prefetchNeighbours()
+    } catch { if request == bookRequest, !Task.isCancelled { unavailable = true } }
+  }
+  private func prefetchNeighbours() {
+    let edition = edition, books = [neighbour(1), neighbour(-1)].compactMap { $0?.id }
+    Task(priority: .utility) { for book in books { _ = try? await BibleStore.shared.readerBook(edition, book: book) } }
   }
   private func move(_ delta: Int, atEnd: Bool = false) {
     if let target = position.moving(by: delta, in: edition) { select(target) }
@@ -331,12 +369,7 @@ struct BibleChapterView: View {
   private func load() async {
     guard readerSections.isEmpty else { return }
     unavailable = false
-    do {
-      let sections = try await BibleStore.shared.readerEdition(edition)
-      guard !Task.isCancelled else { return }
-      readerSections = sections
-      select(position)
-    } catch { if !Task.isCancelled { unavailable = true } }
+    await open(position, anchor: "\(position.book)/\(position.chapter)")
   }
 
 }

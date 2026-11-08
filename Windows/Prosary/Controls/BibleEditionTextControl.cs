@@ -9,7 +9,7 @@ using Prosary.ViewModels;
 
 namespace Prosary.Controls;
 
-/// <summary>One locally prepared text document, native lookup controls and edition-wide pages.</summary>
+/// <summary>One locally prepared text document per book, native lookup controls and the book's pages.</summary>
 public sealed class BibleEditionTextControl : UserControl
 {
     private readonly WebView2 _web = new();
@@ -34,6 +34,8 @@ public sealed class BibleEditionTextControl : UserControl
     private string? _identity;
     private string? _anchor;
     private string? _pendingJump;
+    private bool _hasPrevious, _hasNext, _openAtEnd;
+    private const string EndAnchor = "__end__";
     private int _generation;
     private readonly string _documentDirectory = Path.Combine(global::Windows.Storage.ApplicationData.Current.LocalCacheFolder.Path,
         "BibleReader", Guid.NewGuid().ToString("N"));
@@ -75,7 +77,8 @@ public sealed class BibleEditionTextControl : UserControl
             return;
         }
         Visibility = Visibility.Visible;
-        var identity = $"{edition.Id}|{edition.Revision}|{model.EffectiveScript}|{model.BodyFontFamily}|{model.BodyFontSize}";
+        var bookId = model.ReaderSections[0].Book.Id;
+        var identity = $"{edition.Id}|{edition.Revision}|{bookId}|{model.EffectiveScript}|{model.BodyFontFamily}|{model.BodyFontSize}";
         if (_identity == identity) return;
         _identity = identity;
         var generation = ++_generation;
@@ -109,12 +112,19 @@ public sealed class BibleEditionTextControl : UserControl
                     attribution = book.Attribution ?? "", sourceURL = book.SourceURL ?? "" });
             }
             _notes = notes;
+            var bookIndex = model.Books.ToList().FindIndex(item => item.Book.Id == bookId);
+            _hasPrevious = bookIndex > 0; _hasNext = bookIndex >= 0 && bookIndex < model.Books.Count - 1;
+            // A turn back across books opens at the previous book's last page; any other
+            // anchor from a different book falls back to the selected chapter.
+            var anchor = _openAtEnd ? EndAnchor : _anchor is { } retained && retained.StartsWith(bookId + "/", StringComparison.Ordinal)
+                ? retained : $"{bookId}/{model.SelectedChapter?.Chapter.Number}";
+            _openAtEnd = false;
             var family = model.BodyFontFamily.Split('#')[0].TrimStart('/');
             var fontPath = Path.Combine(AppContext.BaseDirectory, family.Replace('/', Path.DirectorySeparatorChar));
             var font = File.Exists(fontPath) ? Convert.ToBase64String(await File.ReadAllBytesAsync(fontPath)) : "";
             var payload = new { title = edition.Name, language = edition.LanguageCode, rtl = model.IsRightToLeft, font, fontSize = model.BodyFontSize,
                 interfaceRTL = UiLanguageCatalog.IsRightToLeft(UiLanguageCatalog.Current), chromeTaps = true,
-                anchor = _anchor ?? $"{model.SelectedBook?.Book.Id}/{model.SelectedChapter?.Chapter.Number}", sections,
+                anchor, hasPrevious = _hasPrevious, hasNext = _hasNext, sections,
                 attribution = edition.Attribution, sourceURL = edition.SourceURL, partialLabel = model.PartialNotice,
                 sourceLabel = model.SourceLabel, noteLabel = Loc.Tr("scripture_note_title", "Source note") };
             var template = await File.ReadAllTextAsync(Path.Combine(AppContext.BaseDirectory, "Assets", "edition-reader.html"));
@@ -138,6 +148,7 @@ public sealed class BibleEditionTextControl : UserControl
     { if (args.Uri != "about:blank" && !args.Uri.StartsWith("https://reader.prosary.local/", StringComparison.Ordinal)) args.Cancel = true; }
     public void Jump(string id)
     {
+        if (_openAtEnd) id = EndAnchor;
         _anchor = id;
         if (_preparing.IsActive) _pendingJump = id;
         else _ = CommandAsync(new { type = "jump", id });
@@ -164,7 +175,7 @@ public sealed class BibleEditionTextControl : UserControl
                     _anchor = message.GetProperty("anchor").GetString();
                     _model.SelectReaderPosition(message.GetProperty("book").GetString()!, message.GetProperty("chapter").GetInt32(), _anchor!);
                     _count.Text = string.Format(Loc.Tr("bible_page_count", "Pages {0}–{1} of {2}"), page, Math.Min(page + leaves - 1, total), total);
-                    _previous.IsEnabled = page > 1; _next.IsEnabled = page + leaves <= total;
+                    _previous.IsEnabled = page > 1 || _hasPrevious; _next.IsEnabled = page + leaves <= total || _hasNext;
                     _previous.Content = new SymbolIcon(_model.IsRightToLeft ? Symbol.Forward : Symbol.Back);
                     _next.Content = new SymbolIcon(_model.IsRightToLeft ? Symbol.Back : Symbol.Forward);
                     AutomationProperties.SetName(_previous, Loc.Tr("bible_previous_page", "Previous Page"));
@@ -174,6 +185,11 @@ public sealed class BibleEditionTextControl : UserControl
                     _updatingSlider = true; _slider.Maximum = Math.Max(2, total); _slider.Value = page; _slider.Visibility = !_chromeHidden && total > 1 ? Visibility.Visible : Visibility.Collapsed;
                     _slider.FlowDirection = _model.IsRightToLeft ? FlowDirection.RightToLeft : FlowDirection.LeftToRight; _updatingSlider = false;
                     if (_pendingJump is { } jump) { _pendingJump = null; await CommandAsync(new { type = "jump", id = jump }); }
+                    break;
+                case "boundary":
+                    var delta = message.GetProperty("delta").GetInt32();
+                    _openAtEnd = delta < 0;
+                    _model.OpenAdjacentBook(delta);
                     break;
                 case "chrome":
                     SetChromeHidden(message.TryGetProperty("hidden", out var hidden) ? hidden.GetBoolean() : !_chromeHidden);

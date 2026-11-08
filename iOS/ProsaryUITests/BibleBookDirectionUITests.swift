@@ -15,8 +15,8 @@ final class BibleBookDirectionUITests: XCTestCase {
     XCTAssertTrue(open.waitForExistence(timeout: 10)); open.tap()
     let counter = app.staticTexts["bible.pageCount"]
     func values() -> [Int] { counter.exists ? counter.label.replacingOccurrences(of: ",", with: "").split(whereSeparator: { !$0.isNumber }).compactMap { Int($0) } : [] }
-    let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in values().last.map { $0 > 500 } == true }, object: nil)
-    XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 90), .completed)
+    let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in values().last.map { $0 > 10 } == true }, object: nil)
+    XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)
     let initial = counter.label
     let total = values().last
     let next = app.buttons["bible.nextPage"], previous = app.buttons["bible.previousPage"]
@@ -34,7 +34,7 @@ final class BibleBookDirectionUITests: XCTestCase {
     XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 10), .completed)
     XCTAssertEqual(values().last, total)
     XCTAssertFalse(app.progressIndicators["bible.preparingEdition"].exists)
-    let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); image.name = "continuous-edition-hebrew"; image.lifetime = .keepAlways; add(image)
+    let image = XCTAttachment(screenshot: XCUIScreen.main.screenshot()); image.name = "hebrew-book-pages"; image.lifetime = .keepAlways; add(image)
   }
 }
 #endif
