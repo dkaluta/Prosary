@@ -89,7 +89,11 @@ public partial class BibleViewModel : ObservableObject
     private BibleDisplayChapter? _sourceChapter;
     private bool _readerPositionChange;
     private string? _readerRevision;
+    /// <summary>The reader holds one book; a few recent books stay decoded for turns across books.</summary>
     public IReadOnlyList<BibleReaderSection> ReaderSections { get; private set; } = [];
+    private readonly Dictionary<string, IReadOnlyList<BibleReaderSection>> _readerBooks = new(StringComparer.Ordinal);
+    private readonly List<string> _readerBookOrder = [];
+    private const int RetainedReaderBooks = 6;
     private string? _selectedBlockId;
     private enum RetryOperation { Chapter, Download, Remove }
     private RetryOperation _retryOperation;
@@ -227,22 +231,12 @@ public partial class BibleViewModel : ObservableObject
         UpdateAvailable = _installed is not null && _installed.Revision != edition?.Revision;
         if (_installed is not null && edition is not null && _readerRevision != $"{edition.Id}|{_installed.Revision}")
         {
+            _readerBooks.Clear(); _readerBookOrder.Clear();
             ReaderSections = [];
+            _readerRevision = $"{edition.Id}|{_installed.Revision}";
             OnPropertyChanged(nameof(ReaderSections));
-            IsLoading = true;
-            try
-            {
-                var sections = await _store.LoadReaderEditionAsync(edition.Id);
-                if (request != _request) return;
-                ReaderSections = sections;
-                _readerRevision = $"{edition.Id}|{_installed.Revision}";
-                OnPropertyChanged(nameof(ReaderSections));
-            }
-            catch (Exception error) when (error is IOException or UnauthorizedAccessException or System.Text.Json.JsonException)
-            { Error = Loc.Tr("bible_read_error", "This chapter could not be opened. Retry or download the edition again."); }
-            finally { IsLoading = false; }
         }
-        if (_installed is null) { ReaderSections = []; _readerRevision = null; OnPropertyChanged(nameof(ReaderSections)); }
+        if (_installed is null) { _readerBooks.Clear(); _readerBookOrder.Clear(); ReaderSections = []; _readerRevision = null; OnPropertyChanged(nameof(ReaderSections)); }
         RefreshChoices();
         NotifyDisplay();
         await LoadChapterAsync();
@@ -276,9 +270,68 @@ public partial class BibleViewModel : ObservableObject
         NotifyDisplay();
     }
 
+    private async Task<IReadOnlyList<BibleReaderSection>> ReaderBookAsync(string edition, string book)
+    {
+        if (_readerBooks.TryGetValue(book, out var cached))
+        {
+            _readerBookOrder.Remove(book); _readerBookOrder.Add(book);
+            return cached;
+        }
+        var sections = await _store.LoadReaderBookAsync(edition, book);
+        if (_readerRevision?.StartsWith(edition + "|", StringComparison.Ordinal) != true) return sections;
+        _readerBooks[book] = sections; _readerBookOrder.Remove(book); _readerBookOrder.Add(book);
+        while (_readerBookOrder.Count > RetainedReaderBooks) { _readerBooks.Remove(_readerBookOrder[0]); _readerBookOrder.RemoveAt(0); }
+        return sections;
+    }
+    private async void PrefetchNeighbours(string edition, string book)
+    {
+        var index = Books.ToList().FindIndex(item => item.Book.Id == book);
+        foreach (var neighbour in new[] { index + 1, index - 1 })
+        {
+            if (index < 0 || neighbour < 0 || neighbour >= Books.Count) continue;
+            try { await ReaderBookAsync(edition, Books[neighbour].Book.Id); }
+            catch (Exception error) when (error is IOException or UnauthorizedAccessException or InvalidDataException or System.Text.Json.JsonException) { }
+        }
+    }
+    /// <summary>Open the neighbouring book: forward at its first chapter, backward at its last.</summary>
+    public void OpenAdjacentBook(int direction)
+    {
+        var index = Books.ToList().FindIndex(item => item.Book.Id == ReaderSections.FirstOrDefault()?.Book.Id);
+        if (index < 0 || index + direction < 0 || index + direction >= Books.Count) return;
+        _selectedBlockId = null;
+        _synchronizing = true;
+        try
+        {
+            SelectedBook = Books[index + direction];
+            RefreshChapters();
+            SelectedChapter = direction < 0 ? Chapters.LastOrDefault() : Chapters.FirstOrDefault();
+        }
+        finally { _synchronizing = false; }
+        _ = LoadChapterAsync();
+    }
+
     [RelayCommand]
     private async Task LoadChapterAsync()
     {
+        if (IsInstalled && EffectiveEdition is { } readerEdition && SelectedBook is { } readerBook
+            && ReaderSections.FirstOrDefault()?.Book.Id != readerBook.Book.Id)
+        {
+            var bookRequest = ++_request;
+            IsLoading = true;
+            try
+            {
+                var sections = await ReaderBookAsync(readerEdition.Id, readerBook.Book.Id);
+                if (bookRequest != _request) return;
+                ReaderSections = sections;
+                OnPropertyChanged(nameof(ReaderSections));
+                PrefetchNeighbours(readerEdition.Id, readerBook.Book.Id);
+            }
+            catch (Exception error) when (error is IOException or UnauthorizedAccessException or InvalidDataException or System.Text.Json.JsonException)
+            {
+                if (bookRequest == _request) Error = Loc.Tr("bible_read_error", "This chapter could not be opened. Retry or download the edition again.");
+            }
+            finally { if (bookRequest == _request) IsLoading = false; }
+        }
         if (ReaderSections.FirstOrDefault(section => section.Book.Id == SelectedBook?.Book.Id
             && section.Display.Chapter.Chapter == SelectedChapter?.Chapter.Number) is { } cached)
         {

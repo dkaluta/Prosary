@@ -8,8 +8,8 @@ nonisolated struct BibleReaderSection: Sendable {
   var id: String { "\(book.id)/\(display.chapter.chapter)" }
 }
 
-/// The complete verified edition is laid out once. Page changes only move the viewport;
-/// they do not recreate the document, decode chapters or replace text with a loading state.
+/// One verified book is laid out at a time. Page changes inside it only move the viewport;
+/// turning past its first or last page asks the host for the neighbouring book.
 struct BibleEditionReader: View {
   let edition: BibleEdition
   let sections: [BibleReaderSection]
@@ -19,6 +19,9 @@ struct BibleEditionReader: View {
   var onPosition: (String, Int) -> Void
   var chromeHidden = false
   var onChromeChange: (Bool?) -> Void = { _ in }
+  var hasPrevious = false
+  var hasNext = false
+  var onBoundary: (Int) -> Void = { _ in }
   @ObservedObject private var typography = PrayerTypographyMonitor.shared
   @ScaledMetric(relativeTo: .body) private var bodyScale = 1.0
   @State private var html = ""
@@ -51,13 +54,13 @@ struct BibleEditionReader: View {
       HStack {
         Button { send(["type": "turn", "delta": -1]) } label: {
           Label(bibleLabel("previousPage", "Previous Page"), systemImage: direction == .rightToLeft ? "chevron.right" : "chevron.left")
-        }.disabled(page <= 1).accessibilityIdentifier("bible.previousPage")
+        }.disabled(total == 0 || page <= 1 && !hasPrevious).accessibilityIdentifier("bible.previousPage")
         Spacer()
         Text(countLabel).font(.caption).monospacedDigit().accessibilityIdentifier("bible.pageCount")
         Spacer()
         Button { send(["type": "turn", "delta": 1]) } label: {
           Label(bibleLabel("nextPage", "Next Page"), systemImage: direction == .rightToLeft ? "chevron.left" : "chevron.right")
-        }.disabled(total == 0 || page + leaves > total).accessibilityIdentifier("bible.nextPage")
+        }.disabled(total == 0 || page + leaves > total && !hasNext).accessibilityIdentifier("bible.nextPage")
       }.labelStyle(.iconOnly).buttonStyle(.bordered).controlSize(pageControlSize).environment(\.layoutDirection, direction)
       if total > 1 {
         Slider(value: Binding(get: { Double(page) }, set: { send(["type": "page", "page": Int($0) - 1]) }),
@@ -70,7 +73,7 @@ struct BibleEditionReader: View {
     .padding(.horizontal, 20).padding(.bottom, chromeHidden ? 0 : 8)
     .accessibilityElement(children: .contain)
     .accessibilityIdentifier("bible.bookReader")
-    .task(id: "\(edition.revision)|\(script)|\(typography.typefaces)|\(bodyScale)") { prepare() }
+    .task(id: "\(edition.revision)|\(sections.first?.book.id ?? "")|\(script)|\(typography.typefaces)|\(bodyScale)") { prepare() }
     .onChange(of: jumpGeneration) { _, _ in if let anchor { send(["type": "jump", "id": anchor]) } }
     .sheet(item: $note) { selected in
       NavigationStack {
@@ -101,6 +104,7 @@ struct BibleEditionReader: View {
       anchor = message["anchor"] as? String
       if let book = message["book"] as? String, let chapter = message["chapter"] as? Int { onPosition(book, chapter) }
     case "chrome": onChromeChange(message["hidden"] as? Bool)
+    case "boundary": if let delta = message["delta"] as? Int { onBoundary(delta) }
     case "note":
       if let id = message["id"] as? String {
         for section in sections {
@@ -142,7 +146,7 @@ struct BibleEditionReader: View {
     let fontData = fontURL.flatMap { $0.path.hasPrefix(Bundle.main.bundlePath) ? try? Data(contentsOf: $0) : nil }
     let payload: [String: Any] = ["title": edition.name, "language": edition.languageCode, "rtl": direction == .rightToLeft,
       "font": fontData?.base64EncodedString() ?? "", "fontSize": face.size * bodyScale,
-      "anchor": anchor ?? sections.first?.id ?? "", "nativeTurns": true, "chromeTaps": false, "interfaceRTL": UILanguage.isRightToLeft(UILanguage.current), "sections": content,
+      "anchor": anchor ?? sections.first?.id ?? "", "hasPrevious": hasPrevious, "hasNext": hasNext, "nativeTurns": true, "chromeTaps": false, "interfaceRTL": UILanguage.isRightToLeft(UILanguage.current), "sections": content,
       "attribution": edition.readingEdition.attribution, "sourceURL": edition.readingEdition.sourceURL,
       "partialLabel": bibleLabel("partial", "Only part of this chapter is available"),
       "sourceLabel": String(localized: "readings.source", defaultValue: "Text source", bundle: UILanguage.bundle, locale: UILanguage.locale),
@@ -191,8 +195,8 @@ private struct BibleEditionWebSurface: BibleWebRepresentable {
   }
   private func update(_ view: WKWebView, _ context: Context) {
     let coordinator = context.coordinator; coordinator.parent = self
-    if coordinator.html != html { coordinator.html = html; view.loadHTMLString(html, baseURL: nil) }
-    if coordinator.serial != serial, !command.isEmpty { coordinator.serial = serial; view.evaluateJavaScript("window.ProsaryReader?.command(\(command))", completionHandler: nil) }
+    if coordinator.html != html { coordinator.html = html; coordinator.loaded = false; coordinator.navigation = view.loadHTMLString(html, baseURL: nil) }
+    if coordinator.serial != serial, !command.isEmpty { coordinator.serial = serial; coordinator.run(command) }
     #if os(iOS)
     if #available(iOS 26.0, *), let pan = coordinator.pan {
       // The containing navigation controller owns Back, but full-content Back must
@@ -215,6 +219,13 @@ private struct BibleEditionWebSurface: BibleWebRepresentable {
     var parent: BibleEditionWebSurface
     weak var web: WKWebView?
     var html = ""; var serial = -1
+    /// A command sent while a new document is still loading would reach the old page or none.
+    /// Keep the latest one (a book or verse jump) for the reader's own first layout instead.
+    var loaded = false; var pending: String?; var navigation: WKNavigation?
+    func run(_ command: String) {
+      guard loaded else { pending = command; return }
+      web?.evaluateJavaScript("window.ProsaryReader?.command(\(command))", completionHandler: nil)
+    }
     #if os(iOS)
     var pan: UIPanGestureRecognizer?
     @objc func toggleChrome(_ gesture: UITapGestureRecognizer) {
@@ -236,6 +247,11 @@ private struct BibleEditionWebSurface: BibleWebRepresentable {
     init(parent: BibleEditionWebSurface) { self.parent = parent }
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
       if message.name == "reader", let string = message.body as? String { parent.receive(string) }
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+      guard navigation == nil || navigation === self.navigation else { return }
+      loaded = true
+      if let command = pending { pending = nil; run(command) }
     }
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
       decisionHandler(navigationAction.navigationType == .linkActivated ? .cancel : .allow)

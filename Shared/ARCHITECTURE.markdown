@@ -1907,14 +1907,17 @@ keeps the same edition's reviewed bundled passage available offline. Native read
 parse citation text or widen an appointment to unreviewed chapters. Terminal has no readings
 or download features.
 
-Apple, Android and Windows Bible readers prepare the whole installed edition once in an
+Apple, Android and Windows Bible readers prepare one installed book at a time in an
 offline WebView document, with one page on narrow screens or facing pages on wide screens.
 The byte-identical renderer lives in `Shared/reader/edition-reader.html`; run
 `uv run --script Shared/tools/sync-edition-reader.py` to copy it into all three ports.
 Adjacent ordinary verses share justified paragraphs with inline verse indicators. Page turns follow Scripture
-direction and continue across chapters and books throughout the available edition. Global
-book/chapter/verse controls retain exact reviewed address routing. Global page counts and
-the slider span the edition; normal turns perform no chapter I/O. Source-block anchors
+direction and continue across chapters and books throughout the available edition: a turn past a
+book's last page opens the next book's document at its first page, and a turn back from the first
+page opens the preceding book at its last page (the renderer posts `boundary`; the `__end__` anchor
+opens a book at its end). Global book/chapter/verse controls retain exact reviewed address routing.
+Page counts and the slider span the current book; turns inside it perform no chapter I/O, and a
+few recent and neighbouring books stay decoded. Source-block anchors
 connect verse jumps and reflow; notes, printed labels and exceptional source units stay
 distinct. Long units flow across pages. Touch taps toggle application chrome, while native
 note disclosures, links and text selection retain their own interactions. Visible Apple

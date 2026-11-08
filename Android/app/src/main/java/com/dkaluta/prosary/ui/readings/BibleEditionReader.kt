@@ -38,15 +38,17 @@ import org.json.JSONObject
 internal data class BibleReaderSection(val book: BibleBook, val display: BibleDisplayChapter) {
     val id: String get() = "${book.id}/${display.chapter.chapter}"
 }
+private class EditionLoading { var html: String? = null; var pending: JSONObject? = null }
 private class EditionMessages(private val receive: (String) -> Unit) {
     @JavascriptInterface fun postMessage(value: String) = receive(value)
 }
 
-/** Native chrome and notes surround one offline text document for the entire edition. */
+/** Native chrome and notes surround one offline text document for the current book. */
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 internal fun BibleEditionReader(edition: BibleEdition, sections: List<BibleReaderSection>, script: String,
-    anchor: String, jumpSerial: Int, onPosition: (String, Int, String) -> Unit, modifier: Modifier = Modifier) {
+    anchor: String, jumpSerial: Int, onPosition: (String, Int, String) -> Unit,
+    hasPrevious: Boolean = false, hasNext: Boolean = false, onBoundary: (Int) -> Unit = {}, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val chrome = LocalBibleReadingChrome.current
     val openUri = LocalUriHandler.current
@@ -76,12 +78,20 @@ internal fun BibleEditionReader(edition: BibleEdition, sections: List<BibleReade
     var leaves by remember { mutableIntStateOf(1) }
     var note by remember { mutableStateOf<BibleDisplayItem?>(null) }
     val currentPosition by rememberUpdatedState(onPosition)
+    val currentBoundary by rememberUpdatedState(onBoundary)
     val notes = remember(sections) { sections.flatMap { s -> s.display.items.map { s.id + "/" + it.id to it } }.toMap() }
-    val html by produceState("", edition.revision, sections, script, size, font) {
+    val html by produceState("", edition.revision, sections, script, size, font, hasPrevious, hasNext) {
         total = 0
-        value = withContext(Dispatchers.Default) { editionHtml(context, edition, sections, script, anchor, rtl, size, font) }
+        value = withContext(Dispatchers.Default) { editionHtml(context, edition, sections, script, anchor, rtl, size, font, hasPrevious, hasNext) }
     }
-    fun command(value: JSONObject) { web?.evaluateJavascript("window.ProsaryReader?.command($value)", null) }
+    // A command sent while a new document is still loading would reach the old page or none.
+    // Keep the latest one (a book or verse jump) for the reader's own first layout instead.
+    val loading = remember { EditionLoading() }
+    fun command(value: JSONObject) {
+        val view = web
+        if (view == null || loading.html != null) loading.pending = value
+        else view.evaluateJavascript("window.ProsaryReader?.command($value)", null)
+    }
     LaunchedEffect(jumpSerial) { command(JSONObject().put("type", "jump").put("id", anchor)) }
     val label = stringResource(R.string.bible_page_count, page, minOf(page + leaves - 1, maxOf(1, total)), maxOf(1, total))
     Column(modifier.fillMaxSize().testTag("bibleEditionReader")) {
@@ -107,32 +117,38 @@ internal fun BibleEditionReader(edition: BibleEdition, sections: List<BibleReade
                     setOnTouchListener { _, event -> taps.onTouchEvent(event); false }
                     webViewClient = object : WebViewClient() {
                         override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean = true
+                        override fun onPageFinished(view: WebView, url: String?) {
+                            if (loading.html != view.tag) return
+                            loading.html = null
+                            loading.pending?.let { loading.pending = null; command(it) }
+                        }
                     }
                     addJavascriptInterface(EditionMessages { raw -> post {
                         val message = runCatching { JSONObject(raw) }.getOrNull() ?: return@post
                         when (message.optString("type")) {
                             "state" -> { page = message.getInt("page"); total = message.getInt("total"); leaves = message.getInt("leaves")
                                 currentPosition(message.getString("book"), message.getInt("chapter"), message.getString("anchor")) }
+                            "boundary" -> currentBoundary(message.optInt("delta"))
                             "chrome" -> chrome?.let { it.value = if (message.has("hidden")) message.getBoolean("hidden") else !it.value }
                             "note" -> note = notes[message.optString("id")]
                             "link" -> message.optString("url").takeIf { it.startsWith("https://") }?.let(openUri::openUri)
                         }
                     } }, "ProsaryHost")
-                    tag = html; loadDataWithBaseURL(null, html, "text/html", "UTF-8", null); web = this
+                    tag = html; loading.html = html; loadDataWithBaseURL(null, html, "text/html", "UTF-8", null); web = this
                 }
             }, onRelease = { it.removeJavascriptInterface("ProsaryHost"); it.destroy(); web = null }, update = {
-                if (it.tag != html) { it.tag = html; it.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null) }
+                if (it.tag != html) { it.tag = html; loading.html = html; it.loadDataWithBaseURL(null, html, "text/html", "UTF-8", null) }
             })
             if (total == 0) CircularProgressIndicator(Modifier.testTag("biblePreparingEdition"))
         }
         if (chrome?.value != true) {
         CompositionLocalProvider(LocalLayoutDirection provides if (rtl) LayoutDirection.Rtl else LayoutDirection.Ltr) {
             Row(Modifier.fillMaxWidth().heightIn(min = 56.dp).padding(horizontal = 12.dp), verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
-                IconButton(onClick = { command(JSONObject().put("type", "turn").put("delta", -1)) }, enabled = page > 1,
+                IconButton(onClick = { command(JSONObject().put("type", "turn").put("delta", -1)) }, enabled = total > 0 && (page > 1 || hasPrevious),
                     modifier = Modifier.testTag("biblePreviousPage")) { Icon(Icons.AutoMirrored.Filled.KeyboardArrowLeft, stringResource(R.string.bible_previous_page)) }
                 Text(label, Modifier.weight(1f).testTag("biblePageCount"), style = MaterialTheme.typography.labelMedium,
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center)
-                IconButton(onClick = { command(JSONObject().put("type", "turn").put("delta", 1)) }, enabled = total > 0 && page + leaves <= total,
+                IconButton(onClick = { command(JSONObject().put("type", "turn").put("delta", 1)) }, enabled = total > 0 && (page + leaves <= total || hasNext),
                     modifier = Modifier.testTag("bibleNextPage")) { Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, stringResource(R.string.bible_next_page)) }
             }
             if (total > 1) Slider(page.toFloat(), { command(JSONObject().put("type", "page").put("page", it.toInt() - 1)) },
@@ -146,7 +162,7 @@ internal fun BibleEditionReader(edition: BibleEdition, sections: List<BibleReade
 }
 
 private fun editionHtml(context: Context, edition: BibleEdition, sections: List<BibleReaderSection>, script: String,
-    anchor: String, rtl: Boolean, size: Float, font: Int): String {
+    anchor: String, rtl: Boolean, size: Float, font: Int, hasPrevious: Boolean, hasNext: Boolean): String {
     val content = JSONArray()
     for (section in sections) {
         val book = section.book
@@ -171,7 +187,7 @@ private fun editionHtml(context: Context, edition: BibleEdition, sections: List<
     }
     val payload = JSONObject().put("title", edition.name).put("language", edition.languageCode).put("rtl", rtl)
         .put("fontSize", size).put("font", Base64.encodeToString(context.resources.openRawResource(font).use { it.readBytes() }, Base64.NO_WRAP))
-        .put("anchor", anchor).put("chromeTaps", false).put("interfaceRTL", context.resources.configuration.layoutDirection == android.view.View.LAYOUT_DIRECTION_RTL).put("sections", content).put("attribution", edition.attribution).put("sourceURL", edition.sourceURL)
+        .put("anchor", anchor).put("hasPrevious", hasPrevious).put("hasNext", hasNext).put("chromeTaps", false).put("interfaceRTL", context.resources.configuration.layoutDirection == android.view.View.LAYOUT_DIRECTION_RTL).put("sections", content).put("attribution", edition.attribution).put("sourceURL", edition.sourceURL)
         .put("partialLabel", context.getString(R.string.bible_partial_chapter)).put("sourceLabel", context.getString(R.string.readings_source))
         .put("noteLabel", context.getString(R.string.scripture_source_note))
     return context.assets.open("edition-reader.html").bufferedReader().use { it.readText() }

@@ -21,9 +21,13 @@ shows two facing pages. Book, chapter and verse controls jump anywhere in the av
 edition. Page turns continue through available chapters and into the next book in catalog
 order, with the reverse turn returning to the preceding chapter's final page.
 
-The entire installed edition is prepared once as an offline text document. The page counter
-and slider cover every page in the edition; normal page turns and cross-book jumps reuse
-that document without loading a chapter or showing a preparation spinner. Page numbers
+Each book is prepared on its own as an offline text document, so the reader opens with only
+the selected book decoded and laid out. The page counter and slider cover the pages of the
+current book; turns and chapter or verse jumps inside it reuse that document without
+loading a chapter. Turning past a book's last page opens the next book at its first page;
+turning back from a book's first page opens the preceding book at its last page. Book
+jumps open the chosen book at the chosen chapter. A few recently opened books, and the
+neighbours of the current one, stay decoded so that these turns are quick. Page numbers
 describe the current font and window geometry, rather than the printed source pagination.
 This presentation adds no saved setting or archive field. The Apple library remains
 available through Back for changing or removing a download.
