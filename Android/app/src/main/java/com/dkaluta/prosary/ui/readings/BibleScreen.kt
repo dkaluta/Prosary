@@ -271,7 +271,7 @@ private fun BibleInstalledReader(edition: BibleEdition, library: BibleLibrary, m
                             val chapterInfo = if (delta < 0) target.chapters.last() else target.chapters.first()
                             navigate(BibleNavigation.Position(target.id, chapterInfo.number), atEnd = delta < 0)
                         }
-                    }, modifier = Modifier.weight(1f))
+                    }, onChooseChapter = { picker = "chapter" }, modifier = Modifier.weight(1f))
             }
         }
     }

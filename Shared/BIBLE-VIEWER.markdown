@@ -22,13 +22,31 @@ edition. Page turns continue through available chapters and into the next book i
 order, with the reverse turn returning to the preceding chapter's final page.
 
 Each book is prepared on its own as an offline text document, so the reader opens with only
-the selected book decoded and laid out. The page counter and slider cover the pages of the
+the selected book decoded and laid out. The page counter covers the pages of the
 current book; turns and chapter or verse jumps inside it reuse that document without
 loading a chapter. Turning past a book's last page opens the next book at its first page;
 turning back from a book's first page opens the preceding book at its last page. Book
 jumps open the chosen book at the chosen chapter. A few recently opened books, and the
 neighbours of the current one, stay decoded so that these turns are quick. Page numbers
 describe the current font and window geometry, rather than the printed source pagination.
+Selecting the page counter opens the current book's chapter list, the same choices as the
+chapter control; there is no page slider. On iPhone and iPad, page turns use UIKit's native
+page curl: the live document stays on top for selection, notes and links, and pictures of the
+current spread and its neighbours, rendered by a hidden copy of the same document, curl
+beneath it. Two facing pages curl around a centre spine. Reduce Motion, a neighbour that is
+not yet pictured, and turns across a book boundary use a plain page turn.
+
+The book's name opens its first page as a large title inside the document; every later page
+carries it as a small centered running head in a reserved strip of the same height, so the
+page size, and therefore pagination, never changes between the first page and the rest. On
+iPhone and iPad the navigation bar's title is therefore not drawn; it stays for Back and
+accessibility. There is no separate book heading in the text.
+
+The Masoretic text marks its sections with a bare פ (open, *petuḥah*) or ס (closed,
+*setumah*), usually after the sof pasuq. The reader follows Wikisource's presentation and
+does not show the letters: an open section ends the paragraph, so the next verse starts a new
+one, and a closed section leaves a wide gap within the line; inside a verse an open mark
+becomes a line break. The archive text keeps the marks exactly as printed.
 This presentation adds no saved setting or archive field. The Apple library remains
 available through Back for changing or removing a download.
 

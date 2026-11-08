@@ -13,7 +13,7 @@ final class BibleBookDirectionUITests: XCTestCase {
     app.launch(); defer { app.terminate() }
     let open = app.buttons["homeWidgets.open.scripture"]
     XCTAssertTrue(open.waitForExistence(timeout: 10)); open.tap()
-    let counter = app.staticTexts["bible.pageCount"]
+    let counter = app.buttons["bible.pageCount"]
     func values() -> [Int] { counter.exists ? counter.label.replacingOccurrences(of: ",", with: "").split(whereSeparator: { !$0.isNumber }).compactMap { Int($0) } : [] }
     let ready = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in values().last.map { $0 > 10 } == true }, object: nil)
     XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)

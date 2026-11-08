@@ -11,7 +11,7 @@ final class BibleEditionUITests: XCTestCase {
     defer { app.terminate() }
     let open = app.buttons["homeWidgets.open.scripture"]
     XCTAssertTrue(open.waitForExistence(timeout: 10)); open.tap()
-    let count = app.staticTexts["bible.pageCount"]
+    let count = app.buttons["bible.pageCount"]
     func numbers() -> [Int] {
       guard count.exists else { return [] }
       return count.label.replacingOccurrences(of: ",", with: "").split(whereSeparator: { !$0.isNumber }).compactMap { Int($0) }
@@ -61,13 +61,14 @@ final class BibleEditionUITests: XCTestCase {
     app.buttons["bible.verseMenu"].tap(); app.buttons["3"].tap()
     let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     attachment.name = "book-pages-and-verse-lookup"; attachment.lifetime = .keepAlways; add(attachment)
-    let slider = app.sliders["bible.pageSlider"]
-    XCTAssertTrue(slider.exists); slider.adjust(toNormalizedSliderPosition: 1)
+    // The page count opens the book's chapters.
+    XCTAssertFalse(app.sliders["bible.pageSlider"].exists)
+    count.tap(); app.buttons["Chapter 50"].tap()
     let nearEnd = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
       numbers().first.map { $0 > restoredTotal * 90 / 100 } == true
     }, object: nil)
     XCTAssertEqual(XCTWaiter.wait(for: [nearEnd], timeout: 10), .completed, count.label)
-    // XCTest's normalized slider drag can stop a few physical pixels short of the end.
+    // Genesis 50 can begin a few pages before the book's last page.
     for _ in 0..<40 where numbers().first.map({ $0 < restoredTotal - 1 }) == true {
       app.buttons["bible.nextPage"].tap()
     }

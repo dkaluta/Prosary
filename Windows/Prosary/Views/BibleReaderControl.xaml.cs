@@ -60,6 +60,7 @@ public sealed partial class BibleReaderControl : UserControl
     {
         ViewModel.ConfirmRemoval = ConfirmRemovalAsync;
         ViewModel.VerseRequested += OnVerseRequested;
+        EditionReader.ChapterListRequested += OnChapterListRequested;
         ViewModel.PropertyChanged += OnReaderPropertyChanged;
         AppSettings.ReadingsEditionChanged += OnEditionChanged;
         AppSettings.TypographyChanged += OnTypographyChanged;
@@ -73,12 +74,14 @@ public sealed partial class BibleReaderControl : UserControl
         EditionReader.RestoreChrome();
         ViewModel.ConfirmRemoval = null;
         ViewModel.VerseRequested -= OnVerseRequested;
+        EditionReader.ChapterListRequested -= OnChapterListRequested;
         ViewModel.PropertyChanged -= OnReaderPropertyChanged;
         AppSettings.ReadingsEditionChanged -= OnEditionChanged;
         AppSettings.TypographyChanged -= OnTypographyChanged;
         BibleLibraryStore.Default.Changed -= OnLibraryChanged;
         ViewModel.StopLoading();
     }
+    private void OnChapterListRequested() { ChapterSelector.Focus(FocusState.Programmatic); ChapterSelector.IsDropDownOpen = true; }
     private void OnVerseRequested(BibleVerseRow verse)
     {
         if (ViewModel.SelectedBook is { } book && ViewModel.SelectedChapter is { } chapter)
